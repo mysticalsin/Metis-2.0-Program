@@ -297,9 +297,20 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/207",
+    "merge_commit": "e8ddf8a7",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)",
+    "red_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36269307693",
+    "green_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36275239813"
+   },
+   "notes": [
+    "Design amendments A1-A3, A7-A8 applied: no index.owner.json stamp; cause-based read-only rule (io/undecryptable/unsupported/corrupt-kept) with brain.index.unavailable {cause}; decoded-but-invalid set aside as index.corrupt-auto-*, cap 5, legacy files untouched."
+   ]
   },
   {
    "id": "M2-0004",
@@ -458,7 +469,10 @@
    "due": null,
    "status": "IN_PROGRESS",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "notes": [
+    "Slice 1 (PR #208) delivers acceptance 1, 2, 4 and 10; items 3, 5, 6, 7, 8, 9 moved to M2-0215."
+   ]
   },
   {
    "id": "M2-0007",
@@ -2115,9 +2129,18 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/204",
+    "merge_commit": "584e7acd",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)"
+   },
+   "notes": [
+    "Acceptance 3 (cold-start before/after) deferred to M2-0009: measure repeat cold start within one process separately from first cold start after launch."
+   ]
   },
   {
    "id": "M2-0036",
@@ -2541,9 +2564,17 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/202",
+    "merge_commit": "7f0e29bf",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)",
+    "red_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36269376031",
+    "green_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36269665029"
+   }
   },
   {
    "id": "M2-0044",
@@ -2632,9 +2663,16 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/203",
+    "merge_commit": "7dab8e89",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)",
+    "red_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36267670237"
+   }
   },
   {
    "id": "M2-0046",
@@ -8403,7 +8441,8 @@
     "operator/src/hmac.ts",
     "operator/src/ask.ts",
     "operator/src/use.ts",
-    "cloudflare-proxy/src/index.ts"
+    "cloudflare-proxy/src/index.ts",
+    "src/shared/operator-entitlements.ts"
    ],
    "summary": "Brokered MCP mode hands every seat a /v1/mcp/:id endpoint the Worker can never route; the legacy no-license HMAC path authenticates knowledge of a shared secret rather than a device; and the proxy forwards chat bodies with no size cap. Fix each with a test, and extract the shared 'provider not allowed for Operator-funded call' guard.",
    "acceptance": [
@@ -8425,7 +8464,10 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": [
+    "Also covers the desktop side found in M2-0045 validation: parseOperatorIntegration ignores the brokered row shape {transport, mode, endpoint, gatewayToken}, so brokered rows parse with baseUrl/credential null and are never registered. Fix both ends together (Worker /v1/mcp/:id route + desktop brokered parsing) or stop defaulting to brokered."
+   ]
   },
   {
    "id": "M2-0146",
@@ -12354,6 +12396,59 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0215",
+   "title": "Observability v1, slice 2: crash taxonomy, reveal and sidecar events, History request timings, allowlist projection, threadpool size, tray diagnostics",
+   "wave": "W0",
+   "milestone": "m3",
+   "type": "infra",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0006"
+   ],
+   "kit_refs": [
+    "M2-OPS-03",
+    "M2-PRIV-03"
+   ],
+   "finding_refs": [
+    "CHATGPT-A1",
+    "B3-RC1",
+    "B3-RC3",
+    "B1-RC2",
+    "P7-INSTR",
+    "L06-F5",
+    "L01-F9",
+    "L02-F5",
+    "B3-RC4"
+   ],
+   "scope_paths": [
+    "src/main/index.ts",
+    "src/main/logger.ts",
+    "src/main/infra/observability/",
+    "src/renderer/src/components/RecallView.tsx",
+    "src/renderer/src/main.tsx",
+    "src/preload/index.ts"
+   ],
+   "summary": "Remainder of M2-0006 after its first PR: app.crash fatal flag and app.error.* for handled errors (messages capped at 300 chars), reveal events at activate/second-instance/ensureWindow and sidecar spawn/exit events, History requestId with per-stage timings through IPC, renderer crash reports with {view, listening}, an allowlist-projection test proving no event carries titles, transcript text, paths or emails, UV_THREADPOOL_SIZE in app.started, and a tray \"Copy diagnostics summary\".",
+   "acceptance": [
+    "app.crash carries fatal:boolean; handled failures emit app.error.* with recoveryStatus; messages at most 300 chars",
+    "reveal events record reason, isVisible, layout, outcome and ms; sidecar.spawn/exit record name, pid, pgid",
+    "History clicks carry a requestId through preload, IPC and main with per-stage timings",
+    "Renderer crash reports include {view, listening}",
+    "Allowlist-projection test: no event field can carry titles, transcript text, paths or emails",
+    "app.started includes UV_THREADPOOL_SIZE; tray offers Copy diagnostics summary (content-free)"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 8,
    "status": "TODO"
   }
  ]

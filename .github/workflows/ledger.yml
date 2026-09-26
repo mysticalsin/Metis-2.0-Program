@@ -1,0 +1,67 @@
+name: Ledger
+
+# Computes ticket closure from the ledger and the evidence records, via a sparse checkout of the public
+# repository's scripts/evidence/ (M2-0002, ADR-017). Evidence records are append-only: a push may only
+# add lines under docs/metis-2.0/evidence/records, never edit or remove one.
+#
+# Also runs the traceability check (M2-0011) via the same sparse checkout's scripts/trace/, against
+# this repository's own ledger, ID inventory, DECISIONS.md, BLOCKERS.md and evidence records — never a
+# copy of the generator kept in this repository, which would drift the moment either side changed.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: Previous gate date (YYYY-MM-DD) to draw the 10% re-execution sample; empty skips it
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  ledger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: mysticalsin/AskToto-Mantu
+          ref: m2/integration
+          path: public
+          sparse-checkout: |
+            scripts/evidence
+            scripts/trace
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.3
+      - name: Evidence records are append-only
+        if: github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000'
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if git diff --unified=0 "$BEFORE" HEAD -- docs/metis-2.0/evidence/records | grep -E '^-[^-]'; then
+            echo "An evidence record line was edited or removed; records are append-only." >&2
+            exit 1
+          fi
+      - run: node public/scripts/evidence/check.mjs --ledger docs/metis-2.0/ledger/tickets.json
+      - name: Traceability check (M2-0011)
+        run: >
+          node public/scripts/trace/build-traceability.mjs --check
+          --tickets docs/metis-2.0/ledger/tickets.json
+          --inventory docs/metis-2.0/kit/ID-INVENTORY.json
+          --decisions docs/metis-2.0/DECISIONS.md
+          --blockers docs/metis-2.0/BLOCKERS.md
+          --evidence docs/metis-2.0/evidence/records
+      - name: Draw the re-execution sample
+        if: github.event_name == 'workflow_dispatch' && inputs.since != ''
+        env:
+          SINCE: ${{ inputs.since }}
+        run: node public/scripts/evidence/sample.mjs --ledger docs/metis-2.0/ledger/tickets.json --since "$SINCE" --seed "$GITHUB_SHA"
