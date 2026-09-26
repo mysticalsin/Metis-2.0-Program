@@ -99,6 +99,12 @@
    "version": 2,
    "by": "Opus final validator (m2 gate)",
    "summary": "Schema unchanged. Milestone inversions fixed (M2-0002 m3, M2-0005 m4, M2-0078 m10); Opus-owned non-visual scripts split into Sonnet slices from an Opus spec (M2-0002, M2-0008, M2-0188, M2-0197); M2-0001 first test run pinned to CI, the 09-23 quarantine count labelled DERIVED and the MQA-348 prior art pointed at an in-repo copy; out-of-repo references replaced (M2-0006, M2-0008, M2-0011, M2-0023); CRITIC-CODE-4 and -9 added to M2-0018; rc1 acceptance cycles removed from M2-0166 and M2-0178; M2-0049 gains the pre-existing personal-email and account-ID cleanup; kit copies redacted (see review/REDACTIONS.md)"
+  },
+  {
+   "date": "2026-09-26",
+   "version": 2,
+   "by": "M2-0013 round-3 re-verification (Sonnet, Opus-validated)",
+   "summary": "M2-0215 added: SRC-13's default-on persistent voiceprint retention (ipc.ts:1349-1350,1725) is not covered by M2-0109's acceptance (speaker-label-authority only); D-31 opened for the owner call on the default"
   }
  ],
  "tickets": [
@@ -12354,6 +12360,50 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0215",
+   "title": "Fresh-install speaker-ID default must not persist a voiceprint without explicit opt-in",
+   "wave": "W5",
+   "milestone": "m7",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "needs_decision": [
+    "D-31"
+   ],
+   "kit_refs": [
+    "SRC-13"
+   ],
+   "finding_refs": [
+    "M2-0013-SRC-13-DEFAULT-ON"
+   ],
+   "scope_paths": [
+    "src/shared/ipc.ts",
+    "src/main/speaker-id.ts",
+    "src/main/speaker-id.test.ts"
+   ],
+   "summary": "M2-0013's re-verification found `speakerId` defaults to `{ enabled: true }` (ipc.ts:1348-1350 schema default, :1725 DEFAULT_SETTINGS) — a fresh install auto-enrolls and persists voiceprints (userData/voiceprints.json) with no opt-in step, the opposite of SRC-13's required_change (\"disable unapproved persistent enrollment... keep default attribution session-local and uncertain\"). M2-0109's acceptance covers only that speaker labels never gate command authority; nothing in the ledger covers this default. D-31 asks the owner whether default-on retention is the intended posture (2026-08-21's MQA-235/Plaud-parity rationale, recorded in ipc.ts's own comment) or must change to opt-in.",
+   "acceptance": [
+    "A fresh install (no prior settings, no explicit speakerId opt-in) writes no persistent voiceprint file, including for the operator's own profile",
+    "Persistent enrollment (a file written to userData/voiceprints.json) happens only after an explicit, approved opt-in action — never from the schema default alone",
+    "An existing voiceprints.json from a prior default-on install migrates without a destructive surprise: no silent deletion of profiles enrolled under the old default, and the user is told the setting changed",
+    "A behaviour test exercises the fresh-default case end-to-end (no settings on disk, no explicit opt-in) and asserts nothing is written to voiceprints.json"
+   ],
+   "verification": [
+    "npx vitest run src/main/speaker-id.test.ts src/main/speaker-id-off-switch.test.ts src/shared/ipc.test.ts"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
+   "validation_hours": 0.5,
+   "slices": [],
+   "due": null,
    "status": "TODO"
   }
  ]
