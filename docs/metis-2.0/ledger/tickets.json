@@ -159,7 +159,13 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/201",
+    "merged_into": "m2/integration",
+    "ci_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36267674617",
+    "note": "Merged on local evidence while Actions was out of budget; Linux CI green on the rewritten integration head"
+   }
   },
   {
    "id": "M2-0002",
@@ -234,7 +240,9 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0003",
@@ -289,7 +297,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0004",
@@ -446,7 +456,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0007",
@@ -740,7 +752,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0012",
@@ -872,7 +886,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0014",
@@ -1300,7 +1316,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0021",
@@ -1483,7 +1501,11 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/205",
+    "note": "Public agent layer (AGENTS.md, CLAUDE.md, Cursor rule, PR template); program docs moved to the private repo mysticalsin/Metis-2.0-Program"
+   }
   },
   {
    "id": "M2-0025",
@@ -2093,7 +2115,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0036",
@@ -2417,7 +2441,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0042",
@@ -2515,7 +2541,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0044",
@@ -2604,7 +2632,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0046",
@@ -10737,7 +10767,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0188",
@@ -10898,7 +10930,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0191",
@@ -10948,7 +10982,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0192",
