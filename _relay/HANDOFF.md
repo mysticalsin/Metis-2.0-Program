@@ -1,9 +1,9 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 2
+shift: 3
 agent: claude-code
 updated: 2026-09-26 12:00 EDT
-status: blocked
+status: in-progress
 branch: docs/metis-2.0-program (worktree ~/AI-Brain-build/metis-v2-program); integration branch m2/integration
 head: m2/integration = e323151c (origin/main 2bf21f1c + M2-0001 via PR #201)
 ---
@@ -46,13 +46,16 @@ Deliver Métis 2.0 (docs/metis-2.0/GOAL.json; deadline 2026-11-30). Plan: docs/m
 - Outcome eng-complete + BLOCKED-visible; deadline 2026-11-30; only Apple public signing out of scope; Opus validates and owns design/animation; launch video at the end — Tony.
 
 
-## PURGE IN PROGRESS (2026-09-26 ~20:30 UTC) — read before any git push
+## PURGE STATUS (2026-09-26 ~21:10 UTC) — read before any git push
 - Owner chose: finish the history purge and keep the repo public. Rewritten mirror: ~/AI-Brain-build/purge/remote-mirror.git (git filter-repo removed docs/cluely-mantu-build-brief.md, docs/planning/PLAN-v5-providers-cluely-ui.md, docs/superpowers/specs/2026-06-29-cluely-replica-design.md; commit map in filter-repo/commit-map; old main 2bf21f1c -> new 22d1fbad). Backup of the pre-purge remote: ~/AI-Brain-build/purge/backup-before-purge-2026-09-26.bundle (sha256 fc21fca54a929881fe2637b856f08c1a3111ce594a062dd838fc7e0d3543b33b).
 - Done: 59 branches force-pushed with rewritten history. Pending: 49 branches (main, release/*, fix/*, cursor/*) blocked by 5 rulesets, and 27 tags (release.yml would fire). Waiting for the owner to disable the rulesets + release.yml, then push `refs/heads/*` and `refs/tags/*` from the mirror, verify every ref, owner re-enables.
 - NEVER push from an old clone or old worktree ref: it would re-publish the purged files. Every local clone/worktree must be re-synced to the rewritten history (commit-map translation) before pushing; other machines/agents must re-clone.
 - After the push: owner submits ~/AI-Brain-build/purge/notes/GITHUB-SUPPORT-REQUEST.md (refs/pull + cached views).
 - Security (owner action): revoke the Cahê Kimi key embedded in release v1.2.0's Metis-Windows-Cahe-Setup-1.2.0.exe (public download) and delete that asset.
-- Program docs (docs/metis-2.0: HeyClicky teardown, D-8 narrative) must NOT enter the public repo; plan: private repo for program docs.
+- Program docs live ONLY in this private repo (mysticalsin/Metis-2.0-Program, local clone ~/AI-Brain-build/metis-2.0-program); ignore the stale git-excluded copy under ~/AI-Brain-build/metis-v2-program/docs/metis-2.0. The public repo carries AGENTS.md, CLAUDE.md, .cursor rule and PR template (PR #205 into m2/integration); `_relay/` is git-ignored there.
+- Local re-sync done: 11 mapped local branches/worktrees moved to rewritten commits (tree-identical, soft reset). Two local-only branches stay on pre-rewrite history and must NEVER be pushed: m2/w0-hermetic-tests (superseded) and m2/M2-0003-wip-scratch (reference only).
+- Ticket runner wf_32ea0bc9-6bc (CI-only): M2-0003, M2-0006, M2-0035, M2-0043, M2-0045, M2-0041; PRs #202-#204 carried over. Next batch after M2-0006 merges: M2-0030 (storage gateway, freeze critical path), M2-0026, M2-0033, M2-0004, M2-0037, M2-0038.
+- Owner actions open: disable 5 rulesets + release.yml so the remaining 49 branches and 27 tags can be pushed; revoke the Cahê Kimi key and delete the v1.2.0 Cahê asset; send GITHUB-SUPPORT-REQUEST.md after the push; Mantu sign-off on licence/ownership (auditor B2).
 
 ## Watch out
 - The agent Bash sandbox allows writes under /Users/tony, so it does NOT protect OneDrive data.
