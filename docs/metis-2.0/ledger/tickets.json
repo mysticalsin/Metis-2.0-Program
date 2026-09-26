@@ -711,7 +711,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0011",
@@ -1126,7 +1128,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0018",
@@ -1420,7 +1424,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0023",
@@ -3271,7 +3277,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0058",
@@ -5838,7 +5846,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0102",
@@ -6958,7 +6968,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0121",
@@ -8409,7 +8421,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0145",
@@ -8576,7 +8590,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0148",
@@ -10868,7 +10884,9 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0189",
@@ -11680,7 +11698,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0205",
