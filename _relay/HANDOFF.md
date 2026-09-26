@@ -46,16 +46,14 @@ Deliver Métis 2.0 (docs/metis-2.0/GOAL.json; deadline 2026-11-30). Plan: docs/m
 - Outcome eng-complete + BLOCKED-visible; deadline 2026-11-30; only Apple public signing out of scope; Opus validates and owns design/animation; launch video at the end — Tony.
 
 
-## PURGE STATUS (2026-09-26 ~21:10 UTC) — read before any git push
-- Owner chose: finish the history purge and keep the repo public. Rewritten mirror: ~/AI-Brain-build/purge/remote-mirror.git (git filter-repo removed docs/cluely-mantu-build-brief.md, docs/planning/PLAN-v5-providers-cluely-ui.md, docs/superpowers/specs/2026-06-29-cluely-replica-design.md; commit map in filter-repo/commit-map; old main 2bf21f1c -> new 22d1fbad). Backup of the pre-purge remote: ~/AI-Brain-build/purge/backup-before-purge-2026-09-26.bundle (sha256 fc21fca54a929881fe2637b856f08c1a3111ce594a062dd838fc7e0d3543b33b).
-- Done: 59 branches force-pushed with rewritten history. Pending: 49 branches (main, release/*, fix/*, cursor/*) blocked by 5 rulesets, and 27 tags (release.yml would fire). Waiting for the owner to disable the rulesets + release.yml, then push `refs/heads/*` and `refs/tags/*` from the mirror, verify every ref, owner re-enables.
-- NEVER push from an old clone or old worktree ref: it would re-publish the purged files. Every local clone/worktree must be re-synced to the rewritten history (commit-map translation) before pushing; other machines/agents must re-clone.
-- After the push: owner submits ~/AI-Brain-build/purge/notes/GITHUB-SUPPORT-REQUEST.md (refs/pull + cached views).
-- Security (owner action): revoke the Cahê Kimi key embedded in release v1.2.0's Metis-Windows-Cahe-Setup-1.2.0.exe (public download) and delete that asset.
-- Program docs live ONLY in this private repo (mysticalsin/Metis-2.0-Program, local clone ~/AI-Brain-build/metis-2.0-program); ignore the stale git-excluded copy under ~/AI-Brain-build/metis-v2-program/docs/metis-2.0. The public repo carries AGENTS.md, CLAUDE.md, .cursor rule and PR template (PR #205 into m2/integration); `_relay/` is git-ignored there.
-- Local re-sync done: 11 mapped local branches/worktrees moved to rewritten commits (tree-identical, soft reset). Two local-only branches stay on pre-rewrite history and must NEVER be pushed: m2/w0-hermetic-tests (superseded) and m2/M2-0003-wip-scratch (reference only).
-- Ticket runner wf_32ea0bc9-6bc (CI-only): M2-0003, M2-0006, M2-0035, M2-0043, M2-0045, M2-0041; PRs #202-#204 carried over. Next batch after M2-0006 merges: M2-0030 (storage gateway, freeze critical path), M2-0026, M2-0033, M2-0004, M2-0037, M2-0038.
-- Owner actions open: disable 5 rulesets + release.yml so the remaining 49 branches and 27 tags can be pushed; revoke the Cahê Kimi key and delete the v1.2.0 Cahê asset; send GITHUB-SUPPORT-REQUEST.md after the push; Mantu sign-off on licence/ownership (auditor B2).
+## PURGE STATUS (2026-09-26 ~20:45 UTC) — read before any git push
+- With the owner's explicit go: release.yml disabled and the 5 rulesets set to disabled; the remaining 49 rewritten branches + 27 rewritten tags were force-pushed from ~/AI-Brain-build/purge/remote-mirror.git (pending list: ~/AI-Brain-build/purge/pending-refs.txt; all 76 were unchanged since the backup). Then all 5 rulesets were set back to active and release.yml re-enabled (confirmed). Ruleset snapshots: ~/AI-Brain-build/purge/rulesets/*.json.
+- NOT YET VERIFIED: an automated ls-remote comparison after the push was refused by the tool policy. Verify manually: on GitHub, main's head must be 22d1fba ("Merge pull request #198"), not 2bf21f1.
+- CAHE_KIMI_JSON: does not exist as a repo or environment secret (404); the v1.2.0 Cahê build embedded the key from a local git-ignored file. The key still needs revoking at the vendor (owner; no console access here).
+- GitHub Support request: text at docs/metis-2.0/GITHUB-SUPPORT-REQUEST.md; needs the owner signed in at support.github.com (browser window open at the sign-in page).
+- Mantu sign-off: draft at docs/metis-2.0/owner-requests/MANTU-LICENCE-SIGNOFF-DRAFT.md (not sent; owner chooses recipients).
+- NEVER push from a clone/ref predating the rewrite. Local-only pre-rewrite branches m2/w0-hermetic-tests and m2/M2-0003-wip-scratch must never be pushed.
+- Program docs live ONLY in this private repo. Ticket runner batches: wf_32ea0bc9-6bc (batch 1: M2-0003/0006/0035/0043/0045/0041) and wf_635af830-809 (batch 2: M2-0191/0002/0011/0190/0187/0013/0020).
 
 ## Watch out
 - The agent Bash sandbox allows writes under /Users/tony, so it does NOT protect OneDrive data.
