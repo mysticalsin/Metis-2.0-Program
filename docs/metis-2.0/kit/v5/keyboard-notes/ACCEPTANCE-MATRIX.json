@@ -1,0 +1,338 @@
+{
+  "schema": "metis.notes-keyboard.acceptance.v1",
+  "case_count": 16,
+  "cases": [
+    {
+      "id": "NKAC-01",
+      "title": "Normal note-taking survives the additive upgrade",
+      "procedure": "Run each inventoried supported note-taking workflow before/after integration with the same consented inputs.",
+      "required_result": "Capture/import, notes, summaries/actions, history, search and approved sync retain their qualified behavior; failures and changed semantics are explicit.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-01",
+        "NK-02"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-02",
+      "title": "Global show/hide during recording",
+      "procedure": "Start the real meeting capture; focus another app and toggle Métis repeatedly while fixture speech continues.",
+      "required_result": "Same meeting/session and complete allowed segments persist; no pause, stop, finalization, duplicate record or restarted capture.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-03",
+        "NK-07",
+        "NK-11"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-03",
+      "title": "Visibility does not start voice",
+      "procedure": "With all capture off, invoke and dismiss the visibility shortcut, including after command-off.",
+      "required_result": "Surface opens/closes; no microphone/wake/cloud stream starts. Existing command-off choice persists.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-03",
+        "NK-04",
+        "NK-06"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-04",
+      "title": "Command voice toggle and pending-start cancellation",
+      "procedure": "Invoke command capture with the configured keyboard action, press again to finalize; repeat with a delayed start then immediate second press.",
+      "required_result": "Press-on/off works without holding/clicking. Only actual capture shows Listening. Cancelled startup and stale acknowledgments cannot reopen capture.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-04",
+        "NK-07"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-05",
+      "title": "Command end does not end a meeting",
+      "procedure": "While recording, start/finish/off/cancel command capture and close the command surface.",
+      "required_result": "Only command consumers and unfinished command authority are released; the meeting continues and actual microphone-use indicators remain truthful.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-06",
+        "NK-07"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-06",
+      "title": "Explicit Stop scopes remain distinct",
+      "procedure": "During a meeting and assistant task, exercise stop-speaking, stop-task, meeting-end and stop-all-capture separately.",
+      "required_result": "Speech/task controls do not end notes. Meeting end does not leave undisclosed command streaming. Stop-all acknowledges all consumers and blocks late command effects.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-06"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-07",
+      "title": "Shortcut conflict and remapping rollback",
+      "procedure": "Try a conflicting shortcut, change layout, register a valid new binding, restart and test existing meeting/emergency controls.",
+      "required_result": "No false Ready; old working mapping survives failed replacement; saved effective mapping matches actual registration. Other shortcuts remain intact.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-05"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-08",
+      "title": "Repeated keys, two handlers, IME and focus",
+      "procedure": "Hold shortcut keys, generate backend repeats, invoke global/local paths, compose IME text and return to the prior app.",
+      "required_result": "One press causes one toggle. No activation on ordinary composition or typing, no duplicate session, lost draft or unexpected input injection.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-03",
+        "NK-05"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-09",
+      "title": "Meeting statements cannot execute",
+      "procedure": "In the recorded meeting, other participants say commands, wake phrase and confirmations; add own TTS and replayed/late ASR.",
+      "required_result": "No action grant, provider-triggered execution or confirmation arises from those sources; recording remains normal.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-08"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-10",
+      "title": "Private commands and synthesized output stay out of canonical notes",
+      "procedure": "Use a typed/private query and a voice-command interval during a known meeting fixture; inspect source tracks, routing and generated summaries.",
+      "required_result": "System-generated responses are not fabricated as participant speech; actual captured evidence/coverage is preserved honestly and routing gaps are reported.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-09"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-11",
+      "title": "JEV and action-runtime failures do not disable note-taking",
+      "procedure": "Disable JEV, expire its key or fail a decision/action worker while capturing known meeting speech and saving notes.",
+      "required_result": "Separate failures do not drop segments, prevent saving already captured notes or block normal meeting controls. No silent provider/capture fallback.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-02",
+        "NK-10"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-12",
+      "title": "Calls and output-route changes",
+      "procedure": "Ask a private question during a real call/sharing session and change output devices while TTS is queued.",
+      "required_result": "Text is default; no unapproved audible/private output. Existing speech-audience checks and buffer invalidation run; no claim that a hotkey mutes the call.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-09"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-13",
+      "title": "Reopen meeting context without duplication",
+      "procedure": "Take manual notes, select a task, write a draft, toggle/hide, run an independent task and reopen.",
+      "required_result": "Original meeting, note revision, selected task, drafts and permitted context persist; no new canonical records from show/hide.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-11"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-14",
+      "title": "Upgrade and crash recovery preserve user choices",
+      "procedure": "Migrate an existing isolated profile with user hotkeys, encrypted notes, optional local selections and consent; restart after interrupted work.",
+      "required_result": "No overwritten profile, lost notes or automatic capture reactivation. Approved recovery reconciles records; configured and actual state remain distinct.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-02",
+        "NK-05",
+        "NK-11"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-15",
+      "title": "Combined meeting, assistance, action and final summary",
+      "procedure": "Run all six steps of the combined milestone using the actual desktop/native app and appropriate qualified services.",
+      "required_result": "Continuous qualified meeting notes plus source-backed help and one independently verified action; final summary/history/sync pass original fidelity requirements.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-12"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    },
+    {
+      "id": "NKAC-16",
+      "title": "Actual platform qualification",
+      "procedure": "Repeat global shortcuts and note-taking coexistence on target Windows and Mac builds, with multiple displays, fullscreen, keyboard layouts, sleep/wake and screenshare.",
+      "required_result": "Each platform has real artifact-bound evidence; no browser fixture, source contract or other platform result stands in for it.",
+      "steps": [
+        "NK-INTEGRATION"
+      ],
+      "requirements": [
+        "NK-05",
+        "NK-12"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "actual source and artifact identity",
+        "actual keyboard/audio/controller events with consented fixtures",
+        "before/after meeting record and source-lineage comparison",
+        "platform/runtime/service and permission configuration",
+        "observed failure/negative outcomes; no fixture substituted for native evidence"
+      ]
+    }
+  ]
+}

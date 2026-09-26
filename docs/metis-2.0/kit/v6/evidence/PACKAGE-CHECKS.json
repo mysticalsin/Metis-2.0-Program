@@ -1,0 +1,23 @@
+{
+  "kind": "document_and_packaging_checks_only",
+  "date": "2026-09-26",
+  "baseline": {
+    "file": "baseline/Metis-Behavior-Upgrade-v5-Hindsight.zip",
+    "sha256": "da890d8c27796a2daf4668a0cd62b2f2c29301b7358f38a50b874acd3c39d8ba",
+    "bytes": 22044700,
+    "preserved_identically": true
+  },
+  "inherited_prompt_preserved_as_exact_suffix": true,
+  "storyboard_contiguous": true,
+  "hero_duration_seconds": 60,
+  "storyboard_scenes": 8,
+  "new_media_cases": 12,
+  "media_cases_status": "NOT_RUN",
+  "json_valid": true,
+  "application_code_modified": false,
+  "application_tests_run": false,
+  "upstream_runtime_executed": false,
+  "live_memory_qualified": false,
+  "film_rendered": false,
+  "github_or_mac_modified": false
+}

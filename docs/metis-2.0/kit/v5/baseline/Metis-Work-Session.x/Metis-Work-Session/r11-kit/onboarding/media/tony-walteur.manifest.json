@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "metis.welcome.tony-walteur",
+  "status": "NOT_PROVIDED",
+  "presenter": "Tony Walteur",
+  "allowedNamedHumans": ["Tony Walteur"],
+  "product": "Métis",
+  "scene": "hero",
+  "version": null,
+  "video": null,
+  "poster": null,
+  "captions": [],
+  "descriptiveTranscript": null,
+  "durationSeconds": null,
+  "contentReview": {"status": "PENDING", "reviewReference": null},
+  "rightsReview": {"status": "PENDING", "reviewReference": null},
+  "runtime": {
+    "autoplay": false,
+    "loop": false,
+    "preload": "none",
+    "externalFallback": null,
+    "fallback": "METIS_TEXT_WELCOME",
+    "completionControlledByVideo": false,
+    "pauseOnSceneExit": true,
+    "pauseOnPermissionHandoff": true,
+    "pauseBeforeMicrophonePractice": true,
+    "restorePlaybackAutomatically": false
+  }
+}

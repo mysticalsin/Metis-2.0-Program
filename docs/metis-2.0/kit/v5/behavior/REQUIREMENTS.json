@@ -1,0 +1,308 @@
+{
+  "schema": "metis.behavior.requirements.v4",
+  "requirements": [
+    {
+      "id": "MB-01",
+      "title": "Keyboard-first assistance inside the existing note-taking Métis",
+      "parent_interaction_steps": [
+        "CXSTEP-03",
+        "CXSTEP-08",
+        "CXSTEP-15"
+      ],
+      "required_behavior": "Preserve note-taking; global show/hide plus a separate command-voice toggle. Keyboard, mouse and typed access converge on existing controllers with truthful capture/task indicators. No end-user coding tools.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-02",
+      "title": "Talk/Guide/Do/Dictate separation",
+      "parent_interaction_steps": [
+        "CXSTEP-02",
+        "CXSTEP-08",
+        "CXSTEP-10"
+      ],
+      "required_behavior": "Intent selects a mode; Guide cannot click; Dictate cannot submit.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-03",
+      "title": "Scoped useful autonomy",
+      "parent_interaction_steps": [
+        "CXSTEP-02",
+        "CXSTEP-06"
+      ],
+      "required_behavior": "Explicit safe local requests run within resource, capability, route and time limits without repetitive prompts.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-04",
+      "title": "Stable authorized input before effects",
+      "parent_interaction_steps": [
+        "CXSTEP-02",
+        "CXSTEP-03",
+        "CXSTEP-09"
+      ],
+      "required_behavior": "Partial/meeting/playback/tool-origin text cannot authorize mutation.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-05",
+      "title": "Exact consequential approval",
+      "parent_interaction_steps": [
+        "CXSTEP-02",
+        "CXSTEP-09"
+      ],
+      "required_behavior": "Approval binds exact current recipients/content/resource/amount and is consumed once.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-06",
+      "title": "Truthful speech and labels",
+      "parent_interaction_steps": [
+        "CXSTEP-03",
+        "CXSTEP-08",
+        "CXSTEP-09"
+      ],
+      "required_behavior": "Done/saved/sent and success cues require verified host receipts; model prose cannot override unknown.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-07",
+      "title": "Speech interruption is not task cancellation",
+      "parent_interaction_steps": [
+        "CXSTEP-03",
+        "CXSTEP-07",
+        "CXSTEP-08"
+      ],
+      "required_behavior": "Status questions and output language changes yield audio without rerunning or cancelling the task.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-08",
+      "title": "Local stop, pause and correction",
+      "parent_interaction_steps": [
+        "CXSTEP-02",
+        "CXSTEP-07",
+        "CXSTEP-09"
+      ],
+      "required_behavior": "Revoke dispatch locally; reconcile in-flight effects; revalidate before resuming.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-09",
+      "title": "Actual audible position and stale-chunk fences",
+      "parent_interaction_steps": [
+        "CXSTEP-03",
+        "CXSTEP-07"
+      ],
+      "required_behavior": "Flush queued audio, account for heard position and reject late response chunks.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-10",
+      "title": "Grounded visible guidance",
+      "parent_interaction_steps": [
+        "CXSTEP-04",
+        "CXSTEP-05"
+      ],
+      "required_behavior": "Use fresh target, window/revision/transform and distinguish presentation from physical input.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-11",
+      "title": "One physical input owner",
+      "parent_interaction_steps": [
+        "CXSTEP-06",
+        "CXSTEP-07",
+        "CXSTEP-11"
+      ],
+      "required_behavior": "Exclusive device-level fence survives revocation until native drain acknowledgment.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-12",
+      "title": "Human takeover wins",
+      "parent_interaction_steps": [
+        "CXSTEP-06",
+        "CXSTEP-07"
+      ],
+      "required_behavior": "Stop injection immediately; no stale replay or focus fighting.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-13",
+      "title": "Honest background activity",
+      "parent_interaction_steps": [
+        "CXSTEP-05",
+        "CXSTEP-08",
+        "CXSTEP-11"
+      ],
+      "required_behavior": "Show real task state and results, never simulated mouse activity as execution proof.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-14",
+      "title": "Durable operation and resource identity",
+      "parent_interaction_steps": [
+        "CXSTEP-06",
+        "CXSTEP-09",
+        "CXSTEP-16"
+      ],
+      "required_behavior": "Reserve before effects; duplicates and unresolved same-resource operations cannot bypass quarantine.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-15",
+      "title": "Independent postcondition verification",
+      "parent_interaction_steps": [
+        "CXSTEP-06",
+        "CXSTEP-09"
+      ],
+      "required_behavior": "Read back the actual target; absent desired result alone is not proof of zero effects.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-16",
+      "title": "Partial completion remains partial",
+      "parent_interaction_steps": [
+        "CXSTEP-08",
+        "CXSTEP-09",
+        "CXSTEP-12"
+      ],
+      "required_behavior": "Aggregate all operations in the exact plan; no vacuous or first-step Done.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-17",
+      "title": "Correct follow-up and agent identity",
+      "parent_interaction_steps": [
+        "CXSTEP-08",
+        "CXSTEP-09",
+        "CXSTEP-11"
+      ],
+      "required_behavior": "Resolve selected agent/task/proposal; ask on ambiguous references; names do not grant rights.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-18",
+      "title": "Safe verbatim dictation",
+      "parent_interaction_steps": [
+        "CXSTEP-10"
+      ],
+      "required_behavior": "Preserve text/language/numbers; focus changes pause; rewrite and submit require distinct intent.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-19",
+      "title": "Quiet and authorized output",
+      "parent_interaction_steps": [
+        "CXSTEP-03",
+        "CXSTEP-07",
+        "CXSTEP-17"
+      ],
+      "required_behavior": "Suppress private unprompted output on calls/sharing; current audience and actual output route govern speech.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-20",
+      "title": "Visible governed memory",
+      "parent_interaction_steps": [
+        "CXSTEP-13"
+      ],
+      "required_behavior": "Approved preferences/outcomes only; canonical lineage, correct/forget, current access, no authority escalation.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-21",
+      "title": "Readiness grounded in probes",
+      "parent_interaction_steps": [
+        "CXSTEP-08",
+        "CXSTEP-12",
+        "CXSTEP-16"
+      ],
+      "required_behavior": "Saved credentials are Checking until a real scoped probe; unavailable routes remain explicitly unavailable.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-22",
+      "title": "Useful results, safe undo and recovery",
+      "parent_interaction_steps": [
+        "CXSTEP-09",
+        "CXSTEP-12"
+      ],
+      "required_behavior": "Open verified artifacts; preserve partial outputs; undo only a valid verified inverse.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-23",
+      "title": "Preferences and teaching do not expand authority",
+      "parent_interaction_steps": [
+        "CXSTEP-11",
+        "CXSTEP-13",
+        "CXSTEP-14"
+      ],
+      "required_behavior": "Speech preferences remain scoped; skill teaching produces a reviewed draft; routines need separate authority.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    },
+    {
+      "id": "MB-24",
+      "title": "Native/live proof on exact builds",
+      "parent_interaction_steps": [
+        "CXSTEP-15",
+        "CXSTEP-18",
+        "CXSTEP-19",
+        "CXSTEP-20"
+      ],
+      "required_behavior": "Preserve r11/expansions and platform gates; no fixture, patch or PR is deployed behavior.",
+      "application_binding": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "scope": "Normative requirement, not a deployed claim"
+    }
+  ],
+  "notes_keyboard_requirements": "../keyboard-notes/REQUIREMENTS.json"
+}

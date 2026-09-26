@@ -1,0 +1,30 @@
+{
+  "scope": "DELIVERY_KIT_NOT_METIS_APPLICATION",
+  "package_edition": "r5",
+  "product_contract_revision": 4,
+  "contract_unchanged": true,
+  "master_sha256": "7bdb9c186d739c443350e66a6764b3c95f82dfbc551130bb0dd8e3a4ed1a887d",
+  "preserved": {
+    "requirements": 55,
+    "use_cases": 112,
+    "root_tasks": 66,
+    "owner_commitments": 44,
+    "golden_flows": 12,
+    "historical_findings": 20
+  },
+  "structural_checks_before_hash_inventory": 26,
+  "structural_checks_passed": true,
+  "browser_checks": 59,
+  "browser_checks_passed": true,
+  "negative_integrity_probes": 4,
+  "negative_integrity_probes_passed": true,
+  "captured_synthetic_stills": 14,
+  "observed_external_browser_requests": 0,
+  "browser_runtime_errors": 0,
+  "product_tests_run": 0,
+  "actual_vendor_component_build": "NOT_RUN",
+  "native_app_tests": "NOT_RUN",
+  "deployment": "NOT_RUN",
+  "release_signing": "NOT_RUN",
+  "zip_integrity": "See final extraction validation; this report does not self-attest to unexecuted publication."
+}

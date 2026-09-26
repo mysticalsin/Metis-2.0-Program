@@ -1,0 +1,21 @@
+{
+  "scope": "READ_ONLY_STATIC_INPUT_VERIFICATION",
+  "executed_at": "2026-09-23T00:08:42.986243+00:00",
+  "checks": [
+    {
+      "check": "Original supplied DMG identity",
+      "passed": true
+    },
+    {
+      "check": "192 extracted regular data forks match inventory",
+      "passed": true,
+      "mismatches": []
+    },
+    {
+      "check": "127 embedded resource SHA256 seals agree",
+      "passed": true,
+      "limit": "Not an Apple trust, signature or notarization result."
+    }
+  ],
+  "passed": true
+}

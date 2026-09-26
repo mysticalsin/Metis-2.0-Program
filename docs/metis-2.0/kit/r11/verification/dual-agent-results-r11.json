@@ -1,0 +1,183 @@
+{
+  "scope": "Offline disposable Git and local fake-CLI tests. No real Codex/Fable session, product, live provider or deployment.",
+  "passed": 44,
+  "total": 44,
+  "checks": [
+    {
+      "check": "Packet binds full source HEAD and base",
+      "passed": true
+    },
+    {
+      "check": "Packet retains actual slice and requirement IDs",
+      "passed": true
+    },
+    {
+      "check": "Packet includes every changed file",
+      "passed": true
+    },
+    {
+      "check": "No source body is automatically embedded",
+      "passed": true
+    },
+    {
+      "check": "Clean snapshot readback succeeds",
+      "passed": true
+    },
+    {
+      "check": "Output cannot overwrite existing evidence",
+      "passed": true
+    },
+    {
+      "check": "Output cannot be inside checkout",
+      "passed": true
+    },
+    {
+      "check": "Unknown task is refused",
+      "passed": true
+    },
+    {
+      "check": "Argument-looking revision is refused",
+      "passed": true
+    },
+    {
+      "check": "Untracked context cannot enter packet",
+      "passed": true
+    },
+    {
+      "check": "Unsafe/sensitive path rejected '../secret'",
+      "passed": true
+    },
+    {
+      "check": "Unsafe/sensitive path rejected '.env'",
+      "passed": true
+    },
+    {
+      "check": "Unsafe/sensitive path rejected 'folder/credentials/token'",
+      "passed": true
+    },
+    {
+      "check": "Unsafe/sensitive path rejected '/etc/passwd'",
+      "passed": true
+    },
+    {
+      "check": "Unsafe/sensitive path rejected 'drive:C'",
+      "passed": true
+    },
+    {
+      "check": "Unsafe/sensitive path rejected 'file\\\\other'",
+      "passed": true
+    },
+    {
+      "check": "Unsafe/sensitive path rejected 'bad\\nfile'",
+      "passed": true
+    },
+    {
+      "check": "Unsafe/sensitive path rejected 'key.pfx'",
+      "passed": true
+    },
+    {
+      "check": "Dirty source fails without cleanup",
+      "passed": true
+    },
+    {
+      "check": "Dirty user bytes remain unchanged",
+      "passed": true
+    },
+    {
+      "check": "Consistent synthetic source review passes only consistency",
+      "passed": true
+    },
+    {
+      "check": "Wrong packet digest rejected",
+      "passed": true
+    },
+    {
+      "check": "Wrong source revision rejected",
+      "passed": true
+    },
+    {
+      "check": "Claimed native proof rejected",
+      "passed": true
+    },
+    {
+      "check": "Unresolved finding cannot be PASS",
+      "passed": true
+    },
+    {
+      "check": "Changed file omitted from PASS rejected",
+      "passed": true
+    },
+    {
+      "check": "Missing independent actor rejected",
+      "passed": true
+    },
+    {
+      "check": "Read-only review cannot claim executed tests",
+      "passed": true
+    },
+    {
+      "check": "Changes-required remains non-release evidence",
+      "passed": true
+    },
+    {
+      "check": "Read-only tool availability and MCP denial set",
+      "passed": true
+    },
+    {
+      "check": "No permission bypass or shell assembly",
+      "passed": true
+    },
+    {
+      "check": "Explicit budget and non-persistent session flags set",
+      "passed": true
+    },
+    {
+      "check": "Invalid model argument is refused",
+      "passed": true
+    },
+    {
+      "check": "Nonfinite budget refused",
+      "passed": true
+    },
+    {
+      "check": "Zero budget refused",
+      "passed": true
+    },
+    {
+      "check": "No cloud approval causes refusal before invocation",
+      "passed": true
+    },
+    {
+      "check": "Unreviewed CLI configuration causes refusal",
+      "passed": true
+    },
+    {
+      "check": "Missing CLI not silently installed/substituted",
+      "passed": true
+    },
+    {
+      "check": "Local fake transport returns unvalidated response, never release pass",
+      "passed": true
+    },
+    {
+      "check": "Actual transport receipt preserves requested and reported model distinction",
+      "passed": true
+    },
+    {
+      "check": "Nonzero/error model transport fails closed",
+      "passed": true
+    },
+    {
+      "check": "Failed transport receipt is kept as failure",
+      "passed": true
+    },
+    {
+      "check": "No application or reviewer source modified by transport",
+      "passed": true
+    },
+    {
+      "check": "New commit invalidates old packet",
+      "passed": true
+    }
+  ]
+}

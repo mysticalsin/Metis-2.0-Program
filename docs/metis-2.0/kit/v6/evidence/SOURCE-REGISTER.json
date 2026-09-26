@@ -1,0 +1,103 @@
+{
+  "checked_on": "2026-09-26",
+  "records": [
+    {
+      "id": "REF-01",
+      "title": "BRAG repository",
+      "url": "https://github.com/latent-spaces/brag",
+      "inspection": "Read web text; no repository code executed."
+    },
+    {
+      "id": "REF-02",
+      "title": "Full BRAG skill",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/main/skills/brag/SKILL.md",
+      "inspection": "Read: full/voice dispatch, default duration, Hyperframes workflow."
+    },
+    {
+      "id": "REF-03",
+      "title": "BRAG slim",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/main/skills/brag-slim/SKILL.md",
+      "inspection": "Read for route comparison; not selected as runtime."
+    },
+    {
+      "id": "REF-04",
+      "title": "BRAG inspection",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/main/skills/brag/references/step-1-inspect.md",
+      "inspection": "Read."
+    },
+    {
+      "id": "REF-05",
+      "title": "BRAG story planning",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/main/skills/brag/references/step-2-plan.md",
+      "inspection": "Read."
+    },
+    {
+      "id": "REF-06",
+      "title": "BRAG composition",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/main/skills/brag/references/step-3-compose.md",
+      "inspection": "Read."
+    },
+    {
+      "id": "REF-07",
+      "title": "BRAG delivery",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/main/skills/brag/references/step-4-deliver.md",
+      "inspection": "Fetched."
+    },
+    {
+      "id": "REF-08",
+      "title": "BRAG audio",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/main/skills/brag/references/audio.md",
+      "inspection": "Fetched."
+    },
+    {
+      "id": "REF-09",
+      "title": "Notchview",
+      "url": "https://notchview-site.vercel.app/",
+      "inspection": "Page text retrieved. No rendered browser inspection or embedded-video playback performed."
+    },
+    {
+      "id": "REF-10",
+      "title": "Exact X video",
+      "url": "https://x.com/0xhrushi/status/2103539466124341323/video/1",
+      "inspection": "Not retrieved; direct video and post requests failed. No shot-by-shot claims made."
+    },
+    {
+      "id": "REF-11",
+      "title": "Hindsight repository",
+      "url": "https://github.com/vectorize-io/hindsight",
+      "inspection": "Read web repository/README; no release/commit or service qualified."
+    },
+    {
+      "id": "REF-12",
+      "title": "Hindsight README",
+      "url": "https://raw.githubusercontent.com/vectorize-io/hindsight/main/README.md",
+      "inspection": "Read, including explicit API versus automatic wrapper."
+    },
+    {
+      "id": "REF-13",
+      "title": "Hindsight retain",
+      "url": "https://hindsight.vectorize.io/developer/api/retain",
+      "inspection": "Read relevant document identity/lifecycle sections."
+    },
+    {
+      "id": "REF-14",
+      "title": "Hindsight recall",
+      "url": "https://hindsight.vectorize.io/developer/api/recall",
+      "inspection": "Read relevant scope/filter sections."
+    },
+    {
+      "id": "REF-15",
+      "title": "Hindsight reflect",
+      "url": "https://hindsight.vectorize.io/developer/api/reflect",
+      "inspection": "Read source dependency sections."
+    },
+    {
+      "id": "REF-16",
+      "title": "Hindsight documents",
+      "url": "https://hindsight.vectorize.io/developer/api/documents",
+      "inspection": "Fetched for storage/lifecycle reference."
+    }
+  ],
+  "current_metis_checkout_accessed": false,
+  "upstream_commits_pinned_here": false
+}

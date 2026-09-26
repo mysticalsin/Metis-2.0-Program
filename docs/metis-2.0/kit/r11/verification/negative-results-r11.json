@@ -1,0 +1,212 @@
+{
+  "scope": "DELIVERY_KIT_NEGATIVE_CONTROLS",
+  "passed": true,
+  "probes": [
+    {
+      "probe": "changed_master",
+      "expected_detection": "canonical master hash",
+      "detected": true,
+      "actual_failed_checks": [
+        "canonical master hash"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "missing_reference",
+      "expected_detection": "original reference bytes intact",
+      "detected": true,
+      "actual_failed_checks": [
+        "original reference bytes intact"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "dropped_use_case",
+      "expected_detection": "master/registry exact identifier parity",
+      "detected": true,
+      "actual_failed_checks": [
+        "use_cases count and uniqueness",
+        "master/registry exact identifier parity",
+        "full use-case sequence"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "broken_html_link",
+      "expected_detection": "HTML local paths and fragment targets",
+      "detected": true,
+      "actual_failed_checks": [
+        "HTML local paths and fragment targets"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "armed_bar",
+      "expected_detection": "animated armed visual contract is orb-only",
+      "detected": true,
+      "actual_failed_checks": [
+        "animated armed visual contract is orb-only"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "duplicate_source",
+      "expected_detection": "source reference IDs unique and indexed",
+      "detected": true,
+      "actual_failed_checks": [
+        "canonical master hash",
+        "source reference IDs unique and indexed"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "static_orb",
+      "expected_detection": "animated armed visual contract is orb-only",
+      "detected": true,
+      "actual_failed_checks": [
+        "animated armed visual contract is orb-only"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "dropped_source_finding",
+      "expected_detection": "24 source findings retained and mapped",
+      "detected": true,
+      "actual_failed_checks": [
+        "24 source findings retained and mapped"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "dropped_agent_case",
+      "expected_detection": "32 agent use cases have execution owners",
+      "detected": true,
+      "actual_failed_checks": [
+        "32 agent use cases have execution owners",
+        "registry and source observations agree exactly"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "agent_cycle",
+      "expected_detection": "18 numbered agent steps form a resolvable DAG",
+      "detected": true,
+      "actual_failed_checks": [
+        "18 numbered agent steps form a resolvable DAG",
+        "registry and source observations agree exactly"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "fake_native_trust",
+      "expected_detection": "HeyClicky inventory is byte-bound and non-executed",
+      "detected": true,
+      "actual_failed_checks": [
+        "HeyClicky inventory is byte-bound and non-executed"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "agent_network",
+      "expected_detection": "agents reference has no external capture or persistence",
+      "detected": true,
+      "actual_failed_checks": [
+        "new agents HTML exactly embeds its readable sources",
+        "agents reference has no external capture or persistence"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "wrong_presenter",
+      "expected_detection": "only Tony Walteur is the onboarding presenter",
+      "detected": true,
+      "actual_failed_checks": [
+        "only Tony Walteur is the onboarding presenter"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "fake_video",
+      "expected_detection": "missing authentic video never fabricates an asset",
+      "detected": true,
+      "actual_failed_checks": [
+        "missing authentic video never fabricates an asset"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "source_snapshot",
+      "expected_detection": "bundled source snapshot matches original supplied bytes",
+      "detected": true,
+      "actual_failed_checks": [
+        "bundled source snapshot matches original supplied bytes"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "stale_agent_contract",
+      "expected_detection": "derived agent experience matches current master",
+      "detected": true,
+      "actual_failed_checks": [
+        "derived agent experience matches current master"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "dropped_memory_case",
+      "expected_detection": "32 memory cases have mapped acceptance",
+      "detected": true,
+      "actual_failed_checks": [
+        "32 memory cases have mapped acceptance",
+        "memory scope is integrated into actual task bodies"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "memory_cycle",
+      "expected_detection": "16 numbered memory slices form a DAG",
+      "detected": true,
+      "actual_failed_checks": [
+        "16 numbered memory slices form a DAG",
+        "memory scope is integrated into actual task bodies"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "fake_memory_live",
+      "expected_detection": "no invented live Hindsight proof",
+      "detected": true,
+      "actual_failed_checks": [
+        "no invented live Hindsight proof"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "memory_append",
+      "expected_detection": "memory transport uses explicit safe request profile",
+      "detected": true,
+      "actual_failed_checks": [
+        "memory transport uses explicit safe request profile"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "memory_logging",
+      "expected_detection": "private deployment profile denies extra content stores",
+      "detected": true,
+      "actual_failed_checks": [
+        "private deployment profile denies extra content stores"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "memory_permissive_scope",
+      "expected_detection": "memory transport uses explicit safe request profile",
+      "detected": true,
+      "actual_failed_checks": [
+        "memory transport uses explicit safe request profile"
+      ],
+      "scope": "temporary copy only"
+    }
+  ]
+}

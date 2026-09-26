@@ -1,0 +1,39 @@
+{
+  "schema": "metis.jev.qualification.evidence.v1",
+  "status": "NOT_RUN",
+  "provider": "jev",
+  "documented_candidate_pin": "jev-1.13.0",
+  "actual_model": null,
+  "template_version": null,
+  "language": null,
+  "purpose": null,
+  "max_candidates": null,
+  "held_out_sample_count": 0,
+  "dataset_revision": null,
+  "data_review_ref": null,
+  "expires_at": null,
+  "thresholds": {
+    "choiceConfidence": null,
+    "choiceProbability": null,
+    "choiceMargin": null,
+    "scoreConfidence": null,
+    "noulYes": null,
+    "noulNo": null
+  },
+  "metrics": {
+    "correct": null,
+    "wrong_choice": null,
+    "abstained": null,
+    "timed_out": null,
+    "dangerous_selections": null,
+    "latency_p50_ms": null,
+    "latency_p95_ms": null,
+    "latency_p99_ms": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "cost": null
+  },
+  "evidence_refs": [],
+  "reviewer": null,
+  "note": "This evidence form is not a RoutingPolicy. Synthetic fixtures and null thresholds cannot authorize production."
+}

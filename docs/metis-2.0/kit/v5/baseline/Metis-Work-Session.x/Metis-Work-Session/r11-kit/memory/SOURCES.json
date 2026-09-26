@@ -1,0 +1,249 @@
+{
+  "reviewed_on": "2026-09-23",
+  "upstream_ref": "b88458fd6b96e70069238f7df5a0e2f1c3c9240c",
+  "observed_http_docs_version": "0.10.1",
+  "deployed_version": null,
+  "review_scope": "Targeted primary documentation and repository references; not whole-source audit",
+  "sources": [
+    {
+      "id": "HS-R01",
+      "title": "Hindsight product and memory model",
+      "url": "https://hindsight.vectorize.io/",
+      "boundary": "Retain, recall, and reflect are different operations; vendor benchmark claims are not Métis results."
+    },
+    {
+      "id": "HS-R02",
+      "title": "HTTP API, observed documentation version 0.10.1",
+      "url": "https://hindsight.vectorize.io/api-reference",
+      "boundary": "Wire schemas, endpoint paths, version feature flags, operation status, mental-model deletion caveat."
+    },
+    {
+      "id": "HS-R03",
+      "title": "Configuration",
+      "url": "https://hindsight.vectorize.io/developer/configuration",
+      "boundary": "Persistence, traces, authentication, inference stages, model compatibility and configuration readback."
+    },
+    {
+      "id": "HS-R04",
+      "title": "Retain guide",
+      "url": "https://hindsight.vectorize.io/developer/api/retain",
+      "boundary": "Document replacement and extraction scopes. Resolve apparent text-retention contradiction against configuration and actual deployed behavior."
+    },
+    {
+      "id": "HS-R05",
+      "title": "Recall guide",
+      "url": "https://hindsight.vectorize.io/developer/api/recall",
+      "boundary": "Bounded recall and exact versus permissive tag modes. Tags are not authentication."
+    },
+    {
+      "id": "HS-R06",
+      "title": "Document lifecycle",
+      "url": "https://hindsight.vectorize.io/developer/api/documents",
+      "boundary": "Original text access, replacement and document deletion; no implication of complete derivative erasure."
+    },
+    {
+      "id": "HS-R07",
+      "title": "Operations",
+      "url": "https://hindsight.vectorize.io/developer/api/operations",
+      "boundary": "Background job states and retention, including payload-bearing terminal operation rows."
+    },
+    {
+      "id": "HS-R08",
+      "title": "Extensions and tenant resolution",
+      "url": "https://hindsight.vectorize.io/developer/extensions",
+      "boundary": "Builtin API-key tenancy and custom tenant resolution are not existing Métis Entra/record permissions."
+    },
+    {
+      "id": "HS-R09",
+      "title": "Installation and production hosting",
+      "url": "https://hindsight.vectorize.io/developer/installation",
+      "boundary": "Dedicated service plus supported PostgreSQL; development embedded database is not recommended for production."
+    },
+    {
+      "id": "HS-R10",
+      "title": "Memory Defense",
+      "url": "https://hindsight.vectorize.io/developer/memory-defense",
+      "boundary": "Pattern-based optional protection; not retroactive erasure or a complete semantic security boundary."
+    },
+    {
+      "id": "HS-R11",
+      "title": "Node SDK",
+      "url": "https://hindsight.vectorize.io/sdks/nodejs",
+      "boundary": "Official SDK option to evaluate against the existing dependency policy and the pinned service."
+    },
+    {
+      "id": "HS-R12",
+      "title": "Repository source pin",
+      "url": "https://github.com/vectorize-io/hindsight/tree/b88458fd6b96e70069238f7df5a0e2f1c3c9240c",
+      "boundary": "Main ref observed through GitHub connector. This is not a production release image digest or a complete source audit."
+    },
+    {
+      "id": "HS-R13",
+      "title": "Runtime memory-budget source note",
+      "url": "https://github.com/vectorize-io/hindsight/blob/b88458fd6b96e70069238f7df5a0e2f1c3c9240c/hindsight-docs/blog/2026-08-27-retain-memory-budget.md",
+      "boundary": "The original_text persistence is acknowledged by upstream source documentation."
+    },
+    {
+      "id": "HS-R14",
+      "title": "Service architecture",
+      "url": "https://hindsight.vectorize.io/developer/services",
+      "boundary": "API/worker separation and PostgreSQL-backed state and tasks."
+    }
+  ],
+  "observations": [
+    {
+      "id": "HS-01",
+      "title": "A memory engine, not a new canonical authority",
+      "adaptation": "Retain, retrieval and synthesis fit behind the existing knowledge API. World/experience/observation labels must not certify a business fact.",
+      "sources": [
+        "HS-R01",
+        "HS-R02"
+      ]
+    },
+    {
+      "id": "HS-02",
+      "title": "A deliberate persistent derived store",
+      "adaptation": "Hindsight is not a zero-retention inference shim. Approve and disclose the new memory projection store; leave raw meetings and forbidden local-only content outside it.",
+      "sources": [
+        "HS-R03",
+        "HS-R06"
+      ]
+    },
+    {
+      "id": "HS-03",
+      "title": "Source-text retention must be disabled explicitly",
+      "adaptation": "The configuration documents STORE_DOCUMENT_TEXT=false; the introductory retain guide suggests no verbatim storage. Test actual database/document/chunk behavior rather than accepting the simpler marketing statement.",
+      "sources": [
+        "HS-R03",
+        "HS-R04",
+        "HS-R06",
+        "HS-R13"
+      ]
+    },
+    {
+      "id": "HS-04",
+      "title": "Tracing is a second content sink",
+      "adaptation": "Disable model-request traces and content-bearing OTLP export separately. Truncated or one-day prompt copies are still retained copies.",
+      "sources": [
+        "HS-R03"
+      ]
+    },
+    {
+      "id": "HS-05",
+      "title": "Operation rows need a lifecycle",
+      "adaptation": "Terminal operations can retain payloads indefinitely by default; set finite retention and handle stuck nonterminal work. Passing async=false for ingress is not proof that consolidation has no durable payload.",
+      "sources": [
+        "HS-R07"
+      ]
+    },
+    {
+      "id": "HS-06",
+      "title": "Authentication is not supplied by a bank name",
+      "adaptation": "Default API access is not authenticated. The builtin shared-key tenant resolves to shared schema scope; it is not per-person or per-record authorization.",
+      "sources": [
+        "HS-R03",
+        "HS-R08"
+      ]
+    },
+    {
+      "id": "HS-07",
+      "title": "Default tag matching includes untagged memory",
+      "adaptation": "Use nonempty server-derived strict scope. all_strict is an all-required-tags test, not exact set equality. Fuzzy tag groups and global observations must not select security scope.",
+      "sources": [
+        "HS-R02",
+        "HS-R05"
+      ]
+    },
+    {
+      "id": "HS-08",
+      "title": "Observations can widen retrieval scope",
+      "adaptation": "Do not use shared/per-tag/all-combination consolidation for private security tags. Start with one homogeneous ACL domain and combined scope; qualify every derived lineage.",
+      "sources": [
+        "HS-R04"
+      ]
+    },
+    {
+      "id": "HS-09",
+      "title": "Mental-model stale flags miss deletion",
+      "adaptation": "The API explicitly says deletions do not raise is_stale. Invalidate memory-derived answers through Métis tombstones/generations, including pages and prior materialized reflections.",
+      "sources": [
+        "HS-R02"
+      ]
+    },
+    {
+      "id": "HS-10",
+      "title": "Replace is not compare-and-swap",
+      "adaptation": "Stable document IDs help updates, but concurrency, out-of-order retries and tenant ACL changes still require Métis revision/fencing semantics.",
+      "sources": [
+        "HS-R02",
+        "HS-R06"
+      ]
+    },
+    {
+      "id": "HS-11",
+      "title": "Cancellation is not physical rollback",
+      "adaptation": "A worker may finish its current batch after cancellation. Block retrieval first and reconcile surviving upstream mutations.",
+      "sources": [
+        "HS-R02",
+        "HS-R07"
+      ]
+    },
+    {
+      "id": "HS-12",
+      "title": "Slim clients need a real service",
+      "adaptation": "Do not add Docker, Python, PostgreSQL or embedding weights to each installer. Use approved server infrastructure, not D1 as an invented PostgreSQL substitute.",
+      "sources": [
+        "HS-R09",
+        "HS-R14"
+      ]
+    },
+    {
+      "id": "HS-13",
+      "title": "Memory creates additional inference work",
+      "adaptation": "Extraction, embedding, reranking, consolidation and reflection have separate model/cost paths. TypeSafe/Jev reranking is documented; Laya is not automatically a compatible embedding or generation model.",
+      "sources": [
+        "HS-R03"
+      ]
+    },
+    {
+      "id": "HS-14",
+      "title": "Optional defense is not complete sanitization",
+      "adaptation": "Memory Defense is opt-in and future-facing. Keep independent ingress, tool-authority, output-audience and deletion controls.",
+      "sources": [
+        "HS-R10"
+      ]
+    },
+    {
+      "id": "HS-15",
+      "title": "Time-window hints are not strict filters",
+      "adaptation": "Recall temporal_window influences a retrieval arm; it does not exclude every out-of-window result. Enforce any contractual date interval against authorized canonical event time.",
+      "sources": [
+        "HS-R02"
+      ]
+    },
+    {
+      "id": "HS-16",
+      "title": "Embedding migrations are semantic migrations",
+      "adaptation": "Pin model and dimensions; do not mix vector spaces even if dimensions match. Rebuild from currently permitted canonical records into a versioned projection, then qualify and switch.",
+      "sources": [
+        "HS-R03"
+      ]
+    },
+    {
+      "id": "HS-17",
+      "title": "Global directives remain relevant during reflect",
+      "adaptation": "apply_all_directives=false does not remove untagged directives. Keep directive authoring service-owned and forbid sensitive mixed-audience bank prompts.",
+      "sources": [
+        "HS-R02"
+      ]
+    },
+    {
+      "id": "HS-18",
+      "title": "No deployed service verified here",
+      "adaptation": "Documentation, pinned ref and offline adapter tests do not prove network isolation, supplier approvals, effective policy, model quality or actual Métis integration.",
+      "sources": [
+        "HS-R01–HS-R14"
+      ]
+    }
+  ]
+}

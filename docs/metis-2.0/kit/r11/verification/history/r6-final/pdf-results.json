@@ -1,0 +1,14 @@
+{
+  "scope": "GENERATED_DOCUMENT_ONLY",
+  "pages": 122,
+  "missing_required_identifiers": [],
+  "out_of_page_text_blocks": [],
+  "visually_inspected_pages": [
+    1,
+    2,
+    19,
+    20
+  ],
+  "pdf_sha256": "05927bc0d2d6d9f2bd8099c373d433162b9ce9b32fe59ac3e38834abfbb18f4e",
+  "passed": true
+}

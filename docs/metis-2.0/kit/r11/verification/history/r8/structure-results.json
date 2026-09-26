@@ -1,0 +1,233 @@
+{
+  "scope": "DELIVERY_KIT_ONLY_NOT_PRODUCT",
+  "passed": true,
+  "checks": [
+    {
+      "check": "requirements count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 55,
+        "actual": 55
+      }
+    },
+    {
+      "check": "use_cases count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 112,
+        "actual": 112
+      }
+    },
+    {
+      "check": "tasks count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 66,
+        "actual": 66
+      }
+    },
+    {
+      "check": "owner_commitments count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 44,
+        "actual": 44
+      }
+    },
+    {
+      "check": "golden_flows count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 12,
+        "actual": 12
+      }
+    },
+    {
+      "check": "historical_findings count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 20,
+        "actual": 20
+      }
+    },
+    {
+      "check": "canonical master hash",
+      "passed": true,
+      "detail": "4ae9bba45e1b5b4cee3dcf78201c2708d94def1178b94607c87296df91d76b85"
+    },
+    {
+      "check": "master/registry exact identifier parity",
+      "passed": true,
+      "detail": "All catalog IDs compared, not counts only."
+    },
+    {
+      "check": "full use-case sequence",
+      "passed": true,
+      "detail": "UC-001 through UC-112"
+    },
+    {
+      "check": "current HTML contains every requirement/task/use-case identifier",
+      "passed": true,
+      "detail": "Current HTML, not the obsolete original 28-task specification."
+    },
+    {
+      "check": "every requirement mapped to an owner commitment",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "all mapped identifiers resolve",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "every case has implementation and test lane",
+      "passed": true,
+      "detail": "Per-case ownership preserved. Actual product tests remain NOT_TESTED."
+    },
+    {
+      "check": "66 exact task bodies preserved",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "common prerequisite DAG",
+      "passed": true,
+      "detail": {
+        "unresolved": [],
+        "cycles_or_blocked": [],
+        "tasks_sorted": 66,
+        "scope": "Common prerequisites only. Full platform/provider closures are preserved in SCOPE-HANDOFFS.md and require target-repo binding."
+      }
+    },
+    {
+      "check": "visual state coverage",
+      "passed": true,
+      "detail": "14 mapped presentation states; not product passes."
+    },
+    {
+      "check": "animated armed visual contract is orb-only",
+      "passed": true,
+      "detail": "No idle pill, caption or glow; native hit testing remains a product gate."
+    },
+    {
+      "check": "source reference IDs unique and indexed",
+      "passed": true,
+      "detail": {
+        "count": 87
+      }
+    },
+    {
+      "check": "current master contains animated owner refinement",
+      "passed": true,
+      "detail": "New visual rule is in the canonical master, not only a detached note."
+    },
+    {
+      "check": "presentation reference has a separate compact branch",
+      "passed": true,
+      "detail": "Static source check only; not a compiled product test."
+    },
+    {
+      "check": "root and visual lab use identical behavior",
+      "passed": true,
+      "detail": "Same orb and lifecycle behavior in both entry points."
+    },
+    {
+      "check": "HTML local paths and fragment targets",
+      "passed": true,
+      "detail": {
+        "checked": 96,
+        "broken": [],
+        "external_urls": "Not fetched by this offline checker."
+      }
+    },
+    {
+      "check": "HTML IDs unique",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "offline demo no capture/network/persistence APIs",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "demo outbound requests denied by CSP",
+      "passed": true,
+      "detail": "No simulated wake creates an external request."
+    },
+    {
+      "check": "simulator and source code match",
+      "passed": true,
+      "detail": "Self-contained HTML matches readable source assets."
+    },
+    {
+      "check": "launch prompt includes current scope",
+      "passed": true,
+      "detail": "No older 76-case cutoff."
+    },
+    {
+      "check": "no fabricated product verification",
+      "passed": true,
+      "detail": "Kit checks do not pre-fill product results."
+    },
+    {
+      "check": "original reference bytes intact",
+      "passed": true,
+      "detail": {
+        "assets": 8,
+        "changed": []
+      }
+    },
+    {
+      "check": "no font files packaged",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "no symlinks packaged",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "12 experience qualifications retained and mapped",
+      "passed": true,
+      "detail": "EXP-01–12 require actual product evidence."
+    },
+    {
+      "check": "24 source findings retained and mapped",
+      "passed": true,
+      "detail": "Source findings are not production tests."
+    },
+    {
+      "check": "supplemental requirements occur in master and task records",
+      "passed": true,
+      "detail": "No detached feature list without execution owners."
+    },
+    {
+      "check": "export inventory and missing-source map remain honest",
+      "passed": true,
+      "detail": "Source export is not a complete checkout or an inferred Git SHA."
+    },
+    {
+      "check": "attributed solving engine is identical in both HTML views",
+      "passed": true,
+      "detail": "Actual selected upstream mathematics, not installed npm/native proof."
+    },
+    {
+      "check": "upstream license and reviewed source identities retained",
+      "passed": true,
+      "detail": "MIT attribution and file-blob provenance."
+    },
+    {
+      "check": "meeting reference remains synthetic and content-safe",
+      "passed": true,
+      "detail": "No actual meeting, CRM, network or persistence API."
+    },
+    {
+      "check": "all source findings have current input identities",
+      "passed": true,
+      "detail": "Every cited source section comes from the indexed upload."
+    }
+  ]
+}

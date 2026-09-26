@@ -1,0 +1,896 @@
+[
+  {
+    "id": "HC-01",
+    "title": "Exact inspected build",
+    "evidence_level": "PACKAGED_METADATA",
+    "evidence": [
+      {
+        "kind": "plist",
+        "path": "Contents/Info.plist",
+        "sha256": "0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d",
+        "key": "CFBundleShortVersionString"
+      },
+      {
+        "kind": "plist",
+        "path": "Contents/Info.plist",
+        "sha256": "0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d",
+        "key": "CFBundleVersion"
+      }
+    ],
+    "source_observation": "HeyClicky 1.0.51, build 61; minimum macOS 14.2. Internal build plist reports short commit ddbd4191, not a verified public repository ancestry.",
+    "metis_adaptation": "Bind every comparison to this artifact; do not conflate newer vendor claims with this installation.",
+    "tasks": [
+      "TASK-001",
+      "TASK-002"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-02",
+    "title": "Native architecture, not recoverable original source",
+    "evidence_level": "BINARY_STRUCTURE",
+    "evidence": [
+      {
+        "kind": "macho-load-commands",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1"
+      }
+    ],
+    "source_observation": "Universal Mach-O has x86_64 and arm64 slices and imports SwiftUI, AppKit, ScreenCaptureKit, Speech and PDFKit. No complete original Swift source project was recovered.",
+    "metis_adaptation": "Implement true native Mac parity and Windows adapters independently. Do not describe packaged instructions as full source.",
+    "tasks": [
+      "TASK-001",
+      "TASK-029"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-03",
+    "title": "Substantial bundled execution payload",
+    "evidence_level": "FILE_INVENTORY",
+    "evidence": [
+      {
+        "kind": "inventory",
+        "path": "Contents/Resources/CodexRuntime",
+        "manifest": "BUNDLE-INVENTORY.json"
+      }
+    ],
+    "source_observation": "Recovered CodexRuntime data forks total 589,486,538 bytes; both Mac architectures are packaged, with Codex and code-mode-host binaries.",
+    "metis_adaptation": "Use the existing authorized service runner by default. Optional developer runtimes must be licensed, architecture-specific, signed and explicitly selected. Never copy this runtime or its account configuration.",
+    "tasks": [
+      "TASK-004",
+      "TASK-023",
+      "TASK-026",
+      "TASK-043"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-04",
+    "title": "Computer-use helper already a separate boundary",
+    "evidence_level": "BUNDLED_INSTRUCTION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyBundledSkills/cua-driver/README.md",
+        "sha256": "a015cb8802526ab5a512e58eb560eb5b932195e8e148cb55d580e470657705e2",
+        "lines": [
+          13
+        ],
+        "anchor": "embedded"
+      },
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyBundledSkills/cua-driver/README.md",
+        "sha256": "a015cb8802526ab5a512e58eb560eb5b932195e8e148cb55d580e470657705e2",
+        "lines": [
+          6,
+          8,
+          20,
+          68,
+          73
+        ],
+        "anchor": "snapshot"
+      }
+    ],
+    "source_observation": "The helper file exists, and its bundled guidance describes a supervised local MCP computer-use daemon with before/after snapshots. We did not execute it.",
+    "metis_adaptation": "Evaluate licensed upstream Cua against existing Métis adapters; keep one trusted executor, bounded helper protocol and outcome verification.",
+    "tasks": [
+      "TASK-005",
+      "TASK-033",
+      "TASK-057"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-05",
+    "title": "Fifteen curated runtime skill definitions",
+    "evidence_level": "PACKAGED_TEXT",
+    "evidence": [
+      {
+        "kind": "inventory",
+        "path": "Contents/Resources/ClickyBundledSkills",
+        "manifest": "BUNDLE-INVENTORY.json"
+      }
+    ],
+    "source_observation": "Fifteen SKILL.md files are present for workflows, documents, developer tasks, design and computer use. Presence alone does not prove availability in an authenticated session.",
+    "metis_adaptation": "Map each useful capability to centrally governed skill versions rather than copy a second local skills platform.",
+    "tasks": [
+      "TASK-009",
+      "TASK-042",
+      "TASK-043"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-06",
+    "title": "Legacy picker is not the runtime catalog",
+    "evidence_level": "BUNDLED_DOCUMENTATION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ATTRIBUTION.md",
+        "sha256": "9a72ea800fa89a20ca8475847e5f88b67af448aa548fa70008d7c66436fb74cd",
+        "lines": [
+          12
+        ],
+        "anchor": "intentionally not included yet"
+      }
+    ],
+    "source_observation": "A bundled attribution note explicitly describes a picker whose runtime activation wiring was not included when that note was written. The current binary also ships a different curated skills directory.",
+    "metis_adaptation": "Keep catalog visibility, selection, entitlement, installation and actual execution distinct. Do not infer current absence solely from possibly stale attribution.",
+    "tasks": [
+      "TASK-001",
+      "TASK-042",
+      "TASK-044"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-07",
+    "title": "Persistent agent identity",
+    "evidence_level": "BUNDLED_INSTRUCTION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyModelInstructions.md",
+        "sha256": "f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145",
+        "lines": [
+          9
+        ],
+        "anchor": "IDENTITY:"
+      }
+    ],
+    "source_observation": "Packaged guidance gives an agent a durable name, purpose, workspace and conversational identity.",
+    "metis_adaptation": "AgentDefinition is separate from a model, skill, thread and run; enforce stable ID and version binding in code.",
+    "tasks": [
+      "TASK-005",
+      "TASK-042",
+      "TASK-043"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-08",
+    "title": "Curated agent memory",
+    "evidence_level": "BUNDLED_INSTRUCTION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyModelInstructions.md",
+        "sha256": "f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145",
+        "lines": [
+          10
+        ],
+        "anchor": "MEMORY:"
+      }
+    ],
+    "source_observation": "Guidance describes dated, compact job memory and prohibits storing secrets in it.",
+    "metis_adaptation": "Place memory in authorized canonical records with provenance, correction and deletion; preferences do not become facts or permission.",
+    "tasks": [
+      "TASK-035",
+      "TASK-039",
+      "TASK-041",
+      "TASK-043"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-09",
+    "title": "Agent-owned artifacts",
+    "evidence_level": "BUNDLED_INSTRUCTION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyModelInstructions.md",
+        "sha256": "f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145",
+        "lines": [
+          12
+        ],
+        "anchor": "FILE OWNERSHIP:"
+      }
+    ],
+    "source_observation": "Guidance assigns new artifacts and temporary generation files to the owning workspace, with explicit export required elsewhere.",
+    "metis_adaptation": "Use tenant/principal/agent/run scoped artifact handles, safe filenames and atomic publication; verify output independently.",
+    "tasks": [
+      "TASK-035",
+      "TASK-043",
+      "TASK-057"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-10",
+    "title": "Screen content is context, not routing consent",
+    "evidence_level": "BUNDLED_INSTRUCTION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyModelInstructions.md",
+        "sha256": "f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145",
+        "lines": [
+          19
+        ],
+        "anchor": "Screenshots and the focused app are context"
+      }
+    ],
+    "source_observation": "Seeing a connected application is not treated as a request to operate its visible UI.",
+    "metis_adaptation": "Prefer authorized structured connectors or files; distinguish Read, Teach, Draft and Act with their own permissions.",
+    "tasks": [
+      "TASK-005",
+      "TASK-033",
+      "TASK-037"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-11",
+    "title": "Full document can differ from visible screenshot",
+    "evidence_level": "COMPILED_STRING",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71424016,
+        "section": "__cstring",
+        "anchor": "captured this document's FULL text",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      },
+      {
+        "kind": "plist",
+        "path": "Contents/Info.plist",
+        "sha256": "0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d",
+        "key": "NSDocumentsFolderUsageDescription"
+      }
+    ],
+    "source_observation": "The binary contains an active-document handoff instructing a higher model to use full document text rather than only the visible screenshot; folder usage copy supports that intended path.",
+    "metis_adaptation": "Implement explicit full/partial/visible-only source coverage, document revision identity and bounded retrieval; never claim universal access to app internals.",
+    "tasks": [
+      "TASK-005",
+      "TASK-033",
+      "TASK-037"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-12",
+    "title": "Document extraction may time out",
+    "evidence_level": "COMPILED_STRING",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71449392,
+        "section": "__cstring",
+        "anchor": "extraction didn't finish in time",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      }
+    ],
+    "source_observation": "A diagnostic string reports delegating without document context when extraction did not complete.",
+    "metis_adaptation": "Surface partial coverage; cancel late reads by run generation. Do not silently answer off-screen questions as though full text was read.",
+    "tasks": [
+      "TASK-018",
+      "TASK-037",
+      "TASK-056"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-13",
+    "title": "Minimize protected-folder prompt cascades",
+    "evidence_level": "BUNDLED_INSTRUCTION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyModelInstructions.md",
+        "sha256": "f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145",
+        "lines": [
+          97
+        ],
+        "anchor": "SINGLE folder"
+      }
+    ],
+    "source_observation": "Instructions discourage speculative probing across several protected personal folders.",
+    "metis_adaptation": "Ask for the exact needed source or reuse an existing scoped grant. Never scan all Desktop/Documents/Downloads to make onboarding look personalized.",
+    "tasks": [
+      "TASK-027",
+      "TASK-033",
+      "TASK-057"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-14",
+    "title": "Structured schemas and write readback",
+    "evidence_level": "BUNDLED_INSTRUCTION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyModelInstructions.md",
+        "sha256": "f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145",
+        "lines": [
+          30,
+          61
+        ],
+        "anchor": "structured read"
+      }
+    ],
+    "source_observation": "Packaged integration guidance requires schema fidelity and structured verification after writes.",
+    "metis_adaptation": "Extend existing connector catalog and verifier; a successful HTTP response or connector display name is not business success.",
+    "tasks": [
+      "TASK-033",
+      "TASK-039",
+      "TASK-043",
+      "TASK-045"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-15",
+    "title": "Connector session and entitlement services",
+    "evidence_level": "COMPILED_STRING",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71321168,
+        "section": "__cstring",
+        "anchor": "/agent/composio/session",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      },
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71335952,
+        "section": "__cstring",
+        "anchor": "/agent/session-token",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      }
+    ],
+    "source_observation": "These strings identify packaged expectations of brokered integration and agent sessions; no endpoint was contacted.",
+    "metis_adaptation": "Reuse Métis Operator/Entra scoped session authority. Do not reuse HeyClicky URLs, account IDs, tokens or subscription entitlements.",
+    "tasks": [
+      "TASK-006",
+      "TASK-012",
+      "TASK-014",
+      "TASK-043"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-16",
+    "title": "Named-agent routing and busy-session lifecycle",
+    "evidence_level": "COMPILED_SYMBOL",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 33707504,
+        "section": "unclassified-static-string",
+        "anchor": "HomeSpaceAgentPermissionRow",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      },
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 33850880,
+        "section": "unclassified-static-string",
+        "anchor": "CodexAgentRoutineRequest",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      }
+    ],
+    "source_observation": "Agent permission rows and routine request types are present. Runtime success, arbitration and reconnect correctness remain unknown.",
+    "metis_adaptation": "Resolve explicit names/active conversation to IDs, preserve queued turns, isolate callbacks and reject ambiguous destructive routing.",
+    "tasks": [
+      "TASK-005",
+      "TASK-019",
+      "TASK-030",
+      "TASK-043"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-17",
+    "title": "Learning-oriented onboarding steps",
+    "evidence_level": "COMPILED_UI_TEXT",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71497792,
+        "section": "__cstring",
+        "anchor": "First, can I hear you?",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      },
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71498288,
+        "section": "__cstring",
+        "anchor": "Circle anything, ask about it",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      },
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71499680,
+        "section": "__cstring",
+        "anchor": "Dictate anywhere",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      }
+    ],
+    "source_observation": "The binary includes practical microphone, screen-marking and dictation steps rather than only a marketing tour.",
+    "metis_adaptation": "Teach one safe capability at a time with typed alternatives, genuine readiness checks and an exact synthetic practice surface.",
+    "tasks": [
+      "TASK-008",
+      "TASK-027",
+      "TASK-030",
+      "TASK-055"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-18",
+    "title": "Interview and personalized starter team",
+    "evidence_level": "COMPILED_UI_TEXT",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71500016,
+        "section": "__cstring",
+        "anchor": "Four quick questions about you",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      },
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71496832,
+        "section": "__cstring",
+        "anchor": "/onboarding/starter-plan",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      },
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71497136,
+        "section": "__cstring",
+        "anchor": "suggested_agents",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      }
+    ],
+    "source_observation": "Packaged UI/service strings describe a short interview and a suggested starter-agent plan.",
+    "metis_adaptation": "Offer at most three optional work-context questions; recommend up to three editable agents. Creation never starts execution, subscriptions or broad data discovery.",
+    "tasks": [
+      "TASK-009",
+      "TASK-027",
+      "TASK-042",
+      "TASK-044"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-19",
+    "title": "Creation without automatic work",
+    "evidence_level": "COMPILED_STRING",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71454464,
+        "section": "__cstring",
+        "anchor": "with no work started",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      }
+    ],
+    "source_observation": "An onboarding handoff states that a new agent exists without work having started.",
+    "metis_adaptation": "Separate create, publish, enable, enqueue and execute; replay is idempotent and never duplicates starter agents.",
+    "tasks": [
+      "TASK-027",
+      "TASK-042",
+      "TASK-043"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-20",
+    "title": "Interview pause and explicit abandonment",
+    "evidence_level": "COMPILED_STRING",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71421328,
+        "section": "__cstring",
+        "anchor": "interview is PAUSED",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      },
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71421200,
+        "section": "__cstring",
+        "anchor": "without creating one",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      }
+    ],
+    "source_observation": "The binary distinguishes paused interview state from abandoning creation.",
+    "metis_adaptation": "Persist minimal reviewed setup progress, resume at the unresolved step, and cancel generation when leaving. Do not create an agent from an abandoned conversation.",
+    "tasks": [
+      "TASK-027",
+      "TASK-044"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-21",
+    "title": "Quiet announcements during other work",
+    "evidence_level": "COMPILED_SYMBOL",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71380928,
+        "section": "__cstring",
+        "anchor": "postOnboardingQuietPeriod",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      }
+    ],
+    "source_observation": "A quiet-period symbol exists; exact behavior is supplemented by the versioned vendor changelog, not proven by the symbol.",
+    "metis_adaptation": "One attention manager respects calls, sharing, Focus/DND and user preferences; agent identity never triggers unrequested audio.",
+    "tasks": [
+      "TASK-030",
+      "TASK-043",
+      "TASK-047",
+      "TASK-060"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-22",
+    "title": "Repeatable routines have lifecycle types",
+    "evidence_level": "COMPILED_SYMBOL",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 74920016,
+        "section": "__objc_classname",
+        "anchor": "ClickyRoutineFullWakeObserver",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      },
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 74919968,
+        "section": "__objc_classname",
+        "anchor": "ClickyRoutineNetworkObserver",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      }
+    ],
+    "source_observation": "Wake/network observers and routine types are present; vendor documentation describes device-bound routine behavior.",
+    "metis_adaptation": "Declare service-bound versus device-bound tasks, timezone, occurrence keys, missed-run policy, budgets and bounded failures. Never run another desktop device silently.",
+    "tasks": [
+      "TASK-043",
+      "TASK-045",
+      "TASK-048",
+      "TASK-062"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-23",
+    "title": "Safe dictation focus and fallback",
+    "evidence_level": "COMPILED_STRING",
+    "evidence": [
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71374928,
+        "section": "__cstring",
+        "anchor": "late re-capture found a field in a different app",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      },
+      {
+        "kind": "compiled-string",
+        "path": "Contents/MacOS/HeyClicky",
+        "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1",
+        "offset_decimal": 71547168,
+        "section": "__cstring",
+        "anchor": "outside the focused field",
+        "inference_limit": "Symbol/string presence is not proof this route executes or works."
+      }
+    ],
+    "source_observation": "Diagnostics describe retaining a clipboard fallback rather than typing into a newly focused application.",
+    "metis_adaptation": "Pin exact field/window ownership, separate verbatim dictation from rewrite, request clipboard fallback, and avoid overwriting a newer clipboard revision.",
+    "tasks": [
+      "TASK-019",
+      "TASK-033",
+      "TASK-056",
+      "TASK-057"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-24",
+    "title": "Avoid capturing the assistant itself",
+    "evidence_level": "BUNDLED_DOCUMENTATION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/AGENTS.md",
+        "sha256": "a7a056dd42d53aff821e0b799a3ddbd9c3a9170dbe369605da1776b4828026e8",
+        "lines": [
+          24
+        ],
+        "anchor": "excludes it from capture filter"
+      }
+    ],
+    "source_observation": "A bundled developer note describes excluding its floating assistant window from screenshots.",
+    "metis_adaptation": "Capture the user-approved target before opening Métis; exclude all Métis windows; never keep resending obsolete screenshots.",
+    "tasks": [
+      "TASK-005",
+      "TASK-030",
+      "TASK-033",
+      "TASK-037"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-25",
+    "title": "Durable artifacts need a retrieval surface",
+    "evidence_level": "BUNDLED_SKILL",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyBundledSkills/clicky-artifacts/SKILL.md",
+        "sha256": "1da2718937ce150360a80831be36205539508a53cee5570737de2b91530d64c6",
+        "lines": [
+          3,
+          36,
+          45
+        ],
+        "anchor": "existing"
+      }
+    ],
+    "source_observation": "An artifact skill distinguishes finding/opening/exporting previous outputs from creating new work.",
+    "metis_adaptation": "Add per-agent result manifests and safe previews, source and output distinctions, download/open failures and exact verified locations.",
+    "tasks": [
+      "TASK-035",
+      "TASK-043",
+      "TASK-044",
+      "TASK-055"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-26",
+    "title": "Memory and role do not broaden permissions",
+    "evidence_level": "BUNDLED_INSTRUCTION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyModelInstructions.md",
+        "sha256": "f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145",
+        "lines": [
+          13
+        ],
+        "anchor": "never widen approval"
+      }
+    ],
+    "source_observation": "Guidance explicitly separates remembering job context from external action approval.",
+    "metis_adaptation": "Permissions are runtime grants, never text in an agent role, memory note, document or skill.",
+    "tasks": [
+      "TASK-005",
+      "TASK-039",
+      "TASK-043",
+      "TASK-057"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-27",
+    "title": "The source is not a blanket app license",
+    "evidence_level": "ATTRIBUTION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ATTRIBUTION.md",
+        "sha256": "9a72ea800fa89a20ca8475847e5f88b67af448aa548fa70008d7c66436fb74cd",
+        "lines": [
+          4
+        ],
+        "anchor": "NousResearch/hermes-agent"
+      }
+    ],
+    "source_observation": "The visible MIT notice belongs to Nous Research skills, with separate attribution for Blender guidance; it does not establish that all HeyClicky application code/media is MIT.",
+    "metis_adaptation": "Independently implement behavior; review upstream licenses per adopted component. Do not redistribute this DMG, private prompts, mascot, sounds, video, fonts or service configuration in the kit.",
+    "tasks": [
+      "TASK-001",
+      "TASK-042",
+      "TASK-061"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-28",
+    "title": "Unsupported generation routes are explicitly excluded",
+    "evidence_level": "BUNDLED_INSTRUCTION",
+    "evidence": [
+      {
+        "kind": "bundled-text",
+        "path": "Contents/Resources/ClickyModelInstructions.md",
+        "sha256": "f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145",
+        "lines": [
+          23
+        ],
+        "anchor": "not part of this curated release"
+      }
+    ],
+    "source_observation": "The installed guidance excludes some provider-backed image/video/slide generation unless exposed by the runtime, despite adjacent legacy guides.",
+    "metis_adaptation": "Keep existing Métis roadmap abilities, but every agent has a real capability manifest. A skill label cannot create an unavailable provider.",
+    "tasks": [
+      "TASK-009",
+      "TASK-042",
+      "TASK-043",
+      "TASK-045"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-29",
+    "title": "Automatic termination is disabled",
+    "evidence_level": "PACKAGED_METADATA",
+    "evidence": [
+      {
+        "kind": "plist",
+        "path": "Contents/Info.plist",
+        "sha256": "0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d",
+        "key": "NSSupportsAutomaticTermination"
+      },
+      {
+        "kind": "plist",
+        "path": "Contents/Info.plist",
+        "sha256": "0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d",
+        "key": "NSSupportsSuddenTermination"
+      }
+    ],
+    "source_observation": "Both metadata flags are false in this build. That is not a tested guarantee against crashes.",
+    "metis_adaptation": "Native onboarding and run lifecycle must survive windowless moments and shutdown without lying about pending remote tasks.",
+    "tasks": [
+      "TASK-027",
+      "TASK-029",
+      "TASK-062"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-30",
+    "title": "Account, telemetry and updater configuration exists",
+    "evidence_level": "PACKAGED_METADATA",
+    "evidence": [
+      {
+        "kind": "plist",
+        "path": "Contents/Info.plist",
+        "sha256": "0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d",
+        "key": "WorkerBaseURL"
+      },
+      {
+        "kind": "plist",
+        "path": "Contents/Info.plist",
+        "sha256": "0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d",
+        "key": "PostHogHost"
+      },
+      {
+        "kind": "plist",
+        "path": "Contents/Info.plist",
+        "sha256": "0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d",
+        "key": "SentryDSN"
+      },
+      {
+        "kind": "plist",
+        "path": "Contents/Info.plist",
+        "sha256": "0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d",
+        "key": "SUFeedURL"
+      }
+    ],
+    "source_observation": "The bundle includes backend, analytics, crash-reporting and updater configuration. The actual content retained by those services was not observed.",
+    "metis_adaptation": "Do not copy provider IDs or enable those SDKs by implication. Keep Métis metadata-only telemetry and independent signing/feed verification.",
+    "tasks": [
+      "TASK-012",
+      "TASK-013",
+      "TASK-015",
+      "TASK-057",
+      "TASK-063"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-31",
+    "title": "Intro media is not proof of live automation",
+    "evidence_level": "MEDIA_INSPECTION",
+    "evidence": [
+      {
+        "kind": "sampled-media",
+        "path": "Contents/Resources/onboarding-intro-v2.mp4",
+        "sha256": "49acf8e179457794df29de26b703faf893d7f56547fbfa543d49a4eba927dd74",
+        "duration_seconds": 117.758,
+        "samples_seconds": [
+          7.5,
+          22.5,
+          37.5,
+          52.5,
+          67.5,
+          82.5,
+          97.5,
+          112.5
+        ]
+      }
+    ],
+    "source_observation": "Eight sampled frames show a person speaking, not a complete executable task sequence. Audio was not transcribed.",
+    "metis_adaptation": "Produce original Métis onboarding. Keep prerecorded/demo results out of real first-value metrics and capability readiness.",
+    "tasks": [
+      "TASK-027",
+      "TASK-055"
+    ],
+    "product_verification": "NOT_TESTED"
+  },
+  {
+    "id": "HC-32",
+    "title": "Compiled controls are not a live test",
+    "evidence_level": "EXTRACTION_VALIDATION",
+    "evidence": [
+      {
+        "kind": "resource-seal-comparison",
+        "report": "RESOURCE-SEAL-RESULT.json"
+      }
+    ],
+    "source_observation": "127 extracted resource SHA-256 values matched the packaged resource-seal manifest. This validates selected extraction bytes, not Apple signing trust, notarization, runtime safety or app behavior.",
+    "metis_adaptation": "Record exact evidence level; native acceptance must still run on real installed candidates.",
+    "tasks": [
+      "TASK-001",
+      "TASK-055",
+      "TASK-063"
+    ],
+    "product_verification": "NOT_TESTED"
+  }
+]

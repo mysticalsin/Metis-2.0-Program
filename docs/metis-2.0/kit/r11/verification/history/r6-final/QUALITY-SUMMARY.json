@@ -1,0 +1,42 @@
+{
+  "edition": "r6",
+  "master_revision": "4.1",
+  "scope": "DELIVERY_KIT_AND_SYNTHETIC_UI_ONLY",
+  "updated_at": "2026-09-22T20:31:21.911657+00:00",
+  "master_sha256": "0d808c7f6eaf5bbb183b62d2b53f65d286438aa2dbcdbb711c065c3287e68286",
+  "preserved_counts": {
+    "requirements": 55,
+    "use_cases": 112,
+    "tasks": 66,
+    "owner_commitments": 44,
+    "golden_flows": 12,
+    "historical_findings": 20
+  },
+  "reference_entries": 79,
+  "browser_assertions": {
+    "inherited_regression_suite": 60,
+    "orb_edge_suite": 25,
+    "total": 85,
+    "passed": 85,
+    "failed": 0,
+    "real_time_benchmark": false
+  },
+  "structural_check_count_excluding_manifest": 31,
+  "final_integrity_check_count_including_manifest": 32,
+  "negative_probes_detected": 6,
+  "screenshots": 17,
+  "pdf_pages": 122,
+  "typescript_check": "Syntax transpilation only; 0 diagnostics. Not full typecheck or product compilation.",
+  "external_requests_observed": 0,
+  "javascript_errors_observed": 0,
+  "product_verification": "NOT_RUN",
+  "native_window_hit_test": "NOT_RUN",
+  "local_browser_navigation": "file:// blocked by managed Chromium policy; in-memory rendering used, no policy disabled. Loopback helper not exercised in this run.",
+  "limitations": [
+    "No real microphone or wake detector in HTML.",
+    "No actual Libraries.dev runtime package/native compile.",
+    "No Cloudflare/Jev/Laya/Dust/Teams calls or production changes.",
+    "No Windows/macOS installer/signing or full application test.",
+    "No finite review establishes absolute best or universal correctness."
+  ]
+}

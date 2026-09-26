@@ -1,0 +1,16 @@
+{
+  "checked": "2026-09-25",
+  "sources": [
+    {
+      "id": "KREF-01",
+      "url": "https://www.electronjs.org/docs/latest/api/global-shortcut",
+      "use": "Main-process global shortcut registration after ready, boolean registration success, conflicts, individual unregister; not proof of actual installed keys."
+    },
+    {
+      "id": "KREF-02",
+      "url": "https://www.electronjs.org/docs/latest/tutorial/keyboard-shortcuts",
+      "use": "Global versus focused-window shortcuts, accelerators, key-layout caveats and before-input-event; exact deployed Electron/native behavior must be qualified."
+    }
+  ],
+  "existing_reference": "Preserved r11 MASTER section 4.1 requires separate meeting/command lifecycles and command-off vs stop-all capture; baseline remains unchanged."
+}

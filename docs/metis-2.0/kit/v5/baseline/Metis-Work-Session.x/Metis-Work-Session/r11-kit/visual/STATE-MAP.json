@@ -1,0 +1,155 @@
+{
+  "schema": "metis.visual.states.v3",
+  "simulation_only": true,
+  "implementation_task": "TASK-030",
+  "requirements": [
+    "M2-UX-01",
+    "M2-UX-02",
+    "M2-VOICE-01",
+    "M2-VOICE-02"
+  ],
+  "states": [
+    {
+      "visual_id": "armed",
+      "label": "Armed",
+      "contract_phase": "ARMED",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "orb",
+      "visible_elements": [
+        "orb"
+      ],
+      "absent_elements": [
+        "bar",
+        "caption",
+        "border-beam",
+        "voice-glow",
+        "status-label",
+        "badge",
+        "composer",
+        "result"
+      ],
+      "orb_size": 64,
+      "hit_target_size": 72,
+      "default_animation": "solving",
+      "pointer_action": "open-typed-no-capture",
+      "keyboard_action": "native-button-enter-space",
+      "native_window_hit_test": "REQUIRED_NOT_TESTED",
+      "motion_policy": "animate visible ARMED; pause for reduced motion, explicit pause, hidden/offscreen, lock and approved energy policy",
+      "lab_only_dimensions": true,
+      "production_geometry": "Qualify existing 41px host / 64 preset, accessible hit target and native window independently."
+    },
+    {
+      "visual_id": "listening",
+      "label": "Listening",
+      "contract_phase": "CAPTURING",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "solving",
+      "label": "Solving",
+      "contract_phase": "INTERPRETING",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "approval",
+      "label": "Approval",
+      "contract_phase": "AWAITING_APPROVAL",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "executing",
+      "label": "Executing",
+      "contract_phase": "EXECUTING",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "verifying",
+      "label": "Verifying",
+      "contract_phase": "VERIFYING",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "completed",
+      "label": "Result",
+      "contract_phase": "COMPLETED",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "cancelled",
+      "label": "Cancelled",
+      "contract_phase": "CANCELLED",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "error",
+      "label": "Unverified",
+      "contract_phase": "UNKNOWN",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "off",
+      "label": "Mic off",
+      "contract_phase": "OFF",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "offline",
+      "label": "Offline",
+      "contract_phase": "FAILED",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "privacy-blocked",
+      "label": "Privacy blocked",
+      "contract_phase": "FAILED",
+      "is_presentation_only": false,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "typing",
+      "label": "Typing",
+      "contract_phase": "DRAFT",
+      "is_presentation_only": true,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    },
+    {
+      "visual_id": "answer",
+      "label": "Expanded answer",
+      "contract_phase": "COMPLETED",
+      "is_presentation_only": true,
+      "product_verified": false,
+      "surface_mode": "expanded"
+    }
+  ],
+  "package_edition": "r8",
+  "product_contract_revision": "4.1",
+  "clarifications": [
+    "The lab opens ARMED for inspection; product wake opt-in remains OFF by default.",
+    "No microphone/model/provider/OS action is performed.",
+    "OFF/lock must not render the ARMED orb.",
+    "Inspector labels outside the simulated desktop are not product UI."
+  ]
+}

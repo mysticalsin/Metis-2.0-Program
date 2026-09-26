@@ -1,0 +1,92 @@
+{
+  "schema": "metis.clicky.plan-package.v1",
+  "date": "2026-09-25",
+  "purpose": "Analysis and implementation plan; no application binaries or source edits",
+  "files": [
+    {
+      "path": "ACCEPTANCE-MATRIX.json",
+      "bytes": 23320,
+      "sha256": "e598893253c2a7ae06f1e7fbb3f5d0045bc1bd349700b88b6a2512d7c5586d5d"
+    },
+    {
+      "path": "ACCEPTANCE-TESTS.md",
+      "bytes": 11367,
+      "sha256": "bf556c64c6349c42c625f741a32c32c13586a694695cecbc871861a3f261df43"
+    },
+    {
+      "path": "BACKLOG.json",
+      "bytes": 25203,
+      "sha256": "064283ebed276c666e216a921bdfb8ec652151d320b313bace82e6cd991897d6"
+    },
+    {
+      "path": "BACKLOG.md",
+      "bytes": 16661,
+      "sha256": "4d6246f57fedd46a17cc1408c6b409f8070d2dc2c3dc53a52024c7b408d5a4ba"
+    },
+    {
+      "path": "CAPABILITY-MATRIX.json",
+      "bytes": 10734,
+      "sha256": "d91586a6fb0902eeb5840a0485d677c9f204c0b97d0d5dc3d7ebe6e7b7f7d737"
+    },
+    {
+      "path": "CAPABILITY-MATRIX.md",
+      "bytes": 5084,
+      "sha256": "3acab86fcc0cf1b21e12d13c32f239a9042adf34fe8ec5c85f0e8e48cc07e909"
+    },
+    {
+      "path": "HEYCLICKY-TECHNICAL-ASSESSMENT.md",
+      "bytes": 13188,
+      "sha256": "a45b21e87d7d62f2706ebdb6eb26485d1a53be769c6d61ba783df635db6ae6a8"
+    },
+    {
+      "path": "IMPLEMENTATION-PLAN.md",
+      "bytes": 32463,
+      "sha256": "c8449fd3e4f25ec5aea9327286ca4f421495a557c5a77269344d2c6e9db96272"
+    },
+    {
+      "path": "IMPLEMENTATION-PROMPT.md",
+      "bytes": 10841,
+      "sha256": "6977c4dbe30574f4c049c7ee6b0fbe11cff0c82503b895f6ef288f975182f63d"
+    },
+    {
+      "path": "R11-TASK-CROSSWALK.json",
+      "bytes": 47608,
+      "sha256": "d5e46d711eb36edfae6d8063308688eebe29a4c40f0b9a860b77f45211f18988"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2703,
+      "sha256": "fab3065fc5fd27ce46930ab567e9f18c7ef9b4dbfcf38a0ac98a4468eed2b451"
+    },
+    {
+      "path": "contracts/interaction-contract-outline.json",
+      "bytes": 2968,
+      "sha256": "e7673d752f5277e61b628ec6d24fd68c444552e36346e3a6ef3a22c57db5a802"
+    },
+    {
+      "path": "evidence/REFERENCES.md",
+      "bytes": 3132,
+      "sha256": "58ca793ec4e4a9f003d050c7613013e211c2a7987f29888dd9c5a2251c0a1ce0"
+    },
+    {
+      "path": "evidence/plan-validation.json",
+      "bytes": 679,
+      "sha256": "9773e2d0999bcce57012f22bb1ce8daf1162429931080c8bb512dc578d0f3426"
+    },
+    {
+      "path": "evidence/resource-seal-verification.json",
+      "bytes": 32209,
+      "sha256": "db06c39d71ac6d4078b36402a2e40f23f3e776a1346aee80a41d9190d1d944bd"
+    },
+    {
+      "path": "evidence/sources.json",
+      "bytes": 4137,
+      "sha256": "b66f26672ed0d16d7686c306aa360bcc209390f2a9d33c04ec948dce86b415bd"
+    },
+    {
+      "path": "evidence/static-assessment.json",
+      "bytes": 10743,
+      "sha256": "68a00aeb760fa72c3a476aab0ed98fc4417b1035990fe778d24f5b254dc73064"
+    }
+  ]
+}

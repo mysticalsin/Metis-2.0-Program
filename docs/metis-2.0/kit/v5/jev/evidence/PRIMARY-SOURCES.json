@@ -1,0 +1,53 @@
+{
+  "retrieved": "2026-09-25",
+  "sources": [
+    {
+      "id": "JEV-REF-01",
+      "title": "TypeSafe HTTP API",
+      "url": "https://docs.typesafe.ai/api",
+      "scope": "Request/response types and status meanings; not account qualification."
+    },
+    {
+      "id": "JEV-REF-02",
+      "title": "TypeSafe models",
+      "url": "https://docs.typesafe.ai/models",
+      "scope": "Documented pin, text modality, aliases and language/limit caveats; actual serving untested."
+    },
+    {
+      "id": "JEV-REF-03",
+      "title": "TypeSafe confidence",
+      "url": "https://docs.typesafe.ai/confidence",
+      "scope": "Confidence versus distributions and absence on Noul; no universal correctness guarantee."
+    },
+    {
+      "id": "JEV-REF-04",
+      "title": "TypeSafe data-handling/legal index",
+      "url": "https://docs.typesafe.ai/legal",
+      "scope": "Enterprise ZDR availability is not a confirmed tenant setting."
+    },
+    {
+      "id": "JEV-REF-05",
+      "title": "Speculative fan-out",
+      "url": "https://docs.typesafe.ai/patterns/fan-out",
+      "scope": "Independent typed questions over shared state; no implicit dependency between answers."
+    },
+    {
+      "id": "JEV-REF-06",
+      "title": "Jev 1.13 jaggedness",
+      "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
+      "scope": "Known task/context limitations; deterministic facts and adversarial qualification remain necessary."
+    },
+    {
+      "id": "JEV-REF-07",
+      "title": "System One architecture guidance",
+      "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
+      "scope": "Typed decisions composed with code-owned execution."
+    },
+    {
+      "id": "JEV-REF-08",
+      "title": "OpenAPI schema",
+      "url": "https://api.typesafe.ai/openapi.json",
+      "scope": "Wire schema cross-check; candidate deliberately uses stricter limits and no wholesale copied SDK."
+    }
+  ]
+}

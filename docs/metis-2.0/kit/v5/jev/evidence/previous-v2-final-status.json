@@ -1,0 +1,113 @@
+{
+  "schema": "metis.behavior.delivery-evidence.v2",
+  "created_utc": "2026-09-25T13:02:40.210514+00:00",
+  "source_identity": {
+    "kind": "standalone_candidate_source_manifest_sha256_NOT_GIT_COMMIT",
+    "sha256": "510baca83039d4f31dedf1412456bb5618c023de74e81cca8ce1c4542997c161",
+    "files": {
+      "behavior-core/src/authority.ts": "9cf52381b38931322f2fa449883bd5747de3660d1a73cd1f2c155434cbc6a372",
+      "behavior-core/src/coordinator.ts": "7dbd18f0cacc5e394dd32b7ab1bd06abde7f4632220c3002c3bbd3cb746297b8",
+      "behavior-core/src/native-lease.ts": "6127bffa85f7c21c6cb6bc6e62973a2ef0ab01cd4ad55aad05766e1f191f3fcc",
+      "behavior-core/src/voice.ts": "a1a263868c5359e8412e3c3ba837c937cffdf9c467f45b79f7785a6005695c7f"
+    }
+  },
+  "toolchain": {
+    "node": "v22.16.0",
+    "typescript": "Version 5.8.3",
+    "python": "Python 3.13.5"
+  },
+  "commands": [
+    {
+      "command": [
+        "tsc",
+        "-p",
+        "behavior-core/tsconfig.json"
+      ],
+      "working_directory": "package root",
+      "exit_code": 0,
+      "duration_seconds": 1.781,
+      "evidence": "evidence/strict-typescript.txt"
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "behavior-core/tests/authority.test.mjs",
+        "behavior-core/tests/coordinator.test.mjs",
+        "behavior-core/tests/file-effect.test.mjs",
+        "behavior-core/tests/task-summary.test.mjs",
+        "behavior-core/tests/voice-lease.test.mjs"
+      ],
+      "working_directory": "package root",
+      "exit_code": 0,
+      "duration_seconds": 0.436,
+      "evidence": "evidence/behavior-core-tests.tap"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "working_directory": "package root",
+      "exit_code": 0,
+      "duration_seconds": 0.867,
+      "evidence": "evidence/evidence-gate-tests.txt"
+    },
+    {
+      "command": [
+        "node",
+        "behavior-core/examples/verified-file-task.mjs"
+      ],
+      "working_directory": "package root",
+      "exit_code": 0,
+      "duration_seconds": 0.061,
+      "evidence": "evidence/temporary-file-example.json"
+    }
+  ],
+  "verified_here": {
+    "candidate_tests": 160,
+    "evidence_checker_unit_tests": 13,
+    "negative_controls_detected": 8,
+    "seeded_playback_transitions_inside_one_test": 5000,
+    "actual_temporary_file_write_and_readback": true,
+    "candidate_strict_typescript": true,
+    "compiled_output_reproducible": true,
+    "baseline_archive_hashes_preserved": true,
+    "supplemental_dependency_graph_acyclic": true
+  },
+  "plan_counts": {
+    "original_root_tasks": 66,
+    "interaction_child_steps": 20,
+    "capability_items": 30,
+    "new_behavior_requirements": 24,
+    "original_interaction_cases": 36,
+    "additional_cases": 24,
+    "total_interaction_cases": 60
+  },
+  "application_integration": "NOT_EXECUTED",
+  "native_live_acceptance": {
+    "PASS": 0,
+    "NOT_RUN": 60
+  },
+  "full_repository_tests": "NOT_EXECUTED",
+  "current_repository_head": "NOT_VERIFIED",
+  "independent_review": "NOT_EXECUTED",
+  "subagents_spawned": 0,
+  "remote_changes": false,
+  "user_mac_changes": false,
+  "installed_app_updated": false,
+  "release_qualification": "NOT_QUALIFIED",
+  "limitations": [
+    "Trusted source enums, booleans, matcher and fake journal are not real identity/consent/durability.",
+    "Production native/speech/service/IPC/current-audience bindings remain required.",
+    "Evidence checker validates declared forms and hashes, not fabricated evidence authenticity or signing.",
+    "Candidate suite does not certify universal safety or complete Metis behavior."
+  ]
+}

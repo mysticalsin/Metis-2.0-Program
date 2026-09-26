@@ -1,0 +1,794 @@
+[
+  {
+    "path": "Contents/Resources/AGENTS.md",
+    "name": "AGENTS",
+    "sha256": "a7a056dd42d53aff821e0b799a3ddbd9c3a9170dbe369605da1776b4828026e8",
+    "lines": 28,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Evidence only; no product feature inferred",
+    "metis_surface": "Source study",
+    "tasks": [
+      "TASK-001",
+      "TASK-002"
+    ],
+    "acceptance": "Treat this instruction/attribution/driver document as evidence with freshness and authority limits, not a command to execute."
+  },
+  {
+    "path": "Contents/Resources/ATTRIBUTION.md",
+    "name": "ATTRIBUTION",
+    "sha256": "9a72ea800fa89a20ca8475847e5f88b67af448aa548fa70008d7c66436fb74cd",
+    "lines": 20,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Evidence only; no product feature inferred",
+    "metis_surface": "Source study",
+    "tasks": [
+      "TASK-001",
+      "TASK-002"
+    ],
+    "acceptance": "Treat this instruction/attribution/driver document as evidence with freshness and authority limits, not a command to execute."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/clicky-artifacts/SKILL.md",
+    "name": "clicky-artifacts",
+    "sha256": "1da2718937ce150360a80831be36205539508a53cee5570737de2b91530d64c6",
+    "lines": 46,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Core",
+    "metis_surface": "Artifact Library",
+    "tasks": [
+      "TASK-035",
+      "TASK-043",
+      "TASK-044"
+    ],
+    "acceptance": "Exact owned artifact handles, existence/hash readback, scoped rename/export, safe preview; draft is not a stored artifact."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/clicky-build-preview/SKILL.md",
+    "name": "clicky-build-preview",
+    "sha256": "4234c192b355089671bdd0a384452d0e64221a2be4fdfe92fd5da43551bb9177",
+    "lines": 62,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer opt-in",
+    "metis_surface": "Build Studio",
+    "tasks": [
+      "TASK-042",
+      "TASK-043",
+      "TASK-061"
+    ],
+    "acceptance": "Authorized isolated preview runner; preview URL is reachable and reviewed. No silent port exposure or production deployment."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/clicky-creative-studio/SKILL.md",
+    "name": "clicky-creative-studio",
+    "sha256": "1fffbacbd9f8227a98ab0f934a8f9790359364a3aec5a31f63c59d61eb2e926d",
+    "lines": 47,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Core routing, qualified adapters",
+    "metis_surface": "Creative Desk",
+    "tasks": [
+      "TASK-009",
+      "TASK-042",
+      "TASK-043"
+    ],
+    "acceptance": "Select actual available formats; unsupported image/video/deck generation is explicit, not fabricated from a catalog item."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/clicky-dev-setup-doctor/SKILL.md",
+    "name": "clicky-dev-setup-doctor",
+    "sha256": "007edc64d61feba012d5c861c3c6b1d4e8cdc8f3f127ae29a84d8cf776dcb69e",
+    "lines": 43,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer opt-in",
+    "metis_surface": "Setup Doctor",
+    "tasks": [
+      "TASK-043",
+      "TASK-057",
+      "TASK-061"
+    ],
+    "acceptance": "Read-only diagnosis first; scope repair and confirm package/service changes. No blanket host shell access."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/clicky-email-assistant/SKILL.md",
+    "name": "clicky-email-assistant",
+    "sha256": "ac939d8e0780608208a1fd113792d0b4b6842ccfc14a621b0eefe05317b78fec",
+    "lines": 53,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Core, connection required",
+    "metis_surface": "Follow-up Desk",
+    "tasks": [
+      "TASK-033",
+      "TASK-042",
+      "TASK-043"
+    ],
+    "acceptance": "Exact selected mailbox, thread and recipient; draft separate from sent. Revalidate approval and verify remote result."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/clicky-google-workspace/SKILL.md",
+    "name": "clicky-google-workspace",
+    "sha256": "a33d9fa8c3f47ec24e9d54ae5b33874f43858d35b88a438307010f484b3b1bdd",
+    "lines": 62,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Optional connector family",
+    "metis_surface": "Workspace Guide",
+    "tasks": [
+      "TASK-006",
+      "TASK-033",
+      "TASK-045"
+    ],
+    "acceptance": "Qualify each Gmail/Calendar/Drive/Docs/Sheets connection separately, with real schema/permissions. Entra remains Métis identity."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/clicky-repo-operator/SKILL.md",
+    "name": "clicky-repo-operator",
+    "sha256": "cb4645c4d815bb3736d74b89f2f7cd7cb64c0d5b7afe5e13d20ab0bcc32fb2f9",
+    "lines": 46,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer opt-in",
+    "metis_surface": "Repository Guide",
+    "tasks": [
+      "TASK-003",
+      "TASK-043",
+      "TASK-061"
+    ],
+    "acceptance": "Existing Git checkout/worktree/branch preserved; bounded source map; commits, pushes and release promotions have distinct evidence."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/clicky-research-report/SKILL.md",
+    "name": "clicky-research-report",
+    "sha256": "8819bc5fbca30021b603db899383bcbf4623509edea57062efd2d289a2360300",
+    "lines": 49,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Core",
+    "metis_surface": "Research Scout",
+    "tasks": [
+      "TASK-037",
+      "TASK-042",
+      "TASK-043"
+    ],
+    "acceptance": "Real allowed sources, citation freshness, uncertainty and bounded context. Files only when useful or requested."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/cua-driver/README.md",
+    "name": "README",
+    "sha256": "a015cb8802526ab5a512e58eb560eb5b932195e8e148cb55d580e470657705e2",
+    "lines": 90,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Evidence only; no product feature inferred",
+    "metis_surface": "Source study",
+    "tasks": [
+      "TASK-001",
+      "TASK-002"
+    ],
+    "acceptance": "Treat this instruction/attribution/driver document as evidence with freshness and authority limits, not a command to execute."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/cua-driver/RECORDING.md",
+    "name": "RECORDING",
+    "sha256": "4cbce1daf0831e6d30645e064146662335b5d072e03cc1a13a947f370ac3c7ba",
+    "lines": 35,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Evidence only; no product feature inferred",
+    "metis_surface": "Source study",
+    "tasks": [
+      "TASK-001",
+      "TASK-002"
+    ],
+    "acceptance": "Treat this instruction/attribution/driver document as evidence with freshness and authority limits, not a command to execute."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/cua-driver/SKILL.md",
+    "name": "cua-driver",
+    "sha256": "cf03b14ff3c2645342578eb2a0a38ddbd2a397ad1e55e1465f96b5f4b6acd19b",
+    "lines": 899,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Qualified adapter candidate",
+    "metis_surface": "Métis trusted executor",
+    "tasks": [
+      "TASK-033",
+      "TASK-056",
+      "TASK-057"
+    ],
+    "acceptance": "Evaluate actual licensed upstream separately. Snapshot, typed element identity, user interruption and postcondition; separate Windows implementation."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/cua-driver/TESTS.md",
+    "name": "TESTS",
+    "sha256": "64827dd0d88481d407c7fcf521bf63fa732a6a142c42dec3ddfb5099dd531e88",
+    "lines": 232,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Evidence only; no product feature inferred",
+    "metis_surface": "Source study",
+    "tasks": [
+      "TASK-001",
+      "TASK-002"
+    ],
+    "acceptance": "Treat this instruction/attribution/driver document as evidence with freshness and authority limits, not a command to execute."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/cua-driver/WEB_APPS.md",
+    "name": "WEB_APPS",
+    "sha256": "7a9a6faeb894bbff5e7a649084f1998f85d3102e100aee3ffaf4f1321bd0ef9d",
+    "lines": 409,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Evidence only; no product feature inferred",
+    "metis_surface": "Source study",
+    "tasks": [
+      "TASK-001",
+      "TASK-002"
+    ],
+    "acceptance": "Treat this instruction/attribution/driver document as evidence with freshness and authority limits, not a command to execute."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/doc/SKILL.md",
+    "name": "doc",
+    "sha256": "0a635585817d1ac96e8e512114d08258b70f9e54ce0052078a258291ac13a8ed",
+    "lines": 80,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Core artifact capability",
+    "metis_surface": "Writing Studio",
+    "tasks": [
+      "TASK-035",
+      "TASK-043",
+      "TASK-055"
+    ],
+    "acceptance": "Create/edit real DOCX from approved source; preserve human edits, render-check layout and publish a hashed artifact receipt."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/frontend-design/SKILL.md",
+    "name": "frontend-design",
+    "sha256": "bd97ac141cb877fe83b93ace1085a82ceb60baf96ca555db09f6b3d2c7c1541c",
+    "lines": 51,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer/design opt-in",
+    "metis_surface": "Design Studio",
+    "tasks": [
+      "TASK-030",
+      "TASK-043",
+      "TASK-061"
+    ],
+    "acceptance": "Use approved Métis design skill and design system; inspect rendered outputs without leaking private preview content."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/obsidian/SKILL.md",
+    "name": "obsidian",
+    "sha256": "f4ea32c16df024173b23046aff5274aada1a34623e65bb75e61cc13a7602c519",
+    "lines": 51,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Explicit knowledge-source option",
+    "metis_surface": "Knowledge Guide",
+    "tasks": [
+      "TASK-007",
+      "TASK-035",
+      "TASK-037"
+    ],
+    "acceptance": "Only selected vault root, confinement and revision checks; respect source encryption and do not scan other vaults."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/pdf/SKILL.md",
+    "name": "pdf",
+    "sha256": "d108cf2b36355ab37eb5962933f4d09785ec002f3105c506129320209306b9d2",
+    "lines": 67,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Core artifact capability",
+    "metis_surface": "Writing Studio",
+    "tasks": [
+      "TASK-035",
+      "TASK-043",
+      "TASK-055"
+    ],
+    "acceptance": "Real PDF parsing and rendering, malicious-file isolation, encrypted input handling, fidelity review and safe export."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/spreadsheet/SKILL.md",
+    "name": "spreadsheet",
+    "sha256": "36baea99e96c77c13d15d24f9d53cd072ccbc120e810bf4e68049edb5b0f1d65",
+    "lines": 145,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Core artifact capability",
+    "metis_surface": "Analysis Desk",
+    "tasks": [
+      "TASK-035",
+      "TASK-043",
+      "TASK-055"
+    ],
+    "acceptance": "Preserve formulas/types, handle CSV injection, calculate with qualified tools, validate cells and rendered output."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/vercel-deploy/ATTRIBUTION.md",
+    "name": "ATTRIBUTION",
+    "sha256": "bc3a6654c1f05ccad7c47b842caa127a42ee03b31549b879d56716d3b3fe288b",
+    "lines": 3,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Evidence only; no product feature inferred",
+    "metis_surface": "Source study",
+    "tasks": [
+      "TASK-001",
+      "TASK-002"
+    ],
+    "acceptance": "Treat this instruction/attribution/driver document as evidence with freshness and authority limits, not a command to execute."
+  },
+  {
+    "path": "Contents/Resources/ClickyBundledSkills/vercel-deploy/SKILL.md",
+    "name": "vercel-deploy",
+    "sha256": "f4a6cbfbb378a320fae179a79f727a881d19677e9b3db96ed49d2dc02a74fa46",
+    "lines": 77,
+    "disposition": "evaluate-independent-Metis-equivalent",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer opt-in, not default platform",
+    "metis_surface": "Deployment Guide",
+    "tasks": [
+      "TASK-043",
+      "TASK-062",
+      "TASK-064"
+    ],
+    "acceptance": "Only requested authorized deployment; preview versus public release distinct. Cloudflare-first Métis architecture is not replaced."
+  },
+  {
+    "path": "Contents/Resources/ClickyModelInstructions.md",
+    "name": "ClickyModelInstructions",
+    "sha256": "f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145",
+    "lines": 104,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Evidence only; no product feature inferred",
+    "metis_surface": "Source study",
+    "tasks": [
+      "TASK-001",
+      "TASK-002"
+    ],
+    "acceptance": "Treat this instruction/attribution/driver document as evidence with freshness and authority limits, not a command to execute."
+  },
+  {
+    "path": "Contents/Resources/airtable.md",
+    "name": "airtable",
+    "sha256": "efd925c3b9be734dd61393c7af19651601164ff57b67d320141d7813cdd85a03",
+    "lines": 228,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Optional enterprise connector",
+    "metis_surface": "Workspace Guide",
+    "tasks": [
+      "TASK-006",
+      "TASK-033",
+      "TASK-045"
+    ],
+    "acceptance": "Schema-scoped records, exact base and idempotent approved writes."
+  },
+  {
+    "path": "Contents/Resources/apple-notes.md",
+    "name": "apple-notes",
+    "sha256": "c652e01e47938b8ac21c97873e0a14f5f3a773b554bd10737fbfdcc5e5c28d23",
+    "lines": 90,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Core Mac adapter; Windows equivalent disclosed",
+    "metis_surface": "Métis executor",
+    "tasks": [
+      "TASK-033",
+      "TASK-056"
+    ],
+    "acceptance": "Exact note created/read back. Notepad opening is not a saved note."
+  },
+  {
+    "path": "Contents/Resources/apple-reminders.md",
+    "name": "apple-reminders",
+    "sha256": "7ed9206a4df2739d41818a17de1b5ff79e7b24cdb5de9c2e74247c8835bcb515",
+    "lines": 98,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Optional Mac task adapter",
+    "metis_surface": "Follow-up Desk",
+    "tasks": [
+      "TASK-033",
+      "TASK-043"
+    ],
+    "acceptance": "Explicit list and due-date timezone, duplicate prevention and verified object."
+  },
+  {
+    "path": "Contents/Resources/blender.md",
+    "name": "blender",
+    "sha256": "cdd81cb0235df864c2189264c99db1969c117188b1483ab730122ac99ad95c87",
+    "lines": 601,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Optional specialist pack",
+    "metis_surface": "Creative Desk",
+    "tasks": [
+      "TASK-042",
+      "TASK-043"
+    ],
+    "acceptance": "Only approved isolated 3D tool runtime and checked export; no bundled consumer dependency by default."
+  },
+  {
+    "path": "Contents/Resources/claude-code.md",
+    "name": "claude-code",
+    "sha256": "8d72e755bd78cc1586db495a381c628c0c25833a71d917e887ac08a0ca95d8bf",
+    "lines": 744,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer opt-in",
+    "metis_surface": "Repository Guide",
+    "tasks": [
+      "TASK-043",
+      "TASK-061"
+    ],
+    "acceptance": "Authorized CLI runtime/version and license; no provider credential extraction or local transcript argv."
+  },
+  {
+    "path": "Contents/Resources/claude-design.md",
+    "name": "claude-design",
+    "sha256": "aa54aac5236997ac2f07ef28bb6685243247256215e3b0d4fc987f6e4d9c439e",
+    "lines": 590,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer/design opt-in",
+    "metis_surface": "Design Studio",
+    "tasks": [
+      "TASK-030",
+      "TASK-043"
+    ],
+    "acceptance": "Use actual authorized design tools; no automatic vendor account reuse."
+  },
+  {
+    "path": "Contents/Resources/codex.md",
+    "name": "codex",
+    "sha256": "0ce0ee3bb0ca6517a485a8295894a782fbeafdc2ffb31aac7dab006ac631a01e",
+    "lines": 129,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer opt-in",
+    "metis_surface": "Repository Guide",
+    "tasks": [
+      "TASK-043",
+      "TASK-061"
+    ],
+    "acceptance": "Use installed authorized environment, not copied HeyClicky CodexRuntime or token configuration."
+  },
+  {
+    "path": "Contents/Resources/excalidraw.md",
+    "name": "excalidraw",
+    "sha256": "8ea47460bc26ab3a093337620ec842bf8220b497b5b9c66f266a8ac321c5723d",
+    "lines": 196,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Optional design output",
+    "metis_surface": "Design Studio",
+    "tasks": [
+      "TASK-043"
+    ],
+    "acceptance": "Safe editable diagram output, source traceability and renderer validation."
+  },
+  {
+    "path": "Contents/Resources/findmy.md",
+    "name": "findmy",
+    "sha256": "19ec56e3b7f9f0be13c26d99948ed5684d8fb1f9c478da078c19356b5df63f57",
+    "lines": 131,
+    "disposition": "candidate-with-explicit-separate-approval",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Not enabled in enterprise default",
+    "metis_surface": "No starter agent",
+    "tasks": [
+      "TASK-002",
+      "TASK-057"
+    ],
+    "acceptance": "Personal location tracking is not inferred from meeting assistance. Any separate request needs explicit authorized scope."
+  },
+  {
+    "path": "Contents/Resources/github-auth.md",
+    "name": "github-auth",
+    "sha256": "77179ef1dcdcfd3c3031cead12a54313296388bafbf8ffa5ea96963fa2220531",
+    "lines": 246,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer connector prerequisite",
+    "metis_surface": "Repository Guide",
+    "tasks": [
+      "TASK-006",
+      "TASK-045",
+      "TASK-061"
+    ],
+    "acceptance": "Actual scoped connector identity; never copy cookies or credentials from reference application."
+  },
+  {
+    "path": "Contents/Resources/github-code-review.md",
+    "name": "github-code-review",
+    "sha256": "d043a4ce6a90ce00a9e2395600fb50182bfcf479302dc22aebb36696c8805b5d",
+    "lines": 480,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer opt-in",
+    "metis_surface": "Repository Guide",
+    "tasks": [
+      "TASK-003",
+      "TASK-043",
+      "TASK-061"
+    ],
+    "acceptance": "Read actual diffs/dependencies and tests; source lines and no invented approval."
+  },
+  {
+    "path": "Contents/Resources/github-issues.md",
+    "name": "github-issues",
+    "sha256": "c634fa92f5891e75abc84ae24031dd2f3ce8593d7a07abf33959dcbe6514841c",
+    "lines": 369,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer opt-in",
+    "metis_surface": "Repository Guide",
+    "tasks": [
+      "TASK-043",
+      "TASK-061"
+    ],
+    "acceptance": "Exact authorized issue/repository with draft versus committed update distinction."
+  },
+  {
+    "path": "Contents/Resources/github-pr-workflow.md",
+    "name": "github-pr-workflow",
+    "sha256": "9d860acf79e3ead32fea1d27e4554801cc18fd0ff2edc449506308193f0fb245",
+    "lines": 366,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer opt-in",
+    "metis_surface": "Repository Guide",
+    "tasks": [
+      "TASK-043",
+      "TASK-061",
+      "TASK-064"
+    ],
+    "acceptance": "Preserve branch protections, review, CI and provenance; no broad auto-merge capability."
+  },
+  {
+    "path": "Contents/Resources/github-repo-management.md",
+    "name": "github-repo-management",
+    "sha256": "5116abc1516cca9724b0e66b9380e4c9aaceb52858258091a16da1c4a5132051",
+    "lines": 515,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Developer opt-in",
+    "metis_surface": "Repository Guide",
+    "tasks": [
+      "TASK-003",
+      "TASK-043",
+      "TASK-061"
+    ],
+    "acceptance": "Scoped settings/branch actions; permission widening and destructive writes require actual authority."
+  },
+  {
+    "path": "Contents/Resources/google-workspace.md",
+    "name": "google-workspace",
+    "sha256": "5ef941bf71161797799a22ea7bc0f4a91dff4dd6bfcabdca83c635d358db83ba",
+    "lines": 284,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Legacy guide; reuse same connector family",
+    "metis_surface": "Workspace Guide",
+    "tasks": [
+      "TASK-006",
+      "TASK-033",
+      "TASK-045"
+    ],
+    "acceptance": "Do not create a second Google integration or count this legacy guide as separately working."
+  },
+  {
+    "path": "Contents/Resources/imessage.md",
+    "name": "imessage",
+    "sha256": "bc68b1648e301409bc25b1084ec26766213ca9f3c1b2fd3d3d6ebe3dbde9e967",
+    "lines": 102,
+    "disposition": "candidate-with-explicit-separate-approval",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Personal opt-in only, not enterprise default",
+    "metis_surface": "No starter agent",
+    "tasks": [
+      "TASK-033",
+      "TASK-057"
+    ],
+    "acceptance": "Explicit device/message scope; do not read a personal database or send through inherited GUI permission."
+  },
+  {
+    "path": "Contents/Resources/linear.md",
+    "name": "linear",
+    "sha256": "b0195041ce89377037d11802b2a0a2b5cf935f61869b17a1a1ebdcb5cccd52f2",
+    "lines": 379,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Optional enterprise connector",
+    "metis_surface": "Follow-up Desk",
+    "tasks": [
+      "TASK-033",
+      "TASK-043",
+      "TASK-045"
+    ],
+    "acceptance": "Exact workspace/project, typed issue action, approval and readback."
+  },
+  {
+    "path": "Contents/Resources/maps.md",
+    "name": "maps",
+    "sha256": "9016a0dcce246a02bd0c3272619f3d9c5dd3dd8564ae111bca6922af1820564f",
+    "lines": 194,
+    "disposition": "candidate-with-explicit-separate-approval",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Explicit context-specific option",
+    "metis_surface": "Research Scout",
+    "tasks": [
+      "TASK-037",
+      "TASK-043"
+    ],
+    "acceptance": "No background location capture. User-provided location and route intent only."
+  },
+  {
+    "path": "Contents/Resources/notion.md",
+    "name": "notion",
+    "sha256": "e919f897e55e06b503c51178a9613aed107c12ecf0afbd99ade944934d382c3f",
+    "lines": 171,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Optional knowledge connector",
+    "metis_surface": "Knowledge Guide",
+    "tasks": [
+      "TASK-006",
+      "TASK-035",
+      "TASK-037"
+    ],
+    "acceptance": "Source permissions/revisions, canonical write boundary, no duplicate parallel knowledge truth."
+  },
+  {
+    "path": "Contents/Resources/obsidian.md",
+    "name": "obsidian",
+    "sha256": "88fa92b6dc495f5589fefdec27575db3e840223a2e515116efea21e3448b5382",
+    "lines": 60,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Explicit knowledge-source option",
+    "metis_surface": "Knowledge Guide",
+    "tasks": [
+      "TASK-007",
+      "TASK-035",
+      "TASK-037"
+    ],
+    "acceptance": "Only selected vault root, confinement and revision checks; respect source encryption and do not scan other vaults."
+  },
+  {
+    "path": "Contents/Resources/ocr-and-documents.md",
+    "name": "ocr-and-documents",
+    "sha256": "53596fe5a2a87898d78b9ab33bca0185fd447250fcf42dcb350cb94fd4eddbfc",
+    "lines": 171,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Core context capability",
+    "metis_surface": "Context broker",
+    "tasks": [
+      "TASK-033",
+      "TASK-037"
+    ],
+    "acceptance": "Full versus visible/partial extraction and exact app/buffer/file identity; prompt-injection and confidentiality controls."
+  },
+  {
+    "path": "Contents/Resources/polymarket.md",
+    "name": "polymarket",
+    "sha256": "f940c02ae8e112dd44849ee68edd23bc6113bcab117f8624eefad3d8ca1b4301",
+    "lines": 76,
+    "disposition": "candidate-with-explicit-separate-approval",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Not enabled in enterprise default",
+    "metis_surface": "No starter agent",
+    "tasks": [
+      "TASK-002",
+      "TASK-057"
+    ],
+    "acceptance": "A legacy guide does not authorize wagering or trading. Exclude from ordinary Métis scope and default connector catalog."
+  },
+  {
+    "path": "Contents/Resources/powerpoint.md",
+    "name": "powerpoint",
+    "sha256": "5d80c56d140e7f5c9d0104ddb48ab0789f6d75a70244c8240225f933259e9941",
+    "lines": 236,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Qualified branded artifact capability",
+    "metis_surface": "Presentation Studio",
+    "tasks": [
+      "TASK-042",
+      "TASK-043",
+      "TASK-055"
+    ],
+    "acceptance": "Use Tony’s actual approved presentation/brand skill, validate PPTX and render all slides; legacy guide is not proof of a provider route."
+  },
+  {
+    "path": "Contents/Resources/spotify.md",
+    "name": "spotify",
+    "sha256": "43789e51e3ce37a77318b066cb8b183656cd21e9e1269ddea49e4348b1d9c3da",
+    "lines": 134,
+    "disposition": "candidate-with-explicit-separate-approval",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Personal opt-in only",
+    "metis_surface": "No starter agent",
+    "tasks": [
+      "TASK-033",
+      "TASK-057"
+    ],
+    "acceptance": "No media-control action as a side effect of onboarding or meetings."
+  },
+  {
+    "path": "Contents/Resources/youtube-content.md",
+    "name": "youtube-content",
+    "sha256": "590f7358445e804ea8cd5d1035beb7cf8f8b548f8ff8d8b149d79973ba3a50f9",
+    "lines": 72,
+    "disposition": "legacy-or-documentation-reference-not-runtime-proof",
+    "activation": "NOT_ESTABLISHED",
+    "copy_into_metis": false,
+    "metis_disposition": "Optional research/content workflow",
+    "metis_surface": "Research Scout",
+    "tasks": [
+      "TASK-037",
+      "TASK-043"
+    ],
+    "acceptance": "Respect source rights/availability, label missing transcript, no phantom video inspection or unsolicited publication."
+  }
+]

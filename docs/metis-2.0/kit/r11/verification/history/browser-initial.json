@@ -1,0 +1,348 @@
+{
+  "scope": "SYNTHETIC_DELIVERY_KIT_UI_ONLY",
+  "executed_at": "2026-09-22T19:21:52.657187+00:00",
+  "engine": "Chromium",
+  "version": "144.0.7559.96",
+  "host": "Linux",
+  "render_mode": "Playwright page.set_content in-memory document",
+  "not_tested": [
+    "Native Windows/macOS application",
+    "Microphone or wake detection",
+    "Real Libraries.dev packages/React adapter compilation",
+    "Cloudflare/Jev/Laya/Dust/Teams services",
+    "Signing or installer behavior",
+    "file:// or loopback navigation in this policy-restricted environment"
+  ],
+  "requests_observed": [],
+  "page_errors": [
+    "Cannot read properties of null (reading 'checked')",
+    "Cannot redefine property: MetisDemo"
+  ],
+  "checks": [
+    {
+      "check": "demo boots in Chromium memory document",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "state armed",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"armed\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" data-state=\"armed\" data-phase=\"ARMED\" aria-pressed=\"true\" data-placement=\"center\" class=\"desktop inactive is-static\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Preview command text What\")\n    2) <button data-state=\"armed\" aria-pressed=\"true\">Armed</button> aka get_by_role(\"button\", name=\"Armed\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"armed\\\"]\")\n"
+    },
+    {
+      "check": "state listening",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"listening\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" class=\"desktop\" aria-pressed=\"true\" data-state=\"listening\" data-phase=\"CAPTURING\" data-placement=\"center\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Hey Métis, open my latest\")\n    2) <button aria-pressed=\"true\" data-state=\"listening\">Listening</button> aka get_by_role(\"button\", name=\"Listening\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"listening\\\"]\")\n"
+    },
+    {
+      "check": "state solving",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"solving\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" class=\"desktop\" aria-pressed=\"true\" data-state=\"solving\" data-placement=\"center\" data-phase=\"INTERPRETING\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Hey Métis, open my latest\")\n    2) <button aria-pressed=\"true\" data-state=\"solving\">Solving</button> aka get_by_role(\"button\", name=\"Solving\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"solving\\\"]\")\n"
+    },
+    {
+      "check": "state approval",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"approval\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" aria-pressed=\"true\" data-state=\"approval\" data-placement=\"center\" data-phase=\"AWAITING_APPROVAL\" class=\"desktop inactive is-static\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Hey Métis, close Chrome.\")\n    2) <button aria-pressed=\"true\" data-state=\"approval\">Approval</button> aka get_by_role(\"button\", name=\"Approval\", exact=True)\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"approval\\\"]\")\n"
+    },
+    {
+      "check": "state executing",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"executing\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" class=\"desktop\" aria-pressed=\"true\" data-state=\"executing\" data-phase=\"EXECUTING\" data-placement=\"center\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Hey Métis, open my latest\")\n    2) <button aria-pressed=\"true\" data-state=\"executing\">Executing</button> aka get_by_role(\"button\", name=\"Executing\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"executing\\\"]\")\n"
+    },
+    {
+      "check": "state verifying",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"verifying\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" class=\"desktop\" aria-pressed=\"true\" data-state=\"verifying\" data-phase=\"VERIFYING\" data-placement=\"center\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Hey Métis, open my latest\")\n    2) <button aria-pressed=\"true\" data-state=\"verifying\">Verifying</button> aka get_by_role(\"button\", name=\"Verifying\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"verifying\\\"]\")\n"
+    },
+    {
+      "check": "state completed",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"completed\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" aria-pressed=\"true\" data-state=\"completed\" data-phase=\"COMPLETED\" data-placement=\"center\" class=\"desktop inactive is-static\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Hey Métis, open my latest\")\n    2) <button aria-pressed=\"true\" data-state=\"completed\">Result</button> aka get_by_role(\"button\", name=\"Result\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"completed\\\"]\")\n"
+    },
+    {
+      "check": "state cancelled",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"cancelled\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" aria-pressed=\"true\" data-state=\"cancelled\" data-phase=\"CANCELLED\" data-placement=\"center\" class=\"desktop inactive is-static\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Preview stopped.Preview\")\n    2) <button aria-pressed=\"true\" data-state=\"cancelled\">Cancelled</button> aka get_by_role(\"button\", name=\"Cancelled\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"cancelled\\\"]\")\n"
+    },
+    {
+      "check": "state error",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"error\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" data-state=\"error\" aria-pressed=\"true\" data-phase=\"UNKNOWN\" data-placement=\"center\" class=\"desktop inactive is-static\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Hey Métis, open my latest\")\n    2) <button data-state=\"error\" aria-pressed=\"true\">Unverified</button> aka get_by_role(\"button\", name=\"Unverified\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"error\\\"]\")\n"
+    },
+    {
+      "check": "state off",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"off\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" data-state=\"off\" data-phase=\"OFF\" aria-pressed=\"true\" data-placement=\"center\" class=\"desktop inactive is-static\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Command microphone off. You\")\n    2) <button data-state=\"off\" aria-pressed=\"true\">Mic off</button> aka get_by_role(\"button\", name=\"Mic off\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"off\\\"]\")\n"
+    },
+    {
+      "check": "state offline",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"offline\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" data-phase=\"FAILED\" aria-pressed=\"true\" data-state=\"offline\" data-placement=\"center\" class=\"desktop inactive is-static\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Cloud speech is unavailable.\")\n    2) <button aria-pressed=\"true\" data-state=\"offline\">Offline</button> aka get_by_role(\"button\", name=\"Offline\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"offline\\\"]\")\n"
+    },
+    {
+      "check": "state privacy-blocked",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"privacy-blocked\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" data-phase=\"FAILED\" aria-pressed=\"true\" data-placement=\"center\" data-state=\"privacy-blocked\" class=\"desktop inactive is-static\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Speech processing is not ready\")\n    2) <button aria-pressed=\"true\" data-state=\"privacy-blocked\">Privacy blocked</button> aka get_by_role(\"button\", name=\"Privacy blocked\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"privacy-blocked\\\"]\")\n"
+    },
+    {
+      "check": "state typing",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"typing\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" data-phase=\"DRAFT\" data-state=\"typing\" aria-pressed=\"true\" data-placement=\"center\" class=\"desktop inactive is-static\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace Type a command. Nothing is\")\n    2) <button data-state=\"typing\" aria-pressed=\"true\">Typing</button> aka get_by_role(\"button\", name=\"Typing\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"typing\\\"]\")\n"
+    },
+    {
+      "check": "state answer",
+      "passed": false,
+      "detail": "Locator.get_attribute: Error: strict mode violation: locator(\"[data-state=\\\"answer\\\"]\") resolved to 2 elements:\n    1) <div id=\"desktop\" data-state=\"answer\" aria-pressed=\"true\" data-phase=\"COMPLETED\" data-placement=\"center\" class=\"desktop inactive is-static\">…</div> aka get_by_text(\"Windows layout referenceSafe synthetic workspace What changed since the\")\n    2) <button data-state=\"answer\" aria-pressed=\"true\">Expanded answer</button> aka get_by_role(\"button\", name=\"Expanded answer\")\n\nCall log:\n  - waiting for locator(\"[data-state=\\\"answer\\\"]\")\n"
+    },
+    {
+      "check": "requested visual hierarchy",
+      "passed": true,
+      "detail": "Caption above; mesh entirely inside bar."
+    },
+    {
+      "check": "no decorative state label beside orb",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "working mode has one Stop and no Send control",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "off mode has one Send and no Stop control",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "collapsed handle expands by keyboard with input focus",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "draft persists across state platform and placement",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "native Mac switch is honestly a layout reference",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Shift+Enter preserves multiline draft",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "IME composition does not submit prematurely",
+      "passed": true,
+      "detail": "Composition Enter did not submit; explicit later Enter displayed inert text."
+    },
+    {
+      "check": "typed HTML and shell-like text remain inert",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "check": "scripted sequence open",
+      "passed": true,
+      "detail": {
+        "scenario": "open",
+        "final_state": "completed",
+        "timers_remaining": 0
+      }
+    },
+    {
+      "check": "scripted sequence close",
+      "passed": true,
+      "detail": {
+        "scenario": "close",
+        "final_state": "approval",
+        "timers_remaining": 0
+      }
+    },
+    {
+      "check": "scripted sequence correction",
+      "passed": true,
+      "detail": {
+        "scenario": "correction",
+        "final_state": "cancelled",
+        "timers_remaining": 0
+      }
+    },
+    {
+      "check": "scripted sequence outage",
+      "passed": true,
+      "detail": {
+        "scenario": "outage",
+        "final_state": "offline",
+        "timers_remaining": 0
+      }
+    },
+    {
+      "check": "Stop prevents delayed sequence completion",
+      "passed": true,
+      "detail": "All scheduled old-generation callbacks cancelled."
+    },
+    {
+      "check": "repeated playback respects generation ownership",
+      "passed": false,
+      "detail": "Page.wait_for_function: EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'unsafe-inline'\".\n\n    at eval (<anonymous>)\n    at predicate (eval at evaluate (:290:30), <anonymous>:4:56)\n    at next (eval at evaluate (:290:30), <anonymous>:29:29)"
+    },
+    {
+      "check": "approval requires a deliberate preview action",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "approval never claims a real application was closed",
+      "passed": false,
+      "detail": "condition returned false"
+    },
+    {
+      "check": "long answer has its own bounded scroll area",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "manual pause stops animation work",
+      "passed": true,
+      "detail": "Canvas clock stopped; static state retained."
+    },
+    {
+      "check": "reduced-motion option stops animation work",
+      "passed": true,
+      "detail": "Canvas clock stopped; static state retained."
+    },
+    {
+      "check": "system reduced-motion preference",
+      "passed": true,
+      "detail": "Operating-system media preference is honored."
+    },
+    {
+      "check": "inactive product tab stops experience animation",
+      "passed": true,
+      "detail": "Hidden experience has no recurring canvas frames."
+    },
+    {
+      "check": "settings destination general",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "settings destination voice",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "settings destination knowledge",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "settings destination privacy",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "settings destination advanced",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Intelligence evidence drawer stays synthetic",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Operator does not present real connected services",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "narrow 390px long-text layout retains controls",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          390,
+          844
+        ],
+        "overflow": false,
+        "bar_width": 336
+      }
+    },
+    {
+      "check": "light visual theme toggles",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "main demo has no runtime exceptions",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original HTML preserved state listening",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original HTML preserved state solving",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original HTML preserved state approval",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original HTML preserved state verified",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original HTML preserved state off",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original reference orb is embedded locally",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "single-file kit entry boots current visual lab",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "kit entry displays current complete scope",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "no actual web requests from loaded demos",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "all loaded demo documents have no JS exceptions",
+      "passed": false,
+      "detail": "condition returned false"
+    }
+  ],
+  "screenshots": [
+    "01-solving-desktop.png",
+    "02-approval-desktop.png",
+    "03-settings-desktop.png",
+    "04-intelligence-desktop.png",
+    "05-operator-desktop.png",
+    "06-listening-right-edge.png",
+    "07-narrow-typing.png",
+    "08-light-desktop.png",
+    "09-kit-entry.png"
+  ],
+  "passed": false
+}

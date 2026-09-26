@@ -1,0 +1,70 @@
+{
+  "scope": "Temporary compiled candidates, unchanged synthetic/loopback tests; not independent review or universal safety proof",
+  "controls": [
+    {
+      "id": "consume-selected-not-first",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 302,
+      "failed": 4,
+      "detected": true
+    },
+    {
+      "id": "respect-choice-confidence",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 305,
+      "failed": 1,
+      "detected": true
+    },
+    {
+      "id": "reject-model-drift",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 304,
+      "failed": 2,
+      "detected": true
+    },
+    {
+      "id": "recheck-after-response",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 303,
+      "failed": 3,
+      "detected": true
+    },
+    {
+      "id": "recheck-before-release",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 304,
+      "failed": 2,
+      "detected": true
+    },
+    {
+      "id": "unknown-is-not-zero",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 295,
+      "failed": 11,
+      "detected": true
+    },
+    {
+      "id": "persist-selection-before-effect",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 303,
+      "failed": 3,
+      "detected": true
+    },
+    {
+      "id": "honor-configured-laya-route",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 305,
+      "failed": 1,
+      "detected": true
+    }
+  ],
+  "all_detected": true
+}

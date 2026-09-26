@@ -1,0 +1,16 @@
+{
+  "scope": "DOCUMENT_LAYOUT_ONLY",
+  "documents": [
+    {
+      "file": "ONBOARDING-INTEGRATION.pdf",
+      "pages": 7,
+      "out_of_page_text": []
+    },
+    {
+      "file": "media/TONY-WALTEUR-FILMING-GUIDE.pdf",
+      "pages": 3,
+      "out_of_page_text": []
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,333 @@
+{
+  "schema": "metis.clicky.capability-matrix.v1",
+  "items": [
+    {
+      "id": "CXCAP-01",
+      "capability": "Button/shortcut invocation",
+      "evidence": "User-observed; packaged hotkey and session components",
+      "scope_decision": "Required first loop",
+      "implementation_steps": [
+        "CXSTEP-02",
+        "CXSTEP-03",
+        "CXSTEP-08"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-02",
+      "capability": "Spoken conversation with captions",
+      "evidence": "Packaged realtime audio/voice symbols and endpoint strings",
+      "scope_decision": "Required first loop",
+      "implementation_steps": [
+        "CXSTEP-03",
+        "CXSTEP-08"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-03",
+      "capability": "Interruptible spoken responses",
+      "evidence": "Packaged duplex audio components; realtime provider supports interruption",
+      "scope_decision": "Required first loop",
+      "implementation_steps": [
+        "CXSTEP-03",
+        "CXSTEP-07"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-04",
+      "capability": "Contextual answer about the selected app",
+      "evidence": "Packaged screen and element-location components",
+      "scope_decision": "Required first loop",
+      "implementation_steps": [
+        "CXSTEP-04",
+        "CXSTEP-08"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-05",
+      "capability": "Visible arrows and screen guidance",
+      "evidence": "Packaged screen annotation components",
+      "scope_decision": "Required first loop",
+      "implementation_steps": [
+        "CXSTEP-04",
+        "CXSTEP-05"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-06",
+      "capability": "Agent ghost pointer",
+      "evidence": "Packaged cursor controls; newer vendor release removes floating cursor",
+      "scope_decision": "Requested opt-in feature, not execution proof",
+      "implementation_steps": [
+        "CXSTEP-05",
+        "CXSTEP-07"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-07",
+      "capability": "Actual foreground pointer actions",
+      "evidence": "Documented driver input mechanisms, platform-dependent",
+      "scope_decision": "Required qualified native route",
+      "implementation_steps": [
+        "CXSTEP-06",
+        "CXSTEP-07"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-08",
+      "capability": "Background app actions without focus theft",
+      "evidence": "Bundled driver guidance and latest vendor changelog",
+      "scope_decision": "Prefer when actually supported",
+      "implementation_steps": [
+        "CXSTEP-06",
+        "CXSTEP-07"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-09",
+      "capability": "Multi-step computer task execution",
+      "evidence": "Packaged Codex runtime and computer-use bridge",
+      "scope_decision": "Required full interaction",
+      "implementation_steps": [
+        "CXSTEP-09",
+        "CXSTEP-12"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-10",
+      "capability": "Fresh screenshot/element grounding",
+      "evidence": "Bundled driver snapshot/token protocol",
+      "scope_decision": "Required full interaction",
+      "implementation_steps": [
+        "CXSTEP-04",
+        "CXSTEP-06",
+        "CXSTEP-07"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-11",
+      "capability": "Independent result verification",
+      "evidence": "Bundled driver verification/effect guidance",
+      "scope_decision": "Required full interaction",
+      "implementation_steps": [
+        "CXSTEP-06",
+        "CXSTEP-09",
+        "CXSTEP-19"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-12",
+      "capability": "Browser work with explicit account/tab scope",
+      "evidence": "Bundled driver and connector guidance",
+      "scope_decision": "Required qualified app route",
+      "implementation_steps": [
+        "CXSTEP-04",
+        "CXSTEP-06",
+        "CXSTEP-12"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-13",
+      "capability": "Verbatim dictation to another app",
+      "evidence": "Packaged dictation/focus/insertion components",
+      "scope_decision": "Required full interaction",
+      "implementation_steps": [
+        "CXSTEP-10"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-14",
+      "capability": "Optional rewrite distinct from transcription",
+      "evidence": "Packaged cleanup and correction components",
+      "scope_decision": "Required with explicit mode",
+      "implementation_steps": [
+        "CXSTEP-10"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-15",
+      "capability": "Reusable named agents and distinct orbs",
+      "evidence": "Packaged agent session, workspace and UI components",
+      "scope_decision": "Existing r11 expansion",
+      "implementation_steps": [
+        "CXSTEP-11"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-16",
+      "capability": "Voice follow-up to the selected task",
+      "evidence": "Packaged voice/agent integration components",
+      "scope_decision": "Required full interaction",
+      "implementation_steps": [
+        "CXSTEP-08",
+        "CXSTEP-09",
+        "CXSTEP-11"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-17",
+      "capability": "Attach sources and preview outputs",
+      "evidence": "Packaged artifact/document/workspace support",
+      "scope_decision": "Existing r11 expansion",
+      "implementation_steps": [
+        "CXSTEP-11",
+        "CXSTEP-12"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-18",
+      "capability": "Create documents, spreadsheets, PDFs and code artifacts",
+      "evidence": "Fifteen internal SKILL manifests include relevant categories",
+      "scope_decision": "Qualify each supported output; not a universal generation claim",
+      "implementation_steps": [
+        "CXSTEP-12"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-19",
+      "capability": "Authenticated integrations and MCP",
+      "evidence": "Packaged integration/Composio session endpoints",
+      "scope_decision": "Existing r11 expansion",
+      "implementation_steps": [
+        "CXSTEP-12",
+        "CXSTEP-16"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-20",
+      "capability": "Per-agent memory and continuing threads",
+      "evidence": "Packaged agent workspace/memory structure",
+      "scope_decision": "Use governed Hindsight, not copied storage design",
+      "implementation_steps": [
+        "CXSTEP-11",
+        "CXSTEP-13"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-21",
+      "capability": "Read-only suggestions, accept/adjust workflow",
+      "evidence": "Packaged suggestion types; vendor policy describes background reads",
+      "scope_decision": "Opt-in bounded full-plan lane",
+      "implementation_steps": [
+        "CXSTEP-14"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-22",
+      "capability": "Routines with sleep/offline recovery",
+      "evidence": "Packaged cron and scheduling types",
+      "scope_decision": "Opt-in bounded full-plan lane",
+      "implementation_steps": [
+        "CXSTEP-14",
+        "CXSTEP-16"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-23",
+      "capability": "Concurrent independent agent tasks",
+      "evidence": "Packaged named task architecture",
+      "scope_decision": "Allow non-input concurrency; one native input lease",
+      "implementation_steps": [
+        "CXSTEP-07",
+        "CXSTEP-11"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-24",
+      "capability": "Usage, approval and completion status",
+      "evidence": "Packaged metering/permissions/session components",
+      "scope_decision": "Required full-plan lane",
+      "implementation_steps": [
+        "CXSTEP-08",
+        "CXSTEP-16"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-25",
+      "capability": "Quiet mode during calls/screen sharing",
+      "evidence": "Packaged audio/capture context; vendor documentation",
+      "scope_decision": "Required privacy and usability gate",
+      "implementation_steps": [
+        "CXSTEP-05",
+        "CXSTEP-17"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-26",
+      "capability": "Resumable onboarding and permissions",
+      "evidence": "Packaged permission coordinator and onboarding assets",
+      "scope_decision": "Adapt current Métis narrative; no copied media",
+      "implementation_steps": [
+        "CXSTEP-15"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-27",
+      "capability": "Updates and recovery",
+      "evidence": "Packaged Sparkle framework and update feed",
+      "scope_decision": "Use existing per-platform signed updater",
+      "implementation_steps": [
+        "CXSTEP-18",
+        "CXSTEP-20"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-28",
+      "capability": "Public skill-authoring screen",
+      "evidence": "Vendor changelog says Skills UI was paused; manifests remain in binary",
+      "scope_decision": "Not proven live; Métis central skills remain required",
+      "implementation_steps": [
+        "CXSTEP-12"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-29",
+      "capability": "Driver recording/replay automation",
+      "evidence": "Bundled reference docs explicitly do not expose recording tools in this runtime",
+      "scope_decision": "Do not claim shipped parity; reviewed skill teaching is separate future/owner scope",
+      "implementation_steps": [
+        "CXSTEP-12"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    },
+    {
+      "id": "CXCAP-30",
+      "capability": "Universal support for every application",
+      "evidence": "Not established by static inspection or marketing",
+      "scope_decision": "Publish a qualified per-app action matrix instead",
+      "implementation_steps": [
+        "CXSTEP-06",
+        "CXSTEP-12",
+        "CXSTEP-19"
+      ],
+      "metis_current_status": "NOT_ASSESSED"
+    }
+  ]
+}

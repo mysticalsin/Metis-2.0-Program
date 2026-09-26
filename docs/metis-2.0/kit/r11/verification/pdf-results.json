@@ -1,0 +1,34 @@
+{
+  "scope": "PDF layout and text coverage only; not product",
+  "passed": true,
+  "files": [
+    {
+      "file": "spec/MASTER.pdf",
+      "pages": 168,
+      "checked_ids": 416,
+      "missing_ids": [],
+      "outside_page": []
+    },
+    {
+      "file": "clicky-study/SOURCE-STUDY.pdf",
+      "pages": 10,
+      "checked_ids": 0,
+      "missing_ids": [],
+      "outside_page": []
+    },
+    {
+      "file": "clicky-study/CAPABILITY-ADOPTION.pdf",
+      "pages": 4,
+      "checked_ids": 0,
+      "missing_ids": [],
+      "outside_page": []
+    },
+    {
+      "file": "onboarding/ONBOARDING-INTEGRATION.pdf",
+      "pages": 6,
+      "checked_ids": 0,
+      "missing_ids": [],
+      "outside_page": []
+    }
+  ]
+}

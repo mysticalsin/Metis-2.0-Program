@@ -1,0 +1,21 @@
+{
+  "preserved_packages": [
+    {
+      "file": "baseline/Metis-Work-Session.zip",
+      "sha256": "4f18f338f7ff37b83397773fdcd07076a2924029ba7d76daa9556ed01240d8d2",
+      "bytes": 21359570,
+      "entries": 533,
+      "unchanged": true,
+      "r11_master_sha256": "e5b3c51d6d8423b5aadd1801d8fc2a77131c5ca3a363d281f1deb0da7acb1350"
+    },
+    {
+      "file": "baseline/Metis-HeyClicky-Interaction-Upgrade.zip",
+      "sha256": "217a4c7516e09819fb87ededeb9ac058783d16e524051508003523ea06fe3459",
+      "bytes": 74557,
+      "entries": 18,
+      "unchanged": true
+    }
+  ],
+  "not_included": "HeyClicky DMG/binaries/assets/prompts; no font files",
+  "current_repository_head": "NOT_VERIFIED_THIS_DELIVERABLE"
+}

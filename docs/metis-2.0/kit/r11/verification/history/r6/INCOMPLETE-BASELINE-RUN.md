@@ -1,0 +1,1 @@
+The first r6 inherited browser suite used real wall-clock waits and exceeded the tool deadline after 31 logged successes. No complete result was produced; it is not counted as a passing run. The final suite uses the official Playwright controlled clock against the exact HTML and ran to completion. No simulated timing is a production latency measurement.

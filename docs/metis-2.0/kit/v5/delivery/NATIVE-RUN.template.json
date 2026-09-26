@@ -1,0 +1,9 @@
+{
+  "schema": "metis.native.acceptance.v2",
+  "source_commit": null,
+  "artifact_sha256": null,
+  "platform": null,
+  "profile_ref": null,
+  "cases": [],
+  "note": "Populate only from actual runs; unit/fixture evidence cannot satisfy native-live qualification."
+}

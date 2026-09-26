@@ -1,0 +1,153 @@
+{
+  "scope": "R6_SYNTHETIC_UI_ONLY_NOT_PRODUCT",
+  "engine": "144.0.7559.96",
+  "host": "Linux",
+  "render_mode": "exact HTML in-memory; Playwright controlled timer/animation clock",
+  "executed_at": "2026-09-22T20:12:43.814063+00:00",
+  "checks": [
+    {
+      "check": "Initial ARMED is the actual default preview",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "ARMED contains only the mesh",
+      "passed": true,
+      "detail": "Exactly one visible orb, no text, bar, caption, input, results or controls."
+    },
+    {
+      "check": "Tight transparent target and no surrounding DOM blocker",
+      "passed": true,
+      "detail": {
+        "orb_target": {
+          "x": 535,
+          "y": 548.5625,
+          "width": 72,
+          "height": 72
+        },
+        "mesh": {
+          "x": 539,
+          "y": 552.5625,
+          "width": 64,
+          "height": 64
+        },
+        "native_hit_testing": "NOT_TESTED"
+      }
+    },
+    {
+      "check": "Hover/focus leave the orb alone with accessible focus",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Enter opens typing once, not microphone capture",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Space opens typing once, not microphone capture",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Escape preserves draft with no badge and restores focus",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "IME Escape does not dismiss the command",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Enter and a repeated approval cannot bypass the pending state",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Duplicate wake events cannot replace an active command",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Wake cannot erase a draft",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "OFF typed submission/dismissal do not rearm wake",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Simulated lock clears timeline and rejects late wake",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "ARMED has no continuous animation clock",
+      "passed": true,
+      "detail": "One virtual idle minute: no continuous mesh draw. Not native CPU evidence."
+    },
+    {
+      "check": "Escape in Settings is not hijacked",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Trusted simulated wake does not steal typing focus",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "390px edge orb and 320px typed view remain contained",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Light/high-contrast mode retains orb and focus",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "check": "Unknown outcome is not auto-dismissed or declared complete",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Collapse cannot bypass unresolved approval",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Canvas failure retains a static mesh and working typing",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Root entry has the same orb-only initial state",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "No unexpected external requests",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "No runtime JavaScript errors",
+      "passed": true,
+      "detail": true
+    }
+  ],
+  "passed": false,
+  "requests": [],
+  "errors": [],
+  "not_tested": [
+    "native OS hit testing or lock/capture",
+    "microphone/wake model",
+    "actual providers",
+    "complete React build/typecheck",
+    "Windows or Mac installers/signing"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "schema": "metis.launch.acceptance.v1",
+  "scope": "media production only; not runtime tests",
+  "cases": [
+    {
+      "id": "LFAC-01",
+      "title": "Product identity",
+      "acceptance": "Film remains about M\u00e9tis, note-taking, keyboard invocation and useful assistance; no Notchview feature transplant.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-02",
+      "title": "Source and claims",
+      "acceptance": "Every apparent product behavior has actual evidence or visible concept/reconstruction disclosure.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-03",
+      "title": "Keyboard continuity",
+      "acceptance": "Shown shortcut is configured; show/hide does not imply meeting end or microphone consent.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-04",
+      "title": "Hindsight proof",
+      "acceptance": "Cross-session claim depends on actual upstream-backed retain/recall and current source, not seeded conversation.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-05",
+      "title": "Approval/result truth",
+      "acceptance": "No fake authorization, success, pointer action, send, latency or readiness.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-06",
+      "title": "Original branding and assets",
+      "acceptance": "Approved M\u00e9tis identity and rights-checked assets; no redistributed font binaries.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-07",
+      "title": "Storyboard",
+      "acceptance": "Scene timecodes are contiguous and total target duration; capture/claim IDs and reading holds resolved.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-08",
+      "title": "Motion and readability",
+      "acceptance": "Rendered frames and transition samples pass contrast/overflow/focus/phone preview inspection.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-09",
+      "title": "Audio",
+      "acceptance": "Rights/source documented; actual mix checked; no clipping or fake product voice proof.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-10",
+      "title": "Render",
+      "acceptance": "Actual composition checks, exports, probe metadata and playback review completed.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-11",
+      "title": "Formats and opening",
+      "acceptance": "Deliberate reframed cutdowns, correct poster, no frame-zero flash or sync drift.",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "id": "LFAC-12",
+      "title": "Handoff/privacy",
+      "acceptance": "Editable files, reproducible commands, sanitized registers, truthful blocked status; no unauthorized publication.",
+      "status": "NOT_RUN",
+      "evidence": []
+    }
+  ]
+}

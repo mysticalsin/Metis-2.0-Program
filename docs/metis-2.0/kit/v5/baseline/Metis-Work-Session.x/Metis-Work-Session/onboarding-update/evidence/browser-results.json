@@ -1,0 +1,152 @@
+{
+  "execution_environment": {
+    "chromium": "144.0.7559.96",
+    "react": "18.2.0",
+    "react_dom": "18.2.0-next-9e3b772b8-20220608",
+    "tailwind": "4.1.10",
+    "renderer": "actual modified OnboardingDemoScene + clock + boundary; isolated child fixtures"
+  },
+  "limitations": [
+    "Not the packaged Electron app",
+    "Not full app stylesheet or child component testing",
+    "Visibility state is injected in its focused test; not native minimize/restore",
+    "Continuation callback is observed; actual Appearance component is not mounted",
+    "Test runtimes differ from repository pins"
+  ],
+  "cases": [
+    {
+      "name": "four user-controlled Next steps reach continuation once and release demo guard",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "synchronous optional-media failure does not intercept Next",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "keyboard Enter on Set me up reaches continuation",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "keyboard pause/resume freezes actual projected text for sixty seconds",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "hold/replay and Previous reset to the selected step",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "preview render failure leaves navigation live; replay recovers a cleared failure",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "reduced motion displays settled step and a setting change does not auto-replay",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "simulated visibility events exclude hidden time and preserve explicit user pause",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "selected role is exposed; unmount releases the demo guard",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "recap navigation remains reachable without document overflow at 390x500",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "recap navigation remains reachable without document overflow at 320x480",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "recap navigation remains reachable without document overflow at 768x500",
+      "status": "passed",
+      "page_errors": []
+    },
+    {
+      "name": "recap navigation remains reachable without document overflow at 1000x760",
+      "status": "passed",
+      "page_errors": []
+    }
+  ],
+  "negative_controls": [
+    {
+      "name": "original optional media throw intercepts Next",
+      "reproduced": true,
+      "errors": [
+        "synthetic optional media failure"
+      ],
+      "missing_pause_control": true,
+      "missing_progress_status": true
+    }
+  ],
+  "layout_measurements": [
+    {
+      "viewport": {
+        "w": 390,
+        "h": 500,
+        "sw": 390,
+        "sh": 500
+      },
+      "navigation_box": {
+        "x": 110.546875,
+        "y": 448,
+        "width": 168.890625,
+        "height": 40
+      }
+    },
+    {
+      "viewport": {
+        "w": 320,
+        "h": 480,
+        "sw": 320,
+        "sh": 480
+      },
+      "navigation_box": {
+        "x": 75.546875,
+        "y": 428,
+        "width": 168.890625,
+        "height": 40
+      }
+    },
+    {
+      "viewport": {
+        "w": 768,
+        "h": 500,
+        "sw": 768,
+        "sh": 500
+      },
+      "navigation_box": {
+        "x": 299.546875,
+        "y": 448,
+        "width": 168.890625,
+        "height": 40
+      }
+    },
+    {
+      "viewport": {
+        "w": 1000,
+        "h": 760,
+        "sw": 1000,
+        "sh": 760
+      },
+      "navigation_box": {
+        "x": 415.546875,
+        "y": 708,
+        "width": 168.890625,
+        "height": 40
+      }
+    }
+  ]
+}

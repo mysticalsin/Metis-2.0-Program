@@ -1,0 +1,673 @@
+{
+  "schema": "metis.clicky.integration-backlog.v1",
+  "date": "2026-09-25",
+  "baseline_registry_revision": "4.5",
+  "master_sha256": "e5b3c51d6d8423b5aadd1801d8fc2a77131c5ca3a363d281f1deb0da7acb1350",
+  "purpose": "Integrate requested Clicky-like interaction into the complete existing r11 plan; not a replacement backlog or implementation claim.",
+  "children": [
+    {
+      "id": "CXSTEP-01",
+      "title": "Establish current source and reconcile the feature evidence",
+      "lane": "Baseline",
+      "parent_tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-003",
+        "TASK-004"
+      ],
+      "depends_on": [],
+      "existing_agent_steps": [
+        "AGSTEP-01"
+      ],
+      "existing_memory_steps": [],
+      "work": "Inspect actual HEAD, staged/unstaged ownership, runtime pins, deployed identities and the latest test logs. Compare both prepared deltas by behavior. Inventory available actions without trusting a green settings label.",
+      "acceptance": [
+        "A preserved before-state ties each patch to current files.",
+        "Actual failing tests are classified and reproduced; no reset or blind patch replay.",
+        "Every parity item is labeled static, documented, verified locally, missing, or unknown."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-02",
+      "title": "Define one interaction session and revocable action authority",
+      "lane": "Contracts",
+      "parent_tasks": [
+        "TASK-005",
+        "TASK-006",
+        "TASK-015",
+        "TASK-033"
+      ],
+      "depends_on": [
+        "CXSTEP-01"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-02",
+        "AGSTEP-11"
+      ],
+      "existing_memory_steps": [],
+      "work": "Extend existing contracts with mode, exact target/snapshot, actor/agent/thread, policy epoch, stable intent, operation/attempt IDs and local generation. The trusted host—not the UI or model—owns grants and execution.",
+      "acceptance": [
+        "Cross-surface TypeScript/Swift fixtures agree.",
+        "Guide and Dictate cannot escalate into general Act authority.",
+        "Stop, sign-out, owner replacement and policy expiry reject all late input."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-03",
+      "title": "Complete click-to-talk and interruptible spoken replies",
+      "lane": "Voice",
+      "parent_tasks": [
+        "TASK-011",
+        "TASK-012",
+        "TASK-013",
+        "TASK-014",
+        "TASK-016",
+        "TASK-017",
+        "TASK-018",
+        "TASK-019",
+        "TASK-020",
+        "TASK-030",
+        "TASK-053"
+      ],
+      "depends_on": [
+        "CXSTEP-02"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-02",
+        "AGSTEP-09"
+      ],
+      "existing_memory_steps": [],
+      "work": "Wire the existing microphone owner to the qualified Cloudflare speech session and streaming TTS. Add endpointing, echo control, mute, headset changes, playback positions and truthful speech progress.",
+      "acceptance": [
+        "Real microphone audio produces real captions and an audible reply; no stored demonstration.",
+        "Barge-in flushes unplayed speech and invalidates superseded generation without inventing action rollback.",
+        "Meeting audio and Métis playback never become authorized commands."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-04",
+      "title": "Bind context to the selected window, field and source",
+      "lane": "Context",
+      "parent_tasks": [
+        "TASK-005",
+        "TASK-007",
+        "TASK-033",
+        "TASK-037"
+      ],
+      "depends_on": [
+        "CXSTEP-02"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-03"
+      ],
+      "existing_memory_steps": [],
+      "work": "Create a least-scope context snapshot from explicit selection, AX/UIA, authorized browser or document source, and a fresh cropped screenshot when needed. Track visible versus complete document coverage.",
+      "acceptance": [
+        "Changing PID/window/tab/field invalidates the old target.",
+        "Password fields, hidden unrelated windows and inaccessible documents are excluded.",
+        "Full-document claims require complete authorized source retrieval, not a screenshot."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-05",
+      "title": "Add non-controlling screen guidance and optional agent pointer",
+      "lane": "Guidance",
+      "parent_tasks": [
+        "TASK-028",
+        "TASK-029",
+        "TASK-030",
+        "TASK-033",
+        "TASK-056"
+      ],
+      "depends_on": [
+        "CXSTEP-04"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-04",
+        "AGSTEP-07"
+      ],
+      "existing_memory_steps": [],
+      "work": "Render Métis-branded highlights, arrows, explanations and an optional ghost pointer from the same observation coordinates. Keep presentation separate from native input.",
+      "acceptance": [
+        "Guidance causes zero input side effects.",
+        "Multi-display/scale/fullscreen/remote-desktop coordinates and 200% text are verified.",
+        "No overlay contaminates screenshots, blocks clicks or breaks single-window sharing."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-06",
+      "title": "Prove typed native action and independent readback",
+      "lane": "Actions",
+      "parent_tasks": [
+        "TASK-005",
+        "TASK-029",
+        "TASK-033",
+        "TASK-056"
+      ],
+      "depends_on": [
+        "CXSTEP-04"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-11"
+      ],
+      "existing_memory_steps": [],
+      "work": "Extend existing adapters first. Evaluate a pinned, licensed Cua Driver component behind the existing host policy boundary only if it reduces genuine gaps. Implement a real non-demo note/text action on supported Mac and Windows targets.",
+      "acceptance": [
+        "A user-selected arbitrary allowed title/content is written and independently read back.",
+        "Native dispatch acknowledgement alone never produces verified success.",
+        "Missing apps, secure desktops, denied permissions and unsupported controls fail accurately."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-07",
+      "title": "Own foreground input, interruption and recovery",
+      "lane": "Actions",
+      "parent_tasks": [
+        "TASK-017",
+        "TASK-019",
+        "TASK-028",
+        "TASK-033",
+        "TASK-058"
+      ],
+      "depends_on": [
+        "CXSTEP-06"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-11",
+        "AGSTEP-17"
+      ],
+      "existing_memory_steps": [],
+      "work": "Implement one exclusive physical input lease; distinguish background semantic actions from foreground pointer work. Tag own input, detect human takeover, bound retries and keep a content-safe action journal.",
+      "acceptance": [
+        "Two tasks cannot drive the desktop simultaneously.",
+        "Human takeover/Stop ends new dispatch within the local budget.",
+        "Unknown external side effects are reconciled rather than blindly replayed."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-08",
+      "title": "Unify buttons, voice, text and the visible task card",
+      "lane": "Experience",
+      "parent_tasks": [
+        "TASK-008",
+        "TASK-028",
+        "TASK-030",
+        "TASK-044"
+      ],
+      "depends_on": [
+        "CXSTEP-02"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-07",
+        "AGSTEP-09"
+      ],
+      "existing_memory_steps": [],
+      "work": "Wire current Métis bar/orbs/task cards to the same session controller. Expose Talk/Guide/Do/Dictate without another onboarding wizard. Always show real listening, scope, progress, stop and outcome states.",
+      "acceptance": [
+        "Button, shortcut and typed entry reach the same scoped execution path.",
+        "No duplicate microphone or command sessions appear on repeated clicks.",
+        "Task controls and focus work with keyboard, IME and compact layouts."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-09",
+      "title": "Execute bounded multi-step plans and qualified decisions",
+      "lane": "Planning",
+      "parent_tasks": [
+        "TASK-009",
+        "TASK-031",
+        "TASK-032",
+        "TASK-033",
+        "TASK-043",
+        "TASK-056"
+      ],
+      "depends_on": [
+        "CXSTEP-03",
+        "CXSTEP-06",
+        "CXSTEP-07",
+        "CXSTEP-08"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-09",
+        "AGSTEP-10",
+        "AGSTEP-11"
+      ],
+      "existing_memory_steps": [],
+      "work": "Use an approved generative planner for decomposition and language; Jev/Laya only for genuine typed candidate decisions. Validate each step, observe fresh state and verify the effect before continuing.",
+      "acceptance": [
+        "A live two-app task completes with route and step evidence.",
+        "Correction, target movement, provider outage and changed intent cancel or replan safely.",
+        "A model cannot approve itself or generate unrestricted terminal commands."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-10",
+      "title": "Deliver safe dictation into the exact intended field",
+      "lane": "Dictation",
+      "parent_tasks": [
+        "TASK-019",
+        "TASK-030",
+        "TASK-033",
+        "TASK-053",
+        "TASK-056"
+      ],
+      "depends_on": [
+        "CXSTEP-03",
+        "CXSTEP-04",
+        "CXSTEP-07",
+        "CXSTEP-08"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-04"
+      ],
+      "existing_memory_steps": [],
+      "work": "Preserve verbatim text by default, bind insertion to the original field and document revision, implement opt-in rewrite as a separate proposal, and handle clipboard ownership safely.",
+      "acceptance": [
+        "Québec French, English, Spanish and Brazilian Portuguese fixtures retain names, negation and punctuation.",
+        "Focus change, protected field, selection change or new clipboard owner prevents stale insertion.",
+        "Dictation never submits/sends a form unless separately requested and allowed."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-11",
+      "title": "Connect named agents to shared execution and isolated context",
+      "lane": "Agents",
+      "parent_tasks": [
+        "TASK-009",
+        "TASK-028",
+        "TASK-030",
+        "TASK-035",
+        "TASK-042",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "depends_on": [
+        "CXSTEP-08",
+        "CXSTEP-09"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-06",
+        "AGSTEP-07",
+        "AGSTEP-08",
+        "AGSTEP-10"
+      ],
+      "existing_memory_steps": [],
+      "work": "Reuse the named-agent registry, stable agent IDs, orbs, threads and artifact storage. Parallel background work is allowed within policy, but all desktop execution shares the native lease.",
+      "acceptance": [
+        "Creating/renaming an agent does not execute a task or change identity.",
+        "Follow-up audio and “do it” resolve an exact agent/proposal or ask for clarification.",
+        "Concurrent agent histories, outputs and grants remain isolated."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-12",
+      "title": "Qualify connectors, skills and useful output artifacts",
+      "lane": "Skills and apps",
+      "parent_tasks": [
+        "TASK-006",
+        "TASK-009",
+        "TASK-033",
+        "TASK-035",
+        "TASK-038",
+        "TASK-039",
+        "TASK-042",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "depends_on": [
+        "CXSTEP-09",
+        "CXSTEP-11"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-10",
+        "AGSTEP-12",
+        "AGSTEP-13"
+      ],
+      "existing_memory_steps": [],
+      "work": "Prefer permitted structured APIs for account work. Preserve exact OAuth identity/audience, tool schemas, versioned skill manifests, sandboxed artifact generation, atomic saves and visible previews.",
+      "acceptance": [
+        "Private connector failure never silently becomes broad browser access.",
+        "A real document/spreadsheet/code artifact opens and validates in its actual target.",
+        "Send/delete/publish/spend require exact policy-appropriate approval; normal safe steps do not ask repeatedly."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-13",
+      "title": "Bind approved outcomes and preferences to governed Hindsight",
+      "lane": "Memory",
+      "parent_tasks": [
+        "TASK-006",
+        "TASK-007",
+        "TASK-035",
+        "TASK-036",
+        "TASK-037",
+        "TASK-038",
+        "TASK-039",
+        "TASK-040",
+        "TASK-041",
+        "TASK-043",
+        "TASK-045",
+        "TASK-057",
+        "TASK-058"
+      ],
+      "depends_on": [
+        "CXSTEP-11",
+        "CXSTEP-12"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-08"
+      ],
+      "existing_memory_steps": [
+        "HMSTEP-01",
+        "HMSTEP-02",
+        "HMSTEP-03",
+        "HMSTEP-04",
+        "HMSTEP-05",
+        "HMSTEP-06",
+        "HMSTEP-07",
+        "HMSTEP-08",
+        "HMSTEP-09",
+        "HMSTEP-10",
+        "HMSTEP-11",
+        "HMSTEP-12",
+        "HMSTEP-13",
+        "HMSTEP-14",
+        "HMSTEP-15",
+        "HMSTEP-16"
+      ],
+      "work": "Wire the real canonical and Hindsight service bindings, retain approved inputs, show why-used/source/correct/forget in existing surfaces, and fence all recall/reflect/export paths by current authorization.",
+      "acceptance": [
+        "Later-session recall cites a current authorized source; a bank ID is never accepted as client authority.",
+        "Forget/revocation invalidates reads immediately and reconciles derivative deletion across replicas.",
+        "Simple exact actions work without compulsory memory requests; outage remains visible."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-14",
+      "title": "Make suggestions and routines explicit and durable",
+      "lane": "Routines",
+      "parent_tasks": [
+        "TASK-043",
+        "TASK-047",
+        "TASK-048",
+        "TASK-062"
+      ],
+      "depends_on": [
+        "CXSTEP-11",
+        "CXSTEP-12"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-14"
+      ],
+      "existing_memory_steps": [],
+      "work": "Suggestions are read-only until accepted. Scheduled tasks carry separate narrow capabilities, scope and expiry; resume/catch-up does not duplicate actions after sleep or network loss.",
+      "acceptance": [
+        "Creating a routine is an explicit request, not inferred from a task.",
+        "A foreground routine cannot steal a busy desktop; the user sees a queued state.",
+        "Expired grants, absent devices and failures back off without hidden recurring spend."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-15",
+      "title": "Integrate the first success into existing Métis onboarding",
+      "lane": "Onboarding",
+      "parent_tasks": [
+        "TASK-008",
+        "TASK-019",
+        "TASK-027",
+        "TASK-028",
+        "TASK-030",
+        "TASK-056"
+      ],
+      "depends_on": [
+        "CXSTEP-03",
+        "CXSTEP-05",
+        "CXSTEP-06",
+        "CXSTEP-08"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-05",
+        "AGSTEP-16"
+      ],
+      "existing_memory_steps": [],
+      "work": "Preserve Welcome→Problem→Reveal→Appearance→Setup→Personalization→optional License→Ready. Reconcile previous playback fixes. Use Tony-only approved media or complete text fallback and present truthful permission/readiness.",
+      "acceptance": [
+        "A fresh user reaches a real click-speak-action-reply task; no prerecorded success.",
+        "Next/Back/Pause/Replay/reduced motion and text-only paths cannot be blocked by optional media.",
+        "Old screenshot/media URLs and fake presenter dependencies are retired together."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-16",
+      "title": "Reconcile session privacy, permissions and actual consumption",
+      "lane": "Operator",
+      "parent_tasks": [
+        "TASK-006",
+        "TASK-011",
+        "TASK-013",
+        "TASK-014",
+        "TASK-015",
+        "TASK-034",
+        "TASK-045",
+        "TASK-057",
+        "TASK-058",
+        "TASK-062"
+      ],
+      "depends_on": [
+        "CXSTEP-02",
+        "CXSTEP-03",
+        "CXSTEP-09"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-12",
+        "AGSTEP-15"
+      ],
+      "existing_memory_steps": [],
+      "work": "Tie operations, paid attempts, speech duration, decision calls, tool/model usage and optional memory to the existing authoritative ledger. Keep operational metadata separate from user content.",
+      "acceptance": [
+        "Failed/retried/cancelled work is correctly attributed once, with unknown counters still unknown.",
+        "Content-free telemetry, exports and gateway readback are qualified on the deployed route.",
+        "Grant expiry/tenant switch/sign-out stop future processing across all selected providers."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-17",
+      "title": "Reconcile live meetings, voice output and audience boundaries",
+      "lane": "Meetings",
+      "parent_tasks": [
+        "TASK-010",
+        "TASK-017",
+        "TASK-019",
+        "TASK-046",
+        "TASK-047",
+        "TASK-048",
+        "TASK-049",
+        "TASK-050",
+        "TASK-051",
+        "TASK-052",
+        "TASK-055",
+        "TASK-058"
+      ],
+      "depends_on": [
+        "CXSTEP-03",
+        "CXSTEP-11",
+        "CXSTEP-16"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-12",
+        "AGSTEP-14",
+        "AGSTEP-16"
+      ],
+      "existing_memory_steps": [],
+      "work": "Keep the full Teams lane. Add command-channel/meeting-channel separation, audience-aware summaries, explicit enrollment and actual admission, and quiet speech/overlay behavior while sharing.",
+      "acceptance": [
+        "A meeting participant saying “send it” never authorizes a desktop action.",
+        "Private task results are not spoken into calls or projected to the wrong audience.",
+        "Remote bot-stop and local stop have separate truthful acknowledgements."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-18",
+      "title": "Package lean clients and complete native platform behavior",
+      "lane": "Platforms",
+      "parent_tasks": [
+        "TASK-004",
+        "TASK-021",
+        "TASK-022",
+        "TASK-023",
+        "TASK-024",
+        "TASK-025",
+        "TASK-026",
+        "TASK-029",
+        "TASK-059",
+        "TASK-060",
+        "TASK-061",
+        "TASK-065"
+      ],
+      "depends_on": [
+        "CXSTEP-06",
+        "CXSTEP-07",
+        "CXSTEP-08"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-17"
+      ],
+      "existing_memory_steps": [],
+      "work": "Keep optional models/runtime packs separate. Extend actual Swift/SwiftUI code and Windows adapters behind common contracts. Review helper signatures, APIs, capabilities and architecture-specific sizes.",
+      "acceptance": [
+        "No mandatory duplicate-architecture Codex bundle is introduced to the cloud-first core.",
+        "Fresh and upgraded installed packages preserve explicit offline choices and live profiles.",
+        "Native Mac is actual native implementation; Windows UAC/signing is never bypassed."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-19",
+      "title": "Run full behavior, abuse, accessibility and performance qualification",
+      "lane": "Verification",
+      "parent_tasks": [
+        "TASK-020",
+        "TASK-053",
+        "TASK-054",
+        "TASK-055",
+        "TASK-056",
+        "TASK-057",
+        "TASK-058",
+        "TASK-059",
+        "TASK-060",
+        "TASK-061",
+        "TASK-063"
+      ],
+      "depends_on": [
+        "CXSTEP-05",
+        "CXSTEP-07",
+        "CXSTEP-09",
+        "CXSTEP-10",
+        "CXSTEP-11",
+        "CXSTEP-12",
+        "CXSTEP-13",
+        "CXSTEP-14",
+        "CXSTEP-15",
+        "CXSTEP-16",
+        "CXSTEP-17",
+        "CXSTEP-18"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-16",
+        "AGSTEP-17"
+      ],
+      "existing_memory_steps": [],
+      "work": "Run the native/app/service test matrix on exact source and artifacts. Retain all original golden flows and add interaction cases; independently review executable changes and failures.",
+      "acceptance": [
+        "Every acceptance case records platform/build/route/outcome and linked evidence, including NOT_RUN.",
+        "All source gates, generated artifacts, profile migrations and signed-runtime inventories are current.",
+        "A visible first-success demo does not substitute for full plan acceptance."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    },
+    {
+      "id": "CXSTEP-20",
+      "title": "Converge the full r11 upgrade and prepare separate releases",
+      "lane": "Release",
+      "parent_tasks": [
+        "TASK-002",
+        "TASK-062",
+        "TASK-063",
+        "TASK-064",
+        "TASK-065",
+        "TASK-066"
+      ],
+      "depends_on": [
+        "CXSTEP-19"
+      ],
+      "existing_agent_steps": [
+        "AGSTEP-18"
+      ],
+      "existing_memory_steps": [],
+      "work": "Reconcile all 66 root task states plus existing expansions. Freeze one candidate family; qualify signed Windows distribution and native Mac independently; prepare rollback and exact remaining external approvals.",
+      "acceptance": [
+        "No inherited requirement is silently dropped or marked complete by this addendum.",
+        "Windows public release waits for its real signing/native/service gates and owner approval.",
+        "Native Mac QA and Apple distribution status remain explicit; no fake all-platform completion."
+      ],
+      "implementation": "NOT_ASSESSED",
+      "runtime_verification": "NOT_RUN",
+      "note": "Supplemental integration child. Original root dependencies and acceptance gates still apply."
+    }
+  ]
+}

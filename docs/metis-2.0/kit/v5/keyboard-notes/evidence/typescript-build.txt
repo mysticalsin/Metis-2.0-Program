@@ -1,0 +1,4 @@
+
+> metis-behavior-core-candidate@0.3.0 build
+> tsc -p tsconfig.json
+

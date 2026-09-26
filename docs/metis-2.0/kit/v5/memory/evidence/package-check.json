@@ -1,0 +1,14 @@
+{
+  "schema": "metis.hindsight.package-check.v1",
+  "passed": true,
+  "metrics": {
+    "adapted_skill_bytes": 259986,
+    "supplied_skill_files": 55,
+    "memory_steps_mapped": 16,
+    "root_tasks_preserved": 66,
+    "app_scenarios_not_run": 120,
+    "existing_runtime_notes_baseline_files_checked": 66
+  },
+  "errors": [],
+  "scope": "Offline package/profile/byte checks only; NOT native, live, authentication or release proof."
+}

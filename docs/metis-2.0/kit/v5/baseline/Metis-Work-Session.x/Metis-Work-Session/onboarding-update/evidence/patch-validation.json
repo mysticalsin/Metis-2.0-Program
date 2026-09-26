@@ -1,0 +1,15 @@
+{
+  "scope": "temporary real Git fixture, not complete application repository",
+  "steps": [
+    {
+      "command": "git apply --check",
+      "exit": 0
+    },
+    {
+      "command": "git apply",
+      "exit": 0
+    }
+  ],
+  "all_four_output_hashes_match": true,
+  "second_application_refused": true
+}

@@ -1,0 +1,97 @@
+{
+  "scope": "SYNTHETIC_MEETING_REFERENCE_NOT_PRODUCT",
+  "engine": "144.0.7559.96",
+  "host": "Linux",
+  "render_mode": "in-memory exact HTML",
+  "executed_at": "2026-09-23T15:31:15.609644+00:00",
+  "checks": [
+    {
+      "check": "Meeting starts with labelled synthetic scope",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Keyboard phase tabs use selection and focus correctly",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Prepare enters actual local meeting panel",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Enhancement is a separate inert proposal, original preserved",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Stale enhancement cannot overwrite a newer human edit",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Accepted alternative remains distinct from raw human notes",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Topic revision invalidates outdated suggestion and proposal",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Pause suppresses new markers and live-context requests",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Next-meeting preview preserves the active human notes",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Brief limits disclose missing live sources",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Reviewed synthetic apply is idempotent and never called a real write",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Private source cannot be shared to entire external meeting",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Changed remote revision rejects a stale CRM proposal",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "390px meeting and follow-up views remain contained",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "No product API calls are fabricated",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "No HTTP, WebSocket or media requests",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "No JavaScript exceptions",
+      "passed": true,
+      "detail": true
+    }
+  ],
+  "passed": true,
+  "requests": [],
+  "errors": []
+}

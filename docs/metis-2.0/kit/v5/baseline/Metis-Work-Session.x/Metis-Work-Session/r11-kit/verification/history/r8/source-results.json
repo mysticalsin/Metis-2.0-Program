@@ -1,0 +1,60 @@
+{
+  "scope": "ISOLATED_PURE_SOURCE_EXPRESSIONS_AND_STATIC_ANCHORS_NOT_PRODUCT_TESTS",
+  "executed_at": "2026-09-22T22:35:46.266102+00:00",
+  "source_sha256": "efc8af651c1b2abb952d7737d5f3f3d15c4e51057059a07ceb3445c65f5c53f3",
+  "checks": [
+    {
+      "probe": "Actual exported wake helper changes payload casing/accents",
+      "passed": true,
+      "observed": {
+        "input": "Hey Métis, crée une note intitulée “Québec / R&D”.",
+        "observed_output": "hey cree une note intitulee quebec r d",
+        "finding": "normalization affects returned command payload; preserving original spans is required"
+      }
+    },
+    {
+      "probe": "Actual owned upsert expression loses authoritative counts to late null",
+      "passed": true,
+      "observed": {
+        "before": [
+          120,
+          30
+        ],
+        "after": [
+          null,
+          null
+        ],
+        "finding": "same-device late null erases known counts in this isolated exact SQL expression"
+      }
+    },
+    {
+      "probe": "Actual owned upsert expression rejects another device overwrite",
+      "passed": true,
+      "observed": {
+        "retained": [
+          "d1",
+          120,
+          30
+        ],
+        "finding": "cross-device ownership guard remains valuable and must be preserved"
+      }
+    },
+    {
+      "probe": "Dashboard 2000-row anchor exists in this export",
+      "passed": true,
+      "observed": "Source-pattern confirmation only: aggregate starts from a capped request list; no production undercount measured."
+    },
+    {
+      "probe": "Native persistence anchors exist in this export",
+      "passed": true,
+      "observed": "Source-pattern confirmation only: silent save and full transcript blob need real Swift fault-injection tests."
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "No complete app build or test suite.",
+    "No Electron, SwiftData, native OS, provider, Cloudflare, CRM, Dust or Teams execution.",
+    "Expected defect reproduction is not a fixed product result.",
+    "SQLite runs the extracted SQL expression against a synthetic schema, not live D1."
+  ]
+}

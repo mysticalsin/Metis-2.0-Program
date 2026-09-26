@@ -1,0 +1,130 @@
+{
+  "scope": "SYNTHETIC_MEMORY_HTML_NOT_PRODUCT",
+  "browser": "144.0.7559.96",
+  "execution": "in_memory_exact_html",
+  "passed": false,
+  "checks": [
+    {
+      "name": "fixture boundary visible",
+      "passed": true
+    },
+    {
+      "name": "no foreign Hindsight dashboard",
+      "passed": true
+    },
+    {
+      "name": "begins not remembered",
+      "passed": true
+    },
+    {
+      "name": "no fabricated prior memory",
+      "passed": true
+    },
+    {
+      "name": "explicit remember",
+      "passed": true
+    },
+    {
+      "name": "new conversation keeps approved memory",
+      "passed": true
+    },
+    {
+      "name": "recall has source revision",
+      "passed": true
+    },
+    {
+      "name": "memory grants no action authority",
+      "passed": true
+    },
+    {
+      "name": "source drawer visible",
+      "passed": true
+    },
+    {
+      "name": "Unicode canonical correction preserved",
+      "passed": true
+    },
+    {
+      "name": "stale projection not claimed ready",
+      "passed": true
+    },
+    {
+      "name": "old memory withheld after correction",
+      "passed": true
+    },
+    {
+      "name": "refreshed revision used",
+      "passed": true
+    },
+    {
+      "name": "scope change suppresses late answer",
+      "passed": true
+    },
+    {
+      "name": "different audience hides private source",
+      "passed": true
+    },
+    {
+      "name": "private inspection unavailable",
+      "passed": true
+    },
+    {
+      "name": "no accessible memory versus leaked source",
+      "passed": true
+    },
+    {
+      "name": "ephemeral never recalls",
+      "passed": true
+    },
+    {
+      "name": "ephemeral cannot retain",
+      "passed": true
+    },
+    {
+      "name": "outage disclosed not empty",
+      "passed": true
+    },
+    {
+      "name": "forget prevents late recalled output",
+      "passed": true
+    },
+    {
+      "name": "removal does not fake physical erasure",
+      "passed": true
+    },
+    {
+      "name": "forgotten content absent from active memory",
+      "passed": true
+    },
+    {
+      "name": "primary removal still has backup caveat",
+      "passed": true
+    },
+    {
+      "name": "light mode remains usable",
+      "passed": true
+    },
+    {
+      "name": "narrow viewport no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "keyboard-focusable primary controls",
+      "passed": true
+    },
+    {
+      "name": "no unexpected JS errors",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "no external requests",
+      "passed": true
+    }
+  ],
+  "external_requests": [],
+  "javascript_errors": [
+    "Cannot set properties of null (setting 'onclick')",
+    "Cannot set properties of null (setting 'onclick')"
+  ]
+}

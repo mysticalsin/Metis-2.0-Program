@@ -1,0 +1,12 @@
+{
+  "scope": "EXECUTABLE_SERVER_COMPONENTS_WITH_CONTROLLED_TRANSPORT_AND_BINDINGS",
+  "command": "node --test memory/tests/*.test.mjs",
+  "node_version": "v22.16.0",
+  "tests": 60,
+  "passed": 60,
+  "failed": 0,
+  "live_hindsight_called": false,
+  "native_app_tested": false,
+  "production_bindings_implemented": false,
+  "raw_report": "memory-component-results.tap"
+}

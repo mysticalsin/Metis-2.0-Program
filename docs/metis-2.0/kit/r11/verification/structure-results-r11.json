@@ -1,0 +1,478 @@
+{
+  "scope": "DELIVERY_KIT_ONLY_NOT_PRODUCT",
+  "passed": true,
+  "checks": [
+    {
+      "check": "requirements count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 55,
+        "actual": 55
+      }
+    },
+    {
+      "check": "use_cases count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 112,
+        "actual": 112
+      }
+    },
+    {
+      "check": "tasks count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 66,
+        "actual": 66
+      }
+    },
+    {
+      "check": "owner_commitments count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 44,
+        "actual": 44
+      }
+    },
+    {
+      "check": "golden_flows count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 12,
+        "actual": 12
+      }
+    },
+    {
+      "check": "historical_findings count and uniqueness",
+      "passed": true,
+      "detail": {
+        "expected": 20,
+        "actual": 20
+      }
+    },
+    {
+      "check": "canonical master hash",
+      "passed": true,
+      "detail": "e5b3c51d6d8423b5aadd1801d8fc2a77131c5ca3a363d281f1deb0da7acb1350"
+    },
+    {
+      "check": "master/registry exact identifier parity",
+      "passed": true,
+      "detail": "All catalog IDs compared, not counts only."
+    },
+    {
+      "check": "full use-case sequence",
+      "passed": true,
+      "detail": "UC-001 through UC-112"
+    },
+    {
+      "check": "current HTML contains every requirement/task/use-case identifier",
+      "passed": true,
+      "detail": "Current HTML, not the obsolete original 28-task specification."
+    },
+    {
+      "check": "every requirement mapped to an owner commitment",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "all mapped identifiers resolve",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "every case has implementation and test lane",
+      "passed": true,
+      "detail": "Per-case ownership preserved. Actual product tests remain NOT_TESTED."
+    },
+    {
+      "check": "66 exact task bodies preserved",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "common prerequisite DAG",
+      "passed": true,
+      "detail": {
+        "unresolved": [],
+        "cycles_or_blocked": [],
+        "tasks_sorted": 66,
+        "scope": "Common prerequisites only. Full platform/provider closures are preserved in SCOPE-HANDOFFS.md and require target-repo binding."
+      }
+    },
+    {
+      "check": "visual state coverage",
+      "passed": true,
+      "detail": "14 mapped presentation states; not product passes."
+    },
+    {
+      "check": "animated armed visual contract is orb-only",
+      "passed": true,
+      "detail": "No idle pill, caption or glow; native hit testing remains a product gate."
+    },
+    {
+      "check": "source reference IDs unique and indexed",
+      "passed": true,
+      "detail": {
+        "count": 93
+      }
+    },
+    {
+      "check": "current master contains animated owner refinement",
+      "passed": true,
+      "detail": "New visual rule is in the canonical master, not only a detached note."
+    },
+    {
+      "check": "presentation reference has a separate compact branch",
+      "passed": true,
+      "detail": "Static source check only; not a compiled product test."
+    },
+    {
+      "check": "root and visual lab use identical behavior",
+      "passed": true,
+      "detail": "Same orb and lifecycle behavior in both entry points."
+    },
+    {
+      "check": "HTML local paths and fragment targets",
+      "passed": true,
+      "detail": {
+        "checked": 90,
+        "broken": [],
+        "external_urls": "Not fetched by this offline checker."
+      }
+    },
+    {
+      "check": "HTML IDs unique",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "offline demo no capture/network/persistence APIs",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "demo outbound requests denied by CSP",
+      "passed": true,
+      "detail": "No simulated wake creates an external request."
+    },
+    {
+      "check": "simulator and source code match",
+      "passed": true,
+      "detail": "Self-contained HTML matches readable source assets."
+    },
+    {
+      "check": "launch prompt includes current scope",
+      "passed": true,
+      "detail": "No older 76-case cutoff."
+    },
+    {
+      "check": "no fabricated product verification",
+      "passed": true,
+      "detail": "Kit checks do not pre-fill product results."
+    },
+    {
+      "check": "original reference bytes intact",
+      "passed": true,
+      "detail": {
+        "assets": 8,
+        "changed": []
+      }
+    },
+    {
+      "check": "no font files packaged",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "no symlinks packaged",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "12 experience qualifications retained and mapped",
+      "passed": true,
+      "detail": "EXP-01–12 require actual product evidence."
+    },
+    {
+      "check": "24 source findings retained and mapped",
+      "passed": true,
+      "detail": "Source findings are not production tests."
+    },
+    {
+      "check": "supplemental requirements occur in master and task records",
+      "passed": true,
+      "detail": "No detached feature list without execution owners."
+    },
+    {
+      "check": "export inventory and missing-source map remain honest",
+      "passed": true,
+      "detail": "Source export is not a complete checkout or an inferred Git SHA."
+    },
+    {
+      "check": "attributed solving engine is identical in both HTML views",
+      "passed": true,
+      "detail": "Actual selected upstream mathematics, not installed npm/native proof."
+    },
+    {
+      "check": "upstream license and reviewed source identities retained",
+      "passed": true,
+      "detail": "MIT attribution and file-blob provenance."
+    },
+    {
+      "check": "meeting reference remains synthetic and content-safe",
+      "passed": true,
+      "detail": "No actual meeting, CRM, network or persistence API."
+    },
+    {
+      "check": "all source findings have current input identities",
+      "passed": true,
+      "detail": "Every cited source section comes from the indexed upload."
+    },
+    {
+      "check": "16 named-agent qualifications preserved",
+      "passed": true,
+      "detail": "Separate expansion IDs preserve the original 55 requirements."
+    },
+    {
+      "check": "32 agent use cases have execution owners",
+      "passed": true,
+      "detail": "Each individual scenario retains expected behavior; no product pass."
+    },
+    {
+      "check": "32 artifact observations are source-linked",
+      "passed": true,
+      "detail": "Packaged strings/instructions are distinct from runtime verification."
+    },
+    {
+      "check": "18 numbered agent steps form a resolvable DAG",
+      "passed": true,
+      "detail": {
+        "sorted": [
+          "AGSTEP-01",
+          "AGSTEP-02",
+          "AGSTEP-03",
+          "AGSTEP-05",
+          "AGSTEP-06",
+          "AGSTEP-12",
+          "AGSTEP-04",
+          "AGSTEP-07",
+          "AGSTEP-08",
+          "AGSTEP-09",
+          "AGSTEP-10",
+          "AGSTEP-11",
+          "AGSTEP-13",
+          "AGSTEP-14",
+          "AGSTEP-15",
+          "AGSTEP-16",
+          "AGSTEP-17",
+          "AGSTEP-18"
+        ],
+        "remaining": []
+      }
+    },
+    {
+      "check": "agent expansion is bound to original task bodies",
+      "passed": true,
+      "detail": "New scope is not a detached wish list."
+    },
+    {
+      "check": "registry and source observations agree exactly",
+      "passed": true,
+      "detail": "No separate registry can drift silently."
+    },
+    {
+      "check": "HeyClicky inventory is byte-bound and non-executed",
+      "passed": true,
+      "detail": "Metadata readback is not native launch, code signing or recovered original source."
+    },
+    {
+      "check": "48 resource dispositions and 15 curated skills are explicit",
+      "passed": true,
+      "detail": "No legacy guide is automatically promoted to working capability."
+    },
+    {
+      "check": "resource-hash matches are not signing trust",
+      "passed": true,
+      "detail": "127 matching resource hashes only; no Apple certificate/notarization test."
+    },
+    {
+      "check": "new agents HTML exactly embeds its readable sources",
+      "passed": true,
+      "detail": "Current source-derived orb reference reused without remote assets."
+    },
+    {
+      "check": "agents reference has no external capture or persistence",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "current launch includes the full new named-agent scope",
+      "passed": true,
+      "detail": "Original 66 task sequence is retained."
+    },
+    {
+      "check": "reference application binaries and prompts not redistributed",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "current complete contract is revision 4.5",
+      "passed": true,
+      "detail": "One authoritative contract, not an amendment left beside a contradictory wizard."
+    },
+    {
+      "check": "full collaboration and onboarding sections integrated",
+      "passed": true,
+      "detail": "All original IDs and new owner-directed integration slices retained."
+    },
+    {
+      "check": "derived agent experience matches current master",
+      "passed": true,
+      "detail": "No stale replacement onboarding in the task-facing derivative."
+    },
+    {
+      "check": "only Tony Walteur is the onboarding presenter",
+      "passed": true,
+      "detail": "Human approval of the actual film remains required."
+    },
+    {
+      "check": "missing authentic video never fabricates an asset",
+      "passed": true,
+      "detail": "Complete text-led welcome, no substitute presenter or old fallback."
+    },
+    {
+      "check": "active onboarding preserves the Metis sequence",
+      "passed": true,
+      "detail": "Existing optional license branch remains in the real product; Ready consent remains required."
+    },
+    {
+      "check": "agent workspace no longer replaces onboarding",
+      "passed": true,
+      "detail": "Single optional naming sheet only; not an eight-step tour."
+    },
+    {
+      "check": "bundled source snapshot matches original supplied bytes",
+      "passed": true,
+      "detail": "Read-only incomplete export, not a cloned current repository."
+    },
+    {
+      "check": "dual-agent tool requires explicit source egress and CLI policy approval",
+      "passed": true,
+      "detail": "No automatic installation, permission bypass or release permission."
+    },
+    {
+      "check": "review tooling binds source and rejects false test claims",
+      "passed": true,
+      "detail": "Consistency checks require actual independent session receipts; not an authenticity oracle."
+    },
+    {
+      "check": "Codex and Fable entry instructions both present",
+      "passed": true,
+      "detail": "Actual account/model access is a qualification, never silently simulated."
+    },
+    {
+      "check": "review format cannot be mistaken for a pass",
+      "passed": true,
+      "detail": "Unfilled evidence format, not a claimed review."
+    },
+    {
+      "check": "bounded reader reaches both new sections",
+      "passed": true,
+      "detail": "Collaboration and retained onboarding are addressable without loading the entire document."
+    },
+    {
+      "check": "16 Hindsight qualifications are unique and owned",
+      "passed": true,
+      "detail": "Additional memory gates do not replace baseline requirements."
+    },
+    {
+      "check": "32 memory cases have mapped acceptance",
+      "passed": true,
+      "detail": "Explicit scope, correction, provider, audience and failure behavior."
+    },
+    {
+      "check": "16 numbered memory slices form a DAG",
+      "passed": true,
+      "detail": {
+        "order": [
+          "HMSTEP-01",
+          "HMSTEP-02",
+          "HMSTEP-03",
+          "HMSTEP-04",
+          "HMSTEP-05",
+          "HMSTEP-06",
+          "HMSTEP-07",
+          "HMSTEP-08",
+          "HMSTEP-11",
+          "HMSTEP-09",
+          "HMSTEP-10",
+          "HMSTEP-12",
+          "HMSTEP-13",
+          "HMSTEP-14",
+          "HMSTEP-15",
+          "HMSTEP-16"
+        ],
+        "unresolved": [],
+        "blocked": []
+      }
+    },
+    {
+      "check": "memory scope is integrated into actual task bodies",
+      "passed": true,
+      "detail": "Not a detached wish list or different task sequence."
+    },
+    {
+      "check": "canonical master contains the complete memory contract",
+      "passed": true,
+      "detail": "One master authority and bounded derived section."
+    },
+    {
+      "check": "new launch instructions cover memory and collaborator",
+      "passed": true,
+      "detail": "Real production binding review, not fixture review."
+    },
+    {
+      "check": "no invented live Hindsight proof",
+      "passed": true,
+      "detail": "Offline checks never turn into application/live-service receipts."
+    },
+    {
+      "check": "Hindsight source review is pinned and qualified",
+      "passed": true,
+      "detail": "Primary-source review, not full repository/deployment certification."
+    },
+    {
+      "check": "memory transport uses explicit safe request profile",
+      "passed": true,
+      "detail": "Static tripwires accompany executable tests; not a formal security proof."
+    },
+    {
+      "check": "memory output checks source authority and revocation",
+      "passed": true,
+      "detail": "Real identity/repository implementations still required; no in-memory authentication stub ships here."
+    },
+    {
+      "check": "private deployment profile denies extra content stores",
+      "passed": true,
+      "detail": "Real effective configuration still needs readback and sentinel tests."
+    },
+    {
+      "check": "unprovided hosting approvals do not pretend readiness",
+      "passed": true,
+      "detail": "No guessed production image, region, account or approval."
+    },
+    {
+      "check": "embedded-memory preview is a bounded offline fixture",
+      "passed": true,
+      "detail": {
+        "unexpected_apis": []
+      }
+    },
+    {
+      "check": "memory preview is linked from full entry point",
+      "passed": true,
+      "detail": "Preserves original animated command and named-agent contexts."
+    }
+  ]
+}

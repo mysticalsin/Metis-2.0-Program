@@ -1,0 +1,33 @@
+{
+  "schema": "metis.onboarding.source-update.v1",
+  "historically_verified_base_commit": "2bf21f1ceefe117838325342574b57852e5cadcb",
+  "current_remote_verification": "unavailable: GitHub reads returned 404 in this session",
+  "files": [
+    {
+      "path": "src/renderer/src/components/OnboardingDemoPreviewBoundary.tsx",
+      "operation": "add",
+      "old_git_blob": null,
+      "new_sha256": "049946d434fa2091b8d9e872f69f9ef28aba36a72c0036e53c9f186b07bc28c0"
+    },
+    {
+      "path": "src/renderer/src/components/OnboardingDemoScene.tsx",
+      "operation": "modify",
+      "old_git_blob": "f61cfc0a43d53514a100da9a651ef10098693202",
+      "new_sha256": "cada4d6ee779ecf9d7d989bcaf0bce1829ab8df62feeafc8923dc5ce83d71dd2"
+    },
+    {
+      "path": "src/renderer/src/lib/onboarding-demo-controls.test.ts",
+      "operation": "add",
+      "old_git_blob": null,
+      "new_sha256": "450fb0c31e3502599cc45316aecacc4fa2487b3d6314eb5c68202eb05a84e166"
+    },
+    {
+      "path": "src/renderer/src/lib/onboarding-demo-controls.ts",
+      "operation": "add",
+      "old_git_blob": null,
+      "new_sha256": "8b0cdf56a3eb8a7ff9e07e1fff5064f4582ceb810858871eae9c49913248dcc3"
+    }
+  ],
+  "does_not_modify_previous_16_file_delta": true,
+  "note": "One existing demo component plus two new production helpers and one new native test. Check/reconcile actual local source before applying. Not an installer."
+}

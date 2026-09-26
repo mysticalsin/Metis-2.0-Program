@@ -1,0 +1,81 @@
+{
+  "schema": "metis.memory.progressive-reading.v1",
+  "profile": "METIS-PROFILE.md",
+  "reference_root": "reference/hindsight-agent-memory",
+  "mapping": {
+    "HMSTEP-01": [
+      "references/01-architecture.md",
+      "references/18-compatibility.md",
+      "scripts/check_schema.py"
+    ],
+    "HMSTEP-02": [
+      "references/02-contract.md",
+      "references/03-identity-security.md",
+      "references/04-retain.md"
+    ],
+    "HMSTEP-03": [
+      "references/12-deployment.md",
+      "references/13-config-models-language.md",
+      "references/11-operations.md"
+    ],
+    "HMSTEP-04": [
+      "references/03-identity-security.md",
+      "recipes/multi-tenant-entra.md"
+    ],
+    "HMSTEP-05": [
+      "references/04-retain.md",
+      "references/08-clients.md",
+      "recipes/event-workflow.md"
+    ],
+    "HMSTEP-06": [
+      "references/05-recall.md",
+      "scripts/evidence_gate.py",
+      "recipes/rag-and-memory.md"
+    ],
+    "HMSTEP-07": [
+      "references/07-lifecycle.md",
+      "references/06-reflect-derived.md"
+    ],
+    "HMSTEP-08": [
+      "recipes/chat-and-voice.md",
+      "references/02-contract.md"
+    ],
+    "HMSTEP-09": [
+      "recipes/multi-agent.md",
+      "references/10-mcp-coding.md",
+      "references/09-frameworks.md"
+    ],
+    "HMSTEP-10": [
+      "references/06-reflect-derived.md",
+      "references/13-config-models-language.md"
+    ],
+    "HMSTEP-11": [
+      "references/14-observability.md",
+      "references/11-operations.md"
+    ],
+    "HMSTEP-12": [
+      "references/17-evaluation.md",
+      "templates/eval-cases.jsonl"
+    ],
+    "HMSTEP-13": [
+      "references/16-troubleshooting.md",
+      "references/03-identity-security.md",
+      "references/18-compatibility.md"
+    ],
+    "HMSTEP-14": [
+      "references/15-migration.md",
+      "references/07-lifecycle.md"
+    ],
+    "HMSTEP-15": [
+      "references/17-evaluation.md",
+      "templates/acceptance-matrix.csv",
+      "VERIFICATION.md"
+    ],
+    "HMSTEP-16": [
+      "references/11-operations.md",
+      "references/14-observability.md",
+      "references/12-deployment.md"
+    ]
+  },
+  "whole_library_context_required": false
+}

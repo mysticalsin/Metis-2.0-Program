@@ -1,0 +1,152 @@
+{
+  "scope": "SYNTHETIC_AGENT_ONBOARDING_REFERENCE_NOT_PRODUCT",
+  "engine": "144.0.7559.96",
+  "host": "Linux",
+  "render_mode": "in-memory exact HTML",
+  "executed_at": "2026-09-23T00:07:20.504944+00:00",
+  "checks": [
+    {
+      "check": "Preview is labelled without provider or microphone pretense",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Welcome is the initial onboarding stage",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Reviewed animated orb runs and manual pause freezes work",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Illustrative account disclosure is not silently skipped",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Optional personalization can be deferred",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Skipped goals reaches practice, not a fake completed setup",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Wake and typing practice are synthetic with original text preserved",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Conflicting names cannot create ambiguous starter agents",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Creating three agent definitions starts no task",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Ready opens Home with user-chosen names",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Replaying setup does not duplicate agents or start work",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Agent switching preserves separate Unicode drafts",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "IME and Shift+Enter do not submit prematurely",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Read mode creates no execution proposal",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Teach mode explains without action",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Source correction invalidates a pending approval",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Explicit fixture save is committed once, never a real write",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Visible screen cannot become a full-document claim",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Removed context remains unavailable for the next response",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Context changes during work suppress the stale result",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Late result cannot leak across agent switch",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "Stop suppresses scheduled fixture completion",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "HTML-like user input renders as text, not executable markup",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "The orb deliberately opens typed input without capture",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "OS reduced motion freezes continuous rendering",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "390px Home, agent naming and library remain contained",
+      "passed": true,
+      "detail": "Passed"
+    },
+    {
+      "check": "No HTTP, WebSocket or media requests",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "No JavaScript exceptions",
+      "passed": true,
+      "detail": true
+    }
+  ],
+  "requests": [],
+  "errors": [],
+  "passed": true
+}

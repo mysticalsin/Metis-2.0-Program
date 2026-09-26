@@ -1,0 +1,397 @@
+{
+  "schema": "metis.hindsight-skill.acceptance.v1",
+  "case_count": 20,
+  "all_app_cases_not_run": true,
+  "cases": [
+    {
+      "id": "HSAC-01",
+      "title": "Portable skill loads whole references",
+      "procedure": "Load the active skill and its profile from the full and standalone ZIPs.",
+      "required_result": "The host reads a referenced file; no nested duplicate registration, missing scripts or automatic runtime/network launch.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-01"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-02",
+      "title": "Keyboard visibility has no memory side effects",
+      "procedure": "Toggle Métis during a consented meeting while counting memory calls.",
+      "required_result": "Zero retains from visibility; transcript/notes persist normally.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-08",
+        "HMSTEP-15"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-03",
+      "title": "Memory failure preserves notes",
+      "procedure": "Fail memory recall/retain/auth while recording and toggling the assistant.",
+      "required_result": "Capture, note save, dedicated meeting controls and local Stop remain independent.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-08",
+        "HMSTEP-13",
+        "HMSTEP-15"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-04",
+      "title": "Approved snapshots only",
+      "procedure": "Supply raw/partial transcript, screenshot, cancelled plan and then approved canonical summary.",
+      "required_result": "Only the current explicitly eligible approved snapshot can be projected after canonical commit.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-02",
+        "HMSTEP-05"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-05",
+      "title": "Two real independent identities",
+      "procedure": "Use real separately authenticated principals; tamper user, agent, project and bank parameters.",
+      "required_result": "No pre-inference or output disclosure across tenant/user/project/audience; tags alone do not pass.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-04",
+        "HMSTEP-13"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-06",
+      "title": "No direct bypass paths",
+      "procedure": "Try direct MCP/list/document/chunk/export/operation/admin access outside the gateway.",
+      "required_result": "The same identity/scope policy blocks unauthorized access before service data returns.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-04",
+        "HMSTEP-09",
+        "HMSTEP-13"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-07",
+      "title": "Memory is data not command",
+      "procedure": "Recall a malicious URL, shell request, claimed approval and false done statement.",
+      "required_result": "No URL visit, command, approval or verified success is inferred from memory.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-06",
+        "HMSTEP-13"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-08",
+      "title": "Whole-envelope limits",
+      "procedure": "Return large metadata, sources and an oversized highest-ranked fact.",
+      "required_result": "Final complete JSON fits host byte/token budgets with explicit truncation; provider max_tokens is not treated as the envelope limit.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-06",
+        "HMSTEP-12"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-09",
+      "title": "No always-on recall",
+      "procedure": "Open a known app, use local Stop, toggle the surface and ask a relevant historical question.",
+      "required_result": "Only the relevant eligible question uses bounded recall; no memory on every key or partial turn.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-06",
+        "HMSTEP-08"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-10",
+      "title": "Canonical correction wins",
+      "procedure": "Correct a preference/date while old recall and retain are in flight.",
+      "required_result": "Old revision output is blocked; current canonical source governs; no older write overwrites the replacement.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-05",
+        "HMSTEP-06",
+        "HMSTEP-07"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-11",
+      "title": "Forget is not delete meeting",
+      "procedure": "Forget one remembered preference and inspect its source meeting and projection.",
+      "required_result": "Memory reuse is denied immediately; original meeting remains unless separately authorized for deletion.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-07",
+        "HMSTEP-08"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-12",
+      "title": "Derivative and backup non-resurrection",
+      "procedure": "Forget a source with derived facts/pages, delayed jobs and a restored backup.",
+      "required_result": "All affected derivatives remain inaccessible through real lineage/epoch fences until reconciled; a stale flag alone is insufficient.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-07",
+        "HMSTEP-10",
+        "HMSTEP-13"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-13",
+      "title": "Unknown writes reconcile",
+      "procedure": "Drop acknowledgment after retain dispatch and retry from another worker.",
+      "required_result": "No blind duplicate retain/bill; actual operation/source state and generation are reconciled.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-05",
+        "HMSTEP-07",
+        "HMSTEP-11"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-14",
+      "title": "Caller cancellation and deadlines",
+      "procedure": "Stop/sign out while vault, response headers, stream body or resolver stalls.",
+      "required_result": "Actual transport and output honor bounded caller cancellation; no stale result or capture interruption.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-04",
+        "HMSTEP-06",
+        "HMSTEP-13"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-15",
+      "title": "JEV memory-role separation",
+      "procedure": "Return confident JEV suggestion and vary JEV/Laya decision policy.",
+      "required_result": "No implicit retention, permissions or verifier success; memory reranking routes/credentials require their own approval.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-02",
+        "HMSTEP-09",
+        "HMSTEP-11"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-16",
+      "title": "Exact usage without content logs",
+      "procedure": "Exercise ingest, recall, retries, cancellation and derived work.",
+      "required_result": "Existing durable ledger records attempts with unknown counters honest; operational logs/queues contain no source text.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-11",
+        "HMSTEP-13"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-17",
+      "title": "Version and raw-storage qualification",
+      "procedure": "Read actual version/schema/config and probe an approved disposable scope.",
+      "required_result": "Document raw/derived retention truthfully; no weak profile activation from SDK presence, HTTP 200 or conflicting docs.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-01",
+        "HMSTEP-02",
+        "HMSTEP-03"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-18",
+      "title": "Optional synthesis is separately gated",
+      "procedure": "Request reflect/observations/pages over changing and mixed audiences.",
+      "required_result": "Unqualified/mixed scope never reaches synthesis; complete source lineage and derivative erasure pass before enablement.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-04",
+        "HMSTEP-10"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-19",
+      "title": "Source-backed multilingual later-session recall",
+      "procedure": "Remember approved facts with names, negation, dates and explicit timezones, then query later in supported languages.",
+      "required_result": "Faithful canonical citations/coverage; no invented current date, universal quality claim or full-document coverage from a fragment.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-05",
+        "HMSTEP-06",
+        "HMSTEP-12"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    },
+    {
+      "id": "HSAC-20",
+      "title": "Complete notes keyboard memory Dust journey",
+      "procedure": "Run actual meeting capture → global toggle → approved remember → new session recall → correction → authorized Dust/agent readback → forget.",
+      "required_result": "Exact Windows and Mac artifact/source/service identities, independently verified effects and no cross-user leakage or note loss.",
+      "steps": [
+        "HMS-INTEGRATION",
+        "HMSTEP-09",
+        "HMSTEP-14",
+        "HMSTEP-15",
+        "HMSTEP-16"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source and build identity",
+        "current service/version/configuration and identity policy",
+        "real permitted source/operation receipts",
+        "sanitized native/live trace including negative checks",
+        "no fixture pass substituted for application evidence"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schema": "metis.application-memory-policy.example.v1-not-native-hindsight-config",
+  "role": "advisory",
+  "state": "disabled_until_qualified",
+  "not_runtime_configuration": true,
+  "product": {
+    "note_taker_preserved": true,
+    "keyboard_toggle_is_memory_trigger": false,
+    "command_audio_is_meeting_audio": false,
+    "memory_failure_stops_meeting": false,
+    "memory_failure_stops_shortcuts": false,
+    "memory_failure_stops_deterministic_actions": false,
+    "default_reply_during_call": "text_with_current_audience_check"
+  },
+  "identity": {
+    "source": "existing_validated_Entra_or_authorized_host_principal",
+    "bank_resolver": "server_owned_current_authorization_registry",
+    "model_selects_bank": false,
+    "tags_are_authorization": false,
+    "agent_rename_changes_identity": false,
+    "homogeneous_acl_required": true
+  },
+  "capture": {
+    "allowed_kinds": [
+      "approved_summary",
+      "approved_preference",
+      "verified_action_receipt"
+    ],
+    "excluded_kinds": [
+      "raw_audio",
+      "raw_transcript",
+      "partial_transcript",
+      "screenshot",
+      "credentials",
+      "unexecuted_plan",
+      "unreviewed_model_output"
+    ],
+    "after_canonical_commit": true,
+    "outbox": "existing_metadata_only_source_reference_outbox",
+    "automatic_turn_capture": false,
+    "requires_source_memory_permission": true,
+    "timestamp": "canonical_event_time_with_timezone",
+    "update_mode": "replace",
+    "append_enabled": false
+  },
+  "retrieval": {
+    "needed_only": true,
+    "max_recall_calls_per_relevant_turn": 1,
+    "max_candidates": 32,
+    "max_items": 8,
+    "max_envelope_bytes": 12000,
+    "requested_fact_tokens": 1500,
+    "receiving_model_token_budget": "must_use_exact_compatible_counter_when_claimed",
+    "provider_query_limit": "verify_deployed_schema_tokenizer_not_character_estimate",
+    "budget": "low",
+    "tags_match": "all_strict",
+    "nonempty_server_scope_required": true,
+    "types": [
+      "world",
+      "experience"
+    ],
+    "canonical_source_revalidation": true,
+    "final_audience_epoch_recheck": true,
+    "memory_can_authorize_action": false
+  },
+  "lifecycle": {
+    "unknown_write": "quarantine_and_reconcile_before_retry",
+    "tombstone_before_purge": true,
+    "forget_deletes_original_meeting": false,
+    "derived_invalidation_required": true,
+    "backup_restore_respects_tombstones": true,
+    "retention_days": null,
+    "retention_policy_owner": null
+  },
+  "deployment": {
+    "location": "existing_private_server_service",
+    "endpoint": null,
+    "server_version": null,
+    "schema_hash": null,
+    "credential_binding": null,
+    "desktop_database": false,
+    "raw_client_mcp": false,
+    "auto_start_compose": false,
+    "live_smoke_auto_run": false,
+    "native_reflect_enabled": false,
+    "observations_enabled": false,
+    "mental_models_enabled": false,
+    "knowledge_pages_enabled": false,
+    "customer_data_ready": false
+  },
+  "jev": {
+    "uses_revalidated_evidence_only": true,
+    "decision_can_retain_memory": false,
+    "credential_shared_implicitly": false,
+    "reranker_requires_separate_route_qualification": true,
+    "memory_required_for_local_stop": false,
+    "laya_only_enables_jev_rerank": false
+  }
+}

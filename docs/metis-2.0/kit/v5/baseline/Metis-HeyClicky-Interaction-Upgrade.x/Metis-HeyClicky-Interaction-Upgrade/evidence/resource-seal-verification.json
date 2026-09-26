@@ -1,0 +1,1154 @@
+{
+  "method": "Read-only comparison of packaged files2 resource seal hashes to HFS+ data forks",
+  "files_compared": 127,
+  "matched": 127,
+  "mismatched": 0,
+  "other": 0,
+  "code_resources_sha256": "8b84114070d598d1c9c2a098c40ae63af3e30d392888f67af7233ad83d91f06c",
+  "scope_limit": "A matching packaged resource seal is an internal consistency check, not trusted signature verification, notarization, origin authentication, runtime qualification, or a security audit.",
+  "resources": [
+    {
+      "path": "Resources/AGENTS.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "a7a056dd42d53aff821e0b799a3ddbd9c3a9170dbe369605da1776b4828026e8",
+      "bytes": 1581
+    },
+    {
+      "path": "Resources/ATTRIBUTION.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "9a72ea800fa89a20ca8475847e5f88b67af448aa548fa70008d7c66436fb74cd",
+      "bytes": 907
+    },
+    {
+      "path": "Resources/AppIcon.icns",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "0fba00e9c564664650e96ce8b3c9a173802a90f6f8f207fa05846fbad0798a1c",
+      "bytes": 74401
+    },
+    {
+      "path": "Resources/Assets.car",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "e035028481f542b7995e7605bc352be0238d0a047338fc22611f10ac1ea637b4",
+      "bytes": 11011656
+    },
+    {
+      "path": "Resources/ClickyBuildInfo.plist",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "f1e559f646a308f9cf8c8fbb7c7b292cbb94a41d3ed66d7ada1ff95b04654002",
+      "bytes": 329
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/clicky-artifacts/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "1da2718937ce150360a80831be36205539508a53cee5570737de2b91530d64c6",
+      "bytes": 3191
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/clicky-build-preview/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "4234c192b355089671bdd0a384452d0e64221a2be4fdfe92fd5da43551bb9177",
+      "bytes": 4222
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/clicky-creative-studio/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "1fffbacbd9f8227a98ab0f934a8f9790359364a3aec5a31f63c59d61eb2e926d",
+      "bytes": 3812
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/clicky-dev-setup-doctor/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "007edc64d61feba012d5c861c3c6b1d4e8cdc8f3f127ae29a84d8cf776dcb69e",
+      "bytes": 2320
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/clicky-email-assistant/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "ac939d8e0780608208a1fd113792d0b4b6842ccfc14a621b0eefe05317b78fec",
+      "bytes": 4760
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/clicky-google-workspace/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "a33d9fa8c3f47ec24e9d54ae5b33874f43858d35b88a438307010f484b3b1bdd",
+      "bytes": 5665
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/clicky-repo-operator/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "cb4645c4d815bb3736d74b89f2f7cd7cb64c0d5b7afe5e13d20ab0bcc32fb2f9",
+      "bytes": 2460
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/clicky-research-report/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "8819bc5fbca30021b603db899383bcbf4623509edea57062efd2d289a2360300",
+      "bytes": 3943
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/cua-driver/README.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "a015cb8802526ab5a512e58eb560eb5b932195e8e148cb55d580e470657705e2",
+      "bytes": 4023
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/cua-driver/RECORDING.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "4cbce1daf0831e6d30645e064146662335b5d072e03cc1a13a947f370ac3c7ba",
+      "bytes": 1352
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/cua-driver/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "cf03b14ff3c2645342578eb2a0a38ddbd2a397ad1e55e1465f96b5f4b6acd19b",
+      "bytes": 50482
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/cua-driver/TESTS.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "64827dd0d88481d407c7fcf521bf63fa732a6a142c42dec3ddfb5099dd531e88",
+      "bytes": 10338
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/cua-driver/WEB_APPS.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "7a9a6faeb894bbff5e7a649084f1998f85d3102e100aee3ffaf4f1321bd0ef9d",
+      "bytes": 19117
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/doc/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "0a635585817d1ac96e8e512114d08258b70f9e54ce0052078a258291ac13a8ed",
+      "bytes": 2988
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/doc/scripts/render_docx.py",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "52b3c3158913ebcad2ada7b8193970b70453239e255054aa2d60c1683af08751",
+      "bytes": 9700
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/frontend-design/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "bd97ac141cb877fe83b93ace1085a82ceb60baf96ca555db09f6b3d2c7c1541c",
+      "bytes": 3343
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/obsidian/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "f4ea32c16df024173b23046aff5274aada1a34623e65bb75e61cc13a7602c519",
+      "bytes": 2468
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/pdf/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "d108cf2b36355ab37eb5962933f4d09785ec002f3105c506129320209306b9d2",
+      "bytes": 2517
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/spreadsheet/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "36baea99e96c77c13d15d24f9d53cd072ccbc120e810bf4e68049edb5b0f1d65",
+      "bytes": 6964
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/spreadsheet/references/examples/openpyxl/create_basic_spreadsheet.py",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "7c291b6230c9809145c8f7f216fd2b7d099b16b89d3fae0ab4d5a3d990c05418",
+      "bytes": 1456
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/spreadsheet/references/examples/openpyxl/create_spreadsheet_with_styling.py",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "fbfd41b9eca17f0f274f4ce7bd8ead6bc9292d764fe3bc325a1fca57dbe954ea",
+      "bytes": 3180
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/spreadsheet/references/examples/openpyxl/read_existing_spreadsheet.py",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "cf2f24d90174d92bd9044e95035ab4cf2e34a5faa355a2fa1898e49088e9ad02",
+      "bytes": 1622
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/spreadsheet/references/examples/openpyxl/styling_spreadsheet.py",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "5427ca11beb2b408a5dede6af1fa868fa131ad2a435d40bb88e52c4a8de7bc67",
+      "bytes": 1998
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/vercel-deploy/ATTRIBUTION.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "bc3a6654c1f05ccad7c47b842caa127a42ee03b31549b879d56716d3b3fe288b",
+      "bytes": 161
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/vercel-deploy/LICENSE.txt",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "e0fad1e120e56b02bb8e65745ff5be6d3234368f2df9d0dd183183879e595fc1",
+      "bytes": 1063
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/vercel-deploy/SKILL.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "f4a6cbfbb378a320fae179a79f727a881d19677e9b3db96ed49d2dc02a74fa46",
+      "bytes": 2653
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/vercel-deploy/agents/openai.yaml",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "5fdfff98a8cd084737f47231d65e7b8315e9036e12c8f2c90df7593f75abcf74",
+      "bytes": 306
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/vercel-deploy/assets/vercel-small.svg",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "169e5fedb5898d756254c29e02873508eef714a8dd11638f283ca8e7c46096a5",
+      "bytes": 243
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/vercel-deploy/assets/vercel.png",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "ab37ffb06bdb1ab6d076c26329e8677d057ba95d66f7e2c710221345ff6e2043",
+      "bytes": 788
+    },
+    {
+      "path": "Resources/ClickyBundledSkills/vercel-deploy/scripts/deploy.sh",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "91f16c6a298c8b70eff7b7722f860e54101be2f23cea75d2e26ec0778006f9b4",
+      "bytes": 8877
+    },
+    {
+      "path": "Resources/ClickyModelInstructions.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145",
+      "bytes": 24297
+    },
+    {
+      "path": "Resources/CodexRuntime/.clicky-codex-version",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "0d38164b878254cc122a47a6e0d1d8c38471d7b3b5a158cbfa2a36a3e455b52a",
+      "bytes": 83
+    },
+    {
+      "path": "Resources/CodexRuntime/bin/codex",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "48af1a58b1fbb853635b08cddb78aaf2910dad03004ddd31e419b54178235652",
+      "bytes": 1048
+    },
+    {
+      "path": "Resources/CodexRuntime/vendor/aarch64-apple-darwin/bin/codex",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "0f637d0f5188257d964c3daddc8c05782de555bcbc0f1b3934fa04a8033869a2",
+      "bytes": 216514064
+    },
+    {
+      "path": "Resources/CodexRuntime/vendor/aarch64-apple-darwin/bin/codex-code-mode-host",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "a96b16a58d9621aa8b816f5a61f436764d0a0c0de7608cf538cee763cfa7f0b1",
+      "bytes": 62340816
+    },
+    {
+      "path": "Resources/CodexRuntime/vendor/aarch64-apple-darwin/codex-package.json",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "5a019b8870b8a2167d66fe5926705ce1253f3dcd1e86fb42b11e145374489090",
+      "bytes": 200
+    },
+    {
+      "path": "Resources/CodexRuntime/vendor/aarch64-apple-darwin/codex-path/rg",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "18658e4bf8c5904775bd07fc0478e6f85351149c8d7efd227bbc2c702856df91",
+      "bytes": 4009520
+    },
+    {
+      "path": "Resources/CodexRuntime/vendor/aarch64-apple-darwin/codex-resources/zsh/bin/zsh",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "b7b61b0bddfa0a7dafca51ad05244edebc447767364428c3f578617750b474f3",
+      "bytes": 751504
+    },
+    {
+      "path": "Resources/CodexRuntime/vendor/x86_64-apple-darwin/bin/codex",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "53363ae70d76ab366800a0c019e43f6da2933eb95aae92a3637ab60e26bfe749",
+      "bytes": 234849296
+    },
+    {
+      "path": "Resources/CodexRuntime/vendor/x86_64-apple-darwin/bin/codex-code-mode-host",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "81519815ff9a12b5de9ba0aa32f95cfb5d5ec5bf02a69648553bf695798084c3",
+      "bytes": 65815920
+    },
+    {
+      "path": "Resources/CodexRuntime/vendor/x86_64-apple-darwin/codex-package.json",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "005abbea94727f77dddf28f4c157c764a6b4e9fa8cb65c92946d8b68f00a79b5",
+      "bytes": 199
+    },
+    {
+      "path": "Resources/CodexRuntime/vendor/x86_64-apple-darwin/codex-path/rg",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "e3b4d219fe09da8ce75c932221f5eecf189c26ea8a02dda289b379462a6a889f",
+      "bytes": 4439696
+    },
+    {
+      "path": "Resources/CodexRuntime/vendor/x86_64-apple-darwin/codex-resources/zsh/bin/zsh",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "73e95122c3d9510d27490d9137a5a11b341de0970ccb7379d757187f8a57a59d",
+      "bytes": 764192
+    },
+    {
+      "path": "Resources/Info.plist",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "2c6102254cae8a355310b555ec9f73619d68207a58443b0d28aa39911192dead",
+      "bytes": 2162
+    },
+    {
+      "path": "Resources/LICENSE",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "821556e6336796450ab852d375117b48a4887e71d255794fd6318d99982a5ab6",
+      "bytes": 1070
+    },
+    {
+      "path": "Resources/PLCrashReporter_CrashReporter.bundle/Contents/Info.plist",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "40ee6af1348105650ec3d83220f9b174164efc256b56a3575713b269106491c8",
+      "bytes": 1267
+    },
+    {
+      "path": "Resources/PLCrashReporter_CrashReporter.bundle/Contents/Resources/PrivacyInfo.xcprivacy",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "59d5a7312365e76bd13f028da48f01415f4f5013f4ac2f326d02a84d024a7b02",
+      "bytes": 1150
+    },
+    {
+      "path": "Resources/PostHog_PostHog.bundle/Contents/Info.plist",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "7ea3764882e459dff8c64cf6fede4bae996104c4b459a05fffa9ba49da51d6d8",
+      "bytes": 1243
+    },
+    {
+      "path": "Resources/PostHog_PostHog.bundle/Contents/Resources/PrivacyInfo.xcprivacy",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "4e1ae8246e23edfdfd59d0bee9606945626c10c83e55a7f5af3f04df25fa75bd",
+      "bytes": 1278
+    },
+    {
+      "path": "Resources/agent-close.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "35dfa883c53a911d12af12c8210cda34ce7ad4852bca3dd07ad54b53715f7527",
+      "bytes": 215118
+    },
+    {
+      "path": "Resources/agent-done.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "f3afa785277babbd59e9ca2fb7d9810dd15a0756fae10a02f5bef50990882e0d",
+      "bytes": 199758
+    },
+    {
+      "path": "Resources/agent-launch.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "20d525b387508fe567d417010cbedfd90a63706ca5604e1b1256272f1aa4c5d6",
+      "bytes": 153678
+    },
+    {
+      "path": "Resources/agent-needs-you.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "5896ca2a0a165f9c1cfbecdce425233812daf0ee657b11b42d65f288a8635522",
+      "bytes": 207438
+    },
+    {
+      "path": "Resources/airtable.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "efd925c3b9be734dd61393c7af19651601164ff57b67d320141d7813cdd85a03",
+      "bytes": 11267
+    },
+    {
+      "path": "Resources/apple-notes.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "c652e01e47938b8ac21c97873e0a14f5f3a773b554bd10737fbfdcc5e5c28d23",
+      "bytes": 2169
+    },
+    {
+      "path": "Resources/apple-reminders.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "7ed9206a4df2739d41818a17de1b5ff79e7b24cdb5de9c2e74247c8835bcb515",
+      "bytes": 2530
+    },
+    {
+      "path": "Resources/blender.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "cdd81cb0235df864c2189264c99db1969c117188b1483ab730122ac99ad95c87",
+      "bytes": 18643
+    },
+    {
+      "path": "Resources/claude-code.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "8d72e755bd78cc1586db495a381c628c0c25833a71d917e887ac08a0ca95d8bf",
+      "bytes": 34253
+    },
+    {
+      "path": "Resources/claude-design.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "aa54aac5236997ac2f07ef28bb6685243247256215e3b0d4fc987f6e4d9c439e",
+      "bytes": 19824
+    },
+    {
+      "path": "Resources/clicky-question.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "f5803c8bb99c56fecb42af9e89f9529a25592cd29c59dcf3f91eaa9a343c73c4",
+      "bytes": 163244
+    },
+    {
+      "path": "Resources/clicky-spatial-demo.mp4",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "ac7efa44d65da524fe35603d27756f731b5861c3c52a2b3a2c17167a813d6e93",
+      "bytes": 325379
+    },
+    {
+      "path": "Resources/clicky-surprised.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "43a4b8bcf2cb22af9ee3d4a90cc6940d29e9275fb92f5548358a6cdd0d4024ae",
+      "bytes": 96044
+    },
+    {
+      "path": "Resources/clicky-text-close.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "7a905a8d9731de45e34b63551882343c41ab4a74280547662ebb61a9c0431918",
+      "bytes": 163244
+    },
+    {
+      "path": "Resources/clicky-text-open.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "9d2bcc88adf9cb7fa4c5e98713878639e36e5fdd6d66af6c275baa393cfb89e2",
+      "bytes": 134444
+    },
+    {
+      "path": "Resources/clicky-text-receive.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "0d4e76bddc8c48e88347bbf3d6684bcc8a7d3a45fe4b0e47bef878ea9ea5d4bd",
+      "bytes": 134444
+    },
+    {
+      "path": "Resources/clicky-text-send.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "9d6904aaca2daea62fba6fed6f3c9ef94c202149160beb9463da4eff69849ed0",
+      "bytes": 96044
+    },
+    {
+      "path": "Resources/codex-add-project.png",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "396a8d835418cc413e0e6d452caea94591b62e27d432b56f3d4c2c9c86549dc7",
+      "bytes": 47038
+    },
+    {
+      "path": "Resources/codex.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "0ce0ee3bb0ca6517a485a8295894a782fbeafdc2ffb31aac7dab006ac631a01e",
+      "bytes": 4522
+    },
+    {
+      "path": "Resources/connection-question.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "0a208fa2a9c4a0cedd2ca51c78c8332ca20adb130f8880d477fe77e224e0d72b",
+      "bytes": 288044
+    },
+    {
+      "path": "Resources/enter.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "ecafac1786d6fe7b5114f16d2586b868ac010be967128c58bfe9f1115ec1b426",
+      "bytes": 5821
+    },
+    {
+      "path": "Resources/eshop.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "d21e5a43a1d278922212548860e8612564a9bc1b3bc9cf55fd4373e4e69e2072",
+      "bytes": 68221
+    },
+    {
+      "path": "Resources/excalidraw.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "8ea47460bc26ab3a093337620ec842bf8220b497b5b9c66f266a8ac321c5723d",
+      "bytes": 7263
+    },
+    {
+      "path": "Resources/ff.m4a",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "09050d9b3fed03cac98091f91b303af005629b55a575b57f713aa4e45e603d71",
+      "bytes": 5738026
+    },
+    {
+      "path": "Resources/findmy.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "19ec56e3b7f9f0be13c26d99948ed5684d8fb1f9c478da078c19356b5df63f57",
+      "bytes": 3709
+    },
+    {
+      "path": "Resources/github-auth.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "77179ef1dcdcfd3c3031cead12a54313296388bafbf8ffa5ea96963fa2220531",
+      "bytes": 7511
+    },
+    {
+      "path": "Resources/github-code-review.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "d043a4ce6a90ce00a9e2395600fb50182bfcf479302dc22aebb36696c8805b5d",
+      "bytes": 13530
+    },
+    {
+      "path": "Resources/github-issues.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "c634fa92f5891e75abc84ae24031dd2f3ce8593d7a07abf33959dcbe6514841c",
+      "bytes": 9230
+    },
+    {
+      "path": "Resources/github-pr-workflow.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "9d860acf79e3ead32fea1d27e4554801cc18fd0ff2edc449506308193f0fb245",
+      "bytes": 9950
+    },
+    {
+      "path": "Resources/github-repo-management.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "5116abc1516cca9724b0e66b9380e4c9aaceb52858258091a16da1c4a5132051",
+      "bytes": 13648
+    },
+    {
+      "path": "Resources/google-workspace.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "5ef941bf71161797799a22ea7bc0f4a91dff4dd6bfcabdca83c635d358db83ba",
+      "bytes": 10788
+    },
+    {
+      "path": "Resources/hatching.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "ff88e52c78a9a31604fe8e36c609b7ddac16e2a7ede4cdb332e37cace2a31e9f",
+      "bytes": 1141588
+    },
+    {
+      "path": "Resources/home-reveal.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "e64238ef9b73c2c46e6a56bb25f4fbf553efd04fb343fe77e0157625e4d68d67",
+      "bytes": 337998
+    },
+    {
+      "path": "Resources/imessage.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "bc68b1648e301409bc25b1084ec26766213ca9f3c1b2fd3d3d6ebe3dbde9e967",
+      "bytes": 2442
+    },
+    {
+      "path": "Resources/linear.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "b0195041ce89377037d11802b2a0a2b5cf935f61869b17a1a1ebdcb5cccd52f2",
+      "bytes": 14747
+    },
+    {
+      "path": "Resources/maps.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "9016a0dcce246a02bd0c3272619f3d9c5dd3dd8564ae111bca6922af1820564f",
+      "bytes": 6691
+    },
+    {
+      "path": "Resources/notion.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "e919f897e55e06b503c51178a9613aed107c12ecf0afbd99ade944934d382c3f",
+      "bytes": 5201
+    },
+    {
+      "path": "Resources/obsidian.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "88fa92b6dc495f5589fefdec27575db3e840223a2e515116efea21e3448b5382",
+      "bytes": 2884
+    },
+    {
+      "path": "Resources/ocr-and-documents.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "53596fe5a2a87898d78b9ab33bca0185fd447250fcf42dcb350cb94fd4eddbfc",
+      "bytes": 5245
+    },
+    {
+      "path": "Resources/onboarding-intro-v2.mp4",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "49acf8e179457794df29de26b703faf893d7f56547fbfa543d49a4eba927dd74",
+      "bytes": 43959537
+    },
+    {
+      "path": "Resources/paywall-intro-v2.mp4",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "4e4470889171d8eb6a0be8bbd5bfcf34f6e27d21246f7ac8b5a88d135e08ced2",
+      "bytes": 25835963
+    },
+    {
+      "path": "Resources/polymarket.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "f940c02ae8e112dd44849ee68edd23bc6113bcab117f8624eefad3d8ca1b4301",
+      "bytes": 2950
+    },
+    {
+      "path": "Resources/powerpoint.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "5d80c56d140e7f5c9d0104ddb48ab0789f6d75a70244c8240225f933259e9941",
+      "bytes": 9263
+    },
+    {
+      "path": "Resources/realtime-voice-preview-alloy.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "0bc07cb8eec451d2f3c4726d09cf9bd80a1cc03a0f3bbbab3d2e74a3c9e485a0",
+      "bytes": 74037
+    },
+    {
+      "path": "Resources/realtime-voice-preview-ash.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "f90a34e30551151d998dc26012c434667c3ada0eb8801da63610aff33c1b87f0",
+      "bytes": 51909
+    },
+    {
+      "path": "Resources/realtime-voice-preview-ballad.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "63f6158623a808decfa89e73f33d63645df9d0808c09541921fc171247f05e96",
+      "bytes": 71037
+    },
+    {
+      "path": "Resources/realtime-voice-preview-cedar.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "220caf0890bfd8c1fc35ebdef23875dfbeead8898ccd92b1335b5aaa0d5861d2",
+      "bytes": 45885
+    },
+    {
+      "path": "Resources/realtime-voice-preview-coral.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "487157d075b3fc48cc46a03d5984f85e4d046a942766daa6b5afd3f3fc39967d",
+      "bytes": 54501
+    },
+    {
+      "path": "Resources/realtime-voice-preview-echo.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "4c783ca60379d20244bbb450c00f36162097db0f60aea8e157b6a1d5ac634730",
+      "bytes": 64029
+    },
+    {
+      "path": "Resources/realtime-voice-preview-marin.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "348a547f85fc7a220b858d9739b1e1ac9c1c2a1e2dce58ee9174872aee567cc7",
+      "bytes": 42357
+    },
+    {
+      "path": "Resources/realtime-voice-preview-sage.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "beab459eb9ef2d6033a4e36875b9d3c58de3fa03d10ae8cba0043160cc87daf1",
+      "bytes": 53709
+    },
+    {
+      "path": "Resources/realtime-voice-preview-shimmer.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "167a98231a4390fc379c00ffcce31469dd456150ee314590925a22bf2f78004d",
+      "bytes": 57789
+    },
+    {
+      "path": "Resources/realtime-voice-preview-verse.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "f060d7ddb624662bdf4b1d6ca50f576c5ea7e1c986f2f638327cfdf104c51949",
+      "bytes": 55509
+    },
+    {
+      "path": "Resources/reveal-boot.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "f87e10169a3f2f0e78df2944bc8e4a4263044ea973bca1e0749cf438959945d5",
+      "bytes": 265216
+    },
+    {
+      "path": "Resources/skill-down.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "3fc2c30357a91ee620d6c611e4e97a56c5e37b61cc28809f8d06e1d85710dd7c",
+      "bytes": 217588
+    },
+    {
+      "path": "Resources/skill-up.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "53ab5104d4e0376bab18726649a735ddd4b72c67bf7d80e13e0a14388bc7ab6a",
+      "bytes": 151724
+    },
+    {
+      "path": "Resources/spotify.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "43789e51e3ce37a77318b066cb8b183656cd21e9e1269ddea49e4348b1d9c3da",
+      "bytes": 6284
+    },
+    {
+      "path": "Resources/steve.jpg",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "eccc99d79b064cd9f110f6d1b9a0275f251c482eaf479141cb6abc52350f23fd",
+      "bytes": 123680
+    },
+    {
+      "path": "Resources/tapback-thumbs-up.wav",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "44549ca08adab6802020ad842004c11e189cfc7ecdd6249632fa90c7a11ca768",
+      "bytes": 99468
+    },
+    {
+      "path": "Resources/voice-preview-bright.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "56fb287c07420511bbed899f17f55e665ef39d2e8fba09ca9621355415ebdb56",
+      "bytes": 48527
+    },
+    {
+      "path": "Resources/voice-preview-bubbly.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "2cd0107e69321bd6154425eaa120e82a2631d6f3f51a9957443076eea866318e",
+      "bytes": 51035
+    },
+    {
+      "path": "Resources/voice-preview-cheerful.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "eb12cfa7bc4acb8d4d40e1bbdf8de7a92c2acf9abcd67ee0d944f5e52c6ca598",
+      "bytes": 38914
+    },
+    {
+      "path": "Resources/voice-preview-expert.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "060e75cf08c7b016c0f972575f1375fee2b00573dbfd04987227b60bd655ff36",
+      "bytes": 51453
+    },
+    {
+      "path": "Resources/voice-preview-fun.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "0b102cbbf99ad3a2af5e03cb346c7c2814124e8064ae9e6b99a48818a963ba6d",
+      "bytes": 44347
+    },
+    {
+      "path": "Resources/voice-preview-gentle.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "8878fbb05b4fb3867e7a65ec2f49f1cca91737b9ac49f2fd9b04bd35e71dc0c5",
+      "bytes": 39750
+    },
+    {
+      "path": "Resources/voice-preview-hope.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "919e33509199defbaa25097f26cce766f0ee57d5fa0407fb28717453bdf667f6",
+      "bytes": 70261
+    },
+    {
+      "path": "Resources/voice-preview-kid.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "16278f26c411cab2e40a238f1edf2e3cabdc1033eee6409b65be49780e3a7f4a",
+      "bytes": 48527
+    },
+    {
+      "path": "Resources/voice-preview-lumen.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "423e51406d98b9023579c6584fa6880abe414f94a612e0e9a8a8ae443db050cd",
+      "bytes": 55214
+    },
+    {
+      "path": "Resources/voice-preview-original.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "04c0b5cf60a295663cc55c04d7576719ca69513cd021d9e4f04ae6175adb7faf",
+      "bytes": 51035
+    },
+    {
+      "path": "Resources/voice-preview-polished.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "4813d433f4293773e3d3f2a9ee89000faa05fef965879705051d52029316e2bc",
+      "bytes": 59812
+    },
+    {
+      "path": "Resources/voice-preview-smooth.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "3e4b7f4cac535c94f051d2a881f950b92e5ac656fd49862cceb79903cfffdb5b",
+      "bytes": 45601
+    },
+    {
+      "path": "Resources/voice-preview-techy.mp3",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "55b81c412e171ffed2cd789e2f1d8a482193635079e8820569a993d64d82e815",
+      "bytes": 49363
+    },
+    {
+      "path": "Resources/youtube-content.md",
+      "status": "match",
+      "algorithms": [
+        "sha256"
+      ],
+      "sha256": "590f7358445e804ea8cd5d1035beb7cf8f8b548f8ff8d8b149d79973ba3a50f9",
+      "bytes": 3183
+    }
+  ]
+}

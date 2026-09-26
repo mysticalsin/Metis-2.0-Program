@@ -1,0 +1,34 @@
+{
+  "scope": "OFFLINE_SOURCE_ADAPTED_GEOMETRY_ONLY",
+  "checks": [
+    {
+      "check": "Official 64-preset source lineage",
+      "passed": true
+    },
+    {
+      "check": "Deterministic solving geometry at an identical clock",
+      "passed": true
+    },
+    {
+      "check": "Solving changes actual geometry over time",
+      "passed": true
+    },
+    {
+      "check": "Resolved count is the 64 solving preset",
+      "passed": true
+    },
+    {
+      "check": "Finite depth-sorted in-bounds dots over 30 seconds",
+      "passed": true
+    },
+    {
+      "check": "Listening is a distinct official waveform geometry",
+      "passed": true
+    },
+    {
+      "check": "Invalid sizes and clocks rejected",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

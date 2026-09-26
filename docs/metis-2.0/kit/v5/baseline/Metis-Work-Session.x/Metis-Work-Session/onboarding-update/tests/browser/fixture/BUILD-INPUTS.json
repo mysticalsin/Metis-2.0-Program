@@ -1,0 +1,13 @@
+{
+  "compiled_source_sha256": {
+    "baseline/src/renderer/src/components/OnboardingDemoScene.tsx": "5003079be9f8284c5403226cddc23562bbdd6d8305f0313323afa40781e54c02",
+    "overlay/src/renderer/src/components/OnboardingDemoPreviewBoundary.tsx": "049946d434fa2091b8d9e872f69f9ef28aba36a72c0036e53c9f186b07bc28c0",
+    "overlay/src/renderer/src/components/OnboardingDemoScene.tsx": "cada4d6ee779ecf9d7d989bcaf0bce1829ab8df62feeafc8923dc5ce83d71dd2",
+    "overlay/src/renderer/src/lib/onboarding-demo-controls.ts": "8b0cdf56a3eb8a7ff9e07e1fff5064f4582ceb810858871eae9c49913248dcc3",
+    "reference/src/renderer/src/lib/onboarding-demo.ts": "6604ed1984d4e9a69a4666b45c03531f9d912c970e2cead7abdb508bb5c5f225",
+    "reference/src/renderer/src/lib/synthetic-cursor.ts": "d5bc840d26557b9c8b327eebeefacf0306e225d276f7e763cbd70252217b21a3"
+  },
+  "runtime": "React18.2.0 and ReactDOM18.2.0-next from preinstalled JupyterLab; see licenses",
+  "child_components": "Bar, Copilot, Answer, QuickActions, ModeRecap and demo guard are explicit fixture implementations",
+  "production_imports": "Use the repository React/DOM and real children when integrating. Do not bundle fixture JS in the app."
+}

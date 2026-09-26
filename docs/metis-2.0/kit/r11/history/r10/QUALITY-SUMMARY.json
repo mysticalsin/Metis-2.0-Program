@@ -1,0 +1,75 @@
+{
+  "edition": "r10",
+  "master_revision": "4.4",
+  "scope": "Delivery kit and synthetic engineering references only; not Métis product readiness",
+  "product_tests_executed": false,
+  "actual_fable_session_executed": false,
+  "app_repository_modified": false,
+  "cloud_deployed": false,
+  "signed_installer_produced": false,
+  "current_reruns": {
+    "browser": {
+      "passed": true,
+      "count": 60,
+      "scope": "SYNTHETIC_DELIVERY_KIT_UI_ONLY"
+    },
+    "orb": {
+      "passed": true,
+      "count": 27,
+      "scope": "R8_SYNTHETIC_UI_ONLY_NOT_PRODUCT"
+    },
+    "meeting": {
+      "passed": true,
+      "count": 17,
+      "scope": "SYNTHETIC_MEETING_REFERENCE_NOT_PRODUCT"
+    },
+    "agents": {
+      "passed": true,
+      "count": 25,
+      "scope": "SYNTHETIC_AGENT_ONBOARDING_REFERENCE_NOT_PRODUCT"
+    },
+    "agent-contract": {
+      "passed": true,
+      "count": 38,
+      "scope": "PURE_REFERENCE_CONTRACT_NOT_PRODUCT"
+    },
+    "geometry": {
+      "passed": true,
+      "count": 7,
+      "scope": "OFFLINE_SOURCE_ADAPTED_GEOMETRY_ONLY"
+    },
+    "dual-agent": {
+      "passed": true,
+      "count": 44,
+      "scope": "Offline disposable Git and local fake-CLI tests. No real Codex/Fable session, product, live provider or deployment."
+    },
+    "negative": {
+      "passed": true,
+      "count": 16,
+      "scope": "DELIVERY_KIT_NEGATIVE_CONTROLS"
+    },
+    "pdf": {
+      "passed": true,
+      "count": 0,
+      "scope": "PDF layout and text coverage only; not product"
+    },
+    "capture": {
+      "passed": true,
+      "count": 0,
+      "scope": "Current r10 synthetic HTML screenshots, not product"
+    },
+    "onboarding-policy": {
+      "passed": true,
+      "count": 35,
+      "scope": "PURE_REFERENCE_TESTS_NOT_NATIVE_OR_MEDIA_VALIDATION"
+    },
+    "onboarding-browser": {
+      "passed": true,
+      "count": 30,
+      "scope": "SYNTHETIC_HTML_REFERENCE_NOT_PRODUCT"
+    }
+  },
+  "historical_evidence": "verification/history/r9-pre-consolidation and onboarding/verification/history; never current product proof",
+  "source_export_included": true,
+  "source_export_complete_checkout": false
+}

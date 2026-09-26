@@ -1,0 +1,135 @@
+{
+  "schema": "metis.launch.plan.v1",
+  "kind": "proposed_not_rendered",
+  "date": "2026-09-26",
+  "subject": "Métis",
+  "references_are_not_product_scope": true,
+  "hero": {
+    "duration_seconds": 60,
+    "width": 3840,
+    "height": 2160,
+    "fps": 30,
+    "fallback_resolution": [
+      1920,
+      1080
+    ],
+    "narrator": false,
+    "product_audio": "real authorized recorded dialogue only; otherwise text",
+    "scenes": [
+      {
+        "id": "LF-01",
+        "start_s": 0,
+        "end_s": 6,
+        "duration_s": 6,
+        "proposed_copy": "Stay in the conversation.",
+        "intended_evidence": "Real note-taking from an authorized synthetic meeting.",
+        "product_status": "NOT_ASSESSED",
+        "source_capture": null,
+        "claim_id": null,
+        "reconstruction_label": null
+      },
+      {
+        "id": "LF-02",
+        "start_s": 6,
+        "end_s": 13,
+        "duration_s": 7,
+        "proposed_copy": "Notes become useful.",
+        "intended_evidence": "Decision/action item from fixture, authentic UI.",
+        "product_status": "NOT_ASSESSED",
+        "source_capture": null,
+        "claim_id": null,
+        "reconstruction_label": null
+      },
+      {
+        "id": "LF-03",
+        "start_s": 13,
+        "end_s": 21,
+        "duration_s": 8,
+        "proposed_copy": "One key away.",
+        "intended_evidence": "Actual configured hotkey, continuing notes, typed contextual question.",
+        "product_status": "NOT_ASSESSED",
+        "source_capture": null,
+        "claim_id": null,
+        "reconstruction_label": null
+      },
+      {
+        "id": "LF-04",
+        "start_s": 21,
+        "end_s": 30,
+        "duration_s": 9,
+        "proposed_copy": "Put it to work.",
+        "intended_evidence": "Explicitly requested draft and verified result; no send.",
+        "product_status": "NOT_ASSESSED",
+        "source_capture": null,
+        "claim_id": null,
+        "reconstruction_label": null
+      },
+      {
+        "id": "LF-05",
+        "start_s": 30,
+        "end_s": 38,
+        "duration_s": 8,
+        "proposed_copy": "Keep what matters.",
+        "intended_evidence": "End meeting, approve one eligible memory, truthful status.",
+        "product_status": "NOT_ASSESSED",
+        "source_capture": null,
+        "claim_id": null,
+        "reconstruction_label": null
+      },
+      {
+        "id": "LF-06",
+        "start_s": 38,
+        "end_s": 49,
+        "duration_s": 11,
+        "proposed_copy": "Pick up with context.",
+        "intended_evidence": "Clearly later/new session; Hindsight recall with source; optional real app reply outside call.",
+        "product_status": "NOT_ASSESSED",
+        "source_capture": null,
+        "claim_id": null,
+        "reconstruction_label": null
+      },
+      {
+        "id": "LF-07",
+        "start_s": 49,
+        "end_s": 55,
+        "duration_s": 6,
+        "proposed_copy": "Still your call.",
+        "intended_evidence": "Actual memory/source controls and refinement or interruption.",
+        "product_status": "NOT_ASSESSED",
+        "source_capture": null,
+        "claim_id": null,
+        "reconstruction_label": null
+      },
+      {
+        "id": "LF-08",
+        "start_s": 55,
+        "end_s": 60,
+        "duration_s": 5,
+        "proposed_copy": "Stay present. Carry it forward.",
+        "intended_evidence": "Métis brand and approved CTA, no invented availability.",
+        "product_status": "NOT_ASSESSED",
+        "source_capture": null,
+        "claim_id": null,
+        "reconstruction_label": null
+      }
+    ]
+  },
+  "cutdowns": [
+    {
+      "duration_seconds": 30,
+      "width": 1080,
+      "height": 1920,
+      "editorial_treatment": "re-edit and reframe, not center crop",
+      "status": "NOT_RENDERED"
+    },
+    {
+      "duration_seconds": 20,
+      "width": 1920,
+      "height": 1080,
+      "editorial_treatment": "two or three proven beats with ending",
+      "status": "NOT_RENDERED"
+    }
+  ],
+  "release_claims_approved": false,
+  "film_status": "NOT_CREATED"
+}

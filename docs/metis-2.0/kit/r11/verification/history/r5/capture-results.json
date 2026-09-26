@@ -1,0 +1,187 @@
+{
+  "scope": "SYNTHETIC_DELIVERY_KIT_STILLS",
+  "captures": [
+    {
+      "path": "visual/captures/01-solving-desktop.png",
+      "state": "solving",
+      "view": "experience",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1238,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/02-approval-desktop.png",
+      "state": "approval",
+      "view": "experience",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1247,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/03-settings-desktop.png",
+      "state": "solving",
+      "view": "settings",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1088,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/04-intelligence-desktop.png",
+      "state": "solving",
+      "view": "intelligence",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1032,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/05-operator-desktop.png",
+      "state": "solving",
+      "view": "operator",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1046,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/06-listening-right-edge.png",
+      "state": "listening",
+      "view": "experience",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1238,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/07-narrow-typing.png",
+      "state": "typing",
+      "view": "experience",
+      "viewport": [
+        390,
+        1900
+      ],
+      "capture_height": 1495,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/08-light-desktop.png",
+      "state": "solving",
+      "view": "experience",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1238,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/09-kit-entry.png",
+      "state": "solving",
+      "view": "home",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1612,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/10-armed-desktop.png",
+      "state": "armed",
+      "view": "experience",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1238,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/11-microphone-off.png",
+      "state": "off",
+      "view": "experience",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1238,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/12-cloud-unavailable.png",
+      "state": "offline",
+      "view": "experience",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1238,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/13-privacy-blocked.png",
+      "state": "privacy-blocked",
+      "view": "experience",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1238,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    },
+    {
+      "path": "visual/captures/14-expanded-answer.png",
+      "state": "answer",
+      "view": "experience",
+      "viewport": [
+        1460,
+        1900
+      ],
+      "capture_height": 1289,
+      "motion": "Reduced motion enabled for still capture",
+      "render_mode": "in-memory Chromium",
+      "synthetic": true
+    }
+  ]
+}

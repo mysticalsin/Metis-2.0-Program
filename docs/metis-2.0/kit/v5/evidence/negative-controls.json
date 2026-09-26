@@ -1,0 +1,77 @@
+{
+  "controls": [
+    {
+      "id": "reject-untrusted-input",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 302,
+      "failed": 4,
+      "detected": true,
+      "scope": "deliberate mutation of TEMP compiled copy; original sources/tests unchanged"
+    },
+    {
+      "id": "enforce-route-scope",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 305,
+      "failed": 1,
+      "detected": true,
+      "scope": "deliberate mutation of TEMP compiled copy; original sources/tests unchanged"
+    },
+    {
+      "id": "require-exact-approval",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 298,
+      "failed": 8,
+      "detected": true,
+      "scope": "deliberate mutation of TEMP compiled copy; original sources/tests unchanged"
+    },
+    {
+      "id": "require-verified-completion",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 294,
+      "failed": 12,
+      "detected": true,
+      "scope": "deliberate mutation of TEMP compiled copy; original sources/tests unchanged"
+    },
+    {
+      "id": "retain-lease-until-drained",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 302,
+      "failed": 4,
+      "detected": true,
+      "scope": "deliberate mutation of TEMP compiled copy; original sources/tests unchanged"
+    },
+    {
+      "id": "reject-stale-voice-owner",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 303,
+      "failed": 3,
+      "detected": true,
+      "scope": "deliberate mutation of TEMP compiled copy; original sources/tests unchanged"
+    },
+    {
+      "id": "dont-cancel-work-for-status",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 303,
+      "failed": 3,
+      "detected": true,
+      "scope": "deliberate mutation of TEMP compiled copy; original sources/tests unchanged"
+    },
+    {
+      "id": "all-steps-before-done",
+      "exit_code": 1,
+      "tests": 306,
+      "passed": 305,
+      "failed": 1,
+      "detected": true,
+      "scope": "deliberate mutation of TEMP compiled copy; original sources/tests unchanged"
+    }
+  ],
+  "all_detected": true
+}

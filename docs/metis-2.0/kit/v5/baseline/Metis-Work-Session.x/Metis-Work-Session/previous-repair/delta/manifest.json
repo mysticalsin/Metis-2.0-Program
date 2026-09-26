@@ -1,0 +1,116 @@
+{
+  "schema": "metis.scoped-patch.v1",
+  "repository": "mysticalsin/AskToto-Mantu",
+  "base_commit": "2bf21f1ceefe117838325342574b57852e5cadcb",
+  "base_tree": "945c28fb6938712bf6c52bccfc8d31591aea9ced",
+  "date": "2026-09-24",
+  "product_version_unchanged": "1.9.6",
+  "is_release": false,
+  "remote_applied": false,
+  "independent_agent_review_performed": false,
+  "patch": {
+    "path": "patches/metis-r11-scoped.patch",
+    "sha256": "470218601cf7491372242cbfe319c5a52b0057ef5d32d05166686f93c4982745"
+  },
+  "files": [
+    {
+      "path": "operator/src/ai-gateway.privacy-fixture.ts",
+      "old_git_blob": null,
+      "new_sha256": "a797b37d5cabbb47d9e368d1f0f24eb3a956ea783cd4b62ad890d7d661d8e393",
+      "kind": "new"
+    },
+    {
+      "path": "operator/src/ai-gateway.privacy.test.ts",
+      "old_git_blob": null,
+      "new_sha256": "275dee0ec939847203f1fe900ed7eed45deeb952fbc74f0281b5468046ccdabb",
+      "kind": "new"
+    },
+    {
+      "path": "operator/src/ai-gateway.ts",
+      "old_git_blob": "08d61de4924bf11f956e21c895928715e27d5012",
+      "new_sha256": "f5ab4c18f9524208c96b4e3b407f35fe7ad7ca0077104522b16a82126292264c",
+      "kind": "modified"
+    },
+    {
+      "path": "operator/src/ask-meter.ts",
+      "old_git_blob": "3537cc58d3acfb7b061c6c6c087d5ce36877d909",
+      "new_sha256": "461c8b1e8e07838137a87250a023553aad9ae6c35b680e02d75567d85968483d",
+      "kind": "modified"
+    },
+    {
+      "path": "operator/src/ask-meter.validation.test.ts",
+      "old_git_blob": null,
+      "new_sha256": "97c8523a34aea046d3aeb8eb006309f6ba24ce70fd2dcab511a41df91fdbae70",
+      "kind": "new"
+    },
+    {
+      "path": "operator/src/ask.test.ts",
+      "old_git_blob": "0ac0dc9e322f035d0a9124c5f1d44d0fd0433873",
+      "new_sha256": "62869c3dded0c28e02decd57ff01700dce759f09dfdc76d4b6ebc3c5ae2b484b",
+      "kind": "modified"
+    },
+    {
+      "path": "operator/src/cloudflare-connect.test.ts",
+      "old_git_blob": "5d96183aea3109f061302a5683cf0b27e10f88b1",
+      "new_sha256": "6e88d5440761aef43c6dc95d31b151a8ee555a686ab4df63d0017a682c62fdff",
+      "kind": "modified"
+    },
+    {
+      "path": "operator/src/keys.privacy.test.ts",
+      "old_git_blob": null,
+      "new_sha256": "b4dff22fc99f7464ce681e321ec3eeaf63d7b65a607b2b10ef3503313d558bc3",
+      "kind": "new"
+    },
+    {
+      "path": "operator/src/keys.test.ts",
+      "old_git_blob": "30fbb52023416f093a56013ef9e6949dd35cbe73",
+      "new_sha256": "222a80c8f16fd4fd2d85403d813f1c3cb1f2d9ae25d1a250a2dd3cf8f0db6b3b",
+      "kind": "modified"
+    },
+    {
+      "path": "operator/src/keys.ts",
+      "old_git_blob": "07b6bb33512faab9be27783ec4f371f5ab4ac6f5",
+      "new_sha256": "4cf44b813d60645b44ec37bf3333ab93a5157defa9aab0b9ae4129d3a0acc006",
+      "kind": "modified"
+    },
+    {
+      "path": "operator/src/use.test.ts",
+      "old_git_blob": "fea8b0ee17239317402c4e946ceb59e5cc4edbe2",
+      "new_sha256": "494ad85dd4bc9c7fee9567a4126f0a37cafe2a455d15cacc091c5d32fdc696ae",
+      "kind": "modified"
+    },
+    {
+      "path": "operator/src/use.ts",
+      "old_git_blob": "6320793549bab3072920a8e01baa2e868480ceb5",
+      "new_sha256": "6be1f3f69c7dd17c2fb23014928a15b05b53173f9bab8e988289d58ab32e5022",
+      "kind": "modified"
+    },
+    {
+      "path": "src/renderer/src/lib/onboarding-hero-video.test.ts",
+      "old_git_blob": "5e8ac6740b8fade16fe03d2e976ee68cb152392d",
+      "new_sha256": "e70ad496995fa71e7b2c60628b812ea1d7ed95c081079cee53e897e965ad697b",
+      "kind": "modified"
+    },
+    {
+      "path": "src/renderer/src/lib/onboarding-hero-video.ts",
+      "old_git_blob": "3798b94bd4f1e352d8e0120675473784f3ec5db0",
+      "new_sha256": "11eb389c1de05c27bace33820cea52bd0d215f2066aaa509ae2450f50639f99e",
+      "kind": "modified"
+    },
+    {
+      "path": "src/shared/metis-wake-lossless.test.ts",
+      "old_git_blob": null,
+      "new_sha256": "36db39dda671ef14f72988cfb96bfde5c4453832ea2885326aef58b9b177d03b",
+      "kind": "new"
+    },
+    {
+      "path": "src/shared/metis-wake.ts",
+      "old_git_blob": "6fd29fa5ff6fb5b5630cbd6acebe9760443a19dd",
+      "new_sha256": "b992b9f266811c0daed49e52243d53325ff10a609ec20c0533f67851e9c6b1f4",
+      "kind": "modified"
+    }
+  ],
+  "full_application_ci": "NOT_RUN",
+  "native_and_live_service_validation": "NOT_RUN",
+  "delta_revision": 2
+}

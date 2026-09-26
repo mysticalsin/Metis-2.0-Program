@@ -1,0 +1,8 @@
+{
+  "scope": "CLI_AUTHORIZATION_GUARD_ONLY",
+  "command": "node memory/live-smoke.mjs",
+  "exit": 2,
+  "result": "NOT_RUN",
+  "passed": true,
+  "explanation": "Without explicit synthetic-write and provider-cost authorization, the helper refused before a network request. This is not a live-service smoke result."
+}

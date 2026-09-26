@@ -1,0 +1,36 @@
+{
+  "scope": "DAMAGED_COPY_CHECKER_TESTS",
+  "passed": true,
+  "probes": [
+    {
+      "probe": "wrong-presenter",
+      "detected": true,
+      "failed_checks": [
+        "Only Tony Walteur is the configured presenter"
+      ]
+    },
+    {
+      "probe": "false-recording",
+      "detected": true,
+      "failed_checks": [
+        "Unprovided recording remains empty and unapproved"
+      ]
+    },
+    {
+      "probe": "dropped-appearance",
+      "detected": true,
+      "failed_checks": [
+        "Source-aligned route retains Appearance and Ready",
+        "Readable source matches embedded preview"
+      ]
+    },
+    {
+      "probe": "network-call",
+      "detected": true,
+      "failed_checks": [
+        "Readable source matches embedded preview",
+        "No external API/capture/persistence in interactive reference"
+      ]
+    }
+  ]
+}

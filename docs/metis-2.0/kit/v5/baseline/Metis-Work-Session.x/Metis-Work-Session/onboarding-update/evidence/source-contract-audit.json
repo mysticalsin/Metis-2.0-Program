@@ -1,0 +1,293 @@
+{
+  "rows": [
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/onboard-cta/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/max-w-\\[880px\\]/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/Mantu Intelligence/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/demoRecapMarkdown/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/ModeRecapView/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).not.toMatch(/max-w-\\[520px\\]/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).not.toMatch(/Recap · next steps/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/<Bar/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/<Copilot/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).not.toMatch(/terminal|xterm|pty/i)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).not.toMatch(/setTimeout\\(/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/requestAnimationFrame\\(/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/useDemoPlayback/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/demoPlaybackElapsed/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/demoPlaybackAfterNext/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/onPlayVideo\\?\\.\\(\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/setLocalMs\\(next\\.localMs\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/Next/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/Set me up/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).toMatch(/This clip plays on its own/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/main/island/geometry.test.ts",
+      "assertion": "expect(demo).not.toMatch(/anywhere on the stage/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-demo-clock.test.ts",
+      "assertion": "expect(demo).toMatch(/export const DEMO_COMMIT_MS = 100/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-demo-clock.test.ts",
+      "assertion": "expect(demo).toMatch(/cursorRef/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-demo-clock.test.ts",
+      "assertion": "expect(demo).toMatch(/cursorEl\\.style\\.transform/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-demo-clock.test.ts",
+      "assertion": "expect(demo).toMatch(/setLocalMs\\(next\\.localMs\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-demo-clock.test.ts",
+      "assertion": "expect(demo).not.toMatch(/const tick = \\(now: number\\): void => \\{\\s*const local = now - t0\\s*\\n\\s*setLocalMs\\(local\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-demo-clock.test.ts",
+      "assertion": "expect(demo).toMatch(/local - lastCommitRef\\.current >= DEMO_COMMIT_MS/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-demo-clock.test.ts",
+      "assertion": "expect(demo).toMatch(/prefetchOnboardingDemoChunks/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-demo-clock.test.ts",
+      "assertion": "expect(demo).not.toMatch(/setTimeout\\(/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-demo-clock.test.ts",
+      "assertion": "expect(demo).toMatch(/demoPlaybackAfterNext/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-hero-video.test.ts",
+      "assertion": "expect(demo).toMatch(/onClick=\\{\\(\\) => \\{\\s*onPlayVideo\\?\\.\\(\\)\\s*\\n\\s*if \\(demoNextLeavesTour\\(beat\\)\\) onContinue\\(\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-hero-video.test.ts",
+      "assertion": "expect(demo).toMatch(/demoPlaybackAfterNext/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-hero-video.test.ts",
+      "assertion": "expect(demo).toMatch(/setLocalMs\\(next\\.localMs\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-hero-video.test.ts",
+      "assertion": "expect(demo).not.toMatch(/setTimeout\\(/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-kinetic-grid.test.ts",
+      "assertion": "expect(demo).not.toMatch(/Skip/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-quality-bar.test.ts",
+      "assertion": "expect(demo).toMatch(/scene-enter/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-quality-bar.test.ts",
+      "assertion": "expect(demo).toMatch(/>\\s*Set me up\\s*</)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-quality-bar.test.ts",
+      "assertion": "expect(demo).toMatch(/demoNextLeavesTour\\(beat\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-tour-stay.test.ts",
+      "assertion": "expect(demo).toMatch(/>\\s*Next\\s*</)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-tour-stay.test.ts",
+      "assertion": "expect(demo).toMatch(/>\\s*Set me up\\s*</)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-tour-stay.test.ts",
+      "assertion": "expect(demo).not.toMatch(/\\{hasNext && \\(/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-tour-stay.test.ts",
+      "assertion": "expect(demo).toMatch(/demoNextLeavesTour\\(beat\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-tour-stay.test.ts",
+      "assertion": "expect(demo).toMatch(/onContinue\\(\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "src/renderer/src/lib/onboarding-tour-stay.test.ts",
+      "assertion": "expect(demo).toMatch(/Here’s what that looks like/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "v2/onboarding-hero-video.test.ts",
+      "assertion": "expect(demo).toMatch(/onClick=\\{\\(\\) => \\{\\s*onPlayVideo\\?\\.\\(\\)\\s*\\n\\s*if \\(demoNextLeavesTour\\(beat\\)\\) onContinue\\(\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "v2/onboarding-hero-video.test.ts",
+      "assertion": "expect(demo).toMatch(/demoPlaybackAfterNext/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "v2/onboarding-hero-video.test.ts",
+      "assertion": "expect(demo).toMatch(/setLocalMs\\(next\\.localMs\\)/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    },
+    {
+      "file": "v2/onboarding-hero-video.test.ts",
+      "assertion": "expect(demo).not.toMatch(/setTimeout\\(/)",
+      "baseline_pass": true,
+      "improved_pass": true
+    }
+  ],
+  "regressions": []
+}

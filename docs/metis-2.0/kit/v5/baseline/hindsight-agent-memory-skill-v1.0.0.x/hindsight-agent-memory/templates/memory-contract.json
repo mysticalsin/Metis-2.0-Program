@@ -1,0 +1,67 @@
+{
+  "schema": "application-policy-example-not-native-hindsight-config",
+  "project": "REPLACE_WITH_PROJECT",
+  "outcome": "REPLACE_WITH_MEASURABLE_OUTCOME",
+  "memory_mode": "read_only_until_approved",
+  "authority": {
+    "canonical_sources": [],
+    "execution_state": "existing_application_store",
+    "memory": "advisory"
+  },
+  "identity": {
+    "principal_source": "existing_validated_backend_identity",
+    "bank_resolution": "server_owned_registry",
+    "bank_model_arguments_allowed": false,
+    "authorization_cohort": "DEFINE_BEFORE_SHARED_SYNTHESIS"
+  },
+  "capture": {
+    "allowed_sources": [],
+    "allowed_categories": [
+      "confirmed_preference",
+      "approved_decision",
+      "verified_outcome",
+      "reviewed_lesson"
+    ],
+    "excluded": [
+      "credentials",
+      "unapproved_personal_data",
+      "unexecuted_plans",
+      "unreviewed_model_output"
+    ],
+    "permission_owner": "REPLACE",
+    "default_update_mode": "replace",
+    "record_after_canonical_commit": true
+  },
+  "retrieval": {
+    "required_tags": [
+      "purpose:assistant"
+    ],
+    "tags_match": "all_strict",
+    "default_budget": "low",
+    "max_recall_calls_per_turn": 1,
+    "max_retrieved_text_tokens": 1500,
+    "max_evidence_bytes": 12000,
+    "exact_token_counter": "SUPPLY_RECEIVING_MODEL_TOKENIZER_IF_TOKEN_BOUND_REQUIRED",
+    "canonical_revalidation_required": true,
+    "native_reflect_enabled": false
+  },
+  "lifecycle": {
+    "retention_days": null,
+    "retention_policy_owner": "REQUIRED_BEFORE_REAL_DATA",
+    "disable_stops_capture": true,
+    "tombstone_before_purge": true,
+    "invalidate_derived_on_delete": true
+  },
+  "operations": {
+    "existing_outbox": "REPLACE_OR_EXPLICITLY_NONE",
+    "unknown_write": "reconcile_before_retry",
+    "native_operation_id": "enable_only_after_schema_and_behavior_test",
+    "ordered_document_updates": true
+  },
+  "readiness": {
+    "local_tests": "NOT_RUN_IN_TARGET_PROJECT",
+    "native_tests": "NOT_RUN",
+    "cross_user_tests": "NOT_RUN",
+    "restore_test": "NOT_RUN"
+  }
+}

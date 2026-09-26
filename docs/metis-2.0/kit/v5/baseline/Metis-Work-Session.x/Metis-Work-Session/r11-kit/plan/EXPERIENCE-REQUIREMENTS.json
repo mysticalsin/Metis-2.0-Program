@@ -1,0 +1,274 @@
+{
+  "schema": "metis.experience.v1",
+  "requirements": [
+    {
+      "id": "EXP-01",
+      "title": "Prepared, not surprised",
+      "requirements": [
+        "M2-KNOW-01",
+        "M2-SET-01",
+        "M2-TEAMS-01"
+      ],
+      "tasks": [
+        "TASK-008",
+        "TASK-037",
+        "TASK-040",
+        "TASK-046",
+        "TASK-047",
+        "TASK-055"
+      ],
+      "implementation": "One calm Today view offers the next eligible meeting, last confirmed discussion, outstanding commitments, key unknowns and source dates. Pre-meeting briefs use only authorized context; private-to-me does not imply shareable-to-the-room. Absent calendar access is a clear manual route, not a blank spinner.",
+      "acceptance": "A user finds the relevant last commitment within two deliberate interactions on the defined fixture; wrong-account, guest and expired-source tests deny disclosure.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-02",
+      "title": "Human notes remain the user’s work",
+      "requirements": [
+        "M2-DATA-01",
+        "M2-KNOW-02",
+        "M2-SKILL-02"
+      ],
+      "tasks": [
+        "TASK-005",
+        "TASK-018",
+        "TASK-035",
+        "TASK-040",
+        "TASK-043",
+        "TASK-054"
+      ],
+      "implementation": "Support lightweight human-authored notes and explicit important-moment markers during a meeting. Keep raw human notes, generated enhancements and accepted corrections as distinct revisions. Enhancements are previewed and can be accepted by block; re-run never overwrites newer edits. A moment marker is not permission to retain an audio clip. Persist permitted human notes only in the chosen knowledge environment, never telemetry.",
+      "acceptance": "Typing while a partial transcript arrives, enhancement returns late, storage fails or another editor changes a block does not lose human text. The original and accepted revision remain explainable; unretained source intervals are not fabricated quotations.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-03",
+      "title": "Useful, quiet live assistance",
+      "requirements": [
+        "M2-ASR-01",
+        "M2-SKILL-02",
+        "M2-UX-02"
+      ],
+      "tasks": [
+        "TASK-017",
+        "TASK-018",
+        "TASK-030",
+        "TASK-037",
+        "TASK-043",
+        "TASK-055",
+        "TASK-056",
+        "TASK-060"
+      ],
+      "implementation": "Provide Catch me up, What should I ask?, Explain this term and commitments-so-far in a small optional in-meeting panel. Tie each answer to current authorized interval/source freshness. A coalesced foreground request outranks background analysis. Do not trigger models on every transcript token; no unsolicited speech, focus grabbing or automatic sending.",
+      "acceptance": "After a topic change, obsolete suggestions expire without erasing pinned human notes. Verify source intervals, catch-up coverage, request count, latency and no duplicate audio session under real capture.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-04",
+      "title": "Trusted follow-through, not a wall of prose",
+      "requirements": [
+        "M2-ACT-01",
+        "M2-SKILL-01",
+        "M2-SKILL-02",
+        "M2-DATA-01"
+      ],
+      "tasks": [
+        "TASK-009",
+        "TASK-033",
+        "TASK-035",
+        "TASK-042",
+        "TASK-043",
+        "TASK-044",
+        "TASK-052",
+        "TASK-054",
+        "TASK-055"
+      ],
+      "implementation": "Turn an approved summary into a short review inbox: decision, action, owner, due date, evidence and unresolved fields. Draft follow-ups and CRM updates as separate proposals. Show exact destination/object and field diff before consequential commit; resolve unknown outcomes with readback. Drafting, saving, sharing and sending are distinct permissions.",
+      "acceptance": "One supported CRM/task/email route is demonstrated with exact-payload approval, idempotency, stale edit conflict and remote object receipt. No universal connector claims or unauthorized automatic sync.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-05",
+      "title": "A powerful notebook with fewer settings",
+      "requirements": [
+        "M2-SET-01",
+        "M2-SET-02",
+        "M2-UX-02"
+      ],
+      "tasks": [
+        "TASK-008",
+        "TASK-022",
+        "TASK-028",
+        "TASK-040",
+        "TASK-044",
+        "TASK-055"
+      ],
+      "implementation": "Today, meeting workspace, search and review should be reachable without a vendor/model menu. Preserve the four Settings destinations and all old-key dispositions. Show recovery and effective policy in context. Include back-to-back meeting handover, clean empty states, narrow windows, keyboard/screen-reader flow and native conventions.",
+      "acceptance": "Run the existing nontechnical task study plus back-to-back and permission-denied cases; measure unassisted success, mistakes and time rather than counting screenshots.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-06",
+      "title": "Vocabulary and template quality without false certainty",
+      "requirements": [
+        "M2-ASR-02",
+        "M2-SKILL-01",
+        "M2-KNOW-02"
+      ],
+      "tasks": [
+        "TASK-009",
+        "TASK-018",
+        "TASK-037",
+        "TASK-042",
+        "TASK-043",
+        "TASK-053",
+        "TASK-054"
+      ],
+      "implementation": "Use reviewed, scoped vocabulary only on a transport that supports it and qualifies for privacy. It biases recognition; it cannot substitute a term against evidence. Keep all nine existing role-specific recaps and support reviewed alternate summaries from the same authorized record without overwriting original or human-accepted content.",
+      "acceptance": "Held-out names/amounts/negations include plausible-but-wrong glossary matches. Compare critical errors and corrections by language, not just aggregate WER; explicitly unavailable provider features do not get invented flags.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-07",
+      "title": "Capture choices with truthful recovery",
+      "requirements": [
+        "M2-STT-03",
+        "M2-ASR-01",
+        "M2-TEAMS-04",
+        "M2-DATA-01"
+      ],
+      "tasks": [
+        "TASK-005",
+        "TASK-017",
+        "TASK-018",
+        "TASK-024",
+        "TASK-025",
+        "TASK-029",
+        "TASK-049",
+        "TASK-050",
+        "TASK-051",
+        "TASK-053",
+        "TASK-054"
+      ],
+      "implementation": "Qualify live command, desktop meeting, supported bot/media and authorized audio/transcript import independently. Capture is neither covert nor universal. Use one occurrence source lease. Safe imports are format/size/sniff constrained, preserve timezone/speaker uncertainty and never silently upload a user-selected local-only file.",
+      "acceptance": "Handover from a failed source is explicit and gap-aware, not a second hidden recorder. Crash/reboot cannot resume an expired recording authority. Imported material cannot arm desktop actions or bypass a selected retention profile.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-08",
+      "title": "A real enterprise entitlement and trust plane",
+      "requirements": [
+        "M2-SEC-01",
+        "M2-SEC-02",
+        "M2-OPS-01"
+      ],
+      "tasks": [
+        "TASK-002",
+        "TASK-006",
+        "TASK-012",
+        "TASK-014",
+        "TASK-034",
+        "TASK-045",
+        "TASK-062",
+        "TASK-063"
+      ],
+      "implementation": "Resolve the source export’s separate legacy license and Operator capability paths. Document issuance, seat/device ownership, offline lease, authority, expiry, revocation and bootstrap. Shared funding is not shared access. Existing legitimate data access/recovery remains possible under a spending outage.",
+      "acceptance": "Wrong tenant, dev trust key, copied lease, concurrency race and revoked seat fail appropriate capability boundaries. No unbounded paid relay or accidental second license authority.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-09",
+      "title": "No silent loss or misleading success",
+      "requirements": [
+        "M2-ACT-02",
+        "M2-DATA-01",
+        "M2-KNOW-05"
+      ],
+      "tasks": [
+        "TASK-005",
+        "TASK-018",
+        "TASK-029",
+        "TASK-033",
+        "TASK-035",
+        "TASK-039",
+        "TASK-041",
+        "TASK-054",
+        "TASK-062"
+      ],
+      "implementation": "Every save, command, source handover, skill and external write exposes accepted/attempted/committed/verified/unknown accurately. Use revision-aware writes, safe reconciliation and finite retries. Stored-but-indexing is not failed; queued is not committed; a model response is not an object receipt.",
+      "acceptance": "Inject failures between commit, receipt and projection. No duplicate side effects, missing summaries painted complete, false native save, swallowed error or resurrected revoked/deleted record.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-10",
+      "title": "Animated identity, bounded cost",
+      "requirements": [
+        "M2-UX-01",
+        "M2-UX-02",
+        "M2-VOICE-02"
+      ],
+      "tasks": [
+        "TASK-019",
+        "TASK-028",
+        "TASK-029",
+        "TASK-030",
+        "TASK-060",
+        "TASK-063"
+      ],
+      "implementation": "ARMED is only an animated monochrome solving orb on a transparent host, faithful to Libraries.dev. Caption, bar and voice glow appear only with the appropriate active surface. Local animation never represents network/model activity. Honor reduced motion, explicit pause and resource policies; no desktop-wide invisible input region.",
+      "acceptance": "Record time-separated frames plus original algorithm/preset lineage; test phase continuity, hide/show, DPR, focus, draft retention, energy policy and real native hit-testing. Pausing the visual does not silently stop or start microphone capture.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-11",
+      "title": "Portability and control over knowledge",
+      "requirements": [
+        "M2-KNOW-05",
+        "M2-DUST-01",
+        "M2-DUST-02",
+        "M2-GOV-02"
+      ],
+      "tasks": [
+        "TASK-007",
+        "TASK-035",
+        "TASK-036",
+        "TASK-038",
+        "TASK-039",
+        "TASK-041",
+        "TASK-052",
+        "TASK-058"
+      ],
+      "implementation": "Provide authenticated exports of permitted approved notes/actions with schema, sources, revisions and ownership. Sharing defaults to explicit principals rather than anyone with a link. Revoke links/read paths promptly. Dust edits canonical objects, not generated markdown. Exports do not quietly add unretained transcripts or excluded voiceprints.",
+      "acceptance": "Round-trip permitted exports, valid subset imports, CSV/HTML injection tests, redacted fields, wrong-audience links and rights workflows. Expired/deleted links cannot reveal titles/counts or cached content.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "EXP-12",
+      "title": "Evidence-based competitive and operational qualification",
+      "requirements": [
+        "M2-BASE-01",
+        "M2-OPS-03",
+        "M2-ENG-01",
+        "M2-REL-01"
+      ],
+      "tasks": [
+        "TASK-001",
+        "TASK-004",
+        "TASK-053",
+        "TASK-055",
+        "TASK-056",
+        "TASK-057",
+        "TASK-060",
+        "TASK-061",
+        "TASK-062",
+        "TASK-063",
+        "TASK-066"
+      ],
+      "implementation": "Compare the same consented tasks, languages, hardware/network and privacy scope against legitimate available competitor trials. Score completion, critical factual errors, user editing burden, time-to-useful-result, accessibility, total work/cost and resource footprint. Separate vendor claims, source review, simulated UX and executed product evidence. No official affiliation, infallibility or superiority claim is inferred from feature count.",
+      "acceptance": "Pre-register supported slices and report failures/abstentions/uncertainty, no cherry-picked clips or changed denominators. Require final signed Windows and native Mac QA receipts, actual backend and mirror-safe release facts before a public claim.",
+      "verification": "NOT_TESTED"
+    }
+  ],
+  "adds_to": "55 baseline M2 requirements; no baseline IDs removed",
+  "scope": "Required qualifications of the requested meeting-copilot upgrade; every row maps to existing work, not an unrelated new platform."
+}

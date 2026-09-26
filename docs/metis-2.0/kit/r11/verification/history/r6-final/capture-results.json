@@ -1,0 +1,24 @@
+{
+  "scope": "SYNTHETIC_R6_HTML_STILLS_ONLY",
+  "render_mode": "Chromium in-memory documents, real rendering, screenshot animations disabled",
+  "screenshots": [
+    "01-solving-desktop.png",
+    "02-approval-desktop.png",
+    "03-settings-desktop.png",
+    "04-intelligence-desktop.png",
+    "05-operator-desktop.png",
+    "06-listening-right-edge.png",
+    "07-narrow-typing.png",
+    "08-light-desktop.png",
+    "09-kit-entry.png",
+    "10-armed-desktop.png",
+    "11-microphone-off.png",
+    "12-cloud-unavailable.png",
+    "13-privacy-blocked.png",
+    "14-expanded-answer.png",
+    "15-armed-right-edge.png",
+    "16-armed-light.png",
+    "17-armed-keyboard-focus.png"
+  ],
+  "count": 17
+}

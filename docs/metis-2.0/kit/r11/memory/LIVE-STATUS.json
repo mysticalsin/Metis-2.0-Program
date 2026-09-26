@@ -1,0 +1,11 @@
+{
+  "application_wiring": "NOT_IMPLEMENTED_IN_ACTUAL_REPOSITORY",
+  "service_deployment": "NOT_RUN",
+  "actual_hindsight_smoke": "NOT_RUN",
+  "native_windows_e2e": "NOT_RUN",
+  "native_mac_e2e": "NOT_RUN",
+  "dust_memory_read_write": "NOT_RUN",
+  "content_retention_proof": "NOT_RUN",
+  "independent_fable_review": "NOT_RUN",
+  "reason": "This delivery session has no approved production memory deployment, database, provider credentials or native application run. Offline component tests and visual fixtures are separate evidence."
+}

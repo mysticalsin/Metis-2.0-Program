@@ -1,0 +1,96 @@
+{
+  "edition": "r9",
+  "master_revision": "4.3",
+  "scope": "HANDOFF_STATIC_SOURCE_AND_SYNTHETIC_REFERENCE_ONLY",
+  "baseline": {
+    "requirements": 55,
+    "use_cases": 112,
+    "tasks": 66,
+    "commitments": 44,
+    "flows": 12,
+    "historical_findings": 20,
+    "experience_qualifications": 12,
+    "source_findings": 24
+  },
+  "new": {
+    "artifact_observations": 32,
+    "qualifications": 16,
+    "cases": 32,
+    "ordered_slices": 18
+  },
+  "tests": {
+    "browser": {
+      "passed": true,
+      "count": 60,
+      "succeeded": 60
+    },
+    "orb": {
+      "passed": true,
+      "count": 27,
+      "succeeded": 27
+    },
+    "meeting": {
+      "passed": true,
+      "count": 17,
+      "succeeded": 17
+    },
+    "agents": {
+      "passed": true,
+      "count": 28,
+      "succeeded": 28
+    },
+    "agent-contract": {
+      "passed": true,
+      "count": 38,
+      "succeeded": 38
+    },
+    "geometry": {
+      "passed": true,
+      "count": 7,
+      "succeeded": 7
+    },
+    "negative": {
+      "passed": true,
+      "count": 12,
+      "succeeded": 12
+    }
+  },
+  "master_sha256": "344019da3e436d190da70d8229d414c98f1f724803d8b80e0186c7f60dc8598d",
+  "product_execution": false,
+  "reference_app_executed": false,
+  "pdf": {
+    "scope": "DOCUMENT_LAYOUT_TEXT_NOT_PRODUCT",
+    "documents": [
+      {
+        "file": "spec/MASTER.pdf",
+        "pages": 149,
+        "checked_ids": 367,
+        "missing_ids": [],
+        "out_of_page_text_pages": [],
+        "passed": true
+      },
+      {
+        "file": "clicky-study/SOURCE-STUDY.pdf",
+        "pages": 10,
+        "checked_ids": 68,
+        "missing_ids": [],
+        "out_of_page_text_pages": [],
+        "passed": true
+      },
+      {
+        "file": "clicky-study/CAPABILITY-ADOPTION.pdf",
+        "pages": 3,
+        "checked_ids": 0,
+        "missing_ids": [],
+        "out_of_page_text_pages": [],
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "limitations": [
+    "No live account, microphone, provider, Teams/Dust or native installer tests.",
+    "No source repository modified or release published.",
+    "Compiled/reference instructions are not recovered original source or runtime proof."
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "date": "2026-09-24",
+  "source_commit": "2bf21f1ceefe117838325342574b57852e5cadcb",
+  "node_version": "22.16.0",
+  "repository_engine_target": "22.22.3",
+  "typescript_version": "5.8.3",
+  "checks": [
+    {
+      "name": "isolated_source_regressions",
+      "tests": 133,
+      "passed": 133,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "log": "evidence/focused-all-tests.tap"
+    },
+    {
+      "name": "initial_wake_media_baseline_negative_control",
+      "tests": 41,
+      "passed": 13,
+      "failed": 28,
+      "exit_code": 1,
+      "log": "evidence/baseline-first-tests.tap"
+    },
+    {
+      "name": "patch_tool_real_git_scope_fixtures",
+      "tests": 12,
+      "passed": 12,
+      "failed": 0,
+      "exit_code": 0,
+      "log": "evidence/patch-application-tests.log"
+    },
+    {
+      "name": "original_r11_hindsight_component_tests",
+      "tests": 60,
+      "passed": 60,
+      "failed": 0,
+      "exit_code": 0,
+      "log": "evidence/hindsight-original-tests.tap",
+      "product_integration_proof": false
+    },
+    {
+      "name": "isolated_strict_typescript",
+      "files": [
+        "src/shared/metis-wake.ts",
+        "operator/src/ai-gateway.ts"
+      ],
+      "exit_code": 0,
+      "log": "evidence/isolated-typecheck.log"
+    },
+    {
+      "name": "transpilation_syntax_only",
+      "files": 17,
+      "errors": 0,
+      "exit_code": 0,
+      "log": "evidence/transpile-syntax.log"
+    }
+  ],
+  "not_run": [
+    "full_repository_vitest",
+    "full_repository_typecheck",
+    "full_repository_build",
+    "native_packaging",
+    "native_installed_app_QA",
+    "live_cloudflare_privacy_and_usage",
+    "live_hindsight_binding",
+    "live_Entra_and_Teams",
+    "independent_Codex_Fable_review",
+    "signing_and_release"
+  ],
+  "remote_write_attempt": {
+    "operation": "create_branch",
+    "result": "403 Resource not accessible by integration",
+    "remote_changes_performed": false
+  },
+  "subagents_spawned": 0
+}

@@ -1,0 +1,1 @@
+Historical r9 screenshots. The eight-stage onboarding shown in these old stills was superseded by the owner correction. Do not implement it. Current active views: onboarding/preview and visual/agents.

@@ -1,0 +1,18 @@
+test_blocked_is_not_pass (test_check_acceptance.EvidenceTests.test_blocked_is_not_pass) ... ok
+test_duplicate_case (test_check_acceptance.EvidenceTests.test_duplicate_case) ... ok
+test_evidence_metadata_mismatch (test_check_acceptance.EvidenceTests.test_evidence_metadata_mismatch) ... ok
+test_missing_case (test_check_acceptance.EvidenceTests.test_missing_case) ... ok
+test_missing_negative_assertions (test_check_acceptance.EvidenceTests.test_missing_negative_assertions) ... ok
+test_other_artifact (test_check_acceptance.EvidenceTests.test_other_artifact) ... ok
+test_other_commit (test_check_acceptance.EvidenceTests.test_other_commit) ... ok
+test_path_escape (test_check_acceptance.EvidenceTests.test_path_escape) ... ok
+test_platform_not_interchangeable (test_check_acceptance.EvidenceTests.test_platform_not_interchangeable) ... ok
+test_shape_and_hash_valid_fixture_is_not_release_approval (test_check_acceptance.EvidenceTests.test_shape_and_hash_valid_fixture_is_not_release_approval) ... ok
+test_symlink (test_check_acceptance.EvidenceTests.test_symlink) ... ok
+test_tampered_evidence (test_check_acceptance.EvidenceTests.test_tampered_evidence) ... ok
+test_unit_is_not_native (test_check_acceptance.EvidenceTests.test_unit_is_not_native) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.007s
+
+OK

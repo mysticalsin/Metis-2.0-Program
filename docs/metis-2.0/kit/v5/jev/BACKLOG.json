@@ -1,0 +1,283 @@
+{
+  "schema": "metis.jev.integration-backlog.v3",
+  "children": [
+    {
+      "id": "JVSTEP-01",
+      "title": "Reconcile actual JEV code, capability routing and historical no-op consumer",
+      "parent_tasks": [
+        "TASK-001",
+        "TASK-003",
+        "TASK-031"
+      ],
+      "parent_titles": {
+        "TASK-001": "Pin the actual system and preserve the working tree",
+        "TASK-003": "Establish a compact source map and numbered handoff",
+        "TASK-031": "Finish the real Jev decision gateway and application"
+      },
+      "depends_on": [],
+      "related_interaction_children": [
+        "CXSTEP-01",
+        "CXSTEP-09"
+      ],
+      "work": "Classify current JEV client, gateway, runtime consumption, telemetry and deployed configuration. Preserve stronger existing implementations.",
+      "candidate_implementation": "SCOPED_TESTED_CODE_AND_REQUIREMENTS",
+      "application_integration": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "note": "Original parent dependencies and scope remain; synthetic tests do not close a task."
+    },
+    {
+      "id": "JVSTEP-02",
+      "title": "Bind central credential lifecycle and separate portal capabilities",
+      "parent_tasks": [
+        "TASK-012",
+        "TASK-031",
+        "TASK-034"
+      ],
+      "parent_titles": {
+        "TASK-012": "Prepare authorized Cloudflare staging and server credentials",
+        "TASK-031": "Finish the real Jev decision gateway and application",
+        "TASK-034": "Repair identity and authoritative metering end to end"
+      },
+      "depends_on": [
+        "JVSTEP-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03",
+        "CXSTEP-16"
+      ],
+      "work": "Server-only encrypted vault, scoped admin probe, atomic rotation/revocation, truthful readiness and two independent enrolled devices.",
+      "candidate_implementation": "SCOPED_TESTED_CODE_AND_REQUIREMENTS",
+      "application_integration": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "note": "Original parent dependencies and scope remain; synthetic tests do not close a task."
+    },
+    {
+      "id": "JVSTEP-03",
+      "title": "Integrate pinned typed vendor transport and profile validation",
+      "parent_tasks": [
+        "TASK-005",
+        "TASK-031",
+        "TASK-057"
+      ],
+      "parent_titles": {
+        "TASK-005": "Define shared speech, command, policy and metering contracts",
+        "TASK-031": "Finish the real Jev decision gateway and application",
+        "TASK-057": "Close no-content-retention and drift-evidence gates"
+      },
+      "depends_on": [
+        "JVSTEP-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-02",
+        "CXSTEP-09"
+      ],
+      "work": "Real API schema, strict bounds, immutable compatible candidates, model pin and task/language/cardinality qualification. No raw media or direct desktop token.",
+      "candidate_implementation": "SCOPED_TESTED_CODE_AND_REQUIREMENTS",
+      "application_integration": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "note": "Original parent dependencies and scope remain; synthetic tests do not close a task."
+    },
+    {
+      "id": "JVSTEP-04",
+      "title": "Make validated JEV selection change the actual prepared action",
+      "parent_tasks": [
+        "TASK-019",
+        "TASK-031",
+        "TASK-033",
+        "TASK-056"
+      ],
+      "parent_titles": {
+        "TASK-019": "Implement opt-in local wake and immediate stop authority",
+        "TASK-031": "Finish the real Jev decision gateway and application",
+        "TASK-033": "Complete safe native and browser actions",
+        "TASK-056": "Run real cross-platform Cloudflare-to-action-to-portal journeys"
+      },
+      "depends_on": [
+        "JVSTEP-02",
+        "JVSTEP-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-06",
+        "CXSTEP-08",
+        "CXSTEP-09"
+      ],
+      "work": "Consume exact selected candidate through current canonical-intent matching, grant, approval, native fencing and independent receipt. Preserve deterministic fast path.",
+      "candidate_implementation": "SCOPED_TESTED_CODE_AND_REQUIREMENTS",
+      "application_integration": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "note": "Original parent dependencies and scope remain; synthetic tests do not close a task."
+    },
+    {
+      "id": "JVSTEP-05",
+      "title": "Consume intent and skill hints without turning them into authority",
+      "parent_tasks": [
+        "TASK-031",
+        "TASK-039",
+        "TASK-044"
+      ],
+      "parent_titles": {
+        "TASK-031": "Finish the real Jev decision gateway and application",
+        "TASK-039": "Implement real Dust writes and reviewed corrections",
+        "TASK-044": "Connect the user skill catalog and versioned run receipts"
+      },
+      "depends_on": [
+        "JVSTEP-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-09",
+        "CXSTEP-11",
+        "CXSTEP-12"
+      ],
+      "work": "Use real eligible skill/version registry and session reducer; local Stop/status/speech controls stay deterministic and no automatic new tools.",
+      "candidate_implementation": "SCOPED_TESTED_CODE_AND_REQUIREMENTS",
+      "application_integration": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "note": "Original parent dependencies and scope remain; synthetic tests do not close a task."
+    },
+    {
+      "id": "JVSTEP-06",
+      "title": "Integrate source-linked JEV classifications into Intelligence",
+      "parent_tasks": [
+        "TASK-031",
+        "TASK-035",
+        "TASK-040",
+        "TASK-054"
+      ],
+      "parent_titles": {
+        "TASK-031": "Finish the real Jev decision gateway and application",
+        "TASK-035": "Implement the governed canonical knowledge service",
+        "TASK-040": "Rework Intelligence into an evidence-first workspace",
+        "TASK-054": "Verify summaries, knowledge and sync without cloud content copies"
+      },
+      "depends_on": [
+        "JVSTEP-02",
+        "JVSTEP-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-13"
+      ],
+      "work": "Combine independent Score/Noul/Choice, preserve source revision/ACL and deterministic facts; annotations remain inferred; actual canonical/Hindsight write rules apply.",
+      "candidate_implementation": "SCOPED_TESTED_CODE_AND_REQUIREMENTS",
+      "application_integration": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "note": "Original parent dependencies and scope remain; synthetic tests do not close a task."
+    },
+    {
+      "id": "JVSTEP-07",
+      "title": "Bind distributed budgets, circuits and per-attempt reconciliation",
+      "parent_tasks": [
+        "TASK-031",
+        "TASK-034",
+        "TASK-057",
+        "TASK-062"
+      ],
+      "parent_titles": {
+        "TASK-031": "Finish the real Jev decision gateway and application",
+        "TASK-034": "Repair identity and authoritative metering end to end",
+        "TASK-057": "Close no-content-retention and drift-evidence gates",
+        "TASK-062": "Exercise production operations, staging and recovery"
+      },
+      "depends_on": [
+        "JVSTEP-02",
+        "JVSTEP-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-16"
+      ],
+      "work": "Atomic request budget/dedupe/circuit, pending paid attempts, honest known/unknown usage and actual consumption linkage. Cancellation settles without triggering effects.",
+      "candidate_implementation": "SCOPED_TESTED_CODE_AND_REQUIREMENTS",
+      "application_integration": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "note": "Original parent dependencies and scope remain; synthetic tests do not close a task."
+    },
+    {
+      "id": "JVSTEP-08",
+      "title": "Qualify real Laya alternative and explicit auto fallback",
+      "parent_tasks": [
+        "TASK-031",
+        "TASK-032",
+        "TASK-034",
+        "TASK-056"
+      ],
+      "parent_titles": {
+        "TASK-031": "Finish the real Jev decision gateway and application",
+        "TASK-032": "Qualify the Laya alternative and real portal selection",
+        "TASK-034": "Repair identity and authoritative metering end to end",
+        "TASK-056": "Run real cross-platform Cloudflare-to-action-to-portal journeys"
+      },
+      "depends_on": [
+        "JVSTEP-03",
+        "JVSTEP-07"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-09",
+        "CXSTEP-16"
+      ],
+      "work": "Actual approved served checkpoint and adapter. Laya-only needs no JEV key or external call; no fabricated confidence, silent egress or unbudgeted shadow.",
+      "candidate_implementation": "SCOPED_TESTED_CODE_AND_REQUIREMENTS",
+      "application_integration": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "note": "Original parent dependencies and scope remain; synthetic tests do not close a task."
+    },
+    {
+      "id": "JVSTEP-09",
+      "title": "Calibrate profiles and prove native/live behavior and privacy",
+      "parent_tasks": [
+        "TASK-031",
+        "TASK-054",
+        "TASK-056",
+        "TASK-057"
+      ],
+      "parent_titles": {
+        "TASK-031": "Finish the real Jev decision gateway and application",
+        "TASK-054": "Verify summaries, knowledge and sync without cloud content copies",
+        "TASK-056": "Run real cross-platform Cloudflare-to-action-to-portal journeys",
+        "TASK-057": "Close no-content-retention and drift-evidence gates"
+      },
+      "depends_on": [
+        "JVSTEP-04",
+        "JVSTEP-05",
+        "JVSTEP-06",
+        "JVSTEP-07",
+        "JVSTEP-08"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-19"
+      ],
+      "work": "Representative held-out multilingual tests, actual two-device use, expired grants, live speech/actions/readback, canonical revocation and actual account retention review.",
+      "candidate_implementation": "SCOPED_TESTED_CODE_AND_REQUIREMENTS",
+      "application_integration": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "note": "Original parent dependencies and scope remain; synthetic tests do not close a task."
+    },
+    {
+      "id": "JVSTEP-10",
+      "title": "Integrate operations, rollout, current CI and full-upgrade evidence",
+      "parent_tasks": [
+        "TASK-031",
+        "TASK-062",
+        "TASK-063",
+        "TASK-066"
+      ],
+      "parent_titles": {
+        "TASK-031": "Finish the real Jev decision gateway and application",
+        "TASK-062": "Exercise production operations, staging and recovery",
+        "TASK-063": "Build, sign, freeze and qualify the immutable candidate family",
+        "TASK-066": "Deliver final re-audit, exact evidence and resumable handoff"
+      },
+      "depends_on": [
+        "JVSTEP-09"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-20"
+      ],
+      "work": "Current full repo suites, platform-specific artifacts, canary/rollback/revocation, exact evidence and separate Windows/native Mac gates. No release authorization inferred.",
+      "candidate_implementation": "SCOPED_TESTED_CODE_AND_REQUIREMENTS",
+      "application_integration": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN",
+      "note": "Original parent dependencies and scope remain; synthetic tests do not close a task."
+    }
+  ],
+  "root_count_preserved": 66,
+  "master_sha256": "e5b3c51d6d8423b5aadd1801d8fc2a77131c5ca3a363d281f1deb0da7acb1350"
+}

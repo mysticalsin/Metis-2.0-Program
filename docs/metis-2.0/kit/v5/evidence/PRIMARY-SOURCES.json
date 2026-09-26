@@ -1,0 +1,25 @@
+{
+  "checked_on": "2026-09-25",
+  "sources": [
+    {
+      "id": "S1",
+      "url": "https://www.heyclicky.com/changelog",
+      "use": "Vendor behavioral reference; not a test of their app. Latest page entry inspected: 1.0.52, 24 September 2026."
+    },
+    {
+      "id": "S2",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-conversations",
+      "use": "Voice interruption and client-owned playback/truncation. Does not change the required Cloudflare-first route."
+    },
+    {
+      "id": "S3",
+      "url": "https://www.electronjs.org/docs/latest/tutorial/security",
+      "use": "Authenticated IPC sender validation, isolation and restricted bridge exposure."
+    },
+    {
+      "id": "S4",
+      "url": "https://developers.cloudflare.com/workers-ai/models/nova-3/",
+      "use": "Candidate real-time speech path availability; actual tenant, privacy and performance qualification remains mandatory."
+    }
+  ]
+}

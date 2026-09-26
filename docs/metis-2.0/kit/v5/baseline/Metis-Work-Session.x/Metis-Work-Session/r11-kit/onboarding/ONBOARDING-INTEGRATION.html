@@ -1,0 +1,150 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ONBOARDING-INTEGRATION</title><style>body{font:15px/1.62 system-ui,-apple-system,Segoe UI,sans-serif;color:#262136;background:#f6f4f8;margin:0}main{max-width:1080px;margin:24px auto;background:white;padding:44px 48px;border:1px solid #e1dbe8;border-radius:16px}h1{font-size:42px;line-height:1.12}h2{font-size:27px;line-height:1.3;color:#3c2358;border-top:1px solid #e7e0ed;margin-top:40px;padding-top:24px}h3{font-size:20px;line-height:1.35;color:#553375}h4{font-size:17px}p,li,td,th{overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;font-size:12px;margin:18px 0;table-layout:fixed}td,th{border:1px solid #dfd6e8;vertical-align:top;padding:8px}th{background:#efe8f6;text-align:left}tr:nth-child(even){background:#faf8fc}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f0f7;padding:14px;border-left:3px solid #8d66ae;font-size:11px;line-height:1.5}code{font-family:monospace;font-size:.9em;overflow-wrap:anywhere}blockquote{margin:18px 0;border-left:3px solid #946cb5;background:#f5effa;padding:12px 18px}a{color:#6a3899;overflow-wrap:anywhere}nav{max-width:1100px;margin:auto;padding:20px;display:flex;gap:20px;flex-wrap:wrap;font-size:13px}img{max-width:100%}@media(max-width:700px){main{margin:8px;padding:22px 16px}table{font-size:10px}td,th{padding:5px}h1{font-size:31px}}</style></head><body><nav><a href="../OPEN-METIS-2.html">Complete Métis kit</a><a href="../spec/MASTER.html">MASTER 4.4</a></nav><main><h1 id="m-tis-onboarding-preserve-the-experience-improve-the-guidance">Métis onboarding · preserve the experience, improve the guidance</h1>
+<p><strong>Owner:</strong> Tony Walteur<br />
+<strong>Amendment:</strong> OBU-01 · source-informed correction to the prior r9 onboarding proposal<br />
+<strong>Delivery status:</strong> specification, independent policy examples and synthetic interaction review; not application integration or release evidence.</p>
+<h2 id="1-the-non-negotiable-direction">1. The non-negotiable direction</h2>
+<p>The original Métis onboarding remains the host experience. Keep its identity, narrative, scene components, progress model, placement choice, real guarded demo, consent, settings persistence and completion route. Borrow interaction principles—clear permission explanations, practical exercises, state feedback, accessible controls—not another product's visual identity, names, presenters, private prompts or onboarding architecture.</p>
+<p>This amendment replaces the r9 instruction to introduce an eight-stage generic agent wizard. It does not replace the rest of the existing plan. All original voice, context, named-agent, knowledge, provider, identity, cost, security, lightweight-installation and native release requirements continue. New helper rows or expandable panels must fit inside existing scenes, not create a new top-level onboarding manager.</p>
+<p>The only named human in the user-facing onboarding, welcome narration, subtitles, descriptive transcript, lower third, sample meeting and accessibility labels is <strong>Tony Walteur</strong>. Métis is the product name. Ordinary role labels may remain when useful, but do not create fictional colleagues, testimonials or customer identities. This rule does not rename the real signed-in user or modify their actual meeting history. Their identity need not be displayed in the introductory sample. Technical evidence and legally required licenses remain outside the onboarding; do not erase or misattribute them.</p>
+<h2 id="2-the-actual-source-has-evolved-do-not-flatten-it">2. The actual source has evolved—do not flatten it</h2>
+<p>The inspected desktop helper, <code>src/renderer/src/lib/onboarding-flow.ts</code>, fixes this sequence:</p>
+<p><code>hero → problem → reveal → appearance → setup → personalize → [license if enabled] → ready</code></p>
+<p><code>sceneAfterReveal()</code> returns <code>appearance</code>; <code>sceneAfterAppearance()</code> returns <code>setup</code>; <code>sceneAfterSetup()</code> returns <code>personalize</code>; <code>sceneAfterPersonalize()</code> returns the existing optional license scene or Ready. The helper's completion rule requires Ready and consent; transcription readiness alone does not block finishing in the inspected implementation. Keep operational capture readiness separate from tour completion. Existing sign-in/organization policy still applies and must not be bypassed.</p>
+<p>Older narrative documentation describes five acts and contains superseded claims about fully local processing and mandatory model downloads. Later source includes Appearance and Ready, a No Skip-tour rule, and different provider defaults. The native Swift <code>OnboardingModel</code> still has an older five-act form. These are <strong>different source states</strong>, not permission to choose whichever is easiest. Bind to the actual checkout and reconcile the native owner scope explicitly. Do not restore an old “everything stays on-device” claim when a cloud route is selected.</p>
+<p>The actual <code>OnboardingExperience.tsx</code> implementation is referenced by tests but was not located as a FILE section in the uploaded export. That is an export gap, not proof the repository lacks it. The implementer must obtain that file before modifying the real composition. The amendment's HTML is only an isolated review of the intended additions, not a substitute for the component.</p>
+<h3 id="integration-by-existing-scene">Integration by existing scene</h3>
+<table>
+<thead>
+<tr>
+  <th>Existing scene</th>
+  <th>Preserve</th>
+  <th>Integrate without replacing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Hero</td>
+  <td>Métis mark, “The wisdom before the moment”, current welcome shell and Begin control</td>
+  <td>Optional authentic Tony Walteur welcome in the same media slot; complete text-led fallback</td>
+</tr>
+<tr>
+  <td>Problem</td>
+  <td>Existing meeting story and its emotional pacing</td>
+  <td>User-controlled pacing/text alternative; reduced-motion equivalent; no other named humans</td>
+</tr>
+<tr>
+  <td>Reveal</td>
+  <td>Real Bar/Copilot/Answer/QuickActions components with the existing demo guard</td>
+  <td>Explain voice versus typing, visible versus full context and draft versus action using bounded synthetic examples</td>
+</tr>
+<tr>
+  <td>Appearance</td>
+  <td>“Where should Métis live?” in its existing position; actual Hidden/Island/Bar options</td>
+  <td>Keyboard-selectable placement previews, readable selected state, no premature layout persistence or geometry rewrite</td>
+</tr>
+<tr>
+  <td>Your setup</td>
+  <td>Existing permission/probe rows, status animation and actual state authority</td>
+  <td>Guided explanation, one requested permission at a time, return/recheck, failure repair and optional-capability deferral</td>
+</tr>
+<tr>
+  <td>Personalize</td>
+  <td>General/Sales/Recruiting, language, “Tell the room”, explicit consent</td>
+  <td>Accessible input/reading preferences and contextual approved agent recommendations without automatic execution</td>
+</tr>
+<tr>
+  <td>Optional license</td>
+  <td>Existing entitlement semantics and default</td>
+  <td>No new mandatory purchase or license step; no media/permission workaround</td>
+</tr>
+<tr>
+  <td>Ready</td>
+  <td>Existing landing and only allowed completion point</td>
+  <td>Truthful readiness summary and usable typed landing; video ending or an OS dialog cannot complete the tour</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-replace-the-media-not-the-narrative">3. Replace the media, not the narrative</h2>
+<p>The source currently imports a packaged non-Tony welcome video and poster through <code>onboarding-hero-video.ts</code>; it also retains a remote mirror string and has preload/play/packaged-path helpers. The new requirement explicitly supersedes that asset selection and continuous background-play assumption. It does not supersede opaque first paint, readable branding, the existing real demo or the rest of the scene flow.</p>
+<p>Remove the old active video/poster imports, old default URL, remote mirror fallback, media preloads, cached default selection and packaging reachability. Search localized copy, preview metadata, low-resolution variants, fallback branches, browser/native wrappers, build resources and tests that pin the old file. Existing user history and unrelated media are not deletion targets. If an old packaged asset is needed solely for engineering history, retain its audit reference outside runtime resources; do not ship or preload it in customer onboarding.</p>
+<p>The actual application must verify that the approved asset is readable under the real packaged media resolver. Preserve the required <code>app.asar</code> versus unpacked-resource behavior where applicable, but bind it to the new approved asset, never to the retired fallback. A development browser playback check is not proof that media decodes in the signed installer.</p>
+<h3 id="media-lifecycle">Media lifecycle</h3>
+<p><code>NOT_PROVIDED → DRAFT_RECEIVED → IN_REVIEW → APPROVED → AVAILABLE</code></p>
+<p><code>REVOKED</code>, <code>MISSING</code> or <code>DECODE_FAILED</code> always return to a Métis-only text welcome. No old asset, host, actor, generated voice or missing-file download is substituted. The delivered manifest is <code>NOT_PROVIDED</code> with null media paths; no Tony recording has been fabricated.</p>
+<p>A deployable record binds the presenter, exact video/poster/caption/transcript hashes, locale, duration, revision, reviewer identity/reference, content approval, rights approval and publisher integrity policy. An editable string saying “Tony Walteur” is not proof of who appears or speaks. Review the full actual recording, background audio, screen captures, notifications, captions and final poster. The pure policy example in this package checks metadata shape only and is not a signature verifier or human-identity classifier.</p>
+<h3 id="playback-and-pacing">Playback and pacing</h3>
+<p>Use an explicit <strong>Watch Tony Walteur's welcome</strong> action only when approved playable media exists. Do not display a broken or disabled Play button before filming. Until then, show the same introductory message as ordinary text inside the Métis hero. Begin remains visible and usable. After media is available, reading the text instead of watching is a media alternative, not a Skip-tour path.</p>
+<p>Narration must not autoplay on startup, return from Settings or Replay. No endless talking-head loop. Pause narration and the onboarding music before microphone practice, permission handoff, scene exit, app lock, close or replay. Only one managed audio owner may remain. On return, retain the current scene and playback position where appropriate; do not resume audio unexpectedly. Motion preferences and user mute must apply before first paint, not after the first loud or animated frame.</p>
+<p>A stalled/missing/unsupported video must have an immediate text route, not a spinner that blocks Begin. Media timecodes never grant permissions, create agents, advance security gates, or persist <code>onboardingDone</code>. The recording is a welcome, not the application's control plane.</p>
+<h2 id="4-permission-coaching-belongs-inside-your-setup">4. Permission coaching belongs inside Your setup</h2>
+<p>The objective is an understandable conversation: <strong>what this enables → what it can access → your choice → trusted OS handoff → actual recheck → clear next step</strong>. Explain enough to decide before displaying the system prompt. Ask for one relevant capability at a time, not a wall of alerts. Expand details only on demand.</p>
+<table>
+<thead>
+<tr>
+  <th>Capability</th>
+  <th>Métis explanation</th>
+  <th>Control boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Microphone</td>
+  <td>Speak to Métis or use voice features; typing remains available</td>
+  <td>Request only deliberately through the existing native bridge. Input detection, OS grant, provider readiness and final transcript are different signals.</td>
+</tr>
+<tr>
+  <td>Screen context</td>
+  <td>Let Métis inspect the screen or window you deliberately share</td>
+  <td>User-selected scope, visible indicator and stop/revocation; no background whole-desktop monitoring</td>
+</tr>
+<tr>
+  <td>macOS Accessibility</td>
+  <td>Enable eligible app interactions you explicitly request</td>
+  <td>The user grants OS access. Runtime task approval remains separate; this does not authorize every future action.</td>
+</tr>
+<tr>
+  <td>Windows app interaction</td>
+  <td>Explain which native automation operations are available under current privileges</td>
+  <td>Do not display a fake macOS switch, disable UAC, auto-elevate or use UIAccess merely to get broad control.</td>
+</tr>
+<tr>
+  <td>Files</td>
+  <td>Attach or authorize the source needed by the task</td>
+  <td>Use selected files/folders and scoped handles; no full-disk access request just to personalize onboarding</td>
+</tr>
+<tr>
+  <td>Notifications</td>
+  <td>Receive optional quiet results</td>
+  <td>Separate consent; meeting/focus/privacy rules still suppress noisy or revealing surfaces</td>
+</tr>
+</tbody>
+</table>
+<p>Apple documents explicit user authorization for Accessibility in Privacy &amp; Security. Windows UI Automation uses a different native model and has separate security restrictions. Use the existing platform adapter and version-appropriate system surfaces; do not guess unsupported deep links or automate Métis's own consent settings. See the primary references in <code>source/REFERENCES.md</code>.</p>
+<h3 id="row-states-must-mean-something">Row states must mean something</h3>
+<p>Use <code>checking</code>, <code>loading</code>, <code>action</code>, <code>waiting_for_return</code>, <code>denied</code>, <code>restricted</code>, <code>restart_required</code>, <code>granted_unverified</code>, <code>ready</code>, <code>deferred</code>, <code>revoked</code>, <code>unavailable</code>. Preserve actual existing enum/storage compatibility with a versioned mapper, not an uncontrolled rename. Continuous real work can show the existing reviewed orb; a timer alone cannot become success. Measured progress may be shown; unknown progress is not a fabricated percentage.</p>
+<p>Opening Settings moves to <code>waiting_for_return</code>, not <code>ready</code>. Returning triggers a fresh native probe bound to the same application/build/principal/capability and request generation. Denied should explain how to change the choice or continue without the feature; restricted should point to the organization/admin without looping on a request the OS will not honor. Newly granted access may require an actual process-level recheck or restart according to the real adapter. Do not force a universal restart based only on old documentation or assume a grant implies a usable capture handle.</p>
+<p>A “Not now” control defers one optional capability inside setup. It does not skip onboarding, grant that capability, or allow the dependent action. At Ready, show the actual available capabilities separately. Finishing consent cannot secretly arm continuous listening. For wake behavior, use the existing explicit opt-in and single audio owner.</p>
+<p>Recheck after permission changes, lock/unlock, application identity/signature updates, native errors and relevant foreground return. Revoke pending context/input leases immediately; a queued or late provider result cannot use old authority. Repeated clicking must not open repeated permission windows or submit multiple requests. Bounded retry and a support explanation replace silent looping.</p>
+<h2 id="5-accessibility-of-the-onboarding-itself">5. Accessibility of the onboarding itself</h2>
+<p>OS Accessibility permission and accessible interface design are separate concerns. The onboarding must be operable without granting OS control permission, without speaking, without watching a video and without decoding animation.</p>
+<p>Use semantic headings, actual buttons, explicit input labels and meaningful state text. Every scene transition caused by the user's Next/Back moves focus to the new scene heading; passive probe updates do not steal focus. Returning from a system dialog restores the relevant row or initiating control. Use a polite live region for meaningful state changes; do not announce animation frames or microphone-level samples. Error guidance must identify the affected control and recovery path.</p>
+<p>Keep Next/Continue/Begin/Get started visible without hover, offscreen scroll tricks or waiting for animation. Do not hijack Enter/Space while a user edits text, selects a menu or composes with an IME. Avoid keyboard traps. A detail disclosure or preview must be closeable with Escape and return focus appropriately without erasing unsaved choices.</p>
+<p>Provide readable contrast, visible focus and non-color status indicators. Use at least 44-by-44 CSS-pixel interaction areas as this product's design target where applicable; validate layouts at 200% text and narrow widths without hiding controls or clipping labels. This target is a design requirement, not a claim that every such interface automatically meets an accessibility standard.</p>
+<p>Honor reduced motion from the first frame. Offer user pause for decorative motion and paced demonstrations; remove parallax/flashes, auto-advance and motion-only explanations. The Métis KineticGrid remains a non-interactive background with <code>pointer-events: none</code>; it must not move the entire stage or obscure controls. Use the existing color tokens and typography rather than a new theme or sidebar.</p>
+<p>The final recording needs accurate synchronized captions and a separate descriptive transcript matched to the <strong>filmed</strong> content. Describe essential visual information in the recording or provide a qualified described alternative; do not treat text captions as a replacement for visual description. Final text must be selectable and screen-reader readable, not burned into an image only. Until the recording exists, the filming script is explicitly a draft, not its transcript. The shipped text-led welcome independently conveys the essential information.</p>
+<h2 id="6-keep-the-real-m-tis-demonstration">6. Keep the real Métis demonstration</h2>
+<p>The source's Reveal drives real Bar/Copilot/Answer/QuickActions components with synthetic meeting data and guards that block real saving/rating/network effects. Preserve those guards, lazy loading, original beat order, Next behavior and safe data source. Do not replace Reveal with another product video or this amendment's HTML.</p>
+<p>Keep Tony Walteur as the only named human in all demonstration strings and speaker labels. Use neutral role labels only where the existing UI requires a second participant and no personal name is needed; never substitute a real contact. Demo phrases must not contain real customer information or imply an actual provider output. A cursor animation can point or simulate a control only within the bounded demo; it cannot issue arbitrary native input.</p>
+<p>The addition should teach three precise ideas in the existing Reveal: typing is available; shared context has a visible scope; preparing a draft is not sending it. The real app's actions still require current policy/permissions and verified results. The welcome video does not become the only explanation.</p>
+<h2 id="7-implementation-sequence-and-scope">7. Implementation sequence and scope</h2>
+<p><strong>OBU-01 Baseline and source binding:</strong> inspect the current checkout and resolve any divergence from the supplied export. Read existing scene/media/permission/persistence tests. Recover the missing parent component. Confirm exact active media paths and localized copy. Keep all non-onboarding working behavior and reference licenses.</p>
+<p><strong>OBU-02 Media retirement and Tony slot:</strong> remove runtime selection/reachability of the retired media and install the null/approved-manifest contract in the existing component. Add failure fallback, user-controlled playback and complete teardown. Do not broaden general content-security policy to make a hosted video work.</p>
+<p><strong>OBU-03 Setup coaching:</strong> extend the existing setup rows and native bridge readback. Use generation-bound requests, just-in-time scope, denial/restricted/restart repair and independent readiness categories. No auto-elevation, TCC database editing, fake grant or new capture loop.</p>
+<p><strong>OBU-04 Accessibility and copy:</strong> integrate semantic/focus/input/motion behavior into the actual scenes, not an independent wizard. Review all supported languages, labels, captions, demo strings and associated poster metadata for the Tony-only named-person rule.</p>
+<p><strong>OBU-05 Native and installed validation:</strong> test actual source components, persisted/replayed flows, media decode on the final package and real OS permission interaction on both Windows and Mac. Preserve the original high-priority Next/Ready/dock regressions and all parent release gates.</p>
+<p>These are sub-slices of existing TASK-005/008/019/027/028/029/030/033/055/056/057/060/062/063, not replacement root tasks. The native app's separate five-act form requires explicit parity decisions in its existing model and tests. Do not insert desktop-specific scenes into that model by assumption or create a second native coordinator.</p>
+<h2 id="8-acceptance-and-remaining-evidence">8. Acceptance and remaining evidence</h2>
+<p>The change is accepted only when the original verified scene topology and completion rule still hold; every customer-facing onboarding media and named-human reference is approved for Tony Walteur; the old media cannot reappear through a fallback, preload, update or locale; and setup can be understood and completed through the legitimately available route without falsifying readiness.</p>
+<p>Test missing, corrupt, unsupported and revoked recording; no captions; stale/incorrect transcript; cancelled media; replay and app close; reduced motion; voice-only versus typed input; denied/restricted/revoked permission; return from Settings; changed principal/build/generation; keyboard and screen-reader completion; mixed scaling/displays; 200% text; a truly unavailable backend; and the actual signed/native artifact. Missing real media must remain <code>NOT_PROVIDED</code>; no fake “video verified” evidence.</p>
+<p>This package runs no app, native permission, provider, live account or signing tests. It supplies a tested synthetic reference, explicit source bindings and required product evidence. This amendment is consolidated into kit r10 and MASTER §34. It supersedes r9’s replacement-wizard topology, not Métis’s existing scenes. Consult the root verification/FINAL-AUDIT.md for this consolidation’s actual checks; the original amendment reports remain historical.</p>
+</main></body></html>

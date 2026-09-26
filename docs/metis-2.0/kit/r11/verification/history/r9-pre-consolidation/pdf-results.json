@@ -1,0 +1,30 @@
+{
+  "scope": "DOCUMENT_LAYOUT_TEXT_NOT_PRODUCT",
+  "documents": [
+    {
+      "file": "spec/MASTER.pdf",
+      "pages": 149,
+      "checked_ids": 367,
+      "missing_ids": [],
+      "out_of_page_text_pages": [],
+      "passed": true
+    },
+    {
+      "file": "clicky-study/SOURCE-STUDY.pdf",
+      "pages": 10,
+      "checked_ids": 68,
+      "missing_ids": [],
+      "out_of_page_text_pages": [],
+      "passed": true
+    },
+    {
+      "file": "clicky-study/CAPABILITY-ADOPTION.pdf",
+      "pages": 3,
+      "checked_ids": 0,
+      "missing_ids": [],
+      "out_of_page_text_pages": [],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

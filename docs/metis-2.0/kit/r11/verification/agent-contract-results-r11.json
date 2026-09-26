@@ -1,0 +1,159 @@
+{
+  "scope": "PURE_REFERENCE_CONTRACT_NOT_PRODUCT",
+  "engine": "v22.16.0",
+  "checks": [
+    {
+      "check": "Exact agent alias resolves only the authorized identity",
+      "passed": true
+    },
+    {
+      "check": "A label is never a tenant credential",
+      "passed": true
+    },
+    {
+      "check": "Same-tenant but foreign personal agent stays unavailable",
+      "passed": true
+    },
+    {
+      "check": "Colliding normalized aliases require clarification",
+      "passed": true
+    },
+    {
+      "check": "Pinned unavailable agent never becomes a generic fallback",
+      "passed": true
+    },
+    {
+      "check": "Pinned revoked agent is denied",
+      "passed": true
+    },
+    {
+      "check": "Create an agent without launching work",
+      "passed": true
+    },
+    {
+      "check": "Creation retry reuses identity",
+      "passed": true
+    },
+    {
+      "check": "Changed idempotent creation intent is refused",
+      "passed": true
+    },
+    {
+      "check": "Foreign definition cannot be planted under body identity",
+      "passed": true
+    },
+    {
+      "check": "Explicit authorized source can enter bounded context",
+      "passed": true
+    },
+    {
+      "check": "Unselected source is excluded",
+      "passed": true
+    },
+    {
+      "check": "Revocation stops context use",
+      "passed": true
+    },
+    {
+      "check": "Expired source lease stops context use",
+      "passed": true
+    },
+    {
+      "check": "Denied record title and ID do not enter exclusion reason",
+      "passed": true
+    },
+    {
+      "check": "Screenshot is not full document",
+      "passed": true
+    },
+    {
+      "check": "Partial extraction prompts before claiming full coverage",
+      "passed": true
+    },
+    {
+      "check": "Read mode never authorizes input",
+      "passed": true
+    },
+    {
+      "check": "Unsupported act mode is refused",
+      "passed": true
+    },
+    {
+      "check": "Allowed act mode still needs a permission boundary",
+      "passed": true
+    },
+    {
+      "check": "Provider pin remains intact",
+      "passed": true
+    },
+    {
+      "check": "Exact unexpired approved action binds all fields",
+      "passed": true
+    },
+    {
+      "check": "Approval invalidated by changed agentRevision",
+      "passed": true
+    },
+    {
+      "check": "Approval invalidated by changed generation",
+      "passed": true
+    },
+    {
+      "check": "Approval invalidated by changed sourceRevision",
+      "passed": true
+    },
+    {
+      "check": "Approval invalidated by changed targetId",
+      "passed": true
+    },
+    {
+      "check": "Approval invalidated by changed argsDigest",
+      "passed": true
+    },
+    {
+      "check": "Approval invalidated by changed destination",
+      "passed": true
+    },
+    {
+      "check": "Approval expiration is closed at boundary",
+      "passed": true
+    },
+    {
+      "check": "Late result cannot cross agent conversation",
+      "passed": true
+    },
+    {
+      "check": "Late result after cancel is rejected",
+      "passed": true
+    },
+    {
+      "check": "Second agent cannot concurrently own keyboard/mouse lease",
+      "passed": true
+    },
+    {
+      "check": "Locked device cannot start actuation",
+      "passed": true
+    },
+    {
+      "check": "Focus change blocks dictation insertion",
+      "passed": true
+    },
+    {
+      "check": "Terminal is never silently filled from dictation",
+      "passed": true
+    },
+    {
+      "check": "Unknown adapter result cannot become success",
+      "passed": true
+    },
+    {
+      "check": "Only verified result becomes verified",
+      "passed": true
+    },
+    {
+      "check": "Twenty agent cards start at most one visual loop",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

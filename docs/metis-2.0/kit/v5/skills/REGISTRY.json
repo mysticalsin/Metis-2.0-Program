@@ -1,0 +1,33 @@
+{
+  "schema": "metis.skill-integration-registry.v1",
+  "status": "PACKAGED_NOT_INSTALLED",
+  "active_entrypoints": [
+    "skills/metis-hindsight-memory/SKILL.md"
+  ],
+  "profile": "skills/metis-hindsight-memory/METIS-PROFILE.md",
+  "general_skill": "skills/metis-hindsight-memory/reference/hindsight-agent-memory/SKILL.md",
+  "original_zip": "baseline/hindsight-agent-memory-skill-v1.0.0.zip",
+  "auto_install": false,
+  "auto_capture": false,
+  "runtime_target": "existing_governed_Metis_memory_API_not_raw_Hindsight",
+  "child_id": "HMS-INTEGRATION",
+  "existing_parent": "CXSTEP-13",
+  "hmstep_ids": [
+    "HMSTEP-01",
+    "HMSTEP-02",
+    "HMSTEP-03",
+    "HMSTEP-04",
+    "HMSTEP-05",
+    "HMSTEP-06",
+    "HMSTEP-07",
+    "HMSTEP-08",
+    "HMSTEP-09",
+    "HMSTEP-10",
+    "HMSTEP-11",
+    "HMSTEP-12",
+    "HMSTEP-13",
+    "HMSTEP-14",
+    "HMSTEP-15",
+    "HMSTEP-16"
+  ]
+}

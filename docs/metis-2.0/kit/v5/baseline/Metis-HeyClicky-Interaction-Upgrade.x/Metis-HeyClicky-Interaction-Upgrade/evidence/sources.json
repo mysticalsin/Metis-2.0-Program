@@ -1,0 +1,107 @@
+{
+  "retrieved_on": "2026-09-25",
+  "sources": [
+    {
+      "id": "REF-01",
+      "title": "HeyClicky product page",
+      "url": "https://www.heyclicky.com/",
+      "limit": "Vendor description; not independently executed behavior."
+    },
+    {
+      "id": "REF-02",
+      "title": "HeyClicky changelog",
+      "url": "https://www.heyclicky.com/changelog",
+      "limit": "Latest entry retrieved: 1.0.52, September 24, 2026. Uploaded 1.0.51 is listed September 18."
+    },
+    {
+      "id": "REF-03",
+      "title": "HeyClicky trust and privacy",
+      "url": "https://www.heyclicky.com/trust",
+      "limit": "Vendor policy claim, not runtime or retention verification."
+    },
+    {
+      "id": "REF-04",
+      "title": "HeyClicky privacy policy",
+      "url": "https://www.heyclicky.com/privacy-policy",
+      "limit": "Vendor disclosure, not a security certification."
+    },
+    {
+      "id": "REF-05",
+      "title": "Cua Driver upstream",
+      "url": "https://github.com/trycua/cua/tree/main/libs/cua-driver",
+      "limit": "Candidate component. Pin revision, review license and qualify OS behavior before adoption."
+    },
+    {
+      "id": "REF-06",
+      "title": "Cloudflare Nova-3",
+      "url": "https://developers.cloudflare.com/workers-ai/models/nova-3/",
+      "limit": "Provider capability documentation, not qualification of Métis account or transport."
+    },
+    {
+      "id": "REF-07",
+      "title": "Cloudflare experimental voice pipeline",
+      "url": "https://blog.cloudflare.com/voice-agents/",
+      "limit": "April 15, 2026. Experimental package; documented example persists conversations."
+    },
+    {
+      "id": "REF-08",
+      "title": "OpenAI Realtime conversations",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-conversations",
+      "limit": "Optional qualified provider route. Client playback/truncation responsibilities matter."
+    },
+    {
+      "id": "REF-09",
+      "title": "Apple accessibility application element",
+      "url": "https://developer.apple.com/documentation/applicationservices/1459374-axuielementcreateapplication",
+      "limit": "Public API reference."
+    },
+    {
+      "id": "REF-10",
+      "title": "Apple ScreenCaptureKit content filters",
+      "url": "https://developer.apple.com/documentation/screencapturekit/sccontentfilter",
+      "limit": "Public API reference; still needs actual screenshot/sharing acceptance."
+    },
+    {
+      "id": "REF-11",
+      "title": "Microsoft SendInput",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput",
+      "limit": "UIPI and input dispatch limits; dispatch is not application postcondition proof."
+    },
+    {
+      "id": "REF-12",
+      "title": "Microsoft UI Automation control patterns",
+      "url": "https://learn.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-control-patterns-overview",
+      "limit": "Pattern reference; implementation must use supported native/runtime APIs."
+    },
+    {
+      "id": "REF-13",
+      "title": "TypeSafe / Jev introduction",
+      "url": "https://docs.typesafe.ai/introduction",
+      "limit": "Typed decision service, distinct from generative speech and policy authorization."
+    },
+    {
+      "id": "REF-14",
+      "title": "Laya source",
+      "url": "https://github.com/NandhaKishorM/laya",
+      "limit": "Independent typed decision implementation; qualify real checkpoint and semantics."
+    },
+    {
+      "id": "REF-15",
+      "title": "Hindsight overview",
+      "url": "https://hindsight.vectorize.io/",
+      "limit": "Memory API building block, not a substitute for Métis access control."
+    },
+    {
+      "id": "REF-16",
+      "title": "Hindsight memory banks",
+      "url": "https://hindsight.vectorize.io/developer/api/memory-banks",
+      "limit": "Bank API semantics require actual pinned-version integration tests."
+    },
+    {
+      "id": "REF-17",
+      "title": "Hindsight retain",
+      "url": "https://hindsight.vectorize.io/developer/retain",
+      "limit": "Retention extraction settings are not a substitute for pre-ingestion privacy filtering."
+    }
+  ]
+}

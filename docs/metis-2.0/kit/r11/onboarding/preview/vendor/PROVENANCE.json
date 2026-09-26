@@ -1,0 +1,21 @@
+{
+  "source_repository": "Jakubantalik/Libraries.dev",
+  "package_path": "packages/thinking-orbs",
+  "license": "MIT, copyright 2026 Jakub Antalik",
+  "reviewed_blobs": {
+    "src/engine/lattice.ts": "f4f9126cb6205b6097835d5ba1107597f5d8a11c",
+    "src/engine/core.ts": "ee10dfa82c1a8a74f971970ef7fdfbe4cfebc1f5",
+    "src/engine/profiles.ts": "8517ed23c357551178985343ffcda2b86f333fe0",
+    "src/presets.ts": "d366ce711b80da1192fdcc03328d302f726f36f1",
+    "LICENSE": "0e9405a2ee75ce720c665c04568fedda3c07906a"
+  },
+  "local_asset": "solving-engine.js",
+  "local_sha256": "0b9aac86d57ecf03ee849b18cf555e86afc7d3e3b83b8598948dee44bb45acd9",
+  "modifications": [
+    "Extracted solving/rubik and listening/wave mathematics only into a dependency-free IIFE.",
+    "Resolved official 64px presets; same band transform and z-sorted grayscale painter.",
+    "Precomputed deterministic move list; input validation; no React hooks or package runtime.",
+    "Outer demo controls bounded animation clock, DPR, visibility and reduced-motion behavior."
+  ],
+  "qualification": "Source-adapted visual reference. Not a byte-identical npm bundle, not compiled in the actual M\u00e9tis application, no native implementation test."
+}

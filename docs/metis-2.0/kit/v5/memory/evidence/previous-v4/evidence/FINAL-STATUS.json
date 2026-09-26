@@ -1,0 +1,47 @@
+{
+  "schema": "metis.notes-keyboard.status.v1",
+  "date": "2026-09-25",
+  "package_edition": "v4-notes-hotkey",
+  "work_completed": "Updated the complete product/integration handoff to preserve note-taking and require configurable global/command keyboard toggles.",
+  "runtime_files_changed": 0,
+  "new_runtime_modules": 0,
+  "source_patch_applied": false,
+  "remote_push": false,
+  "installed_app_updated": false,
+  "new_product_requirements": 12,
+  "new_native_app_scenarios": 16,
+  "total_declared_interaction_scenarios": 100,
+  "core_typescript_build": {
+    "exit": 0,
+    "modules": 10,
+    "compiler": "Version 5.8.3"
+  },
+  "candidate_tests": {
+    "tests": 306,
+    "pass": 306,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0,
+    "exit": 0,
+    "runtime": "v22.16.0",
+    "log": "candidate-tests.tap"
+  },
+  "runtime_and_baseline_preservation": {
+    "identical_files": 51,
+    "details": "PRESERVATION.json"
+  },
+  "not_run": [
+    "Current repository typecheck/build/tests",
+    "Native global shortcut registration or handling",
+    "Real concurrent command and meeting audio",
+    "Meeting transcript/summary fidelity comparison",
+    "Actual JEV service/device qualification",
+    "Installed app/profile migration",
+    "Independent code review",
+    "Signed release qualification"
+  ],
+  "all_app_acceptance": "NOT_RUN",
+  "release_ready": false,
+  "important_limit": "Candidate unit tests are unchanged v3 tests. No claim is made that these tests cover the newly specified native keyboard/meeting behavior."
+}

@@ -1,0 +1,1118 @@
+{
+  "schema": "metis.hindsight.delivery.v1",
+  "status": "IMPLEMENTATION_COMPONENTS_TESTED_PRODUCT_INTEGRATION_NOT_RUN",
+  "gates": [
+    {
+      "id": "HM-01",
+      "title": "Embedded product, lean clients",
+      "tasks": [
+        "TASK-003",
+        "TASK-022",
+        "TASK-029",
+        "TASK-040",
+        "TASK-044"
+      ],
+      "acceptance": "Hindsight is used through Métis identity and surfaces. No new end-user service login, iframe admin console, desktop PostgreSQL or model weights.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-02",
+      "title": "Approved inputs and canonical authority",
+      "tasks": [
+        "TASK-007",
+        "TASK-035",
+        "TASK-037"
+      ],
+      "acceptance": "Only eligible approved summaries/preferences/verified outcomes enter memory. Canonical records remain authoritative and model-generated observations remain labelled.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-03",
+      "title": "Pre-retrieval authorization and audience",
+      "tasks": [
+        "TASK-006",
+        "TASK-035",
+        "TASK-037",
+        "TASK-038"
+      ],
+      "acceptance": "A verified principal cannot retrieve another personal/team bank, including through reflect, entities, history, listings, exports or derived pages. Mixed ACL input never reaches a model.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-04",
+      "title": "No unintended retained content",
+      "tasks": [
+        "TASK-011",
+        "TASK-015",
+        "TASK-035",
+        "TASK-057"
+      ],
+      "acceptance": "Source-text and LLM traces off; external spans/queues/exports audited. Derived storage explicitly approved. No raw audio/transcript or private content in Cloudflare persistence.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-05",
+      "title": "Revision-safe retain and durable projection",
+      "tasks": [
+        "TASK-035",
+        "TASK-036",
+        "TASK-041"
+      ],
+      "acceptance": "Stable document identity, canonical event time, CAS/fencing and metadata-only outbox survive reordered writes, restarts and ambiguous upstream acknowledgments.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-06",
+      "title": "Source-linked bounded recall",
+      "tasks": [
+        "TASK-037",
+        "TASK-038",
+        "TASK-043"
+      ],
+      "acceptance": "Results are bounded, preserve meaning, resolve to current authorized canonical records and honor required time intervals. Unavailable is not empty.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-07",
+      "title": "Grounded reflection without false authority",
+      "tasks": [
+        "TASK-037",
+        "TASK-040",
+        "TASK-043"
+      ],
+      "acceptance": "Syntheses name permitted sources, uncertainty and freshness; unknown lineage withholds the result. No reflection grants an action or verifies itself.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-08",
+      "title": "Deletion, correction and no resurrection",
+      "tasks": [
+        "TASK-039",
+        "TASK-041",
+        "TASK-058"
+      ],
+      "acceptance": "Revocation blocks reads immediately; dependent observations/models/pages invalidate explicitly; pending work and restored backups cannot resurrect deleted evidence.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-09",
+      "title": "Named-agent memory isolation",
+      "tasks": [
+        "TASK-037",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "acceptance": "Personal preferences, shared team facts and agent-private experience remain distinct. Renames do not change scope, export permissions or identity.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-10",
+      "title": "Actual Dust and skill interoperability",
+      "tasks": [
+        "TASK-038",
+        "TASK-039",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "acceptance": "A real Dust agent and published skill retrieve/update authorized canonical records and see refreshed memory without bypassing governance.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-11",
+      "title": "One accurate operational ledger",
+      "tasks": [
+        "TASK-034",
+        "TASK-045"
+      ],
+      "acceptance": "Ingestion, recall, rerank, reflection and maintenance attempts reconcile with real units and unknowns, not duplicate nested totals or content logs.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-12",
+      "title": "Fast critical path and useful quality",
+      "tasks": [
+        "TASK-053",
+        "TASK-054",
+        "TASK-056",
+        "TASK-060"
+      ],
+      "acceptance": "No compulsory memory round trip for an exact open/close command. Paired multilingual evaluation measures quality and total latency/cost against existing retrieval.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-13",
+      "title": "Simple, controllable UX",
+      "tasks": [
+        "TASK-008",
+        "TASK-029",
+        "TASK-040",
+        "TASK-044"
+      ],
+      "acceptance": "Memory stays inside Knowledge & skills and Intelligence. User can inspect/correct/forget, use ephemeral interaction and distinguish policy-locked controls.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-14",
+      "title": "Server deployment and resilient operations",
+      "tasks": [
+        "TASK-015",
+        "TASK-057",
+        "TASK-062"
+      ],
+      "acceptance": "Authenticated private API and PostgreSQL, scoped secrets, version/health checks, backups, restore, workload limits and vendor failover policy are exercised.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-15",
+      "title": "Incremental migration and reversible rollout",
+      "tasks": [
+        "TASK-026",
+        "TASK-035",
+        "TASK-041",
+        "TASK-061"
+      ],
+      "acceptance": "No automatic historical transcript backfill. Approved projection generations can be rebuilt/rolled back without rolling back canonical edits or revocations.",
+      "product_verification": "NOT_TESTED"
+    },
+    {
+      "id": "HM-16",
+      "title": "Real cross-platform integrated proof",
+      "tasks": [
+        "TASK-055",
+        "TASK-056",
+        "TASK-063",
+        "TASK-064",
+        "TASK-065",
+        "TASK-066"
+      ],
+      "acceptance": "Windows/native Mac, deployed memory, portal, Dust and skills have explicit real proof at the claimed level. No disabled capability or fixture closes the advertised memory promise.",
+      "product_verification": "NOT_TESTED"
+    }
+  ],
+  "steps": [
+    {
+      "id": "HMSTEP-01",
+      "title": "Qualify the source and runtime contract",
+      "tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-003"
+      ],
+      "gates": [
+        "HM-01",
+        "HM-02",
+        "HM-14"
+      ],
+      "depends_on": [],
+      "implementation": "Inspect the current .brain/context/wiki/recall, Operator, Dust and agent call sites. Pin the actual Hindsight release image, SDK/OpenAPI and dependencies; register license/security findings. Record the selected approved region and hosting, with no deployment claim.",
+      "acceptance": "Actual source map, dependency diff, API compatibility fixtures and named approval blockers.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-02",
+      "title": "Approve retention and authority before ingest",
+      "tasks": [
+        "TASK-007",
+        "TASK-011",
+        "TASK-015"
+      ],
+      "gates": [
+        "HM-02",
+        "HM-03",
+        "HM-04"
+      ],
+      "depends_on": [
+        "HMSTEP-01"
+      ],
+      "implementation": "Define the approved derived-memory store, eligible content kinds, finite lifetimes, encryption/backup policy and canonical ownership. Exclude raw transcripts, confidential/local-only data and model-generated self-verification. Configure privacy and supplier routes in staging before synthetic customer-like data.",
+      "acceptance": "Reviewed data map, negative ingest matrix, live config readback and content-sentinel plan.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-03",
+      "title": "Deploy the private service and database",
+      "tasks": [
+        "TASK-015",
+        "TASK-062"
+      ],
+      "gates": [
+        "HM-01",
+        "HM-04",
+        "HM-14"
+      ],
+      "depends_on": [
+        "HMSTEP-02"
+      ],
+      "implementation": "Use the existing approved container platform and managed PostgreSQL/pgvector. Pin images, mount secrets through the secret store, disable public API/DB/CP/MCP and body traces. Separate liveness from readiness, test migrations, connections, restore and restricted egress.",
+      "acceptance": "Identified service version/digest, private networking evidence, auth rejection, database health and restore rehearsal.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-04",
+      "title": "Bind real identity and bank generation",
+      "tasks": [
+        "TASK-006",
+        "TASK-035",
+        "TASK-037"
+      ],
+      "gates": [
+        "HM-03",
+        "HM-05",
+        "HM-09"
+      ],
+      "depends_on": [
+        "HMSTEP-02",
+        "HMSTEP-03"
+      ],
+      "implementation": "Implement Entra/authorized service principal binding and server-owned bank registry. Partition by tenant, effective security domain and ACL epoch, not guessed email or model tags. Add cross-replica fences and read-lease revocation. Inventory every upstream read/admin endpoint.",
+      "acceptance": "Two users/two teams/agent cases demonstrate pre-model exclusion and immediate epoch invalidation.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-05",
+      "title": "Implement canonical-to-memory projection",
+      "tasks": [
+        "TASK-035",
+        "TASK-036"
+      ],
+      "gates": [
+        "HM-02",
+        "HM-05",
+        "HM-15"
+      ],
+      "depends_on": [
+        "HMSTEP-04"
+      ],
+      "implementation": "Wire the supplied transport into the real canonical service. Use metadata-only outbox references, read approved source at execution, carry event time and revision, stable document IDs, replace only, and bounded batches. Record accepted versus searchable state separately.",
+      "acceptance": "Concurrent updates, duplicate delivery, negative acknowledgement, crash-after-write, and read-your-write tests on the actual DB/service.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-06",
+      "title": "Implement bounded recall with lineage",
+      "tasks": [
+        "TASK-037",
+        "TASK-038"
+      ],
+      "gates": [
+        "HM-03",
+        "HM-06",
+        "HM-12"
+      ],
+      "depends_on": [
+        "HMSTEP-05"
+      ],
+      "implementation": "Resolve nonempty trusted scope before recall; use strict tags and facts-only profile first. Resolve memory IDs to canonical sources with current revisions/ACLs before returning context. Preserve human names/negation and enforce hard date filters outside ranking hints.",
+      "acceptance": "Authorized source packets, revoked/untagged/fuzzy-scope rejection and measured low-budget queries.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-07",
+      "title": "Implement correction, tombstone and purge fences",
+      "tasks": [
+        "TASK-039",
+        "TASK-041",
+        "TASK-058"
+      ],
+      "gates": [
+        "HM-04",
+        "HM-05",
+        "HM-08"
+      ],
+      "depends_on": [
+        "HMSTEP-05",
+        "HMSTEP-06"
+      ],
+      "implementation": "Persist canonical tombstones before waiting on any in-flight writer. Revoke read leases, implement exact-document cleanup, durable reconciliation and safe generation quarantine. Build dependency tracking for future observations/models; do not wait for richer synthesis to block raw fact reads.",
+      "acceptance": "Real source deletion during retain/recall, duplicate/out-of-order writes, purge timeout and restored-backup tests. Rich derived-model cleanup is additionally proven in HMSTEP-10.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-08",
+      "title": "Wire the memory UX into Métis",
+      "tasks": [
+        "TASK-008",
+        "TASK-029",
+        "TASK-040",
+        "TASK-044"
+      ],
+      "gates": [
+        "HM-01",
+        "HM-09",
+        "HM-13"
+      ],
+      "depends_on": [
+        "HMSTEP-06"
+      ],
+      "implementation": "Implement the provided memory review/coverage design inside existing Intelligence and Knowledge & skills. Agent threads share authorized context, not private hidden state. Include disabled, syncing, unavailable, partial, revoked and purge-pending labels. Preserve orb-only ARMED and Tony onboarding.",
+      "acceptance": "Actual Windows/native Mac keyboard/accessibility flows and cross-session authorized recall; no vendor dashboard or second microphone.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-09",
+      "title": "Connect Dust and server skills",
+      "tasks": [
+        "TASK-038",
+        "TASK-039",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "gates": [
+        "HM-03",
+        "HM-09",
+        "HM-10"
+      ],
+      "depends_on": [
+        "HMSTEP-06",
+        "HMSTEP-08"
+      ],
+      "implementation": "Use the existing governed MCP/service interface rather than raw Hindsight endpoints. Dust writes through canonical mutation/proposals; skill/agent versions bind source scopes. Propagate corrected records back to memory and all readers.",
+      "acceptance": "Real Dust read→authorized canonical update→Métis readback→skill reuse, plus revoked audience/agent-switch tests.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-10",
+      "title": "Qualify observations, mental models and derivative cleanup",
+      "tasks": [
+        "TASK-036",
+        "TASK-037",
+        "TASK-040",
+        "TASK-041"
+      ],
+      "gates": [
+        "HM-03",
+        "HM-07",
+        "HM-08"
+      ],
+      "depends_on": [
+        "HMSTEP-06",
+        "HMSTEP-07"
+      ],
+      "implementation": "Add complete lineage and scoped refresh for derived observations and reviewed mental models inside homogeneous ACL banks. Wire actual create/refresh/version/failure controls through restricted service administration. Apply existing tombstone/generation fences to all derived models/pages/history and block global-sensitive directives.",
+      "acceptance": "Real derived answer, human correction, deletion with upstream is_stale unchanged, stale async completion and incomplete lineage all behave correctly. Only then enable the richer profile.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-11",
+      "title": "Account for every memory workload",
+      "tasks": [
+        "TASK-034",
+        "TASK-045"
+      ],
+      "gates": [
+        "HM-04",
+        "HM-11"
+      ],
+      "depends_on": [
+        "HMSTEP-05",
+        "HMSTEP-06"
+      ],
+      "implementation": "Integrate each actual provider attempt and background task into the existing ledger, including embedding/reranking and optional TypeSafe/Jev reranking. Do not infer Laya compatibility. Show infrastructure allocation separately and suppress payloads/high-cardinality metrics.",
+      "acceptance": "Known zero versus missing, nested billing dedup, cancelled billable work, retries and full-window portal reconciliation.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-12",
+      "title": "Benchmark usefulness, multilingual fidelity and speed",
+      "tasks": [
+        "TASK-053",
+        "TASK-054",
+        "TASK-056",
+        "TASK-060"
+      ],
+      "gates": [
+        "HM-06",
+        "HM-07",
+        "HM-12"
+      ],
+      "depends_on": [
+        "HMSTEP-06",
+        "HMSTEP-10",
+        "HMSTEP-11"
+      ],
+      "implementation": "Run held-out paired tasks against current canonical search/Graphify and Hindsight. Measure citations, temporal errors, contradictions, coverage, abstention and total cost/latency. Include Québec French, English, Spanish and Brazilian Portuguese; no production-recording retention for benchmarks.",
+      "acceptance": "Versioned permitted corpus, samples/denominators, p50/p95/p99 and a documented adoption decision; no vendor leaderboard substitution.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-13",
+      "title": "Exercise failure and security boundaries",
+      "tasks": [
+        "TASK-057",
+        "TASK-058",
+        "TASK-062"
+      ],
+      "gates": [
+        "HM-03",
+        "HM-04",
+        "HM-08",
+        "HM-14"
+      ],
+      "depends_on": [
+        "HMSTEP-09",
+        "HMSTEP-10",
+        "HMSTEP-11"
+      ],
+      "implementation": "Test injected memory instructions, poisoned names, global directives, missing auth, key rotation, budget exhaustion, stalled workers, lost network, replica races and provider-retention drift. Local stop and deterministic actions remain independent.",
+      "acceptance": "Negative test receipts, redacted diagnostics, incident and safe-rebuild runbook, zero unauthorized source disclosure in tested cases.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-14",
+      "title": "Migrate with scoped canaries",
+      "tasks": [
+        "TASK-026",
+        "TASK-035",
+        "TASK-041",
+        "TASK-061"
+      ],
+      "gates": [
+        "HM-05",
+        "HM-13",
+        "HM-15"
+      ],
+      "depends_on": [
+        "HMSTEP-08",
+        "HMSTEP-10",
+        "HMSTEP-12",
+        "HMSTEP-13"
+      ],
+      "implementation": "Inventory only eligible canonical records, preview counts/audiences, receive actual migration approval, and process resumable bounded batches. Shadow comparison cannot write twice or widen recipients. Switch projection pointer after qualification; preserve canonical revisions and tombstones.",
+      "acceptance": "Dry-run manifest, real canary, versioned migration state, safe rollback and optional-model/installer size regression.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-15",
+      "title": "Prove the complete product journeys",
+      "tasks": [
+        "TASK-055",
+        "TASK-056",
+        "TASK-063",
+        "TASK-065"
+      ],
+      "gates": [
+        "HM-10",
+        "HM-12",
+        "HM-16"
+      ],
+      "depends_on": [
+        "HMSTEP-09",
+        "HMSTEP-11",
+        "HMSTEP-12",
+        "HMSTEP-13",
+        "HMSTEP-14"
+      ],
+      "implementation": "Run the HM-FLOW sequences with actual packaged Windows and native Mac, Hindsight, canonical backing store, qualified providers, Dust/skills and deployed Operator. Independent Fable reviews source plus evidence, not test count. Keep Apple publication hold separate.",
+      "acceptance": "Actual source/artifact/deployment IDs and receipts; fixture, pure transport, service smoke and product E2E results separately labelled.",
+      "product_status": "NOT_STARTED"
+    },
+    {
+      "id": "HMSTEP-16",
+      "title": "Freeze, release and operate the qualified capability",
+      "tasks": [
+        "TASK-062",
+        "TASK-063",
+        "TASK-064",
+        "TASK-065",
+        "TASK-066"
+      ],
+      "gates": [
+        "HM-14",
+        "HM-15",
+        "HM-16"
+      ],
+      "depends_on": [
+        "HMSTEP-15"
+      ],
+      "implementation": "Close affected regression gates after refactoring. Sign Windows, freeze exact bytes, verify the actual release/update path and enable only approved service cohorts. Native Mac engineering is tested but public signing remains gated. Monitor freshness/purge backlog and invalidation incidents.",
+      "acceptance": "Exact signed-artifact/service provenance, rollback ownership, telemetry-only alerting and unresolved gates honestly retained.",
+      "product_status": "NOT_STARTED"
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "HMUC-001",
+      "title": "Remember a reviewed language preference",
+      "expected": "It becomes personal memory only after canonical approval; a later authorized thread recalls its source.",
+      "gates": [
+        "HM-02",
+        "HM-05",
+        "HM-06",
+        "HM-09"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-007",
+        "TASK-035",
+        "TASK-036",
+        "TASK-037",
+        "TASK-038",
+        "TASK-041",
+        "TASK-043",
+        "TASK-044"
+      ]
+    },
+    {
+      "id": "HMUC-002",
+      "title": "Recall before an account meeting",
+      "expected": "Return scoped current commitments with sources, not a reconstructed transcript.",
+      "gates": [
+        "HM-06",
+        "HM-07"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-037",
+        "TASK-038",
+        "TASK-040",
+        "TASK-043"
+      ]
+    },
+    {
+      "id": "HMUC-003",
+      "title": "Unverified budget in a summary",
+      "expected": "Preserve provisional status and currency; do not promote an extraction to confirmed budget.",
+      "gates": [
+        "HM-02",
+        "HM-07"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-007",
+        "TASK-035",
+        "TASK-037",
+        "TASK-040",
+        "TASK-043"
+      ]
+    },
+    {
+      "id": "HMUC-004",
+      "title": "Same user on two devices",
+      "expected": "Same permitted personal bank; two devices do not produce independent conflicting identities.",
+      "gates": [
+        "HM-03",
+        "HM-09"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-006",
+        "TASK-035",
+        "TASK-037",
+        "TASK-038",
+        "TASK-043",
+        "TASK-044"
+      ]
+    },
+    {
+      "id": "HMUC-005",
+      "title": "Agent renamed",
+      "expected": "Stable ID and scope survive; the new display name never grants additional sources.",
+      "gates": [
+        "HM-09"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-037",
+        "TASK-043",
+        "TASK-044"
+      ]
+    },
+    {
+      "id": "HMUC-006",
+      "title": "Different agent with private context",
+      "expected": "Do not share private agent history unless explicitly authorized.",
+      "gates": [
+        "HM-03",
+        "HM-09"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-006",
+        "TASK-035",
+        "TASK-037",
+        "TASK-038",
+        "TASK-043",
+        "TASK-044"
+      ]
+    },
+    {
+      "id": "HMUC-007",
+      "title": "Dust asks for permitted meeting context",
+      "expected": "Use the existing governed endpoint; return real evidence and freshness.",
+      "gates": [
+        "HM-06",
+        "HM-10"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-037",
+        "TASK-038",
+        "TASK-039",
+        "TASK-043",
+        "TASK-044"
+      ]
+    },
+    {
+      "id": "HMUC-008",
+      "title": "Dust corrects a commitment",
+      "expected": "Canonical CAS then invalidation/reprojection, not direct edits in generated memory.",
+      "gates": [
+        "HM-05",
+        "HM-08",
+        "HM-10"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-035",
+        "TASK-036",
+        "TASK-038",
+        "TASK-039",
+        "TASK-041",
+        "TASK-043",
+        "TASK-044",
+        "TASK-058"
+      ]
+    },
+    {
+      "id": "HMUC-009",
+      "title": "Published skill uses memory",
+      "expected": "Version and source scope pinned; runtime respects audience and budget.",
+      "gates": [
+        "HM-09",
+        "HM-10",
+        "HM-11"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-034",
+        "TASK-037",
+        "TASK-038",
+        "TASK-039",
+        "TASK-043",
+        "TASK-044",
+        "TASK-045"
+      ]
+    },
+    {
+      "id": "HMUC-010",
+      "title": "Employee revoked during recall",
+      "expected": "Withhold all late results and block the scope at the trusted boundary.",
+      "gates": [
+        "HM-03",
+        "HM-08"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-006",
+        "TASK-035",
+        "TASK-037",
+        "TASK-038",
+        "TASK-039",
+        "TASK-041",
+        "TASK-058"
+      ]
+    },
+    {
+      "id": "HMUC-011",
+      "title": "Source deleted during retain",
+      "expected": "In-flight write cannot publish or resurrect it; reconciliation remains pending until proved.",
+      "gates": [
+        "HM-05",
+        "HM-08"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-035",
+        "TASK-036",
+        "TASK-039",
+        "TASK-041",
+        "TASK-058"
+      ]
+    },
+    {
+      "id": "HMUC-012",
+      "title": "Mental model not flagged stale after deletion",
+      "expected": "Explicit dependency invalidation hides the derived answer despite upstream flag.",
+      "gates": [
+        "HM-07",
+        "HM-08"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-037",
+        "TASK-039",
+        "TASK-040",
+        "TASK-041",
+        "TASK-043",
+        "TASK-058"
+      ]
+    },
+    {
+      "id": "HMUC-013",
+      "title": "Out-of-order source revision",
+      "expected": "Older worker cannot replace newer projection or source.",
+      "gates": [
+        "HM-05"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-035",
+        "TASK-036",
+        "TASK-041"
+      ]
+    },
+    {
+      "id": "HMUC-014",
+      "title": "Duplicate outbox event",
+      "expected": "No duplicate retained document or duplicate usage settlement; genuine retries billed separately.",
+      "gates": [
+        "HM-05",
+        "HM-11"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-034",
+        "TASK-035",
+        "TASK-036",
+        "TASK-041",
+        "TASK-045"
+      ]
+    },
+    {
+      "id": "HMUC-015",
+      "title": "Server confirms retain but search lags",
+      "expected": "Show sync pending; do not claim memory ready from HTTP 200.",
+      "gates": [
+        "HM-05",
+        "HM-13"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-008",
+        "TASK-029",
+        "TASK-035",
+        "TASK-036",
+        "TASK-040",
+        "TASK-041",
+        "TASK-044"
+      ]
+    },
+    {
+      "id": "HMUC-016",
+      "title": "Memory provider unavailable",
+      "expected": "Show unavailable; exact actions still work and no-memory answer discloses missing history.",
+      "gates": [
+        "HM-06",
+        "HM-12",
+        "HM-14"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-015",
+        "TASK-037",
+        "TASK-038",
+        "TASK-043",
+        "TASK-053",
+        "TASK-054",
+        "TASK-056",
+        "TASK-057",
+        "TASK-060",
+        "TASK-062"
+      ]
+    },
+    {
+      "id": "HMUC-017",
+      "title": "User selects an ephemeral interaction",
+      "expected": "No hidden retain, feedback training or summary projection for that interaction.",
+      "gates": [
+        "HM-02",
+        "HM-04",
+        "HM-13"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-007",
+        "TASK-008",
+        "TASK-011",
+        "TASK-015",
+        "TASK-029",
+        "TASK-035",
+        "TASK-037",
+        "TASK-040",
+        "TASK-044",
+        "TASK-057"
+      ]
+    },
+    {
+      "id": "HMUC-018",
+      "title": "User selected local-only processing",
+      "expected": "Do not call remote memory, embeddings, reranker or reflection.",
+      "gates": [
+        "HM-02",
+        "HM-04"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-007",
+        "TASK-011",
+        "TASK-015",
+        "TASK-035",
+        "TASK-037",
+        "TASK-057"
+      ]
+    },
+    {
+      "id": "HMUC-019",
+      "title": "Cloudflare gateway body logging drifts",
+      "expected": "Block affected content route; preserve operational metadata incident only.",
+      "gates": [
+        "HM-04",
+        "HM-14"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-011",
+        "TASK-015",
+        "TASK-035",
+        "TASK-057",
+        "TASK-062"
+      ]
+    },
+    {
+      "id": "HMUC-020",
+      "title": "Worker payload holds approved content",
+      "expected": "Enforce finite terminal retention and explicit stuck-job cleanup; no raw transcript in task payload.",
+      "gates": [
+        "HM-04",
+        "HM-14"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-011",
+        "TASK-015",
+        "TASK-035",
+        "TASK-057",
+        "TASK-062"
+      ]
+    },
+    {
+      "id": "HMUC-021",
+      "title": "Prompt injection embedded in a memory",
+      "expected": "Treat as quoted evidence; no tool, bank, policy, secret or skill permission change.",
+      "gates": [
+        "HM-03",
+        "HM-07",
+        "HM-14"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-006",
+        "TASK-015",
+        "TASK-035",
+        "TASK-037",
+        "TASK-038",
+        "TASK-040",
+        "TASK-043",
+        "TASK-057",
+        "TASK-062"
+      ]
+    },
+    {
+      "id": "HMUC-022",
+      "title": "Untagged and fuzzy matches",
+      "expected": "No private recall via empty or fuzzy security scope; strict matching and bank identity enforced.",
+      "gates": [
+        "HM-03",
+        "HM-06"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-006",
+        "TASK-035",
+        "TASK-037",
+        "TASK-038",
+        "TASK-043"
+      ]
+    },
+    {
+      "id": "HMUC-023",
+      "title": "Mixed audience Teams meeting",
+      "expected": "Use only sources permitted to the output audience, not organizer-private context.",
+      "gates": [
+        "HM-03",
+        "HM-10"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-006",
+        "TASK-035",
+        "TASK-037",
+        "TASK-038",
+        "TASK-039",
+        "TASK-043",
+        "TASK-044"
+      ]
+    },
+    {
+      "id": "HMUC-024",
+      "title": "Hard date filter",
+      "expected": "Exclude canonical records outside the requested period even if semantic recall ranks them.",
+      "gates": [
+        "HM-06",
+        "HM-12"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-037",
+        "TASK-038",
+        "TASK-043",
+        "TASK-053",
+        "TASK-054",
+        "TASK-056",
+        "TASK-060"
+      ]
+    },
+    {
+      "id": "HMUC-025",
+      "title": "Multilingual proper name and negation",
+      "expected": "Preserve original text and meaning; aliases cannot merge unrelated canonical people.",
+      "gates": [
+        "HM-02",
+        "HM-06",
+        "HM-12"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-007",
+        "TASK-035",
+        "TASK-037",
+        "TASK-038",
+        "TASK-043",
+        "TASK-053",
+        "TASK-054",
+        "TASK-056",
+        "TASK-060"
+      ]
+    },
+    {
+      "id": "HMUC-026",
+      "title": "Embedding model changed, same dimensions",
+      "expected": "Treat as a new vector space; generation rebuild and qualification, not in-place mixing.",
+      "gates": [
+        "HM-14",
+        "HM-15"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-015",
+        "TASK-026",
+        "TASK-035",
+        "TASK-041",
+        "TASK-057",
+        "TASK-061",
+        "TASK-062"
+      ]
+    },
+    {
+      "id": "HMUC-027",
+      "title": "Memory inference incurs background costs",
+      "expected": "Count actual stage attempts; no free-memory or double-counted nested-total claim.",
+      "gates": [
+        "HM-11"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-034",
+        "TASK-045"
+      ]
+    },
+    {
+      "id": "HMUC-028",
+      "title": "Unknown token counts",
+      "expected": "Leave missing fields null and basis visible; never invent exact totals.",
+      "gates": [
+        "HM-11"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-034",
+        "TASK-045"
+      ]
+    },
+    {
+      "id": "HMUC-029",
+      "title": "Privacy-safe source text disabled",
+      "expected": "Document text and raw chunk expansion unavailable; canonical authorized view provides evidence.",
+      "gates": [
+        "HM-04",
+        "HM-06"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-011",
+        "TASK-015",
+        "TASK-035",
+        "TASK-037",
+        "TASK-038",
+        "TASK-043",
+        "TASK-057"
+      ]
+    },
+    {
+      "id": "HMUC-030",
+      "title": "Restore a pre-deletion backup",
+      "expected": "Tombstones/ACL epochs reapplied before serving; no resurrection.",
+      "gates": [
+        "HM-08",
+        "HM-14"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-015",
+        "TASK-039",
+        "TASK-041",
+        "TASK-057",
+        "TASK-058",
+        "TASK-062"
+      ]
+    },
+    {
+      "id": "HMUC-031",
+      "title": "Simple “open Notes” command",
+      "expected": "No obligatory memory/reflection step; retained context never substitutes a fresh target.",
+      "gates": [
+        "HM-12",
+        "HM-16"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-053",
+        "TASK-054",
+        "TASK-055",
+        "TASK-056",
+        "TASK-060",
+        "TASK-063",
+        "TASK-064",
+        "TASK-065",
+        "TASK-066"
+      ]
+    },
+    {
+      "id": "HMUC-032",
+      "title": "Final Windows and native Mac journey",
+      "expected": "Actual live retain/recall/correct/forget/portal flow on identified artifacts and services.",
+      "gates": [
+        "HM-16"
+      ],
+      "product_verification": "NOT_TESTED",
+      "tasks": [
+        "TASK-055",
+        "TASK-056",
+        "TASK-063",
+        "TASK-064",
+        "TASK-065",
+        "TASK-066"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "scope": "file-backed nodes in owner-supplied Mermaid, not all repository files",
+  "total": 19,
+  "present": 14,
+  "nodes": [
+    {
+      "path": "src/renderer/src/App.tsx",
+      "present_in_export": false,
+      "evidence": "NOT_IN_EXPORT; retrieve exact live checkout, not evidence of repository absence"
+    },
+    {
+      "path": "src/preload/index.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "src/main/index.ts",
+      "present_in_export": false,
+      "evidence": "NOT_IN_EXPORT; retrieve exact live checkout, not evidence of repository absence"
+    },
+    {
+      "path": "src/main/screen-capture.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "src/renderer/src/lib/listen.ts",
+      "present_in_export": false,
+      "evidence": "NOT_IN_EXPORT; retrieve exact live checkout, not evidence of repository absence"
+    },
+    {
+      "path": "src/main/parakeet.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "src/main/asktoto-shot.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "src/main/llm.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "src/main/transcripts.ts",
+      "present_in_export": false,
+      "evidence": "NOT_IN_EXPORT; retrieve exact live checkout, not evidence of repository absence"
+    },
+    {
+      "path": "src/main/brain/ingest.ts",
+      "present_in_export": false,
+      "evidence": "NOT_IN_EXPORT; retrieve exact live checkout, not evidence of repository absence"
+    },
+    {
+      "path": "src/main/brain/store.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "src/main/operator-ingest.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "operator/src/index.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "operator/src/store.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "operator/client/main.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "license-server/lib/app.mjs",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "license-server/lib/store.mjs",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "intelligence/src/App.tsx",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    },
+    {
+      "path": "intelligence/src/lib/brainAdapter.ts",
+      "present_in_export": true,
+      "evidence": "source section present; no runtime claim"
+    }
+  ]
+}

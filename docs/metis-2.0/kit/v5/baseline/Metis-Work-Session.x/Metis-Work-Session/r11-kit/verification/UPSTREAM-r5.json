@@ -1,0 +1,7 @@
+{
+  "source": "Metis-2.0-Codex-Upgrade-Kit-r5.zip",
+  "previous_master_sha256": "7bdb9c186d739c443350e66a6764b3c95f82dfbc551130bb0dd8e3a4ed1a887d",
+  "current_master_sha256": "0d808c7f6eaf5bbb183b62d2b53f65d286438aa2dbcdbb711c065c3287e68286",
+  "change": "Owner-authorized orb-only ARMED refinement; same product ID scope.",
+  "not_claimed": "No product code or deployed configuration changed."
+}

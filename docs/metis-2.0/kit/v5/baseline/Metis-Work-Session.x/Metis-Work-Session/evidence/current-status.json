@@ -1,0 +1,26 @@
+{
+  "schema": "metis.work-session.evidence.v1",
+  "date": "2026-09-24",
+  "new_production_files_modified": 1,
+  "new_production_files_added": 2,
+  "native_test_files_added": 1,
+  "checks": {
+    "new_source_tests": 43,
+    "browser_fixture_cases": 13,
+    "launcher_tests": 24,
+    "preserved_v2_source_tests_rerun": 142,
+    "historical_source_assertions": 48
+  },
+  "not_executed": [
+    "full repo CI",
+    "native installed app",
+    "live services",
+    "remote write",
+    "local Mac agent launch",
+    "independent subagents",
+    "release"
+  ],
+  "remote_read_status": 404,
+  "installed_app_updated": false,
+  "release_ready": false
+}

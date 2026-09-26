@@ -1,0 +1,1039 @@
+{
+  "schema": "metis.agent-expansion.v1",
+  "product_contract_revision": "4.4",
+  "reference": "clicky-study/ARTIFACT.json",
+  "gates": [
+    {
+      "id": "AGX-01",
+      "title": "Source and adoption integrity",
+      "tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-061"
+      ],
+      "source_observations": [
+        "HC-01",
+        "HC-02",
+        "HC-27",
+        "HC-32"
+      ],
+      "acceptance": "Every adoption names actual packaged evidence and its limit; no private service or proprietary media is copied.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-02",
+      "title": "Authorized full-document context",
+      "tasks": [
+        "TASK-005",
+        "TASK-033",
+        "TASK-037",
+        "TASK-057"
+      ],
+      "source_observations": [
+        "HC-10",
+        "HC-11",
+        "HC-12",
+        "HC-13",
+        "HC-24"
+      ],
+      "acceptance": "The context broker distinguishes current buffer, saved source, visible screenshot, partial read and verified full coverage.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-03",
+      "title": "Screen guidance without hidden action",
+      "tasks": [
+        "TASK-030",
+        "TASK-033",
+        "TASK-056"
+      ],
+      "source_observations": [
+        "HC-04",
+        "HC-17",
+        "HC-24"
+      ],
+      "acceptance": "Annotations carry fresh target identity and do not execute input or impersonate a permission prompt.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-04",
+      "title": "Safe verbatim dictation and insertion",
+      "tasks": [
+        "TASK-019",
+        "TASK-033",
+        "TASK-056",
+        "TASK-057"
+      ],
+      "source_observations": [
+        "HC-23"
+      ],
+      "acceptance": "Verbatim content and an optional rewrite stay distinct; exact focus/field and clipboard ownership are validated.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-05",
+      "title": "Resumable personalized onboarding",
+      "tasks": [
+        "TASK-008",
+        "TASK-027",
+        "TASK-044",
+        "TASK-055"
+      ],
+      "source_observations": [
+        "HC-17",
+        "HC-18",
+        "HC-19",
+        "HC-20",
+        "HC-29",
+        "HC-31"
+      ],
+      "acceptance": "Existing Métis desktop scene order and native-model ownership remain; progressive capability coaching, Tony-only welcome or text fallback, consent, no-run agent creation and replay are verified in the real product. No replacement wizard.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-06",
+      "title": "Stable named-agent definitions",
+      "tasks": [
+        "TASK-005",
+        "TASK-042",
+        "TASK-044"
+      ],
+      "source_observations": [
+        "HC-07",
+        "HC-18",
+        "HC-19"
+      ],
+      "acceptance": "Agent identity is separate from models/skills/runs and changing its appearance cannot broaden authority.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-07",
+      "title": "Correct routing and pinned providers",
+      "tasks": [
+        "TASK-019",
+        "TASK-031",
+        "TASK-032",
+        "TASK-043"
+      ],
+      "source_observations": [
+        "HC-10",
+        "HC-15",
+        "HC-16"
+      ],
+      "acceptance": "Explicit names, focus and turn context resolve to the correct authorized agent; provider pins never silently change.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-08",
+      "title": "Isolated memory, drafts and source authority",
+      "tasks": [
+        "TASK-035",
+        "TASK-039",
+        "TASK-041",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "source_observations": [
+        "HC-08",
+        "HC-09",
+        "HC-26"
+      ],
+      "acceptance": "Agent memory, draft and source scope are isolated by principal and stable namespace; shared knowledge remains canonical.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-09",
+      "title": "Bounded concurrent runs and input leases",
+      "tasks": [
+        "TASK-005",
+        "TASK-033",
+        "TASK-043",
+        "TASK-057"
+      ],
+      "source_observations": [
+        "HC-04",
+        "HC-16",
+        "HC-26"
+      ],
+      "acceptance": "Only one current run can own desktop input per device; cancellation/generation and independent verification gate every effect.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-10",
+      "title": "Explicit routines and calm suggestions",
+      "tasks": [
+        "TASK-043",
+        "TASK-045",
+        "TASK-048",
+        "TASK-062"
+      ],
+      "source_observations": [
+        "HC-21",
+        "HC-22"
+      ],
+      "acceptance": "Recurring work has explicit scope, location, timezone and budget; attention respects meeting/privacy state.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-11",
+      "title": "Probed connectors and typed schemas",
+      "tasks": [
+        "TASK-006",
+        "TASK-033",
+        "TASK-043",
+        "TASK-045"
+      ],
+      "source_observations": [
+        "HC-14",
+        "HC-15"
+      ],
+      "acceptance": "Ready reflects a real scoped authenticated probe; typed write schemas and readback are required.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-12",
+      "title": "Central skills and truthful capabilities",
+      "tasks": [
+        "TASK-009",
+        "TASK-042",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "source_observations": [
+        "HC-05",
+        "HC-06",
+        "HC-28"
+      ],
+      "acceptance": "Published allowed skills determine capabilities; arbitrary local scripts and non-shipped tools do not become enabled by a label.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-13",
+      "title": "Scoped artifacts and safe previews",
+      "tasks": [
+        "TASK-035",
+        "TASK-043",
+        "TASK-044",
+        "TASK-057"
+      ],
+      "source_observations": [
+        "HC-09",
+        "HC-25"
+      ],
+      "acceptance": "Outputs exist and verify before presentation; preview, open, export, overwrite and share are separate authority decisions.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-14",
+      "title": "Per-agent operational truth",
+      "tasks": [
+        "TASK-015",
+        "TASK-034",
+        "TASK-045"
+      ],
+      "source_observations": [
+        "HC-03",
+        "HC-15",
+        "HC-30"
+      ],
+      "acceptance": "Operator reconciles real operation, agent, skill, provider and billing identities without content logging.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-15",
+      "title": "Minimal animated identity and fast Home",
+      "tasks": [
+        "TASK-028",
+        "TASK-030",
+        "TASK-044",
+        "TASK-060"
+      ],
+      "source_observations": [
+        "HC-16",
+        "HC-21",
+        "HC-24"
+      ],
+      "acceptance": "Orb-only ARMED remains; expanded names are clear, visible animations bounded, history paged and accessibility preserved.",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGX-16",
+      "title": "Real cross-platform end-to-end qualification",
+      "tasks": [
+        "TASK-029",
+        "TASK-055",
+        "TASK-056",
+        "TASK-057",
+        "TASK-063",
+        "TASK-065"
+      ],
+      "source_observations": [
+        "HC-02",
+        "HC-32"
+      ],
+      "acceptance": "A native signed Windows/live-service journey and independent native Mac journey prove actual capabilities and remaining holds.",
+      "verification": "NOT_TESTED"
+    }
+  ],
+  "cases": [
+    {
+      "id": "AGUC-001",
+      "gate": "AGX-01",
+      "scenario": "A reference contains an old unused skill picker.",
+      "expected": "Classify the old note separately from live runtime proof; leave actual activation unverified.",
+      "tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-061"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-002",
+      "gate": "AGX-01",
+      "scenario": "A source contains an account token or a private endpoint.",
+      "expected": "Do not call it or copy it into Métis; sanitize provenance and use Métis-owned authentication.",
+      "tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-061"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-003",
+      "gate": "AGX-02",
+      "scenario": "Ask about an off-screen clause in a selected document.",
+      "expected": "Read the verified full revision through the permitted source or disclose visible-only coverage; cite the exact clause.",
+      "tasks": [
+        "TASK-005",
+        "TASK-033",
+        "TASK-037",
+        "TASK-057"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-004",
+      "gate": "AGX-02",
+      "scenario": "Source permission is removed while extraction runs.",
+      "expected": "Invalidate the pending generation, do not attach late content and do not satisfy a pending approval with old context.",
+      "tasks": [
+        "TASK-005",
+        "TASK-033",
+        "TASK-037",
+        "TASK-057"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-005",
+      "gate": "AGX-03",
+      "scenario": "Ask Métis to show which button changes export format.",
+      "expected": "Display a scoped fresh highlight with an explanation; no click or setting change.",
+      "tasks": [
+        "TASK-030",
+        "TASK-033",
+        "TASK-056"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-006",
+      "gate": "AGX-03",
+      "scenario": "The target moves, scrolls or changes displays.",
+      "expected": "Invalidate the old highlight and reobserve; never point at the stale coordinate.",
+      "tasks": [
+        "TASK-030",
+        "TASK-033",
+        "TASK-056"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-007",
+      "gate": "AGX-04",
+      "scenario": "Dictate Québec / R&D, do not send.",
+      "expected": "Preserve accents and negation; insert only into the approved field without pressing Send.",
+      "tasks": [
+        "TASK-019",
+        "TASK-033",
+        "TASK-056",
+        "TASK-057"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-008",
+      "gate": "AGX-04",
+      "scenario": "Switch to a terminal or another app before insertion.",
+      "expected": "Block insertion; preserve the draft and offer explicit destination/copy choice.",
+      "tasks": [
+        "TASK-019",
+        "TASK-033",
+        "TASK-056",
+        "TASK-057"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-009",
+      "gate": "AGX-05",
+      "scenario": "Create the recommended starter team then replay setup.",
+      "expected": "Retain the same IDs and existing work; do not create duplicates or launch tasks.",
+      "tasks": [
+        "TASK-008",
+        "TASK-027",
+        "TASK-044",
+        "TASK-055"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-010",
+      "gate": "AGX-05",
+      "scenario": "Video, speech or an optional connector is unavailable.",
+      "expected": "Show truthful per-capability readiness, typed/static alternatives and working retry/exit paths.",
+      "tasks": [
+        "TASK-008",
+        "TASK-027",
+        "TASK-044",
+        "TASK-055"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-011",
+      "gate": "AGX-06",
+      "scenario": "Rename Research Scout and change its orb.",
+      "expected": "Preserve ID, provider pin, memory, jobs and permissions; no duplicate agent.",
+      "tasks": [
+        "TASK-005",
+        "TASK-042",
+        "TASK-044"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-012",
+      "gate": "AGX-06",
+      "scenario": "Ask to create three agents and then cancel before confirmation.",
+      "expected": "No task or routine starts; no unconfirmed definitions become active.",
+      "tasks": [
+        "TASK-005",
+        "TASK-042",
+        "TASK-044"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-013",
+      "gate": "AGX-07",
+      "scenario": "Send a follow-up to a busy named Dust agent.",
+      "expected": "Queue under its real remote identity and thread; no generic model impersonation.",
+      "tasks": [
+        "TASK-019",
+        "TASK-031",
+        "TASK-032",
+        "TASK-043"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-014",
+      "gate": "AGX-07",
+      "scenario": "Say do it after switching to a different agent or suggestion.",
+      "expected": "Require an exact pending target; never transfer the previous approval.",
+      "tasks": [
+        "TASK-019",
+        "TASK-031",
+        "TASK-032",
+        "TASK-043"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-015",
+      "gate": "AGX-08",
+      "scenario": "Switch agents with unsent text and attachments.",
+      "expected": "Restore each exact draft/attachment/scroll state without leaking it into another request.",
+      "tasks": [
+        "TASK-035",
+        "TASK-039",
+        "TASK-041",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-016",
+      "gate": "AGX-08",
+      "scenario": "Delete or correct an agent fact and regenerate knowledge.",
+      "expected": "Corrections propagate; deleted/revoked material cannot return from cached agent memory or old backup.",
+      "tasks": [
+        "TASK-035",
+        "TASK-039",
+        "TASK-041",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-017",
+      "gate": "AGX-09",
+      "scenario": "Two agents request keyboard or pointer control simultaneously.",
+      "expected": "One lease owner acts, the other waits; no mixed typing or cursor race.",
+      "tasks": [
+        "TASK-005",
+        "TASK-033",
+        "TASK-043",
+        "TASK-057"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-018",
+      "gate": "AGX-09",
+      "scenario": "Cancel a run as its provider result arrives.",
+      "expected": "Reject late dispatch, release authority, and reconcile any already attempted effect truthfully.",
+      "tasks": [
+        "TASK-005",
+        "TASK-033",
+        "TASK-043",
+        "TASK-057"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-019",
+      "gate": "AGX-10",
+      "scenario": "A device-bound routine misses several runs while locked.",
+      "expected": "Skip/coalesce per explicit policy and require that device to be eligible; no storm or device substitution.",
+      "tasks": [
+        "TASK-043",
+        "TASK-045",
+        "TASK-048",
+        "TASK-062"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-020",
+      "gate": "AGX-10",
+      "scenario": "A suggestion finishes during a meeting or screen share.",
+      "expected": "Keep it discoverable without unrequested speech, sound or sensitive floating text.",
+      "tasks": [
+        "TASK-043",
+        "TASK-045",
+        "TASK-048",
+        "TASK-062"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-021",
+      "gate": "AGX-11",
+      "scenario": "Save a syntactically valid but rejected connector token.",
+      "expected": "Show checking then rejected; never report Connected merely because it was saved.",
+      "tasks": [
+        "TASK-006",
+        "TASK-033",
+        "TASK-043",
+        "TASK-045"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-022",
+      "gate": "AGX-11",
+      "scenario": "An API result is large or paginated.",
+      "expected": "Use scoped pagination/fields; do not escape to broader GUI control as an automatic fallback.",
+      "tasks": [
+        "TASK-006",
+        "TASK-033",
+        "TASK-043",
+        "TASK-045"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-023",
+      "gate": "AGX-12",
+      "scenario": "Publish a skill update while an agent is running.",
+      "expected": "Current run stays pinned, later runs use the qualified revision, revoked versions cannot execute.",
+      "tasks": [
+        "TASK-009",
+        "TASK-042",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-024",
+      "gate": "AGX-12",
+      "scenario": "A role requests a capability whose provider is not present.",
+      "expected": "Report unsupported/unavailable accurately; do not loop on Retry or invent output.",
+      "tasks": [
+        "TASK-009",
+        "TASK-042",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-025",
+      "gate": "AGX-13",
+      "scenario": "An agent generates a report and the user returns tomorrow.",
+      "expected": "Find the exact durable result from its manifest without regenerating or changing ownership.",
+      "tasks": [
+        "TASK-035",
+        "TASK-043",
+        "TASK-044",
+        "TASK-057"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-026",
+      "gate": "AGX-13",
+      "scenario": "A preview contains scripts, remote images or a traversal filename.",
+      "expected": "Sandbox/reject unsafe content and paths; do not execute or exfiltrate.",
+      "tasks": [
+        "TASK-035",
+        "TASK-043",
+        "TASK-044",
+        "TASK-057"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-027",
+      "gate": "AGX-14",
+      "scenario": "Two agents use the same server-held Jev key.",
+      "expected": "Attribute both attempts correctly and keep user/context isolation; do not double count delivery retries.",
+      "tasks": [
+        "TASK-015",
+        "TASK-034",
+        "TASK-045"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-028",
+      "gate": "AGX-14",
+      "scenario": "A preview or starter-agent creation is mistaken for a live task.",
+      "expected": "Distinct event categories prevent fake usage/readiness; actual setup provider spend remains accounted.",
+      "tasks": [
+        "TASK-015",
+        "TASK-034",
+        "TASK-045"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-029",
+      "gate": "AGX-15",
+      "scenario": "A catalog contains twenty agents and a thousand-turn chat.",
+      "expected": "Do not create twenty frame loops or render whole history per keystroke; measure actual resource use.",
+      "tasks": [
+        "TASK-028",
+        "TASK-030",
+        "TASK-044",
+        "TASK-060"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-030",
+      "gate": "AGX-15",
+      "scenario": "Reduced motion, high contrast, 200% text or IME is active.",
+      "expected": "Keep names, source/approval controls and safe keyboard operation; no hidden required status.",
+      "tasks": [
+        "TASK-028",
+        "TASK-030",
+        "TASK-044",
+        "TASK-060"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-031",
+      "gate": "AGX-16",
+      "scenario": "A new user completes agent creation, context, approval and result.",
+      "expected": "Verify real source, backend, action, knowledge/Dust and Operator receipt on the exact candidate.",
+      "tasks": [
+        "TASK-029",
+        "TASK-055",
+        "TASK-056",
+        "TASK-057",
+        "TASK-063",
+        "TASK-065"
+      ],
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "AGUC-032",
+      "gate": "AGX-16",
+      "scenario": "The native or provider prerequisite is not available.",
+      "expected": "Keep that slice BLOCKED and do independent work; do not pass it from HTML or another platform.",
+      "tasks": [
+        "TASK-029",
+        "TASK-055",
+        "TASK-056",
+        "TASK-057",
+        "TASK-063",
+        "TASK-065"
+      ],
+      "verification": "NOT_TESTED"
+    }
+  ],
+  "ordered_steps": [
+    {
+      "id": "AGSTEP-01",
+      "title": "Reconcile the actual reference and source baseline",
+      "tasks": [
+        "TASK-001",
+        "TASK-002"
+      ],
+      "gates": [
+        "AGX-01"
+      ],
+      "depends_on": [],
+      "work": "Identify the full current Métis checkout, all reference sources, rights, exact scope and existing agent/provider pins; retain early P1 lane.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-02",
+      "title": "Freeze agent/context/authority contracts",
+      "tasks": [
+        "TASK-005"
+      ],
+      "gates": [
+        "AGX-06",
+        "AGX-07",
+        "AGX-08",
+        "AGX-09"
+      ],
+      "depends_on": [
+        "AGSTEP-01"
+      ],
+      "work": "Define stable definitions, run identities, source coverage, policy/consent epochs, artifact handles and one desktop writer lease.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-03",
+      "title": "Build scoped context resolution",
+      "tasks": [
+        "TASK-033",
+        "TASK-037"
+      ],
+      "gates": [
+        "AGX-02"
+      ],
+      "depends_on": [
+        "AGSTEP-02"
+      ],
+      "work": "Implement selected attachment/file/connector/current-buffer/AX/visible fallback with exact coverage and revocation; no broad scans.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-04",
+      "title": "Implement screen guidance and safe dictation",
+      "tasks": [
+        "TASK-019",
+        "TASK-030",
+        "TASK-033"
+      ],
+      "gates": [
+        "AGX-03",
+        "AGX-04"
+      ],
+      "depends_on": [
+        "AGSTEP-03"
+      ],
+      "work": "Add annotations and exact-target insertion with fresh geometry/focus validation and explicit clipboard fallback.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-05",
+      "title": "Enhance the existing Métis onboarding and Tony welcome",
+      "tasks": [
+        "TASK-008",
+        "TASK-027"
+      ],
+      "gates": [
+        "AGX-05"
+      ],
+      "depends_on": [
+        "AGSTEP-02"
+      ],
+      "work": "Preserve existing scene order and sign-in/Ready gates. Remove retired welcome media, add the approved Tony-only slot or text fallback, and integrate permission readback, accessibility, optional agents and connections inside existing setup/personalization. Implement OBU-01 through OBU-05; no replacement wizard.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-06",
+      "title": "Extend the existing registry with named agents",
+      "tasks": [
+        "TASK-009",
+        "TASK-042"
+      ],
+      "gates": [
+        "AGX-06",
+        "AGX-12"
+      ],
+      "depends_on": [
+        "AGSTEP-02"
+      ],
+      "work": "Use existing central skill/provider registry and Dust discovery; define job cards, versioning, capability and budget limits.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-07",
+      "title": "Integrate named orbs and compact Agent Home",
+      "tasks": [
+        "TASK-028",
+        "TASK-030",
+        "TASK-044"
+      ],
+      "gates": [
+        "AGX-15"
+      ],
+      "depends_on": [
+        "AGSTEP-06"
+      ],
+      "work": "Wire actual state to reviewed motifs; preserve the default orb-only ARMED behavior, names in expanded/busy surfaces and isolated drafts.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-08",
+      "title": "Implement canonical agent memory and artifact ownership",
+      "tasks": [
+        "TASK-035",
+        "TASK-039",
+        "TASK-041"
+      ],
+      "gates": [
+        "AGX-08",
+        "AGX-13"
+      ],
+      "depends_on": [
+        "AGSTEP-06"
+      ],
+      "work": "Persist scoped records in approved storage, resolve CAS/conflicts/deletions and bind workspace outputs to actual identity.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-09",
+      "title": "Bind voice/text to exact agents and real Jev/Laya",
+      "tasks": [
+        "TASK-019",
+        "TASK-031",
+        "TASK-032"
+      ],
+      "gates": [
+        "AGX-07"
+      ],
+      "depends_on": [
+        "AGSTEP-06"
+      ],
+      "work": "Resolve explicit names and ambiguous referents, preserve original command text, enforce provider pins and scoped handoffs.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-10",
+      "title": "Connect bounded hosted agent execution",
+      "tasks": [
+        "TASK-043"
+      ],
+      "gates": [
+        "AGX-09",
+        "AGX-12"
+      ],
+      "depends_on": [
+        "AGSTEP-08",
+        "AGSTEP-09"
+      ],
+      "work": "Reuse shared scheduler; no per-agent local runtime; enforce budgets, cancellation, retry reconciliation and actual skill versions.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-11",
+      "title": "Connect trusted native action leases and verification",
+      "tasks": [
+        "TASK-033"
+      ],
+      "gates": [
+        "AGX-09"
+      ],
+      "depends_on": [
+        "AGSTEP-03",
+        "AGSTEP-10"
+      ],
+      "work": "Implement device-bound input ownership and actual native postcondition checks. Qualify Cua only when it improves existing adapters safely.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-12",
+      "title": "Verify scoped connectors and authority upgrades",
+      "tasks": [
+        "TASK-006",
+        "TASK-033",
+        "TASK-045"
+      ],
+      "gates": [
+        "AGX-11"
+      ],
+      "depends_on": [
+        "AGSTEP-02"
+      ],
+      "work": "Read real connected account/scope states, probe harmlessly, enforce exact schemas and trusted OAuth escalation. Never reuse reference tokens.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-13",
+      "title": "Add durable output navigation and sandboxed previews",
+      "tasks": [
+        "TASK-035",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "gates": [
+        "AGX-13"
+      ],
+      "depends_on": [
+        "AGSTEP-08",
+        "AGSTEP-10"
+      ],
+      "work": "Validate actual result bytes and storage; expose preview/open/export/share with separate scope and no executable content.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-14",
+      "title": "Add explicit routines, source-backed suggestions and quiet mode",
+      "tasks": [
+        "TASK-043",
+        "TASK-047",
+        "TASK-048",
+        "TASK-062"
+      ],
+      "gates": [
+        "AGX-10"
+      ],
+      "depends_on": [
+        "AGSTEP-10",
+        "AGSTEP-11",
+        "AGSTEP-12"
+      ],
+      "work": "Bind occurrence/timezone/location/consent/budget; coalesce missed work and suppress unrequested meeting-time interruptions.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-15",
+      "title": "Complete named-agent Operator accounting",
+      "tasks": [
+        "TASK-015",
+        "TASK-034",
+        "TASK-045"
+      ],
+      "gates": [
+        "AGX-14"
+      ],
+      "depends_on": [
+        "AGSTEP-10",
+        "AGSTEP-12",
+        "AGSTEP-14"
+      ],
+      "work": "Reconcile agent/skill/version/session/attempt quantities; preserve unknown data and metadata-only logs.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-16",
+      "title": "Run actual fresh/upgrade cross-system journeys",
+      "tasks": [
+        "TASK-055",
+        "TASK-056"
+      ],
+      "gates": [
+        "AGX-16"
+      ],
+      "depends_on": [
+        "AGSTEP-04",
+        "AGSTEP-05",
+        "AGSTEP-07",
+        "AGSTEP-11",
+        "AGSTEP-12",
+        "AGSTEP-13",
+        "AGSTEP-14",
+        "AGSTEP-15"
+      ],
+      "work": "Use real authorized source reads, Cloudflare/Jev/Laya, native actions, canonical/Dust writes and portal readback; not synthetic timers.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-17",
+      "title": "Run abuse, concurrency, accessibility and performance qualification",
+      "tasks": [
+        "TASK-057",
+        "TASK-058",
+        "TASK-060",
+        "TASK-061"
+      ],
+      "gates": [
+        "AGX-01",
+        "AGX-02",
+        "AGX-04",
+        "AGX-08",
+        "AGX-09",
+        "AGX-10",
+        "AGX-13",
+        "AGX-15"
+      ],
+      "depends_on": [
+        "AGSTEP-16"
+      ],
+      "work": "Exercise boundary failures and measured resource envelopes after characterized refactoring; keep all original gates.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    },
+    {
+      "id": "AGSTEP-18",
+      "title": "Qualify exact final platform artifacts and report scope",
+      "tasks": [
+        "TASK-063",
+        "TASK-064",
+        "TASK-065",
+        "TASK-066"
+      ],
+      "gates": [
+        "AGX-16"
+      ],
+      "depends_on": [
+        "AGSTEP-17"
+      ],
+      "work": "Sign/timestamp/freeze/test Windows then publish same bytes; native Mac engineering independently qualifies and public Apple hold remains explicit.",
+      "exit": "Actual source/contract/native/service proof at the level of the owned gates; satisfy root-task platform/provider prerequisites.",
+      "state": "NOT_STARTED"
+    }
+  ],
+  "scope_note": "Supplemental to the unchanged baseline identifier catalogs. Source observations, code-reference tests and synthetic visual tests are not product verification. Owner correction in MASTER §32.6/§34 supersedes the r9 eight-stage wizard; other agent scope remains."
+}

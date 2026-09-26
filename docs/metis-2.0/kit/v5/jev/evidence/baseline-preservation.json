@@ -1,0 +1,47 @@
+{
+  "archive_and_source_checks": [
+    {
+      "path": "baseline/Metis-Work-Session.zip",
+      "sha256": "4f18f338f7ff37b83397773fdcd07076a2924029ba7d76daa9556ed01240d8d2",
+      "unchanged": true
+    },
+    {
+      "path": "baseline/Metis-HeyClicky-Interaction-Upgrade.zip",
+      "sha256": "217a4c7516e09819fb87ededeb9ac058783d16e524051508003523ea06fe3459",
+      "unchanged": true
+    },
+    {
+      "path": "behavior-core/src/authority.ts",
+      "sha256": "9cf52381b38931322f2fa449883bd5747de3660d1a73cd1f2c155434cbc6a372",
+      "unchanged": true
+    },
+    {
+      "path": "behavior-core/src/coordinator.ts",
+      "sha256": "7dbd18f0cacc5e394dd32b7ab1bd06abde7f4632220c3002c3bbd3cb746297b8",
+      "unchanged": true
+    },
+    {
+      "path": "behavior-core/src/native-lease.ts",
+      "sha256": "6127bffa85f7c21c6cb6bc6e62973a2ef0ab01cd4ad55aad05766e1f191f3fcc",
+      "unchanged": true
+    },
+    {
+      "path": "behavior-core/src/voice.ts",
+      "sha256": "a1a263868c5359e8412e3c3ba837c937cffdf9c467f45b79f7785a6005695c7f",
+      "unchanged": true
+    }
+  ],
+  "master_checks": [
+    {
+      "archive": "Metis-Work-Session.zip",
+      "entry": "Metis-Work-Session/r11-kit/spec/MASTER.md",
+      "sha256": "e5b3c51d6d8423b5aadd1801d8fc2a77131c5ca3a363d281f1deb0da7acb1350"
+    }
+  ],
+  "root_tasks": 66,
+  "interaction_children": 20,
+  "existing_interaction_cases_retained": 60,
+  "new_jev_cases": 24,
+  "all_application_cases_not_run": true,
+  "redistributed_font_binaries": 0
+}

@@ -1,0 +1,391 @@
+{
+  "scope": "SYNTHETIC_DELIVERY_KIT_UI_ONLY",
+  "executed_at": "2026-09-23T15:31:17.130591+00:00",
+  "engine": "Chromium",
+  "version": "144.0.7559.96",
+  "host": "Linux",
+  "render_mode": "Playwright page.set_content in-memory document with controlled browser clock; NOT a real-time benchmark",
+  "not_tested": [
+    "Native Windows/macOS application",
+    "Microphone or wake detection",
+    "Real Libraries.dev packages/React adapter compilation",
+    "Cloudflare/Jev/Laya/Dust/Teams services",
+    "Signing or installer behavior",
+    "file:// or loopback navigation in this policy-restricted environment"
+  ],
+  "requests_observed": [],
+  "page_errors": [],
+  "checks": [
+    {
+      "check": "demo boots in Chromium memory document",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "state armed",
+      "passed": true,
+      "detail": {
+        "visual": "armed",
+        "phase": "ARMED"
+      }
+    },
+    {
+      "check": "state listening",
+      "passed": true,
+      "detail": {
+        "visual": "listening",
+        "phase": "CAPTURING"
+      }
+    },
+    {
+      "check": "state solving",
+      "passed": true,
+      "detail": {
+        "visual": "solving",
+        "phase": "INTERPRETING"
+      }
+    },
+    {
+      "check": "state approval",
+      "passed": true,
+      "detail": {
+        "visual": "approval",
+        "phase": "AWAITING_APPROVAL"
+      }
+    },
+    {
+      "check": "state executing",
+      "passed": true,
+      "detail": {
+        "visual": "executing",
+        "phase": "EXECUTING"
+      }
+    },
+    {
+      "check": "state verifying",
+      "passed": true,
+      "detail": {
+        "visual": "verifying",
+        "phase": "VERIFYING"
+      }
+    },
+    {
+      "check": "state completed",
+      "passed": true,
+      "detail": {
+        "visual": "completed",
+        "phase": "COMPLETED"
+      }
+    },
+    {
+      "check": "state cancelled",
+      "passed": true,
+      "detail": {
+        "visual": "cancelled",
+        "phase": "CANCELLED"
+      }
+    },
+    {
+      "check": "state error",
+      "passed": true,
+      "detail": {
+        "visual": "error",
+        "phase": "UNKNOWN"
+      }
+    },
+    {
+      "check": "state off",
+      "passed": true,
+      "detail": {
+        "visual": "off",
+        "phase": "OFF"
+      }
+    },
+    {
+      "check": "state offline",
+      "passed": true,
+      "detail": {
+        "visual": "offline",
+        "phase": "FAILED"
+      }
+    },
+    {
+      "check": "state privacy-blocked",
+      "passed": true,
+      "detail": {
+        "visual": "privacy-blocked",
+        "phase": "FAILED"
+      }
+    },
+    {
+      "check": "state typing",
+      "passed": true,
+      "detail": {
+        "visual": "typing",
+        "phase": "DRAFT"
+      }
+    },
+    {
+      "check": "state answer",
+      "passed": true,
+      "detail": {
+        "visual": "answer",
+        "phase": "COMPLETED"
+      }
+    },
+    {
+      "check": "requested visual hierarchy",
+      "passed": true,
+      "detail": "Caption above; mesh entirely inside bar."
+    },
+    {
+      "check": "no decorative state label beside orb",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "working mode has one Stop and no Send control",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "off mode has one Send and no Stop control",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "collapsed handle expands by keyboard with input focus",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "draft persists across state platform and placement",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "native Mac switch is honestly a layout reference",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Shift+Enter preserves multiline draft",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "IME composition does not submit prematurely",
+      "passed": true,
+      "detail": "Composition Enter did not submit; explicit later Enter displayed inert text."
+    },
+    {
+      "check": "typed HTML and shell-like text remain inert",
+      "passed": true,
+      "detail": "Literal HTML remains text. No arbitrary code or application execution."
+    },
+    {
+      "check": "scripted sequence open",
+      "passed": true,
+      "detail": {
+        "scenario": "open",
+        "final_state": "completed",
+        "timers_remaining": 0
+      }
+    },
+    {
+      "check": "scripted sequence close",
+      "passed": true,
+      "detail": {
+        "scenario": "close",
+        "final_state": "approval",
+        "timers_remaining": 0
+      }
+    },
+    {
+      "check": "scripted sequence correction",
+      "passed": true,
+      "detail": {
+        "scenario": "correction",
+        "final_state": "cancelled",
+        "timers_remaining": 0
+      }
+    },
+    {
+      "check": "scripted sequence outage",
+      "passed": true,
+      "detail": {
+        "scenario": "outage",
+        "final_state": "offline",
+        "timers_remaining": 0
+      }
+    },
+    {
+      "check": "scripted sequence repeat-wake",
+      "passed": true,
+      "detail": {
+        "scenario": "repeat-wake",
+        "final_state": "completed",
+        "timers_remaining": 0
+      }
+    },
+    {
+      "check": "Stop prevents delayed sequence completion",
+      "passed": true,
+      "detail": "All scheduled old-generation callbacks cancelled."
+    },
+    {
+      "check": "repeated playback respects generation ownership",
+      "passed": true,
+      "detail": "Superseded playback did not overwrite the replacement."
+    },
+    {
+      "check": "approval requires a deliberate preview action",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "approval never claims a real application was closed",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "long answer has its own bounded scroll area",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "manual pause stops animation work",
+      "passed": true,
+      "detail": "Canvas clock stopped; static state retained."
+    },
+    {
+      "check": "reduced-motion option stops animation work",
+      "passed": true,
+      "detail": "Canvas clock stopped; static state retained."
+    },
+    {
+      "check": "system reduced-motion preference",
+      "passed": true,
+      "detail": "Operating-system media preference is honored."
+    },
+    {
+      "check": "inactive product tab stops experience animation",
+      "passed": true,
+      "detail": "Hidden experience has no recurring canvas frames."
+    },
+    {
+      "check": "settings destination general",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "settings destination voice",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "settings destination knowledge",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "settings destination privacy",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "settings destination advanced",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Intelligence evidence drawer stays synthetic",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "Operator does not present real connected services",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "narrow 390px long-text layout retains controls",
+      "passed": true,
+      "detail": {
+        "viewport": [
+          390,
+          844
+        ],
+        "overflow": false,
+        "bar_width": 336
+      }
+    },
+    {
+      "check": "narrow playback control does not stack each word",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "light visual theme toggles",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "main demo has no runtime exceptions",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original HTML preserved state listening",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original HTML preserved state solving",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original HTML preserved state approval",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original HTML preserved state verified",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original HTML preserved state off",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "original reference orb is embedded locally",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "single-file kit entry boots current visual lab",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "kit entry displays current complete scope",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "no actual web requests from loaded demos",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "check": "all loaded demo documents have no JS exceptions",
+      "passed": true,
+      "detail": true
+    }
+  ],
+  "screenshots": [],
+  "passed": true
+}

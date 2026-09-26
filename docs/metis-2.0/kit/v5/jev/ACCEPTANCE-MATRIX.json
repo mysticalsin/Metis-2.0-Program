@@ -1,0 +1,391 @@
+{
+  "schema": "metis.jev.acceptance.v1",
+  "case_count": 24,
+  "cases": [
+    {
+      "id": "JVAC-01",
+      "title": "Central key, two installations",
+      "procedure": "Enroll two independent devices and use the same vault revision through the live Operator.",
+      "required_result": "Both obtain permitted decisions; neither package/renderer/traffic exposes the vendor secret. Revoking one device does not authorize the other implicitly.",
+      "steps": [
+        "JVSTEP-02"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-02",
+      "title": "Actual selected proposal",
+      "procedure": "Speak an arbitrary request requiring choice of the second prepared permitted target.",
+      "required_result": "The returned target, exact content, one side effect, fresh readback and truthful speech are observed. Selecting first by default fails.",
+      "steps": [
+        "JVSTEP-04"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-03",
+      "title": "Deterministic route and provider outage",
+      "procedure": "Disable JEV then issue an exact qualified simple command and local Stop.",
+      "required_result": "Supported deterministic operation remains usable and no JEV request occurs; Stop is local.",
+      "steps": [
+        "JVSTEP-04"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-04",
+      "title": "Wire and model identity",
+      "procedure": "Inject wrong question IDs/types, invented option, invalid distributions, score legend drift and alias change.",
+      "required_result": "Responses cannot reach action; actual pin/model schema errors are redacted and metered.",
+      "steps": [
+        "JVSTEP-03"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-05",
+      "title": "Uncertainty and abstention",
+      "procedure": "Use unqualified/low-confidence choices and absent candidate targets.",
+      "required_result": "Clarification, never guessed native input or hidden model fallback. Noul has no fabricated confidence.",
+      "steps": [
+        "JVSTEP-03"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-06",
+      "title": "Exact original literal",
+      "procedure": "Request a Unicode title/content but make the provider choose a similar wrong prepared literal.",
+      "required_result": "Independent canonical-intent matching blocks wrong effect despite high reported confidence.",
+      "steps": [
+        "JVSTEP-04"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-07",
+      "title": "Speech provenance",
+      "procedure": "Inject meeting speech, own TTS, partial transcript, document instructions and replayed text.",
+      "required_result": "No command authority or mutation; real capture provenance and stable intent verified.",
+      "steps": [
+        "JVSTEP-04"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-08",
+      "title": "Late Stop and correction",
+      "procedure": "Cancel/correct/sign out at every network/store await and deliver a late response.",
+      "required_result": "No late candidate executes; incurred usage remains known or explicitly pending.",
+      "steps": [
+        "JVSTEP-04"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-09",
+      "title": "Current native target",
+      "procedure": "Move window, alter field/document revision or take over input after selection.",
+      "required_result": "Native final fence blocks stale input and ownership drains before transfer.",
+      "steps": [
+        "JVSTEP-04"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-10",
+      "title": "Consequential approval",
+      "procedure": "Request a draft then make JEV select Send; repeat with changed recipients after approval.",
+      "required_result": "No send without current exact approval; model certainty cannot grant it.",
+      "steps": [
+        "JVSTEP-04"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-11",
+      "title": "Failed replacement preserves key",
+      "procedure": "With existing key, fail a proposed new-key probe or revoke admin during validation.",
+      "required_result": "No precommit vault mutation; old key remains usable under existing policy; probe usage retained.",
+      "steps": [
+        "JVSTEP-02"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-12",
+      "title": "Rotation and ambiguous commit",
+      "procedure": "Race two admin rotations, lose commit acknowledgment and revoke current key mid-decision.",
+      "required_result": "CAS rejects losing write; ambiguous outcome reconciles without rollback claim; old decision epochs cannot execute.",
+      "steps": [
+        "JVSTEP-02"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-13",
+      "title": "Truthful admin capability state",
+      "procedure": "Store a key without qualification and toggle only Intelligence or only desktop assistance.",
+      "required_result": "Checking/unqualified states visible; actual independently enabled server route changes. No false Ready.",
+      "steps": [
+        "JVSTEP-02"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-14",
+      "title": "Identity and cross-tenant forgery",
+      "procedure": "Forge principal/device/body binding or reuse request ID under another account.",
+      "required_result": "Real middleware and per-tenant/device ledger reject crossover, not just client enums.",
+      "steps": [
+        "JVSTEP-07"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-15",
+      "title": "No unreviewed customer egress",
+      "procedure": "Enable credential but omit real data-retention/region approval.",
+      "required_result": "Synthetic probe may run if authorized; customer context cannot leave. Tokens/requests absent from logs.",
+      "steps": [
+        "JVSTEP-03"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-16",
+      "title": "Four-language profiles",
+      "procedure": "Run held-out English, Québec French, Spanish, Brazilian Portuguese and code-switching sets.",
+      "required_result": "Actual task/cardinality/template results and abstention metrics meet explicitly approved profile; fixture scores never qualify.",
+      "steps": [
+        "JVSTEP-09"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-17",
+      "title": "Provider delay and full deadline",
+      "procedure": "Delay vault, auth, headers and body; overload/rate limit across replicas.",
+      "required_result": "Bounded decision latency, immediate local Stop, no retry storm; attempts budgeted separately and pending usage reconciled.",
+      "steps": [
+        "JVSTEP-07"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-18",
+      "title": "Laya-only isolation",
+      "procedure": "Bring up and exercise real pinned Laya with no JEV key; fail its endpoint.",
+      "required_result": "No TypeSafe traffic or undocumented fallback; unavailable is truthful; served artifacts/normalization qualified.",
+      "steps": [
+        "JVSTEP-08"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-19",
+      "title": "Approved auto fallback",
+      "procedure": "Fail primary transiently under auto, then remove alternate privacy/profile permission.",
+      "required_result": "Only explicitly allowed qualified fallback within deadline/budget; forbidden alternate never contacted.",
+      "steps": [
+        "JVSTEP-08"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-20",
+      "title": "Real ledger and crash recovery",
+      "procedure": "Crash after reservation/provider response/settlement and retry duplicate requests.",
+      "required_result": "No unaccounted free request assumption, duplicate billable operation or duplicate native effect; real aggregate usage complete.",
+      "steps": [
+        "JVSTEP-07"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-21",
+      "title": "Intelligence evidence not fact",
+      "procedure": "Classify relevance/conflict of source-linked records including time/date traps.",
+      "required_result": "Inference labels and coverage preserved; code computes deterministic dates/numbers; no model claim promoted to verified fact.",
+      "steps": [
+        "JVSTEP-06"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-22",
+      "title": "Canonical/Hindsight correction",
+      "procedure": "Change source ACL/revision, correct then forget while JEV and memory work is in flight.",
+      "required_result": "Read denial and invalidation propagate; no cached answer/annotation/job resurrects forgotten source; no unauthorized memory write.",
+      "steps": [
+        "JVSTEP-06"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-23",
+      "title": "Intent and skill behavior",
+      "procedure": "Ask status, stop talking, Guide, and eligible skill recommendation during an existing task.",
+      "required_result": "Task continuity maintained, Guide has no effects; recommending Do/skill creates no grant or automatic run; revoked skill rejected.",
+      "steps": [
+        "JVSTEP-05"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    },
+    {
+      "id": "JVAC-24",
+      "title": "Exact product and rollout",
+      "procedure": "Run actual mic→decision→native action→readback→spoken result and portal trace on qualified Mac/Windows artifacts.",
+      "required_result": "Source/service/profile identity, actual target and pointer behavior, privacy, signed rollout/rollback and original full-upgrade gates verified separately.",
+      "steps": [
+        "JVSTEP-10"
+      ],
+      "status": "NOT_RUN",
+      "required_evidence": [
+        "exact source/artifact/service and configuration identity",
+        "actual platform/device and authorized account",
+        "sanitized observed result including refusal/failure",
+        "current qualification/privacy provenance; synthetic fixtures excluded"
+      ]
+    }
+  ],
+  "note": "Native/live product cases, not candidate unit tests. All NOT_RUN."
+}

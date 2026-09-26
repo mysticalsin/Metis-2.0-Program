@@ -1,0 +1,87 @@
+{
+  "timestamp_utc": "2026-09-25T15:59:49.332929+00:00",
+  "node": "v22.16.0",
+  "python": "3.13.5",
+  "commands": [
+    {
+      "id": "existing-behavior-core",
+      "command": [
+        "node",
+        "--test",
+        "tests/authority.test.mjs",
+        "tests/coordinator.test.mjs",
+        "tests/file-effect.test.mjs",
+        "tests/jev-admin.test.mjs",
+        "tests/jev-consumer.test.mjs",
+        "tests/jev-contract.test.mjs",
+        "tests/jev-loopback.test.mjs",
+        "tests/jev-service.test.mjs",
+        "tests/jev-transport.test.mjs",
+        "tests/task-summary.test.mjs",
+        "tests/voice-lease.test.mjs"
+      ],
+      "cwd_relative": "behavior-core",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "duration_seconds": 1.007,
+      "log": "memory/evidence/existing-behavior-core.log"
+    },
+    {
+      "id": "supplied-memory-python",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd_relative": "skills/metis-hindsight-memory/reference/hindsight-agent-memory",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "duration_seconds": 1.642,
+      "log": "memory/evidence/supplied-memory-python.log"
+    },
+    {
+      "id": "supplied-memory-node",
+      "command": [
+        "node",
+        "--test",
+        "tests/memory_client.test.mjs"
+      ],
+      "cwd_relative": "skills/metis-hindsight-memory/reference/hindsight-agent-memory",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "duration_seconds": 0.259,
+      "log": "memory/evidence/supplied-memory-node.log"
+    },
+    {
+      "id": "supplied-structure",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "scripts/validate_package.py"
+      ],
+      "cwd_relative": "skills/metis-hindsight-memory/reference/hindsight-agent-memory",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "duration_seconds": 0.932,
+      "log": "memory/evidence/supplied-structure.log"
+    },
+    {
+      "id": "live-write-default-refusal",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "scripts/live_smoke.py"
+      ],
+      "cwd_relative": "skills/metis-hindsight-memory/reference/hindsight-agent-memory",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "duration_seconds": 0.638,
+      "log": "memory/evidence/live-write-default-refusal.log"
+    }
+  ],
+  "no_live_provider_tests": true
+}

@@ -1,0 +1,302 @@
+{
+  "schema": "metis.adapted-skill.manifest.v1",
+  "file_count": 59,
+  "extracted_bytes": 259986,
+  "files": [
+    {
+      "path": "METIS-PROFILE.md",
+      "bytes": 6757,
+      "sha256": "7f0ca716a90b20e2b3f5c0e71b90d10cd1f01574b7dd09b9b865ac40eb102f58"
+    },
+    {
+      "path": "READING-MAP.json",
+      "bytes": 2149,
+      "sha256": "13f8066b66fda5f84f90ad98043161c8db2aaa689db79a1da661f47bfde45ab2"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1236,
+      "sha256": "ece6715b718e95ad87bf9325286b92cde06b09c10c5a9d90cf12552710f6f4f6"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 4787,
+      "sha256": "71fce58184f20f9e216c50f3e49a43778b8b7e9c05aae3d1e40ad1d82b0fb359"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/README.md",
+      "bytes": 4612,
+      "sha256": "0e8a2f623c198f52b27bca7aaded523c2189d275b78b3fca605423581a9b750e"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/SHA256SUMS",
+      "bytes": 4999,
+      "sha256": "a318fe76ad78ed8ba3c491ffcc5fbbf1c8e2c4684a00d27dee5a33ffc993aa7e"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/SKILL.md",
+      "bytes": 8232,
+      "sha256": "a9bfd370c3575ef522b72174174eb4f5083b40b44097139caee065cc643fc514"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/THIRD_PARTY_NOTICES.md",
+      "bytes": 2136,
+      "sha256": "47cb7522117a173c3b0a8f1fe781589b25fca74c5fbe3f28cc9b91133001fcf1"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/VERIFICATION.md",
+      "bytes": 4068,
+      "sha256": "1dc4fb3cd92398d55dd6fa25f1653d6f365a09c2b594ac444401aee6f149c636"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/recipes/business-process.md",
+      "bytes": 1386,
+      "sha256": "552558b6ba6f9bbfb6b849dfbe63140455326d74ca02bdaf0e08485990f3f9d7"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/recipes/chat-and-voice.md",
+      "bytes": 1658,
+      "sha256": "318fd2e6d3937996fb6a580ac2c7de2c831e88a9470ab55d98b88123457937fa"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/recipes/coding-project.md",
+      "bytes": 1269,
+      "sha256": "a00c8c32cc5558d834ef028600002e4a156cc12063550bd99529bba8ecafae96"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/recipes/event-workflow.md",
+      "bytes": 1555,
+      "sha256": "e2c04c04ac0c4a27eff0f2ec37748bcddbdc6ba5f18530cd30d9bc50c6485a99"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/recipes/local-assistant.md",
+      "bytes": 1340,
+      "sha256": "fee421541c8b50611ac636af3ee666af1f6774d6e77aa50bcef11ac8b2fc38d7"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/recipes/multi-agent.md",
+      "bytes": 1471,
+      "sha256": "ac1f01dd56283a80cc4db2c093bc1f51ba2824b1fe97691a91a6524f451cb200"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/recipes/multi-tenant-entra.md",
+      "bytes": 1650,
+      "sha256": "b590e22ccbe29bff90f685eb7676aeaee60907ff84c3019d2a0ede8bf4ace6aa"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/recipes/rag-and-memory.md",
+      "bytes": 1232,
+      "sha256": "cbc53c80d5d5fa330e5c19feea7b5eba65a004d941c22a111f0fd9ce9044cae0"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/01-architecture.md",
+      "bytes": 4616,
+      "sha256": "8507cece07892d91ad802c79197f57ac487643cd0e492bcd1b3a40784ff0c0a8"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/02-contract.md",
+      "bytes": 4477,
+      "sha256": "d4d89bbe609842269302b7fa1d51f544ddc054cf3ec7ac08860e2e61d7575b89"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/03-identity-security.md",
+      "bytes": 5458,
+      "sha256": "853474662d940ae222abc16bd9293f487b491d7dea61fe055b2ff0769ad7f6eb"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/04-retain.md",
+      "bytes": 6085,
+      "sha256": "295edea80aa90f4bd2bfbf2b8aeeafeb9a659a2e19b875f94bd31b58630ff35b"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/05-recall.md",
+      "bytes": 5958,
+      "sha256": "89ea3f2d49789ce3f704aab0894a53df15da1b116c1688c24c96747c22e6c9ef"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/06-reflect-derived.md",
+      "bytes": 7037,
+      "sha256": "689714cf080ab4165ff09089f47fe4afb8226d5f577e725184c6d1e98635fb78"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/07-lifecycle.md",
+      "bytes": 4616,
+      "sha256": "811da9dcc08d48e6dabc3a6aeb89ae6b5e39d209e96a215765b1082c39ba0fa3"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/08-clients.md",
+      "bytes": 5641,
+      "sha256": "011e7919a9ca5f2cba09b4613015075a78525486c829a481ba3807d8a1a18074"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/09-frameworks.md",
+      "bytes": 4360,
+      "sha256": "a8fa2d33baf26d1a0a53d3d26cc322bd8f071d510a11ff9e881f03d7069cf011"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/10-mcp-coding.md",
+      "bytes": 3955,
+      "sha256": "f0bc6391f22bc658054ee4516de4952280b956258ca9b7bb26ad02c4ad7a425f"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/11-operations.md",
+      "bytes": 4367,
+      "sha256": "23bcffbfbdcac9036ead5c964f5f077c369a2824004f150e720e681051f676d3"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/12-deployment.md",
+      "bytes": 4366,
+      "sha256": "00d82378f0110d1a1da68cc7485bd2bd5dd81850755d143750442a059d8607ce"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/13-config-models-language.md",
+      "bytes": 4362,
+      "sha256": "eefc6bf4a6a0d47d35e0594023e1c6211202bcf399516f62ae50bea57ac45e81"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/14-observability.md",
+      "bytes": 3431,
+      "sha256": "7a6735577780c70320467a33f2799045b4294d85609e0ed72672e9d182be14e7"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/15-migration.md",
+      "bytes": 3768,
+      "sha256": "d32d107a921ce2fee88f33888d3e1ffd70d2c17176b6590c129c3480e522bf8a"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/16-troubleshooting.md",
+      "bytes": 3910,
+      "sha256": "0d46ad0bd471926d5512f597575bd061aabffd7bc5215b78d18d1d812c765b31"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/17-evaluation.md",
+      "bytes": 3849,
+      "sha256": "77fa7a93c94eb8c9df9121ba62dd106db5077da2db3a72c09a51065a60e34d4a"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/references/18-compatibility.md",
+      "bytes": 5223,
+      "sha256": "e5d59653063ce23dd5c7fb9b19749556018da8234bebc81656bfb5fafef946e1"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/scripts/check_schema.py",
+      "bytes": 4282,
+      "sha256": "ffb69b8d4ef1f9037b25e561bbbba125014ffda8c31c329f984c1254107ac091"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/scripts/evidence_gate.py",
+      "bytes": 7139,
+      "sha256": "286a7d31421e8cc7146b9d7238c0ba92dbe01783e628be15c09ba36dd3c408df"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/scripts/live_smoke.py",
+      "bytes": 6425,
+      "sha256": "b42d983858cda356ca4d091b52d3fa638b7550c8395e8856949112d704b324d6"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/scripts/memory_client.mjs",
+      "bytes": 10104,
+      "sha256": "dac0e584f97bd0ef15fba691af06a236fcf879a172e0ed05c8f00485d192ed28"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/scripts/memory_client.py",
+      "bytes": 12731,
+      "sha256": "2cca6f0b1a0e3819091a7567555a98963acaad103bc476148cd1095d3731b007"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/scripts/validate_package.py",
+      "bytes": 3975,
+      "sha256": "ace2ef79c7ae582d24671b8def1b141da6d6b5a78b29375fce7e71a9de33de26"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/sources/coverage.md",
+      "bytes": 6889,
+      "sha256": "15a2bbd5180b1e66b0841492133cfc6015e0ef205df96b5e158f45b19d9d2741"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/sources/manifest.json",
+      "bytes": 16139,
+      "sha256": "ea703b347cd96ebd2a083419785c9a07654e2ab0c6a1c07c6adc248a2e128311"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/templates/.env.example",
+      "bytes": 730,
+      "sha256": "9a641db8e55dff1cbaf34d72a61f5903be2ddf1acf157b6f68a88535f2e546f4"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/templates/README.md",
+      "bytes": 1052,
+      "sha256": "90730940ce65b99fa1d8017a3ef331f2f0dd56c601f4f17c9dea65845b1997cf"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/templates/acceptance-matrix.csv",
+      "bytes": 3292,
+      "sha256": "2dc88268f97c13d58e1b61582ca78c8f32869a5eec3821c45cdc8a774b477b45"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/templates/bank-config.example.json",
+      "bytes": 725,
+      "sha256": "1033d1e602ad25146a2ec7af7c40c77ec48db522433baec5cd567d5e593cd0a2"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/templates/compose.local.yaml",
+      "bytes": 1028,
+      "sha256": "08b2678b7702aeba88552f1259978d2d0652737d78b6dccd3c0facdb48486a00"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/templates/eval-cases.jsonl",
+      "bytes": 6424,
+      "sha256": "a7309057bd6ca882d6e47668b6f710853a992532279e05ba0da44896d2bd4829"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/templates/implementation-handoff.md",
+      "bytes": 1490,
+      "sha256": "9ec17a79a18ec46777dae40b56eb688fc66fd7dc5d74efab8a677fea711383c5"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/templates/memory-contract.json",
+      "bytes": 2045,
+      "sha256": "4cfec3dd8298771cb4f0e78420f70d97242cfb1e17e161829dc85afa45e95f6a"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/tests/memory_client.test.mjs",
+      "bytes": 7168,
+      "sha256": "6eb2e16c816fbcde73da39d834ae2ec944584ac041b5a6436baac5b0463c86f3"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/tests/results/environment.json",
+      "bytes": 305,
+      "sha256": "aa828c4c0a37f9a703bf8a2b0328c0e8a186c8aff30765ff7d942985e7bbb93c"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/tests/results/node.log",
+      "bytes": 3508,
+      "sha256": "5d2cf85ca42ed3934e49f5de492bb0fedd5bce0b47ad0064facf15d8124d5b1a"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/tests/results/python.log",
+      "bytes": 6251,
+      "sha256": "9bd0b2a41fa0606d8f8699ac742f70926fcf240562b7cb8ea5c34db125594fbf"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/tests/test_evidence_gate.py",
+      "bytes": 6135,
+      "sha256": "965ae56962055eb301b45bf246a64d630ed900415547d519d148b6fdb6f4d457"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/tests/test_http_transport.py",
+      "bytes": 3290,
+      "sha256": "37fd79293b4734463de988a1409dfd3d9a3ab2576e32a68156a6c61d04d2903f"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/tests/test_memory_client.py",
+      "bytes": 10588,
+      "sha256": "b37c3b963eed8cee26afdbdd78ff600dd8ce2a226c2f4d203272f80efd346a9e"
+    },
+    {
+      "path": "reference/hindsight-agent-memory/tests/test_schema.py",
+      "bytes": 2255,
+      "sha256": "fbdc2a80b4da031c2a3f6c4ec2947458295f4aa41572cbad79fb03b6a60b30db"
+    }
+  ]
+}

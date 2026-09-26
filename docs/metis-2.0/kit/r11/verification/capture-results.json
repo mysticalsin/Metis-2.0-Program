@@ -1,0 +1,16 @@
+{
+  "scope": "Current r10 synthetic HTML screenshots, not product",
+  "passed": true,
+  "captures": [
+    "visual/agents/captures/01-workspace-and-context.png",
+    "visual/agents/captures/02-optional-agent-definitions.png",
+    "visual/agents/captures/03-reviewed-follow-up.png",
+    "visual/agents/captures/04-agent-library.png",
+    "visual/agents/captures/05-narrow-agent-workspace.png",
+    "onboarding/preview/captures/01-tony-welcome.png",
+    "onboarding/preview/captures/02-integrated-accessibility.png",
+    "onboarding/preview/captures/03-narrow-setup.png"
+  ],
+  "count": 8,
+  "render_mode": "exact in-memory HTML, Chromium Linux; motion paused for stills"
+}

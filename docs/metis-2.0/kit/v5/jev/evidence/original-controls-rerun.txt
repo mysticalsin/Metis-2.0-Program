@@ -1,0 +1,8 @@
+reject-untrusted-input True 4
+enforce-route-scope True 1
+require-exact-approval True 8
+require-verified-completion True 12
+retain-lease-until-drained True 4
+reject-stale-voice-owner True 3
+dont-cancel-work-for-status True 3
+all-steps-before-done True 1

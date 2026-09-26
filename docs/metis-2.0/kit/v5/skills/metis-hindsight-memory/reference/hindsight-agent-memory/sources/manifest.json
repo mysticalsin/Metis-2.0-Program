@@ -1,0 +1,495 @@
+{
+  "review_date": "2026-09-25",
+  "package_version": "1.0.0",
+  "scope": "Developer architecture, API, hosting and security pages plus selected SDK/integration/supporting sources.",
+  "requested_index": {
+    "url": "https://hindsight.vectorize.io/developer/",
+    "result": "404 during review; topic pages accessible"
+  },
+  "coverage_limitations": [
+    "Not a full verbatim documentation mirror.",
+    "Large configuration and generated API references reviewed selectively.",
+    "Not every source page was read line-by-line in full.",
+    "No exhaustive claim over every cookbook, blog, integration or future page.",
+    "Default-branch repository content was not pinned to a single repository commit.",
+    "No native Hindsight deployment or provider was exercised."
+  ],
+  "inventory_checks": {
+    "api_directory_tree": "8d8c192a7bee8cc9822e750d0b4344676834b83b",
+    "api_directory_files": 13,
+    "memory_defense_directory_tree": "10eaab1b0f4f8644f6a7f2024aa5640ac0036935",
+    "developer_directory": "Listed via official repository; large returned listing was truncated. Navigation supplemented it."
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://hindsight.vectorize.io/",
+      "title": "Overview",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S02",
+      "url": "https://hindsight.vectorize.io/developer/retain",
+      "title": "Retain architecture",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S03",
+      "url": "https://hindsight.vectorize.io/developer/retrieval",
+      "title": "Retrieval architecture",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S04",
+      "url": "https://hindsight.vectorize.io/developer/reflect",
+      "title": "Reflect architecture",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S05",
+      "url": "https://hindsight.vectorize.io/developer/observations",
+      "title": "Observations",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S06",
+      "url": "https://hindsight.vectorize.io/developer/mental-models",
+      "title": "Mental models",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S07",
+      "url": "https://hindsight.vectorize.io/developer/knowledge-pages",
+      "title": "Knowledge pages",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S08",
+      "url": "https://hindsight.vectorize.io/developer/multilingual",
+      "title": "Multilingual",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S09",
+      "url": "https://hindsight.vectorize.io/developer/performance",
+      "title": "Performance",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S10",
+      "url": "https://hindsight.vectorize.io/developer/storage",
+      "title": "Storage",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S11",
+      "url": "https://hindsight.vectorize.io/developer/rag-vs-hindsight",
+      "title": "RAG versus memory",
+      "section": "architecture",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S12",
+      "url": "https://hindsight.vectorize.io/developer/installation",
+      "title": "Installation",
+      "section": "hosting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S13",
+      "url": "https://hindsight.vectorize.io/developer/services",
+      "title": "Services",
+      "section": "hosting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S14",
+      "url": "https://hindsight.vectorize.io/developer/configuration",
+      "title": "Configuration",
+      "section": "hosting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "Large reference; selected integration, privacy, operational and compatibility settings reviewed. Not every combination audited.",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S15",
+      "url": "https://hindsight.vectorize.io/developer/extensions",
+      "title": "Extensions",
+      "section": "hosting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S16",
+      "url": "https://hindsight.vectorize.io/developer/mcp-server",
+      "title": "MCP server",
+      "section": "hosting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S17",
+      "url": "https://hindsight.vectorize.io/developer/development",
+      "title": "Development",
+      "section": "hosting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S18",
+      "url": "https://hindsight.vectorize.io/developer/admin-cli",
+      "title": "Administrator CLI",
+      "section": "hosting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S19",
+      "url": "https://hindsight.vectorize.io/developer/oracle",
+      "title": "Oracle database",
+      "section": "hosting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S20",
+      "url": "https://hindsight.vectorize.io/developer/models",
+      "title": "Model/provider configuration",
+      "section": "hosting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "Large reference; selected integration, privacy, operational and compatibility settings reviewed. Not every combination audited.",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S21",
+      "url": "https://hindsight.vectorize.io/developer/monitoring",
+      "title": "Monitoring",
+      "section": "hosting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S22",
+      "url": "https://hindsight.vectorize.io/developer/memory-defense",
+      "title": "Memory Defense",
+      "section": "security",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "Opt-in, redaction/blocking, nonretroactivity and batch outcome semantics.",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S23",
+      "url": "https://hindsight.vectorize.io/developer/api/quickstart",
+      "title": "Quickstart",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S24",
+      "url": "https://hindsight.vectorize.io/developer/api/main-methods",
+      "title": "Main methods",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S25",
+      "url": "https://hindsight.vectorize.io/developer/api/retain",
+      "title": "Retain API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S26",
+      "url": "https://hindsight.vectorize.io/developer/api/recall",
+      "title": "Recall API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S27",
+      "url": "https://hindsight.vectorize.io/developer/api/reflect",
+      "title": "Reflect API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S28",
+      "url": "https://hindsight.vectorize.io/developer/api/mental-models",
+      "title": "Mental models API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S29",
+      "url": "https://hindsight.vectorize.io/developer/api/knowledge-pages",
+      "title": "Knowledge pages API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S30",
+      "url": "https://hindsight.vectorize.io/developer/api/memories",
+      "title": "Memories API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S31",
+      "url": "https://hindsight.vectorize.io/developer/api/memory-banks",
+      "title": "Memory banks API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S32",
+      "url": "https://hindsight.vectorize.io/developer/api/documents",
+      "title": "Documents API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S33",
+      "url": "https://hindsight.vectorize.io/developer/api/operations",
+      "title": "Operations API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S34",
+      "url": "https://hindsight.vectorize.io/developer/api/webhooks",
+      "title": "Webhooks API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S35",
+      "url": "https://hindsight.vectorize.io/developer/api/bank-templates",
+      "title": "Bank templates API",
+      "section": "api",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S36",
+      "url": "https://hindsight.vectorize.io/best-practices",
+      "title": "Best practices",
+      "section": "supporting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S37",
+      "url": "https://hindsight.vectorize.io/faq",
+      "title": "FAQ",
+      "section": "supporting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "topic_review",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S38",
+      "url": "https://hindsight.vectorize.io/api-reference",
+      "title": "Generated HTTP API reference",
+      "section": "supporting",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "Displayed label 0.10.1. Core request/response shapes, removed endpoints, feature flags and selected advanced caveats inspected. Not copied in full.",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S39",
+      "url": "https://hindsight.vectorize.io/sdks/python",
+      "title": "Python SDK",
+      "section": "sdk",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S40",
+      "url": "https://hindsight.vectorize.io/sdks/nodejs",
+      "title": "TypeScript/JavaScript SDK",
+      "section": "sdk",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S41",
+      "url": "https://hindsight.vectorize.io/sdks/hindsight-all",
+      "title": "Python embedded deployment",
+      "section": "sdk",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S42",
+      "url": "https://hindsight.vectorize.io/sdks/hindsight-all-npm",
+      "title": "Node embedded deployment",
+      "section": "sdk",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S43",
+      "url": "https://hindsight.vectorize.io/sdks/integrations/langgraph",
+      "title": "LangGraph / LangChain",
+      "section": "integration",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "Selected installation/capture/scope behavior; framework not executed.",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S44",
+      "url": "https://hindsight.vectorize.io/sdks/integrations/ai-sdk",
+      "title": "Vercel AI SDK",
+      "section": "integration",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "Selected installation/capture/scope behavior; framework not executed.",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S45",
+      "url": "https://hindsight.vectorize.io/sdks/integrations/coding-agents",
+      "title": "Coding agents",
+      "section": "integration",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "targeted_sections_verified",
+      "notes": "Selected installation/capture/scope behavior; framework not executed.",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S46",
+      "url": "https://github.com/vectorize-io/hindsight/blob/main/skills/hindsight-docs/SKILL.md",
+      "title": "Official hindsight-docs skill",
+      "section": "repository",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "full_file_read",
+      "blob_sha": "4e2535cfb6ebb6c89cf35550e3f91abe17b47fef",
+      "native_runtime_verified": false
+    },
+    {
+      "id": "S47",
+      "url": "https://github.com/vectorize-io/hindsight/blob/main/LICENSE",
+      "title": "Official repository license",
+      "section": "repository",
+      "reviewed_date": "2026-09-25",
+      "review_depth": "full_file_read",
+      "blob_sha": "8dce7b4d4c2632990bdf8b4101694ea19ba6ad46",
+      "native_runtime_verified": false
+    }
+  ]
+}

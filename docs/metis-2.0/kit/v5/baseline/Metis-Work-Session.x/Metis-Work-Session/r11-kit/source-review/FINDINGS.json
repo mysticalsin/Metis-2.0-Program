@@ -1,0 +1,860 @@
+{
+  "schema": "metis.source.findings.v1",
+  "source_sha256": "efc8af651c1b2abb952d7737d5f3f3d15c4e51057059a07ceb3445c65f5c53f3",
+  "basis": "Uploaded text source, not live deployment. Read source and relevant docs; no complete app/native/cloud suite executed.",
+  "findings": [
+    {
+      "id": "SRC-01",
+      "title": "Do not mistake a source export for a complete checkout",
+      "classification": "INPUT_LIMITATION",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "package.json",
+          "export_content_start": 2697,
+          "export_content_end": 2833,
+          "normalized_sha256": "f98b78c9e4e2e3b82dc08e458fc1b2f974908b8ac7957a80390b983935f4493d"
+        }
+      ],
+      "source_observation": "The export contains 1,521 FILE sections and package version 1.9.5. Five of the 19 file-backed nodes in the supplied map have no source section: renderer App.tsx, main index.ts, renderer lib/listen.ts, main/transcripts.ts and main/brain/ingest.ts. Imports and tests mention them; that does not recover their contents. The filename suffix is not an established Git commit.",
+      "required_change": "Acquire the authorized real checkout and its commit/dirty state. Compare source hashes before using anchors. Preserve the export as historical evidence; never generate stub replacements or run an incomplete reconstructed app as the baseline.",
+      "exit_evidence": "Exact checkout/branch identity and a missing-versus-present source manifest; baseline checks on the complete tree, with every skipped suite explained.",
+      "tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-003",
+        "TASK-066"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-02",
+      "title": "Separate entitlement authority from telemetry and legacy licensing",
+      "classification": "ARCHITECTURE_GAP",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "operator/src/store.ts",
+          "export_content_start": 63381,
+          "export_content_end": 64220,
+          "normalized_sha256": "9ae16a311b5aa5f924c8b8e1a61ec310b702baaaf1dc9927d57c0c882abaf5bd"
+        },
+        {
+          "path": "license-server/lib/store.mjs",
+          "export_content_start": 32541,
+          "export_content_end": 32683,
+          "normalized_sha256": "2614e0a9714894e50b414f3ebc49ffeb4351127c22e022563f43aaa8d3fcb048"
+        },
+        {
+          "path": "src/main/license.ts",
+          "export_content_start": 125889,
+          "export_content_end": 126239,
+          "normalized_sha256": "611592cf4e97777492d6692cf4f6954c6c802cb3d06cbee298ca051639847fe1"
+        },
+        {
+          "path": "src/main/license-lease-key.ts",
+          "export_content_start": 124721,
+          "export_content_end": 124809,
+          "normalized_sha256": "09c33e0c056f937e23265415be185f65d9824b02db4ae5204f638e3698b30516"
+        }
+      ],
+      "source_observation": "The map separates a license service but omits the consumer edges. Operator has issued-license/seat records, while the legacy service has a serialized JSON store and a separately configured offline lease key. The legacy module describes compiled-off UI gates; the corresponding current renderer files are absent, so actual gate enablement is not established.",
+      "required_change": "Choose one issuer/entitlement authority for each active distribution profile. Entra authenticates identity; a signed license or lease grants only its exact entitlement; telemetry supplies neither identity proof nor permission. Reconcile legacy and Operator IDs without switching on conflicting gates. Production rejects development trust roots. Preserve recovery/export access when paid inference is unavailable.",
+      "exit_evidence": "Activation, renewal, revoke, expired/clock-skewed lease, duplicated device, reinstall, entitlement loss, two-user isolation and cross-process seat-cap races on the actual chosen store. JSON mutex cannot be represented as a distributed lock.",
+      "tasks": [
+        "TASK-002",
+        "TASK-005",
+        "TASK-006",
+        "TASK-014",
+        "TASK-034",
+        "TASK-045",
+        "TASK-062",
+        "TASK-063"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-03",
+      "title": "Apply the Jev decision instead of discarding it",
+      "classification": "SOURCE_DEFECT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "src/main/metis-command-runtime.ts",
+          "export_content_start": 129196,
+          "export_content_end": 129396,
+          "normalized_sha256": "52a229af24c5f7c76b0d1b0f72023718e6c557a84dfa06d90783abaf16ee528d"
+        }
+      ],
+      "source_observation": "maybeDisambiguate awaits a successful result then executes void result. It therefore does not apply that decision to the plan in this function.",
+      "required_change": "Validate the returned choice against the exact submitted candidate set, utterance revision, source generation and policy. Apply it through the same deterministic preview/approval path. Retain a useful no-provider deterministic route.",
+      "exit_evidence": "Actual entitled Jev and independent Laya requests affect eligible action and Intelligence results; stale, incompatible, forged and out-of-candidate responses have no side effects.",
+      "tasks": [
+        "TASK-005",
+        "TASK-031",
+        "TASK-032",
+        "TASK-033",
+        "TASK-040",
+        "TASK-056"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-04",
+      "title": "Execution result and exception handling must control completion",
+      "classification": "SOURCE_DEFECT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "src/main/metis-command-runtime.ts",
+          "export_content_start": 129196,
+          "export_content_end": 129396,
+          "normalized_sha256": "52a229af24c5f7c76b0d1b0f72023718e6c557a84dfa06d90783abaf16ee528d"
+        },
+        {
+          "path": "src/main/metis-command-runtime.test.ts",
+          "export_content_start": 129042,
+          "export_content_end": 129189,
+          "normalized_sha256": "740f767df3d5bc607bfb4f3d62d20e49bc9d0be8c5afb5817643d91b3bd7e9fc"
+        }
+      ],
+      "source_observation": "flushPending awaits executeDesktopAction but ignores the returned ok/outcome before mark_committed. A test on unsupported Linux expects a committed action; this proves bookkeeping, not successful desktop control. A rejected execution can also re-enter flushPending from finally while pending remains.",
+      "required_change": "Separate dispatch acceptance, attempted side effect, verified completion and unknown outcome. Consume every result and caught exception. Quarantine an uncertain non-idempotent attempt until reconciliation. Retry only bounded classified safe failures; stop must prevent further dispatch.",
+      "exit_evidence": "Adapters returning failed, unsupported, unknown, cancelled or throwing never produce verified success. A rejected or timed-out write cannot create an unbounded retry loop or duplicate note.",
+      "tasks": [
+        "TASK-005",
+        "TASK-019",
+        "TASK-033",
+        "TASK-056",
+        "TASK-063"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-05",
+      "title": "Exact note, camera and close operations need real adapters",
+      "classification": "SOURCE_DEFECT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "src/main/desktop-adapters.ts",
+          "export_content_start": 116965,
+          "export_content_end": 117179,
+          "normalized_sha256": "302138b212689c8c1741a90db9e6d86755f38a997a0f550d5fd7e41a2105571c"
+        },
+        {
+          "path": "src/shared/desktop-actions.ts",
+          "export_content_start": 226587,
+          "export_content_end": 226673,
+          "normalized_sha256": "829c064b22ec2d3fe1fce77059f984cb31c1fef82b05abc0169f851ab8e7556a"
+        }
+      ],
+      "source_observation": "The six-action catalog does not supply general close-app/tab behavior. Windows create-note only launches Notepad and photo capture only opens Camera. Mac note creation removes quotes/backslashes and interpolates changed text into AppleScript; most adapters return unknown.",
+      "required_change": "Implement graceful scope-aware close, exact parameterized text, object identity and postcondition reads. Separate camera preview from shutter permission and resulting file. Reuse actual installed application capabilities; no arbitrary scripts or silent substitute.",
+      "exit_evidence": "Unicode, quotes, backslashes, newlines, missing app, unsaved work, changed focus, camera-busy and repeated intentional actions produce correct real objects or explicit unsupported/unknown results.",
+      "tasks": [
+        "TASK-019",
+        "TASK-029",
+        "TASK-033",
+        "TASK-056",
+        "TASK-065"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-06",
+      "title": "Text matching is not wake-word capture",
+      "classification": "IMPLEMENTATION_LIMIT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "src/shared/metis-wake.ts",
+          "export_content_start": 232312,
+          "export_content_end": 232359,
+          "normalized_sha256": "5558ad2251eb28c044fb67c36967da84bc321dfb783bf0dd7ec1e129bf766439"
+        }
+      ],
+      "source_observation": "The wake helper tests a regular expression against already recognized text. stripWakeWord returns the normalized, lowercased, punctuation-stripped string; it does not preserve the original payload span.",
+      "required_change": "Qualify a compact acoustic wake detector behind explicit opt-in and the single capture owner. Keep the original command text/spans separate from normalized matching. No ambient cloud transcription to find the wake word and no meeting audio authority.",
+      "exit_evidence": "No pre-wake cloud frames; first words survive; exact accents/names/title punctuation survive matching; media replay, other speakers, quotations and false wakes are tested.",
+      "tasks": [
+        "TASK-005",
+        "TASK-017",
+        "TASK-018",
+        "TASK-019",
+        "TASK-033",
+        "TASK-053"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-07",
+      "title": "Speech credentials must move behind the session broker",
+      "classification": "SOURCE_POLICY_CONFLICT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "src/main/cloud-stt/credentials.ts",
+          "export_content_start": 164992,
+          "export_content_end": 165111,
+          "normalized_sha256": "10c29c83c8d4b0d9c3fe67dcbe12616767ccb586f82de3d344b72fdcd2a91a0c"
+        }
+      ],
+      "source_observation": "The credential resolver requires a Cloudflare token/account on the desktop and the error text instructs users to supply an account API token in Settings; an empty gateway uses default.",
+      "required_change": "Replace the centrally funded path with authenticated session grants and server-held credentials. Keep optional personal-key routes explicitly classified rather than silently using them. Remove obsolete onboarding and error instructions.",
+      "exit_evidence": "A new eligible user completes actual speech without an organizational account credential on the device. Revoked or wrong-scope grants fail before upstream audio.",
+      "tasks": [
+        "TASK-011",
+        "TASK-012",
+        "TASK-014",
+        "TASK-016",
+        "TASK-020",
+        "TASK-027",
+        "TASK-057"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-08",
+      "title": "Gateway creation cannot certify privacy readiness",
+      "classification": "SOURCE_POLICY_CONFLICT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "operator/src/ai-gateway.ts",
+          "export_content_start": 49837,
+          "export_content_end": 49864,
+          "normalized_sha256": "a665acc1c1fdc0113bdfeebf889e1543ea93816465d15986e81fcb0a1c56250a"
+        },
+        {
+          "path": "cloudflare-proxy/src/index.ts",
+          "export_content_start": 4331,
+          "export_content_end": 4752,
+          "normalized_sha256": "b3744e1fe21040fc5e4ab1c4caeaf603fd53596f02a732a4068810b99d3d8052"
+        }
+      ],
+      "source_observation": "ensureDefaultAiGateway posts only id/name, does not inspect the HTTP result, and ignores exceptions. The separate proxy forwards chat requests and returns no-store, but that response header does not establish disabled upstream payload logging or response caching.",
+      "required_change": "Use a named reviewed sensitive-route configuration and explicit readback before protected traffic. Separate chat-only proxy, Operator funding and real-time speech routes. Never auto-create an unreviewed gateway or infer privacy from a successful vault save.",
+      "exit_evidence": "Failure, existing gateway, unsupported WS controls and drift leave privacy readiness blocked; synthetic sentinels inspect every configured controlled sink while usage metadata still settles.",
+      "tasks": [
+        "TASK-011",
+        "TASK-012",
+        "TASK-013",
+        "TASK-014",
+        "TASK-016",
+        "TASK-020",
+        "TASK-057",
+        "TASK-062"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-09",
+      "title": "Legacy embedded credentials and pilot profiles must not leak into 2.0",
+      "classification": "SOURCE_POLICY_CONFLICT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "electron-builder.yml",
+          "export_content_start": 2220,
+          "export_content_end": 2550,
+          "normalized_sha256": "bcf2fa085a54e023118f4fc08ba31b5c41f9fd597007e88298aff1d7a6b3ae0d"
+        },
+        {
+          "path": "electron-builder.cahe.win.yml",
+          "export_content_start": 2154,
+          "export_content_end": 2175,
+          "normalized_sha256": "ddb15854c3c77d4e36322c803c80ad6470d4191b7a80e66aa04e9491a9db4b06"
+        },
+        {
+          "path": "docs/CLOUDFLARE.md",
+          "export_content_start": 5132,
+          "export_content_end": 5394,
+          "normalized_sha256": "d7230b46764b713503a87d35f0ed1ad7ee2b98f3748540cba22eaff06c71e7b2"
+        }
+      ],
+      "source_observation": "Packaging has opt-in embedded credential resources; documentation permits a direct Cloudflare account-token shape. Cahê has a separate identity and deliberately embedded pilot key. Encryption with shipped decryption material is not secret isolation.",
+      "required_change": "The enterprise 2.0 profile forbids reusable organizational credentials in every artifact. Migrate safely from explicit legacy choices, inventory existing exposure privately and rotate only through authorized operations. Do not merge the isolated pilot identity or feed into standard Métis.",
+      "exit_evidence": "Scan and inspect actual final archives/helpers/build outputs, then test two independently authenticated clients with server-only funding and per-device revocation. No private token appears in evidence.",
+      "tasks": [
+        "TASK-002",
+        "TASK-012",
+        "TASK-014",
+        "TASK-023",
+        "TASK-026",
+        "TASK-027",
+        "TASK-063"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-10",
+      "title": "Preserve authoritative usage and complete aggregates",
+      "classification": "SOURCE_DEFECT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "operator/src/d1.ts",
+          "export_content_start": 53940,
+          "export_content_end": 54876,
+          "normalized_sha256": "1b4607507bbad99017c8e5dd7f1fea2033c6e38e0ce3a3af636ea7bf97752174"
+        },
+        {
+          "path": "operator/src/dashboard.ts",
+          "export_content_start": 55447,
+          "export_content_end": 56874,
+          "normalized_sha256": "a57027a0770d633bdd838b7a35825b00cb56b4d8f5fbe8b11ee4348ce1b47641"
+        }
+      ],
+      "source_observation": "ownedAskUpsertSql overwrites update columns with excluded values for same-device collisions. Dashboard starts from listAsks(2000) and other limited detail lists. Both are concrete source risks; no production undercount was measured here.",
+      "required_change": "Add provenance-aware monotonic/reconcilable usage merges and SQL aggregates independent of detail pagination. Preserve the existing cross-device ownership check. Distinguish logical operations, billable attempts and repeated event deliveries.",
+      "exit_evidence": "120/30 survives a late null update; cumulative 1/15/30 is 30; 2,001 one-token attempts total 2,001; cross-device collision denied; rows/charts/export and exact windows reconcile.",
+      "tasks": [
+        "TASK-015",
+        "TASK-018",
+        "TASK-034",
+        "TASK-045",
+        "TASK-056",
+        "TASK-062"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-11",
+      "title": "Native persistence must not hide loss or retain forbidden transcripts",
+      "classification": "SOURCE_DEFECT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "native-app/App/Store/PersistedModels.swift",
+          "export_content_start": 35077,
+          "export_content_end": 35138,
+          "normalized_sha256": "0f04429b7667d9e60064ea33dc43c071d47eace04ed46885ab6ae57f11061f9e"
+        }
+      ],
+      "source_observation": "SwiftData stores full transcript linesData. Encoding failures become empty Data, decoding failures become [], and try? context.save() is followed by returning a StoredMeeting. The caller cannot infer a durable save from that return.",
+      "required_change": "Use throwing or typed save results, transactional metadata and explicit readback. Preserve existing data through approved migrations and implement summary-only storage on native Mac as well as Electron. Distinguish corrupt data from an empty meeting; offer authorized recovery.",
+      "exit_evidence": "Inject disk-full, permission denial, encode/decode corruption, duplicate ID and save errors. No saved success or data-deleting empty fallback; no new raw transcript blob under summary-only policy.",
+      "tasks": [
+        "TASK-005",
+        "TASK-007",
+        "TASK-027",
+        "TASK-029",
+        "TASK-035",
+        "TASK-054",
+        "TASK-058",
+        "TASK-065"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-12",
+      "title": "Native recording and long-session summaries require actual readiness",
+      "classification": "IMPLEMENTATION_LIMIT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "native-app/MetisKit/Sources/MetisKit/MeetingController.swift",
+          "export_content_start": 35651,
+          "export_content_end": 35747,
+          "normalized_sha256": "24b87c72766d7c01ef2884f786aee1ee52be9db6dafb80b8ed185ccc41fa09d3"
+        }
+      ],
+      "source_observation": "The controller permits nil audio hooks and then sets isRecording=true; the comment calls this a test/prototype seam. It appends meeting lines and summarizes a tail. This does not establish capture readiness or complete long-meeting coverage.",
+      "required_change": "Production injection must require a ready audio owner, explicit permission and a successful start result. Separate test drivers from production entry. Stream bounded evidence/summary state across the whole meeting, not only its last tail.",
+      "exit_evidence": "Missing hook/device/service yields unavailable, not recording. Early and late commitments in a two-hour fixture survive within measured memory limits and without durable raw audio.",
+      "tasks": [
+        "TASK-017",
+        "TASK-018",
+        "TASK-029",
+        "TASK-053",
+        "TASK-054",
+        "TASK-056",
+        "TASK-065"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-13",
+      "title": "Speaker labels are not biometric identity or action authority",
+      "classification": "SOURCE_POLICY_CONFLICT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "src/main/speaker-id.ts",
+          "export_content_start": 146890,
+          "export_content_end": 147476,
+          "normalized_sha256": "d9ab8f47e28b40df90dc10cadb17ca78ad9dea54cba129c8584bf269cce1013f"
+        }
+      ],
+      "source_observation": "The source implements session clustering and describes persistent named voiceprints plus a Teams-VTT auto-enrollment path. This is materially different from per-meeting anonymous diarization. The reviewed excerpt does not prove which callsites are enabled in the deployed app.",
+      "required_change": "Keep default attribution session-local and uncertain; use authenticated roster metadata only with qualified mapping. Disable unapproved persistent enrollment/voiceprint retention and audit legacy migration without destructive surprise. No speaker score authenticates desktop commands or employee performance.",
+      "exit_evidence": "Fresh default produces no persistent voiceprint; attribution errors, same names, off switch and data-rights deletion are tested. Authorized identity and local command authority remain separate.",
+      "tasks": [
+        "TASK-007",
+        "TASK-017",
+        "TASK-018",
+        "TASK-029",
+        "TASK-053",
+        "TASK-057",
+        "TASK-058"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-14",
+      "title": "Use the real solving motion without defeating accessibility",
+      "classification": "SOURCE_POLICY_CONFLICT",
+      "priority": "P1",
+      "evidence": [
+        {
+          "path": "DESIGN.md",
+          "export_content_start": 1966,
+          "export_content_end": 2147,
+          "normalized_sha256": "468cbbecb1d5ba543a26420b9f4d0fe0d4b1a933a031e1b2e37c87cc1b51099c"
+        },
+        {
+          "path": "src/renderer/src/components/BrandThinkingOrb.tsx",
+          "export_content_start": 196646,
+          "export_content_end": 196743,
+          "normalized_sha256": "cc8fcf485a407b95d0c01ad7e0c952841320c2e8ddfd7bafdf7d585032be5ddd"
+        },
+        {
+          "path": "package.json",
+          "export_content_start": 2697,
+          "export_content_end": 2833,
+          "normalized_sha256": "f98b78c9e4e2e3b82dc08e458fc1b2f974908b8ac7957a80390b983935f4493d"
+        }
+      ],
+      "source_observation": "DESIGN.md specifies the real 64-preset monochrome solving orb, without a label. BrandThinkingOrb deliberately keeps animating despite OS reduced motion, although it handles hidden/offscreen suspension. The previously delivered r6 kit made ARMED static; the owner has now explicitly changed that decision.",
+      "required_change": "ARMED is one animated solving orb only. Qualify the installed library API and preserve its geometry, pixel density and motion, not a rotating PNG or improvised constellation. A shared MotionPolicy honors reduce/pause/energy/hidden states; no per-frame React state or microphone.",
+      "exit_evidence": "Time-separated frames and geometry checks prove the solver moves; reduced motion/offscreen/lock stop clocks; CSS and actual native hit regions stay compact. Test declared 41px host and 64 preset separately from the enlarged lab reference.",
+      "tasks": [
+        "TASK-008",
+        "TASK-028",
+        "TASK-029",
+        "TASK-030",
+        "TASK-055",
+        "TASK-060",
+        "TASK-063"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-15",
+      "title": "Reconcile onboarding contract and recover the real media lineage",
+      "classification": "DOCUMENT_AND_MIGRATION",
+      "priority": "P1",
+      "evidence": [
+        {
+          "path": "DESIGN.md",
+          "export_content_start": 1966,
+          "export_content_end": 2147,
+          "normalized_sha256": "468cbbecb1d5ba543a26420b9f4d0fe0d4b1a933a031e1b2e37c87cc1b51099c"
+        },
+        {
+          "path": "docs/design/ONBOARDING-FLOW.md",
+          "export_content_start": 12217,
+          "export_content_end": 12282,
+          "normalized_sha256": "a39f76fc47b60a69a27c7e9f1a6a8f25868045dafa7728959d0ed7395ef246fd"
+        },
+        {
+          "path": "src/renderer/src/lib/onboarding-hero-video.ts",
+          "export_content_start": 214551,
+          "export_content_end": 214638,
+          "normalized_sha256": "53d204ef0603a1ea54fb09d38af4144cd4b94f9188d40625b84c753189d20e1a"
+        }
+      ],
+      "source_observation": "The export identifies the April-29 hero clip and a scripted Act2 product demo rather than one generic onboarding MP4. Older No Skip and auto-local-download instructions conflict with newer requirements for optional educational motion and cloud-first essentials. A referenced filename is not included media bytes.",
+      "required_change": "Preserve the approved artistic lineage and required consent/identity checks; allow reduced/static educational presentation. Keep script-driven demonstration separate from real setup tests. Find the licensed actual hero/music assets in the real checkout; do not substitute the Jev desktop-control clip.",
+      "exit_evidence": "Next advances the actual visible scene once, first-frame fallback works offline, no orphan media continues after finish, and optional packs/video cannot block an otherwise usable cloud core.",
+      "tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-008",
+        "TASK-024",
+        "TASK-026",
+        "TASK-027",
+        "TASK-030",
+        "TASK-063"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-16",
+      "title": "Profile-aware package gates, OS descriptions and documentation must change together",
+      "classification": "SOURCE_POLICY_CONFLICT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "package.json",
+          "export_content_start": 2697,
+          "export_content_end": 2833,
+          "normalized_sha256": "f98b78c9e4e2e3b82dc08e458fc1b2f974908b8ac7957a80390b983935f4493d"
+        },
+        {
+          "path": "electron-builder.yml",
+          "export_content_start": 2220,
+          "export_content_end": 2550,
+          "normalized_sha256": "bcf2fa085a54e023118f4fc08ba31b5c41f9fd597007e88298aff1d7a6b3ae0d"
+        },
+        {
+          "path": "docs/ENTERPRISE-DEPLOY-WINDOWS.md",
+          "export_content_start": 5684,
+          "export_content_end": 5825,
+          "normalized_sha256": "9bd801ecc5734c0c813da26d9d8550628dcd812e2edba0c64876542758900b6f"
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES.md",
+          "export_content_start": 2840,
+          "export_content_end": 2938,
+          "normalized_sha256": "bb980c90afffe66322b59aafbb91c9a83ab48962d88555807196d2971d0b0a93"
+        }
+      ],
+      "source_observation": "Build/prepack paths provision local model/speech resources, package manifests copy them, and permission strings/docs describe on-device processing. Existing duplicate/foreign-runtime exclusions are useful optimizations and must remain.",
+      "required_change": "Implement cloud-first/offline-selected/profile manifests from one capability catalog. Make fetch/build/inventory tests agree; do not remove safety checks to delete weights. Update localized OS permission strings and help/IT documentation to the effective route. Keep portable/no-auto-update and native channels explicit.",
+      "exit_evidence": "Fresh core needs no local weights or full model process; complete binary/temporary-size waterfall and profile-aware integrity checks; old explicit offline choices and notices/licenses survive.",
+      "tasks": [
+        "TASK-004",
+        "TASK-005",
+        "TASK-021",
+        "TASK-023",
+        "TASK-024",
+        "TASK-025",
+        "TASK-026",
+        "TASK-027",
+        "TASK-060",
+        "TASK-063"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-17",
+      "title": "A development-store seam is not production durability",
+      "classification": "ARCHITECTURE_GAP",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "operator/src/store.ts",
+          "export_content_start": 63381,
+          "export_content_end": 64220,
+          "normalized_sha256": "9ae16a311b5aa5f924c8b8e1a61ec310b702baaaf1dc9927d57c0c882abaf5bd"
+        },
+        {
+          "path": "operator/src/d1.ts",
+          "export_content_start": 53940,
+          "export_content_end": 54876,
+          "normalized_sha256": "1b4607507bbad99017c8e5dd7f1fea2033c6e38e0ce3a3af636ea7bf97752174"
+        },
+        {
+          "path": "license-server/lib/store.mjs",
+          "export_content_start": 32541,
+          "export_content_end": 32683,
+          "normalized_sha256": "2614e0a9714894e50b414f3ebc49ffeb4351127c22e022563f43aaa8d3fcb048"
+        }
+      ],
+      "source_observation": "The map labels operator/src/store.ts as the Operator store; it contains contracts/test memory behavior while d1.ts supplies SQL implementation. The separate license store documents small-dataset single-process durability.",
+      "required_change": "Draw physical stores separately from interfaces. Production must reject placeholder/memory stores and wrong environment bindings. Choose a concurrency-safe source for entitlements and budgets; avoid accidental dual writes across unrelated authorities.",
+      "exit_evidence": "Actual deployment ID/database/schema identity, restart persistence, concurrent admission and isolated restore. Startup/readiness cannot paint an ephemeral fallback as live.",
+      "tasks": [
+        "TASK-001",
+        "TASK-005",
+        "TASK-006",
+        "TASK-012",
+        "TASK-034",
+        "TASK-045",
+        "TASK-062"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-18",
+      "title": "Mirror-safe release delivery is a first-class gate",
+      "classification": "OPERATIONAL_DEPENDENCY",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "scripts/push-both.sh",
+          "export_content_start": 98656,
+          "export_content_end": 98673,
+          "normalized_sha256": "d3d2872497a5768858c01f7c5b8198897523ddda7d4af88190b70fe68f04e409"
+        },
+        {
+          "path": "docs/ENTERPRISE_RELEASE.md",
+          "export_content_start": 5832,
+          "export_content_end": 6027,
+          "normalized_sha256": "f89e2510988487b6b76d9262e1dd8bddf7d76b0901ab1fddab5dbee5abab5e84"
+        },
+        {
+          "path": "electron-builder.yml",
+          "export_content_start": 2220,
+          "export_content_end": 2550,
+          "normalized_sha256": "bcf2fa085a54e023118f4fc08ba31b5c41f9fd597007e88298aff1d7a6b3ae0d"
+        }
+      ],
+      "source_observation": "The checked-in script/docs describe a Forgejo push mirror that removes refs missing on its side, and push both github and origin. The actual current mirror settings and cadence were not verified by this source audit.",
+      "required_change": "Discover actual remote URLs, authority, mirror mode and branch/tag rules before writing. Verify both required refs at the same commit and post-sync durability, handle partial push visibly, and retain protected-tag policy. Never disable rules or force-push because an old document says so.",
+      "exit_evidence": "Exact signed-asset hash, canonical feed, source/release tags, required remotes and post-publication readback agree. Missing mirror access is a scoped release blocker if that mirror is actually authoritative.",
+      "tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-027",
+        "TASK-062",
+        "TASK-063",
+        "TASK-064",
+        "TASK-066"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-19",
+      "title": "Secret scans must not exclude entire tests and documentation trees",
+      "classification": "SOURCE_CONTROL_GAP",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": ".gitleaks.toml",
+          "export_content_start": 3135,
+          "export_content_end": 3176,
+          "normalized_sha256": "21f46fd046ca13c1fd92761d865dc447f654e903abe3f6e4a15aaf219c8c0e2b"
+        }
+      ],
+      "source_observation": "The allowlist covers whole test-file patterns, scripts/qa and Markdown docs, not just known fixture bytes. This creates a blind area even though the comments describe fake examples. No real leaked token was established by this review.",
+      "required_change": "Replace broad exemptions with reviewed narrow rule/fingerprint/line-scoped synthetic exceptions. Scan documentation, tests, fixtures, generated assets and final artifacts. Prevent scanners from printing secrets in reports.",
+      "exit_evidence": "Plant synthetic canary secrets in each formerly excluded class and prove detection; legitimate exact fixtures remain allowed. Run the actual tools on the current commit/history and inspect final artifacts.",
+      "tasks": [
+        "TASK-002",
+        "TASK-012",
+        "TASK-015",
+        "TASK-057",
+        "TASK-061",
+        "TASK-062",
+        "TASK-063"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-20",
+      "title": "Failed cloud inventory is not an empty account",
+      "classification": "SOURCE_DEFECT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "cloudflare-proxy/provision-embedded-key.mjs",
+          "export_content_start": 3553,
+          "export_content_end": 3702,
+          "normalized_sha256": "00dbcfbf82f5f5659ab482844886e259ed4a92f884e8344a777d888d0c1b0da0"
+        }
+      ],
+      "source_observation": "The script catches failure of secret list and continues with an empty string, then may replace METIS_PROXY_KEYS. The code correctly refuses when it sees an existing name, but a failed inventory cannot establish absence.",
+      "required_change": "Any retained provisioner must fail on unavailable inventory and require explicit authority for replacement. Stop using embedded shared credentials for enterprise 2.0; archive/deprecate this path safely instead of re-running it automatically.",
+      "exit_evidence": "Access denied/network error leaves all existing secrets unchanged. No delete-existing-secret workaround or successful empty inventory inference.",
+      "tasks": [
+        "TASK-001",
+        "TASK-012",
+        "TASK-014",
+        "TASK-062"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-21",
+      "title": "Capture privacy copy must cover screenshots, titles, URLs and helpers too",
+      "classification": "SOURCE_POLICY_CONFLICT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "src/main/screen-capture.ts",
+          "export_content_start": 141536,
+          "export_content_end": 141616,
+          "normalized_sha256": "e4fe1c06b293c5f1a8f087ea4af88d39d9e784f26333c9ef6bbe74734232170e"
+        },
+        {
+          "path": "src/main/screen-preprocess.ts",
+          "export_content_start": 142301,
+          "export_content_end": 142745,
+          "normalized_sha256": "3d55d5fa974f991475667b590fe792f83c75d36a1d58d9abca0201e77dede09e"
+        },
+        {
+          "path": "docs/AUDIT-LOG.md",
+          "export_content_start": 5027,
+          "export_content_end": 5081,
+          "normalized_sha256": "cc87d9381d3db6b50ee55bf1a90abbd4134271ae0720853886ed11e2236143c6"
+        }
+      ],
+      "source_observation": "The product includes screen/OCR paths and the audit document calls meeting-title-derived file basenames metadata. Such labels can still reveal confidential content; audio-only logging rules are incomplete.",
+      "required_change": "Minimize approved window/region observation, exclude credentials and unrelated apps, classify derived text as content. Replace sensitive title/URL labels in operational logs with opaque IDs and approved categorical fields; avoid raw crash/heap exports.",
+      "exit_evidence": "Synthetic meeting title, OCR phrase, URL token and filename sentinels do not persist in prohibited sinks, while authorized knowledge records and meaningful safe diagnostics remain available.",
+      "tasks": [
+        "TASK-005",
+        "TASK-015",
+        "TASK-033",
+        "TASK-034",
+        "TASK-054",
+        "TASK-057",
+        "TASK-058"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-22",
+      "title": "Preserve tailored recaps and human edits when moving skills server-side",
+      "classification": "PRESERVE_AND_EXTEND",
+      "priority": "P1",
+      "evidence": [
+        {
+          "path": "src/shared/mode-recap.ts",
+          "export_content_start": 232411,
+          "export_content_end": 232531,
+          "normalized_sha256": "89b9f1c1f36dcb06608e8ec87cfed1e9d0b07843c4f986e947ab04bdcb3483c8"
+        },
+        {
+          "path": "src/main/mode-skills.ts",
+          "export_content_start": 130106,
+          "export_content_end": 130336,
+          "normalized_sha256": "c537da9c641a112f3253686e09017b458f7331ff561691c50df9d204dc3e599a"
+        },
+        {
+          "path": "DESIGN.md",
+          "export_content_start": 1966,
+          "export_content_end": 2147,
+          "normalized_sha256": "468cbbecb1d5ba543a26420b9f4d0fe0d4b1a933a031e1b2e37c87cc1b51099c"
+        }
+      ],
+      "source_observation": "The source already defines nine mode-specific recap layouts and locked mode skills. A generic new cloud summary would regress this existing capability.",
+      "required_change": "Migrate mode IDs and versioned templates into the central registry with compatibility. Keep original human notes, accepted corrections and generated alternatives separate. Never overwrite manual edits during enhancement, re-template or retry.",
+      "exit_evidence": "All nine layouts render within the answer scroller; update/revoke/version behavior works without reinstall; human text/corrections remain exact after regeneration.",
+      "tasks": [
+        "TASK-008",
+        "TASK-009",
+        "TASK-018",
+        "TASK-022",
+        "TASK-028",
+        "TASK-037",
+        "TASK-040",
+        "TASK-042",
+        "TASK-043",
+        "TASK-044",
+        "TASK-054"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-23",
+      "title": "Dust connector checklists do not prove canonical read/write",
+      "classification": "IMPLEMENTATION_LIMIT",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "docs/verification/mi-5-dust-e2e.md",
+          "export_content_start": 16256,
+          "export_content_end": 16360,
+          "normalized_sha256": "42b578e21d64c3cc862d0f18c90b02d6721f48a502cd11b0a4ad50ec1622a03b"
+        },
+        {
+          "path": "src/main/brain/publish.ts",
+          "export_content_start": 161550,
+          "export_content_end": 162539,
+          "normalized_sha256": "2313a34b2be4e3e981c92d82f31b8e5f9c2272d2dc34f4abd71c36297a2f69a3"
+        }
+      ],
+      "source_observation": "The source includes an unchecked real-Dust verification checklist for a plaintext wiki. That is neither executed evidence nor a canonical mutation interface; the readable projection has its own access boundary.",
+      "required_change": "Reuse the wiki safely, but make personal/service-scoped Dust tools read and mutate canonical records with revision checks and readback. Protect private sources and output audience before retrieval, regeneration and publication.",
+      "exit_evidence": "Actual two-principal Dust read/write, conflict, regenerate, correction, revoke, deletion and laptop-asleep sequence. No raw parent-folder indexing or edits lost on regeneration.",
+      "tasks": [
+        "TASK-006",
+        "TASK-007",
+        "TASK-035",
+        "TASK-036",
+        "TASK-037",
+        "TASK-038",
+        "TASK-039",
+        "TASK-040",
+        "TASK-041",
+        "TASK-054",
+        "TASK-055"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    },
+    {
+      "id": "SRC-24",
+      "title": "Every workspace needs a real test/build/release coverage owner",
+      "classification": "EVIDENCE_GAP",
+      "priority": "P0",
+      "evidence": [
+        {
+          "path": "package.json",
+          "export_content_start": 2697,
+          "export_content_end": 2833,
+          "normalized_sha256": "f98b78c9e4e2e3b82dc08e458fc1b2f974908b8ac7957a80390b983935f4493d"
+        },
+        {
+          "path": "vitest.config.ts",
+          "export_content_start": 3031,
+          "export_content_end": 3101,
+          "normalized_sha256": "8e25c51aa75e508ebea40e8a1891216b28c76e70292aed772886677668ad94aa"
+        },
+        {
+          "path": "native-app/MetisKit/Package.swift",
+          "export_content_start": 35457,
+          "export_content_end": 35476,
+          "normalized_sha256": "83200cd12224464b2b3e0993b992a846d65974d44d60d8aa70a3075409788359"
+        },
+        {
+          "path": "license-server/package.json",
+          "export_content_start": 29269,
+          "export_content_end": 29294,
+          "normalized_sha256": "06d57dce1f51cfad37a7d9a3e93a18be0bf157c1b8c19a25efb7c5a6183da7a3"
+        },
+        {
+          "path": ".github/workflows/build.yml",
+          "export_content_start": 245561,
+          "export_content_end": 246007,
+          "normalized_sha256": "12beda3a354fada0c20794cfd2bbe162cb195a0faaa0748c5a925dc75d602006"
+        }
+      ],
+      "source_observation": "Root tests explicitly chain proxy and Operator suites. Native Swift and legacy license-server have their own projects/tests, and the export lacks essential root files. Test counts/names and historical README claims do not establish current executed coverage.",
+      "required_change": "Build a workspace/entrypoint inventory for production, test, migrations and native helpers. Run each applicable suite on the correct runtime/OS; bind tests to actual package profile and post-sign artifact. Include generated bundles and policy/data migrations in impact analysis.",
+      "exit_evidence": "No zero-tests pass, excluded workspace, stale generated bundle, native test seam or unsigned rebuild can satisfy release evidence. Missing source/tool/tenant states are explicit and scoped.",
+      "tasks": [
+        "TASK-001",
+        "TASK-003",
+        "TASK-005",
+        "TASK-029",
+        "TASK-053",
+        "TASK-056",
+        "TASK-057",
+        "TASK-061",
+        "TASK-062",
+        "TASK-063",
+        "TASK-065",
+        "TASK-066"
+      ],
+      "implementation": "NOT_STARTED",
+      "verification": "NOT_TESTED"
+    }
+  ]
+}

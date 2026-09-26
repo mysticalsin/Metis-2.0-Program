@@ -1,0 +1,44 @@
+{
+  "kind": "exact existing assertions evaluated without Vitest",
+  "results": [
+    {
+      "stage": "baseline",
+      "results": [
+        {
+          "pattern": "/const playing = el\\.play\\(\\)[\\s\\S]*?if \\(opts\\.restart\\) el\\.currentTime = 0/",
+          "passes": true
+        },
+        {
+          "pattern": "/const audioPlay = audio\\?\\.play\\(\\)[\\s\\S]*?const videoPlay = video\\?\\.play\\(\\)/",
+          "passes": true
+        }
+      ]
+    },
+    {
+      "stage": "overlay",
+      "results": [
+        {
+          "pattern": "/const playing = el\\.play\\(\\)[\\s\\S]*?if \\(opts\\.restart\\) el\\.currentTime = 0/",
+          "passes": false
+        },
+        {
+          "pattern": "/const audioPlay = audio\\?\\.play\\(\\)[\\s\\S]*?const videoPlay = video\\?\\.play\\(\\)/",
+          "passes": false
+        }
+      ]
+    }
+  ],
+  "actual_playback_order": [
+    "audio:play",
+    "audio:seek:0",
+    "video:play",
+    "video:seek:0"
+  ],
+  "required_order": [
+    "audio:play",
+    "video:play",
+    "audio:seek:0",
+    "video:seek:0"
+  ],
+  "correct_order": false
+}

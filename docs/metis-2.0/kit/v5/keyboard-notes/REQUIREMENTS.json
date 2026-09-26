@@ -1,0 +1,171 @@
+{
+  "schema": "metis.notes-keyboard.requirements.v1",
+  "date": "2026-09-25",
+  "kind": "owner product correction",
+  "code_changed": false,
+  "requirements": [
+    {
+      "id": "NK-01",
+      "title": "Additive product identity",
+      "required_behavior": "Métis remains a note-taker and meeting copilot. HeyClicky-inspired speech, guidance and actions extend the same product; they do not replace its meeting workspace or require a new app.",
+      "parent_tasks": [
+        "TASK-002",
+        "TASK-008",
+        "TASK-027",
+        "TASK-040"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-02",
+      "title": "Preserve the complete note-taking workflow",
+      "required_behavior": "Inventory and regress current capture/import, transcript revisions, speakers/timestamps, manual notes, summaries, decisions, action items, history, search, authorized exports/sync and existing meeting modes. Do not label an unverified baseline feature as working.",
+      "parent_tasks": [
+        "TASK-004",
+        "TASK-017",
+        "TASK-018",
+        "TASK-053",
+        "TASK-054",
+        "TASK-055"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-03",
+      "title": "Global Métis visibility toggle",
+      "required_behavior": "Preserve the configured shortcut; one distinct press shows/focuses the existing Métis surface, another dismisses it without starting, pausing, stopping or finalizing the meeting. Support invocation while another permitted application is focused.",
+      "parent_tasks": [
+        "TASK-008",
+        "TASK-028",
+        "TASK-029",
+        "TASK-030"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-04",
+      "title": "Keyboard-accessible command capture",
+      "required_behavior": "A separate configurable command-voice action starts/stops an explicitly permitted command interval. Press-on/press-off is supported; holding a key or clicking the mouse is not required. Visibility-only shortcuts never silently acquire microphone behavior.",
+      "parent_tasks": [
+        "TASK-005",
+        "TASK-017",
+        "TASK-019",
+        "TASK-028"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-05",
+      "title": "Truthful shortcut readiness and migration",
+      "required_behavior": "Inspect current bindings and effective policies; preserve user choices and existing recording shortcuts. Qualify registration, conflicts, layouts, repeats, suspend/resume and changed bindings. Failed remapping cannot destroy the working old binding.",
+      "parent_tasks": [
+        "TASK-008",
+        "TASK-027",
+        "TASK-028",
+        "TASK-029"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-06",
+      "title": "Separate recording, command and task lifecycles",
+      "required_behavior": "Command end/off, dismiss, stop-speaking and assistant-task Stop must not terminate separately authorized note-taking. Stop all capture stops every relevant capture consumer and revokes pending command authority. Explicit meeting controls remain first-class.",
+      "parent_tasks": [
+        "TASK-005",
+        "TASK-017",
+        "TASK-018",
+        "TASK-019"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-07",
+      "title": "One audio owner, scoped consumers",
+      "required_behavior": "Use the existing trusted broker, not a hidden second microphone. Actual consumer acknowledgments determine indicators. Closing the command subscription cannot close the device while an authorized meeting still needs it.",
+      "parent_tasks": [
+        "TASK-017",
+        "TASK-018",
+        "TASK-019"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-08",
+      "title": "Meeting speech is evidence, not action authority",
+      "required_behavior": "A participant, meeting transcript, screen, tool response or own TTS cannot issue/confirm a command. Use only trusted command/typed ingress; hotkey activation alone does not authenticate a speaker.",
+      "parent_tasks": [
+        "TASK-005",
+        "TASK-017",
+        "TASK-019",
+        "TASK-033"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-09",
+      "title": "Private help without corrupting notes",
+      "required_behavior": "Keep private queries, action progress and synthesized responses outside canonical meeting text by default. Preserve actual meeting evidence, segment identities and declared coverage; qualify routing and echo behavior rather than hiding losses. During calls default to text; private speech requires current audience/output permission.",
+      "parent_tasks": [
+        "TASK-017",
+        "TASK-018",
+        "TASK-053",
+        "TASK-054",
+        "TASK-058"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-10",
+      "title": "JEV and action runtime cannot become note-taking prerequisites",
+      "required_behavior": "JEV chooses bounded actions or approved Intelligence inferences. Its absence/failure, action driver failure or agent cancellation cannot independently stop capture, flush the meeting transcript, block saving already captured notes or require a new meeting. Speech-service failure remains separately reported.",
+      "parent_tasks": [
+        "TASK-031",
+        "TASK-032",
+        "TASK-034",
+        "TASK-040",
+        "TASK-054"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-11",
+      "title": "Keep meeting context and permissions across toggles",
+      "required_behavior": "Reopening restores the same meeting/task, draft, manual edits, scroll and authorized context without duplicate records or new consent. Remember/correct/forget, source revisions, approved OneDrive storage and Hindsight remain under existing policy.",
+      "parent_tasks": [
+        "TASK-007",
+        "TASK-027",
+        "TASK-028",
+        "TASK-035",
+        "TASK-041"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "NK-12",
+      "title": "Combined product proof before completion",
+      "required_behavior": "Qualify the real note-taker while repeatedly invoking/dismissing Métis, using a private query and one verified action, then finish and reopen the meeting. Full note fidelity and actual native shortcuts are mandatory, not satisfied by candidate unit tests.",
+      "parent_tasks": [
+        "TASK-053",
+        "TASK-054",
+        "TASK-055",
+        "TASK-056",
+        "TASK-063",
+        "TASK-065",
+        "TASK-066"
+      ],
+      "implementation": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "goal_id": "goal-2026-09-26-metis-2-0-delivery",
+  "title": "Metis 2.0 - full kit delivery, P0 bug fixes, enterprise refactor, launch video",
+  "created_at": "2026-09-26T08:30:00Z",
+  "created_by": "tony",
+  "deadline": "2026-11-30T23:00:00-05:00",
+  "outcome_criterion": "Metis 2.0 engineering-complete: every r11 kit item (MASTER rev 4.5 TASK-001..066 incl. UC/OBU/AGX/AGSTEP/HMSTEP families) and every v6/v5 delta is implemented in mysticalsin/AskToto-Mantu and LOCALLY_TESTED or VALIDATED_IN_SCOPE with evidence; items needing external accounts/owners are wired for real and shown BLOCKED with the exact unblock step; Tony's P0 bugs (resource heaviness; History click freeze / app will not reopen) are fixed with regression tests and measured budgets; the code is refactored into a simple modular structure; an Opus validator PASSes every task; production-ready packaged builds exist; a launch video is delivered; all work is on GitHub with traceability for Codex and Cursor.",
+  "outcome_criterion_hash": "sha256:8bc9a5c4766c52a0297fb75ca7703e6a00ba38734250aa2a906660a14c36ecc0",
+  "success_verifier": "Per task: Opus validator PASS after Sonnet implementation ('is this really the best?'); design/animation work implemented and validated by Opus. Program: CI green, kit s27 release decision PASS, Opus final validation, Tony sign-off.",
+  "out_of_scope": [
+    "Apple public signing / notarization (kit hold; Tony confirmed only exclusion)"
+  ],
+  "stakeholders": [
+    {
+      "name": "Tony Walteur",
+      "role": "owner / final acceptor",
+      "notify_on": [
+        "milestone_done",
+        "blocker",
+        "complete",
+        "expire"
+      ]
+    },
+    {
+      "name": "Codex (OpenAI)",
+      "role": "independent auditor (quota blocked until 2026-09-29T19:33)",
+      "notify_on": [
+        "review_request"
+      ]
+    },
+    {
+      "name": "Unnamed Mantu owners (Entra/Teams admin, privacy/legal, Dust admin, Jev/Laya holders)",
+      "role": "external unblockers",
+      "notify_on": [
+        "blocker"
+      ]
+    }
+  ],
+  "operating_model": {
+    "planning_and_validation": "Opus",
+    "execution": "Sonnet swarm",
+    "design_and_animation": "Opus",
+    "audits": "Codex when quota allows; Claude lanes otherwise",
+    "methods": [
+      "software-architecture-engineer v1.4.0",
+      "Stark v9.3.0"
+    ]
+  },
+  "status": "IN_PROGRESS",
+  "status_history": [
+    {
+      "status": "CAPTURED",
+      "at": "2026-09-26T08:30:00Z"
+    },
+    {
+      "status": "DECOMPOSED",
+      "at": "2026-09-26T08:40:00Z"
+    },
+    {
+      "status": "IN_PROGRESS",
+      "at": "2026-09-26T09:55:00Z"
+    },
+    {
+      "status": "READY",
+      "at": "2026-09-26T15:30:00Z",
+      "note": "premortem recorded from plan finalize"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "m1",
+      "title": "Full read-only review complete; P0/P1 findings and bug root causes adversarially verified by Opus",
+      "verification": "Review workflow finished; verified findings + lane reports committed under docs/metis-2.0/review/",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-09-26T23:00:00-04:00",
+      "depends_on": [],
+      "status": "DONE",
+      "completed_at": "2026-09-26T09:50:00Z",
+      "result": "84-agent review (25 Sonnet lanes + Opus adversarial verification + coverage critic), 0 errors. Heavy-on-PC root cause CONFIRMED (orphaned llama-server ~3.1 GB each). History-freeze cause NOT established (window.confirm theory refuted by Opus x2 and ChatGPT Pro). New P0 hazard: repo tests quarantine the real brain index. ChatGPT Pro independent audit captured."
+    },
+    {
+      "id": "m2",
+      "title": "Master plan + task ledger validated by Opus; traceability live (AGENTS.md, .cursor rules, _relay, PR template) and pushed",
+      "verification": "PR open on GitHub with PLAN.md, ledger JSON, TRACEABILITY matrix covering 100% of kit IDs; Opus validator PASS",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-09-27T23:00:00-04:00",
+      "depends_on": [
+        "m1"
+      ],
+      "status": "IN_PROGRESS",
+      "started_at": "2026-09-26T09:55:00Z",
+      "progress_notes": "PLAN/ARCHITECTURE/DECISIONS/BLOCKERS/TRACEABILITY + 213-ticket ledger written and Opus-validated (PASS_WITH_FIXES); traceability layer written; commit/PR pending public-readiness verdict."
+    },
+    {
+      "id": "m3",
+      "title": "Stabilization release 1.9.7: History freeze, resource heaviness, crash fixes with regression tests and measured idle budgets",
+      "verification": "Tests red->green for each root cause; packaged app idle CPU/RSS measured within budget; no orphaned sidecars after kill/relaunch",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-10-04T23:00:00-04:00",
+      "depends_on": [
+        "m2"
+      ],
+      "status": "BLOCKED",
+      "blocker": "D-28 CI-only + GitHub Actions budget exhausted; M2-0001 merged to m2/integration (PR #201)."
+    },
+    {
+      "id": "m4",
+      "title": "Repo and CI hygiene: PR/issue triage, lint/format, swift + license-server CI, branch conventions",
+      "verification": "Every open PR has a disposition; CI runs lint+typecheck+tests+swift+license-server on PRs",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-10-04T23:00:00-04:00",
+      "depends_on": [
+        "m2"
+      ],
+      "status": "PENDING"
+    },
+    {
+      "id": "m5",
+      "title": "Refactor foundation: decompose god files, shared contracts (TASK-005), module boundaries",
+      "verification": "index.ts/Settings.tsx/App.tsx split per plan; import-graph fitness test green; behaviour unchanged (full suite green)",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-10-18T23:00:00-04:00",
+      "depends_on": [
+        "m3",
+        "m4"
+      ],
+      "status": "PENDING"
+    },
+    {
+      "id": "m6",
+      "title": "2.0 interaction core: command session, voice/orb/bar, right-edge dock, keyboard-first notes, HeyClicky verified actions",
+      "verification": "Kit tasks for these areas LOCALLY_TESTED + Opus design/animation validation PASS",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-11-01T23:00:00-04:00",
+      "depends_on": [
+        "m5"
+      ],
+      "status": "PENDING"
+    },
+    {
+      "id": "m7",
+      "title": "Speech, transcription fidelity and complete meeting experience",
+      "verification": "Kit transcription/meeting tasks LOCALLY_TESTED with evaluation fixtures",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-11-08T23:00:00-04:00",
+      "depends_on": [
+        "m5"
+      ],
+      "status": "PENDING"
+    },
+    {
+      "id": "m8",
+      "title": "Jev/Laya decision service + Hindsight governed memory (MASTER s35 + v6 upstream) + Mantu Intelligence",
+      "verification": "Real client bindings tested; external services BLOCKED-visible with unblock steps",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-11-15T23:00:00-04:00",
+      "depends_on": [
+        "m5"
+      ],
+      "status": "PENDING"
+    },
+    {
+      "id": "m9",
+      "title": "Operator, identity, Teams, usage/cost, security/no-retention policy (engineering side)",
+      "verification": "Kit tasks LOCALLY_TESTED; tenant/admin-dependent items BLOCKED-visible",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-11-15T23:00:00-04:00",
+      "depends_on": [
+        "m5"
+      ],
+      "status": "PENDING"
+    },
+    {
+      "id": "m10",
+      "title": "Onboarding (retained scenes + Tony welcome slot), lightweight install/update, Windows signing path, release gates (s27)",
+      "verification": "Machine-checkable release decision runs on the release commit; packaged launch gates green on Mac+Win",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-11-22T23:00:00-04:00",
+      "depends_on": [
+        "m6",
+        "m7",
+        "m8",
+        "m9"
+      ],
+      "status": "PENDING"
+    },
+    {
+      "id": "m11",
+      "title": "Launch video (BRAG storyboard: 60s hero, 30s vertical, 20s teaser) rendered from the real app",
+      "verification": "Rendered MP4s reviewed frame-by-frame against the 12 LFAC criteria; Opus design PASS",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-11-27T23:00:00-04:00",
+      "depends_on": [
+        "m10"
+      ],
+      "status": "PENDING"
+    },
+    {
+      "id": "m12",
+      "title": "Final Opus program validation + Tony sign-off on installed build",
+      "verification": "Opus final validation PASS; Tony accepts installed 2.0 build",
+      "owner": "claude (Opus validate / Sonnet execute)",
+      "due": "2026-11-30T23:00:00-04:00",
+      "depends_on": [
+        "m11"
+      ],
+      "status": "PENDING"
+    }
+  ],
+  "decomposition_note": "Milestones are phase gates (verification <=90 min each). The 66+ kit tasks are sub-work tracked in docs/metis-2.0/ledger/ (Stark numbered tasks), per the >12-milestone sub-goal rule.",
+  "premortem_risks": [
+    "R1 Owner and decision bottleneck repeats the previous attempt's failure (prd-lock stuck at 0.1.0-draft): owner-only steps gate most of the graph (QA host, 1.9.7 approval, soak), and escalated decisions D-5, D-6, D-8 and D-22 arrive late.",
+    "R2 1.9.7 slips past 10-04 while the P0s keep hurting. The critical path is 54 h and depends on the QA account (09-29) plus an 8 h soak, 20 kill cycles and the owner's approval.",
+    "R3 Integration tail: eight weeks of change first meet the owner's real OneDrive data late, and a defect found after the freeze invalidates the frozen hash, the Windows signature and the film footage.",
+    "R4 A hermeticity failure damages the owner's data again, through child processes, swift test, license-server, wrangler credentials, or a candidate sharing the Keychain, TCC grants and reaper scope with the live install.",
+    "R5 The freeze is never reproduced: the DERIVED cause stays unproven, and the owner hits another freeze that nobody can attribute.",
+    "R6 The storage gateway turns a main-thread freeze into libuv pool starvation (stat/readdir on dataless directories may block), and Windows OneDrive placeholders behave differently.",
+    "R7 The agent swarm collides on the god files (index.ts touched by 18 tickets, App.tsx, ipc.ts, preload, package.json, workflows, main.swift, the ledger), and several parallel suites make the owner's PC heavy themselves.",
+    "R8 The W3 refactor destabilizes the lifecycle code 1.9.7 just fixed; hotfixes then have to be cherry-picked across moved code, and a W3 slip blocks W4 to W7, whose paths depend on W3 directories.",
+    "R9 Windows, the enterprise target, is never tested on a real managed device; windows-latest cannot run UIA, audio, GPU or OneDrive gates; signing procurement takes 1-20 business days.",
+    "R10 False closure: agents write their own evidence, validation becomes a rubber stamp under W6-W8 pressure, tests are tautological, and BLOCKED_EXTERNAL hides unfinished engineering.",
+    "R11 Scope and estimates overrun (about 2,161 h in 65 days, 46 tickets still over 12 h), the Opus peak lands in W3-W4, and triage happens ad hoc in the last week.",
+    "R12 2.0 makes the PC heavy again: wake detection, the ARMED orb and glow animations, the audio broker and memory arrive after budgets were last checked.",
+    "R13 The external server plane (Entra, Dust, Teams/Azure media, Jev/Laya, hosting, DPO) arrives late or never, so live chains end BLOCKED.",
+    "R14 The launch film slips or makes claims the evidence cannot back: the toolchain has never run here, there are about five days after the freeze, and Tony's claim approval is late."
+  ],
+  "premortem_mitigations": [
+    "M1 Decision dependencies proceed on recorded defaults labelled ASSUMED, and reversible defaults auto-apply at their needed-by date. Escalations are dated and never block engineering, only release claims. The PRD lock gates nothing, and a one-page policy (M2-0189) is due 10-02. There is a weekly 30-minute owner slot, BLOCKERS rows carry needed-by and days-waiting, owner relief (M2-0010) and the conditional supervisor are not release preconditions, and D-28 applies only to owner-account runs.",
+    "M2 1.9.7 is scoped to the P0 closure, with ten tickets moved to T1. The gate, not the date, releases it. The QA user is a five-minute owner action with a hard date. Supervise ships default-on only if HK-M passes 20/20, otherwise the residual is stated. Hot files follow a declared landing order, and W1 tickets are a new module plus a call-site swap.",
+    "M3 Trains T1 1.9.9 (10-18), T2 (11-01) and T3 (11-08) are built once, gated, installed on the owner Mac and soaked. The feature freeze and rc1 72 h soak are on 11-15, and only defect fixes land afterwards. Golden flows run nightly from m7. The ledger contract waits for T1 plus 14 owner days, otherwise it moves to 2.0.1.",
+    "M4 First runs happen in CI with a honeypot, then on the QA macOS user, and on the owner account only under the D-28 OS sandbox profile. M2-0190 covers swift test, license-server, scripts/qa and wrangler (credentials unset, --local). Unreleased shipping-identity builds never run on the owner account; if unavoidable, only the QA-identity variant does.",
+    "M5 The repro uses OS-level fixtures (at least six FIFOs, real dataless files on a test cloud account, network off), records the fuse state, tests interruptibility, and accepts an unsuccessful matrix as a valid outcome. M2-0194 reruns it on HEAD with observability. An out-of-process sampler covers the owner's Mac. B1 closes only on 10 working days of MEASURED owner evidence (M2-0199).",
+    "M6 One global cap at most pool size minus 2, with UV_THREADPOOL_SIZE recorded and decided in ADR-021. Dataless detection ships in 1.9.7. ST-1 also asserts a settings write and a dns.lookup under 250 ms. The C10 worker triggers automatically. Windows placeholder detection ships alongside ST-1-W runs on the managed laptop.",
+    "M7 M2-0188 makes the Opus orchestrator the integration owner: a merge queue with hot files one at a time, a claims check, at most 3 agents in src/main, full suites and compose/packaging only in CI, packaged runs serialized, only the orchestrator editing ledger status, and a release/1.9.x backport rule.",
+    "M8 W3 changes to 1.9.7-fixed code wait for the five-day soak (M2-0198). The m5 exit is a minimum seam set. verify-move.mjs mechanically checks every pure-move PR. Packaged HK, RV and ST suites re-run after 0060, 0065 and 0068. M2-0069, 0070, 0071 and 0074 become peel-when-touched after 10-18.",
+    "M9 A Windows 1.9.6 baseline runs on the managed laptop by 10-04 (M2-0195), and a capability spike (M2-0196) assigns gates to windows-latest or the device. Windows parity runs at 1.9.7, T1, T2, T3 and rc1. The signing budget is due 10-09. The sign step (M2-0211) is decoupled from the candidate freeze, with the D-29 BLOCKED-unsigned fallback.",
+    "M10 Evidence schema v2: one record per required level, CI run IDs, the lane sha256 for LIVE_VERIFIED, red-before and green-after runs, per-kit-ref status feeding TRACEABILITY, and a definition of 'wired for real'. The validator session must differ from the implementer. A different model re-executes a random 10% at every gate. The inherited_block rule keeps a BLOCKED item from being counted as DONE.",
+    "M11 Velocity is measured from week 1 and re-forecast at m3, m5 and m6 (M2-0197). The owner approves a degrade order by 10-09 (D-14), which only lowers evidence levels or ships DEFERRED flag-off. The checker enforces slicing. Opus implements only design and visual work, prototypes move to W3, and validation hours are budgeted per ticket.",
+    "M12 The resource regression gate M2-0200 runs on every train from m5 and fails on a >10% regression or any section 7 breach. Wake detection stays default-off until measured. The ARMED orb (M2-0093) carries its own census acceptance, and tuning (M2-0166) must show the gate passed on T1..rc1.",
+    "M13 Requests go out on day 1, drafted for the owner to send. Engineering runs against the local compose profile in CI and contract fakes, behind flags. BLOCKED items appear in the in-app capability matrix with their unblock step. The freeze rule allows BLOCKED_EXTERNAL or DEFERRED, so late externals cannot slip the candidate.",
+    "M14 The claim register moves to m6 with storyboard variants for live, concept and cut claims. A 5-second 4K toolchain spike runs in W2 (M2-0212). Pre-production happens before the freeze (M2-0213). Captures come from rc1 and are diffed against the frozen candidate. The Mac freeze is independent of Windows signing. The claim-approval request goes out by 11-20, and unapproved claims are cut or labelled concept."
+  ],
+  "drift_signals": [
+    {
+      "at": "2026-09-26T09:50:00Z",
+      "type": "scope_risk",
+      "detail": "Test runs corrupt owner data (brain index); adds mandatory W0 safety ticket before any execution."
+    },
+    {
+      "at": "2026-09-26T16:30:00Z",
+      "type": "blocked",
+      "detail": "CI unavailable (Actions budget) while D-28 requires CI-only testing: every code ticket is blocked until CI runs."
+    }
+  ],
+  "figure_it_out_invocations": [],
+  "session_log": [
+    {
+      "session_id": "sess-2026-09-26-am",
+      "started_at": "2026-09-26T08:00:00Z",
+      "milestones_touched": [
+        "m1"
+      ],
+      "milestones_completed": [],
+      "notes": "Goal captured. Review workflow wf_8718c93d-1c1 launched (25 Sonnet lanes + Opus verification). Pushed codex/operator-ux-rock-1 and wip/windows-artifact-signing-snapshot. Codex blocked by usage limit until 2026-09-29T19:33."
+    },
+    {
+      "session_id": "sess-2026-09-26-am",
+      "at": "2026-09-26T09:55:00Z",
+      "milestones_touched": [
+        "m1",
+        "m2"
+      ],
+      "milestones_completed": [
+        "m1"
+      ],
+      "notes": "m1 done. Planning workflow wf_0b1fe997-ce5 launched (8 Sonnet prep lanes, Opus architecture, 3-lens Opus panel, judge, coverage loop, critics, finalize, render, validation). ChatGPT audit saved to review/chatgpt-audit-1.md. Brain index quarantined twice today by review test runs -> W0 hermetic-tests ticket first; no agent runs repo tests until it lands."
+    },
+    {
+      "session_id": "sess-2026-09-26-pm",
+      "at": "2026-09-26T16:30:00Z",
+      "milestones_touched": [
+        "m2",
+        "m3"
+      ],
+      "milestones_completed": [],
+      "notes": "Plan done (213 tickets). M2-0001 merged to m2/integration. Freeze root cause observed in spindump. Owner decisions: integration-branch merge flow; D-28 tests CI-only; make repo public (audit running). Ticket batch stopped per D-28; M2-0003 WIP e2adbadf."
+    }
+  ],
+  "metrics_at_completion": null,
+  "retro_id": null
+}

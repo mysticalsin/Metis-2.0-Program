@@ -1,0 +1,288 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SOURCE-STUDY</title><style>body{font:15px/1.62 system-ui,-apple-system,Segoe UI,sans-serif;color:#262136;background:#f6f4f8;margin:0}main{max-width:1080px;margin:24px auto;background:white;padding:44px 48px;border:1px solid #e1dbe8;border-radius:16px}h1{font-size:42px;line-height:1.12}h2{font-size:27px;line-height:1.3;color:#3c2358;border-top:1px solid #e7e0ed;margin-top:40px;padding-top:24px}h3{font-size:20px;line-height:1.35;color:#553375}h4{font-size:17px}p,li,td,th{overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;font-size:12px;margin:18px 0;table-layout:fixed}td,th{border:1px solid #dfd6e8;vertical-align:top;padding:8px}th{background:#efe8f6;text-align:left}tr:nth-child(even){background:#faf8fc}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f0f7;padding:14px;border-left:3px solid #8d66ae;font-size:11px;line-height:1.5}code{font-family:monospace;font-size:.9em;overflow-wrap:anywhere}blockquote{margin:18px 0;border-left:3px solid #946cb5;background:#f5effa;padding:12px 18px}a{color:#6a3899;overflow-wrap:anywhere}nav{max-width:1100px;margin:auto;padding:20px;display:flex;gap:20px;flex-wrap:wrap;font-size:13px}img{max-width:100%}@media(max-width:700px){main{margin:8px;padding:22px 16px}table{font-size:10px}td,th{padding:5px}h1{font-size:31px}}</style></head><body><nav><a href="../OPEN-METIS-2.html">Complete Métis kit</a><a href="../spec/MASTER.html">MASTER 4.4</a></nav><main><h1 id="heyclicky-m-tis-artifact-derived-study">HeyClicky → Métis: artifact-derived study</h1>
+<blockquote>
+<p>r10 consolidation: onboarding follows MASTER §32.6/§34 and the retained Métis scene order. Any original eight-stage illustration below is historical reference, not an implementation instruction. Agent capabilities remain required.
+<strong>Basis:</strong> the supplied <code>HeyClicky.dmg</code>, not a cloned open-source project. Read-only static extraction. No app launch, driver execution, token use, private API request or login bypass. The implementation below is an independent Métis design.</p>
+</blockquote>
+<h2 id="1-exact-artifact">1. Exact artifact</h2>
+<p>Version <strong>1.0.51 (61)</strong>, universal x86_64/arm64, declared minimum macOS 14.2. DMG <strong>373,328,455 bytes</strong>. SHA-256 <code>0c7b2f7b21cc5153e4a3146cdeaff704a67aaf37e08bf06a0117d108edb7b038</code>. Internal build metadata claims <code>ddbd4191</code>; full source ancestry is unknown.</p>
+<p>Recovered <strong>192 regular files / 824,864,616 data-fork bytes</strong>. <strong>589,486,538 bytes</strong> belong to the two-architecture CodexRuntime subtree; this is an inventory, not an installed-size or speed benchmark. Metadata and library imports identify a native Swift/SwiftUI application, not Electron. No original complete Swift source project was recovered.</p>
+<h2 id="2-method-and-limits">2. Method and limits</h2>
+<p>Indexed retrieval returned no text for the DMG. A bounded read-only UDIF/HFS+ reader decompressed its HFS volume, read catalog/data forks, skipped symlinks and special unsafe HFS metadata names, and wrote non-executable analysis copies. No disk mount or installer execution occurred. The 127 available resource <code>hash2</code> entries matched their extracted file hashes. The embedded signing manifest is not an independent trust root: Apple certificate validation, notarization and resource code requirements were not verified. Original source, account-side services, policies, dynamic UI ordering and successful native execution remain unobserved. The scope is the 192 extracted regular data forks, not every extended attribute/resource fork.</p>
+<p><strong>Evidence vocabulary:</strong> PACKAGED_METADATA/BINARY_STRUCTURE proves what is packaged; BUNDLED_INSTRUCTION/SKILL/DOCUMENTATION proves a stated intended contract; COMPILED_STRING/SYMBOL identifies an intended path but not execution; MEDIA_INSPECTION is sampled presentation; VENDOR_CLAIM is outside corroboration only. Proposed Métis behavior is never silently attributed to the reference.</p>
+<h2 id="3-source-to-m-tis-findings">3. Source-to-Métis findings</h2>
+<h3 id="hc-01-exact-inspected-build">HC-01 — Exact inspected build</h3>
+<p><strong>Evidence level:</strong> PACKAGED_METADATA. <strong>Owners:</strong> TASK-001, TASK-002.</p>
+<p>HeyClicky 1.0.51, build 61; minimum macOS 14.2. Internal build plist reports short commit ddbd4191, not a verified public repository ancestry.</p>
+<p><strong>Independent Métis adaptation:</strong> Bind every comparison to this artifact; do not conflate newer vendor claims with this installation.</p>
+<ul>
+<li><p>path=Contents/Info.plist; sha256=0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d; key=CFBundleShortVersionString</p>
+</li>
+<li><p>path=Contents/Info.plist; sha256=0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d; key=CFBundleVersion</p>
+</li>
+</ul>
+<h3 id="hc-02-native-architecture-not-recoverable-original-source">HC-02 — Native architecture, not recoverable original source</h3>
+<p><strong>Evidence level:</strong> BINARY_STRUCTURE. <strong>Owners:</strong> TASK-001, TASK-029.</p>
+<p>Universal Mach-O has x86_64 and arm64 slices and imports SwiftUI, AppKit, ScreenCaptureKit, Speech and PDFKit. No complete original Swift source project was recovered.</p>
+<p><strong>Independent Métis adaptation:</strong> Implement true native Mac parity and Windows adapters independently. Do not describe packaged instructions as full source.</p>
+<ul>
+<li>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1</li>
+</ul>
+<h3 id="hc-03-substantial-bundled-execution-payload">HC-03 — Substantial bundled execution payload</h3>
+<p><strong>Evidence level:</strong> FILE_INVENTORY. <strong>Owners:</strong> TASK-004, TASK-023, TASK-026, TASK-043.</p>
+<p>Recovered CodexRuntime data forks total 589,486,538 bytes; both Mac architectures are packaged, with Codex and code-mode-host binaries.</p>
+<p><strong>Independent Métis adaptation:</strong> Use the existing authorized service runner by default. Optional developer runtimes must be licensed, architecture-specific, signed and explicitly selected. Never copy this runtime or its account configuration.</p>
+<ul>
+<li>path=Contents/Resources/CodexRuntime</li>
+</ul>
+<h3 id="hc-04-computer-use-helper-already-a-separate-boundary">HC-04 — Computer-use helper already a separate boundary</h3>
+<p><strong>Evidence level:</strong> BUNDLED_INSTRUCTION. <strong>Owners:</strong> TASK-005, TASK-033, TASK-057.</p>
+<p>The helper file exists, and its bundled guidance describes a supervised local MCP computer-use daemon with before/after snapshots. We did not execute it.</p>
+<p><strong>Independent Métis adaptation:</strong> Evaluate licensed upstream Cua against existing Métis adapters; keep one trusted executor, bounded helper protocol and outcome verification.</p>
+<ul>
+<li><p>path=Contents/Resources/ClickyBundledSkills/cua-driver/README.md; sha256=a015cb8802526ab5a512e58eb560eb5b932195e8e148cb55d580e470657705e2; lines=[13]; anchor=embedded</p>
+</li>
+<li><p>path=Contents/Resources/ClickyBundledSkills/cua-driver/README.md; sha256=a015cb8802526ab5a512e58eb560eb5b932195e8e148cb55d580e470657705e2; lines=[6, 8, 20, 68, 73]; anchor=snapshot</p>
+</li>
+</ul>
+<h3 id="hc-05-fifteen-curated-runtime-skill-definitions">HC-05 — Fifteen curated runtime skill definitions</h3>
+<p><strong>Evidence level:</strong> PACKAGED_TEXT. <strong>Owners:</strong> TASK-009, TASK-042, TASK-043.</p>
+<p>Fifteen SKILL.md files are present for workflows, documents, developer tasks, design and computer use. Presence alone does not prove availability in an authenticated session.</p>
+<p><strong>Independent Métis adaptation:</strong> Map each useful capability to centrally governed skill versions rather than copy a second local skills platform.</p>
+<ul>
+<li>path=Contents/Resources/ClickyBundledSkills</li>
+</ul>
+<h3 id="hc-06-legacy-picker-is-not-the-runtime-catalog">HC-06 — Legacy picker is not the runtime catalog</h3>
+<p><strong>Evidence level:</strong> BUNDLED_DOCUMENTATION. <strong>Owners:</strong> TASK-001, TASK-042, TASK-044.</p>
+<p>A bundled attribution note explicitly describes a picker whose runtime activation wiring was not included when that note was written. The current binary also ships a different curated skills directory.</p>
+<p><strong>Independent Métis adaptation:</strong> Keep catalog visibility, selection, entitlement, installation and actual execution distinct. Do not infer current absence solely from possibly stale attribution.</p>
+<ul>
+<li>path=Contents/Resources/ATTRIBUTION.md; sha256=9a72ea800fa89a20ca8475847e5f88b67af448aa548fa70008d7c66436fb74cd; lines=[12]; anchor=intentionally not included yet</li>
+</ul>
+<h3 id="hc-07-persistent-agent-identity">HC-07 — Persistent agent identity</h3>
+<p><strong>Evidence level:</strong> BUNDLED_INSTRUCTION. <strong>Owners:</strong> TASK-005, TASK-042, TASK-043.</p>
+<p>Packaged guidance gives an agent a durable name, purpose, workspace and conversational identity.</p>
+<p><strong>Independent Métis adaptation:</strong> AgentDefinition is separate from a model, skill, thread and run; enforce stable ID and version binding in code.</p>
+<ul>
+<li>path=Contents/Resources/ClickyModelInstructions.md; sha256=f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145; lines=[9]; anchor=IDENTITY:</li>
+</ul>
+<h3 id="hc-08-curated-agent-memory">HC-08 — Curated agent memory</h3>
+<p><strong>Evidence level:</strong> BUNDLED_INSTRUCTION. <strong>Owners:</strong> TASK-035, TASK-039, TASK-041, TASK-043.</p>
+<p>Guidance describes dated, compact job memory and prohibits storing secrets in it.</p>
+<p><strong>Independent Métis adaptation:</strong> Place memory in authorized canonical records with provenance, correction and deletion; preferences do not become facts or permission.</p>
+<ul>
+<li>path=Contents/Resources/ClickyModelInstructions.md; sha256=f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145; lines=[10]; anchor=MEMORY:</li>
+</ul>
+<h3 id="hc-09-agent-owned-artifacts">HC-09 — Agent-owned artifacts</h3>
+<p><strong>Evidence level:</strong> BUNDLED_INSTRUCTION. <strong>Owners:</strong> TASK-035, TASK-043, TASK-057.</p>
+<p>Guidance assigns new artifacts and temporary generation files to the owning workspace, with explicit export required elsewhere.</p>
+<p><strong>Independent Métis adaptation:</strong> Use tenant/principal/agent/run scoped artifact handles, safe filenames and atomic publication; verify output independently.</p>
+<ul>
+<li>path=Contents/Resources/ClickyModelInstructions.md; sha256=f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145; lines=[12]; anchor=FILE OWNERSHIP:</li>
+</ul>
+<h3 id="hc-10-screen-content-is-context-not-routing-consent">HC-10 — Screen content is context, not routing consent</h3>
+<p><strong>Evidence level:</strong> BUNDLED_INSTRUCTION. <strong>Owners:</strong> TASK-005, TASK-033, TASK-037.</p>
+<p>Seeing a connected application is not treated as a request to operate its visible UI.</p>
+<p><strong>Independent Métis adaptation:</strong> Prefer authorized structured connectors or files; distinguish Read, Teach, Draft and Act with their own permissions.</p>
+<ul>
+<li>path=Contents/Resources/ClickyModelInstructions.md; sha256=f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145; lines=[19]; anchor=Screenshots and the focused app are context</li>
+</ul>
+<h3 id="hc-11-full-document-can-differ-from-visible-screenshot">HC-11 — Full document can differ from visible screenshot</h3>
+<p><strong>Evidence level:</strong> COMPILED_STRING. <strong>Owners:</strong> TASK-005, TASK-033, TASK-037.</p>
+<p>The binary contains an active-document handoff instructing a higher model to use full document text rather than only the visible screenshot; folder usage copy supports that intended path.</p>
+<p><strong>Independent Métis adaptation:</strong> Implement explicit full/partial/visible-only source coverage, document revision identity and bounded retrieval; never claim universal access to app internals.</p>
+<ul>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71424016; anchor=captured this document's FULL text</p>
+</li>
+<li><p>path=Contents/Info.plist; sha256=0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d; key=NSDocumentsFolderUsageDescription</p>
+</li>
+</ul>
+<h3 id="hc-12-document-extraction-may-time-out">HC-12 — Document extraction may time out</h3>
+<p><strong>Evidence level:</strong> COMPILED_STRING. <strong>Owners:</strong> TASK-018, TASK-037, TASK-056.</p>
+<p>A diagnostic string reports delegating without document context when extraction did not complete.</p>
+<p><strong>Independent Métis adaptation:</strong> Surface partial coverage; cancel late reads by run generation. Do not silently answer off-screen questions as though full text was read.</p>
+<ul>
+<li>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71449392; anchor=extraction didn't finish in time</li>
+</ul>
+<h3 id="hc-13-minimize-protected-folder-prompt-cascades">HC-13 — Minimize protected-folder prompt cascades</h3>
+<p><strong>Evidence level:</strong> BUNDLED_INSTRUCTION. <strong>Owners:</strong> TASK-027, TASK-033, TASK-057.</p>
+<p>Instructions discourage speculative probing across several protected personal folders.</p>
+<p><strong>Independent Métis adaptation:</strong> Ask for the exact needed source or reuse an existing scoped grant. Never scan all Desktop/Documents/Downloads to make onboarding look personalized.</p>
+<ul>
+<li>path=Contents/Resources/ClickyModelInstructions.md; sha256=f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145; lines=[97]; anchor=SINGLE folder</li>
+</ul>
+<h3 id="hc-14-structured-schemas-and-write-readback">HC-14 — Structured schemas and write readback</h3>
+<p><strong>Evidence level:</strong> BUNDLED_INSTRUCTION. <strong>Owners:</strong> TASK-033, TASK-039, TASK-043, TASK-045.</p>
+<p>Packaged integration guidance requires schema fidelity and structured verification after writes.</p>
+<p><strong>Independent Métis adaptation:</strong> Extend existing connector catalog and verifier; a successful HTTP response or connector display name is not business success.</p>
+<ul>
+<li>path=Contents/Resources/ClickyModelInstructions.md; sha256=f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145; lines=[30, 61]; anchor=structured read</li>
+</ul>
+<h3 id="hc-15-connector-session-and-entitlement-services">HC-15 — Connector session and entitlement services</h3>
+<p><strong>Evidence level:</strong> COMPILED_STRING. <strong>Owners:</strong> TASK-006, TASK-012, TASK-014, TASK-043.</p>
+<p>These strings identify packaged expectations of brokered integration and agent sessions; no endpoint was contacted.</p>
+<p><strong>Independent Métis adaptation:</strong> Reuse Métis Operator/Entra scoped session authority. Do not reuse HeyClicky URLs, account IDs, tokens or subscription entitlements.</p>
+<ul>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71321168; anchor=/agent/composio/session</p>
+</li>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71335952; anchor=/agent/session-token</p>
+</li>
+</ul>
+<h3 id="hc-16-named-agent-routing-and-busy-session-lifecycle">HC-16 — Named-agent routing and busy-session lifecycle</h3>
+<p><strong>Evidence level:</strong> COMPILED_SYMBOL. <strong>Owners:</strong> TASK-005, TASK-019, TASK-030, TASK-043.</p>
+<p>Agent permission rows and routine request types are present. Runtime success, arbitration and reconnect correctness remain unknown.</p>
+<p><strong>Independent Métis adaptation:</strong> Resolve explicit names/active conversation to IDs, preserve queued turns, isolate callbacks and reject ambiguous destructive routing.</p>
+<ul>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=33707504; anchor=HomeSpaceAgentPermissionRow</p>
+</li>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=33850880; anchor=CodexAgentRoutineRequest</p>
+</li>
+</ul>
+<h3 id="hc-17-learning-oriented-onboarding-steps">HC-17 — Learning-oriented onboarding steps</h3>
+<p><strong>Evidence level:</strong> COMPILED_UI_TEXT. <strong>Owners:</strong> TASK-008, TASK-027, TASK-030, TASK-055.</p>
+<p>The binary includes practical microphone, screen-marking and dictation steps rather than only a marketing tour.</p>
+<p><strong>Independent Métis adaptation:</strong> Teach one safe capability at a time with typed alternatives, genuine readiness checks and an exact synthetic practice surface.</p>
+<ul>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71497792; anchor=First, can I hear you?</p>
+</li>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71498288; anchor=Circle anything, ask about it</p>
+</li>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71499680; anchor=Dictate anywhere</p>
+</li>
+</ul>
+<h3 id="hc-18-interview-and-personalized-starter-team">HC-18 — Interview and personalized starter team</h3>
+<p><strong>Evidence level:</strong> COMPILED_UI_TEXT. <strong>Owners:</strong> TASK-009, TASK-027, TASK-042, TASK-044.</p>
+<p>Packaged UI/service strings describe a short interview and a suggested starter-agent plan.</p>
+<p><strong>Independent Métis adaptation:</strong> Offer at most three optional work-context questions; recommend up to three editable agents. Creation never starts execution, subscriptions or broad data discovery.</p>
+<ul>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71500016; anchor=Four quick questions about you</p>
+</li>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71496832; anchor=/onboarding/starter-plan</p>
+</li>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71497136; anchor=suggested_agents</p>
+</li>
+</ul>
+<h3 id="hc-19-creation-without-automatic-work">HC-19 — Creation without automatic work</h3>
+<p><strong>Evidence level:</strong> COMPILED_STRING. <strong>Owners:</strong> TASK-027, TASK-042, TASK-043.</p>
+<p>An onboarding handoff states that a new agent exists without work having started.</p>
+<p><strong>Independent Métis adaptation:</strong> Separate create, publish, enable, enqueue and execute; replay is idempotent and never duplicates starter agents.</p>
+<ul>
+<li>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71454464; anchor=with no work started</li>
+</ul>
+<h3 id="hc-20-interview-pause-and-explicit-abandonment">HC-20 — Interview pause and explicit abandonment</h3>
+<p><strong>Evidence level:</strong> COMPILED_STRING. <strong>Owners:</strong> TASK-027, TASK-044.</p>
+<p>The binary distinguishes paused interview state from abandoning creation.</p>
+<p><strong>Independent Métis adaptation:</strong> Persist minimal reviewed setup progress, resume at the unresolved step, and cancel generation when leaving. Do not create an agent from an abandoned conversation.</p>
+<ul>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71421328; anchor=interview is PAUSED</p>
+</li>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71421200; anchor=without creating one</p>
+</li>
+</ul>
+<h3 id="hc-21-quiet-announcements-during-other-work">HC-21 — Quiet announcements during other work</h3>
+<p><strong>Evidence level:</strong> COMPILED_SYMBOL. <strong>Owners:</strong> TASK-030, TASK-043, TASK-047, TASK-060.</p>
+<p>A quiet-period symbol exists; exact behavior is supplemented by the versioned vendor changelog, not proven by the symbol.</p>
+<p><strong>Independent Métis adaptation:</strong> One attention manager respects calls, sharing, Focus/DND and user preferences; agent identity never triggers unrequested audio.</p>
+<ul>
+<li>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71380928; anchor=postOnboardingQuietPeriod</li>
+</ul>
+<h3 id="hc-22-repeatable-routines-have-lifecycle-types">HC-22 — Repeatable routines have lifecycle types</h3>
+<p><strong>Evidence level:</strong> COMPILED_SYMBOL. <strong>Owners:</strong> TASK-043, TASK-045, TASK-048, TASK-062.</p>
+<p>Wake/network observers and routine types are present; vendor documentation describes device-bound routine behavior.</p>
+<p><strong>Independent Métis adaptation:</strong> Declare service-bound versus device-bound tasks, timezone, occurrence keys, missed-run policy, budgets and bounded failures. Never run another desktop device silently.</p>
+<ul>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=74920016; anchor=ClickyRoutineFullWakeObserver</p>
+</li>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=74919968; anchor=ClickyRoutineNetworkObserver</p>
+</li>
+</ul>
+<h3 id="hc-23-safe-dictation-focus-and-fallback">HC-23 — Safe dictation focus and fallback</h3>
+<p><strong>Evidence level:</strong> COMPILED_STRING. <strong>Owners:</strong> TASK-019, TASK-033, TASK-056, TASK-057.</p>
+<p>Diagnostics describe retaining a clipboard fallback rather than typing into a newly focused application.</p>
+<p><strong>Independent Métis adaptation:</strong> Pin exact field/window ownership, separate verbatim dictation from rewrite, request clipboard fallback, and avoid overwriting a newer clipboard revision.</p>
+<ul>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71374928; anchor=late re-capture found a field in a different app</p>
+</li>
+<li><p>path=Contents/MacOS/HeyClicky; sha256=1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1; offset_decimal=71547168; anchor=outside the focused field</p>
+</li>
+</ul>
+<h3 id="hc-24-avoid-capturing-the-assistant-itself">HC-24 — Avoid capturing the assistant itself</h3>
+<p><strong>Evidence level:</strong> BUNDLED_DOCUMENTATION. <strong>Owners:</strong> TASK-005, TASK-030, TASK-033, TASK-037.</p>
+<p>A bundled developer note describes excluding its floating assistant window from screenshots.</p>
+<p><strong>Independent Métis adaptation:</strong> Capture the user-approved target before opening Métis; exclude all Métis windows; never keep resending obsolete screenshots.</p>
+<ul>
+<li>path=Contents/Resources/AGENTS.md; sha256=a7a056dd42d53aff821e0b799a3ddbd9c3a9170dbe369605da1776b4828026e8; lines=[24]; anchor=excludes it from capture filter</li>
+</ul>
+<h3 id="hc-25-durable-artifacts-need-a-retrieval-surface">HC-25 — Durable artifacts need a retrieval surface</h3>
+<p><strong>Evidence level:</strong> BUNDLED_SKILL. <strong>Owners:</strong> TASK-035, TASK-043, TASK-044, TASK-055.</p>
+<p>An artifact skill distinguishes finding/opening/exporting previous outputs from creating new work.</p>
+<p><strong>Independent Métis adaptation:</strong> Add per-agent result manifests and safe previews, source and output distinctions, download/open failures and exact verified locations.</p>
+<ul>
+<li>path=Contents/Resources/ClickyBundledSkills/clicky-artifacts/SKILL.md; sha256=1da2718937ce150360a80831be36205539508a53cee5570737de2b91530d64c6; lines=[3, 36, 45]; anchor=existing</li>
+</ul>
+<h3 id="hc-26-memory-and-role-do-not-broaden-permissions">HC-26 — Memory and role do not broaden permissions</h3>
+<p><strong>Evidence level:</strong> BUNDLED_INSTRUCTION. <strong>Owners:</strong> TASK-005, TASK-039, TASK-043, TASK-057.</p>
+<p>Guidance explicitly separates remembering job context from external action approval.</p>
+<p><strong>Independent Métis adaptation:</strong> Permissions are runtime grants, never text in an agent role, memory note, document or skill.</p>
+<ul>
+<li>path=Contents/Resources/ClickyModelInstructions.md; sha256=f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145; lines=[13]; anchor=never widen approval</li>
+</ul>
+<h3 id="hc-27-the-source-is-not-a-blanket-app-license">HC-27 — The source is not a blanket app license</h3>
+<p><strong>Evidence level:</strong> ATTRIBUTION. <strong>Owners:</strong> TASK-001, TASK-042, TASK-061.</p>
+<p>The visible MIT notice belongs to Nous Research skills, with separate attribution for Blender guidance; it does not establish that all HeyClicky application code/media is MIT.</p>
+<p><strong>Independent Métis adaptation:</strong> Independently implement behavior; review upstream licenses per adopted component. Do not redistribute this DMG, private prompts, mascot, sounds, video, fonts or service configuration in the kit.</p>
+<ul>
+<li>path=Contents/Resources/ATTRIBUTION.md; sha256=9a72ea800fa89a20ca8475847e5f88b67af448aa548fa70008d7c66436fb74cd; lines=[4]; anchor=NousResearch/hermes-agent</li>
+</ul>
+<h3 id="hc-28-unsupported-generation-routes-are-explicitly-excluded">HC-28 — Unsupported generation routes are explicitly excluded</h3>
+<p><strong>Evidence level:</strong> BUNDLED_INSTRUCTION. <strong>Owners:</strong> TASK-009, TASK-042, TASK-043, TASK-045.</p>
+<p>The installed guidance excludes some provider-backed image/video/slide generation unless exposed by the runtime, despite adjacent legacy guides.</p>
+<p><strong>Independent Métis adaptation:</strong> Keep existing Métis roadmap abilities, but every agent has a real capability manifest. A skill label cannot create an unavailable provider.</p>
+<ul>
+<li>path=Contents/Resources/ClickyModelInstructions.md; sha256=f5ddb338c41307b6e7bcd401d449344a94217d64db512b06467f5a24e400c145; lines=[23]; anchor=not part of this curated release</li>
+</ul>
+<h3 id="hc-29-automatic-termination-is-disabled">HC-29 — Automatic termination is disabled</h3>
+<p><strong>Evidence level:</strong> PACKAGED_METADATA. <strong>Owners:</strong> TASK-027, TASK-029, TASK-062.</p>
+<p>Both metadata flags are false in this build. That is not a tested guarantee against crashes.</p>
+<p><strong>Independent Métis adaptation:</strong> Native onboarding and run lifecycle must survive windowless moments and shutdown without lying about pending remote tasks.</p>
+<ul>
+<li><p>path=Contents/Info.plist; sha256=0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d; key=NSSupportsAutomaticTermination</p>
+</li>
+<li><p>path=Contents/Info.plist; sha256=0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d; key=NSSupportsSuddenTermination</p>
+</li>
+</ul>
+<h3 id="hc-30-account-telemetry-and-updater-configuration-exists">HC-30 — Account, telemetry and updater configuration exists</h3>
+<p><strong>Evidence level:</strong> PACKAGED_METADATA. <strong>Owners:</strong> TASK-012, TASK-013, TASK-015, TASK-057, TASK-063.</p>
+<p>The bundle includes backend, analytics, crash-reporting and updater configuration. The actual content retained by those services was not observed.</p>
+<p><strong>Independent Métis adaptation:</strong> Do not copy provider IDs or enable those SDKs by implication. Keep Métis metadata-only telemetry and independent signing/feed verification.</p>
+<ul>
+<li><p>path=Contents/Info.plist; sha256=0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d; key=WorkerBaseURL</p>
+</li>
+<li><p>path=Contents/Info.plist; sha256=0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d; key=PostHogHost</p>
+</li>
+<li><p>path=Contents/Info.plist; sha256=0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d; key=SentryDSN</p>
+</li>
+<li><p>path=Contents/Info.plist; sha256=0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d; key=SUFeedURL</p>
+</li>
+</ul>
+<h3 id="hc-31-intro-media-is-not-proof-of-live-automation">HC-31 — Intro media is not proof of live automation</h3>
+<p><strong>Evidence level:</strong> MEDIA_INSPECTION. <strong>Owners:</strong> TASK-027, TASK-055.</p>
+<p>Eight sampled frames show a person speaking, not a complete executable task sequence. Audio was not transcribed.</p>
+<p><strong>Independent Métis adaptation:</strong> Produce original Métis onboarding. Keep prerecorded/demo results out of real first-value metrics and capability readiness.</p>
+<ul>
+<li>path=Contents/Resources/onboarding-intro-v2.mp4; sha256=49acf8e179457794df29de26b703faf893d7f56547fbfa543d49a4eba927dd74</li>
+</ul>
+<h3 id="hc-32-compiled-controls-are-not-a-live-test">HC-32 — Compiled controls are not a live test</h3>
+<p><strong>Evidence level:</strong> EXTRACTION_VALIDATION. <strong>Owners:</strong> TASK-001, TASK-055, TASK-063.</p>
+<p>127 extracted resource SHA-256 values matched the packaged resource-seal manifest. This validates selected extraction bytes, not Apple signing trust, notarization, runtime safety or app behavior.</p>
+<p><strong>Independent Métis adaptation:</strong> Record exact evidence level; native acceptance must still run on real installed candidates.</p>
+<ul>
+<li>report=RESOURCE-SEAL-RESULT.json</li>
+</ul>
+<h2 id="4-supplemental-vendor-documentation">4. Supplemental vendor documentation</h2>
+<p>The official changelog for 1.0.49–1.0.51 describes persistent named agents, personalized setup, source-carrying suggestions, quieter call-time notifications and repair of long-chat performance. It also says the earlier user-facing Skills feature was removed. These claims help interpret retained resources; they do not prove a live account capability or justify copying the product. The bundled legacy attribution and curated runtime skills therefore receive separate dispositions.</p>
+<p>Source: <a href="https://www.heyclicky.com/changelog">https://www.heyclicky.com/changelog</a> (reviewed 22 September 2026). Official homepage: <a href="https://www.heyclicky.com/">https://www.heyclicky.com/</a> . Third-party clones and similarly named websites are not evidence for this DMG.</p>
+<h2 id="5-what-not-to-inherit">5. What not to inherit</h2>
+<p>No private API/service keys, analytics account configuration, mascots, videos, fonts, proprietary instruction text, account tokens, subscription bypass, unrestricted Always-Allow computer authority, blanket protected-folder scanning, hidden background capture, local dual-architecture agent payload, or source assertions masquerading as runtime passes. Public licensed upstream components may be separately evaluated from their proper source with license/security review. A scoped local analysis of a user-supplied binary does not establish a blanket license to distribute its contents.</p>
+<h2 id="6-where-the-full-design-lives">6. Where the full design lives</h2>
+<p>MASTER §32 incorporates the onboarding/agent/context contracts. <code>plan/AGENT-EXPANSION.json</code> has 16 qualification gates, 32 additional cases and 18 ordered work slices. The interactive original Métis design is <code>visual/agents/index.html</code>; its state machine and tests are independent code, not extracted HeyClicky code. These materials extend all r8 scope.</p>
+</main></body></html>

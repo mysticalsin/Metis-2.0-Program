@@ -1,0 +1,74 @@
+{
+  "schema": "metis.local-bridge-evidence.v2",
+  "date": "2026-09-24",
+  "repository": "mysticalsin/AskToto-Mantu",
+  "verified_main": "2bf21f1ceefe117838325342574b57852e5cadcb",
+  "source_delta_files": 16,
+  "application_files_changed_this_turn": [
+    "src/renderer/src/lib/onboarding-hero-video.ts",
+    "src/renderer/src/lib/onboarding-hero-video.test.ts"
+  ],
+  "confirmed_defects": [
+    "two stale source-pattern assertions retained by v1",
+    "paired-media restart sought audio before attempting video"
+  ],
+  "executed": {
+    "isolated_source_tests": {
+      "passed": 142,
+      "failed": 0,
+      "skipped": 0
+    },
+    "new_order_tests_on_v1_negative_control": {
+      "passed": 3,
+      "failed": 6,
+      "exit": 1
+    },
+    "bridge_tests_real_git_and_explicit_subprocess_fixtures": {
+      "passed": 47,
+      "failed": 0
+    },
+    "patch_tool_tests_real_git_fixtures": {
+      "passed": 12,
+      "failed": 0
+    },
+    "scoped_syntax_check": {
+      "files": 17,
+      "diagnostics": 0
+    }
+  },
+  "owner_reported_previous_run": {
+    "revision": 1,
+    "gates_completed": [
+      "npm ci",
+      "npx --no-install playwright install chromium",
+      "npm run typecheck",
+      "npm run check:bugs",
+      "npm run build"
+    ],
+    "failed_gate": "npm test",
+    "exit": 1,
+    "remaining_gates_not_run": 5,
+    "full_log_contents_available": false
+  },
+  "environment": {
+    "os": "Linux",
+    "node": "22.16.0",
+    "typescript": "5.8.3",
+    "python": "3.13.5",
+    "git": "2.47.3",
+    "required_native_gate_node": "22.22.3"
+  },
+  "not_executed": [
+    "full repository Vitest/typecheck/build",
+    "real Mac repair/rerun",
+    "live GitHub push",
+    "native packaging and user journeys",
+    "independent subagents or review",
+    "live Hindsight/Cloudflare/Entra/Teams qualification",
+    "signing or public release"
+  ],
+  "latest_connector_write": "create_branch returned 403 Resource not accessible by integration",
+  "remote_pushed": false,
+  "subagents_spawned": false,
+  "release_ready": false
+}

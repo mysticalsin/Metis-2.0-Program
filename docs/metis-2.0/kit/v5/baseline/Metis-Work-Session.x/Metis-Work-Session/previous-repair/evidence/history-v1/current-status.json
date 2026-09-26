@@ -1,0 +1,41 @@
+{
+  "schema": "metis.local-bridge-evidence.v1",
+  "date": "2026-09-24",
+  "repository": "mysticalsin/AskToto-Mantu",
+  "verified_main": "2bf21f1ceefe117838325342574b57852e5cadcb",
+  "source_delta_files": 16,
+  "source_delta_new_changes_this_turn": 0,
+  "new_deliverable": "authenticated local prepare/verify/publish runner",
+  "executed": {
+    "isolated_source_tests": {
+      "passed": 133,
+      "failed": 0
+    },
+    "patch_tool_tests_real_git_fixtures": {
+      "passed": 12,
+      "failed": 0
+    },
+    "runner_contract_tests_explicit_subprocess_fakes": {
+      "passed": 19,
+      "failed": 0
+    },
+    "current_runtime_preflight": {
+      "exit": 2,
+      "reason": "gh executable unavailable",
+      "workspace_created": false
+    }
+  },
+  "not_executed": [
+    "full checkout/application",
+    "full repository test/typecheck/build",
+    "npm ci",
+    "live GitHub authentication or remote write",
+    "native packaging",
+    "live services",
+    "independent subagents/review",
+    "release publication"
+  ],
+  "runtime_network_probe": "git clone failed: Could not resolve host: github.com",
+  "remote_pushed": false,
+  "release_ready": false
+}

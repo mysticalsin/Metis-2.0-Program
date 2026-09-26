@@ -1,0 +1,2091 @@
+{
+  "schema": "metis.session-reconciliation.v1",
+  "canonical_edition": "r11",
+  "canonical_product_contract_revision": "4.5",
+  "canonical_master_sha256": "e5b3c51d6d8423b5aadd1801d8fc2a77131c5ca3a363d281f1deb0da7acb1350",
+  "input_zip_sha256": "e58ad37273f9d7986727c7e33eca0ac93e60a93839eab905e7c3020ba97baccb",
+  "source_commit": "2bf21f1ceefe117838325342574b57852e5cadcb",
+  "scope_counts": {
+    "requirements": 55,
+    "use_cases": 112,
+    "tasks": 66,
+    "golden_flows": 12
+  },
+  "complete_upgrade": false,
+  "remote_applied": false,
+  "root_tasks_closed_by_this_delta": 0,
+  "contributions": {
+    "SRC-06": "Lossless wake-token source spans only; acoustic capture and authority gates remain open.",
+    "SRC-08": "Read-only managed-gateway privacy and vault ordering slice; other routes/sinks/native/live gates remain open.",
+    "SRC-10": "Safe integer counters and stable non-streaming Ask identity only; durable reconciliation/SQL aggregate gates remain open."
+  },
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Pin the actual system and preserve the working tree",
+      "common_dependencies": [],
+      "requirements": [
+        "M2-BASE-01"
+      ],
+      "source_findings": [
+        "SRC-01",
+        "SRC-15",
+        "SRC-17",
+        "SRC-18",
+        "SRC-20",
+        "SRC-24"
+      ],
+      "agent_gates": [
+        "AGX-01"
+      ],
+      "agent_slices": [
+        "AGSTEP-01"
+      ],
+      "memory_gates": [],
+      "memory_steps": [
+        "HMSTEP-01"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-002",
+      "title": "Lock the PRD, effective policies and independent release lanes",
+      "common_dependencies": [
+        "TASK-001"
+      ],
+      "requirements": [
+        "M2-BASE-01",
+        "M2-SEC-02",
+        "M2-REL-01"
+      ],
+      "source_findings": [
+        "SRC-01",
+        "SRC-02",
+        "SRC-09",
+        "SRC-15",
+        "SRC-18",
+        "SRC-19"
+      ],
+      "agent_gates": [
+        "AGX-01"
+      ],
+      "agent_slices": [
+        "AGSTEP-01"
+      ],
+      "memory_gates": [],
+      "memory_steps": [
+        "HMSTEP-01"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-003",
+      "title": "Establish a compact source map and numbered handoff",
+      "common_dependencies": [
+        "TASK-001"
+      ],
+      "requirements": [
+        "M2-ENG-01"
+      ],
+      "source_findings": [
+        "SRC-01",
+        "SRC-24"
+      ],
+      "memory_gates": [
+        "HM-01"
+      ],
+      "memory_steps": [
+        "HMSTEP-01"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-004",
+      "title": "Measure size, capture and hardware baselines",
+      "common_dependencies": [
+        "TASK-001"
+      ],
+      "requirements": [
+        "M2-PKG-01",
+        "M2-ASR-01",
+        "M2-LOCAL-02"
+      ],
+      "source_findings": [
+        "SRC-16"
+      ],
+      "agent_gates": [],
+      "agent_slices": [],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-005",
+      "title": "Define shared speech, command, policy and metering contracts",
+      "common_dependencies": [
+        "TASK-002"
+      ],
+      "requirements": [
+        "M2-STT-01",
+        "M2-ACT-01",
+        "M2-OPS-02"
+      ],
+      "source_findings": [
+        "SRC-02",
+        "SRC-03",
+        "SRC-04",
+        "SRC-06",
+        "SRC-11",
+        "SRC-16",
+        "SRC-17",
+        "SRC-21",
+        "SRC-24"
+      ],
+      "agent_gates": [
+        "AGX-02",
+        "AGX-06",
+        "AGX-09"
+      ],
+      "agent_slices": [
+        "AGSTEP-02"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-06"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-006",
+      "title": "Establish cross-surface Entra and service identity",
+      "common_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "requirements": [
+        "M2-TEAMS-01",
+        "M2-DUST-01",
+        "M2-SEC-02"
+      ],
+      "source_findings": [
+        "SRC-02",
+        "SRC-17",
+        "SRC-23"
+      ],
+      "agent_gates": [
+        "AGX-11"
+      ],
+      "agent_slices": [
+        "AGSTEP-12"
+      ],
+      "memory_gates": [
+        "HM-03"
+      ],
+      "memory_steps": [
+        "HMSTEP-04"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-007",
+      "title": "Lock canonical knowledge, provenance and storage authority",
+      "common_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "requirements": [
+        "M2-KNOW-02",
+        "M2-KNOW-04",
+        "M2-GOV-02"
+      ],
+      "source_findings": [
+        "SRC-11",
+        "SRC-13",
+        "SRC-23"
+      ],
+      "memory_gates": [
+        "HM-02"
+      ],
+      "memory_steps": [
+        "HMSTEP-02"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-008",
+      "title": "Design the simplified Settings inventory and task flows",
+      "common_dependencies": [
+        "TASK-002",
+        "TASK-004",
+        "TASK-005"
+      ],
+      "requirements": [
+        "M2-SET-01",
+        "M2-SET-02"
+      ],
+      "source_findings": [
+        "SRC-14",
+        "SRC-15",
+        "SRC-22"
+      ],
+      "agent_gates": [
+        "AGX-05"
+      ],
+      "agent_slices": [
+        "AGSTEP-05"
+      ],
+      "memory_gates": [
+        "HM-13"
+      ],
+      "memory_steps": [
+        "HMSTEP-08"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-009",
+      "title": "Define centrally governed skill contracts and runtime boundaries",
+      "common_dependencies": [
+        "TASK-002",
+        "TASK-005",
+        "TASK-007"
+      ],
+      "requirements": [
+        "M2-SKILL-01",
+        "M2-SKILL-02",
+        "M2-GOV-02"
+      ],
+      "source_findings": [
+        "SRC-22"
+      ],
+      "agent_gates": [
+        "AGX-12"
+      ],
+      "agent_slices": [
+        "AGSTEP-06"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-010",
+      "title": "Qualify meeting APIs, capture permissions and legal prerequisites",
+      "common_dependencies": [
+        "TASK-002",
+        "TASK-006",
+        "TASK-007"
+      ],
+      "requirements": [
+        "M2-TEAMS-02",
+        "M2-TEAMS-03",
+        "M2-TEAMS-05",
+        "M2-GOV-01"
+      ],
+      "source_findings": [],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-011",
+      "title": "Qualify the exact Cloudflare hosting and privacy route",
+      "common_dependencies": [
+        "TASK-002"
+      ],
+      "requirements": [
+        "M2-PRIV-02"
+      ],
+      "source_findings": [
+        "SRC-07",
+        "SRC-08"
+      ],
+      "memory_gates": [
+        "HM-04"
+      ],
+      "memory_steps": [
+        "HMSTEP-02"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-08"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-012",
+      "title": "Prepare authorized Cloudflare staging and server credentials",
+      "common_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "requirements": [
+        "M2-STT-02",
+        "M2-SEC-01",
+        "M2-OPS-03"
+      ],
+      "source_findings": [
+        "SRC-07",
+        "SRC-08",
+        "SRC-09",
+        "SRC-17",
+        "SRC-19",
+        "SRC-20"
+      ],
+      "agent_gates": [],
+      "agent_slices": [],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-08"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-013",
+      "title": "Disable speech content logs and caches before capture tests",
+      "common_dependencies": [
+        "TASK-011",
+        "TASK-012"
+      ],
+      "requirements": [
+        "M2-PRIV-01",
+        "M2-PRIV-02"
+      ],
+      "source_findings": [
+        "SRC-08"
+      ],
+      "agent_gates": [],
+      "agent_slices": [],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-08"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-014",
+      "title": "Implement the authenticated speech-session broker",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-012",
+        "TASK-013"
+      ],
+      "requirements": [
+        "M2-STT-02",
+        "M2-SEC-02"
+      ],
+      "source_findings": [
+        "SRC-02",
+        "SRC-07",
+        "SRC-08",
+        "SRC-09",
+        "SRC-20"
+      ],
+      "agent_gates": [],
+      "agent_slices": [],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-08"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-015",
+      "title": "Make diagnostics and metering projections content-free",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-013",
+        "TASK-014"
+      ],
+      "requirements": [
+        "M2-PRIV-03",
+        "M2-STT-04"
+      ],
+      "source_findings": [
+        "SRC-10",
+        "SRC-19",
+        "SRC-21"
+      ],
+      "agent_gates": [
+        "AGX-14"
+      ],
+      "agent_slices": [
+        "AGSTEP-15"
+      ],
+      "memory_gates": [
+        "HM-04",
+        "HM-14"
+      ],
+      "memory_steps": [
+        "HMSTEP-02",
+        "HMSTEP-03"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-10"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-016",
+      "title": "Connect the real Cloudflare Nova-3 server transport",
+      "common_dependencies": [
+        "TASK-013",
+        "TASK-014",
+        "TASK-015"
+      ],
+      "requirements": [
+        "M2-STT-02",
+        "M2-ASR-01"
+      ],
+      "source_findings": [
+        "SRC-07",
+        "SRC-08"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-08"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-017",
+      "title": "Repair the trusted audio broker and requested-only tracks",
+      "common_dependencies": [
+        "TASK-005"
+      ],
+      "requirements": [
+        "M2-VOICE-01",
+        "M2-STT-03"
+      ],
+      "source_findings": [
+        "SRC-06",
+        "SRC-12",
+        "SRC-13"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-06"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-018",
+      "title": "Harden segment revision, reconnect and stream finalization",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-017"
+      ],
+      "requirements": [
+        "M2-ASR-01",
+        "M2-STT-03"
+      ],
+      "source_findings": [
+        "SRC-06",
+        "SRC-10",
+        "SRC-12",
+        "SRC-13",
+        "SRC-22"
+      ],
+      "agent_gates": [],
+      "agent_slices": [],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-06",
+        "SRC-10"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-019",
+      "title": "Implement opt-in local wake and immediate stop authority",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-017",
+        "TASK-018"
+      ],
+      "requirements": [
+        "M2-VOICE-01",
+        "M2-VOICE-02"
+      ],
+      "source_findings": [
+        "SRC-04",
+        "SRC-05",
+        "SRC-06"
+      ],
+      "agent_gates": [
+        "AGX-04",
+        "AGX-07"
+      ],
+      "agent_slices": [
+        "AGSTEP-04",
+        "AGSTEP-09"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-06"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-020",
+      "title": "Prove the first complete synthetic Cloudflare speech path",
+      "common_dependencies": [
+        "TASK-013",
+        "TASK-014",
+        "TASK-015",
+        "TASK-016",
+        "TASK-017",
+        "TASK-018",
+        "TASK-019"
+      ],
+      "requirements": [
+        "M2-STT-02",
+        "M2-PRIV-01"
+      ],
+      "source_findings": [
+        "SRC-07",
+        "SRC-08"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-08"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-021",
+      "title": "Build hardware qualification and the reviewed model catalog",
+      "common_dependencies": [
+        "TASK-004",
+        "TASK-005"
+      ],
+      "requirements": [
+        "M2-LOCAL-02"
+      ],
+      "source_findings": [
+        "SRC-16"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-022",
+      "title": "Implement separate optional local-model Settings",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-008",
+        "TASK-021"
+      ],
+      "requirements": [
+        "M2-LOCAL-01",
+        "M2-UX-02",
+        "M2-SET-01",
+        "M2-SET-02"
+      ],
+      "source_findings": [
+        "SRC-22"
+      ],
+      "memory_gates": [
+        "HM-01"
+      ],
+      "memory_steps": [],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-023",
+      "title": "Provision signed manifests and R2 asset delivery",
+      "common_dependencies": [
+        "TASK-004",
+        "TASK-005",
+        "TASK-012",
+        "TASK-021"
+      ],
+      "requirements": [
+        "M2-PKG-02",
+        "M2-SEC-01"
+      ],
+      "source_findings": [
+        "SRC-09",
+        "SRC-16"
+      ],
+      "agent_gates": [],
+      "agent_slices": [],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-024",
+      "title": "Implement optional component lifecycle and installation",
+      "common_dependencies": [
+        "TASK-021",
+        "TASK-022",
+        "TASK-023"
+      ],
+      "requirements": [
+        "M2-PKG-02",
+        "M2-LOCAL-01"
+      ],
+      "source_findings": [
+        "SRC-15",
+        "SRC-16"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-025",
+      "title": "Enforce local model load, resource and fallback rules",
+      "common_dependencies": [
+        "TASK-017",
+        "TASK-021",
+        "TASK-024"
+      ],
+      "requirements": [
+        "M2-LOCAL-01",
+        "M2-LOCAL-02"
+      ],
+      "source_findings": [
+        "SRC-16"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-026",
+      "title": "Produce the genuinely lean cloud-first core",
+      "common_dependencies": [
+        "TASK-004",
+        "TASK-016",
+        "TASK-023",
+        "TASK-024",
+        "TASK-025"
+      ],
+      "requirements": [
+        "M2-PKG-01"
+      ],
+      "source_findings": [
+        "SRC-09",
+        "SRC-15",
+        "SRC-16"
+      ],
+      "agent_gates": [],
+      "agent_slices": [],
+      "memory_gates": [
+        "HM-15"
+      ],
+      "memory_steps": [
+        "HMSTEP-14"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-027",
+      "title": "Repair onboarding, migration and both known P1s",
+      "common_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "requirements": [
+        "M2-UX-02",
+        "M2-DATA-01",
+        "M2-REL-01"
+      ],
+      "source_findings": [
+        "SRC-07",
+        "SRC-09",
+        "SRC-11",
+        "SRC-15",
+        "SRC-16",
+        "SRC-18"
+      ],
+      "agent_gates": [
+        "AGX-05"
+      ],
+      "agent_slices": [
+        "AGSTEP-05"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-028",
+      "title": "Repair right-edge and expanded input usability",
+      "common_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "requirements": [
+        "M2-UX-02"
+      ],
+      "source_findings": [
+        "SRC-14",
+        "SRC-22"
+      ],
+      "agent_gates": [
+        "AGX-15"
+      ],
+      "agent_slices": [
+        "AGSTEP-07"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-029",
+      "title": "Build the native Mac foundation using the actual Codex environment",
+      "common_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "requirements": [
+        "M2-MAC-01"
+      ],
+      "source_findings": [
+        "SRC-05",
+        "SRC-11",
+        "SRC-12",
+        "SRC-13",
+        "SRC-14",
+        "SRC-24"
+      ],
+      "agent_gates": [
+        "AGX-16"
+      ],
+      "agent_slices": [],
+      "memory_gates": [
+        "HM-01",
+        "HM-13"
+      ],
+      "memory_steps": [
+        "HMSTEP-08"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-030",
+      "title": "Connect the real orb, beam and caption interfaces",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-019",
+        "TASK-028.A"
+      ],
+      "requirements": [
+        "M2-UX-01",
+        "M2-VOICE-02"
+      ],
+      "source_findings": [
+        "SRC-14",
+        "SRC-15"
+      ],
+      "agent_gates": [
+        "AGX-03",
+        "AGX-15"
+      ],
+      "agent_slices": [
+        "AGSTEP-04",
+        "AGSTEP-07"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-031",
+      "title": "Finish the real Jev decision gateway and application",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-012",
+        "TASK-015"
+      ],
+      "requirements": [
+        "M2-DEC-01",
+        "M2-ACT-01"
+      ],
+      "source_findings": [
+        "SRC-03"
+      ],
+      "agent_gates": [
+        "AGX-07"
+      ],
+      "agent_slices": [
+        "AGSTEP-09"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-032",
+      "title": "Qualify the Laya alternative and real portal selection",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-012",
+        "TASK-015"
+      ],
+      "requirements": [
+        "M2-DEC-02"
+      ],
+      "source_findings": [
+        "SRC-03"
+      ],
+      "agent_gates": [
+        "AGX-07"
+      ],
+      "agent_slices": [
+        "AGSTEP-09"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-033",
+      "title": "Complete safe native and browser actions",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-019"
+      ],
+      "requirements": [
+        "M2-ACT-01",
+        "M2-ACT-02"
+      ],
+      "source_findings": [
+        "SRC-03",
+        "SRC-04",
+        "SRC-05",
+        "SRC-06",
+        "SRC-21"
+      ],
+      "agent_gates": [
+        "AGX-02",
+        "AGX-03",
+        "AGX-04",
+        "AGX-09",
+        "AGX-11"
+      ],
+      "agent_slices": [
+        "AGSTEP-03",
+        "AGSTEP-04",
+        "AGSTEP-11",
+        "AGSTEP-12"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-06"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-034",
+      "title": "Repair identity and authoritative metering end to end",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-015"
+      ],
+      "requirements": [
+        "M2-OPS-01",
+        "M2-OPS-02",
+        "M2-STT-04"
+      ],
+      "source_findings": [
+        "SRC-02",
+        "SRC-10",
+        "SRC-17",
+        "SRC-21"
+      ],
+      "agent_gates": [
+        "AGX-14"
+      ],
+      "agent_slices": [
+        "AGSTEP-15"
+      ],
+      "memory_gates": [
+        "HM-11"
+      ],
+      "memory_steps": [
+        "HMSTEP-11"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-10"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-035",
+      "title": "Implement the governed canonical knowledge service",
+      "common_dependencies": [
+        "TASK-006",
+        "TASK-007",
+        "TASK-015"
+      ],
+      "requirements": [
+        "M2-KNOW-02",
+        "M2-KNOW-04",
+        "M2-GOV-02"
+      ],
+      "source_findings": [
+        "SRC-11",
+        "SRC-23"
+      ],
+      "agent_gates": [
+        "AGX-08",
+        "AGX-13"
+      ],
+      "agent_slices": [
+        "AGSTEP-08",
+        "AGSTEP-13"
+      ],
+      "memory_gates": [
+        "HM-02",
+        "HM-03",
+        "HM-04",
+        "HM-05",
+        "HM-15"
+      ],
+      "memory_steps": [
+        "HMSTEP-04",
+        "HMSTEP-05",
+        "HMSTEP-14"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-036",
+      "title": "Build deterministic wiki and graph projections",
+      "common_dependencies": [
+        "TASK-035"
+      ],
+      "requirements": [
+        "M2-KNOW-03",
+        "M2-KNOW-05"
+      ],
+      "source_findings": [
+        "SRC-23"
+      ],
+      "memory_gates": [
+        "HM-05"
+      ],
+      "memory_steps": [
+        "HMSTEP-05",
+        "HMSTEP-10"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-037",
+      "title": "Implement the authorized evidence context builder",
+      "common_dependencies": [
+        "TASK-035",
+        "TASK-036"
+      ],
+      "requirements": [
+        "M2-KNOW-01",
+        "M2-KNOW-04",
+        "M2-GOV-02"
+      ],
+      "source_findings": [
+        "SRC-22",
+        "SRC-23"
+      ],
+      "agent_gates": [
+        "AGX-02"
+      ],
+      "agent_slices": [
+        "AGSTEP-03"
+      ],
+      "memory_gates": [
+        "HM-02",
+        "HM-03",
+        "HM-06",
+        "HM-07",
+        "HM-09"
+      ],
+      "memory_steps": [
+        "HMSTEP-04",
+        "HMSTEP-06",
+        "HMSTEP-10"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-038",
+      "title": "Deploy and connect Dust knowledge read tools",
+      "common_dependencies": [
+        "TASK-006",
+        "TASK-035",
+        "TASK-037"
+      ],
+      "requirements": [
+        "M2-DUST-01",
+        "M2-DUST-03"
+      ],
+      "source_findings": [
+        "SRC-23"
+      ],
+      "memory_gates": [
+        "HM-03",
+        "HM-06",
+        "HM-10"
+      ],
+      "memory_steps": [
+        "HMSTEP-06",
+        "HMSTEP-09"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-039",
+      "title": "Implement real Dust writes and reviewed corrections",
+      "common_dependencies": [
+        "TASK-035",
+        "TASK-038"
+      ],
+      "requirements": [
+        "M2-DUST-02",
+        "M2-KNOW-05"
+      ],
+      "source_findings": [
+        "SRC-23"
+      ],
+      "agent_gates": [
+        "AGX-08"
+      ],
+      "agent_slices": [
+        "AGSTEP-08"
+      ],
+      "memory_gates": [
+        "HM-08",
+        "HM-10"
+      ],
+      "memory_steps": [
+        "HMSTEP-07",
+        "HMSTEP-09"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-040",
+      "title": "Rework Intelligence into an evidence-first workspace",
+      "common_dependencies": [
+        "TASK-008",
+        "TASK-036",
+        "TASK-037"
+      ],
+      "requirements": [
+        "M2-KNOW-01",
+        "M2-SET-01"
+      ],
+      "source_findings": [
+        "SRC-03",
+        "SRC-22",
+        "SRC-23"
+      ],
+      "memory_gates": [
+        "HM-01",
+        "HM-07",
+        "HM-13"
+      ],
+      "memory_steps": [
+        "HMSTEP-08",
+        "HMSTEP-10"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-041",
+      "title": "Close knowledge synchronization and deletion loops",
+      "common_dependencies": [
+        "TASK-039",
+        "TASK-040"
+      ],
+      "requirements": [
+        "M2-KNOW-05",
+        "M2-DUST-03",
+        "M2-GOV-02"
+      ],
+      "source_findings": [
+        "SRC-23"
+      ],
+      "agent_gates": [
+        "AGX-08"
+      ],
+      "agent_slices": [
+        "AGSTEP-08"
+      ],
+      "memory_gates": [
+        "HM-05",
+        "HM-08",
+        "HM-15"
+      ],
+      "memory_steps": [
+        "HMSTEP-07",
+        "HMSTEP-10",
+        "HMSTEP-14"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-042",
+      "title": "Implement versioned server skill authoring and publishing",
+      "common_dependencies": [
+        "TASK-009",
+        "TASK-015"
+      ],
+      "requirements": [
+        "M2-SKILL-01",
+        "M2-SKILL-03"
+      ],
+      "source_findings": [
+        "SRC-22"
+      ],
+      "agent_gates": [
+        "AGX-06",
+        "AGX-12"
+      ],
+      "agent_slices": [
+        "AGSTEP-06"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-043",
+      "title": "Implement contextual server skill execution",
+      "common_dependencies": [
+        "TASK-009",
+        "TASK-015",
+        "TASK-034",
+        "TASK-037",
+        "TASK-042"
+      ],
+      "requirements": [
+        "M2-SKILL-02",
+        "M2-SKILL-03",
+        "M2-GOV-02"
+      ],
+      "source_findings": [
+        "SRC-22"
+      ],
+      "agent_gates": [
+        "AGX-07",
+        "AGX-08",
+        "AGX-09",
+        "AGX-10",
+        "AGX-11",
+        "AGX-12",
+        "AGX-13"
+      ],
+      "agent_slices": [
+        "AGSTEP-10",
+        "AGSTEP-13",
+        "AGSTEP-14"
+      ],
+      "memory_gates": [
+        "HM-06",
+        "HM-07",
+        "HM-09",
+        "HM-10"
+      ],
+      "memory_steps": [
+        "HMSTEP-09"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-044",
+      "title": "Connect the user skill catalog and versioned run receipts",
+      "common_dependencies": [
+        "TASK-008",
+        "TASK-022",
+        "TASK-043"
+      ],
+      "requirements": [
+        "M2-SKILL-03",
+        "M2-SET-01"
+      ],
+      "source_findings": [
+        "SRC-22"
+      ],
+      "agent_gates": [
+        "AGX-05",
+        "AGX-06",
+        "AGX-08",
+        "AGX-12",
+        "AGX-13",
+        "AGX-15"
+      ],
+      "agent_slices": [
+        "AGSTEP-07",
+        "AGSTEP-13"
+      ],
+      "memory_gates": [
+        "HM-01",
+        "HM-09",
+        "HM-10",
+        "HM-13"
+      ],
+      "memory_steps": [
+        "HMSTEP-08",
+        "HMSTEP-09"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-045",
+      "title": "Repair portal totals, speech controls and data-health UX",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-015",
+        "TASK-034"
+      ],
+      "requirements": [
+        "M2-OPS-01",
+        "M2-OPS-02",
+        "M2-STT-04",
+        "M2-PRIV-03"
+      ],
+      "source_findings": [
+        "SRC-02",
+        "SRC-10",
+        "SRC-17"
+      ],
+      "agent_gates": [
+        "AGX-10",
+        "AGX-11",
+        "AGX-14"
+      ],
+      "agent_slices": [
+        "AGSTEP-12",
+        "AGSTEP-15"
+      ],
+      "memory_gates": [
+        "HM-11"
+      ],
+      "memory_steps": [
+        "HMSTEP-11"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-10"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-046",
+      "title": "Build Teams personal and meeting surfaces with SSO",
+      "common_dependencies": [
+        "TASK-006",
+        "TASK-008"
+      ],
+      "requirements": [
+        "M2-TEAMS-01",
+        "M2-SET-01"
+      ],
+      "source_findings": [],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-047",
+      "title": "Implement enrolled meeting discovery and actual-start events",
+      "common_dependencies": [
+        "TASK-010",
+        "TASK-046"
+      ],
+      "requirements": [
+        "M2-TEAMS-02",
+        "M2-TEAMS-05"
+      ],
+      "source_findings": [],
+      "agent_gates": [],
+      "agent_slices": [
+        "AGSTEP-14"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-048",
+      "title": "Implement single-occurrence join coordination and admission",
+      "common_dependencies": [
+        "TASK-047"
+      ],
+      "requirements": [
+        "M2-TEAMS-02",
+        "M2-TEAMS-04"
+      ],
+      "source_findings": [],
+      "agent_gates": [
+        "AGX-10"
+      ],
+      "agent_slices": [
+        "AGSTEP-14"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-049",
+      "title": "Deploy the qualified Teams media receiver",
+      "common_dependencies": [
+        "TASK-010",
+        "TASK-012",
+        "TASK-015",
+        "TASK-048"
+      ],
+      "requirements": [
+        "M2-TEAMS-03",
+        "M2-GOV-01"
+      ],
+      "source_findings": [],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-050",
+      "title": "Connect consent-aware Teams media to Cloudflare speech",
+      "common_dependencies": [
+        "TASK-016",
+        "TASK-018",
+        "TASK-020",
+        "TASK-049"
+      ],
+      "requirements": [
+        "M2-TEAMS-03",
+        "M2-TEAMS-04",
+        "M2-STT-03"
+      ],
+      "source_findings": [],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-051",
+      "title": "Qualify post-meeting alternatives and other meeting adapters",
+      "common_dependencies": [
+        "TASK-010",
+        "TASK-047"
+      ],
+      "requirements": [
+        "M2-TEAMS-05",
+        "M2-GOV-01"
+      ],
+      "source_findings": [],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-052",
+      "title": "Publish meeting knowledge and skill outputs to the right audience",
+      "common_dependencies": [
+        "TASK-041",
+        "TASK-043"
+      ],
+      "requirements": [
+        "M2-TEAMS-04",
+        "M2-KNOW-02",
+        "M2-GOV-02"
+      ],
+      "source_findings": [],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-053",
+      "title": "Qualify transcript fidelity and speech latency",
+      "common_dependencies": [
+        "TASK-011",
+        "TASK-016",
+        "TASK-017",
+        "TASK-018",
+        "TASK-020"
+      ],
+      "requirements": [
+        "M2-ASR-02",
+        "M2-STT-03"
+      ],
+      "source_findings": [
+        "SRC-06",
+        "SRC-12",
+        "SRC-13",
+        "SRC-24"
+      ],
+      "memory_gates": [
+        "HM-12"
+      ],
+      "memory_steps": [
+        "HMSTEP-12"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-06"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-054",
+      "title": "Verify summaries, knowledge and sync without cloud content copies",
+      "common_dependencies": [
+        "TASK-005",
+        "TASK-018",
+        "TASK-034",
+        "TASK-041",
+        "TASK-043",
+        "TASK-053"
+      ],
+      "requirements": [
+        "M2-KNOW-01",
+        "M2-DATA-01",
+        "M2-PRIV-01"
+      ],
+      "source_findings": [
+        "SRC-11",
+        "SRC-12",
+        "SRC-21",
+        "SRC-22",
+        "SRC-23"
+      ],
+      "memory_gates": [
+        "HM-12"
+      ],
+      "memory_steps": [
+        "HMSTEP-12"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-055",
+      "title": "Prove the full meeting, Dust and skill journey",
+      "common_dependencies": [
+        "TASK-040",
+        "TASK-044",
+        "TASK-045",
+        "TASK-050",
+        "TASK-052",
+        "TASK-053",
+        "TASK-054"
+      ],
+      "requirements": [
+        "M2-E2E-02",
+        "M2-DUST-02",
+        "M2-SKILL-03",
+        "M2-SET-01"
+      ],
+      "source_findings": [
+        "SRC-14",
+        "SRC-23"
+      ],
+      "agent_gates": [
+        "AGX-05",
+        "AGX-16"
+      ],
+      "agent_slices": [
+        "AGSTEP-16"
+      ],
+      "memory_gates": [
+        "HM-16"
+      ],
+      "memory_steps": [
+        "HMSTEP-15"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-056",
+      "title": "Run real cross-platform Cloudflare-to-action-to-portal journeys",
+      "common_dependencies": [
+        "TASK-027",
+        "TASK-030",
+        "TASK-033",
+        "TASK-034",
+        "TASK-045",
+        "TASK-053",
+        "TASK-054"
+      ],
+      "requirements": [
+        "M2-E2E-01"
+      ],
+      "source_findings": [
+        "SRC-03",
+        "SRC-04",
+        "SRC-05",
+        "SRC-10",
+        "SRC-12",
+        "SRC-24"
+      ],
+      "agent_gates": [
+        "AGX-03",
+        "AGX-04",
+        "AGX-16"
+      ],
+      "agent_slices": [
+        "AGSTEP-16"
+      ],
+      "memory_gates": [
+        "HM-12",
+        "HM-16"
+      ],
+      "memory_steps": [
+        "HMSTEP-12",
+        "HMSTEP-15"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-10"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-057",
+      "title": "Close no-content-retention and drift-evidence gates",
+      "common_dependencies": [
+        "TASK-011",
+        "TASK-013",
+        "TASK-015",
+        "TASK-020",
+        "TASK-034",
+        "TASK-045",
+        "TASK-054",
+        "TASK-056"
+      ],
+      "requirements": [
+        "M2-PRIV-01",
+        "M2-PRIV-02",
+        "M2-PRIV-03"
+      ],
+      "source_findings": [
+        "SRC-07",
+        "SRC-08",
+        "SRC-13",
+        "SRC-19",
+        "SRC-21",
+        "SRC-24"
+      ],
+      "agent_gates": [
+        "AGX-02",
+        "AGX-04",
+        "AGX-09",
+        "AGX-13",
+        "AGX-16"
+      ],
+      "agent_slices": [
+        "AGSTEP-17"
+      ],
+      "memory_gates": [
+        "HM-04",
+        "HM-14"
+      ],
+      "memory_steps": [
+        "HMSTEP-13"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-08"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-058",
+      "title": "Complete governance, subject rights and sharing qualification",
+      "common_dependencies": [
+        "TASK-006",
+        "TASK-007",
+        "TASK-041",
+        "TASK-057"
+      ],
+      "requirements": [
+        "M2-GOV-01",
+        "M2-GOV-02",
+        "M2-DUST-03"
+      ],
+      "source_findings": [
+        "SRC-11",
+        "SRC-13",
+        "SRC-21"
+      ],
+      "agent_gates": [],
+      "agent_slices": [
+        "AGSTEP-17"
+      ],
+      "memory_gates": [
+        "HM-08"
+      ],
+      "memory_steps": [
+        "HMSTEP-07",
+        "HMSTEP-13"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-059",
+      "title": "Qualify optional local packs on actual device classes",
+      "common_dependencies": [
+        "TASK-021",
+        "TASK-022",
+        "TASK-024",
+        "TASK-025",
+        "TASK-053"
+      ],
+      "requirements": [
+        "M2-LOCAL-01",
+        "M2-LOCAL-02"
+      ],
+      "source_findings": [],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-060",
+      "title": "Tune speed and footprint against the recorded baseline",
+      "common_dependencies": [
+        "TASK-004",
+        "TASK-026",
+        "TASK-030",
+        "TASK-053",
+        "TASK-056",
+        "TASK-059"
+      ],
+      "requirements": [
+        "M2-PKG-01",
+        "M2-VOICE-02",
+        "M2-STT-03"
+      ],
+      "source_findings": [
+        "SRC-14",
+        "SRC-16"
+      ],
+      "agent_gates": [
+        "AGX-15"
+      ],
+      "agent_slices": [
+        "AGSTEP-17"
+      ],
+      "memory_gates": [
+        "HM-12"
+      ],
+      "memory_steps": [
+        "HMSTEP-12"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-061",
+      "title": "Apply the supplied refactoring skill in bounded slices",
+      "common_dependencies": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-003",
+        "TASK-005"
+      ],
+      "requirements": [
+        "M2-ENG-01"
+      ],
+      "source_findings": [
+        "SRC-19",
+        "SRC-24"
+      ],
+      "agent_gates": [
+        "AGX-01"
+      ],
+      "agent_slices": [
+        "AGSTEP-17"
+      ],
+      "memory_gates": [
+        "HM-15"
+      ],
+      "memory_steps": [
+        "HMSTEP-14"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-062",
+      "title": "Exercise production operations, staging and recovery",
+      "common_dependencies": [
+        "TASK-012",
+        "TASK-023",
+        "TASK-034",
+        "TASK-045",
+        "TASK-057",
+        "TASK-058",
+        "TASK-060",
+        "TASK-061"
+      ],
+      "requirements": [
+        "M2-OPS-03",
+        "M2-SEC-02"
+      ],
+      "source_findings": [
+        "SRC-02",
+        "SRC-08",
+        "SRC-10",
+        "SRC-17",
+        "SRC-18",
+        "SRC-19",
+        "SRC-20",
+        "SRC-24"
+      ],
+      "agent_gates": [
+        "AGX-10"
+      ],
+      "agent_slices": [
+        "AGSTEP-14"
+      ],
+      "memory_gates": [
+        "HM-14"
+      ],
+      "memory_steps": [
+        "HMSTEP-03",
+        "HMSTEP-13",
+        "HMSTEP-16"
+      ],
+      "session_status": "PARTIAL_LOCAL_CONTRIBUTION",
+      "contribution_source_findings": [
+        "SRC-08",
+        "SRC-10"
+      ],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-063",
+      "title": "Build, sign, freeze and qualify the immutable candidate family",
+      "common_dependencies": [
+        "TASK-027",
+        "TASK-030",
+        "TASK-033",
+        "TASK-045",
+        "TASK-053",
+        "TASK-054",
+        "TASK-056",
+        "TASK-057",
+        "TASK-058",
+        "TASK-059",
+        "TASK-060",
+        "TASK-061",
+        "TASK-062"
+      ],
+      "requirements": [],
+      "source_findings": [
+        "SRC-02",
+        "SRC-04",
+        "SRC-09",
+        "SRC-14",
+        "SRC-15",
+        "SRC-16",
+        "SRC-18",
+        "SRC-19",
+        "SRC-24"
+      ],
+      "agent_gates": [
+        "AGX-16"
+      ],
+      "agent_slices": [
+        "AGSTEP-18"
+      ],
+      "memory_gates": [
+        "HM-16"
+      ],
+      "memory_steps": [
+        "HMSTEP-15",
+        "HMSTEP-16"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-064",
+      "title": "Verify and publish the already signed Windows candidate",
+      "common_dependencies": [
+        "TASK-063"
+      ],
+      "requirements": [
+        "M2-WIN-01",
+        "M2-REL-01"
+      ],
+      "source_findings": [
+        "SRC-18"
+      ],
+      "agent_gates": [],
+      "agent_slices": [
+        "AGSTEP-18"
+      ],
+      "memory_gates": [
+        "HM-16"
+      ],
+      "memory_steps": [
+        "HMSTEP-16"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-065",
+      "title": "Finalize native Mac QA and its separate Apple publication decision",
+      "common_dependencies": [
+        "TASK-029",
+        "TASK-030",
+        "TASK-033",
+        "TASK-034",
+        "TASK-053",
+        "TASK-056",
+        "TASK-057",
+        "TASK-059",
+        "TASK-063"
+      ],
+      "requirements": [
+        "M2-MAC-01",
+        "M2-MAC-02",
+        "M2-REL-01"
+      ],
+      "source_findings": [
+        "SRC-05",
+        "SRC-11",
+        "SRC-12",
+        "SRC-24"
+      ],
+      "agent_gates": [
+        "AGX-16"
+      ],
+      "agent_slices": [
+        "AGSTEP-18"
+      ],
+      "memory_gates": [
+        "HM-16"
+      ],
+      "memory_steps": [
+        "HMSTEP-15",
+        "HMSTEP-16"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "id": "TASK-066",
+      "title": "Deliver final re-audit, exact evidence and resumable handoff",
+      "common_dependencies": [
+        "TASK-063"
+      ],
+      "requirements": [
+        "M2-BASE-01",
+        "M2-ENG-01",
+        "M2-REL-01"
+      ],
+      "source_findings": [
+        "SRC-01",
+        "SRC-18",
+        "SRC-24"
+      ],
+      "agent_gates": [],
+      "agent_slices": [
+        "AGSTEP-18"
+      ],
+      "memory_gates": [
+        "HM-16"
+      ],
+      "memory_steps": [
+        "HMSTEP-16"
+      ],
+      "session_status": "NOT_COMPLETED_OR_REVALIDATED_IN_THIS_SESSION",
+      "contribution_source_findings": [],
+      "closed": false,
+      "deployment": "NOT_PERFORMED",
+      "independent_review": "NOT_PERFORMED"
+    }
+  ]
+}

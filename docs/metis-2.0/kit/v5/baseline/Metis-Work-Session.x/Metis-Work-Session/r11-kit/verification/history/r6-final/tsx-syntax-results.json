@@ -1,0 +1,5 @@
+{
+  "scope": "SYNTAX_TRANSPILE_ONLY_NOT_TYPECHECK_OR_PRODUCT_COMPILE",
+  "typescript": "5.8.3",
+  "diagnostics": []
+}

@@ -1,0 +1,12 @@
+{
+  "scope": "REFERENCE_TSX_SYNTAX_ONLY",
+  "typescript_version": "5.8.3",
+  "passed": true,
+  "errors": [],
+  "not_tested": [
+    "Type resolution against the actual React/component packages",
+    "Application build",
+    "Native runtime",
+    "Installed product integration"
+  ]
+}

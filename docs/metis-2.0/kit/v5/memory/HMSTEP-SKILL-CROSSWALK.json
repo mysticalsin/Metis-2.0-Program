@@ -1,0 +1,437 @@
+{
+  "schema": "metis.hindsight.skill-crosswalk.v1",
+  "source_expansion": "memory/evidence/original-EXPANSION.json",
+  "source_root_archive": "baseline/Metis-Work-Session.zip",
+  "original_step_count": 16,
+  "original_gate_count": 16,
+  "new_competing_memory_stack": false,
+  "steps": [
+    {
+      "id": "HMSTEP-01",
+      "original_title": "Qualify the source and runtime contract",
+      "original_tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-003"
+      ],
+      "original_dependencies": [],
+      "original_gates": [
+        "HM-01",
+        "HM-02",
+        "HM-14"
+      ],
+      "skill_read_paths": [
+        "references/01-architecture.md",
+        "references/18-compatibility.md",
+        "scripts/check_schema.py"
+      ],
+      "integration_work": "Inspect the current .brain/context/wiki/recall, Operator, Dust and agent call sites. Pin the actual Hindsight release image, SDK/OpenAPI and dependencies; register license/security findings. Record the selected approved region and hosting, with no deployment claim.",
+      "original_acceptance": "Actual source map, dependency diff, API compatibility fixtures and named approval blockers.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-02",
+      "original_title": "Approve retention and authority before ingest",
+      "original_tasks": [
+        "TASK-007",
+        "TASK-011",
+        "TASK-015"
+      ],
+      "original_dependencies": [
+        "HMSTEP-01"
+      ],
+      "original_gates": [
+        "HM-02",
+        "HM-03",
+        "HM-04"
+      ],
+      "skill_read_paths": [
+        "references/02-contract.md",
+        "references/03-identity-security.md",
+        "references/04-retain.md"
+      ],
+      "integration_work": "Define the approved derived-memory store, eligible content kinds, finite lifetimes, encryption/backup policy and canonical ownership. Exclude raw transcripts, confidential/local-only data and model-generated self-verification. Configure privacy and supplier routes in staging before synthetic customer-like data.",
+      "original_acceptance": "Reviewed data map, negative ingest matrix, live config readback and content-sentinel plan.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-03",
+      "original_title": "Deploy the private service and database",
+      "original_tasks": [
+        "TASK-015",
+        "TASK-062"
+      ],
+      "original_dependencies": [
+        "HMSTEP-02"
+      ],
+      "original_gates": [
+        "HM-01",
+        "HM-04",
+        "HM-14"
+      ],
+      "skill_read_paths": [
+        "references/12-deployment.md",
+        "references/13-config-models-language.md",
+        "references/11-operations.md"
+      ],
+      "integration_work": "Use the existing approved container platform and managed PostgreSQL/pgvector. Pin images, mount secrets through the secret store, disable public API/DB/CP/MCP and body traces. Separate liveness from readiness, test migrations, connections, restore and restricted egress.",
+      "original_acceptance": "Identified service version/digest, private networking evidence, auth rejection, database health and restore rehearsal.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-04",
+      "original_title": "Bind real identity and bank generation",
+      "original_tasks": [
+        "TASK-006",
+        "TASK-035",
+        "TASK-037"
+      ],
+      "original_dependencies": [
+        "HMSTEP-02",
+        "HMSTEP-03"
+      ],
+      "original_gates": [
+        "HM-03",
+        "HM-05",
+        "HM-09"
+      ],
+      "skill_read_paths": [
+        "references/03-identity-security.md",
+        "recipes/multi-tenant-entra.md"
+      ],
+      "integration_work": "Implement Entra/authorized service principal binding and server-owned bank registry. Partition by tenant, effective security domain and ACL epoch, not guessed email or model tags. Add cross-replica fences and read-lease revocation. Inventory every upstream read/admin endpoint.",
+      "original_acceptance": "Two users/two teams/agent cases demonstrate pre-model exclusion and immediate epoch invalidation.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-05",
+      "original_title": "Implement canonical-to-memory projection",
+      "original_tasks": [
+        "TASK-035",
+        "TASK-036"
+      ],
+      "original_dependencies": [
+        "HMSTEP-04"
+      ],
+      "original_gates": [
+        "HM-02",
+        "HM-05",
+        "HM-15"
+      ],
+      "skill_read_paths": [
+        "references/04-retain.md",
+        "references/08-clients.md",
+        "recipes/event-workflow.md"
+      ],
+      "integration_work": "Wire the supplied transport into the real canonical service. Use metadata-only outbox references, read approved source at execution, carry event time and revision, stable document IDs, replace only, and bounded batches. Record accepted versus searchable state separately.",
+      "original_acceptance": "Concurrent updates, duplicate delivery, negative acknowledgement, crash-after-write, and read-your-write tests on the actual DB/service.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-06",
+      "original_title": "Implement bounded recall with lineage",
+      "original_tasks": [
+        "TASK-037",
+        "TASK-038"
+      ],
+      "original_dependencies": [
+        "HMSTEP-05"
+      ],
+      "original_gates": [
+        "HM-03",
+        "HM-06",
+        "HM-12"
+      ],
+      "skill_read_paths": [
+        "references/05-recall.md",
+        "scripts/evidence_gate.py",
+        "recipes/rag-and-memory.md"
+      ],
+      "integration_work": "Resolve nonempty trusted scope before recall; use strict tags and facts-only profile first. Resolve memory IDs to canonical sources with current revisions/ACLs before returning context. Preserve human names/negation and enforce hard date filters outside ranking hints.",
+      "original_acceptance": "Authorized source packets, revoked/untagged/fuzzy-scope rejection and measured low-budget queries.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-07",
+      "original_title": "Implement correction, tombstone and purge fences",
+      "original_tasks": [
+        "TASK-039",
+        "TASK-041",
+        "TASK-058"
+      ],
+      "original_dependencies": [
+        "HMSTEP-05",
+        "HMSTEP-06"
+      ],
+      "original_gates": [
+        "HM-04",
+        "HM-05",
+        "HM-08"
+      ],
+      "skill_read_paths": [
+        "references/07-lifecycle.md",
+        "references/06-reflect-derived.md"
+      ],
+      "integration_work": "Persist canonical tombstones before waiting on any in-flight writer. Revoke read leases, implement exact-document cleanup, durable reconciliation and safe generation quarantine. Build dependency tracking for future observations/models; do not wait for richer synthesis to block raw fact reads.",
+      "original_acceptance": "Real source deletion during retain/recall, duplicate/out-of-order writes, purge timeout and restored-backup tests. Rich derived-model cleanup is additionally proven in HMSTEP-10.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-08",
+      "original_title": "Wire the memory UX into Métis",
+      "original_tasks": [
+        "TASK-008",
+        "TASK-029",
+        "TASK-040",
+        "TASK-044"
+      ],
+      "original_dependencies": [
+        "HMSTEP-06"
+      ],
+      "original_gates": [
+        "HM-01",
+        "HM-09",
+        "HM-13"
+      ],
+      "skill_read_paths": [
+        "recipes/chat-and-voice.md",
+        "references/02-contract.md"
+      ],
+      "integration_work": "Implement the provided memory review/coverage design inside existing Intelligence and Knowledge & skills. Agent threads share authorized context, not private hidden state. Include disabled, syncing, unavailable, partial, revoked and purge-pending labels. Preserve orb-only ARMED and Tony onboarding.",
+      "original_acceptance": "Actual Windows/native Mac keyboard/accessibility flows and cross-session authorized recall; no vendor dashboard or second microphone.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-09",
+      "original_title": "Connect Dust and server skills",
+      "original_tasks": [
+        "TASK-038",
+        "TASK-039",
+        "TASK-043",
+        "TASK-044"
+      ],
+      "original_dependencies": [
+        "HMSTEP-06",
+        "HMSTEP-08"
+      ],
+      "original_gates": [
+        "HM-03",
+        "HM-09",
+        "HM-10"
+      ],
+      "skill_read_paths": [
+        "recipes/multi-agent.md",
+        "references/10-mcp-coding.md",
+        "references/09-frameworks.md"
+      ],
+      "integration_work": "Use the existing governed MCP/service interface rather than raw Hindsight endpoints. Dust writes through canonical mutation/proposals; skill/agent versions bind source scopes. Propagate corrected records back to memory and all readers.",
+      "original_acceptance": "Real Dust read→authorized canonical update→Métis readback→skill reuse, plus revoked audience/agent-switch tests.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-10",
+      "original_title": "Qualify observations, mental models and derivative cleanup",
+      "original_tasks": [
+        "TASK-036",
+        "TASK-037",
+        "TASK-040",
+        "TASK-041"
+      ],
+      "original_dependencies": [
+        "HMSTEP-06",
+        "HMSTEP-07"
+      ],
+      "original_gates": [
+        "HM-03",
+        "HM-07",
+        "HM-08"
+      ],
+      "skill_read_paths": [
+        "references/06-reflect-derived.md",
+        "references/13-config-models-language.md"
+      ],
+      "integration_work": "Add complete lineage and scoped refresh for derived observations and reviewed mental models inside homogeneous ACL banks. Wire actual create/refresh/version/failure controls through restricted service administration. Apply existing tombstone/generation fences to all derived models/pages/history and block global-sensitive directives.",
+      "original_acceptance": "Real derived answer, human correction, deletion with upstream is_stale unchanged, stale async completion and incomplete lineage all behave correctly. Only then enable the richer profile.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-11",
+      "original_title": "Account for every memory workload",
+      "original_tasks": [
+        "TASK-034",
+        "TASK-045"
+      ],
+      "original_dependencies": [
+        "HMSTEP-05",
+        "HMSTEP-06"
+      ],
+      "original_gates": [
+        "HM-04",
+        "HM-11"
+      ],
+      "skill_read_paths": [
+        "references/14-observability.md",
+        "references/11-operations.md"
+      ],
+      "integration_work": "Integrate each actual provider attempt and background task into the existing ledger, including embedding/reranking and optional TypeSafe/Jev reranking. Do not infer Laya compatibility. Show infrastructure allocation separately and suppress payloads/high-cardinality metrics.",
+      "original_acceptance": "Known zero versus missing, nested billing dedup, cancelled billable work, retries and full-window portal reconciliation.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-12",
+      "original_title": "Benchmark usefulness, multilingual fidelity and speed",
+      "original_tasks": [
+        "TASK-053",
+        "TASK-054",
+        "TASK-056",
+        "TASK-060"
+      ],
+      "original_dependencies": [
+        "HMSTEP-06",
+        "HMSTEP-10",
+        "HMSTEP-11"
+      ],
+      "original_gates": [
+        "HM-06",
+        "HM-07",
+        "HM-12"
+      ],
+      "skill_read_paths": [
+        "references/17-evaluation.md",
+        "templates/eval-cases.jsonl"
+      ],
+      "integration_work": "Run held-out paired tasks against current canonical search/Graphify and Hindsight. Measure citations, temporal errors, contradictions, coverage, abstention and total cost/latency. Include Québec French, English, Spanish and Brazilian Portuguese; no production-recording retention for benchmarks.",
+      "original_acceptance": "Versioned permitted corpus, samples/denominators, p50/p95/p99 and a documented adoption decision; no vendor leaderboard substitution.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-13",
+      "original_title": "Exercise failure and security boundaries",
+      "original_tasks": [
+        "TASK-057",
+        "TASK-058",
+        "TASK-062"
+      ],
+      "original_dependencies": [
+        "HMSTEP-09",
+        "HMSTEP-10",
+        "HMSTEP-11"
+      ],
+      "original_gates": [
+        "HM-03",
+        "HM-04",
+        "HM-08",
+        "HM-14"
+      ],
+      "skill_read_paths": [
+        "references/16-troubleshooting.md",
+        "references/03-identity-security.md",
+        "references/18-compatibility.md"
+      ],
+      "integration_work": "Test injected memory instructions, poisoned names, global directives, missing auth, key rotation, budget exhaustion, stalled workers, lost network, replica races and provider-retention drift. Local stop and deterministic actions remain independent.",
+      "original_acceptance": "Negative test receipts, redacted diagnostics, incident and safe-rebuild runbook, zero unauthorized source disclosure in tested cases.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-14",
+      "original_title": "Migrate with scoped canaries",
+      "original_tasks": [
+        "TASK-026",
+        "TASK-035",
+        "TASK-041",
+        "TASK-061"
+      ],
+      "original_dependencies": [
+        "HMSTEP-08",
+        "HMSTEP-10",
+        "HMSTEP-12",
+        "HMSTEP-13"
+      ],
+      "original_gates": [
+        "HM-05",
+        "HM-13",
+        "HM-15"
+      ],
+      "skill_read_paths": [
+        "references/15-migration.md",
+        "references/07-lifecycle.md"
+      ],
+      "integration_work": "Inventory only eligible canonical records, preview counts/audiences, receive actual migration approval, and process resumable bounded batches. Shadow comparison cannot write twice or widen recipients. Switch projection pointer after qualification; preserve canonical revisions and tombstones.",
+      "original_acceptance": "Dry-run manifest, real canary, versioned migration state, safe rollback and optional-model/installer size regression.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-15",
+      "original_title": "Prove the complete product journeys",
+      "original_tasks": [
+        "TASK-055",
+        "TASK-056",
+        "TASK-063",
+        "TASK-065"
+      ],
+      "original_dependencies": [
+        "HMSTEP-09",
+        "HMSTEP-11",
+        "HMSTEP-12",
+        "HMSTEP-13",
+        "HMSTEP-14"
+      ],
+      "original_gates": [
+        "HM-10",
+        "HM-12",
+        "HM-16"
+      ],
+      "skill_read_paths": [
+        "references/17-evaluation.md",
+        "templates/acceptance-matrix.csv",
+        "VERIFICATION.md"
+      ],
+      "integration_work": "Run the HM-FLOW sequences with actual packaged Windows and native Mac, Hindsight, canonical backing store, qualified providers, Dust/skills and deployed Operator. Independent Fable reviews source plus evidence, not test count. Keep Apple publication hold separate.",
+      "original_acceptance": "Actual source/artifact/deployment IDs and receipts; fixture, pure transport, service smoke and product E2E results separately labelled.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    },
+    {
+      "id": "HMSTEP-16",
+      "original_title": "Freeze, release and operate the qualified capability",
+      "original_tasks": [
+        "TASK-062",
+        "TASK-063",
+        "TASK-064",
+        "TASK-065",
+        "TASK-066"
+      ],
+      "original_dependencies": [
+        "HMSTEP-15"
+      ],
+      "original_gates": [
+        "HM-14",
+        "HM-15",
+        "HM-16"
+      ],
+      "skill_read_paths": [
+        "references/11-operations.md",
+        "references/14-observability.md",
+        "references/12-deployment.md"
+      ],
+      "integration_work": "Close affected regression gates after refactoring. Sign Windows, freeze exact bytes, verify the actual release/update path and enable only approved service cohorts. Native Mac engineering is tested but public signing remains gated. Monitor freshness/purge backlog and invalidation incidents.",
+      "original_acceptance": "Exact signed-artifact/service provenance, rollback ownership, telemetry-only alerting and unresolved gates honestly retained.",
+      "current_repository_status": "NOT_ASSESSED",
+      "native_live_verification": "NOT_RUN"
+    }
+  ]
+}

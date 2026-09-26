@@ -1,0 +1,32 @@
+{
+  "placement": "approved_private_service",
+  "image": "REQUIRED_REVIEWED_IMAGE_AT_SHA256_DIGEST",
+  "database": "managed_postgresql_pgvector",
+  "region": "REQUIRED",
+  "apiKeySecretRef": "secret://metis/hindsight/api-key",
+  "publicIngress": false,
+  "controlPlaneExposed": false,
+  "databasePublic": false,
+  "approvedStages": {
+    "extraction": false,
+    "embedding": false,
+    "reranking": false,
+    "reflection": false
+  },
+  "bankPolicy": "homogeneous_acl_epoch",
+  "directives": "operator_reviewed_only",
+  "retainedContent": "approved_summaries_preferences_verified_receipts",
+  "fallbackPolicy": "approved_routes_only",
+  "environment": {
+    "HINDSIGHT_API_STORE_DOCUMENT_TEXT": "false",
+    "HINDSIGHT_API_LLM_TRACE_ENABLED": "false",
+    "HINDSIGHT_API_MCP_ENABLED": "false",
+    "HINDSIGHT_API_OPERATION_RETENTION_DAYS": "1",
+    "HINDSIGHT_API_TENANT_EXTENSION": "hindsight_api.extensions.builtin.tenant:ApiKeyTenantExtension",
+    "HINDSIGHT_API_OTEL_TRACES_ENABLED": "false",
+    "HINDSIGHT_API_ENABLE_FILE_UPLOAD_API": "false",
+    "HINDSIGHT_API_ENABLE_DOCUMENT_EXPORT_API": "false",
+    "HINDSIGHT_API_ENABLE_DOCUMENT_IMPORT_API": "false",
+    "HINDSIGHT_API_RETAIN_EXTRACTION_MODE": "concise"
+  }
+}

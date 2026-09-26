@@ -1,0 +1,86 @@
+{
+  "status": "PROPOSED_CONTRACT_EXAMPLES_NOT_IMPLEMENTED",
+  "schema": "metis.interaction.contract-outline.v1",
+  "session": {
+    "session_id": "opaque",
+    "principal_ref": "server-verified-reference",
+    "tenant_ref": "server-derived",
+    "seat_id": "bound-device",
+    "agent_id": "stable-not-display-name",
+    "thread_id": "opaque",
+    "mode": "talk|guide|act|dictate",
+    "generation": 12,
+    "policy_epoch": 9,
+    "audio_owner": "trusted-command-broker",
+    "allowed_resources": [
+      "approved-app-or-source-refs"
+    ],
+    "budget_ref": "reviewed-budget"
+  },
+  "observation": {
+    "snapshot_id": "opaque",
+    "captured_at_monotonic_ms": 123456,
+    "pid": 1234,
+    "window_id": "opaque",
+    "document_revision": "source-specific",
+    "display_transform_ref": "validated-coordinate-map",
+    "coverage": "selection|visible|partial_document|complete_document",
+    "element_tokens": [
+      "host-bound-token"
+    ],
+    "content_scope_ref": "authorized-audience"
+  },
+  "grant": {
+    "grant_id": "trusted-host-opaque",
+    "session_id": "opaque",
+    "agent_id": "stable-not-display-name",
+    "thread_id": "opaque",
+    "generation": 12,
+    "policy_epoch": 9,
+    "capabilities": [
+      "allowed-typed-action"
+    ],
+    "resource_constraints": [
+      "specific-app-document-or-account"
+    ],
+    "expires_at": "validated-finite-time",
+    "revoked": false,
+    "proposal_digest": "binds-reviewed-payload-when-approval-required"
+  },
+  "action": {
+    "task_id": "logical-task",
+    "step_id": "step",
+    "operation_id": "logical-side-effect",
+    "attempt_id": "distinct-attempt",
+    "kind": "registered-action-enum",
+    "args": "validated-type-specific-fields-not-shell",
+    "target_token": "fresh-host-resolved-element",
+    "snapshot_id": "opaque",
+    "grant_id": "trusted-host-opaque",
+    "generation": 12,
+    "policy_epoch": 9,
+    "idempotency_key": "stable-per-logical-effect",
+    "expected_postcondition": "independent-verifier-contract",
+    "deadline_ms": 10000
+  },
+  "receipt": {
+    "operation_id": "logical-side-effect",
+    "attempt_id": "distinct-attempt",
+    "status": "prepared|attempted|verified|failed|unknown|cancelled|unsupported",
+    "execution_route": "connector|native_semantic|browser_dom|foreground_input",
+    "proof_refs": [
+      "authorized-metadata-or-content-proof-ref"
+    ],
+    "committed_effect": "none|observed|unknown",
+    "usage_completeness": "known|partial|unknown",
+    "speech_eligible_summary_ref": "approved-audience-result"
+  },
+  "rules": [
+    "The renderer and model cannot mint grants.",
+    "A transcript partial cannot authorize a mutation.",
+    "Host revalidates identity/policy/generation/fresh target immediately before dispatch.",
+    "Signed-in browser access is its own capability.",
+    "Stop revokes future dispatch; it does not prove remote rollback.",
+    "Receipt content follows audience/retention policy; operations telemetry remains metadata-only."
+  ]
+}

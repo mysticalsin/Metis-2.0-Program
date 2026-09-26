@@ -1,0 +1,276 @@
+{
+  "schema": "metis.clicky.static-assessment.v1",
+  "inspection_date": "2026-09-25",
+  "method": "Read-only UDIF/HFS+ extraction, plist parsing, Mach-O dependency/string inspection, packaged resource-seal hash comparison. No application/helper execution, login, backend calls, or permission bypass.",
+  "input": {
+    "name": "HeyClicky(1).dmg",
+    "file_id": "file_00000000fc7881f5ae64647a6727d39a",
+    "bytes": 373328455,
+    "sha256": "0c7b2f7b21cc5153e4a3146cdeaff704a67aaf37e08bf06a0117d108edb7b038"
+  },
+  "observed_app": {
+    "name": "HeyClicky",
+    "identifier": "com.humansongs.clicky",
+    "version": "1.0.51",
+    "build": "61",
+    "minimum_macos": "14.2",
+    "main_architectures": [
+      "x86_64",
+      "arm64"
+    ],
+    "codex_packaged_metadata_version": "0.152.1"
+  },
+  "size_method": "Sum of HFS+ catalog data-fork logical byte lengths; not installed allocation, RAM, cache growth, or benchmark.",
+  "sizes": {
+    "app_file_entries": 201,
+    "app_logical_bytes": 824864800,
+    "codex_runtime_file_entries": 12,
+    "codex_runtime_logical_bytes": 589486538
+  },
+  "bundled_skill_manifests": [
+    "Contents/Resources/ClickyBundledSkills/clicky-research-report/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/cua-driver/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/spreadsheet/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/clicky-google-workspace/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/pdf/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/clicky-email-assistant/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/clicky-creative-studio/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/vercel-deploy/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/clicky-dev-setup-doctor/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/doc/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/clicky-repo-operator/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/obsidian/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/frontend-design/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/clicky-build-preview/SKILL.md",
+    "Contents/Resources/ClickyBundledSkills/clicky-artifacts/SKILL.md"
+  ],
+  "selected_file_metadata": [
+    {
+      "path": "Contents/Info.plist",
+      "logical_data_bytes": 4087,
+      "sha256": "0131f718ed72ab33d708640646e0107e57926444e7de60a7362cb910122bb30d"
+    },
+    {
+      "path": "Contents/MacOS/HeyClicky",
+      "logical_data_bytes": 77542656,
+      "sha256": "1cf1b4a181bc52d869419cdba95cba5f999045766b8416f726125762cda4b5f1"
+    },
+    {
+      "path": "Contents/Resources/ATTRIBUTION.md",
+      "logical_data_bytes": 907,
+      "sha256": "9a72ea800fa89a20ca8475847e5f88b67af448aa548fa70008d7c66436fb74cd"
+    },
+    {
+      "path": "Contents/Resources/ClickyBuildInfo.plist",
+      "logical_data_bytes": 329,
+      "sha256": "f1e559f646a308f9cf8c8fbb7c7b292cbb94a41d3ed66d7ada1ff95b04654002"
+    },
+    {
+      "path": "Contents/Resources/Info.plist",
+      "logical_data_bytes": 2162,
+      "sha256": "2c6102254cae8a355310b555ec9f73619d68207a58443b0d28aa39911192dead"
+    },
+    {
+      "path": "Contents/Resources/CodexRuntime/vendor/x86_64-apple-darwin/codex-package.json",
+      "logical_data_bytes": 199,
+      "sha256": "005abbea94727f77dddf28f4c157c764a6b4e9fa8cb65c92946d8b68f00a79b5"
+    },
+    {
+      "path": "Contents/Resources/CodexRuntime/vendor/aarch64-apple-darwin/codex-package.json",
+      "logical_data_bytes": 200,
+      "sha256": "5a019b8870b8a2167d66fe5926705ce1253f3dcd1e86fb42b11e145374489090"
+    },
+    {
+      "path": "Contents/Resources/PLCrashReporter_CrashReporter.bundle/Contents/Info.plist",
+      "logical_data_bytes": 1267,
+      "sha256": "40ee6af1348105650ec3d83220f9b174164efc256b56a3575713b269106491c8"
+    },
+    {
+      "path": "Contents/Resources/PostHog_PostHog.bundle/Contents/Info.plist",
+      "logical_data_bytes": 1243,
+      "sha256": "7ea3764882e459dff8c64cf6fede4bae996104c4b459a05fffa9ba49da51d6d8"
+    },
+    {
+      "path": "Contents/Resources/ClickyBundledSkills/cua-driver/README.md",
+      "logical_data_bytes": 4023,
+      "sha256": "a015cb8802526ab5a512e58eb560eb5b932195e8e148cb55d580e470657705e2"
+    },
+    {
+      "path": "Contents/Resources/ClickyBundledSkills/cua-driver/SKILL.md",
+      "logical_data_bytes": 50482,
+      "sha256": "cf03b14ff3c2645342578eb2a0a38ddbd2a397ad1e55e1465f96b5f4b6acd19b"
+    },
+    {
+      "path": "Contents/Resources/ClickyBundledSkills/vercel-deploy/ATTRIBUTION.md",
+      "logical_data_bytes": 161,
+      "sha256": "bc3a6654c1f05ccad7c47b842caa127a42ee03b31549b879d56716d3b3fe288b"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/Info.plist",
+      "logical_data_bytes": 1341,
+      "sha256": "f2e8337ed81f0c5bb167fe916b9431e5074cf6073797ca94141d0ce59f0ac874"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/Info.plist",
+      "logical_data_bytes": 2400,
+      "sha256": "afffd2cb7b1da417f6399f1f31659a41d79a09058e48d3fe9aca76d84bf5978d"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater",
+      "logical_data_bytes": 290800,
+      "sha256": "86777076bc89ad51df91b01f2ebf10831b690a7af6f0694ff38e6986166b3952"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/Info.plist",
+      "logical_data_bytes": 1717,
+      "sha256": "7dc4a947a1fe90673204d98473052c73bf5c619caca8ccf3e2c685d9d7174eec"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/MacOS/Downloader",
+      "logical_data_bytes": 172464,
+      "sha256": "b05e9a09e1b6e2122297394436da1b2d30b888b52019859aef681b02b4561997"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/Info.plist",
+      "logical_data_bytes": 1605,
+      "sha256": "4bac890ed31b9fa457797a0492cf1f37f0425ad910ca616e958bb0b88b044725"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/MacOS/Installer",
+      "logical_data_bytes": 223696,
+      "sha256": "916a04636fbe896eda3006ab179ca1d68b9b22118f675fc16bde8f4b92e8dff9"
+    },
+    {
+      "path": "Contents/Frameworks/Sentry.framework/Versions/A/Resources/Info.plist",
+      "logical_data_bytes": 1328,
+      "sha256": "bd2372f431a03e2e20210dc867913e0399dd0101489c4e40f87d504cd869c995"
+    },
+    {
+      "path": "Contents/Helpers/cua-driver",
+      "logical_data_bytes": 62047840,
+      "sha256": "207eda9c586cb3b6bf0af7d4fe29f36d24ce05be8c7d3bb41c715c2dd2904687"
+    }
+  ],
+  "selected_binary_symbols": [
+    {
+      "name": "RealtimeVoiceController",
+      "first_binary_offset": 33926336,
+      "offset_hex": "0x205acc0",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "RealtimeVoiceClient",
+      "first_binary_offset": 34054128,
+      "offset_hex": "0x2079ff0",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "RealtimeDuplexAudioEngine",
+      "first_binary_offset": 34049664,
+      "offset_hex": "0x2078e80",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "RealtimeMicrophoneCapture",
+      "first_binary_offset": 34050752,
+      "offset_hex": "0x20792c0",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "RealtimeAudioPlaybackSink",
+      "first_binary_offset": 34051504,
+      "offset_hex": "0x20795b0",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "DictationDeepgramTranscriber",
+      "first_binary_offset": 33938032,
+      "offset_hex": "0x205da70",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "AppleSpeechTranscriptionProvider",
+      "first_binary_offset": 33816320,
+      "offset_hex": "0x203ff00",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "DictationInsertion",
+      "first_binary_offset": 33938720,
+      "offset_hex": "0x205dd20",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "CodexAgentSession",
+      "first_binary_offset": 33861520,
+      "offset_hex": "0x204af90",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "CodexProtocolClient",
+      "first_binary_offset": 33879760,
+      "offset_hex": "0x204f6d0",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "CodexRuntimeBridge",
+      "first_binary_offset": 34270346,
+      "offset_hex": "0x20aec8a",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "ClickyCuaDriverDaemonController",
+      "first_binary_offset": 33835232,
+      "offset_hex": "0x20448e0",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "ClickyBackgroundCursorControl",
+      "first_binary_offset": 33834048,
+      "offset_hex": "0x2044440",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "ScreenAnnotationManager",
+      "first_binary_offset": 34063040,
+      "offset_hex": "0x207c2c0",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "ElementLocationDetector",
+      "first_binary_offset": 33940800,
+      "offset_hex": "0x205e540",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "SupabaseAuthManager",
+      "first_binary_offset": 34067520,
+      "offset_hex": "0x207d440",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    },
+    {
+      "name": "ClickyAgentTurnCostLedger",
+      "first_binary_offset": 33828352,
+      "offset_hex": "0x2042e00",
+      "evidence_class": "SYMBOL_PRESENCE_NOT_RUNTIME_EXECUTION"
+    }
+  ],
+  "configuration_categories": [
+    "HeyClicky API/session gateway",
+    "OpenAI/Anthropic endpoints",
+    "Supabase auth project configuration",
+    "PostHog analytics",
+    "Sentry crash reporting",
+    "Sparkle update feed"
+  ],
+  "redactions": "No API keys, auth codes, DSNs, anon keys, raw proprietary instructions, binaries or media are distributed.",
+  "unknown": [
+    "Current HeyClicky server source/deployment topology/regions",
+    "Which packaged paths are enabled for a given user",
+    "Actual model selection per operation",
+    "Native action success rate and measured speech latency",
+    "Live account permissions, provider retention, or cross-tenant isolation",
+    "Current Métis HEAD and local dirty state",
+    "Trusted code signature/notarization status"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "export_file": "mysticalsin-asktoto-mantu-8a5edab282632443.txt",
+  "export_sha256": "efc8af651c1b2abb952d7737d5f3f3d15c4e51057059a07ceb3445c65f5c53f3",
+  "source_commit": null,
+  "desktop_scene_order": [
+    "hero",
+    "problem",
+    "reveal",
+    "appearance",
+    "setup",
+    "personalize",
+    "license_if_enabled",
+    "ready"
+  ],
+  "native_export_scene_order": [
+    "hero",
+    "story",
+    "reveal",
+    "setup",
+    "personalize"
+  ],
+  "evidence": [
+    {
+      "path": "docs/design/ONBOARDING-FLOW.md",
+      "export_start_line": 12215,
+      "observation": "Appearance before setup; Ready completion; original layout/No Skip retained."
+    },
+    {
+      "path": "src/renderer/src/lib/onboarding-hero-video.ts",
+      "export_start_line": 214549,
+      "observation": "Retire packaged old-video/poster plus remote mirror; keep safe packaged-resource resolution."
+    },
+    {
+      "path": "src/renderer/src/components/OnboardingDemoScene.tsx",
+      "export_start_line": 201798,
+      "observation": "Keep real components and synthetic/demo guard; do not replace this scene with media."
+    },
+    {
+      "path": "native-app/MetisKit/Sources/MetisKit/Onboarding.swift",
+      "export_start_line": 35950,
+      "observation": "Native flow differs; extend its current adapters rather than replace with a wizard."
+    }
+  ],
+  "missing_export_files": [
+    "src/renderer/src/components/OnboardingExperience.tsx"
+  ],
+  "limitations": [
+    "Partial source export, not a full checkout.",
+    "No actual application modified, executed, signed or deployed.",
+    "Original r9 full ZIP unavailable here; this package is an amendment, not a re-sealed full kit."
+  ]
+}

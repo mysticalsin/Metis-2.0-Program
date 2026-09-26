@@ -1,0 +1,50 @@
+{
+  "schema": "metis.v6.handoff.files.v1",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2504,
+      "sha256": "d154f8a6587f6e372afd601ae8fac3f84485afc66e803220ba16069424065c3e"
+    },
+    {
+      "path": "baseline/Metis-Behavior-Upgrade-v5-Hindsight.zip",
+      "bytes": 22044700,
+      "sha256": "da890d8c27796a2daf4668a0cd62b2f2c29301b7358f38a50b874acd3c39d8ba"
+    },
+    {
+      "path": "delivery/IMPLEMENTATION-PROMPT.md",
+      "bytes": 22444,
+      "sha256": "62c1b90afb1b6f55c4c5decaea1b994a2079f4bab62351413e6e91b86bbe630d"
+    },
+    {
+      "path": "evidence/PACKAGE-CHECKS.json",
+      "bytes": 730,
+      "sha256": "36bf6ddead3b2d6bbb23db9f73722488c2060eb28c6c7ffdc026106c28ce6002"
+    },
+    {
+      "path": "evidence/SOURCE-REGISTER.json",
+      "bytes": 3608,
+      "sha256": "3827d7eb66bf8ee3571245df10a66ad7b8926a7289ab007af56b5edf0222e99d"
+    },
+    {
+      "path": "launch-film/ACCEPTANCE.json",
+      "bytes": 2969,
+      "sha256": "ca62f194f82404b791baa4e479e2ea4b415ac66487c0c3af7b7b1d4a364cf2a4"
+    },
+    {
+      "path": "launch-film/BRAG-LAUNCH-PROMPT.md",
+      "bytes": 18609,
+      "sha256": "8d7ee40183c3f489e92dac6ae2c3d9f510ca11407ed320512b77f81c30f2c88d"
+    },
+    {
+      "path": "launch-film/STORYBOARD.json",
+      "bytes": 4025,
+      "sha256": "504d12a99bf6a679d86c6f71c8cbeff45a065eeca27d408a0e00031b25e6b3c8"
+    },
+    {
+      "path": "memory/HINDSIGHT-UPSTREAM-REQUIREMENTS.md",
+      "bytes": 7465,
+      "sha256": "00d6246679bda43ef6538346c1b513e886d724818d810dab7e39645af2c81101"
+    }
+  ]
+}

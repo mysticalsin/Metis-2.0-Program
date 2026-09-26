@@ -1,0 +1,21 @@
+{
+  "schema": "metis.clicky.plan-validation.v1",
+  "date": "2026-09-25",
+  "validation_kind": "Document/data integrity only; not application tests",
+  "checks": {
+    "unique_children": 20,
+    "preserved_root_ids": 66,
+    "root_dependencies_and_requirements_preserved": true,
+    "child_dependencies_acyclic": true,
+    "valid_parent_references": true,
+    "capabilities": 30,
+    "acceptance_cases": 36,
+    "all_acceptance_not_run": true,
+    "root_ids_without_direct_child_mapping": [],
+    "resource_seal_matches": 127,
+    "resource_seal_mismatches": 0
+  },
+  "implementation_performed": false,
+  "native_tests_performed": false,
+  "live_service_tests_performed": false
+}

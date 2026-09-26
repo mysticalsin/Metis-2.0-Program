@@ -1,0 +1,113 @@
+{
+  "edition": "r11",
+  "master_revision": "4.5",
+  "scope": "Complete handoff, executable integration components and synthetic interfaces only; NOT product/deployment readiness",
+  "app_repository_modified": false,
+  "product_native_tests_executed": false,
+  "cloud_deployed": false,
+  "actual_hindsight_service_called": false,
+  "actual_fable_session_executed": false,
+  "signed_installer_produced": false,
+  "current_reruns": {
+    "structure": {
+      "passed": true,
+      "count": 79,
+      "scope": "DELIVERY_KIT_ONLY_NOT_PRODUCT",
+      "report": "structure-results-r11.json"
+    },
+    "browser": {
+      "passed": true,
+      "count": 60,
+      "scope": "SYNTHETIC_DELIVERY_KIT_UI_ONLY",
+      "report": "browser-results-r11.json"
+    },
+    "orb": {
+      "passed": true,
+      "count": 27,
+      "scope": "R8_SYNTHETIC_UI_ONLY_NOT_PRODUCT",
+      "report": "orb-results-r11.json"
+    },
+    "meeting": {
+      "passed": true,
+      "count": 17,
+      "scope": "SYNTHETIC_MEETING_REFERENCE_NOT_PRODUCT",
+      "report": "meeting-results-r11.json"
+    },
+    "agents": {
+      "passed": true,
+      "count": 25,
+      "scope": "SYNTHETIC_AGENT_ONBOARDING_REFERENCE_NOT_PRODUCT",
+      "report": "agents-results-r11.json"
+    },
+    "onboarding-browser": {
+      "passed": true,
+      "count": 30,
+      "scope": "SYNTHETIC_HTML_REFERENCE_NOT_PRODUCT",
+      "report": "onboarding-results-r11.json"
+    },
+    "memory-browser": {
+      "passed": true,
+      "count": 29,
+      "scope": "SYNTHETIC_MEMORY_HTML_NOT_PRODUCT",
+      "report": "memory-browser-results.json"
+    },
+    "dual-agent": {
+      "passed": true,
+      "count": 44,
+      "scope": "Offline disposable Git and local fake-CLI tests. No real Codex/Fable session, product, live provider or deployment.",
+      "report": "dual-agent-results-r11.json"
+    },
+    "negative": {
+      "passed": true,
+      "count": 22,
+      "scope": "DELIVERY_KIT_NEGATIVE_CONTROLS",
+      "report": "negative-results-r11.json"
+    },
+    "agent-contract": {
+      "passed": true,
+      "count": 38,
+      "scope": "PURE_REFERENCE_CONTRACT_NOT_PRODUCT",
+      "report": "agent-contract-results-r11.json"
+    },
+    "geometry": {
+      "passed": true,
+      "count": 7,
+      "scope": "OFFLINE_SOURCE_ADAPTED_GEOMETRY_ONLY",
+      "report": "geometry-results-r11.json"
+    },
+    "onboarding-policy": {
+      "passed": true,
+      "count": 35,
+      "scope": "PURE_REFERENCE_TESTS_NOT_NATIVE_OR_MEDIA_VALIDATION",
+      "report": "onboarding-policy-results-r11.json"
+    }
+  },
+  "hindsight_component_tests": {
+    "scope": "EXECUTABLE_SERVER_COMPONENTS_WITH_CONTROLLED_TRANSPORT_AND_BINDINGS",
+    "command": "node --test memory/tests/*.test.mjs",
+    "node_version": "v22.16.0",
+    "tests": 60,
+    "passed": 60,
+    "failed": 0,
+    "live_hindsight_called": false,
+    "native_app_tested": false,
+    "production_bindings_implemented": false,
+    "raw_report": "memory-component-results.tap"
+  },
+  "seal_check": "Full checksum inventory adds one check to the 79 structural checks; rerun the default verifier after extraction.",
+  "pdf": {
+    "scope": "DOCUMENT_LAYOUT_ONLY",
+    "pages": 170,
+    "checked_identifiers": 492,
+    "missing_identifiers": [],
+    "out_of_page_text": [],
+    "sampled_pages": [
+      1,
+      159,
+      170
+    ]
+  },
+  "historical_reports": "Older unsuffixed reports are retained for lineage; use the explicit current report paths above and history/r10. No old product result has been promoted to a new pass.",
+  "source_export_included": true,
+  "source_export_complete_checkout": false
+}

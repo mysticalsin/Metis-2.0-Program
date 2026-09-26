@@ -1,0 +1,29 @@
+{
+  "status": "REFERENCE_ONLY_NOT_INSTALLED_OR_COMPILED",
+  "reviewed_docs_date": "2026-09-22",
+  "runtime_demo": "Offline vanilla JavaScript and Canvas/CSS; attributed Libraries.dev solving/listening mathematics at pinned blob identities, not an installed React/native package.",
+  "production_dependencies": [
+    {
+      "name": "thinking-orbs",
+      "required_version": null,
+      "instruction": "Reconcile existing lockfile; verify reviewed exact version and license before adoption."
+    },
+    {
+      "name": "border-beam",
+      "required_version": null,
+      "instruction": "Reconcile existing lockfile; verify reviewed exact version and license before adoption."
+    },
+    {
+      "name": "voice-glow",
+      "required_version": null,
+      "instruction": "Reconcile existing lockfile; verify reviewed exact version and license before adoption."
+    }
+  ],
+  "sources": [
+    "https://libraries.dev/orbs.html",
+    "https://libraries.dev/beam.html",
+    "https://libraries.dev/voice.html"
+  ],
+  "native_notes": "NATIVE-PARITY.md",
+  "geometry_provenance": "../visual/vendor/PROVENANCE.json"
+}

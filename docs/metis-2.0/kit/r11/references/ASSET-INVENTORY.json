@@ -1,0 +1,70 @@
+{
+  "assets": [
+    {
+      "path": "assets/orb-reference.png",
+      "original_name": "b85b34b8-ae25-40c2-8499-8dca45919017.png",
+      "sha256": "2705841660099eb266ef1b91076577320e8959cfcc82b8b5e61717ec7d3371e5",
+      "bytes": 11404,
+      "purpose": "User supplied orb image; visual target.",
+      "modified": false
+    },
+    {
+      "path": "assets/bar-reference.png",
+      "original_name": "fcdbbfe5-d696-4da3-8b1f-79ea86b8dff5.png",
+      "sha256": "287be306523adf16ce0278516ddfa5bbfce3d37bbe2e5e5a7d7c3920872a948a",
+      "bytes": 42077,
+      "purpose": "User supplied glowing bar; orb belongs inside this hierarchy.",
+      "modified": false
+    },
+    {
+      "path": "assets/right-edge-broken.png",
+      "original_name": "5706afdf-bf27-4afc-9eb2-a9650cb179c5.png",
+      "sha256": "5c380b086b4d7c82b81525326ea322fae358248b09b91e18650e72a1991cb3a6",
+      "bytes": 46268,
+      "purpose": "Original collapsed right-edge clipping report.",
+      "modified": false
+    },
+    {
+      "path": "assets/expanded-panel-broken.png",
+      "original_name": "c15868fe-ba11-4dce-9a72-ec3a6d9b94e1.png",
+      "sha256": "61667d4e9b621cd26ccd31ad5f71a4df24bb07c159b9ba8503f2007b1bce6b8d",
+      "bytes": 277069,
+      "purpose": "Original crowded expanded panel report.",
+      "modified": false
+    },
+    {
+      "path": "assets/previous-command-showcase.png",
+      "original_name": "Metis-2.0-Command-Experience.png",
+      "sha256": "782760512dd9280c36b77db68b27814e3cb3ffa6f602ae6f389b1718c1c0b753",
+      "bytes": 423166,
+      "purpose": "Earlier generated visual concept; not implemented product.",
+      "modified": false
+    },
+    {
+      "path": "assets/jev-desktop-reference.mp4",
+      "original_name": "igexport-Ddevf2hNeHc(1).mp4",
+      "sha256": "0cb3bbe8d3e5ccb28f2ce3f01ba9b64a0f83c1395e32876783981c201d987061",
+      "bytes": 1580303,
+      "purpose": "Original supplied desktop-control clip, not the missing onboarding video.",
+      "modified": false
+    },
+    {
+      "path": "assets/architecture-inspiration.jpeg",
+      "original_name": "4d8cd7b1-4026-4421-ad4b-f629405ad135.jpeg",
+      "sha256": "6b877ac6b57704e7051a747f9129f8eb2687366a647f1557bf350141da6a4214",
+      "bytes": 214280,
+      "purpose": "Generic architecture reference; not a required dependency stack.",
+      "modified": false
+    },
+    {
+      "path": "assets/historical-metis-architecture.png",
+      "original_name": "a_vertical_infographic_poster_on_a_dark_black_back.png",
+      "sha256": "deae8defcba44bb70b86f0371fdaf99e82d2c0bc1d353707e4903511799c1608",
+      "bytes": 1692209,
+      "purpose": "Historical generated architecture illustration; current master overrides it.",
+      "modified": false
+    }
+  ],
+  "original_html_sha256": "a07f53f21a3d0cec5f30e7d17169f9b84bdb83116815727361f65306e04e3210",
+  "original_html_treatment": "Only the original visual module, CSS and script are retained in visual/original-command-preview.html. Superseded scope/prose intentionally excluded."
+}

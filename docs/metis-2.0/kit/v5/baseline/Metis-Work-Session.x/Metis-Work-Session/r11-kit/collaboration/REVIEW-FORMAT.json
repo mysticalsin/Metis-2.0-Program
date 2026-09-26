@@ -1,0 +1,18 @@
+{
+  "schema": "metis.independent-review.v1",
+  "task": null,
+  "packet_sha256": null,
+  "head_commit": null,
+  "reviewer": {
+    "provider": null,
+    "model": null,
+    "session_reference": null,
+    "independent": false
+  },
+  "evidence_level": "source-review",
+  "verdict": "BLOCKED",
+  "files_inspected": [],
+  "findings": [],
+  "tests_executed": [],
+  "limitations": ["Unfilled format only. Fill from the actual independent review. This is not a passing receipt."]
+}

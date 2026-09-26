@@ -1,0 +1,103 @@
+{
+  "scope": "SYNTHETIC_CURRENT_R8",
+  "engine": "144.0.7559.96",
+  "render_mode": "in-memory Chromium documents, screenshots and controlled source-clock GIF",
+  "executed_at": "2026-09-22T22:41:52.943815+00:00",
+  "captures": [
+    {
+      "file": "01-armed-animated-solving.png",
+      "description": "Orb-only ARMED with source-derived solving motion; this still does not show motion.",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "00-solving-animation.gif",
+      "description": "Five-second, 20fps source-geometry sample rendered by the same engine; loop jump may occur, not a native-frame pacing measurement.",
+      "scope": "synthetic controlled-clock animation"
+    },
+    {
+      "file": "02-caption-listening.png",
+      "description": "Synthetic listening command state",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "03-expanded-solving.png",
+      "description": "Synthetic solving command state",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "04-right-edge-approval.png",
+      "description": "Synthetic approval command state",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "05-unknown-outcome.png",
+      "description": "Synthetic error command state",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "06-light-armed.png",
+      "description": "Light-theme animated ARMED",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "07-reduced-motion.png",
+      "description": "Reduced motion: static frame, no change in capture authority",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "08-simplified-settings.png",
+      "description": "Synthetic settings concept",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "09-intelligence-evidence.png",
+      "description": "Synthetic intelligence concept",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "10-operator-data-health.png",
+      "description": "Synthetic operator concept",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "11-narrow-typing.png",
+      "description": "390px typing layout; native scaling is a separate test",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "12-meeting-live-assist.png",
+      "description": "Before/during/after notebook: synthetic live-assist view",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "13-meeting-preparation.png",
+      "description": "Source-limited synthetic preparation",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "14-human-note-enhancement.png",
+      "description": "Enhancement is a proposal; human notes remain unchanged",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "15-reviewed-follow-through.png",
+      "description": "Synthetic CRM field review and explicit sharing audience",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "16-sharing-blocked.png",
+      "description": "Private source does not allow the entire meeting audience",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "17-narrow-meeting.png",
+      "description": "390px meeting workspace",
+      "scope": "synthetic HTML, not app evidence"
+    },
+    {
+      "file": "18-architecture-overview.png",
+      "description": "Target responsibility map and current-source scope; diagram is proposed, not deployed.",
+      "scope": "HTML diagram reference"
+    }
+  ]
+}

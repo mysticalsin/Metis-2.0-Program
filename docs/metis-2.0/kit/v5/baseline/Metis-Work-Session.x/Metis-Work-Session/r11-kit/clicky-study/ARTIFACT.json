@@ -1,0 +1,32 @@
+{
+  "input_file": "HeyClicky.dmg",
+  "bytes": 373328455,
+  "sha256": "0c7b2f7b21cc5153e4a3146cdeaff704a67aaf37e08bf06a0117d108edb7b038",
+  "metadata": {
+    "CFBundleDisplayName": "HeyClicky",
+    "CFBundleIdentifier": "com.humansongs.clicky",
+    "CFBundleShortVersionString": "1.0.51",
+    "CFBundleVersion": "61",
+    "LSMinimumSystemVersion": "14.2",
+    "NSSupportsAutomaticTermination": false,
+    "NSSupportsSuddenTermination": false,
+    "LSUIElement": true
+  },
+  "internal_build_claim": {
+    "ClickyGitBranchName": "main-internal-release-build",
+    "ClickyGitCommitShortSHA": "ddbd4191"
+  },
+  "architectures": [
+    "x86_64",
+    "arm64"
+  ],
+  "extracted_regular_files": 192,
+  "extracted_regular_bytes": 824864616,
+  "codex_runtime_bytes": 589486538,
+  "runtime_skill_files": 15,
+  "markdown_resources": 48,
+  "executed": false,
+  "network_endpoints_called": false,
+  "original_source_project_recovered": false,
+  "system_signing_trust_checked": false
+}

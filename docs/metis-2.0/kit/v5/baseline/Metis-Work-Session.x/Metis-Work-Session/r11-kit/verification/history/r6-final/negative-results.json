@@ -1,0 +1,63 @@
+{
+  "scope": "DELIVERY_KIT_NEGATIVE_CONTROLS",
+  "passed": true,
+  "probes": [
+    {
+      "probe": "changed_master",
+      "expected_detection": "canonical master hash",
+      "detected": true,
+      "actual_failed_checks": [
+        "canonical master hash"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "missing_reference",
+      "expected_detection": "original reference bytes intact",
+      "detected": true,
+      "actual_failed_checks": [
+        "original reference bytes intact"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "dropped_use_case",
+      "expected_detection": "master/registry exact identifier parity",
+      "detected": true,
+      "actual_failed_checks": [
+        "use_cases count and uniqueness",
+        "master/registry exact identifier parity",
+        "full use-case sequence"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "broken_html_link",
+      "expected_detection": "HTML local paths and fragment targets",
+      "detected": true,
+      "actual_failed_checks": [
+        "HTML local paths and fragment targets"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "armed_bar",
+      "expected_detection": "r6 armed visual contract is orb-only",
+      "detected": true,
+      "actual_failed_checks": [
+        "r6 armed visual contract is orb-only"
+      ],
+      "scope": "temporary copy only"
+    },
+    {
+      "probe": "duplicate_source",
+      "expected_detection": "source reference IDs unique and indexed",
+      "detected": true,
+      "actual_failed_checks": [
+        "canonical master hash",
+        "source reference IDs unique and indexed"
+      ],
+      "scope": "temporary copy only"
+    }
+  ]
+}

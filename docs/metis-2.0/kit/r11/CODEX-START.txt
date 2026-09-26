@@ -1,0 +1,62 @@
+Implement the existing Métis application from this complete r11 delivery kit.
+
+1. Read START-HERE.md, repository instructions and MASTER §0, §33, §34 and §35.
+   MASTER revision 4.5 is the single product contract. Preserve all 55 baseline
+   requirements, UC-001–UC-112, TASK-001–TASK-066, COV-01–44, FLOW-01–12,
+   20 historical findings, EXP-01–12, SRC-01–24, AGX-01–16, AGUC-001–032,
+   HC-01–32, AGSTEP-01–18 and OBU-01–05. Do not silently trim scope.
+2. Start TASK-001 in the complete actual checkout; preserve dirty user work.
+   Pin current source, services, database and tool identities. Plan bounded
+   vertical slices, then implement them. Do not stop at a plan or skeleton.
+3. Qualify your actual authorized Fable/Claude collaborator. Use FABLE-START.txt
+   and collaboration/README.md. You own integration; allocate disjoint worktrees
+   and files. Use actual source-bound packets and independent review. Never
+   invent a second agent, model access, review or deployment. Keep permissions.
+4. Inspect OPEN-METIS-2.html, visual/agents/index.html, visual/meeting/index.html,
+   onboarding/preview/index.html and architecture/index.html. Simulations are
+   build references only, not production implementations or evidence.
+5. Keep Métis onboarding and its existing sequence/Ready consent gates. Replace
+   old welcome media with Tony Walteur's approved authentic recording or the
+   complete text-led fallback until he supplies it. Integrate accessibility,
+   permission readback, agent and connection guidance into existing scenes.
+   No eight-step replacement wizard, other presenter or prerecorded Reveal.
+6. Resolve early TASK-027.A/028.A P1 and input repairs after baseline/contracts.
+   Follow delivery/RUN-ORDER.md and actual task dependencies; continue independent
+   Windows, native Mac, Jev/Laya and service lanes without false coupling.
+7. Build real Cloudflare speech/default/privacy, local opt-in packs, animated orb,
+   trusted wake/actions, actual Jev/Laya decisions, Mantu Intelligence and Dust
+   canonical writes, central skills/named agents, exact portal usage, Entra/Teams
+   and qualified meeting lifecycles. Preserve the whole specified scope.
+8. No advertised production capability may be a no-op, mock backend, canned
+   response, unconditional success, fake progress, ignored save or disabled
+   placeholder. Implement UI → trusted boundary → actual service/action →
+   durable result/readback → correct usage → recovery. Tests may use mocks;
+   live/native acceptance cannot. Product settings are not verified readiness.
+9. Fable independently reviews your exact completed slices; you review its work.
+   Fix findings, rebind changed snapshots, and run actual relevant tests. Record
+   implementation, deployment and verification separately. Follow MASTER §33.
+10. Refactor with the actual supplied skill after characterization. Measure
+    transcript fidelity, errors/abstentions, latency, resources and install size
+    against real baselines. Preserve keys/identities/data and exact user text.
+11. Build → legitimately sign/timestamp → freeze → test exact Windows artifacts
+    and deployed services → obtain approval → publish the same bytes → verify
+    downloaded assets/update feed. Native Mac development and QA continue;
+    its public Apple release waits actual prerequisites, not a fake DMG.
+12. At real blockers state the exact operation/error, owner, affected scope and
+    smallest unblock. Never bypass security or fabricate a pass. Continue other
+    safe authorized tasks. End only with evidence-backed completion or explicit
+    residual blockers, actual release links, and a precise continuation record.
+
+Use bounded source/task retrieval. This ZIP is not authorization for a new paid
+service, broader data disclosure, policy bypass or unapproved production release.
+
+HINDSIGHT REQUIRED: preserve HM-01–16, HMUC-001–032 and HMSTEP-01–16.
+Read memory/README.md, memory/SOURCE-REVIEW.md and memory/BINDINGS.md.
+Inspect memory/visual/index.html. Wire the actual memory API into existing
+canonical knowledge, named agents, Dust and skills; do not expose a raw vendor
+admin console or add PostgreSQL/model runtimes to desktop installers. Use real
+Entra grants, homogeneous ACL banks, revision fences and source tombstones.
+Run the included component tests; then separately qualify actual service and
+Windows/native Mac journeys. Memory remembers permitted sources, not raw capture
+or its own unverified output. Existing P1, privacy, signed-Windows and Apple-hold
+requirements remain. Never claim this kit already deployed Hindsight.

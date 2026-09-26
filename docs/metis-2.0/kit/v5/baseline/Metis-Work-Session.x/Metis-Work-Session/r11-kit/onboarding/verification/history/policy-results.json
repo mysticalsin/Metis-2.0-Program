@@ -1,0 +1,147 @@
+{
+  "scope": "PURE_REFERENCE_TESTS_NOT_NATIVE_OR_MEDIA_VALIDATION",
+  "engine": "v22.16.0",
+  "checks": [
+    {
+      "check": "Current desktop route preserved, including Appearance and Ready",
+      "passed": true
+    },
+    {
+      "check": "Optional license remains after personalization only",
+      "passed": true
+    },
+    {
+      "check": "Default does not add a license gate",
+      "passed": true
+    },
+    {
+      "check": "Reveal still enters Appearance",
+      "passed": true
+    },
+    {
+      "check": "No Skip-tour scene introduced",
+      "passed": true
+    },
+    {
+      "check": "Only Ready can complete onboarding",
+      "passed": true
+    },
+    {
+      "check": "Consent remains required",
+      "passed": true
+    },
+    {
+      "check": "Required identity/policy cannot be bypassed",
+      "passed": true
+    },
+    {
+      "check": "ASR not ready does not defeat valid typed completion",
+      "passed": true
+    },
+    {
+      "check": "Opening Settings is not a grant",
+      "passed": true
+    },
+    {
+      "check": "Granted without functional verification is not ready",
+      "passed": true
+    },
+    {
+      "check": "Current verified permission can be ready",
+      "passed": true
+    },
+    {
+      "check": "denied is never mapped to ready",
+      "passed": true
+    },
+    {
+      "check": "restricted is never mapped to ready",
+      "passed": true
+    },
+    {
+      "check": "revoked is never mapped to ready",
+      "passed": true
+    },
+    {
+      "check": "restart_required is never mapped to ready",
+      "passed": true
+    },
+    {
+      "check": "unavailable is never mapped to ready",
+      "passed": true
+    },
+    {
+      "check": "deferred is never mapped to ready",
+      "passed": true
+    },
+    {
+      "check": "Late permission response is not adopted",
+      "passed": true
+    },
+    {
+      "check": "Response for another principal is not adopted",
+      "passed": true
+    },
+    {
+      "check": "Response for another capability is not adopted",
+      "passed": true
+    },
+    {
+      "check": "Missing authentic recording has no media URL",
+      "passed": true
+    },
+    {
+      "check": "Shipped manifest is explicitly NOT_PROVIDED",
+      "passed": true
+    },
+    {
+      "check": "Only approved host-verified accessible recording can be selected",
+      "passed": true
+    },
+    {
+      "check": "A label is not trusted release or file verification",
+      "passed": true
+    },
+    {
+      "check": "A different presenter is rejected",
+      "passed": true
+    },
+    {
+      "check": "An extra named human is rejected",
+      "passed": true
+    },
+    {
+      "check": "A pending content review is rejected",
+      "passed": true
+    },
+    {
+      "check": "Missing captions keep the text-led welcome",
+      "passed": true
+    },
+    {
+      "check": "Remote URL cannot enter the packaged media slot",
+      "passed": true
+    },
+    {
+      "check": "A traversal path is rejected",
+      "passed": true
+    },
+    {
+      "check": "Autoplay is not enabled by media availability",
+      "passed": true
+    },
+    {
+      "check": "Video ending is not a completion authority",
+      "passed": true
+    },
+    {
+      "check": "Revoked media falls back to text, never an old presenter",
+      "passed": true
+    },
+    {
+      "check": "Cancelled permission flow rejects callbacks",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

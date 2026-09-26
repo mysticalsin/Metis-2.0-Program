@@ -1,0 +1,131 @@
+{
+  "scope": "SYNTHETIC_HTML_REFERENCE_NOT_PRODUCT",
+  "host": "Linux",
+  "engine": "144.0.7559.96",
+  "time": "2026-09-23T15:34:34.293533+00:00",
+  "checks": [
+    {
+      "check": "Tony Walteur is named in the M\u00e9tis welcome",
+      "passed": true
+    },
+    {
+      "check": "Unprovided recording renders no media element or request",
+      "passed": true
+    },
+    {
+      "check": "No borrowed presenter or marketing names in the preview",
+      "passed": true
+    },
+    {
+      "check": "Source-aligned desktop sequence and transition focus retained",
+      "passed": true
+    },
+    {
+      "check": "Ready without consent cannot complete",
+      "passed": true
+    },
+    {
+      "check": "Ready plus consent finishes only the fixture, without recording",
+      "passed": true
+    },
+    {
+      "check": "Replay retains placement and does not run an old video",
+      "passed": true
+    },
+    {
+      "check": "Placement selection survives next/back",
+      "passed": true
+    },
+    {
+      "check": "Settings handoff waits instead of granting access",
+      "passed": true
+    },
+    {
+      "check": "Repeated handoff does not stack requests",
+      "passed": true
+    },
+    {
+      "check": "Unknown readback is not ready",
+      "passed": true
+    },
+    {
+      "check": "Denied readback remains denied with visible text",
+      "passed": true
+    },
+    {
+      "check": "Deferring access leaves that feature off without skipping tour",
+      "passed": true
+    },
+    {
+      "check": "Unverified grant stays distinct from ready",
+      "passed": true
+    },
+    {
+      "check": "Synthetic verified readback is labelled example",
+      "passed": true
+    },
+    {
+      "check": "Revocation replaces previous ready label",
+      "passed": true
+    },
+    {
+      "check": "Windows does not pretend to offer the macOS grant",
+      "passed": true
+    },
+    {
+      "check": "Windows review does not grant OS privileges",
+      "passed": true
+    },
+    {
+      "check": "Guidance can be opened deliberately and focuses its action",
+      "passed": true
+    },
+    {
+      "check": "Typed practice preserves original text without HTML injection",
+      "passed": true
+    },
+    {
+      "check": "read explanation causes no capture or external action",
+      "passed": true
+    },
+    {
+      "check": "teach explanation causes no capture or external action",
+      "passed": true
+    },
+    {
+      "check": "draft explanation causes no capture or external action",
+      "passed": true
+    },
+    {
+      "check": "Reduced motion halts decorative frame work",
+      "passed": true
+    },
+    {
+      "check": "Manual pause halts decorative frame work",
+      "passed": true
+    },
+    {
+      "check": "All preserved scenes fit 390px without horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Continue remains in the viewport on narrow Ready",
+      "passed": true
+    },
+    {
+      "check": "Large text retains setup controls without horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "No network or media requests occurred",
+      "passed": true
+    },
+    {
+      "check": "No JavaScript exceptions occurred",
+      "passed": true
+    }
+  ],
+  "requests": [],
+  "errors": [],
+  "passed": true
+}

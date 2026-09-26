@@ -1,0 +1,70 @@
+{
+  "scope": "AMENDMENT_STATIC_INTEGRITY_NOT_PRODUCT",
+  "checks": [
+    {
+      "check": "Only Tony Walteur is the configured presenter",
+      "passed": true
+    },
+    {
+      "check": "Unprovided recording remains empty and unapproved",
+      "passed": true
+    },
+    {
+      "check": "No old, remote or autoplay media fallback",
+      "passed": true
+    },
+    {
+      "check": "Source-aligned route retains Appearance and Ready",
+      "passed": true
+    },
+    {
+      "check": "Existing desktop and older native topology explicitly distinguished",
+      "passed": true
+    },
+    {
+      "check": "Existing real product demo is preserved in the integration contract",
+      "passed": true
+    },
+    {
+      "check": "No recording masquerades as a supplied asset",
+      "passed": true
+    },
+    {
+      "check": "Readable source matches embedded preview",
+      "passed": true
+    },
+    {
+      "check": "No external API/capture/persistence in interactive reference",
+      "passed": true
+    },
+    {
+      "check": "CSP explicitly blocks connections and media",
+      "passed": true
+    },
+    {
+      "check": "No borrowed marketing or person names in active preview copy",
+      "passed": true
+    },
+    {
+      "check": "Filming script is not labelled as a final transcript",
+      "passed": true
+    },
+    {
+      "check": "No font files or symlinks redistributed",
+      "passed": true
+    },
+    {
+      "check": "Third-party license and provenance retained outside visible copy",
+      "passed": true
+    },
+    {
+      "check": "policy-results reports actual reference checks passing",
+      "passed": true
+    },
+    {
+      "check": "browser-results reports actual reference checks passing",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

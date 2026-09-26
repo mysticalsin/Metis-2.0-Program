@@ -1,0 +1,46 @@
+{
+  "scope": "SYNTHETIC_CHROMIUM_STILLS_NOT_PRODUCT",
+  "captured_at": "2026-09-23T00:07:25.123844+00:00",
+  "shots": [
+    {
+      "name": "01-welcome",
+      "file": "visual/agents/captures/01-welcome.png",
+      "scope": "SYNTHETIC_SCREENSHOT"
+    },
+    {
+      "name": "02-account-and-policy",
+      "file": "visual/agents/captures/02-account-and-policy.png",
+      "scope": "SYNTHETIC_SCREENSHOT"
+    },
+    {
+      "name": "03-create-agents-without-running",
+      "file": "visual/agents/captures/03-create-agents-without-running.png",
+      "scope": "SYNTHETIC_SCREENSHOT"
+    },
+    {
+      "name": "04-verified-connections",
+      "file": "visual/agents/captures/04-verified-connections.png",
+      "scope": "SYNTHETIC_SCREENSHOT"
+    },
+    {
+      "name": "05-agent-home-and-context",
+      "file": "visual/agents/captures/05-agent-home-and-context.png",
+      "scope": "SYNTHETIC_SCREENSHOT"
+    },
+    {
+      "name": "06-named-agent-approval",
+      "file": "visual/agents/captures/06-named-agent-approval.png",
+      "scope": "SYNTHETIC_SCREENSHOT"
+    },
+    {
+      "name": "07-agent-library",
+      "file": "visual/agents/captures/07-agent-library.png",
+      "scope": "SYNTHETIC_SCREENSHOT"
+    },
+    {
+      "name": "08-narrow-home",
+      "file": "visual/agents/captures/08-narrow-home.png",
+      "scope": "SYNTHETIC_SCREENSHOT"
+    }
+  ]
+}

@@ -1,0 +1,515 @@
+{
+  "schema": "metis.v5.preservation.v1",
+  "v4_archive_sha256": "e0460716476be95f2cb3b88007a2b90bc227802ae1433df7c175cf5ee49d60d1",
+  "source_skill_archive_sha256": "ab3d995bab5da188d00b0c560ab9fddfc0624b1989c5b08dbb93fe19aaf9e2ed",
+  "original_v4_file_count": 123,
+  "unchanged_count": 112,
+  "changed_originals_preserved_count": 11,
+  "unchanged_files": [
+    {
+      "path": "baseline/BASELINE-INVENTORY.json",
+      "sha256": "eaecd213aafa17c17259d8cff463e5e23424fa7ebccf5c070670a448ec3cc205"
+    },
+    {
+      "path": "baseline/Metis-HeyClicky-Interaction-Upgrade.zip",
+      "sha256": "217a4c7516e09819fb87ededeb9ac058783d16e524051508003523ea06fe3459"
+    },
+    {
+      "path": "baseline/Metis-Work-Session.zip",
+      "sha256": "4f18f338f7ff37b83397773fdcd07076a2924029ba7d76daa9556ed01240d8d2"
+    },
+    {
+      "path": "behavior/ADDITIONAL-ACCEPTANCE.json",
+      "sha256": "9659b69f61b640f69e55fde2eea1f95e60164a47bc885b50c490e1b99b77aa12"
+    },
+    {
+      "path": "behavior/INTERACTION-EXAMPLES.md",
+      "sha256": "078a436d562c5865ed074b9f866a3c767bf175c39ff000ee7306de4801b6c26a"
+    },
+    {
+      "path": "behavior/REQUIREMENTS.json",
+      "sha256": "0f303a81e11b4b13e3f1f20574c19cb8720a6eee14c6ebdc68973721604356ff"
+    },
+    {
+      "path": "behavior-core/README.md",
+      "sha256": "adf8b8bacf0f2c54069afa05e4b9a6479148f709c2300c9548d03566a1253906"
+    },
+    {
+      "path": "behavior-core/dist/authority.d.ts",
+      "sha256": "cbd5f6ce974327c4c7aa57685037a8db225c2f8808b3fbc749366e399771ba6a"
+    },
+    {
+      "path": "behavior-core/dist/authority.js",
+      "sha256": "c8efdde663a627d7aef0136a8462a414a4add3aa93244e8181f865e90012cf8a"
+    },
+    {
+      "path": "behavior-core/dist/coordinator.d.ts",
+      "sha256": "bd3eb193c99c7b38db15780b1686e137c91214fb30c5c49412640638647a84a2"
+    },
+    {
+      "path": "behavior-core/dist/coordinator.js",
+      "sha256": "e0be7304e6e7b3e49f78ec9ef0463183383c1ba12c6b624249860929601947dc"
+    },
+    {
+      "path": "behavior-core/dist/jev-admin.d.ts",
+      "sha256": "32cf22a070a566e6742d672e2db6aa773cbfeba3dbb52dd461b8efce4b59b920"
+    },
+    {
+      "path": "behavior-core/dist/jev-admin.js",
+      "sha256": "bff2b458f22f23382d3deb307734570b4d6315ee6fd28239c8698200c0a87c90"
+    },
+    {
+      "path": "behavior-core/dist/jev-consumer.d.ts",
+      "sha256": "3f4f6412549c3454f966e0a90bd13f239cd808c651fd978efb1d211b52aad67d"
+    },
+    {
+      "path": "behavior-core/dist/jev-consumer.js",
+      "sha256": "a0ab61c3ebe9360d69f5a5d08bc07c918028573b7cae3e11dd460ef4f29ceee6"
+    },
+    {
+      "path": "behavior-core/dist/jev-contract.d.ts",
+      "sha256": "53dc901d100725613e1ef9a4f39ec5c546db2a2d1c383f3b1d21cf30f926e5b6"
+    },
+    {
+      "path": "behavior-core/dist/jev-contract.js",
+      "sha256": "6a58ee269d6c65cade4f68bd76a81de68fce960d887c06ef9a526a4a34ccc479"
+    },
+    {
+      "path": "behavior-core/dist/jev-service.d.ts",
+      "sha256": "eecec006da353a9f38edd4861369fac75e88a3d93041833b55049241db14f965"
+    },
+    {
+      "path": "behavior-core/dist/jev-service.js",
+      "sha256": "ef8e545b3eb90c7a87da88028a0fd6f34b523259c5466fc50e2e314ad441a794"
+    },
+    {
+      "path": "behavior-core/dist/jev-templates.d.ts",
+      "sha256": "ff69a1426d727a3cc4b99da06efe2d2cdf2d8f8dfe8a7ebb0afcbe9ec5dd689e"
+    },
+    {
+      "path": "behavior-core/dist/jev-templates.js",
+      "sha256": "6ccb6331afcf06e386cca36251d978d53865ac2293f94b64d252d8e17279d225"
+    },
+    {
+      "path": "behavior-core/dist/jev-transport.d.ts",
+      "sha256": "c2d3c867d54dc2f7ec4705c2ae748655563402d914101d14c2e72a90f55284f1"
+    },
+    {
+      "path": "behavior-core/dist/jev-transport.js",
+      "sha256": "31508d6478321aa0697aab9c2007b9dc8e152b894dbe851c26885fd796ac881b"
+    },
+    {
+      "path": "behavior-core/dist/native-lease.d.ts",
+      "sha256": "43e40a222399d6a10cc5ebb0d3e0e57136d4f1ea07f943dd334fc1f1e15c89f4"
+    },
+    {
+      "path": "behavior-core/dist/native-lease.js",
+      "sha256": "0e04397b86133308a132cb96d8f663634f01d474876113a8a5576e65cccd7860"
+    },
+    {
+      "path": "behavior-core/dist/voice.d.ts",
+      "sha256": "1a55545aee8e11422199f73677832330567b876ed593ef1c466c65ee1ce980b6"
+    },
+    {
+      "path": "behavior-core/dist/voice.js",
+      "sha256": "b9ce363ee675aa0b91fa2a5d4b9806ade7ce6bfc93ebdcb852f846a6928ee225"
+    },
+    {
+      "path": "behavior-core/examples/jev-synthetic-probe.mjs",
+      "sha256": "4c5e35a674defbef913f79ebab1948df80a92144960c5176e2bfe80a4f9b38b9"
+    },
+    {
+      "path": "behavior-core/examples/verified-file-task.mjs",
+      "sha256": "f4c45e76a6c0051df431a58d5c4f90d6a609ec87c6ccd2dbd801a0380ab1ae25"
+    },
+    {
+      "path": "behavior-core/package.json",
+      "sha256": "ca94eb3d6a6a428cdbd44694648e8fc5b29c3c63af9fe218fb3d7908af5f7f23"
+    },
+    {
+      "path": "behavior-core/src/authority.ts",
+      "sha256": "9cf52381b38931322f2fa449883bd5747de3660d1a73cd1f2c155434cbc6a372"
+    },
+    {
+      "path": "behavior-core/src/coordinator.ts",
+      "sha256": "7dbd18f0cacc5e394dd32b7ab1bd06abde7f4632220c3002c3bbd3cb746297b8"
+    },
+    {
+      "path": "behavior-core/src/jev-admin.ts",
+      "sha256": "ca16cc659606284f2a8e6d84087f02bbe26bbf349ca2769da5e2032c2767d22c"
+    },
+    {
+      "path": "behavior-core/src/jev-consumer.ts",
+      "sha256": "bf1c947e966b24a827b319c92eb8a7b5a45472c8f999af47c431087f30bd0f7a"
+    },
+    {
+      "path": "behavior-core/src/jev-contract.ts",
+      "sha256": "042b8e508c3753218220188bc1b2971f3c097ce66b59e4388dcf4bbad1dc6319"
+    },
+    {
+      "path": "behavior-core/src/jev-service.ts",
+      "sha256": "30eb3d4903076ff188c082a7eb5c59ea89699e69ff879e0cd191cb56783f7bbc"
+    },
+    {
+      "path": "behavior-core/src/jev-templates.ts",
+      "sha256": "381a4ef009517e152357496d34c7a6d8a16ac72ae21db404f828d1b3a5261738"
+    },
+    {
+      "path": "behavior-core/src/jev-transport.ts",
+      "sha256": "c87a43fbbffb109a9ba4b9e1bc2bec7b7d7a704db51ed4ac602eefadb4457e6b"
+    },
+    {
+      "path": "behavior-core/src/native-lease.ts",
+      "sha256": "6127bffa85f7c21c6cb6bc6e62973a2ef0ab01cd4ad55aad05766e1f191f3fcc"
+    },
+    {
+      "path": "behavior-core/src/voice.ts",
+      "sha256": "a1a263868c5359e8412e3c3ba837c937cffdf9c467f45b79f7785a6005695c7f"
+    },
+    {
+      "path": "behavior-core/tests/authority.test.mjs",
+      "sha256": "186437c0ba3f4803a0df4187ae7c86da1621fa8c6e3d6192ee492caa155be816"
+    },
+    {
+      "path": "behavior-core/tests/coordinator.test.mjs",
+      "sha256": "76fb81cdf968aa6519ecfa6cd99b6061d4c95d84a6c2631177e1c385054ceb30"
+    },
+    {
+      "path": "behavior-core/tests/file-effect.test.mjs",
+      "sha256": "783c6c8838301fbc4b1a6ffc49963fc49fe6e8c0c06849ab0dbbada2cbcdf5ea"
+    },
+    {
+      "path": "behavior-core/tests/fixtures.mjs",
+      "sha256": "83a81f41c8255ac410c278b1be960a6a47c96a1a32325e1003b7fc593e8d6d2f"
+    },
+    {
+      "path": "behavior-core/tests/jev-admin.test.mjs",
+      "sha256": "5f5dbbcdf8043c21ce379b0e8f6a1049898d03081ed751e48c3f3e83f604fdc2"
+    },
+    {
+      "path": "behavior-core/tests/jev-consumer.test.mjs",
+      "sha256": "28941d26eb9a21e97ed6fe3bf8d24b4b56bd15ecc25812c1138deae098de2320"
+    },
+    {
+      "path": "behavior-core/tests/jev-contract.test.mjs",
+      "sha256": "94cd8751c165212c926ffc245c8828595c8ce08cca5f007a15cbf1ac5a92760b"
+    },
+    {
+      "path": "behavior-core/tests/jev-fixtures.mjs",
+      "sha256": "6280364298b03230734cd2f1372faf97598c74e69678e44978a5d5505d8f9aa6"
+    },
+    {
+      "path": "behavior-core/tests/jev-loopback.test.mjs",
+      "sha256": "bcb1e7d0d2da6004634919bfa544fae2e4a1e754b739521f88d96672695d7cb6"
+    },
+    {
+      "path": "behavior-core/tests/jev-service.test.mjs",
+      "sha256": "918eaf283c9454f7fd95f8f299f71a59f0e96f2228b5860891e64a07ac079885"
+    },
+    {
+      "path": "behavior-core/tests/jev-transport.test.mjs",
+      "sha256": "32301e0f41c2e247dc65adb14c402e81718d969b5b206e1fdab58e119def8aae"
+    },
+    {
+      "path": "behavior-core/tests/task-summary.test.mjs",
+      "sha256": "a5d59aac27e98147b395f28752d73786446283e01913be8f2cf8bac45d4b1980"
+    },
+    {
+      "path": "behavior-core/tests/voice-lease.test.mjs",
+      "sha256": "9643a9e6b50e3008a7cdaadd4c392b3e78f6d9d7d10e7c974b6939a62e21334e"
+    },
+    {
+      "path": "behavior-core/tsconfig.json",
+      "sha256": "593f53225b0832260f72b349739af23f7382a70e3008f913bcb679d815185bed"
+    },
+    {
+      "path": "delivery/CAPABILITY-MATRIX.json",
+      "sha256": "4629a26dab53f283968f3250c47a3d2d1dca44aaf518aacf311afda15a3979b8"
+    },
+    {
+      "path": "delivery/MEASUREMENT-AND-QUALIFICATION.md",
+      "sha256": "bc58f973e11570684b225afad96e5f4a23dd049401ea44e4dc6e0717abe7da8d"
+    },
+    {
+      "path": "delivery/NATIVE-RUN.template.json",
+      "sha256": "ed349cd1507dd159c68de2ff6f9da6b35d6f20f787f4fc2813bc0d96a4156974"
+    },
+    {
+      "path": "evidence/PRIMARY-SOURCES.json",
+      "sha256": "abc4a9dcae97229b9b80b76458650455afc5a3ba0b761502baa1d9bce65c8c64"
+    },
+    {
+      "path": "evidence/behavior-core-tests.tap",
+      "sha256": "b18303a98c608b752cd38ec26880f0514960ceab783b44e454a1e6e994301b06"
+    },
+    {
+      "path": "evidence/evidence-gate-tests.txt",
+      "sha256": "45a8d192270de132ad565ca0d2ffefa738deba1b8cf14cb65b531384a1423480"
+    },
+    {
+      "path": "evidence/negative-controls.json",
+      "sha256": "e0c1564f750467e6eb9b89b2d006e7102cfd8226da6f556c7354efa625908274"
+    },
+    {
+      "path": "evidence/strict-typescript.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/temporary-file-example.json",
+      "sha256": "829d099ee9ccb1077e8a164e1c9a48daf1ab214bb82a1f48ff4fd142bdfd0949"
+    },
+    {
+      "path": "jev/ACCEPTANCE-MATRIX.json",
+      "sha256": "c5aa96d2fb4f0951214a898fec76083be462fde2b459ca4ac8ef2c8558e879be"
+    },
+    {
+      "path": "jev/BACKLOG.json",
+      "sha256": "3736e9cd15bfd7c3a600ad5955b252c5d6bd2b9f54fee469c8dd3c26bde56e49"
+    },
+    {
+      "path": "jev/BACKLOG.md",
+      "sha256": "1c38fd76ecbcb5ea3a52dc7f631f62822d1ec958978eda5f24918f7ceba6db86"
+    },
+    {
+      "path": "jev/JEV-ROLE-AND-BINDINGS.md",
+      "sha256": "25be73d6918a32765e4157ce4a2a1415f453d2db76ed653b83af1caccd29121d"
+    },
+    {
+      "path": "jev/PROOF-OF-INTEGRATION.md",
+      "sha256": "3f139e4338324ca7a393e0f9ba80ae98c8436b72c6574325ed862e68562711cf"
+    },
+    {
+      "path": "jev/QUALIFICATION.md",
+      "sha256": "ded64cc2cf6ceed20277717b96386a4121a31c830e6969e2df8bbeacab6a3204"
+    },
+    {
+      "path": "jev/configuration.disabled.example.json",
+      "sha256": "9ea95cd82ec4e66a5dbb1e93324bb6bdb081c035d4bba5e090b011c35980791a"
+    },
+    {
+      "path": "jev/evidence/FINAL-STATUS.json",
+      "sha256": "b81f2940f86fde6b9591192e4fa38c113e591ea464cd75dd1d61182217805871"
+    },
+    {
+      "path": "jev/evidence/PRIMARY-SOURCES.json",
+      "sha256": "9d7650c8b55d4f633a240a9ee571ca3abb4ce504b6f5410bb9cc415e8a0f5e7e"
+    },
+    {
+      "path": "jev/evidence/README.md",
+      "sha256": "bfc7bf4ead6f71fcc2aea0b8735b147ea5da54159af179b8e80d9950cc62ea67"
+    },
+    {
+      "path": "jev/evidence/REFERENCES.md",
+      "sha256": "518ef72b564b1fa213ad63dabf318fd2954c4bb2b6a974d76e92a75d4775a0ba"
+    },
+    {
+      "path": "jev/evidence/all-core-tests.tap",
+      "sha256": "3cd2fcc6fafa9223dd9c4c91354c1b42f72afdd05ee497e03131089d16bd945f"
+    },
+    {
+      "path": "jev/evidence/baseline-preservation.json",
+      "sha256": "1582c8cdb8ba85cd2ea33c9a228f0f40f8abd5e01093c9af31ac43cf9362024e"
+    },
+    {
+      "path": "jev/evidence/evidence-validator-tests.txt",
+      "sha256": "307bec6a337c4943ebbfadaf70b711a33712387651e74e5cb74ae42dae886a48"
+    },
+    {
+      "path": "jev/evidence/first-tests.tap",
+      "sha256": "192f8e08089ad654aa823998fa7fa105cc65a9b3f085576fc08e771671d93770"
+    },
+    {
+      "path": "jev/evidence/integration-tests.tap",
+      "sha256": "e7209c10c3f79eb8a473524a8e529484a16116068b8d10758f007dac6ee2d507"
+    },
+    {
+      "path": "jev/evidence/jev-tests.tap",
+      "sha256": "ebc04ea0c3a7fd16ba1e3c1b01e53c5b4ea2afdce73b31c734636b0e0b803beb"
+    },
+    {
+      "path": "jev/evidence/negative-controls-run.txt",
+      "sha256": "37ea89b351ad81538e55644a2ba0f449db13737b9b35cd9706beb2f627718537"
+    },
+    {
+      "path": "jev/evidence/negative-controls.json",
+      "sha256": "185e5b4fcc179f308ec33b37a24afd526538ef286ac215eb28cbfca39de47761"
+    },
+    {
+      "path": "jev/evidence/original-controls-rerun.txt",
+      "sha256": "1ca24fa1ed4ac399f47138c1c10f8bad269764303cbfa429213fa15b16cb4205"
+    },
+    {
+      "path": "jev/evidence/previous-v2-final-status.json",
+      "sha256": "8ee395f6844a1c42fe1b92f9eac76974ef6f9c28012e288c19f7475ede767378"
+    },
+    {
+      "path": "jev/evidence/previous-v2-implementation-report.md",
+      "sha256": "5ecfe287334d07fb15802179383f218454560e5caeea2e211d04b8b4621cf13d"
+    },
+    {
+      "path": "jev/evidence/previous-v2-manifest.json",
+      "sha256": "4d0adbddb034843303f42fabd69dd53f0486d30eaca2b0d0eb80115754691a6d"
+    },
+    {
+      "path": "jev/evidence/previous-v2-negative-controls.json",
+      "sha256": "939dc06a1bfb198f1ad12813d8885368d37eea3238947ff7ed2a83bc91972355"
+    },
+    {
+      "path": "jev/evidence/previous-v2-readme.md",
+      "sha256": "d2799c30939e63e49e03ef9b673e8ed0ce063d1320727821a06450175bfa5d8a"
+    },
+    {
+      "path": "jev/evidence/probe-guard-tests.json",
+      "sha256": "3e7c5c7a128c423436a78e3824de6df9680a13733da687683a940cdb47f97d2c"
+    },
+    {
+      "path": "jev/evidence/service-tests.tap",
+      "sha256": "e2686fad9d3185da6db1ffa1689f006eb6fa0558894df55a86fc32d1b0c79c4e"
+    },
+    {
+      "path": "jev/evidence/strict-typescript.txt",
+      "sha256": "27e080266babb31e4740d40042da2b3a28fb4df0ad465d320f483ac7b9c9e5f6"
+    },
+    {
+      "path": "jev/evidence/temporary-file-example.json",
+      "sha256": "1d3d301d3149d095b3b1dcaf78258be8b427eb0420eff5f13a8f51e36146575f"
+    },
+    {
+      "path": "jev/qualification/PROFILE.template.json",
+      "sha256": "134e98a329c37533143616a76562b9d58779d458bee725c4e0240eac0a3abc9f"
+    },
+    {
+      "path": "keyboard-notes/ACCEPTANCE-MATRIX.json",
+      "sha256": "e67fb48755640b3ef21c233991ab327d0ae2fe45223873a6b9240092278b10cc"
+    },
+    {
+      "path": "keyboard-notes/INTEGRATION.json",
+      "sha256": "8634471c304da057cd284a772f7d1580fcb69022323ecfc9fb7b55c979421513"
+    },
+    {
+      "path": "keyboard-notes/PRODUCT-CORRECTION.md",
+      "sha256": "4d849489ebca430f2fd9b50de91f384bcc2e066a2d208d7b39d6347b63f7f353"
+    },
+    {
+      "path": "keyboard-notes/REQUIREMENTS.json",
+      "sha256": "739e3aae53525a71a48ce72e545aa7dc7668f68b337ac0f2ab89d97531d95eaa"
+    },
+    {
+      "path": "keyboard-notes/evidence/FINAL-STATUS.json",
+      "sha256": "951238f33af48cd963d463fd1b4bd03687bf80ce8b83ec5711eb84886b96f3d3"
+    },
+    {
+      "path": "keyboard-notes/evidence/PRESERVATION.json",
+      "sha256": "b528946633c74477d599a2b7f7915129bb0edcd5b6c77c480dfe992e14fd0a7b"
+    },
+    {
+      "path": "keyboard-notes/evidence/PRIMARY-SOURCES.json",
+      "sha256": "65b304762ee3fc32e4479955459677801865af716f83d2f771f850dbd03038c2"
+    },
+    {
+      "path": "keyboard-notes/evidence/candidate-tests.tap",
+      "sha256": "ade330ab59573368fbfe3e06e8f396607dedb57388e2fe247fc9ac541c02c1a1"
+    },
+    {
+      "path": "keyboard-notes/evidence/previous-v3/IMPLEMENTATION-REPORT.md",
+      "sha256": "f1b17d79aaaae8e4ed9f2faa89016a2eda6c7c9e8cf3c2f09e3949004cfdbb6d"
+    },
+    {
+      "path": "keyboard-notes/evidence/previous-v3/PACKAGE-MANIFEST.json",
+      "sha256": "6ff95ef90174bb490e3b7a8f26b20f18faf32f28b80f679f6d4e459ff33c409a"
+    },
+    {
+      "path": "keyboard-notes/evidence/previous-v3/README.md",
+      "sha256": "22f3e0b7bfd551673e18c079eeb64cace98781a6ed21090d038c314862f70512"
+    },
+    {
+      "path": "keyboard-notes/evidence/previous-v3/behavior/PRODUCT-BEHAVIOR.md",
+      "sha256": "c7922dc4567e99e77aef5de01dc771977d9287fc4ab80e8f11ad4abea5930744"
+    },
+    {
+      "path": "keyboard-notes/evidence/previous-v3/delivery/IMPLEMENTATION-PROMPT.md",
+      "sha256": "6b03bcb6cdf9369b1ba6db4aefbed1056af10da931a45e41ec7d5208efdfbdd4"
+    },
+    {
+      "path": "keyboard-notes/evidence/previous-v3/evidence/FINAL-STATUS.json",
+      "sha256": "b81f2940f86fde6b9591192e4fa38c113e591ea464cd75dd1d61182217805871"
+    },
+    {
+      "path": "keyboard-notes/evidence/typescript-build.txt",
+      "sha256": "59323b9a7bb4e6e03a5d31fa10df4e46dc881183b12db95b37c80d82d036cbc3"
+    },
+    {
+      "path": "tools/check_acceptance.py",
+      "sha256": "2309e459e7e9d51bf5ed41f838e2f09067d03666ca3940091b0344377d67fe92"
+    },
+    {
+      "path": "tools/run_jev_negative_controls.py",
+      "sha256": "7df11bbc9e009f51c2c929254656a1b821a63cd604be8b8e3b2612e8b6d5da0d"
+    },
+    {
+      "path": "tools/run_negative_controls.py",
+      "sha256": "d2f16eddba0d174374ccb3e893af0a8f870d6740a06d5dc6541a789703959555"
+    },
+    {
+      "path": "tools/test_check_acceptance.py",
+      "sha256": "4b32c36c21633ab3ae30cfa5c2e65e5cddae248c9563189c0e56ce6e9b12e1f2"
+    }
+  ],
+  "changed_files": [
+    {
+      "path": "IMPLEMENTATION-REPORT.md",
+      "original_sha256": "5e63a2e9caa683eda87f6707e7fdf7458583ab16abc1b4071a1afb48c496f6ce",
+      "saved_original": "memory/evidence/previous-v4/IMPLEMENTATION-REPORT.md"
+    },
+    {
+      "path": "PACKAGE-MANIFEST.json",
+      "original_sha256": "346aa7a7bb64e55f198642967859a9e802acc6bed4bc88489ed1d7453928430e",
+      "saved_original": "memory/evidence/previous-v4/PACKAGE-MANIFEST.json"
+    },
+    {
+      "path": "README.md",
+      "original_sha256": "0fd654ac6d03dc6496decf212906b97ffe4dbf1057b918b03efa088e0dd94ed8",
+      "saved_original": "memory/evidence/previous-v4/README.md"
+    },
+    {
+      "path": "behavior/ALL-ACCEPTANCE.json",
+      "original_sha256": "452ff92f44ee6e33a62a20957806ff8303b85876d1db3a4178fc5c07fab62d0d",
+      "saved_original": "memory/evidence/previous-v4/behavior/ALL-ACCEPTANCE.json"
+    },
+    {
+      "path": "behavior/PRODUCT-BEHAVIOR.md",
+      "original_sha256": "64b4eac75a0f999fbe0898a99c10231127ee493e7964d9c0521d7866d73ab57b",
+      "saved_original": "memory/evidence/previous-v4/behavior/PRODUCT-BEHAVIOR.md"
+    },
+    {
+      "path": "delivery/HOST-BINDINGS.md",
+      "original_sha256": "2fb5ccd129178122d7c8b50369a840be60e41ea9cb7dda29879b7d848061bfe4",
+      "saved_original": "memory/evidence/previous-v4/delivery/HOST-BINDINGS.md"
+    },
+    {
+      "path": "delivery/IMPLEMENTATION-PROMPT.md",
+      "original_sha256": "bad2bed5792e215b1ff5e6135bc1e97d2ecb657bc3e2588307e1f7db156c301e",
+      "saved_original": "memory/evidence/previous-v4/delivery/IMPLEMENTATION-PROMPT.md"
+    },
+    {
+      "path": "delivery/INTEGRATION-BACKLOG.json",
+      "original_sha256": "95f0d2eb3d2a6ec158e8ffcaf9ba68f2befaff2d9bfad1c61a3b319329533f62",
+      "saved_original": "memory/evidence/previous-v4/delivery/INTEGRATION-BACKLOG.json"
+    },
+    {
+      "path": "delivery/R11-TASK-CROSSWALK.json",
+      "original_sha256": "fc9289059740fb4c84186f65c3b6902dff75ee0e8319c4d4b495dc485f7effe2",
+      "saved_original": "memory/evidence/previous-v4/delivery/R11-TASK-CROSSWALK.json"
+    },
+    {
+      "path": "evidence/FINAL-STATUS.json",
+      "original_sha256": "951238f33af48cd963d463fd1b4bd03687bf80ce8b83ec5711eb84886b96f3d3",
+      "saved_original": "memory/evidence/previous-v4/evidence/FINAL-STATUS.json"
+    },
+    {
+      "path": "jev/JEV-INTEGRATION.md",
+      "original_sha256": "fd078e93a61ab3142d6035d5debfdf9a859310f6028ab9e84d8594f9545fb99d",
+      "saved_original": "memory/evidence/previous-v4/jev/JEV-INTEGRATION.md"
+    }
+  ]
+}

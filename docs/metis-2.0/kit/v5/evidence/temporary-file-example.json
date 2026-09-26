@@ -1,0 +1,26 @@
+{
+  "scope": "REAL_TEMP_FILE_EFFECT_WITH_EXPLICIT_TEST_JOURNAL_NOT_NATIVE_METIS",
+  "effectCalls": 1,
+  "byteMatch": true,
+  "receipt": {
+    "operationId": "file-example",
+    "proposalDigest": "04437c45587a06b570b67eccb998debdba067a2905798808e72f5e1b2e4d9f02",
+    "identityKey": "[\"tenant-a\",\"user-a\",\"mac-a\",\"session-a\",\"agent-a\",\"task-a\"]",
+    "kind": "create_document",
+    "authorityEpoch": 1,
+    "policyEpoch": 0,
+    "outcome": "verified",
+    "dispatched": true,
+    "code": "POSTCONDITION_VERIFIED",
+    "evidenceRef": "sha256:a421ece5d37535d0fd7d65555b3434d5f28b1de641a2e39dcf1fc69d093103d7",
+    "startedAtMs": 45.156178,
+    "finishedAtMs": 48.421892,
+    "journalSettled": true,
+    "inputQuiesced": true
+  },
+  "display": {
+    "label": "Done",
+    "message": "The requested change was verified.",
+    "canSayDone": true
+  }
+}

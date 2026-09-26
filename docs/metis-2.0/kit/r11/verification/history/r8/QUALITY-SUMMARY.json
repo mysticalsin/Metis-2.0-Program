@@ -1,0 +1,82 @@
+{
+  "scope": "HANDOFF_AND_SYNTHETIC_REFERENCE_QUALITY_NOT_PRODUCT_RELEASE",
+  "edition": "r8",
+  "master_revision": "4.2",
+  "created_at": "2026-09-22T22:50:19.563816+00:00",
+  "master_sha256": "4ae9bba45e1b5b4cee3dcf78201c2708d94def1178b94607c87296df91d76b85",
+  "preserved_counts": {
+    "requirements": 55,
+    "use_cases": 112,
+    "root_tasks": 66,
+    "owner_commitments": 44,
+    "golden_flows": 12,
+    "historical_findings": 20
+  },
+  "added_counts": {
+    "experience_qualifications": 12,
+    "source_findings": 24
+  },
+  "observed_tests": {
+    "browser": 60,
+    "orb": 27,
+    "meeting": 17,
+    "geometry": 7,
+    "source": 5
+  },
+  "negative_probes_detected": 8,
+  "structural_checks_without_inventory": 39,
+  "full_inventory_check_total": 40,
+  "source_index": {
+    "sections": 1521,
+    "lines": 246942,
+    "bytes": 11140550,
+    "source_commit": null,
+    "source_sha256": "efc8af651c1b2abb952d7737d5f3f3d15c4e51057059a07ceb3445c65f5c53f3",
+    "diagram_paths_present": 14,
+    "diagram_paths_total": 19
+  },
+  "visual_references": {
+    "current_pngs": 18,
+    "animation_gif": 1,
+    "gif_frames": 100
+  },
+  "pdf": {
+    "scope": "PDF_DOCUMENT_ONLY",
+    "pages": 139,
+    "identifiers_checked": 345,
+    "missing_ids": [],
+    "out_of_page_text_blocks": [],
+    "representative_pages_rendered": [
+      1,
+      2,
+      21,
+      112,
+      132,
+      139
+    ],
+    "passed": true,
+    "note": "Structural text checks and selected visual page inspection; not every page independently proofread and not a product test."
+  },
+  "tsx": {
+    "scope": "REFERENCE_TSX_SYNTAX_ONLY",
+    "typescript_version": "5.8.3",
+    "passed": true,
+    "errors": [],
+    "not_tested": [
+      "Type resolution against the actual React/component packages",
+      "Application build",
+      "Native runtime",
+      "Installed product integration"
+    ]
+  },
+  "application_tests_run": false,
+  "production_changes": false,
+  "native_signing_run": false,
+  "limitations": [
+    "Targeted source review and computational full-section indexing, not every line audited.",
+    "Original export omits five central diagram files and is not a buildable checkout.",
+    "Browser tests use in-memory exact documents, not native Windows/macOS or file/loopback navigation.",
+    "Actual React dependency installation/compilation and native-library qualification remain required.",
+    "Competitor comparison is official documentation research, not hands-on superiority evidence."
+  ]
+}

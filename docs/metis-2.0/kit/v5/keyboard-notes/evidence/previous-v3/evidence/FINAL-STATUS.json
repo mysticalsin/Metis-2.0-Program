@@ -1,0 +1,82 @@
+{
+  "schema": "metis.jev.upgrade.evidence.v3",
+  "date": "2026-09-25",
+  "status": "TESTED_STANDALONE_INTEGRATION_CANDIDATE",
+  "runtime": {
+    "node": "v22.16.0",
+    "typescript": "Version 5.8.3",
+    "python": "3.13.5"
+  },
+  "implemented": {
+    "new_original_typescript_modules": 6,
+    "previous_unchanged_typescript_modules": 4,
+    "action_result_actually_consumed": true,
+    "direct_existing_coordinator_integration": true,
+    "intent_skill_and_knowledge_consumers": true,
+    "production_bindings_required": true
+  },
+  "executed": {
+    "all_core_tests": {
+      "tests": 306,
+      "pass": 306,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "jev_subset_tests": {
+      "tests": 146,
+      "pass": 146,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "new_jev_unique_cases": 146,
+    "new_negative_controls": {
+      "total": 8,
+      "detected": 8
+    },
+    "previous_negative_controls_rerun": {
+      "total": 8,
+      "detected": 8
+    },
+    "evidence_validator_unit_tests": 13,
+    "strict_typescript_modules": 10,
+    "real_loopback_http_with_synthetic_provider": true,
+    "real_temporary_file_write_and_readback": true,
+    "probe_guard_checks": 2
+  },
+  "scopes": {
+    "provider_replies": "SYNTHETIC_FIXTURES",
+    "identity_and_qualifications": "SYNTHETIC_FIXTURES",
+    "journal_vault": "EXPLICIT_TEST_DOUBLES",
+    "loopback": "REAL_LOCAL_HTTP_NOT_VENDOR",
+    "effect": "REAL_TEMPORARY_FILE_NOT_NATIVE_APP"
+  },
+  "not_run": [
+    "current repository/full application build graph and tests",
+    "actual TypeSafe account/model probe",
+    "live model held-out quality and language qualification",
+    "actual tenant retention/region qualification",
+    "real authenticated Operator and transaction-capable vault/ledger",
+    "two real enrolled devices and real central-key rotation",
+    "actual Laya serving/checkpoint normalization",
+    "native microphone/control/overlay/speech and installed profile QA",
+    "current service deployment and readback",
+    "independent review/subagents",
+    "signing, public release or installed app update"
+  ],
+  "root_tasks_preserved": 66,
+  "interaction_children_preserved": 20,
+  "jev_integration_children": 10,
+  "previous_interaction_cases_preserved": 60,
+  "new_jev_app_cases": 24,
+  "all_app_cases_not_run": 84,
+  "current_git_head_verified": false,
+  "github_modified": false,
+  "local_pc_modified": false,
+  "vendor_request_made": false,
+  "ready_for_production": false,
+  "installed_app_updated": false
+}

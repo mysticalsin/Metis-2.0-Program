@@ -1,0 +1,1847 @@
+{
+  "schema": "metis.clicky.r11-crosswalk.v1",
+  "original_task_count": 66,
+  "original_requirement_count": 55,
+  "original_use_case_count": 112,
+  "original_golden_flow_count": 12,
+  "unchanged_root_ids": true,
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Pin the actual system and preserve the working tree",
+      "original_dependencies": [],
+      "original_dependency_text": "None.",
+      "requirements": [
+        "M2-BASE-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-01"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-01"
+      ],
+      "hindsight_skill_steps": [
+        "HMSTEP-01"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-002",
+      "title": "Lock the PRD, effective policies and independent release lanes",
+      "original_dependencies": [
+        "TASK-001"
+      ],
+      "original_dependency_text": "TASK-001.",
+      "requirements": [
+        "M2-BASE-01",
+        "M2-SEC-02",
+        "M2-REL-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-01",
+        "CXSTEP-20"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-01"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-01"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-003",
+      "title": "Establish a compact source map and numbered handoff",
+      "original_dependencies": [
+        "TASK-001"
+      ],
+      "original_dependency_text": "TASK-001.",
+      "requirements": [
+        "M2-ENG-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-01"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-01"
+      ],
+      "hindsight_skill_steps": [
+        "HMSTEP-01"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-004",
+      "title": "Measure size, capture and hardware baselines",
+      "original_dependencies": [
+        "TASK-001"
+      ],
+      "original_dependency_text": "TASK-001.",
+      "requirements": [
+        "M2-PKG-01",
+        "M2-ASR-01",
+        "M2-LOCAL-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-01",
+        "CXSTEP-18"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-02"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-005",
+      "title": "Define shared speech, command, policy and metering contracts",
+      "original_dependencies": [
+        "TASK-002"
+      ],
+      "original_dependency_text": "TASK-002.",
+      "requirements": [
+        "M2-STT-01",
+        "M2-ACT-01",
+        "M2-OPS-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-02",
+        "CXSTEP-04",
+        "CXSTEP-06"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-03"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-04",
+        "NK-06",
+        "NK-08"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-006",
+      "title": "Establish cross-surface Entra and service identity",
+      "original_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "original_dependency_text": "TASK-002, TASK-005.",
+      "requirements": [
+        "M2-TEAMS-01",
+        "M2-DUST-01",
+        "M2-SEC-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-02",
+        "CXSTEP-12",
+        "CXSTEP-13",
+        "CXSTEP-16"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-04"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-007",
+      "title": "Lock canonical knowledge, provenance and storage authority",
+      "original_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "original_dependency_text": "TASK-002, TASK-005.",
+      "requirements": [
+        "M2-KNOW-02",
+        "M2-KNOW-04",
+        "M2-GOV-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-04",
+        "CXSTEP-13"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-11"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-02"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-008",
+      "title": "Design the simplified Settings inventory and task flows",
+      "original_dependencies": [
+        "TASK-002",
+        "TASK-004",
+        "TASK-005"
+      ],
+      "original_dependency_text": "TASK-002, TASK-004, TASK-005.",
+      "requirements": [
+        "M2-SET-01",
+        "M2-SET-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-08",
+        "CXSTEP-15"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-01",
+        "NK-03",
+        "NK-05"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-08"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-009",
+      "title": "Define centrally governed skill contracts and runtime boundaries",
+      "original_dependencies": [
+        "TASK-002",
+        "TASK-005",
+        "TASK-007"
+      ],
+      "original_dependency_text": "TASK-002, TASK-005, TASK-007.",
+      "requirements": [
+        "M2-SKILL-01",
+        "M2-SKILL-02",
+        "M2-GOV-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-09",
+        "CXSTEP-11",
+        "CXSTEP-12"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-010",
+      "title": "Qualify meeting APIs, capture permissions and legal prerequisites",
+      "original_dependencies": [
+        "TASK-002",
+        "TASK-006",
+        "TASK-007"
+      ],
+      "original_dependency_text": "TASK-002, TASK-006, TASK-007.",
+      "requirements": [
+        "M2-TEAMS-02",
+        "M2-TEAMS-03",
+        "M2-TEAMS-05",
+        "M2-GOV-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-17"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-011",
+      "title": "Qualify the exact Cloudflare hosting and privacy route",
+      "original_dependencies": [
+        "TASK-002"
+      ],
+      "original_dependency_text": "TASK-002.",
+      "requirements": [
+        "M2-PRIV-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03",
+        "CXSTEP-16"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-02"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-012",
+      "title": "Prepare authorized Cloudflare staging and server credentials",
+      "original_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "original_dependency_text": "TASK-002, TASK-005.",
+      "requirements": [
+        "M2-STT-02",
+        "M2-SEC-01",
+        "M2-OPS-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-02"
+      ]
+    },
+    {
+      "id": "TASK-013",
+      "title": "Disable speech content logs and caches before capture tests",
+      "original_dependencies": [
+        "TASK-011",
+        "TASK-012"
+      ],
+      "original_dependency_text": "TASK-011, TASK-012.",
+      "requirements": [
+        "M2-PRIV-01",
+        "M2-PRIV-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03",
+        "CXSTEP-16"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-014",
+      "title": "Implement the authenticated speech-session broker",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-012",
+        "TASK-013"
+      ],
+      "original_dependency_text": "TASK-005, TASK-012, TASK-013.",
+      "requirements": [
+        "M2-STT-02",
+        "M2-SEC-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03",
+        "CXSTEP-16"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-015",
+      "title": "Make diagnostics and metering projections content-free",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-013",
+        "TASK-014"
+      ],
+      "original_dependency_text": "TASK-005, TASK-013, TASK-014.",
+      "requirements": [
+        "M2-PRIV-03",
+        "M2-STT-04"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-02",
+        "CXSTEP-16"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-02",
+        "HMSTEP-03"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-016",
+      "title": "Connect the real Cloudflare Nova-3 server transport",
+      "original_dependencies": [
+        "TASK-013",
+        "TASK-014",
+        "TASK-015"
+      ],
+      "original_dependency_text": "TASK-013, TASK-014, TASK-015.",
+      "requirements": [
+        "M2-STT-02",
+        "M2-ASR-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-017",
+      "title": "Repair the trusted audio broker and requested-only tracks",
+      "original_dependencies": [
+        "TASK-005"
+      ],
+      "original_dependency_text": "TASK-005.",
+      "requirements": [
+        "M2-VOICE-01",
+        "M2-STT-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03",
+        "CXSTEP-07",
+        "CXSTEP-17"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-02",
+        "NK-04",
+        "NK-06",
+        "NK-07",
+        "NK-08",
+        "NK-09"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-018",
+      "title": "Harden segment revision, reconnect and stream finalization",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-017"
+      ],
+      "original_dependency_text": "TASK-005, TASK-017.",
+      "requirements": [
+        "M2-ASR-01",
+        "M2-STT-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-02",
+        "NK-06",
+        "NK-07",
+        "NK-09"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-019",
+      "title": "Implement opt-in local wake and immediate stop authority",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-017",
+        "TASK-018"
+      ],
+      "original_dependency_text": "TASK-005, TASK-017, TASK-018.",
+      "requirements": [
+        "M2-VOICE-01",
+        "M2-VOICE-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03",
+        "CXSTEP-07",
+        "CXSTEP-10",
+        "CXSTEP-15",
+        "CXSTEP-17"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-04"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-04",
+        "NK-06",
+        "NK-07",
+        "NK-08"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-020",
+      "title": "Prove the first complete synthetic Cloudflare speech path",
+      "original_dependencies": [
+        "TASK-013",
+        "TASK-014",
+        "TASK-015",
+        "TASK-016",
+        "TASK-017",
+        "TASK-018",
+        "TASK-019"
+      ],
+      "original_dependency_text": "TASK-013, TASK-014, TASK-015, TASK-016, TASK-017, TASK-018, TASK-019.",
+      "requirements": [
+        "M2-STT-02",
+        "M2-PRIV-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03",
+        "CXSTEP-19"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-021",
+      "title": "Build hardware qualification and the reviewed model catalog",
+      "original_dependencies": [
+        "TASK-004",
+        "TASK-005"
+      ],
+      "original_dependency_text": "TASK-004, TASK-005.",
+      "requirements": [
+        "M2-LOCAL-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-18"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-022",
+      "title": "Implement separate optional local-model Settings",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-008",
+        "TASK-021"
+      ],
+      "original_dependency_text": "TASK-005, TASK-008, TASK-021.",
+      "requirements": [
+        "M2-LOCAL-01",
+        "M2-UX-02",
+        "M2-SET-01",
+        "M2-SET-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-18"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-023",
+      "title": "Provision signed manifests and R2 asset delivery",
+      "original_dependencies": [
+        "TASK-004",
+        "TASK-005",
+        "TASK-012",
+        "TASK-021"
+      ],
+      "original_dependency_text": "TASK-004, TASK-005, TASK-012, TASK-021.",
+      "requirements": [
+        "M2-PKG-02",
+        "M2-SEC-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-18"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-024",
+      "title": "Implement optional component lifecycle and installation",
+      "original_dependencies": [
+        "TASK-021",
+        "TASK-022",
+        "TASK-023"
+      ],
+      "original_dependency_text": "TASK-021, TASK-022, TASK-023.",
+      "requirements": [
+        "M2-PKG-02",
+        "M2-LOCAL-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-18"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-025",
+      "title": "Enforce local model load, resource and fallback rules",
+      "original_dependencies": [
+        "TASK-017",
+        "TASK-021",
+        "TASK-024"
+      ],
+      "original_dependency_text": "TASK-017, TASK-021, TASK-024.",
+      "requirements": [
+        "M2-LOCAL-01",
+        "M2-LOCAL-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-18"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-026",
+      "title": "Produce the genuinely lean cloud-first core",
+      "original_dependencies": [
+        "TASK-004",
+        "TASK-016",
+        "TASK-023",
+        "TASK-024",
+        "TASK-025"
+      ],
+      "original_dependency_text": "TASK-004, TASK-016, TASK-023, TASK-024, TASK-025.",
+      "requirements": [
+        "M2-PKG-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-18"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-14"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-027",
+      "title": "Repair onboarding, migration and both known P1s",
+      "original_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "original_dependency_text": "TASK-002, TASK-005.",
+      "requirements": [
+        "M2-UX-02",
+        "M2-DATA-01",
+        "M2-REL-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-15"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-01",
+        "NK-05",
+        "NK-11"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-028",
+      "title": "Repair right-edge and expanded input usability",
+      "original_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "original_dependency_text": "TASK-002, TASK-005.",
+      "requirements": [
+        "M2-UX-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-05",
+        "CXSTEP-07",
+        "CXSTEP-08",
+        "CXSTEP-11",
+        "CXSTEP-15"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-03",
+        "NK-04",
+        "NK-05",
+        "NK-11"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-029",
+      "title": "Build the native Mac foundation using the actual Codex environment",
+      "original_dependencies": [
+        "TASK-002",
+        "TASK-005"
+      ],
+      "original_dependency_text": "TASK-002, TASK-005.",
+      "requirements": [
+        "M2-MAC-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-05",
+        "CXSTEP-06",
+        "CXSTEP-18"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-03",
+        "NK-05"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-08"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-030",
+      "title": "Connect the real orb, beam and caption interfaces",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-019",
+        "TASK-028.A"
+      ],
+      "original_dependency_text": "TASK-005, TASK-019, TASK-028.A.",
+      "requirements": [
+        "M2-UX-01",
+        "M2-VOICE-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03",
+        "CXSTEP-05",
+        "CXSTEP-08",
+        "CXSTEP-10",
+        "CXSTEP-11",
+        "CXSTEP-15"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-03"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-031",
+      "title": "Finish the real Jev decision gateway and application",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-012",
+        "TASK-015"
+      ],
+      "original_dependency_text": "TASK-005, TASK-012, TASK-015.",
+      "requirements": [
+        "M2-DEC-01",
+        "M2-ACT-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-09"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-01",
+        "JVSTEP-02",
+        "JVSTEP-03",
+        "JVSTEP-04",
+        "JVSTEP-05",
+        "JVSTEP-06",
+        "JVSTEP-07",
+        "JVSTEP-08",
+        "JVSTEP-09",
+        "JVSTEP-10"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-10"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-032",
+      "title": "Qualify the Laya alternative and real portal selection",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-012",
+        "TASK-015"
+      ],
+      "original_dependency_text": "TASK-005, TASK-012, TASK-015.",
+      "requirements": [
+        "M2-DEC-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-09"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-08"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-10"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-033",
+      "title": "Complete safe native and browser actions",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-019"
+      ],
+      "original_dependency_text": "TASK-005, TASK-019.",
+      "requirements": [
+        "M2-ACT-01",
+        "M2-ACT-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-02",
+        "CXSTEP-04",
+        "CXSTEP-05",
+        "CXSTEP-06",
+        "CXSTEP-07",
+        "CXSTEP-09",
+        "CXSTEP-10",
+        "CXSTEP-12"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-04"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-08"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION"
+    },
+    {
+      "id": "TASK-034",
+      "title": "Repair identity and authoritative metering end to end",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-015"
+      ],
+      "original_dependency_text": "TASK-005, TASK-015.",
+      "requirements": [
+        "M2-OPS-01",
+        "M2-OPS-02",
+        "M2-STT-04"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-16"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-02",
+        "JVSTEP-07",
+        "JVSTEP-08"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-10"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-11"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-035",
+      "title": "Implement the governed canonical knowledge service",
+      "original_dependencies": [
+        "TASK-006",
+        "TASK-007",
+        "TASK-015"
+      ],
+      "original_dependency_text": "TASK-006, TASK-007, TASK-015.",
+      "requirements": [
+        "M2-KNOW-02",
+        "M2-KNOW-04",
+        "M2-GOV-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-11",
+        "CXSTEP-12",
+        "CXSTEP-13"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-06"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-11"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-04",
+        "HMSTEP-05",
+        "HMSTEP-14"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-036",
+      "title": "Build deterministic wiki and graph projections",
+      "original_dependencies": [
+        "TASK-035"
+      ],
+      "original_dependency_text": "TASK-035.",
+      "requirements": [
+        "M2-KNOW-03",
+        "M2-KNOW-05"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-13"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-05",
+        "HMSTEP-10"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-037",
+      "title": "Implement the authorized evidence context builder",
+      "original_dependencies": [
+        "TASK-035",
+        "TASK-036"
+      ],
+      "original_dependency_text": "TASK-035, TASK-036.",
+      "requirements": [
+        "M2-KNOW-01",
+        "M2-KNOW-04",
+        "M2-GOV-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-04",
+        "CXSTEP-13"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-04",
+        "HMSTEP-06",
+        "HMSTEP-10"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-038",
+      "title": "Deploy and connect Dust knowledge read tools",
+      "original_dependencies": [
+        "TASK-006",
+        "TASK-035",
+        "TASK-037"
+      ],
+      "original_dependency_text": "TASK-006, TASK-035, TASK-037.",
+      "requirements": [
+        "M2-DUST-01",
+        "M2-DUST-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-12",
+        "CXSTEP-13"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-06",
+        "HMSTEP-09"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-039",
+      "title": "Implement real Dust writes and reviewed corrections",
+      "original_dependencies": [
+        "TASK-035",
+        "TASK-038"
+      ],
+      "original_dependency_text": "TASK-035, TASK-038.",
+      "requirements": [
+        "M2-DUST-02",
+        "M2-KNOW-05"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-12",
+        "CXSTEP-13"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-05"
+      ],
+      "hindsight_skill_steps": [
+        "HMSTEP-07",
+        "HMSTEP-09"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-040",
+      "title": "Rework Intelligence into an evidence-first workspace",
+      "original_dependencies": [
+        "TASK-008",
+        "TASK-036",
+        "TASK-037"
+      ],
+      "original_dependency_text": "TASK-008, TASK-036, TASK-037.",
+      "requirements": [
+        "M2-KNOW-01",
+        "M2-SET-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-13"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-06"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-01",
+        "NK-10"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-08",
+        "HMSTEP-10"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-041",
+      "title": "Close knowledge synchronization and deletion loops",
+      "original_dependencies": [
+        "TASK-039",
+        "TASK-040"
+      ],
+      "original_dependency_text": "TASK-039, TASK-040.",
+      "requirements": [
+        "M2-KNOW-05",
+        "M2-DUST-03",
+        "M2-GOV-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-13"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-11"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-07",
+        "HMSTEP-10",
+        "HMSTEP-14"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-042",
+      "title": "Implement versioned server skill authoring and publishing",
+      "original_dependencies": [
+        "TASK-009",
+        "TASK-015"
+      ],
+      "original_dependency_text": "TASK-009, TASK-015.",
+      "requirements": [
+        "M2-SKILL-01",
+        "M2-SKILL-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-11",
+        "CXSTEP-12"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-043",
+      "title": "Implement contextual server skill execution",
+      "original_dependencies": [
+        "TASK-009",
+        "TASK-015",
+        "TASK-034",
+        "TASK-037",
+        "TASK-042"
+      ],
+      "original_dependency_text": "TASK-009, TASK-015, TASK-034, TASK-037, TASK-042.",
+      "requirements": [
+        "M2-SKILL-02",
+        "M2-SKILL-03",
+        "M2-GOV-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-09",
+        "CXSTEP-11",
+        "CXSTEP-12",
+        "CXSTEP-13",
+        "CXSTEP-14"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-09"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-044",
+      "title": "Connect the user skill catalog and versioned run receipts",
+      "original_dependencies": [
+        "TASK-008",
+        "TASK-022",
+        "TASK-043"
+      ],
+      "original_dependency_text": "TASK-008, TASK-022, TASK-043.",
+      "requirements": [
+        "M2-SKILL-03",
+        "M2-SET-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-08",
+        "CXSTEP-11",
+        "CXSTEP-12"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-05"
+      ],
+      "hindsight_skill_steps": [
+        "HMSTEP-08",
+        "HMSTEP-09"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-045",
+      "title": "Repair portal totals, speech controls and data-health UX",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-015",
+        "TASK-034"
+      ],
+      "original_dependency_text": "TASK-005, TASK-015, TASK-034.",
+      "requirements": [
+        "M2-OPS-01",
+        "M2-OPS-02",
+        "M2-STT-04",
+        "M2-PRIV-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-13",
+        "CXSTEP-16"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-11"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-046",
+      "title": "Build Teams personal and meeting surfaces with SSO",
+      "original_dependencies": [
+        "TASK-006",
+        "TASK-008"
+      ],
+      "original_dependency_text": "TASK-006, TASK-008.",
+      "requirements": [
+        "M2-TEAMS-01",
+        "M2-SET-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-17"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-047",
+      "title": "Implement enrolled meeting discovery and actual-start events",
+      "original_dependencies": [
+        "TASK-010",
+        "TASK-046"
+      ],
+      "original_dependency_text": "TASK-010, TASK-046.",
+      "requirements": [
+        "M2-TEAMS-02",
+        "M2-TEAMS-05"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-14",
+        "CXSTEP-17"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-048",
+      "title": "Implement single-occurrence join coordination and admission",
+      "original_dependencies": [
+        "TASK-047"
+      ],
+      "original_dependency_text": "TASK-047.",
+      "requirements": [
+        "M2-TEAMS-02",
+        "M2-TEAMS-04"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-14",
+        "CXSTEP-17"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-049",
+      "title": "Deploy the qualified Teams media receiver",
+      "original_dependencies": [
+        "TASK-010",
+        "TASK-012",
+        "TASK-015",
+        "TASK-048"
+      ],
+      "original_dependency_text": "TASK-010, TASK-012, TASK-015, TASK-048.",
+      "requirements": [
+        "M2-TEAMS-03",
+        "M2-GOV-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-17"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-050",
+      "title": "Connect consent-aware Teams media to Cloudflare speech",
+      "original_dependencies": [
+        "TASK-016",
+        "TASK-018",
+        "TASK-020",
+        "TASK-049"
+      ],
+      "original_dependency_text": "TASK-016, TASK-018, TASK-020, TASK-049.",
+      "requirements": [
+        "M2-TEAMS-03",
+        "M2-TEAMS-04",
+        "M2-STT-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-17"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-051",
+      "title": "Qualify post-meeting alternatives and other meeting adapters",
+      "original_dependencies": [
+        "TASK-010",
+        "TASK-047"
+      ],
+      "original_dependency_text": "TASK-010, TASK-047.",
+      "requirements": [
+        "M2-TEAMS-05",
+        "M2-GOV-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-17"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-052",
+      "title": "Publish meeting knowledge and skill outputs to the right audience",
+      "original_dependencies": [
+        "TASK-041",
+        "TASK-043"
+      ],
+      "original_dependency_text": "TASK-041, TASK-043.",
+      "requirements": [
+        "M2-TEAMS-04",
+        "M2-KNOW-02",
+        "M2-GOV-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-17"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-053",
+      "title": "Qualify transcript fidelity and speech latency",
+      "original_dependencies": [
+        "TASK-011",
+        "TASK-016",
+        "TASK-017",
+        "TASK-018",
+        "TASK-020"
+      ],
+      "original_dependency_text": "TASK-011, TASK-016, TASK-017, TASK-018, TASK-020.",
+      "requirements": [
+        "M2-ASR-02",
+        "M2-STT-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-03",
+        "CXSTEP-10",
+        "CXSTEP-19"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-02",
+        "NK-09",
+        "NK-12"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-12"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-054",
+      "title": "Verify summaries, knowledge and sync without cloud content copies",
+      "original_dependencies": [
+        "TASK-005",
+        "TASK-018",
+        "TASK-034",
+        "TASK-041",
+        "TASK-043",
+        "TASK-053"
+      ],
+      "original_dependency_text": "TASK-005, TASK-018, TASK-034, TASK-041, TASK-043, TASK-053.",
+      "requirements": [
+        "M2-KNOW-01",
+        "M2-DATA-01",
+        "M2-PRIV-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-19"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-06",
+        "JVSTEP-09"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-02",
+        "NK-09",
+        "NK-10",
+        "NK-12"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-12"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-055",
+      "title": "Prove the full meeting, Dust and skill journey",
+      "original_dependencies": [
+        "TASK-040",
+        "TASK-044",
+        "TASK-045",
+        "TASK-050",
+        "TASK-052",
+        "TASK-053",
+        "TASK-054"
+      ],
+      "original_dependency_text": "TASK-040, TASK-044, TASK-045, TASK-050, TASK-052, TASK-053, TASK-054.",
+      "requirements": [
+        "M2-E2E-02",
+        "M2-DUST-02",
+        "M2-SKILL-03",
+        "M2-SET-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-17",
+        "CXSTEP-19"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-02",
+        "NK-12"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-15"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-056",
+      "title": "Run real cross-platform Cloudflare-to-action-to-portal journeys",
+      "original_dependencies": [
+        "TASK-027",
+        "TASK-030",
+        "TASK-033",
+        "TASK-034",
+        "TASK-045",
+        "TASK-053",
+        "TASK-054"
+      ],
+      "original_dependency_text": "TASK-027, TASK-030, TASK-033, TASK-034, TASK-045, TASK-053, TASK-054.",
+      "requirements": [
+        "M2-E2E-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-05",
+        "CXSTEP-06",
+        "CXSTEP-09",
+        "CXSTEP-10",
+        "CXSTEP-15",
+        "CXSTEP-19"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-04",
+        "JVSTEP-08",
+        "JVSTEP-09"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-12"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-12",
+        "HMSTEP-15"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-057",
+      "title": "Close no-content-retention and drift-evidence gates",
+      "original_dependencies": [
+        "TASK-011",
+        "TASK-013",
+        "TASK-015",
+        "TASK-020",
+        "TASK-034",
+        "TASK-045",
+        "TASK-054",
+        "TASK-056"
+      ],
+      "original_dependency_text": "TASK-011, TASK-013, TASK-015, TASK-020, TASK-034, TASK-045, TASK-054, TASK-056.",
+      "requirements": [
+        "M2-PRIV-01",
+        "M2-PRIV-02",
+        "M2-PRIV-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-13",
+        "CXSTEP-16",
+        "CXSTEP-19"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-03",
+        "JVSTEP-07",
+        "JVSTEP-09"
+      ],
+      "hindsight_skill_steps": [
+        "HMSTEP-13"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-058",
+      "title": "Complete governance, subject rights and sharing qualification",
+      "original_dependencies": [
+        "TASK-006",
+        "TASK-007",
+        "TASK-041",
+        "TASK-057"
+      ],
+      "original_dependency_text": "TASK-006, TASK-007, TASK-041, TASK-057.",
+      "requirements": [
+        "M2-GOV-01",
+        "M2-GOV-02",
+        "M2-DUST-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-07",
+        "CXSTEP-13",
+        "CXSTEP-16",
+        "CXSTEP-17",
+        "CXSTEP-19"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-09"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-07",
+        "HMSTEP-13"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-059",
+      "title": "Qualify optional local packs on actual device classes",
+      "original_dependencies": [
+        "TASK-021",
+        "TASK-022",
+        "TASK-024",
+        "TASK-025",
+        "TASK-053"
+      ],
+      "original_dependency_text": "TASK-021, TASK-022, TASK-024, TASK-025, TASK-053.",
+      "requirements": [
+        "M2-LOCAL-01",
+        "M2-LOCAL-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-18",
+        "CXSTEP-19"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": []
+    },
+    {
+      "id": "TASK-060",
+      "title": "Tune speed and footprint against the recorded baseline",
+      "original_dependencies": [
+        "TASK-004",
+        "TASK-026",
+        "TASK-030",
+        "TASK-053",
+        "TASK-056",
+        "TASK-059"
+      ],
+      "original_dependency_text": "TASK-004, TASK-026, TASK-030, TASK-053, TASK-056, TASK-059.",
+      "requirements": [
+        "M2-PKG-01",
+        "M2-VOICE-02",
+        "M2-STT-03"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-18",
+        "CXSTEP-19"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-12"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-061",
+      "title": "Apply the supplied refactoring skill in bounded slices",
+      "original_dependencies": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-003",
+        "TASK-005"
+      ],
+      "original_dependency_text": "TASK-001, TASK-002, TASK-003, TASK-005.",
+      "requirements": [
+        "M2-ENG-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-18",
+        "CXSTEP-19"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-14"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-062",
+      "title": "Exercise production operations, staging and recovery",
+      "original_dependencies": [
+        "TASK-012",
+        "TASK-023",
+        "TASK-034",
+        "TASK-045",
+        "TASK-057",
+        "TASK-058",
+        "TASK-060",
+        "TASK-061"
+      ],
+      "original_dependency_text": "TASK-012, TASK-023, TASK-034, TASK-045, TASK-057, TASK-058, TASK-060, TASK-061.",
+      "requirements": [
+        "M2-OPS-03",
+        "M2-SEC-02"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-14",
+        "CXSTEP-16",
+        "CXSTEP-20"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-07",
+        "JVSTEP-10"
+      ],
+      "hindsight_skill_steps": [
+        "HMSTEP-03",
+        "HMSTEP-13",
+        "HMSTEP-16"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-063",
+      "title": "Build, sign, freeze and qualify the immutable candidate family",
+      "original_dependencies": [
+        "TASK-027",
+        "TASK-030",
+        "TASK-033",
+        "TASK-045",
+        "TASK-053",
+        "TASK-054",
+        "TASK-056",
+        "TASK-057",
+        "TASK-058",
+        "TASK-059",
+        "TASK-060",
+        "TASK-061",
+        "TASK-062"
+      ],
+      "original_dependency_text": "TASK-027, TASK-030, TASK-033, TASK-045, TASK-053, TASK-054, TASK-056, TASK-057, TASK-058, TASK-059, TASK-060, TASK-061, TASK-062.",
+      "requirements": [],
+      "related_interaction_children": [
+        "CXSTEP-19",
+        "CXSTEP-20"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-10"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-12"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-15",
+        "HMSTEP-16"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-064",
+      "title": "Verify and publish the already signed Windows candidate",
+      "original_dependencies": [
+        "TASK-063"
+      ],
+      "original_dependency_text": "TASK-063.",
+      "requirements": [
+        "M2-WIN-01",
+        "M2-REL-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-20"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "hindsight_skill_steps": [
+        "HMSTEP-16"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-065",
+      "title": "Finalize native Mac QA and its separate Apple publication decision",
+      "original_dependencies": [
+        "TASK-029",
+        "TASK-030",
+        "TASK-033",
+        "TASK-034",
+        "TASK-053",
+        "TASK-056",
+        "TASK-057",
+        "TASK-059",
+        "TASK-063"
+      ],
+      "original_dependency_text": "TASK-029, TASK-030, TASK-033, TASK-034, TASK-053, TASK-056, TASK-057, TASK-059, TASK-063.",
+      "requirements": [
+        "M2-MAC-01",
+        "M2-MAC-02",
+        "M2-REL-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-18",
+        "CXSTEP-20"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [],
+      "notes_keyboard_requirements": [
+        "NK-12"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-15",
+        "HMSTEP-16"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    },
+    {
+      "id": "TASK-066",
+      "title": "Deliver final re-audit, exact evidence and resumable handoff",
+      "original_dependencies": [
+        "TASK-063"
+      ],
+      "original_dependency_text": "TASK-063.",
+      "requirements": [
+        "M2-BASE-01",
+        "M2-ENG-01",
+        "M2-REL-01"
+      ],
+      "related_interaction_children": [
+        "CXSTEP-20"
+      ],
+      "current_implementation": "NOT_ASSESSED",
+      "current_verification": "NOT_RUN",
+      "source_note": "Original title/dependencies from supplied registry, not current repo status. Preserve full original task body and all its acceptance requirements.",
+      "related_jev_children": [
+        "JVSTEP-10"
+      ],
+      "notes_keyboard_requirements": [
+        "NK-12"
+      ],
+      "notes_keyboard_integration": "NK-INTEGRATION",
+      "hindsight_skill_steps": [
+        "HMSTEP-16"
+      ],
+      "hindsight_skill_integration": "HMS-INTEGRATION"
+    }
+  ]
+}

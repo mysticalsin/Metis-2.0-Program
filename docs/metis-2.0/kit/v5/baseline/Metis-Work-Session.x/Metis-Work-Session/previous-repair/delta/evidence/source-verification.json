@@ -1,0 +1,58 @@
+{
+  "repository": "mysticalsin/AskToto-Mantu",
+  "base_commit": "2bf21f1ceefe117838325342574b57852e5cadcb",
+  "base_tree": "945c28fb6938712bf6c52bccfc8d31591aea9ced",
+  "date": "2026-09-24",
+  "verification": "The extracted source bytes hash to the Git blob IDs independently returned by the authenticated GitHub connector at the pinned commit.",
+  "files": [
+    {
+      "path": "src/shared/metis-wake.ts",
+      "git_blob_sha": "6fd29fa5ff6fb5b5630cbd6acebe9760443a19dd"
+    },
+    {
+      "path": "src/renderer/src/lib/onboarding-hero-video.ts",
+      "git_blob_sha": "3798b94bd4f1e352d8e0120675473784f3ec5db0"
+    },
+    {
+      "path": "src/renderer/src/components/OnboardingDemoScene.tsx",
+      "git_blob_sha": "f61cfc0a43d53514a100da9a651ef10098693202"
+    },
+    {
+      "path": "operator/src/ai-gateway.ts",
+      "git_blob_sha": "08d61de4924bf11f956e21c895928715e27d5012"
+    },
+    {
+      "path": "operator/src/ask-meter.ts",
+      "git_blob_sha": "3537cc58d3acfb7b061c6c6c087d5ce36877d909"
+    },
+    {
+      "path": "operator/src/use.ts",
+      "git_blob_sha": "6320793549bab3072920a8e01baa2e868480ceb5"
+    },
+    {
+      "path": "operator/src/keys.ts",
+      "git_blob_sha": "07b6bb33512faab9be27783ec4f371f5ab4ac6f5"
+    },
+    {
+      "path": "src/renderer/src/lib/onboarding-hero-video.test.ts",
+      "git_blob_sha": "5e8ac6740b8fade16fe03d2e976ee68cb152392d"
+    },
+    {
+      "path": "operator/src/keys.test.ts",
+      "git_blob_sha": "30fbb52023416f093a56013ef9e6949dd35cbe73"
+    },
+    {
+      "path": "operator/src/use.test.ts",
+      "git_blob_sha": "fea8b0ee17239317402c4e946ceb59e5cc4edbe2"
+    },
+    {
+      "path": "operator/src/cloudflare-connect.test.ts",
+      "git_blob_sha": "5d96183aea3109f061302a5683cf0b27e10f88b1"
+    },
+    {
+      "path": "operator/src/ask.test.ts",
+      "git_blob_sha": "0ac0dc9e322f035d0a9124c5f1d44d0fd0433873",
+      "recovery": "Reference export plus authenticated PR 199 file patch; final bytes equal pinned-main Git blob."
+    }
+  ]
+}
