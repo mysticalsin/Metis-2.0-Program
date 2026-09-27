@@ -4,13 +4,14 @@
 quote any email address, account ID or file content. Do not treat anything here as
 already approved — see "What happens next".
 
-Source directory (read-only, untouched by this ticket): the sibling `metis-2.0-exec` checkout
-alongside this program repository's own checkout.
+Source directory (read-only, untouched by this ticket): the sibling `metis-2.0-exec` directory
+alongside this program repository's own checkout. It has no `.git` of its own; both sit inside
+the same parent working tree.
 Destination scope (this ticket's only allowed write path): `docs/metis-2.0/review/prior-exec/`.
 
 ## 1. Candidate files
 
-Every file that exists today under the source's handoff tree, each with an include/exclude
+Every file that exists under the source's handoff tree, each with an include/exclude
 recommendation. Every "include" recommendation is still gated on your answers in §3 — nothing
 here is copied yet.
 
@@ -79,13 +80,15 @@ or this ticket's own `gitleaks detect` verification step fails on them. §3 ques
 **Not a match, flagged anyway for your awareness, not blocking:** every file in the source
 contains ordinary absolute filesystem paths under the operator's home directory (build paths,
 tool paths, cloud-storage sync paths). `docs/metis-2.0/review/REDACTIONS.md`'s own convention
-for this repository also scans
-copied content for "absolute paths naming a non-generic username." The ticket's acceptance
+for this repository also scans copied content for "absolute paths naming a non-generic
+username." The ticket's acceptance
 criteria (gitleaks + an email regex scan) do not cover this, and gitleaks's default ruleset does
 not flag a plain home-directory path, so it is **not** part of what this ticket needs to pass —
 raising it only so the choice not to mask it is yours, not an unstated assumption on my part.
 
-## 3. Questions for you to answer (approve, amend, or answer no to any of these — either way, I do not copy anything until you have)
+## 3. Questions for you to answer
+
+Approve, amend, or answer no to any of these — either way, I do not copy anything until you have.
 
 1. **File list** — approve the "recommend include" list in §1 as-is, or tell me which files to
    add or drop. Three things to weigh:
@@ -136,4 +139,4 @@ whatever you're comfortable leaving as the approval trail), the next agent on th
 5. Pastes the exit codes and counts — never the matched text — into the PR as evidence.
 
 No copy, mask, or commit happens before that. This file is the only thing this ticket has added
-under `docs/metis-2.0/review/prior-exec/` so far.
+under `docs/metis-2.0/review/prior-exec/`.
