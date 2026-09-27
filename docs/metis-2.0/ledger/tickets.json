@@ -10992,7 +10992,8 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-02",
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers."
   },
   {
    "id": "M2-0190",
