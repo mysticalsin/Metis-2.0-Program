@@ -1,7 +1,7 @@
 # SRC-REVERIFY — Re-verification of the 24 source-export findings against HEAD
 
 **Ticket:** M2-0013 · **Type:** investigation (docs/process only; no code changed) · **Owner model:** sonnet
-**Repo re-verified (read-only):** `mysticalsin/AskToto-Mantu` — `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:<path>`, HEAD **`70de3c303a047879afd8651a78b41c0ce85dcc3c`** ("Merge pull request #205: agent rules for the Métis 2.0 program [M2-0024]", 2026-09-26T16:20:02-04:00). No file in that checkout was created, modified, or deleted by this ticket.
+**Repo re-verified (read-only):** `mysticalsin/AskToto-Mantu` — `git -C /Users/<redacted-user>/AI-Brain-build/metis-operator-ux show origin/m2/integration:<path>`, HEAD **`70de3c303a047879afd8651a78b41c0ce85dcc3c`** ("Merge pull request #205: agent rules for the Métis 2.0 program [M2-0024]", 2026-09-26T16:20:02-04:00). No file in that checkout was created, modified, or deleted by this ticket.
 **Prior pass re-verified here:** `metis-v2-review/lanes/K05-master-s22-31.md` §2.8, taken against HEAD `2bf21f1c` (v1.9.6). **`2bf21f1c` is not an ancestor of the current `origin/m2/integration`** — the git history was rewritten 2026-09-26 (owner operating rule) — so this ticket does not diff commit ranges; every claim below is a fresh, direct read of the file content at the two named refs.
 **Source-export inputs:** `metis-kit-r11/Metis-2.0-Upgrade-Kit-r11/references/source/metis-1.9.5-export.txt` (kit copy, read-only), `source-review/SOURCE-INDEX.json` (1,521 sections; `content_start_line`/`content_end_line` gives the exact line range of each file's text inside the export — the section boundary this pass's mechanical diff is keyed on, not an approximation), `source-review/FINDINGS.json` (the 24 findings' `source_observation`/`required_change`/`evidence[]` text) and `architecture/MAP-COVERAGE.json` (the 19 file-backed architecture-map nodes, 14 present / 5 `NOT_IN_EXPORT`).
 **Evidence labels:** **OBSERVED** (read directly in the cited file at the cited ref), **DERIVED** (reasoned from OBSERVED facts), **ASSUMED**, **UNKNOWN** (anchor read, disposition not established this pass), **OPEN: not statically closable** (a real anchor was read; closing it needs evidence a source-only pass cannot produce — named per row).
@@ -330,7 +330,7 @@ Inputs (adjust paths for your checkout):
 """
 import json, difflib, os, sys
 
-BASE = "/Users/tony/AI-Brain-build/metis-kit-r11/Metis-2.0-Upgrade-Kit-r11"
+BASE = "/Users/<redacted-user>/AI-Brain-build/metis-kit-r11/Metis-2.0-Upgrade-Kit-r11"
 EXPORT = f"{BASE}/references/source/metis-1.9.5-export.txt"
 INDEX = f"{BASE}/source-review/SOURCE-INDEX.json"
 FINDINGS = f"{BASE}/source-review/FINDINGS.json"
@@ -482,4 +482,4 @@ Totals: {'CHANGED': 12, 'IDENTICAL': 41, 'NOT_IN_EXPORT': 5} | total paths: 58
 
 ---
 
-*End of SRC-REVERIFY (round 2). Written for ticket M2-0013. No file under `/Users/tony/AI-Brain-build/metis-operator-ux` (the public repo worktree) was created, modified, or deleted while producing this report — every code citation above is a `git show <ref>:<path>` read. This file itself lives only in the private `metis-2.0-program` repo; round 1 was committed there in `d57850c`, and this round's revision is committed by this pass.*
+*End of SRC-REVERIFY (round 2). Written for ticket M2-0013. No file under `/Users/<redacted-user>/AI-Brain-build/metis-operator-ux` (the public repo worktree) was created, modified, or deleted while producing this report — every code citation above is a `git show <ref>:<path>` read. This file itself lives only in the private `metis-2.0-program` repo; round 1 was committed there in `d57850c`, and this round's revision is committed by this pass.*

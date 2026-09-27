@@ -1,6 +1,6 @@
 # FREEZE-HYPOTHESES — History freeze / "app won't reopen" (P7-freeze-hypotheses)
 
-Scope: read-only trace of `/Users/tony/AI-Brain-build/metis-2.0` at `origin/main 2bf21f1c` (v1.9.6),
+Scope: read-only trace of `/Users/<redacted-user>/AI-Brain-build/metis-2.0` at `origin/main 2bf21f1c` (v1.9.6),
 correlated against `~/Library/Logs/asktoto/main.log` and `~/Library/Application Support/asktoto/logs/audit.log`
 for 2026-09-25 08:00–14:15 local (UTC-4) / 12:00–18:15 UTC. No app code was executed, no tests were run, and
 the OneDrive meetings/`.brain` folders were not touched directly — placeholder-file counts and spindump

@@ -3,8 +3,8 @@
 Evidence labels per software-architecture-engineer v1.4.0: **OBSERVED** (read directly from the
 checked-out code), **DERIVED** (follows deductively from OBSERVED code), **ASSUMED** (plausible,
 not directly verified), **UNKNOWN** (not established). All file/line refs are against the read-only
-reference checkout `/Users/tony/AI-Brain-build/metis-2.0` (origin/main `2bf21f1c`, v1.9.6) unless
-marked `[r11-work]` for `/Users/tony/metis-r11-work/repo`. No tests were run to produce this report
+reference checkout `/Users/<redacted-user>/AI-Brain-build/metis-2.0` (origin/main `2bf21f1c`, v1.9.6) unless
+marked `[r11-work]` for `/Users/<redacted-user>/metis-r11-work/repo`. No tests were run to produce this report
 (per the hard rule); every claim below is a static read of the source.
 
 ---
@@ -34,7 +34,7 @@ if (existsSync(base)) {
 structurally cannot, mock `node:os`'s `homedir()`**, because `detectOneDrive()` never goes through
 Electron. Every test file that does `vi.mock('electron')` (108 files) is fully protected from the
 `electron` module and completely *unprotected* from `detectOneDrive()`. On Tony's own Mac (or any
-worktree checked out under his account), `homedir()` returns his real `/Users/tony`, and
+worktree checked out under his account), `homedir()` returns his real `/Users/<redacted-user>`, and
 `~/Library/CloudStorage/OneDrive-MantuGroup` genuinely exists — so `detectOneDrive()` returns that
 real path, and `resolveMeetingsFolder({ meetingsFolder: '' })` returns literally
 `$HOME/Library/CloudStorage/OneDrive-MantuGroup/Métis Meetings` — the exact path in the incident
@@ -148,7 +148,7 @@ to the two P0 symptoms, for the P0 root-cause lane to confirm/refute against `BU
 B1/B2/B3 (which this task's inputs say already cover sidecar-orphaning as B2/B3 separately — this is
 a **distinct**, additional mechanism, not a restatement of B1/B2/B3).
 
-## 3. Prior art already sitting uncommitted in `/Users/tony/metis-r11-work/repo` (MQA-348)
+## 3. Prior art already sitting uncommitted in `/Users/<redacted-user>/metis-r11-work/repo` (MQA-348)
 
 **OBSERVED.** That worktree (branch `work/metis-r11-20260924-083623`, forked from the same
 `2bf21f1c` as our reference checkout) has an **uncommitted, unmerged, untriaged** fix for exactly
@@ -253,7 +253,7 @@ describe('MQA-348 — test workers run under a hermetic home', () => {
 4. **Gap — no fail-loudly tripwire beyond the one canary test.** The design achieves hermeticity by
    construction (there is nothing real left to resolve to), which is the right primary defense, but
    it does not catch a **hardcoded real-path literal** typed into a future test by mistake (e.g. a
-   copy-pasted fixture containing `/Users/tony/...`) — that class of mistake bypasses `HOME`
+   copy-pasted fixture containing `/Users/<redacted-user>/...`) — that class of mistake bypasses `HOME`
    entirely. Not the mechanism behind the observed incident, but worth a cheap, narrow guard (see
    §4.3) given how it is being hit in practice (parallel agents editing this suite all day).
 5. Not addressed at all by r11-work: the **production-side** ownership check on

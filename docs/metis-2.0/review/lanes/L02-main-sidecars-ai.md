@@ -1,6 +1,6 @@
 # L02 — main/sidecars/AI lane review (Métis 2.0, r11/v6 kit)
 
-Reviewer: staff-engineer AUDIT pass (read-only). Repo: `/Users/tony/AI-Brain-build/metis-2.0` @ `2bf21f1c` (v1.9.6).
+Reviewer: staff-engineer AUDIT pass (read-only). Repo: `/Users/<redacted-user>/AI-Brain-build/metis-2.0` @ `2bf21f1c` (v1.9.6).
 Method: SAE brownfield-discovery + domain-boundaries (AUDIT mode), Stark/Addy five-axis review. No files modified; no destructive git ops run.
 
 Evidence labels used throughout: **OBSERVED** (seen directly in code/tests), **DERIVED** (reasoned from OBSERVED facts + the lead's runtime evidence E1–E9), **ASSUMED**, **UNKNOWN**. Runtime evidence items E1–E9 are the lead's, quoted from the task brief; I did not re-collect them.

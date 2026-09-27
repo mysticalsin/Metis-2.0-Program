@@ -12,7 +12,7 @@ security, performance; reliability/testability where relevant), per `03-brownfie
 P1 = serious defect or major perf/resource waste; P2 = maintainability/structure with real cost;
 P3 = minor.
 
-Read-only throughout: no file in `/Users/tony/AI-Brain-build/metis-2.0` or any kit directory was
+Read-only throughout: no file in `/Users/<redacted-user>/AI-Brain-build/metis-2.0` or any kit directory was
 edited, no `npm install`/build/git-state command was run. No meeting/transcript file content was read
 (only counts/sizes, and none of that was needed for this lane). No secret/credential files were opened.
 

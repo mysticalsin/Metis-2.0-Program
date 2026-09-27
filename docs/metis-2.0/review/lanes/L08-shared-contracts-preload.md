@@ -1,6 +1,6 @@
 # Lane L08 — shared-contracts-preload
 
-Repo: `/Users/tony/AI-Brain-build/metis-2.0` (read-only checkout, origin/main `2bf21f1c`, v1.9.6)
+Repo: `/Users/<redacted-user>/AI-Brain-build/metis-2.0` (read-only checkout, origin/main `2bf21f1c`, v1.9.6)
 Reviewer: staff-engineer audit pass, AUDIT mode (brownfield discovery + domain-boundary method skimmed; five-axis review: correctness, readability, architecture, security, performance/reliability/testability).
 Scope: `src/shared/` (all; `ipc.ts` 2,407 lines is the core artifact) and `src/preload/` (all: `index.ts` 563 lines, `intelligence.ts`, `import-decoder.ts`, `index.d.ts`, `live-identity.test.ts`).
 Method docs skimmed: `03-brownfield-discovery.md`, `05-domain-and-code-boundaries.md` (software-architecture-engineer), `addy-agent-skills.md` (Stark five-axis). Cross-referenced against `TASK-005.md` (r11 kit) which asks for `src/shared/contracts/*` with golden fixtures + a Swift mirror.
@@ -209,7 +209,7 @@ Migration is mechanical: each domain file's content is a cut-paste of the corres
 
 ## 5. Notes on scope boundaries honored
 
-- Read-only throughout; no edits, no git state changes, no `npm install` run against `/Users/tony/AI-Brain-build/metis-2.0`.
+- Read-only throughout; no edits, no git state changes, no `npm install` run against `/Users/<redacted-user>/AI-Brain-build/metis-2.0`.
 - Did not open or read any `key-*.bin`, `secret-key.bin`, `Cookies`, `identity.json`, or meeting/transcript content files — only counted/measured file sizes where relevant (none were needed for this lane).
 - No secrets, tokens, account ids, or email addresses observed in this lane's files; none reproduced here.
 - `main/index.ts` was read only as cross-reference evidence for contract-drift findings that are inherently about the preload/main boundary (F1, F3, F4) — this report does not attempt to audit `main/` itself, which is other lanes' scope (I did notice `main/index.ts` is 9,518 lines and that several "contract tests" in `src/main/*.contract.test.ts` verify code-ordering invariants by literal-text-slicing the source file rather than exercising real behavior — e.g. `main-lifecycle.contract.test.ts:167`, `content-protection.contract.test.ts:267`, `index-audit-fixes.contract.test.ts:276` — flagging this only because the other main-process lanes should be aware of it; it is not scored as an L08 finding since it lives entirely in `src/main/`).

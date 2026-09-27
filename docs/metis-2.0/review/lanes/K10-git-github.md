@@ -1,7 +1,7 @@
 # K10 — Git/GitHub Traceability Audit (Métis / AskToto-Mantu)
 
 Lane: K10-git-github · Read-only · Repo: `github.com/mysticalsin/AskToto-Mantu` (private)
-Audited from: `/Users/tony/AI-Brain-build/metis-operator-ux` (main clone, remote-tracking refs fresh via `git ls-remote`/`git fetch --dry-run`, both run without disabling the sandbox — `git`'s network path is open; only the `gh` CLI needed `dangerouslyDisableSandbox` for its TLS handshake, exactly as flagged in the task).
+Audited from: `/Users/<redacted-user>/AI-Brain-build/metis-operator-ux` (main clone, remote-tracking refs fresh via `git ls-remote`/`git fetch --dry-run`, both run without disabling the sandbox — `git`'s network path is open; only the `gh` CLI needed `dangerouslyDisableSandbox` for its TLS handshake, exactly as flagged in the task).
 Date of audit: 2026-09-26. Repo HEAD (`origin/main`) = `2bf21f1c`, package version `1.9.6` (matches the installed app under review).
 
 Evidence labels used throughout, per the SAE method: **OBSERVED** (seen directly in `git`/`gh` output or a file), **DERIVED** (reasoned from OBSERVED facts), **ASSUMED**, **UNKNOWN**.

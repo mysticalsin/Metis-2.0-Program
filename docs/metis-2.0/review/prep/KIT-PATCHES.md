@@ -14,7 +14,7 @@ working tree clean, `HEAD` = `2bf21f1c`.
 
 ## (a) `git apply --check --verbose` results — the three named kit patches
 
-Run against `/Users/tony/AI-Brain-build/metis-2.0` at `2bf21f1c`, check-only (no writes).
+Run against `/Users/<redacted-user>/AI-Brain-build/metis-2.0` at `2bf21f1c`, check-only (no writes).
 
 | # | Patch | Files | Result |
 |---|---|---|---|
@@ -87,7 +87,7 @@ were used below as independent cross-checks (hash/diff), not applied anywhere. N
 
 ---
 
-## (b) `/Users/tony/metis-r11-work/repo` — is it a clone, and how does it relate to `2bf21f1c`?
+## (b) `/Users/<redacted-user>/metis-r11-work/repo` — is it a clone, and how does it relate to `2bf21f1c`?
 
 **Yes, real git clone.** OBSERVED: `origin` = `https://github.com/mysticalsin/AskToto-Mantu.git`
 (same repo). Branch `work/metis-r11-20260924-083623`. `git rev-parse HEAD` / `git log -1` =
@@ -253,6 +253,6 @@ implementation.
   here per the hard rule against running the repo's tests; not needed to answer (a)/(b)/(c).
 - `r11-kit/` inside the v5 baseline package is a **copy** of (part of) the r11 kit bundled
   for the work session's own reference; the canonical r11 kit inputs are
-  `/Users/tony/AI-Brain-build/metis-v2-inputs/r11/Metis-2.0-Upgrade-Kit-r11`. Not diffed
+  `/Users/<redacted-user>/AI-Brain-build/metis-v2-inputs/r11/Metis-2.0-Upgrade-Kit-r11`. Not diffed
   against each other — **UNKNOWN** whether the two copies are byte-identical; irrelevant to
   this task since only the copy's `FINDINGS.json`/`registry.json` were read for SRC-ID context.

@@ -4,8 +4,40 @@ Every file copied from `metis-v2-review/` into `docs/metis-2.0/review/` was scan
 
 | File | Emails | Secrets | Account IDs | Paths |
 |---|---:|---:|---:|---:|
-| review/lanes/K09-prior-execution.md | 1 | 0 | 0 | 0 |
-| **Total** | **1** | **0** | **0** | **0** |
+| review/DIGEST-code-critic.md | 0 | 0 | 0 | 5 |
+| review/PUBLIC-READINESS.md | 0 | 0 | 0 | 1 |
+| review/SRC-REVERIFY.md | 0 | 0 | 0 | 3 |
+| review/SYNTHESIS-NOTES.md | 0 | 0 | 0 | 1 |
+| review/chatgpt-audit-2.md | 0 | 0 | 0 | 1 |
+| review/lanes/B1-history-freeze.md | 0 | 0 | 0 | 1 |
+| review/lanes/B2-resource-heavy.md | 0 | 0 | 0 | 1 |
+| review/lanes/B3-crash-stability.md | 0 | 0 | 0 | 1 |
+| review/lanes/K01-master-s0-7.md | 0 | 0 | 0 | 2 |
+| review/lanes/K02-master-s8-14.md | 0 | 0 | 0 | 3 |
+| review/lanes/K03-master-s15-20.md | 0 | 0 | 0 | 4 |
+| review/lanes/K05-master-s22-31.md | 0 | 0 | 0 | 5 |
+| review/lanes/K06-master-s32-35.md | 0 | 0 | 0 | 7 |
+| review/lanes/K07-kit-other.md | 0 | 0 | 0 | 1 |
+| review/lanes/K08-v6-v5-lineage.md | 0 | 0 | 0 | 2 |
+| review/lanes/K09-prior-execution.md | 1 | 0 | 0 | 7 |
+| review/lanes/K10-git-github.md | 0 | 0 | 0 | 1 |
+| review/lanes/L02-main-sidecars-ai.md | 0 | 0 | 0 | 1 |
+| review/lanes/L03-main-data-history.md | 0 | 0 | 0 | 1 |
+| review/lanes/L04-main-capture-speech.md | 0 | 0 | 0 | 1 |
+| review/lanes/L05-main-security-integrations.md | 0 | 0 | 0 | 1 |
+| review/lanes/L06-renderer-core.md | 0 | 0 | 0 | 1 |
+| review/lanes/L07-renderer-components.md | 0 | 0 | 0 | 1 |
+| review/lanes/L08-shared-contracts-preload.md | 0 | 0 | 0 | 2 |
+| review/lanes/L09-operator-cloud.md | 0 | 0 | 0 | 1 |
+| review/lanes/L10-intelligence-native.md | 0 | 0 | 0 | 2 |
+| review/lanes/L11-build-ci-quality.md | 0 | 0 | 0 | 2 |
+| review/lanes/L12-arch-graph.md | 0 | 0 | 0 | 1 |
+| review/prep/FREEZE-HYPOTHESES.md | 0 | 0 | 0 | 1 |
+| review/prep/GITHUB.md | 0 | 0 | 0 | 2 |
+| review/prep/HERMETIC-TESTS.md | 0 | 0 | 0 | 5 |
+| review/prep/KIT-PATCHES.md | 0 | 0 | 0 | 3 |
+| review/prep/UNCOVERED-RENDERER-OPS.md | 0 | 0 | 0 | 1 |
+| **Total** | **1** | **0** | **0** | **72** |
 
 ## Kit copies (`docs/metis-2.0/kit/`)
 
@@ -18,4 +50,3 @@ The kit copies were first written verbatim, without this scan. The final validat
 ## Notes
 
 - `plan-work/drafts/` does not exist yet (source directory not created upstream as of this render). `review/drafts/` is intentionally absent — re-run this renderer once drafts exist.
-
