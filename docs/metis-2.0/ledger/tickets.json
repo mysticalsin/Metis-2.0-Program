@@ -545,7 +545,7 @@
    "slices": [],
    "due": null,
    "status": "IN_PROGRESS",
-   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac.",
+   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac.",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27"
   },
@@ -987,7 +987,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0015",
@@ -2092,7 +2094,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0034",
@@ -2866,7 +2870,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0048",
@@ -3292,9 +3298,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/219",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0057",
@@ -5903,7 +5914,8 @@
    "due": null,
    "status": "IN_PROGRESS",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac."
   },
   {
    "id": "M2-0102",
@@ -11661,7 +11673,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "OD-12 (2026-09-27): DESIGNED prototypes are built as real renderer components (src/renderer, the app's own React/CSS) behind a dev-only surface and captured in CI through Electron, not as a standalone HTML site; no visible browser on the owner's Mac."
   },
   {
    "id": "M2-0202",
@@ -11754,9 +11767,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/221",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0204",
@@ -12404,9 +12422,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-09",
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 5)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/225",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 5); 4K spike rendered in CI"
+   }
   },
   {
    "id": "M2-0213",
@@ -12575,7 +12598,9 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 8,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0216",
@@ -12779,7 +12804,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "id": "M2-0221",
    "title": "Open the Windows CLI setup script without cmd re-parsing its path",
    "milestone": "m3",
@@ -12801,7 +12826,9 @@
     "No regression in the macOS/Linux open path"
    ],
    "risk": "high",
-   "estimate_hours": 2
+   "estimate_hours": 2,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
   },
   {
    "wave": "W2",
@@ -12813,7 +12840,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "id": "M2-0222",
    "title": "Keep the MCP metadata/DNS-rebinding refusal on the system-proxy route",
    "milestone": "m3",
@@ -12837,7 +12864,9 @@
     "Behaviour tests per route"
    ],
    "risk": "medium",
-   "estimate_hours": 4
+   "estimate_hours": 4,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
   },
   {
    "wave": "W2",
@@ -12849,7 +12878,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "id": "M2-0223",
    "title": "Pin GitHub Actions to full commit SHAs in build and release workflows",
    "milestone": "m4",
@@ -12872,7 +12901,9 @@
     "release.yml behaviour otherwise unchanged; no release run triggered"
    ],
    "risk": "medium",
-   "estimate_hours": 2
+   "estimate_hours": 2,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
   },
   {
    "wave": "W2",
@@ -12884,7 +12915,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "id": "M2-0224",
    "title": "Replace the renderer-ready source-text contract with a wiring behaviour test",
    "milestone": "m3",
@@ -12906,7 +12937,9 @@
     "It fails when the binding is moved after navigation"
    ],
    "risk": "low",
-   "estimate_hours": 2
+   "estimate_hours": 2,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
   }
  ]
 }
