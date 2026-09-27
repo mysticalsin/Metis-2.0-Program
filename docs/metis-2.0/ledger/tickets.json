@@ -12971,6 +12971,40 @@
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS"
    }
+  },
+  {
+   "id": "M2-0225",
+   "title": "Decrypting saved bytes must never create secret-key.bin",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "RF-G5.5-R2"
+   ],
+   "scope_paths": [
+    "src/main/secrets.ts",
+    "src/main/transcripts.ts",
+    "src/main/secrets.test.ts"
+   ],
+   "summary": "Found by the Integrator in rocket-fuel G5.5 round 2 (2026-09-27): decryptSecret() loads its key through getOrCreateKey(), which generates and writes a new secret-key.bin when none exists. Every decode of an F:-wrapped envelope on an install without a key file (a synced index or transcript from another device, classifyIndexBytes at boot, a rebuild's re-check) therefore creates a key as a side effect of a read. Decrypt paths must load an existing key only (fail as undecryptable when absent); only an explicit write may create the key. An attempted fix inside the rebuild path (c9a5cb94) regressed 12 rebuild tests and was reverted — fix it at the key-loading root.",
+   "acceptance": [
+    "decryptSecret with no key file fails without creating secret-key.bin (behaviour test)",
+    "encryptSecret / prepareFileKeyForWrite still create the key on first write",
+    "Every existing secrets/transcripts/brain test stays green; the rebuild 'no key' test also asserts the key file stays absent"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 3,
+   "status": "TODO"
   }
  ]
 }
