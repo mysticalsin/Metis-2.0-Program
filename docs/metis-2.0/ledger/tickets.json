@@ -3226,14 +3226,21 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock_step": "Perform the sanitized copy of the curated metis-2.0-exec files yourself, or review and explicitly approve which files are curated into docs/metis-2.0/review/prior-exec/ and the exact mask replacing the three email occurrences in tasks/TASK-001/service-register.md (lines 29, 30, 53), before any agent commits a copy; the original metis-2.0-exec directory stays untouched either way",
+    "needed_by": "2026-10-04",
+    "raised_on": "2026-09-26"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0058",

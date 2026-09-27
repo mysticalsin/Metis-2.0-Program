@@ -68,7 +68,7 @@
 | [M2-0054](tickets/M2-0054.md) | Replace chained release npm scripts with a step-diagnosable release orchestrator | ci | sonnet | m4 | M2-0053 | no | TODO |
 | [M2-0055](tickets/M2-0055.md) | Remove hardcoded agent-session scratch paths from Operator preview and gate scripts and fix paths with spaces | ci | sonnet | m4 | _none_ | no | TODO |
 | [M2-0056](tickets/M2-0056.md) | Fail release builds when any embedded credential family is still a dev placeholder | ci | sonnet | m4 | _none_ | no | TODO |
-| [M2-0057](tickets/M2-0057.md) | Sanitize the prior-execution handoff documents before any copy enters the repository | process | sonnet | m4 | _none_ | no | TODO |
+| [M2-0057](tickets/M2-0057.md) | Sanitize the prior-execution handoff documents before any copy enters the repository | process | sonnet | m4 | _none_ | yes | IN_PROGRESS |
 | [M2-0058](tickets/M2-0058.md) | Procure and wire the Windows code-signing identity and timestamp service into the release pipeline | external | sonnet | m10 | _none_ | yes | TODO |
 | [M2-0103](tickets/M2-0103.md) | Provision the isolated Operator staging Worker and D1 with least-privilege server credentials (TASK-012) | external | sonnet | m7 | M2-0014 | yes | TODO |
 | [M2-0212](tickets/M2-0212.md) | Prove the BRAG/Hyperframes film toolchain on this setup with a 5-second 4K render | video | opus | m11 | _none_ | no | TODO |
