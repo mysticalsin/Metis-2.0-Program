@@ -165,6 +165,8 @@ def problems(inventory, fields):
             missing = [p for p in paths if p not in entries]
             if missing:
                 out.append(f"{top}: leaves not classified: {', '.join(missing)}")
+        for path in sorted(entries - facets - set(paths) - {top}):
+            out.append(f"{path}: inventoried but not in BaseSettingsSchema")
 
     for k in inventory["keys"]:
         key, cls, ctl_id = k["key"], k["class"], k["control"]

@@ -4188,8 +4188,8 @@
     "surface": "no Settings control",
     "anchor": "src/shared/ipc.ts:1152-1162"
    },
-   "migration": "none",
-   "basis": "OBSERVED trusted from managed configuration only (src/shared/enterprise-live-profile.ts:1-8); cloud-only forbids local fallback, summaryOnly omits full transcripts."
+   "migration": "M2-0117.1: read from the Métis default and managed layers only. It is dropped from the user layer on read, so a value that a renderer patch or a hand edit left in settings.json is inert (the mirror of settingsVersion, which is dropped from managed layers); M2-0062 strips it from renderer patches",
+   "basis": "OBSERVED described as trusted managed configuration (src/shared/enterprise-live-profile.ts:1-8, src/shared/ipc.ts:1152-1155) but not enforced: getSettings merges the user layer over managed values (src/main/store.ts:709), a settings patch keeps it (src/main/store.ts:126-133) and no renderer strip removes it (src/main/index.ts:4845-4885), while main (src/main/index.ts:6589, src/main/transcripts.ts:767) and the renderer (src/renderer/src/App.tsx:2232) read the merged value. DERIVED MASTER §9.6: an organization-enforced mode wins and is not weakened, so no user layer may set it. cloud-only forbids local fallback, summaryOnly omits full transcripts."
   },
   {
    "key": "cloudSttProvider",
@@ -4207,7 +4207,7 @@
     "surface": "Speech › Transcript source (cloud-only profiles only)",
     "anchor": "src/renderer/src/components/Settings.tsx:6793"
    },
-   "migration": "versioned S-1 (settings version 2): compares the 1.x route with the 2.0 route over the same layers and, where they differ, writes 'unconfigured' to the user layer so the route in force is kept; a lock that would change the route holds the profile at version 1. The version is read only from a readable user file and written only by main (when it creates a profile, and when S-1 completes); DEFAULT_SETTINGS declares none and every managed layer's value or lock for it is ignored, so a managed settingsVersion never skips S-1. While settings.json cannot be read, the version and the stored value are unknown, for a legacy and a version-2 profile alike: a route applies only where organization locks fix it at both versions (a locked provider under managed cloud-only, or a locked 'unconfigured' with a locked asrEngine outside it); otherwise no speech session opens, cloud or local, and Voice & meetings shows speech unavailable with typing offered",
+   "migration": "versioned S-1 (settings version 2): compares the 1.x route with the 2.0 route over the same layers and, where they differ, writes 'unconfigured' to the user layer so the route in force is kept; a lock that would change the route holds the profile at version 1. The version and the stored value come only from a readable settings.json, and the version is written only by main (when it creates a profile, and when S-1 completes); DEFAULT_SETTINGS declares none and every managed layer's value or lock for it is ignored, so a managed settingsVersion never skips S-1. While settings.json is present but cannot be read or decoded, or a readable .recovered copy stands in for a missing one, the version and the stored value are unknown, whatever the copy records, for a legacy and a version-2 profile alike: a route applies only where organization locks fix it at both versions (a locked provider under managed cloud-only, or a locked 'unconfigured' with a locked asrEngine outside it); otherwise no speech session opens, cloud or local, and Voice & meetings shows speech unavailable with typing offered. No step runs and every write is refused until settings.json reads again or the person keeps the copy",
    "basis": "OBSERVED 1.x: cloud speech only under a managed cloud-only profile, where 'unconfigured' resolves to Cloudflare; a stored cloud id is ignored everywhere else (src/shared/cloud-stt-provider.ts:35-54). DERIVED MASTER §9.6: the selected engine is one value, so from settings version 2 'unconfigured' means the local route and a cloud id that cloud route for every profile, managed cloud-only still winning. ASSUMED D-11 recommended answer: the fresh-install default becomes 'cloudflare-nova3' (src/shared/ipc.ts:1169, 1700).",
    "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Soniox is offered only when organization policy allows it.",
    "assumed_decisions": [
@@ -5211,8 +5211,8 @@
     "surface": "not stored: every read layers DEFAULT < managed < user with no version",
     "anchor": "src/main/store.ts:638-646"
    },
-   "migration": "new: main writes 2 in the save that creates a profile and in the save that completes S-1; a readable user layer without it is version 1, and with no readable user layer the version is unknown",
-   "basis": "DERIVED the Cloudflare default may move audio only for a profile whose readable user file records version 2 (SETTINGS-2.0.md §9.1): the snapshot served for an unreadable settings.json layers only DEFAULT and managed (src/main/store.ts:641-646), and managed parsing keeps any schema key (src/main/store.ts:137-142), so neither may supply it.",
+   "migration": "new: main writes 2 in the save that creates a profile and in the save that completes S-1; it is read only from a readable settings.json, where its absence means version 1; while settings.json is present but unreadable or undecodable, or a readable .recovered copy stands in for a missing one, the version is unknown",
+   "basis": "DERIVED the Cloudflare default may move audio only for a profile whose readable settings.json records version 2 (SETTINGS-2.0.md §9.1): the snapshot served for an unreadable settings.json layers only DEFAULT and managed (src/main/store.ts:641-646), managed parsing keeps any schema key (src/main/store.ts:137-142), and a .recovered copy may be older than the file it stands in for (src/main/store.ts:402, 446-448), so none of them may supply it.",
    "notes": "No Métis default and no control. Server-authoritative (M2-0062), so a renderer patch carrying it is stripped; every managed layer's value and lock for it is ignored."
   },
   {
@@ -5466,16 +5466,25 @@
    "status": "existing"
   },
   {
-   "legacy": "managed-config flat enterpriseLive* keys",
-   "to": "enterpriseLive{managed, inferenceMode, summaryOnly}",
-   "rule": "both shapes accepted",
-   "anchor": "src/shared/enterprise-live-profile.ts:36-50",
-   "status": "existing"
+   "legacy": "managed-config flat enterpriseLiveManaged, enterpriseLiveInferenceMode, enterpriseLiveSummaryOnly keys",
+   "to": "(none: never honoured)",
+   "rule": "resolveEnterpriseLiveProfile accepts them, but managed parsing drops every non-schema key (validKeysOnly) and every caller passes the nested value, which the schema default always supplies, so the flat branch never runs and an admin file that uses them has no effect. M2-0117.1 removes that branch and the transcripts.ts '?? settings' fallback; nothing migrates",
+   "anchor": "src/shared/enterprise-live-profile.ts:41-50; src/main/store.ts:126-142; src/main/index.ts:6589; src/main/transcripts.ts:767",
+   "status": "deprecated",
+   "owner": "M2-0117.1"
   },
   {
    "legacy": "cloudSttProvider on a profile that existed before settings version 2",
    "to": "the speech route in force before the upgrade, kept",
-   "rule": "S-1: compute the 1.x route and the 2.0 route from the same layers; where they differ (outside managed cloud-only, a 2.0 value that is a cloud id: the new Cloudflare default, a cloud id left in the user layer by an earlier managed cloud-only profile, or an organization default), write 'unconfigured' to the user layer and offer the S16 choice; where they agree write nothing, so a managed cloud-only profile with no stored provider gets no write; a lock that would change the route holds the profile at version 1. The version is read only from a readable user file and written only by main (when it creates a profile, and when S-1 completes); DEFAULT_SETTINGS declares none and every managed layer's value or lock for it is ignored, so a managed settingsVersion never skips S-1. While settings.json cannot be read, the version and the stored value are unknown, for a legacy and a version-2 profile alike: a route applies only where organization locks fix it at both versions (a locked provider under managed cloud-only, or a locked 'unconfigured' with a locked asrEngine outside it); otherwise no speech session opens, cloud or local, and Voice & meetings shows speech unavailable with typing offered",
+   "rule": "S-1: compute the 1.x route and the 2.0 route from the same layers; where they differ (outside managed cloud-only, a 2.0 value that is a cloud id: the new Cloudflare default, a cloud id left in the user layer by an earlier managed cloud-only profile, or an organization default), write 'unconfigured' to the user layer and offer the S16 choice; where they agree write nothing, so a managed cloud-only profile with no stored provider gets no write; a lock that would change the route holds the profile at version 1. The version and the stored value come only from a readable settings.json, and the version is written only by main (when it creates a profile, and when S-1 completes); DEFAULT_SETTINGS declares none and every managed layer's value or lock for it is ignored, so a managed settingsVersion never skips S-1. While settings.json is present but cannot be read or decoded, or a readable .recovered copy stands in for a missing one, the version and the stored value are unknown, whatever the copy records, for a legacy and a version-2 profile alike: a route applies only where organization locks fix it at both versions (a locked provider under managed cloud-only, or a locked 'unconfigured' with a locked asrEngine outside it); otherwise no speech session opens, cloud or local, and Voice & meetings shows speech unavailable with typing offered. No step runs and every write is refused until settings.json reads again or the person keeps the copy",
+   "status": "new",
+   "owner": "M2-0117.1"
+  },
+  {
+   "legacy": "enterpriseLive in settings.json (the user layer)",
+   "to": "(ignored)",
+   "rule": "dropped on read: the value in force comes from the Métis default and managed layers only, so neither a user file nor a renderer patch switches cloud-only or summary-only on or off",
+   "anchor": "src/main/store.ts:709",
    "status": "new",
    "owner": "M2-0117.1"
   },

@@ -33,3 +33,13 @@ controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanc
 FAIL micDeviceId: in BaseSettingsSchema, so no longer planned by M2-0117.1
 1 problem(s)
 exit 1
+
+4. resilience.removedLeaf: an inventoried leaf that BaseSettingsSchema lacks (KEEP, no control).
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 4>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 128 settings entries (1 planned), 12 non-schema entries, 99 controls
+classes: ADVANCED 46, DEPRECATED 14, KEEP 57, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+FAIL resilience.removedLeaf: inventoried but not in BaseSettingsSchema
+1 problem(s)
+exit 1
+The round-3 checker, which compared schema leaves with entries in one direction only, passed the same copy (PASS, exit 0).
