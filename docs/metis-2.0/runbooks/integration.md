@@ -294,13 +294,29 @@ names its PR (OBSERVED: the four merges of 2026-09-26 23:46 UTC produced `build.
 
 **Reverts the owner asks for.** §9 step 1's revert relies on its ticket still holding its units. A ticket
 that has landed has released them, and reopening it could give a unit a second holder (INT-2). So on a
-green trunk the lead files the revert as its own ticket, in m3 while §11's window holds, claiming the hot
-units the reverted commits change. It is dispatched under §4 and §5, and its PR,
-`git revert <landed sha>` with `-m 1` for the merge-commit landings up to 3afebbdf (F18), merges through
-all of §8 with its own evidence record. Its landing commit (§9 step 2) returns the reverted ticket to
-TODO, and with it every dependant in a status L3 checks, reverted in the same PR if it has landed. When a
-reverted ticket is dispatched again, its branch starts with `git revert <the revert's landed sha>`, which
-restores the work whichever way it landed.
+green trunk the lead reverts a ticket `X` through a revert ticket of its own, filed in m3 while §11's
+window holds and claiming the hot units that `X`'s landed commits change. It is dispatched under §4 and
+§5. Its PR reverts those commits, newest first, with `git revert <landed sha>` (`-m 1` for the
+merge-commit landings up to 3afebbdf, F18), and merges through all of §8 with its own evidence record.
+Its landing commit (§9 step 2) returns `X` to TODO. A revert ticket reverts exactly one ticket: its PR
+lands as one squash commit, and reverting that commit brings back everything the PR reverted.
+
+L3 would then fail for each dependant of `X` in a status L3 checks, so the lead collects those
+dependants, their own dependants in such a status, and so on. A dependant whose work does not build on
+the ticket it depends on keeps its status: the lead drops that ticket from its `depends_on` in the ledger
+commit that files the revert tickets, and does not collect it. Of the collected tickets:
+
+- Each one with a landed commit is reverted by a revert ticket of its own. Every revert ticket depends on
+  the revert tickets of the collected tickets that depend on the ticket it reverts, directly or through
+  others, so L3 dispatches the reverts from the last dependant back to `X`. A collected ticket still
+  IN_PROGRESS between slices returns to TODO in its revert ticket's dispatch commit, which releases the
+  units that revert ticket claims (§4 rule 2).
+- Each one without a landed commit returns to TODO in the ledger commit in which the first of its
+  dependencies does: for a ticket that depends only on `X`, the landing commit of `X`'s revert.
+
+When a reverted ticket is dispatched again, its branch starts with
+`git revert <its own revert's landed sha>`, which restores its work, and no other ticket's, whichever way
+it landed. L3 and §5 dispatch the reverted tickets again in dependency order, `X` first.
 
 **Program-repository PRs.** A ticket whose scope is a program document opens its PR into the program
 repository's `main` (§3). That repository has no `build.yml`, no `evidence.yml` and no installer, and no
@@ -330,21 +346,25 @@ therefore waits for the L15 follow-up in §16.
 
 ## 9. After a merge
 
-1. **Wait for the landed commit's runs.** When it is green (§8 step 2), go to step 2. When a run fails,
-   the trunk is red and closed (INT-4); re-run its failed jobs once, since a failure can pass on the next
-   run (F21): `gh run rerun <id> --repo mysticalsin/AskToto-Mantu --failed`. A failure that repeats keeps
-   it closed: only the two PRs below merge, whether or not they change a hot unit, and each needs
-   §8 step 2 and step 4's containment check, so the tree that lands is a tree that ran green. A landing
-   that passed the containment check has exactly the tree that ran green on its head, so a failure that
-   repeats on it points at the environment and takes the fix. On a landing that skipped the check
-   (Batches), the untested merge result may be the cause, and the revert fits.
+1. **Wait for the landed commit's runs.** When it is green (§8 step 2), go to step 2 for its ticket `T`.
+   Go there too when a later commit on `m2/integration` is green and no revert of this one has landed:
+   `T`'s work is then in a tree that ran green. When a run fails, the commit is red, and so is the trunk
+   unless a later commit is already green (§8 step 2). Re-run its failed jobs once, since a failure can
+   pass on the next run (F21): `gh run rerun <id> --repo mysticalsin/AskToto-Mantu --failed`. A red trunk
+   is closed (INT-4), and a failure that repeats keeps it closed: only the two PRs below merge, whether or
+   not they change a hot unit, and each needs §8 step 2 and step 4's containment check, so the tree that
+   lands is a tree that ran green. A landing that passed the containment check has exactly the tree that
+   ran green on its head, so a failure that repeats on it points at the environment and takes the fix. On
+   a landing that skipped the check (Batches), the untested merge result may be the cause, and the revert
+   fits.
    - **The revert**, when the merge caused the failure: `git revert <landed sha>` on a lead branch cut from
      `origin/m2/integration`. Its `T` is the reverted ticket, which stays IN_PROGRESS and keeps its units,
-     so §8 step 3 holds. The revert carries no evidence record, so §8 step 1 does not apply to it. GitHub
-     cannot reopen or re-merge a merged PR, so the work returns through a new one: the ticket's runner
-     merges `origin/m2/integration`, which now holds the revert, into the ticket's branch (the landing was
-     a squash, so the merge keeps the ticket's changes), fixes the failure there and opens a new draft PR
-     from that branch. The new PR is validated and recorded on its own head and merges through §8.
+     so §8 step 3 holds, and step 2 does not run for the revert's landing. The revert carries no evidence
+     record, so §8 step 1 does not apply to it. GitHub cannot reopen or re-merge a merged PR, so the work
+     returns through a new one: the ticket's runner merges `origin/m2/integration`, which now holds the
+     revert, into the ticket's branch (the landing was a squash, so the merge keeps the ticket's changes),
+     fixes the failure there and opens a new draft PR from that branch. The new PR is validated and
+     recorded on its own head and merges through §8.
    - **The fix**, when the merge did not cause the failure, for example after a runner-image change breaks
      `build.yml`. The failure becomes a ticket. The lead files it in m3 while §11's window holds,
      dispatches it ahead of every declared order and reservation (§5), and merges its PR through all of
@@ -353,10 +373,11 @@ therefore waits for the L15 follow-up in §16.
      suspended ticket goes back to TODO in the fix's dispatch commit, which releases its claims (§4), and
      back to IN_PROGRESS, with the same claims, in the fix's landing commit, before step 2 dispatches
      anyone else. It loses nothing: none of its PRs could merge while the trunk was red, and §8 step 4
-     syncs its hot-unit PR with the fix before it merges.
+     syncs its hot-unit PR with the fix before it merges. When the fix's landing is green, step 2 records
+     the fix's ticket and then `T`, whose work that green tree contains.
 
    A program-repository merge has no run and starts at step 2.
-2. **When it is green**, one commit on the program repository's `main`, pushed:
+2. **Record the landing** in one commit on the program repository's `main`, pushed:
    - append each evidence record in the PR body (a PR can carry one per level, such as DESIGNED and
      LOCALLY_TESTED), compacted with `jq -c`, one line each, to `evidence/records/<T>.jsonl`, never editing
      an existing line (SCHEMA.md §6);
@@ -534,14 +555,14 @@ Section B (program decisions):
 
 | # | Decision | Why | Alternatives rejected | Tickets |
 |---|---|---|---|---|
-| PD-30 | The hot-file queue has one holder per hot unit, the single IN_PROGRESS ticket that claims it, with claims taken all at once at dispatch. Declared orders are dispatch orders among ready tickets: a ticket that is not ready is overtaken, and one ticket at a time may reserve the units it still needs. A PR changes a hot unit only if its ticket holds it, and a hot-unit PR merges only when up to date and green on its head. While the trunk is red, from a landing's failed run until that commit or a later one is green, only the revert and the fix of a repeated failure merge, and the fix's ticket may suspend the tickets whose claims it needs. A revert the owner asks for on a green trunk is a ticket of its own that claims the hot units it changes. The `index` order gains observability slice 2 (M2-0215) after 0006 and M2-0214 after 0037 | Evidence binds to the PR head, so parallel work with serialized merges would re-sync, re-run and re-validate every open PR on a unit at each hot merge. A red trunk hides the failures of every later landing, and a fix that waited for claims held by tickets unable to merge would deadlock | Parallel development with serialized merges only; GitHub's merge queue (not evaluated for this user-owned repository, and it cannot see ledger claims) | M2-0188, 0214, 0215 |
+| PD-30 | The hot-file queue has one holder per hot unit, the single IN_PROGRESS ticket that claims it, with claims taken all at once at dispatch. Declared orders are dispatch orders among ready tickets: a ticket that is not ready is overtaken, and one ticket at a time may reserve the units it still needs. A PR changes a hot unit only if its ticket holds it, and a hot-unit PR merges only when up to date and green on its head. While the trunk is red, from a landing's failed run until that commit or a later one is green, only the revert and the fix of a repeated failure merge, and the fix's ticket may suspend the tickets whose claims it needs. A ticket the owner asks to revert on a green trunk is reverted by a revert ticket of its own that claims the hot units it changes, after each landed dependant is reverted by its own. The `index` order gains observability slice 2 (M2-0215) after 0006 and M2-0214 after 0037 | Evidence binds to the PR head, so parallel work with serialized merges would re-sync, re-run and re-validate every open PR on a unit at each hot merge. A red trunk hides the failures of every later landing, and a fix that waited for claims held by tickets unable to merge would deadlock. Reverting a revert brings back everything it reverted, so each revert covers one ticket | Parallel development with serialized merges only; GitHub's merge queue (not evaluated for this user-owned repository, and it cannot see ledger claims) | M2-0188, 0214, 0215 |
 | PD-31 | Ticket PRs land by squash, with a hand-written subject `<summary> [slice or ticket] (#N)` and a body that names no private document | One commit per PR on the trunk, and public history whose text the lead writes (PROVIDED: `_relay/HANDOFF.md:29`; lead notes, 2026-09-27) | Merge commits, as #201 to #214 used: they keep each evidence head commit reachable from `main`, per-commit backports and `git revert -m 1`, but carry every runner commit message into the public history | M2-0188 |
 
 Section D (open register):
 
 | ID | Question | Recommended default | Class | Needed by | Status | Affected tickets |
 |---|---|---|---|---|---|---|
-| D-32 | Until the 1.9.7 (m3) snapshot is cut, which PRs that change the installer may merge into `m2/integration`? | Only those of m2 and m3 tickets. M2-0004 (m4, first in the `index` order) moves to m3. Eight tickets outside m2 and m3 are already merged (F7): M2-0041, 0043, 0045, 0203 and 0204 (m5), M2-0056 (m4), M2-0120 (m8) and M2-0147 (m9). They ship in 1.9.7 and are listed in its release notes, and the T1 lists drop those on them (M2-0046's: 0041, 0043 and 0045; PLAN.md:130's: those three, 0203 and 0204; M2-0206's `depends_on`: all five). The owner may instead have the lead revert any of them before the m3 snapshot (§8, "Reverts the owner asks for"). Such a revert waits for the hot units it changes: #206 (M2-0041) changes `ipc`, held by M2-0214, and #219 (M2-0056) changes `deps`, held by M2-0047 and M2-0214. It also takes the reverted ticket's dependants back to TODO, reverting those that have landed: M2-0218 and 0219 depend on 0041, M2-0221 and 0222 on 0147. Waiting: M2-0047, 0101, 0144 and 0190, in progress with installer claims, and the `package.json` changes of #222 (M2-0055) and #231 (M2-0223) | reversible | 2026-09-27 | OPEN | 0004, 0041, 0043, 0045, 0046, 0047, 0055, 0056, 0101, 0120, 0144, 0147, 0190, 0203, 0204, 0206, 0214, 0218, 0219, 0221, 0222, 0223 |
+| D-32 | Until the 1.9.7 (m3) snapshot is cut, which PRs that change the installer may merge into `m2/integration`? | Only those of m2 and m3 tickets. M2-0004 (m4, first in the `index` order) moves to m3. Eight tickets outside m2 and m3 are already merged (F7): M2-0041, 0043, 0045, 0203 and 0204 (m5), M2-0056 (m4), M2-0120 (m8) and M2-0147 (m9). They ship in 1.9.7 and are listed in its release notes, and the T1 lists drop those on them (M2-0046's: 0041, 0043 and 0045; PLAN.md:130's: those three, 0203 and 0204; M2-0206's `depends_on`: all five). The owner may instead have the lead revert any of them before the m3 snapshot (§8, "Reverts the owner asks for"). Such a revert waits for the hot units it changes: #206 (M2-0041) changes `ipc`, held by M2-0214, and #219 (M2-0056) changes `deps`, held by M2-0047 and M2-0214. It also takes the reverted ticket's dependants back to TODO, each landed dependant first, by its own revert ticket: M2-0218 and 0219 depend on 0041 (their PRs #226 and #223 change `operator/src/cloudflare-connect.ts`, as #206 does), M2-0221 and 0222 on 0147. Waiting: M2-0047, 0101, 0144 and 0190, in progress with installer claims, and the `package.json` changes of #222 (M2-0055) and #231 (M2-0223) | reversible | 2026-09-27 | OPEN | 0004, 0041, 0043, 0045, 0046, 0047, 0055, 0056, 0101, 0120, 0144, 0147, 0190, 0203, 0204, 0206, 0214, 0218, 0219, 0221, 0222, 0223 |
 | D-33 | Protect `m2/integration` on GitHub? | Yes: a ruleset with deletion and non_fast_forward, as `main` has, plus required status checks (both Quality checks, Security & supply chain, Operator Worker) without "up to date", which the queue handles. ASSUMED: push-triggered runs on a PR's head satisfy required checks; confirm on the first PR after enabling | escalate: owner configuration | 2026-09-28 | OPEN | 0188 |
 | D-34 | How is `release/1.9.x` cut, and how is a 1.9.x hotfix built and numbered? | Cut at the commit in the promoted 1.9.7 candidate's `provenance.json`. `qa-candidate.yml` also accepts the head of `release/1.9.x` (M2-0187 follow-up). A hotfix takes the next unused patch number (never 1.9.8, never reused), and the next train the one after it | reversible | 2026-10-03 | OPEN | 0046, 0187, 0206 |
 
