@@ -46,14 +46,12 @@ Deliver Métis 2.0 (docs/metis-2.0/GOAL.json; deadline 2026-11-30). Plan: docs/m
 - Outcome eng-complete + BLOCKED-visible; deadline 2026-11-30; only Apple public signing out of scope; Opus validates and owns design/animation; launch video at the end — Tony.
 
 
-## PURGE STATUS (2026-09-26 ~20:45 UTC) — read before any git push
-- With the owner's explicit go: release.yml disabled and the 5 rulesets set to disabled; the remaining 49 rewritten branches + 27 rewritten tags were force-pushed from ~/AI-Brain-build/purge/remote-mirror.git (pending list: ~/AI-Brain-build/purge/pending-refs.txt; all 76 were unchanged since the backup). Then all 5 rulesets were set back to active and release.yml re-enabled (confirmed). Ruleset snapshots: ~/AI-Brain-build/purge/rulesets/*.json.
-- NOT YET VERIFIED: an automated ls-remote comparison after the push was refused by the tool policy. Verify manually: on GitHub, main's head must be 22d1fba ("Merge pull request #198"), not 2bf21f1.
-- CAHE_KIMI_JSON: does not exist as a repo or environment secret (404); the v1.2.0 Cahê build embedded the key from a local git-ignored file. The key still needs revoking at the vendor (owner; no console access here).
-- GitHub Support request: text at docs/metis-2.0/GITHUB-SUPPORT-REQUEST.md; needs the owner signed in at support.github.com (browser window open at the sign-in page).
-- Mantu sign-off: draft at docs/metis-2.0/owner-requests/MANTU-LICENCE-SIGNOFF-DRAFT.md (not sent; owner chooses recipients).
-- NEVER push from a clone/ref predating the rewrite. Local-only pre-rewrite branches m2/w0-hermetic-tests and m2/M2-0003-wip-scratch must never be pushed.
-- Program docs live ONLY in this private repo. Ticket runner batches: wf_32ea0bc9-6bc (batch 1: M2-0003/0006/0035/0043/0045/0041) and wf_635af830-809 (batch 2: M2-0191/0002/0011/0190/0187/0013/0020).
+## PURGE STATUS — COMPLETE (2026-09-26 23:50 UTC)
+- All 108 branches and 27 tags carry the rewritten history (verified: 0 mismatched refs vs ~/AI-Brain-build/purge/remote-mirror.git; main = 22d1fbad). Rulesets and release.yml were disabled only for the push and are active again; no release run fired.
+- GitHub Support ticket submitted from the owner's account (PR-ref dereference, cache removal, server-side GC). Watch the owner's email for GitHub's reply.
+- Owner revoked the Cahê Kimi key. CAHE_KIMI_JSON never existed as a GitHub secret. Cahê release assets deleted; edition removal is ticket M2-0214.
+- Mantu licence/ownership sign-off: Gmail draft created in the owner's mailbox (no recipient; owner chooses and sends). Copy: docs/metis-2.0/owner-requests/MANTU-LICENCE-SIGNOFF-DRAFT.md.
+- NEVER push from a clone/ref predating the rewrite. Local-only pre-rewrite branches m2/w0-hermetic-tests and m2/M2-0003-wip-scratch must never be pushed. Any other machine or agent clone must be re-cloned.
 
 ## Watch out
 - The agent Bash sandbox allows writes under /Users/tony, so it does NOT protect OneDrive data.
