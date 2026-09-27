@@ -642,7 +642,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": " 2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac)."
   },
   {
    "id": "M2-0009",
@@ -704,7 +705,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": " 2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac)."
   },
   {
    "id": "M2-0010",
