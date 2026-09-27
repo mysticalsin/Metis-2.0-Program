@@ -497,8 +497,9 @@ therefore waits for the L15 follow-up in §16.
    from an accident, because every push uses the owner's account (F11). So on a printed line or exit 1 the
    lead merges nothing and asks the owner whether each event is the owner's, made or ordered by them:
    - **The owner's** is never undone. No commit it removed, and no branch that still contains one, is
-     pushed or merged (`_relay/HANDOFF.md:32`): that would bring back what the owner removed, and after a
-     purge of the public repository publish it again. Merging resumes once the owner confirms the event.
+     pushed or merged (PROVIDED: the same "PURGE STATUS", "NEVER push from a clone/ref predating the
+     rewrite"): that would bring back what the owner removed, and after a purge of the public repository
+     publish it again. Merging resumes once the owner confirms the event.
    - **Any other** is undone. The lost commits come back on the branch by a fast-forward push of the old
      head or, when commits have landed since, by a merge as af39d16 did (§2); a deleted branch is pushed
      again at its old head, the event's `before`, and a PR the deletion closed is reopened. Merging resumes
