@@ -1151,9 +1151,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/215",
+    "merged_into": "m2/integration (squash bc08a419)",
+    "validation": "Opus PASS (batch 3)"
+   }
   },
   {
    "id": "M2-0018",
