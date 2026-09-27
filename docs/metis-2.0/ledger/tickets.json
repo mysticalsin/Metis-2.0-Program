@@ -3297,9 +3297,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/219",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0057",
@@ -11750,9 +11755,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/221",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0204",
@@ -12400,9 +12410,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-09",
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 5)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/225",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 5); 4K spike rendered in CI"
+   }
   },
   {
    "id": "M2-0213",
