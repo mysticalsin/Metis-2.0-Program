@@ -12847,7 +12847,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0221",
    "title": "Open the Windows CLI setup script without cmd re-parsing its path",
    "milestone": "m3",
@@ -12871,7 +12871,12 @@
    "risk": "high",
    "estimate_hours": 2,
    "claimed_by": "ticket runner batch 7",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/232",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 7)"
+   }
   },
   {
    "wave": "W2",
@@ -12883,7 +12888,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0222",
    "title": "Keep the MCP metadata/DNS-rebinding refusal on the system-proxy route",
    "milestone": "m3",
@@ -12909,7 +12914,12 @@
    "risk": "medium",
    "estimate_hours": 4,
    "claimed_by": "ticket runner batch 7",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/234",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 7)"
+   }
   },
   {
    "wave": "W2",
@@ -12921,7 +12931,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0223",
    "title": "Pin GitHub Actions to full commit SHAs in build and release workflows",
    "milestone": "m4",
@@ -12946,7 +12956,12 @@
    "risk": "medium",
    "estimate_hours": 2,
    "claimed_by": "ticket runner batch 7",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/231",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 7)"
+   }
   },
   {
    "wave": "W2",
