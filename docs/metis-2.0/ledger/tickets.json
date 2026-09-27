@@ -12707,9 +12707,15 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 8,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/241",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0216",
