@@ -99,6 +99,12 @@
    "version": 2,
    "by": "Opus final validator (m2 gate)",
    "summary": "Schema unchanged. Milestone inversions fixed (M2-0002 m3, M2-0005 m4, M2-0078 m10); Opus-owned non-visual scripts split into Sonnet slices from an Opus spec (M2-0002, M2-0008, M2-0188, M2-0197); M2-0001 first test run pinned to CI, the 09-23 quarantine count labelled DERIVED and the MQA-348 prior art pointed at an in-repo copy; out-of-repo references replaced (M2-0006, M2-0008, M2-0011, M2-0023); CRITIC-CODE-4 and -9 added to M2-0018; rc1 acceptance cycles removed from M2-0166 and M2-0178; M2-0049 gains the pre-existing personal-email and account-ID cleanup; kit copies redacted (see review/REDACTIONS.md)"
+  },
+  {
+   "date": "2026-09-27",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0230 filed: public-repo identifier/private-reference/key-fixture cleanup split out of M2-0049; blocks the first m2/integration -> main milestone merge."
   }
  ],
  "tickets": [
@@ -3019,7 +3025,7 @@
    "slices": [],
    "due": null,
    "status": "TODO",
-   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values."
+   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values. 2026-09-27 (lead): the personal-email/account-id cleanup item is delivered by M2-0230 (split so it is not blocked by M2-0048/M2-0053); M2-0049 only verifies the docs scan passes on main afterwards."
   },
   {
    "id": "M2-0050",
@@ -13279,6 +13285,66 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 1,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0230",
+   "title": "Remove owner identifiers, private-program references and key-shaped fixtures from the public repo",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "MILESTONE-2026-09-27-HYGIENE",
+    "M2-0049"
+   ],
+   "scope_paths": [
+    "operator/src/access.ts",
+    "operator/src/index.ts",
+    "operator/src/render/fixture.ts",
+    "operator/src/render/pages/settings.ts",
+    "operator/src/spa/",
+    "operator/scripts/dev-session.mjs",
+    "operator/scripts/dev-session.contract.test.ts",
+    "operator/scripts/seed-dev.mjs",
+    "operator/README.md",
+    "operator/wrangler.jsonc",
+    "operator/src/",
+    "docs/design/",
+    "docs/operator/",
+    "package.json",
+    "src/renderer/src/components/Settings.tsx",
+    "src/renderer/src/components/Settings.contract.test.ts",
+    "src/shared/operator-seat.test.ts",
+    "scripts/evidence/record.mjs",
+    "src/main/onboarding-recovery.contract.test.ts",
+    "electron.vite.config.ts",
+    ".github/workflows/release.yml"
+   ],
+   "summary": "The m2/integration -> main milestone merge is blocked by the public-hygiene gate, and the root cause is pre-existing: the owner's personal and work email addresses appear in 45 tracked files (runtime admin allowlist in operator/src/access.ts, the Settings feedback mailto in the desktop app, package.json author, operator docs/runbooks/design docs, the generated Operator SPA text, and 133 test fixture occurrences), a real Cloudflare account id sits in operator/src/cloudflare.test.ts, scripts/evidence/record.mjs names the private program's docs path, and src/main/onboarding-recovery.contract.test.ts carries a literal sk-ant-shaped key. Split out of M2-0049 so it is not blocked by the workflow-pinning chain (M2-0048/M2-0053). Git history is not rewritten (force-push is forbidden); this cleans the tree.",
+   "acceptance": [
+    "git grep -nE 'tony\\.walteur|twalteur|@amaris\\.com' on the branch returns nothing (source, tests, docs, generated SPA, package.json)",
+    "operator/src/access.ts reads the admin allowlist from a Worker binding (ADMIN_EMAILS, comma-separated, set with wrangler secret put) and fails closed (every admin check denied, clear log line) when it is missing or empty; tests cover set, empty and missing",
+    "Operator docs/runbooks/README and the settings page describe the allowlist as 'the owner's two Access emails, configured as the ADMIN_EMAILS secret' without naming them; the runbook adds the one-time wrangler secret put step before the next deploy",
+    "Desktop Settings feedback link reads its address from a build-time constant (METIS_FEEDBACK_EMAIL, injected by electron-vite define from the environment; release.yml passes it from a repository variable); when unset the link is hidden, and a contract test covers both states",
+    "package.json author keeps the name without an email address; electron-builder output unchanged otherwise",
+    "Every test fixture uses synthetic identities (e.g. owner@example.test, admin@example.test) and a synthetic 32-hex account id; no assertion is weakened, only the literals change",
+    "scripts/evidence/record.mjs names no private-program path; key-shaped test fixtures are built at runtime (e.g. 'sk-ant-' + 'x'.repeat(40)) so no tracked line matches sk-(ant|or|kimi)-[A-Za-z0-9]{20,}",
+    "operator/src/spa/client.generated.ts is regenerated from its source by the repo's generator, not hand-edited",
+    "Build & Test green on the PR; the milestone hygiene diff origin/main...origin/m2/integration is empty after merge"
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "git grep checks above on the PR branch",
+    "queue hygiene_scan on origin/main...origin/m2/integration"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
    "status": "TODO"
   }
  ]
