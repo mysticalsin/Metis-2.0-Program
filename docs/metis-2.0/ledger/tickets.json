@@ -1105,7 +1105,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither."
   },
   {
    "id": "M2-0017",
@@ -3726,7 +3727,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the fresh default is Cloudflare-hosted speech through the Operator broker. The speech contract reports a selected engine that is not ready as not-ready and has no implicit cloud/local fallback path. Acceptance unchanged."
   },
   {
    "id": "M2-0065",
@@ -5430,7 +5432,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "C-08 (which chrome modes show the ARMED orb, and whether `hide` stays the fresh default) is still an open owner question with no D-row: D-4 was labelled C-03/C-08/C-16 but answers C-16 only (docs/metis-2.0/POLICY-2.0.md). Do not change the fresh default silently."
   },
   {
    "id": "M2-0094",
@@ -5971,7 +5974,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 and D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): qualify Cloudflare-hosted speech reached only through the Operator broker. The route record also states the gateway log mode per transport (the per-request payload header exists for HTTP; the Worker binding has only collectLog), whether the account uses Legacy Logs or Workers Logs, and the metadata retention bound. Acceptance unchanged."
   },
   {
    "id": "M2-0103",
@@ -6082,7 +6086,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "RE-VALIDATE acceptance 1 before starting: D-12 (answered as default on 2026-09-27, docs/metis-2.0/POLICY-2.0.md) keeps metadata-only gateway logs, so cf-aig-collect-log:false on every request no longer applies. Control set: gateway logging stays off (the landed ai-gateway.ts readback is unchanged); protected Operator requests send cf-aig-collect-log:true, cf-aig-collect-log-payload:false and cf-aig-skip-cache:true; a transport without a proven metadata-only result (including a Worker binding route) sends cf-aig-collect-log:false; a transport where neither is proven is BLOCKED."
   },
   {
    "id": "M2-0105",
@@ -6226,7 +6231,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-4 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the Operator seat is the entitlement authority. Metering and quota identity is the seat's principal and device; a legacy license-server key is never a metering identity. Acceptance unchanged."
   },
   {
    "id": "M2-0107",
@@ -6286,7 +6292,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the broker grant is the only credential for the default speech route. An organization token stored by an earlier version is removed on upgrade, because D-11 allows no organization token on the device. Acceptance unchanged."
   },
   {
    "id": "M2-0108",
@@ -6523,7 +6530,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): Cloudflare speech through the Operator broker is the fresh default on every profile. Until the route's privacy readiness is VERIFIED, speech shows unavailable with an explicit local-install choice; it never selects local by itself. Acceptance unchanged."
   },
   {
    "id": "M2-0113",
@@ -8611,7 +8619,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-4 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the Operator seat is authoritative; the license server stays read-only for existing keys until an ADR-016 deprecation decision. Precedence: a seat decides its profile even when a legacy key is present; a key-only profile is validated read-only; no new keys are issued. D-4 answers C-16 only (C-03 is D-25; C-08 is open). RE-VALIDATE external_blocker: the remaining unblock step is read-only Fly.io access."
   },
   {
    "id": "M2-0147",
@@ -8778,7 +8787,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the claim is the MASTER section 16.6.5 sentence tailored to the verified route, shown only while readiness is VERIFIED, and it keeps 'Authorized usage metadata is retained for administration'; never 'zero retention', 'no logs' or 'Cloudflare stores no data'. Sentinels prove the metadata-only control on HTTP and WebSocket. Record the log regime: Legacy Logs keep entries until deleted, so a finite metadata retention bound needs a deletion job."
   },
   {
    "id": "M2-0150",
@@ -9480,7 +9490,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged."
   },
   {
    "id": "M2-0161",
@@ -10450,7 +10461,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): any privacy line in the film is the M2-0149-verified sentence verbatim, or it is cut. Acceptance unchanged."
   },
   {
    "id": "M2-0179",
@@ -11023,7 +11035,7 @@
    "slices": [],
    "due": "2026-10-02",
    "status": "DONE",
-   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers.",
+   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only.",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
