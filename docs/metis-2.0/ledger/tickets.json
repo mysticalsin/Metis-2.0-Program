@@ -775,11 +775,10 @@
     "CRITIC-CON-15"
    ],
    "scope_paths": [
-    "scripts/trace/build-traceability.mjs",
+    "docs/metis-2.0/tools/trace/build-traceability.mjs",
+    "docs/metis-2.0/tools/trace/build-traceability.test.mjs",
     "docs/metis-2.0/TRACEABILITY.md",
-    "docs/metis-2.0/ledger/traceability.json",
-    "docs/metis-2.0/kit/ID-INVENTORY.json",
-    "_relay/HANDOFF.md"
+    "docs/metis-2.0/ledger/traceability.json"
    ],
    "summary": "The kit's section 27 linter cannot pass without a per-ID matrix: 937 inventory rows (921 unique IDs) across 37 families, most cited only as ranges. Build the matrix from ledger/tickets.json and the inventory, give each ID a repo status derived from ticket status and evidence, and fail CI on an unmapped ID or a dangling ticket reference. This also serves as TASK-003's bounded source map and numbered handoff.",
    "acceptance": [
@@ -807,7 +806,8 @@
    "due": null,
    "status": "IN_PROGRESS",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket)."
   },
   {
    "id": "M2-0012",
