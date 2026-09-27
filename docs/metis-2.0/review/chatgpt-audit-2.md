@@ -2,7 +2,7 @@ Worked for 12m 59s
 ChatGPT said:
 Métis 1.9.7 — follow-up independent audit
 
-The priorities have changed. The live-index mutation by test processes is now the first containment issue. The leading reopening hypothesis is a healthy overlay that remains parked—not an invisible confirm() dialog. Keep the existing protection against automatically reloading an unresponsive renderer while the live transcript remains renderer-owned. 
+The priorities have changed. The live-index mutation by test processes is now the first containment issue. The leading reopening hypothesis is a healthy overlay that remains parked—not an invisible confirm() dialog. Keep the existing protection against automatically reloading an unresponsive renderer while the live transcript remains renderer-owned.
 chatgpt-followup-1
 
 I read the follow-up first, followed by the runtime evidence and B3. Repository locations below come from those reports; I have not independently executed Métis or inspected the checkout. Where I checked platform behavior externally, I distinguish it from the supplied evidence. Proposed symbols and event names are implementation recommendations, not claims about existing code.
@@ -13,27 +13,27 @@ Severity: P1 for the reopening failure; P0 for a recovery change that loses live
 
 Revised ranking
 Rank	Hypothesis	Severity / confidence	What would discriminate it
-1	activate shows the native window without reversing the parked application state. An opacity-zero, click-through hairline remains effectively invisible after showInactive().	P1 / medium-high mechanism confidence; incident unverified	activate arrives; main and renderer respond; the resulting window still has parked bounds, zero opacity, or the last-applied click-through policy. The verifier explicitly identifies this path. 
+1	activate shows the native window without reversing the parked application state. An opacity-zero, click-through hairline remains effectively invisible after showInactive().	P1 / medium-high mechanism confidence; incident unverified	activate arrives; main and renderer respond; the resulting window still has parked bounds, zero opacity, or the last-applied click-through policy. The verifier explicitly identifies this path.
 chatgpt-followup-1
 
 2	A late parking callback overwrites a newer reveal request. Reopening works momentarily, then a stale hide-animation completion parks it again.	P1 / medium-low	A newer reveal operation is followed by an older parkOverlayAfterHideSpring completion that changes bounds, opacity, or input policy. This is an inference from the asynchronous parking mechanism, not an observed race.
-3	No usable BrowserWindow exists after a creation failure. ensureWindow() catches the failure and callers silently return; alternatively, a partially initialized window survives.	P1 / medium for the code defect; low-medium for this incident	A failed create/retry with its actual exception, followed by no application-ready acknowledgement. Relevant location: src/main/index.ts:3468–3482. B3 establishes the silent path, but not its connection to the owner’s latest incident. 
+3	No usable BrowserWindow exists after a creation failure. ensureWindow() catches the failure and callers silently return; alternatively, a partially initialized window survives.	P1 / medium for the code defect; low-medium for this incident	A failed create/retry with its actual exception, followed by no application-ready acknowledgement. Relevant location: src/main/index.ts:3468–3482. B3 establishes the silent path, but not its connection to the owner’s latest incident.
 B3-crash-stability
 
-4	Main-process blocking prevents activation, IPC completion, or single-instance acknowledgement.	P0 if it causes termination/data loss / low-medium	External samples show the main thread blocked while renderer samples differ; launch-attempt records establish whether a second process was involved. A synchronous Keychain operation is one mechanism worth inspecting: Electron documents that synchronous safeStorage operations can block for user input on macOS. 
+4	Main-process blocking prevents activation, IPC completion, or single-instance acknowledgement.	P0 if it causes termination/data loss / low-medium	External samples show the main thread blocked while renderer samples differ; launch-attempt records establish whether a second process was involved. A synchronous Keychain operation is one mechanism worth inspecting: Electron documents that synchronous safeStorage operations can block for user input on macOS.
 Electron
 
-5	A genuine renderer stall or unsuccessful post-death initialization.	P1 / medium for occurrence; low for a persistent loop	Main remains healthy; renderer acknowledgements stop or initialization never completes. The supplied evidence has one renderer termination and one unresponsive event, with subsequent recovery—not a demonstrated crash loop. 
+5	A genuine renderer stall or unsuccessful post-death initialization.	P1 / medium for occurrence; low for a persistent loop	Main remains healthy; renderer acknowledgements stop or initialization never completes. The supplied evidence has one renderer termination and one unresponsive event, with subsequent recovery—not a demonstrated crash loop.
 chatgpt-followup-1
- 
+
 RUNTIME-EVIDENCE
 
-6	History-specific request/state failure rather than a native-window failure. Examples include an unresolved request, stale search response, or loading state not cleared.	P1 / low-medium	Window and renderer are healthy, but navigation or data-stage acknowledgements stop. The six cloud-only files currently fail in about 0.6 seconds and become “Unavailable” rows, which weakens the hypothesis of indefinite hydration blocking this incident. 
+6	History-specific request/state failure rather than a native-window failure. Examples include an unresolved request, stale search response, or loading state not cleared.	P1 / low-medium	Window and renderer are healthy, but navigation or data-stage acknowledgements stop. The six cloud-only files currently fail in about 0.6 seconds and become “Unavailable” rows, which weakens the hypothesis of indefinite hydration blocking this incident.
 RUNTIME-EVIDENCE
 
-Resource pressure can aggravate several hypotheses, but the two observed orphan sessions began at 17:47Z and 18:03Z, after the recorded renderer termination at 12:13Z. Those particular orphans cannot explain that earlier event. Other pressure at 12:13 remains possible, but is not supplied. 
+Resource pressure can aggravate several hypotheses, but the two observed orphan sessions began at 17:47Z and 18:03Z, after the recorded renderer termination at 12:13Z. Those particular orphans cannot explain that earlier event. Other pressure at 12:13 remains possible, but is not supplied.
 RUNTIME-EVIDENCE
- 
+
 RUNTIME-EVIDENCE
 
 Ticket OBS-01: instrument the existing path, not a new recovery system
@@ -48,18 +48,18 @@ window.lifecycle	Creation, ensureWindow(), index.ts:2719–2730 and :2737–2783
 health.sample	Main plus a small renderer acknowledgement handler	Main timer delay; bounded ping round-trip; renderer acknowledgement sequence; view/layout; recording flag; latest live-segment and durably persisted segment sequence numbers.
 process.lifecycle	Earliest safe bootstrap, before/after the single-instance lock request, and quit/relaunch entry points	Process role, PID/start identity, launch-attempt ID, lock-wait duration/result, quit intent, shutdown phase, observed completion. Keep “quit requested” distinct from “process exited.”
 
-The History locations are supplied in B1; the lifecycle locations are supplied in B3. Exact line numbers for activate and parkOverlayAfterHideSpring were not provided, so the ticket should locate those symbols rather than invent coordinates. 
+The History locations are supplied in B1; the lifecycle locations are supplied in B3. Exact line numbers for activate and parkOverlayAfterHideSpring were not provided, so the ticket should locate those symbols rather than invent coordinates.
 B1-history-freeze
- 
+
 B3-crash-stability
- 
+
 B3-crash-stability
 
 Common envelope: session ID, packaged build identity, runtime versions, main PID, renderer PID, window ID, renderer generation, operation ID, sequence number, UTC timestamp, and process-local monotonic timestamp. Calculate durations within one process; use operation IDs and main-side round trips for cross-process correlation.
 
 Three implementation constraints matter:
 
-Record presentation policy explicitly. Do not invent a mouse-ignore getter. Track the successfully applied policy at its setter boundary and distinguish that from a directly queried property such as bounds or opacity. showInactive() only shows without focusing; it does not implement Métis’s application-specific unpark transition. 
+Record presentation policy explicitly. Do not invent a mouse-ignore getter. Track the successfully applied policy at its setter boundary and distinguish that from a directly queried property such as bounds or opacity. showInactive() only shows without focusing; it does not implement Métis’s application-specific unpark transition.
 Electron
 
 Use bounded diagnostic sampling. Keep transitions always available; enable one-second health probes only during a time-limited diagnostic session, with one outstanding probe maximum. Store a bounded in-memory ring and flush transitions plus periodic summaries to a separate local stability log. Proposed retention: four 2 MiB files, seven-day age limit, and at most three explicitly retained incident bundles. Do not put heartbeat traffic into the existing audit hash chain.
@@ -90,7 +90,7 @@ Repeat the leading parked/race cases across sleep/wake, display disconnection, a
 
 Capturing thread samples without developer tools
 
-Use Activity Monitor, not Xcode or Chromium DevTools. Display all processes, identify the current Métis main PID and the overlay’s renderer PID from the diagnostic process map, then select each process and choose More → Sample Process. Apple documents that this collects a three-second sample. Save both reports; repeat while the failure remains present, recording the UTC time and attempted action. 
+Use Activity Monitor, not Xcode or Chromium DevTools. Display all processes, identify the current Métis main PID and the overlay’s renderer PID from the diagnostic process map, then select each process and choose More → Sample Process. Apple documents that this collects a three-second sample. Save both reports; repeat while the failure remains present, recording the UTC time and attempted action.
 Apple Support
 
 Capture before force-quitting or repeatedly relaunching. Include the GPU helper only when the application acknowledges progress but presentation remains wrong. Treat samples as confidential diagnostics because they can contain local paths. An inability to sample should be recorded—not “fixed” by weakening application signing or security settings.
@@ -103,7 +103,7 @@ Severity: P1 confirmed resource leak; P0 for a supervisor that terminates unrela
 
 Ship option (a), with option (c) as recovery insurance. Do not ship a boot-only reaper as the completed fix.
 
-The measured approximately 3.1 GB footprint per orphan makes cleanup at the next launch inadequate: the owner may quit Métis specifically to release resources and not relaunch it for hours. 
+The measured approximately 3.1 GB footprint per orphan makes cleanup at the next launch inadequate: the owner may quit Métis specifically to release resources and not relaunch it for hours.
 RUNTIME-EVIDENCE
 
 Comparison
@@ -112,7 +112,7 @@ Option	Strength	Principal weakness	Decision
 (b) Persistent wrapper polling getppid()	Small, understandable, independent of Electron’s loop	Periodic wakeups, bounded detection delay, startup races; fails if the wrapper execs away its monitoring logic	Acceptable fallback implementation only after equivalent tests—not an argument for skipping supervision
 (c) Identity-safe boot reaper only	Cleans historical residue, including failures of the guardian	Does nothing until another launch; historical ownership is harder to establish safely	Secondary mechanism only
 
-Apple documents EVFILT_PROC/NOTE_EXIT for process-exit observation and getppid() as the calling process’s parent identifier. Neither should be confused with a portable “kill descendants when parent dies” guarantee. 
+Apple documents EVFILT_PROC/NOTE_EXIT for process-exit observation and getppid() as the calling process’s parent identifier. Neither should be confused with a portable “kill descendants when parent dies” guarantee.
 Apple Developer
 +1
 
@@ -124,23 +124,23 @@ Startup and ownership. Pass the expected Electron parent PID and process-start i
 
 The channel is a lifetime capability, not a heartbeat: a blocked Electron loop must not look like a dead parent. Only Electron holds its writer. Close unused descriptors and prevent the writer from leaking into the renderer, sidecar, or descendants.
 
-Process group. Spawn llama-server into a fresh sidecar-only process group using native spawn attributes; keep the guardian outside it. Do not reuse the main process’s existing group. The observed orphan PGIDs demonstrate why inherited groups are not suitable shutdown boundaries. Spawn attributes apply before the child starts executing. 
+Process group. Spawn llama-server into a fresh sidecar-only process group using native spawn attributes; keep the guardian outside it. Do not reuse the main process’s existing group. The observed orphan PGIDs demonstrate why inherited groups are not suitable shutdown boundaries. Spawn attributes apply before the child starts executing.
 RUNTIME-EVIDENCE
- 
+
 Apple Developer
 
 Shutdown. On explicit STOP, lifetime-channel closure, or confirmed parent exit: send SIGTERM to the owned group, allow a bounded grace period—proposed two seconds—then escalate to SIGKILL if necessary. Reap the direct child and record the result. The guardian must not automatically restart the model after owner death.
 
-Normal application teardown must target the guardian protocol. This is an easy integration mistake: replacing spawn(llama-server) with spawn(guardian) while retaining child.kill('SIGKILL') merely kills the guardian and can strand the model. Update failure and stop paths around local-runtime.ts:387 and :632–639, as well as emergency/fatal shutdown callers. 
+Normal application teardown must target the guardian protocol. This is an easy integration mistake: replacing spawn(llama-server) with spawn(guardian) while retaining child.kill('SIGKILL') merely kills the guardian and can strand the model. Update failure and stop paths around local-runtime.ts:387 and :632–639, as well as emergency/fatal shutdown callers.
 B3-crash-stability
- 
+
 B2-resource-heavy
 
 Guardian failure is a residual risk, not a solved theorem. When Electron remains alive, an unexpected guardian exit should disable that runtime and clean up positively identified owned children. If both guardian and owner are forcibly killed, the next-launch reaper remains necessary. Do not claim macOS kernel-enforced cleanup equivalent to a Windows Job Object.
 
 Pitfalls specific to llama-server
 
-Do not assume graceful termination is immediate. Current upstream installs its own SIGINT/SIGTERM handling and performs shutdown work; the bundled llama.cpp revision was not supplied. Test the actual bundled binary while loading the GGUF, initializing Metal, and streaming inference. Keep escalation independent of its event loop. 
+Do not assume graceful termination is immediate. Current upstream installs its own SIGINT/SIGTERM handling and performs shutdown work; the bundled llama.cpp revision was not supplied. Test the actual bundled binary while loading the GGUF, initializing Metal, and streaming inference. Keep escalation independent of its event loop.
 GitHub
 
 Do not use stdin closure or a made-up --parent-pid option as the contract. The wrapper owns parent monitoring; it consumes its own arguments and passes only supported options to llama.
@@ -165,16 +165,16 @@ What would prove me wrong: an option-(b) implementation meeting the same startup
 
 Severity: P0 containment issue. Confidence: high.
 
-The runtime evidence establishes that review/test processes are mutating the owner’s live encrypted index, including during this review workflow. This is not merely noisy test output: it changes subsequent production behavior by triggering rebuild and re-ingest. Preserve the existing quarantine artifacts; do not delete or rebuild them as part of the containment patch. 
+The runtime evidence establishes that review/test processes are mutating the owner’s live encrypted index, including during this review workflow. This is not merely noisy test output: it changes subsequent production behavior by triggering rebuild and re-ingest. Preserve the existing quarantine artifacts; do not delete or rebuild them as part of the containment patch.
 RUNTIME-EVIDENCE
 
 There is no Vitest-only “can never touch home” guarantee
 
-A setupFiles mock is useful but is not an operating-system boundary. Vitest setup files run before each test file; global setup runs in a separate scope before workers. Neither protects code that already ran while loading configuration or tooling. 
+A setupFiles mock is useful but is not an operating-system boundary. Vitest setup files run before each test file; global setup runs in a separate scope before workers. Neither protects code that already ran while loading configuration or tooling.
 Vitest
 +1
 
-Node’s permission model is another useful layer, but its own documentation identifies limitations involving workers, existing descriptors, and symlinks. It is not sufficient as the sole containment boundary. 
+Node’s permission model is another useful layer, but its own documentation identifies limitations involving workers, existing descriptors, and symlinks. It is not sufficient as the sole containment boundary.
 Node.js
 +1
 
@@ -184,10 +184,10 @@ Ticket TEST-01: establish the isolation boundary
 
 Run automated repository execution in an ephemeral macOS/Windows VM or equivalently enforced isolated environment with no owner-home, CloudStorage, userData, Keychain, or credential-store exposure. Disable unnecessary network/host integration.
 
-For Windows Sandbox, explicitly control mapped folders and write permissions; Microsoft warns that writable mappings persist changes to the host. Stage only sanitized source/dependencies, then execute in guest-local scratch space. 
+For Windows Sandbox, explicitly control mapped folders and write permissions; Microsoft warns that writable mappings persist changes to the host. Stage only sanitized source/dependencies, then execute in guest-local scratch space.
 Microsoft Learn
 
-There is a practical contradiction to resolve: the current checkout is under /Users/<redacted-user>/…. Literal “no access to the real home directory” requires staging it elsewhere or into the isolated runner—not granting read access to that original checkout and continuing to claim zero home access. 
+There is a practical contradiction to resolve: the current checkout is under /Users/<redacted-user>/…. Literal “no access to the real home directory” requires staging it elsewhere or into the isolated runner—not granting read access to that original checkout and continuing to claim zero home access.
 B3-crash-stability
 
 Ticket TEST-02: launcher before Vitest, guard inside every worker
@@ -200,9 +200,9 @@ Explicit paths before configuration loads. Create a unique scratch root and popu
 
 Environment changes are not the boundary: application path resolution must receive the explicit context, and tests must not consult native profile/Keychain discovery.
 
-No discovery fallback in test mode. In resolveMeetingsFolder around src/main/transcripts.ts:580–595, and the underlying OneDrive resolver, absence of an explicit test path must raise ERR_METIS_TEST_PATH_REQUIRED before enumeration, key lookup, or any filesystem access. Do not silently fall back to detectOneDrive. 
+No discovery fallback in test mode. In resolveMeetingsFolder around src/main/transcripts.ts:580–595, and the underlying OneDrive resolver, absence of an explicit test path must raise ERR_METIS_TEST_PATH_REQUIRED before enumeration, key lookup, or any filesystem access. Do not silently fall back to detectOneDrive.
 B1-history-freeze
- 
+
 RUNTIME-EVIDENCE
 
 Guard before imports. Load a preloader before Vitest configuration, and verify/reinstall the guard in each worker’s setup. Prefer forked workers with separate scratch subdirectories. The guard must cover the runner/configuration path as well as test files, spawned Node processes, and approved worker types.
@@ -262,63 +262,63 @@ Severity: P0–P2 depending on the resulting ticket. Confidence: high on the pla
 
 Assessment of corrections 1–6
 Point	Assessment and remaining qualification
-1 — window.confirm	Accept the rejection of B1’s unparented-dialog mechanism. Electron 43.6.0 obtains the owning BrowserWindow before showing the dialog. However, “no meeting ended that day” alone does not prove nobody edited an older recap; B1 itself identifies a pastMeeting Review path. Unless transcript.recap_edited covers entering dirty state, its absence is not complete precondition telemetry. Retire this as the leading cause, rather than declaring every modal-related failure impossible. P2 / high mechanism confidence, medium historical certainty. 
+1 — window.confirm	Accept the rejection of B1’s unparented-dialog mechanism. Electron 43.6.0 obtains the owning BrowserWindow before showing the dialog. However, “no meeting ended that day” alone does not prove nobody edited an older recap; B1 itself identifies a pastMeeting Review path. Unless transcript.recap_edited covers entering dirty state, its absence is not complete precondition telemetry. Retire this as the leading cause, rather than declaring every modal-related failure impossible. P2 / high mechanism confidence, medium historical certainty.
 GitHub
- 
+
 B1-history-freeze
 
-2 — deliberate no-reload handler	Accept. Preserve the contract. The one observed unresponsive event recovered. “One recorded event” is not a census of every possible hang, but it directly contradicts B3’s claim that this event demonstrated permanent non-recovery. P0 for violating transcript protection / high. 
+2 — deliberate no-reload handler	Accept. Preserve the contract. The one observed unresponsive event recovered. “One recorded event” is not a census of every possible hang, but it directly contradicts B3’s claim that this event demonstrated permanent non-recovery. P0 for violating transcript protection / high.
 chatgpt-followup-1
- 
+
 B3-crash-stability
 
-3 — activation and singleton timeout	Accept the activation correction; retain the watchdog as conditional. Chromium’s POSIX singleton code contains a 20-second timeout and a termination path after failed notification/acknowledgement. It is not a general “Finder reopening kills the app after 20 seconds” rule. A genuine secondary process must exercise that path. I verified upstream behavior, not the complete patched Chromium implementation bundled in this installation. P1 / high distinction, unverified incident linkage. 
+3 — activation and singleton timeout	Accept the activation correction; retain the watchdog as conditional. Chromium’s POSIX singleton code contains a 20-second timeout and a termination path after failed notification/acknowledgement. It is not a general “Finder reopening kills the app after 20 seconds” rule. A genuine secondary process must exercise that path. I verified upstream behavior, not the complete patched Chromium implementation bundled in this installation. P1 / high distinction, unverified incident linkage.
 Chromium Git Repositories
 +1
 
-4 — sidecars and signals	Accept the measured orphaning and Electron signal-handling correction. Electron 43.6.0 installs native SIGTERM/SIGINT/SIGHUP handlers; grepping only JS listeners was insufficient. But catchable-signal handling still does not guarantee successful cleanup when main is blocked or shutdown is interrupted. detached is irrelevant as a parent-death solution, although process-group isolation is relevant to a guardian. Observed utility-process cleanup should remain a regression test, not become an unconditional guarantee for every descendant. P1 / high. 
+4 — sidecars and signals	Accept the measured orphaning and Electron signal-handling correction. Electron 43.6.0 installs native SIGTERM/SIGINT/SIGHUP handlers; grepping only JS listeners was insufficient. But catchable-signal handling still does not guarantee successful cleanup when main is blocked or shutdown is interrupted. detached is irrelevant as a parent-death solution, although process-group isolation is relevant to a guardian. Observed utility-process cleanup should remain a regression test, not become an unconditional guarantee for every descendant. P1 / high.
 GitHub
- 
+
 chatgpt-followup-1
 
-5 — ingestion and foreign-key quarantine	Accept, and elevate containment above ingest tuning. Fixing retry exhaustion alone cannot stop full rebuilds caused by the index disappearing. After stopping foreign writes, remeasure baseline ingest behavior before attributing remaining load to boot policy. P0 containment / high. 
+5 — ingestion and foreign-key quarantine	Accept, and elevate containment above ingest tuning. Fixing retry exhaustion alone cannot stop full rebuilds caused by the index disappearing. After stopping foreign writes, remeasure baseline ingest behavior before attributing remaining load to boot policy. P0 containment / high.
 chatgpt-followup-1
 
-6 — rejected promise mislabeled as crash	Accept survival and mislabeling—but B3’s explanation is incomplete. In the tagged Electron 43.6.0 source, ElectronBrowserMainParts::PostEarlyInitialization() explicitly sets unhandled_rejections = "warn-with-error-code". Therefore, the claim that Métis’s listener alone suppresses an otherwise default main-process death is not correct for that runtime configuration. P1 diagnostic correctness / high. 
+6 — rejected promise mislabeled as crash	Accept survival and mislabeling—but B3’s explanation is incomplete. In the tagged Electron 43.6.0 source, ElectronBrowserMainParts::PostEarlyInitialization() explicitly sets unhandled_rejections = "warn-with-error-code". Therefore, the claim that Métis’s listener alone suppresses an otherwise default main-process death is not correct for that runtime configuration. P1 diagnostic correctness / high.
 GitHub
 B3 recommendations that should not become tickets unchanged
 
 A. Do not rename every surviving rejection to app.error.recovered.
-Survival is not recovery of the failed operation. Use an event such as app.error.unhandled with subsystem, operation ID, and recoveryStatus: unknown | succeeded | failed. Emit “recovered” only after the subsystem demonstrates recovery. Likewise, a boot marker and safe-start decision are not independently proven crashes. B3’s proposed taxonomy still overstates what was observed. P1 / high. 
+Survival is not recovery of the failed operation. Use an event such as app.error.unhandled with subsystem, operation ID, and recoveryStatus: unknown | succeeded | failed. Emit “recovered” only after the subsystem demonstrates recovery. Likewise, a boot marker and safe-start decision are not independently proven crashes. B3’s proposed taxonomy still overstates what was observed. P1 / high.
 B3-crash-stability
 
 B. Do not implement B3’s fatal-exception fix as “show another Continue dialog after ten minutes.”
-After an uncaught main-process exception, normal operation cannot simply be assumed safe. Node explicitly advises against resuming normal operation after uncaughtException. Recover expected failures at their operation boundary; for genuinely uncaught faults, stop accepting new mutating work and follow a bounded fatal-shutdown/relaunch policy backed by sidecar supervision. P0 / high. 
+After an uncaught main-process exception, normal operation cannot simply be assumed safe. Node explicitly advises against resuming normal operation after uncaughtException. Recover expected failures at their operation boundary; for genuinely uncaught faults, stop accepting new mutating work and follow a bounded fatal-shutdown/relaunch policy backed by sidecar supervision. P0 / high.
 B3-crash-stability
- 
+
 Node.js
 
-Do not reuse app.relaunch(); app.exit(0) unchanged for window-creation recovery: app.exit bypasses before-quit and will-quit, exactly the newly confirmed leak path. A healthy-process relaunch should use an explicit cleanup policy; a corrupted-process exit needs independent supervision rather than reliance on more successful JavaScript. 
+Do not reuse app.relaunch(); app.exit(0) unchanged for window-creation recovery: app.exit bypasses before-quit and will-quit, exactly the newly confirmed leak path. A healthy-process relaunch should use an explicit cleanup policy; a corrupted-process exit needs independent supervision rather than reliance on more successful JavaScript.
 chatgpt-followup-1
- 
+
 Electron
 
 C. Fix the sentinel around actual hazardous work, not merely around the 15-second timer.
-The early clear at index.ts:9288 is a credible structural gap. But moving deletion into the timer’s finally is insufficient if that callback starts work without awaiting completion. Place operation markers around the actual decrypt/resume work and record completion only after it settles. P1 / high design confidence; exact await behavior needs inspection. 
+The early clear at index.ts:9288 is a credible structural gap. But moving deletion into the timer’s finally is insufficient if that callback starts work without awaiting completion. Place operation markers around the actual decrypt/resume work and record completion only after it settles. P1 / high design confidence; exact await behavior needs inspection.
 B3-crash-stability
 
-Separate UI startup, deferred brain initialization, and clean shutdown. A stale marker means interrupted operation, cause unknown unless corroborated. Also, next-launch time minus previous-start time includes downtime; B3’s suggestion to call it the previous session’s duration is wrong. Nor do unmatched early-death/safe-start counts alone establish repeated intervening crashes. 
+Separate UI startup, deferred brain initialization, and clean shutdown. A stale marker means interrupted operation, cause unknown unless corroborated. Also, next-launch time minus previous-start time includes downtime; B3’s suggestion to call it the previous session’s duration is wrong. Nor do unmatched early-death/safe-start counts alone establish repeated intervening crashes.
 B3-crash-stability
 
 D. Treat the reload-loop breaker as preventive hardening, not an already-proven incident fix.
-The uncapped handler at index.ts:2737–2783 deserves a bounded recovery budget. But one termination followed by one temporary unresponsive event is not “this loop in action.” Reset the budget only after application readiness plus sustained health—not did-finish-load alone. P1 / high code-gap confidence, low incident attribution. 
+The uncapped handler at index.ts:2737–2783 deserves a bounded recovery budget. But one termination followed by one temporary unresponsive event is not “this loop in action.” Reset the budget only after application readiness plus sustained health—not did-finish-load alone. P1 / high code-gap confidence, low incident attribution.
 B3-crash-stability
 
 E. Stop inferring process death or leak ownership from absence and names.
-There is no clean-shutdown event in the supplied logger, so its absence cannot prove eight force-quits. The current main process also has ppid=1; that value alone is not an orphan diagnosis. Preserve the stronger evidence for llama—dead-owner process-group linkage and measured footprint—without extending it automatically to Crashpad. P1 for unsafe cleanup / high. 
+There is no clean-shutdown event in the supplied logger, so its absence cannot prove eight force-quits. The current main process also has ppid=1; that value alone is not an orphan diagnosis. Preserve the stronger evidence for llama—dead-owner process-group linkage and measured footprint—without extending it automatically to Crashpad. P1 for unsafe cleanup / high.
 RUNTIME-EVIDENCE
 
-The historical dumps likewise do not prove a current signing defect, and an entitlement in configuration does not prove the installed bundle is valid. Verify the actual packaged helpers; do not weaken library validation as a speculative stability remedy. 
+The historical dumps likewise do not prove a current signing defect, and an entitlement in configuration does not prove the installed bundle is valid. Verify the actual packaged helpers; do not weaken library validation as a speculative stability remedy.
 B3-crash-stability
 
 What would prove me wrong: executable evidence from the exact packaged runtime that contradicts the tagged Electron behavior; complete incident traces establishing the suspected loop or singleton termination; or code inspection showing the proposed sentinel boundary already awaits every hazardous operation. Those would change the corresponding conclusions—not the confirmed need to contain foreign index writes.

@@ -2,6 +2,8 @@
  {
   "lane": "B1-history-freeze",
   "report_path": "/Users/<redacted-user>/AI-Brain-build/metis-v2-review/lanes/B1-history-freeze.md",
+  "runtime_evidence_file": "docs/metis-2.0/review/RUNTIME-EVIDENCE.md",
+  "runtime_evidence_label_key": "docs/metis-2.0/review/README.md#runtime-evidence-label-key",
   "symptom_summary": "History is a `view` state inside the single overlay BrowserWindow (not a separate window/tray item/hotkey). Every History entry point (Bar/RightEdgeSidecar History button, Escape-from-Review, Review's own exits) routes through a dirty-Review guard that calls the browser-native, blocking `window.confirm()` on a frame:false, transparent, setAlwaysOnTop(true,'screen-saver') window inside an LSUIElement/accessory app with no Dock icon. The team's own code comment (index.ts:8434-8439) documents that a dialog with no properly attached parent window on this exact app type \"hangs forever with no error and no visible dialog\" -- and that lesson was applied to every main-process dialog.showMessageBox call except the renderer's window.confirm sites. The result: an unanswerable, invisible confirm dialog blocks the renderer thread forever, there is no recovery path for 'unresponsive' (unlike the existing render-process-gone auto-reload), and ensureWindow()/second-instance never check isResponsive(), so a relaunch attempt during the freeze is a silent no-op -- reproducing \"it's running but it just doesn't open the app again\" exactly. A secondary, latent (not yet triggered at Tony's current 59-file/892KB library) architectural issue: History-list/search re-reads and re-decrypts the entire meeting library on every call with unbounded concurrency, on the main process.",
   "root_causes": [
    {
@@ -207,6 +209,8 @@
  {
   "lane": "B2-resource-heavy",
   "report_path": "/Users/<redacted-user>/AI-Brain-build/metis-v2-review/lanes/B2-resource-heavy.md",
+  "runtime_evidence_file": "docs/metis-2.0/review/RUNTIME-EVIDENCE.md",
+  "runtime_evidence_label_key": "docs/metis-2.0/review/README.md#runtime-evidence-label-key",
   "symptom_summary": "\"It's very heavy on the PC\" traces to two compounding, code-verified root causes rather than one: (1) every child-process sidecar (llama-server, fm serve, mac/Windows foreground watcher) is torn down only through Electron's will-quit JS event, which a SIGKILL/Force-Quit/crash skips entirely, so sidecars orphan and accumulate (matches the observed ppid=1 llama-server processes); (2) every single app boot unconditionally un-exhausts and retries every permanently-failed meeting extraction (bypassing the 6-attempt exhaustion budget), forcing a 30-41s local-LLM cold boot plus a ~20-job ingest burst on every launch, which combined with the observed force-quit/relaunch loop becomes self-reinforcing. A third evidence item (background screen-capture retry loop every 6s) was verified FIXED already at HEAD via a permission gate added since the Aug-2026 log snapshot.",
   "root_causes": [
    {
@@ -427,6 +431,8 @@
    "E5 (capture.failed x5394, phase=bg-screen) is almost certainly pre-cb5b4ef0 (2026-08-19) history, not a live HEAD bug - screen-preprocess.ts's captureAllowed()/screenCaptureGranted() gate already prevents this loop from running when Screen Recording is off at HEAD; whichever lane owns E5 should confirm the date rather than re-diagnose"
   ],
   "report_path": "/Users/<redacted-user>/AI-Brain-build/metis-v2-review/lanes/B3-crash-stability.md",
+  "runtime_evidence_file": "docs/metis-2.0/review/RUNTIME-EVIDENCE.md",
+  "runtime_evidence_label_key": "docs/metis-2.0/review/README.md#runtime-evidence-label-key",
   "root_causes": [
    {
     "id": "RC1",
