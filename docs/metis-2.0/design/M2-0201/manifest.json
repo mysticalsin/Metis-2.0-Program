@@ -1,0 +1,27 @@
+{
+  "schema": "metis.design.prototype.manifest.v1",
+  "ticket": "M2-0201",
+  "evidence_level": "DESIGNED",
+  "created_at": "2026-09-27",
+  "scope": "docs/metis-2.0/design/M2-0201/",
+  "source": {
+    "ticket_acceptance": "docs/metis-2.0/ledger/tickets/M2-0201.md:33-40",
+    "ticket_slices": "docs/metis-2.0/ledger/tickets/M2-0201.md:50-60"
+  },
+  "variants": ["light-1x", "dark-1x", "light-2x", "dark-2x", "reduced-motion"],
+  "prototypes": [
+    {"ticket": "M2-0093", "state_list": "M2-0093/STATE-LIST.md", "screenshot_matrix": "M2-0093/screenshots/prototype-matrix.svg", "kit_sections": ["TASK-030", "M2-UX-01", "EXP-10", "SRC-14"]},
+    {"ticket": "M2-0094", "state_list": "M2-0094/STATE-LIST.md", "screenshot_matrix": "M2-0094/screenshots/prototype-matrix.svg", "kit_sections": ["CXSTEP-08", "CXCAP-24", "MB-10", "MB-13", "MB-19", "MB-22", "EXP-04"]},
+    {"ticket": "M2-0100", "state_list": "M2-0100/STATE-LIST.md", "screenshot_matrix": "M2-0100/screenshots/prototype-matrix.svg", "kit_sections": ["AGSTEP-07", "AGX-15", "AGUC-029", "AGUC-030"]},
+    {"ticket": "M2-0114", "state_list": "M2-0114/STATE-LIST.md", "screenshot_matrix": "M2-0114/screenshots/prototype-matrix.svg", "kit_sections": ["EXP-01", "EXP-03", "EXP-07", "CXSTEP-17", "FLOW-04"]},
+    {"ticket": "M2-0117", "state_list": "M2-0117/STATE-LIST.md", "screenshot_matrix": "M2-0117/screenshots/prototype-matrix.svg", "kit_sections": ["TASK-022", "M2-LOCAL-01", "UC-097", "UC-098", "UC-099", "M2-SET-01", "M2-SET-02"]},
+    {"ticket": "M2-0130", "state_list": "M2-0130/STATE-LIST.md", "screenshot_matrix": "M2-0130/screenshots/prototype-matrix.svg", "kit_sections": ["TASK-040", "UC-041", "UC-042", "UC-043", "UC-044", "UC-045", "UC-046", "UC-047", "UC-048", "M2-KNOW-01"]},
+    {"ticket": "M2-0137", "state_list": "M2-0137/STATE-LIST.md", "screenshot_matrix": "M2-0137/screenshots/prototype-matrix.svg", "kit_sections": ["HMSTEP-08", "HMSTEP-11", "HSAC-01", "HSAC-03", "HSAC-15", "HSAC-16"]},
+    {"ticket": "M2-0158", "state_list": "M2-0158/STATE-LIST.md", "screenshot_matrix": "M2-0158/screenshots/prototype-matrix.svg", "kit_sections": ["TASK-045", "TASK-045.CORE", "UC-052", "UC-054", "UC-055", "M2-OPS-01", "M2-OPS-02"]},
+    {"ticket": "M2-0160", "state_list": "M2-0160/STATE-LIST.md", "screenshot_matrix": "M2-0160/screenshots/prototype-matrix.svg", "kit_sections": ["TASK-027.B", "OBU-01", "OBU-02", "OBU-03", "OBU-04", "OBU-05"]}
+  ],
+  "validation": {
+    "author_review": "VALIDATION.md",
+    "independent_opus_validator": "BLOCKED_EXTERNAL"
+  }
+}
