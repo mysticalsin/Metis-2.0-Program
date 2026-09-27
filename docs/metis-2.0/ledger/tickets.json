@@ -2131,9 +2131,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/239",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS",
+    "implementer": "codex"
+   }
   },
   {
    "id": "M2-0034",
@@ -2912,9 +2918,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/238",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS",
+    "implementer": "codex"
+   }
   },
   {
    "id": "M2-0048",
@@ -11049,9 +11061,15 @@
     }
    ],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/5",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS",
+    "implementer": "opus"
+   }
   },
   {
    "id": "M2-0189",
@@ -12628,9 +12646,15 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/233",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS",
+    "implementer": "codex"
+   }
   },
   {
    "id": "M2-0215",
