@@ -1,6 +1,6 @@
 # M2-0196 Windows Packaged Gate Lane Classification
 
-Status: ENGINEERING_COMPLETE investigation runbook.  
+Status: BLOCKED_EXTERNAL investigation runbook.  
 Scope: classify which packaged gates can run on GitHub `windows-latest`, and assign the rest to the physical Windows laptop lane.
 
 ## Evidence Rules
@@ -21,8 +21,8 @@ No repository tests, scripts, app launches, or workflow dispatches were run for 
 | S2 | `docs/metis-2.0/designs/M2-0007-DESIGN.md:11-23` | 2026-09-27 | OBSERVED: the hosted lane builds unsigned app bytes, installs from shipped installer, runs fresh `ASKTOTO_USERDATA`, waits for renderer ready, quits cleanly, checks survivors, and uploads report plus sha256. |
 | S3 | `docs/metis-2.0/designs/M2-0007-DESIGN.md:87-100` | 2026-09-27 | OBSERVED: hosted packaged smoke proves install/start, renderer ready, clean quit, zero owned processes after clean exit, census operation, and sha256; it does not prove HK, real dataless/cloud placeholders, x64 Mac slice, resource baselines, GPU/DPI/battery/EDR. |
 | S4 | `docs/metis-2.0/designs/M2-0007-DESIGN.md:376-429` | 2026-09-27 | OBSERVED probe output from the designed Windows packaged smoke workflow: `runs-on: windows-latest`, `npm run dist:win`, NSIS `/S /D=...`, `node scripts/qa/packaged-smoke.mjs "$RUNNER_TEMP/smoke/Metis.exe"`, uploads `packaged-smoke-windows`. |
-| S5 | `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:.github/workflows/qa-candidate.yml`, lines 168-226 and 314-350 in command output | 2026-09-27 | OBSERVED read-only source output: `build-win` and `smoke-win` run on `windows-latest`; `smoke-win` verifies provenance, silently installs `Metis-Setup-*.exe`, launches installed `Metis.exe`, then launches `Metis-Portable-*.exe`. |
-| S6 | `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:.github/workflows/packaged-smoke.yml`, lines 94-141 in command output | 2026-09-27 | OBSERVED read-only source output: the current `packaged-smoke.yml` Windows job runs on `windows-latest`, builds unsigned installers, records sha256, installs Setup silently, launches packaged smoke, and uploads `packaged-smoke-windows`. |
+| S5 | `docs/metis-2.0/evidence/records/M2-0196-readonly-source-checks.md:23-61` | 2026-09-27 | OBSERVED read-only source output: `build-win` and `smoke-win` run on `windows-latest`; `smoke-win` verifies provenance, silently installs `Metis-Setup-*.exe`, launches installed `Metis.exe`, then launches `Metis-Portable-*.exe`. Artifact sha256: `1d1fea98a42df2c7d56ca3071be59691e49af971b652b9c6c7131d13c19975c1`. |
+| S6 | `docs/metis-2.0/evidence/records/M2-0196-readonly-source-checks.md:63-99` | 2026-09-27 | OBSERVED read-only source output: the current `packaged-smoke.yml` Windows job runs on `windows-latest`, builds unsigned installers, records sha256, installs Setup silently, launches packaged smoke, and uploads `packaged-smoke-windows`. Artifact sha256: `1d1fea98a42df2c7d56ca3071be59691e49af971b652b9c6c7131d13c19975c1`. |
 | S7 | `docs/metis-2.0/PLAN.md:171-176` | 2026-09-27 | OBSERVED: CI runs suites/builds with no real credentials; managed Windows 11 laptop owns ST-1-W with OneDrive placeholders, HK-W, census, GPU/DPI/battery, and EDR interaction. |
 | S8 | `docs/metis-2.0/PLAN.md:180-193` | 2026-09-27 | OBSERVED: HK-M/HK-W require zero owned processes after main SIGKILL; ST-1/ST-1-W requires storage stress timing; census/resource regression has budgeted CPU/memory evidence. |
 | S9 | `docs/metis-2.0/PLAN.md:195-214` | 2026-09-27 | OBSERVED: release acceptance requires HK-W, ST-1-W, RV, census/resource gates, and Windows parity across train/candidate gates. |
@@ -34,15 +34,17 @@ No repository tests, scripts, app launches, or workflow dispatches were run for 
 | S15 | `docs/metis-2.0/DECISIONS.md:111` | 2026-09-27 | OBSERVED: owner changed D-9 to CI runners for packaged-app QA, consistent with D-28; no QA user on owner's Mac. |
 | S16 | GitHub Docs, "Choosing the runner for a job", lines 78-90 and 97-107, retrieved 2026-09-27: https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job | 2026-09-27 | OBSERVED: each GitHub-hosted job gets a fresh runner image; private-repo `windows-latest` is a standard x64 VM with 2 CPU, 8 GB RAM, 14 GB SSD; GPU-powered machines are a separate larger-runner offering. |
 | S17 | GitHub Docs, "Larger runners reference", lines 60-64, retrieved 2026-09-27: https://docs.github.com/en/actions/reference/runners/larger-runners | 2026-09-27 | OBSERVED: GPU larger runners are a distinct runner class, with GPU listed only under larger-runner specifications. |
+| S18 | `docs/metis-2.0/evidence/records/M2-0196-readonly-source-checks.md:7-21` | 2026-09-27 | OBSERVED: `windows-qa.yml` is not present on `origin/m2/integration`, so no checked-in capability-dispatch workflow output exists in this worktree. Artifact sha256: `1d1fea98a42df2c7d56ca3071be59691e49af971b652b9c6c7131d13c19975c1`. |
+| S19 | `docs/metis-2.0/evidence/records/M2-0196-tsc-checks.md:1-58` | 2026-09-27 | OBSERVED: `tsconfig.node.json` and `tsconfig.web.json` compile with exit code 0; `tsconfig.tests.json` exits 2 with existing test-type diagnostics, so the three-compiler-check bar is not met. Artifact sha256: `367dfc8149f4ab425114d13748c6959a9727f99117c218b3306753e4dfd9186a`. |
 
 ## Capability Probe Status
 
 | Probe | Status | Exact current output / blocker |
 |---|---|---|
 | Source check: scoped runbook | OBSERVED | `nl -ba docs/metis-2.0/runbooks/windows-lanes.md` initially returned `No such file or directory`; this file is the scoped deliverable. |
-| Source check: `windows-qa.yml` on `origin/m2/integration` | OBSERVED | `git show origin/m2/integration:.github/workflows/windows-qa.yml` returned `fatal: path '.github/workflows/windows-qa.yml' does not exist in 'origin/m2/integration'`; the existing Windows install/launch evidence is in `qa-candidate.yml` and `packaged-smoke.yml` (S5, S6). |
-| Owner-approved live capabilities dispatch | BLOCKED_EXTERNAL | Do not run from this worktree. Exact owner step: `gh workflow run windows-qa.yml --ref main -f probe=capabilities`, after `windows-qa.yml` exists on main. Read-only reviewer step after owner dispatch: `gh run view <run-id> --repo mysticalsin/AskToto-Mantu --log` and attach redacted capability output under `docs/metis-2.0/evidence/records/`. |
-| HOST_CONFIGURED record | BLOCKED_EXTERNAL | Per S14, the record needs the configured non-CI host/service, command, exit code, and output under `docs/metis-2.0/`. This runbook is the classification output; the live `HOST_CONFIGURED` record waits for the owner-approved dispatch or physical laptop capture. |
+| Source check: `windows-qa.yml` on `origin/m2/integration` | OBSERVED | S18 records the read-only output: `fatal: path '.github/workflows/windows-qa.yml' does not exist in 'origin/m2/integration'`; the existing Windows install/launch evidence is in `qa-candidate.yml` and `packaged-smoke.yml` (S5, S6). |
+| Owner-approved live capabilities dispatch | BLOCKED_EXTERNAL | Required output is absent. Exact owner step: `gh workflow run windows-qa.yml --ref main -f probe=capabilities`, after `windows-qa.yml` exists on main. Read-only reviewer step after owner dispatch: `gh run view <run-id> --repo mysticalsin/AskToto-Mantu --log` and attach redacted capability output under `docs/metis-2.0/evidence/records/`. |
+| HOST_CONFIGURED record | BLOCKED_EXTERNAL | Required record is absent. Per S14, the record must include non-CI `environment`, `command`, `exit_code`, and `output.path`/`output.sha256` under `docs/metis-2.0/`. Until that record exists, M2-0196 acceptance is not satisfied. |
 
 ## Lane Matrix
 
@@ -79,14 +81,17 @@ Every `CANNOT` or `PARTIAL` gate in the matrix is assigned to the physical Windo
 
 - [x] Matrix includes install/launch, HK-W, RV-W, ST-1-W, tray, global hotkey, UIA/SendInput adapters, audio capture, GPU, and census.
 - [x] Each matrix row records RUNS, PARTIAL, or CANNOT for `windows-latest`.
-- [x] Each matrix row cites exact source IDs, and each source ID maps to a file:line, command output, or official URL with retrieval date.
+- [x] Each matrix row cites exact source IDs, and each source ID maps to a file:line, checked-in command-output artifact, or official URL with retrieval date.
 - [x] Every PARTIAL or CANNOT row is assigned to the physical Windows laptop lane.
 - [x] The runbook does not edit `docs/metis-2.0/ledger/tickets.json` or `_relay/`.
-- [x] The runbook labels outside-account workflow dispatch as BLOCKED_EXTERNAL with the exact owner step.
+- [x] The runbook labels outside-account workflow dispatch and the missing HOST_CONFIGURED record as BLOCKED_EXTERNAL with the exact owner/reviewer steps.
 - [x] No secrets, personal data, raw paths from reports, or client data are included.
+- [ ] Required owner-approved capability probe output is checked in.
+- [ ] Required HOST_CONFIGURED record is checked in with non-CI environment, command, exit_code, output path, and output sha256.
+- [ ] Three TypeScript compiler checks meet their bars; S19 records that the tests project currently fails.
 
 ## Verification Notes
 
-- OBSERVED: this worktree has no root `package.json`; therefore the three repository `tsc` checks cannot be run from this scoped documentation worktree without switching to the code checkout. No TypeScript source changed here.
+- OBSERVED: S19 records the three requested compiler checks from the public code checkout. `tsconfig.node.json` and `tsconfig.web.json` pass; `tsconfig.tests.json` fails, so the compiler stop condition is not met.
 - BLOCKED_EXTERNAL: the ticket's verification command is `gh workflow run windows-qa.yml --ref main -f probe=capabilities`; it needs owner-approved GitHub workflow dispatch and a workflow that is not present on `origin/m2/integration` at the time of this runbook's source check.
-- DERIVED: acceptance is satisfied for lane classification and laptop assignment by this runbook; live `HOST_CONFIGURED` evidence remains the next owner/device action per S14.
+- BLOCKED_EXTERNAL: no `HOST_CONFIGURED` evidence record exists for M2-0196 in `docs/metis-2.0/evidence/records/`; acceptance is not satisfied until that record and the capability probe output are checked in.
