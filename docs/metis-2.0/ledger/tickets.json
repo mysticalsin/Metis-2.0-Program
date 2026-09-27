@@ -12756,6 +12756,145 @@
    "status": "IN_PROGRESS",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0221",
+   "title": "Open the Windows CLI setup script without cmd re-parsing its path",
+   "milestone": "m3",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0147"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R3-B1"
+   ],
+   "scope_paths": [
+    "src/main/cli.ts",
+    "src/main/cli-setup-script.test.ts"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus at 56292fb6): openCliScript (src/main/cli.ts:1586-1600) spawns `cmd /d /c start \"\" <scriptPath>` with shell:false; Node quotes only arguments containing spaces or quotes, so cmd re-parses a profile/temp path containing & ^ % ( ) and can run the part after & as a separate command. Launch the script without cmd re-parsing (quote per cmd rules or avoid cmd entirely) and test the launcher argument construction.",
+   "acceptance": [
+    "A script path containing &, %, ^, spaces and parentheses is passed as one path and cannot append a command (behaviour test on the launcher's argv)",
+    "No regression in the macOS/Linux open path"
+   ],
+   "risk": "high",
+   "estimate_hours": 2
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0222",
+   "title": "Keep the MCP metadata/DNS-rebinding refusal on the system-proxy route",
+   "milestone": "m3",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0147"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R3-R1"
+   ],
+   "scope_paths": [
+    "src/main/net/install-proxy.ts",
+    "src/main/net/install-proxy.test.ts",
+    "src/main/mcp/mcpClient.ts",
+    "src/main/mcp/mcpClient.test.ts"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus at 56292fb6): routeDispatcher (src/main/net/install-proxy.ts:53-67) applies the guarded lookup to the env and direct routes but returns `new ProxyAgent(route.proxy)` for the system route, so the metadata/DNS-rebinding refusal does not apply when a system proxy resolves the host. Either enforce the refusal for proxied MCP connections (e.g. resolve-and-pin before CONNECT, or refuse MCP over an unverifiable proxy) or block and document it explicitly; test direct, env (with NO_PROXY) and system routes.",
+   "acceptance": [
+    "A hostname resolving to 169.254.0.0/16 is refused on direct, env-proxy and system-proxy routes, or the system-proxy case is explicitly refused with an actionable message",
+    "Behaviour tests per route"
+   ],
+   "risk": "medium",
+   "estimate_hours": 4
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0223",
+   "title": "Pin GitHub Actions to full commit SHAs in build and release workflows",
+   "milestone": "m4",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "finding_refs": [
+    "RF-AUDIT-R3-R3",
+    "RF-AUDIT-R3-R4"
+   ],
+   "scope_paths": [
+    ".github/workflows/build.yml",
+    ".github/workflows/release.yml",
+    "scripts/ci/"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus): release.yml (e.g. :27, :38, :61) and build.yml (:37) use mutable major tags (actions/checkout@v4, setup-node@v4, upload-artifact) in jobs that can hold release credentials. Pin every third-party action to a full commit SHA with a version comment, and add a CI check that rejects unpinned `uses:` in workflows. Editing release.yml must not trigger it: never push tags; verify with a dry syntax check only.",
+   "acceptance": [
+    "Every `uses:` in .github/workflows is pinned to a 40-char SHA with a version comment",
+    "A CI check fails on an unpinned `uses:` (proven red then green)",
+    "release.yml behaviour otherwise unchanged; no release run triggered"
+   ],
+   "risk": "medium",
+   "estimate_hours": 2
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0224",
+   "title": "Replace the renderer-ready source-text contract with a wiring behaviour test",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0006"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R3-R5"
+   ],
+   "scope_paths": [
+    "src/main/renderer-readiness.test.ts",
+    "src/main/index.ts"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus): src/main/renderer-readiness.test.ts:122-133 reads index.ts with readFileSync and slices/regex-matches its body to prove readiness is bound before navigation. Replace with a behaviour test through a mocked BrowserWindow creation path (extract the wiring into a testable function if needed).",
+   "acceptance": [
+    "The test proves readiness is bound before loadURL/loadFile via behaviour, with no readFileSync of source",
+    "It fails when the binding is moved after navigation"
+   ],
+   "risk": "low",
+   "estimate_hours": 2
   }
  ]
 }
