@@ -9310,7 +9310,8 @@
    "depends_on": [
     "M2-0103",
     "M2-0149",
-    "M2-0106"
+    "M2-0106",
+    "M2-0226"
    ],
    "needs_decision": [
     "D-8"
@@ -12949,7 +12950,9 @@
     "Production deploy refuses from an unapproved non-main ref before migration or wrangler deploy",
     "The refusal names the checked-out ref/commit and the approved production refs",
     "Staging deploy and dry-run workflows remain usable for agents",
-    "The existing typecheck, test, build, migrate and post-deploy smoke gates are not weakened"
+    "The existing typecheck, test, build, migrate and post-deploy smoke gates are not weakened",
+    "Production deploy refuses unless HEAD equals, or is reachable from, a freshly fetched `origin/main` (remote-reachable ancestry check, not merely a local branch named `main`) — this is the exact gap that let an unpushed/rewritten commit reach production.",
+    "Production deploy (--env production) refuses `--allow-dirty` outright; that flag remains available for staging/dry-run only, closing the gap where deploy.mjs:103,162-163 currently only advise against it in help text rather than enforcing it in code."
    ],
    "risk": "high",
    "estimate_hours": 3
@@ -12974,8 +12977,7 @@
    "type": "docs",
    "owner_model": "sonnet",
    "depends_on": [
-    "M2-0103",
-    "M2-0159"
+    "M2-0014"
    ],
    "finding_refs": [
     "M2-0014"
