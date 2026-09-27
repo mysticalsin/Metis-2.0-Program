@@ -13005,6 +13005,52 @@
    "risk": "high",
    "estimate_hours": 3,
    "status": "TODO"
+  },
+  {
+   "id": "M2-0226",
+   "title": "Fresh-install speaker-ID default must not persist a voiceprint without explicit opt-in",
+   "wave": "W5",
+   "milestone": "m7",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "needs_decision": [
+    "D-31"
+   ],
+   "kit_refs": [
+    "SRC-13",
+    "F-13"
+   ],
+   "finding_refs": [
+    "M2-0013-SRC-13-DEFAULT-ON"
+   ],
+   "scope_paths": [
+    "src/shared/ipc.ts",
+    "src/main/speaker-id.ts",
+    "src/main/speaker-id.test.ts"
+   ],
+   "summary": "M2-0013's re-verification found `speakerId` defaults to `{ enabled: true }` (ipc.ts:1348-1350 schema default, :1725 DEFAULT_SETTINGS) — a fresh install auto-enrolls and persists voiceprints (userData/voiceprints.json) with no opt-in step, the opposite of SRC-13's required_change (\"disable unapproved persistent enrollment... keep default attribution session-local and uncertain\"). M2-0109's acceptance covers only that speaker labels never gate command authority; nothing in the ledger covers this default. D-31 asks the owner whether default-on retention is the intended posture (2026-08-21's MQA-235/Plaud-parity rationale, recorded in ipc.ts's own comment) or must change to opt-in.",
+   "acceptance": [
+    "A fresh install (no prior settings, no explicit speakerId opt-in) writes no persistent voiceprint file, including for the operator's own profile",
+    "Persistent enrollment (a file written to userData/voiceprints.json) happens only after an explicit, approved opt-in action — never from the schema default alone",
+    "An existing voiceprints.json from a prior default-on install migrates without a destructive surprise: no silent deletion of profiles enrolled under the old default, and the user is told the setting changed",
+    "A behaviour test exercises the fresh-default case end-to-end (no settings on disk, no explicit opt-in) and asserts nothing is written to voiceprints.json"
+   ],
+   "verification": [
+    "npx vitest run src/main/speaker-id.test.ts src/main/speaker-id-off-switch.test.ts src/shared/ipc.test.ts"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
+   "validation_hours": 0.5,
+   "slices": [],
+   "due": null,
+   "status": "TODO",
+   "notes": "Filed centrally by the lead on 2026-09-27 (proposed by M2-0013 as M2-0221, which collided with the audit-r3 ticket of the same id)."
   }
  ]
 }
