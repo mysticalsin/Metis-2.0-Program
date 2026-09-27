@@ -67,10 +67,13 @@ the local part leak). This is the finding K09-R23 was opened for.
 | `receipts/baseline-desktop.json` | Partly masked addresses at a corporate domain, same pattern as the ticket's 3 | 4 |
 | `receipts/baseline-desktop.json` | A generic support alias at the company domain, not a personal address | 2 |
 | `receipts/baseline-operator.json` | An **unmasked** email-shaped string inside a CI test title — reads as a test fixture value, not confirmed as anyone's real address | 2 |
+| `receipts/baseline-operator.json` | Separately, gitleaks' default ruleset flags a `generic-api-key` match on a placeholder invalid-format value repeated in a CI test title — not a real credential, and not the same string the email regex above matches | 2 |
 | `receipts/npm-ci.log` | A third-party open-source maintainer's public contact address, from npm package metadata, unrelated to this program | 1 |
 
 None of these are in a file this proposal recommends including (see §1's exclude table), so no
-mask decision is needed for them unless you choose to include `receipts/` after all.
+mask decision is needed for them unless you choose to include `receipts/` after all — and doing
+so also means addressing the 2 gitleaks findings above (mask, or a gitleaks allowlist entry),
+or this ticket's own `gitleaks detect` verification step fails on them. §3 question 1 covers this.
 
 **Not a match, flagged anyway for your awareness, not blocking:** every file in the source
 contains ordinary absolute paths under `/Users/tony/...` (build paths, tool paths, OneDrive
@@ -85,7 +88,13 @@ raising it only so the choice not to mask it is yours, not an unstated assumptio
 1. **File list** — approve the "recommend include" list in §1 as-is, or tell me which files to
    add or drop (including whether `build-workflow-result.json` and/or `receipts/` should be
    in after all, and if so, which of the §2 "found beyond the ticket's 3" matches to mask and
-   how).
+   how). Two things to weigh if you include `receipts/`: its `baseline-operator.json` trips
+   gitleaks' default `generic-api-key` rule twice (§2, on a placeholder value, not a real
+   credential) — those would need masking or a gitleaks allowlist entry, or this ticket's own
+   `gitleaks detect` verification step fails on them. And the "recommend include" files in §1
+   were screened only for emails, account IDs and secrets, not for client-confidential narrative
+   volume (roughly 1 MB combined across those files) — approving the list as-is also approves
+   that screening scope.
 2. **Mask token** — this repository already has a convention for this exact situation
    (`docs/metis-2.0/review/REDACTIONS.md`, used when the K09 review lane and the kit copies were
    made): emails become the literal placeholder text `<redacted-email>`. Do you want the 3
