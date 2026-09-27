@@ -1,6 +1,6 @@
 # Redactions applied when copying into `review/`
 
-Every file copied from `metis-v2-review/` into `docs/metis-2.0/review/` was scanned for email addresses, API-key-/token-like strings, labelled account/workspace/tenant/zone IDs, and absolute paths naming a non-generic username, before being written here. Matches were replaced in place (`<redacted-email>`, `<redacted>`, `<redacted-user>`). Raw values are never reproduced in this file, only counts, per the confidentiality hard rule.
+Files copied or patched into `docs/metis-2.0/review/` were scanned for email addresses, API-key-/token-like strings, labelled account/workspace/tenant/zone IDs, absolute paths naming a non-generic username, and hostnames. Most lane and prep reports came from `metis-v2-review/`; `codex/meet-r1.txt` and `codex/meet-r2.txt` came from the rocket-fuel Codex receipts, and `PUBLIC-READINESS.md`, `SRC-REVERIFY.md` and `SYNTHESIS-NOTES.md` were in-repo files patched in place. Matches were replaced in place (`<redacted-email>`, `<redacted>`, `<redacted-user>`, `<redacted-account-id>`, or the hostname mask `Toto…-Mac`). Raw values are never reproduced in this file, only counts, per the confidentiality hard rule.
 
 | File | Emails | Secrets | Account IDs | Paths | Hostnames |
 |---|---:|---:|---:|---:|---:|
@@ -60,3 +60,4 @@ The kit copies were first written verbatim, without this scan. The final validat
 - `plan-work/drafts/` does not exist yet (source directory not created upstream as of this render). `review/drafts/` is intentionally absent — re-run this renderer once drafts exist.
 - The quoted `SCRATCH_DIR` code snippet in `prep/UNCOVERED-RENDERER-OPS.md` had only its username token substituted by this same redaction pass: the real source code contains the owner's actual username at that position, not the literal string `<redacted-user>`, so treat the snippet's path shape as evidence while knowing that one token was altered from the original.
 - The machine hostname is masked as `Toto…-Mac` throughout (only the personal-name prefix is shown truncated + ellipsis; the generic `-Mac`/`.local`/`.spin` suffix is kept), matching `PUBLIC-READINESS.md`'s existing masking convention; 8 occurrences across `RUNTIME-EVIDENCE.md` (3), `prep/FREEZE-HYPOTHESES.md` (1) and `plan-inputs/BUG-ROOT-CAUSES.json` (4).
+- Redactions at HEAD do not rewrite private repository history; raw values may still exist in earlier commits unless history is rewritten before any future sharing outside the private program repository.
