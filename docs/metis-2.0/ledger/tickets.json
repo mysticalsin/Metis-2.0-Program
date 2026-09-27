@@ -1994,7 +1994,8 @@
    "due": null,
    "status": "IN_PROGRESS",
    "notes": [
-    "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
+    "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion).",
+    "Codex audit-r4 (2026-09-27, verified by Opus at 4ec75897) — MUST be covered by this ticket: (1) no production file imports createStorageGateway yet; (2) History/Recall: src/main/recall.ts:239 does an unbounded Promise.all over readMeeting and :170 reads with raw readFile, bypassing admission, dataless checks, cancellation and deadlines; (3) src/main/transcripts.ts:755 reads meeting-root files synchronously through readSavedFile (:324 decodeSaved(readFileSync)); (4) gateway root() must not be able to reject public methods: a throwing root()/settings resolution must resolve to an unavailable status within the deadline (gateway.ts:91, :318, :354); (5) add a product-level regression through the real History/Recall entry points (not only gateway unit calls) proving the main process stays responsive while meeting files hang or are cloud-only; (6) make the gateway module comment true (the only meetings-root reader)."
    ],
    "claimed_by": "ticket runner batch 9 (Codex implements)",
    "claimed_at": "2026-09-27"
@@ -13085,6 +13086,42 @@
    "due": null,
    "status": "TODO",
    "notes": "Filed centrally by the lead on 2026-09-27 (proposed by M2-0013 as M2-0221, which collided with the audit-r3 ticket of the same id)."
+  },
+  {
+   "id": "M2-0227",
+   "title": "Refuse pinned MCP sessions behind an ALL_PROXY SOCKS route too",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0222"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "RF-AUDIT-R4-R1",
+    "RF-AUDIT-R4-R2"
+   ],
+   "scope_paths": [
+    "src/main/net/install-proxy.ts",
+    "src/main/net/install-proxy.test.ts",
+    "src/main/mcp/mcpClient.test.ts"
+   ],
+   "summary": "Codex audit-r4 (verified by Opus at 4ec75897): envProxyIsSocks() (src/main/net/install-proxy.ts:94-99) checks only HTTP(S)_PROXY, while detectProxyFromEnv (src/main/net/proxy-url.ts:12-18) also routes through ALL_PROXY/all_proxy, so ALL_PROXY=socks5://... bypasses M2-0222's refusal of unpinnable proxies for pinned MCP sessions. Tests cover only HTTPS_PROXY/HTTP_PROXY.",
+   "acceptance": [
+    "HTTP_PROXY, HTTPS_PROXY, ALL_PROXY and their lowercase forms with a socks/socks5 scheme all refuse pinned MCP sessions before any request or tunnel (behaviour tests per variable)",
+    "One source of truth for which env variables define the proxy route"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 2,
+   "status": "TODO"
   }
  ]
 }
