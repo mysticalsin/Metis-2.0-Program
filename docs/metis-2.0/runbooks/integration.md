@@ -25,7 +25,7 @@ at 901ceaf.
 | INT-1 | One integrator: only the lead merges into `m2/integration`, `release/1.9.x` and the program repository's `main`, and only the lead writes the ledger and the evidence records | PD-13; the session permission policy refuses merges by subagents (PROVIDED, lead notes 2026-09-26); §8 program-repository step 2. GitHub cannot enforce it (F11) |
 | INT-2 | One writer per hot unit: at most one IN_PROGRESS ticket claims each hot unit (§4), and a PR changes a hot unit only if its ticket is that holder | The lead at dispatch (§4) and at merge (§8 step 3); `claims-check.mjs` in `ledger.yml` once both land (§13, F6) |
 | INT-3 | The tested tree is the tree that lands: a PR that changes a hot unit merges only when its head already contains the `m2/integration` head and is green (§8 step 2), so the commit that lands has the tree CI tested | §8 steps 2 and 4; `gh pr merge --match-head-commit` |
-| INT-4 | The trunk stays green: while the `m2/integration` head is red (§8 step 2), no PR merges except the revert and the fix of a repeated failure, whether or not they change a hot unit; while its runs are still going, no hot-unit PR merges | §8 step 4; §9 step 1 |
+| INT-4 | The trunk stays green: while the trunk is red (§8 step 2), no PR merges except the revert and the fix of a repeated failure, whether or not they change a hot unit; otherwise a hot-unit PR merges only on a green `m2/integration` head | §8 step 4; §9 step 1 |
 | INT-5 | At most three IN_PROGRESS tickets claim `src/main/**` | The lead at dispatch (§6); `claims-check.mjs` once it lands (§13) |
 | INT-6 | Repository code runs only in GitHub Actions | D-28 (§12) |
 | INT-7 | Only the owner merges into the public repository's `main`, through milestone PRs | Owner decision of 2026-09-26 (OD-14, §15) |
@@ -47,7 +47,7 @@ program repository: m2-####-slug --draft PR, validated--> main
 | `main` | — | the owner, by merging milestone PRs | `protect-main-deletion`: deletion and non_fast_forward; no required checks |
 | `release/1.9.x` | the promoted 1.9.7 candidate's commit (§11) | the lead, by merging backport PRs | `protect-release-branches` (`release/*`): deletion and non_fast_forward |
 | program `m2-####-slug` | the program repository's `origin/main` | its docs-ticket runner only (§7 step 2); brought up to date by merging `origin/main` in, never rebased or force-pushed once pushed | none possible, as for program `main` |
-| program `main` | — | the lead: its ledger and record commits (§7 step 1, §9 step 2) and squash merges of docs-ticket PRs (§8) | none possible: the repository is private, and its rulesets and branch-rules APIs return HTTP 403 ("Upgrade to GitHub Pro or make this repository public"). INT-1 there rests on sessions alone (F11) |
+| program `main` | — | the lead: its ledger, record and baton commits (§7 step 1, §9 steps 2 and 3), its DECISIONS.md and design commits (such as 61250ab and b8f20bc) and squash merges of docs-ticket PRs (§8) | none possible: the repository is private, and its rulesets and branch-rules APIs return HTTP 403 ("Upgrade to GitHub Pro or make this repository public"). INT-1 there rests on sessions alone (F11): a force-push made with the owner's account, the one every session uses, replaced 901ceaf at 04:35:52Z (OBSERVED, `gh api …/activity`) |
 
 Two properties of `.github/workflows/build.yml` shape the queue (OBSERVED):
 
@@ -98,8 +98,9 @@ So `native/mac-helper/` claims `helper`, and `.github/workflows/` claims both wo
 1. The lead takes all of a ticket's claims at once, when it sets the ticket IN_PROGRESS. A ticket that
    needs several units (M2-0214 needs `index`, `ipc`, `deps` and `build-wf`) starts only when all are
    free. No ticket holds one unit while waiting for another, so the locks cannot deadlock.
-2. Claims are released when the ticket leaves IN_PROGRESS: when its last slice lands (§9 step 2), or
-   while a red-trunk fix suspends it (§9 step 1). Between slices the ticket keeps every claim.
+2. Claims are released when the ticket leaves IN_PROGRESS: when its last slice lands (§9 step 2), while
+   a red-trunk fix suspends it (§9 step 1), or when a revert the owner asks for sends it back to TODO
+   (§8). Between slices the ticket keeps every claim.
 3. A runner that finds it needs an unclaimed hot unit stops and asks the lead. The lead adds the path to
    `scope_paths` if the unit is free; otherwise the ticket waits, or the hot-file change becomes its own
    ticket. A PR that changes an unclaimed hot unit is not merged (§8 step 3).
@@ -164,9 +165,9 @@ commit that changed the file, newest first, including the commits inside PRs tha
 
 - At most one holder per hot unit (INT-2) and at most three IN_PROGRESS tickets claiming `src/main/**`
   (INT-5). Both count every IN_PROGRESS claimer, as acceptance 3 states, so a ticket keeps its unit and its
-  `src/main` slot while it waits for validation or merge and between its slices, until its last slice
-  lands (§9 step 2) or a red-trunk fix suspends it (§9 step 1). The lead checks both at dispatch;
-  `claims-check.mjs` checks them on every ledger push once it runs in `ledger.yml` (§13, F6).
+  `src/main` slot while it waits for validation or merge and between its slices, until it leaves
+  IN_PROGRESS (§4 rule 2). The lead checks both at dispatch; `claims-check.mjs` checks them on every
+  ledger push once it runs in `ledger.yml` (§13, F6).
 - At most eight concurrent ticket agents, six to eight as the target (PLAN.md:48). This is the lead's
   dispatch rule, not machine-checked: it counts running agents, and an IN_PROGRESS ticket waiting for
   validation or merge has none.
@@ -204,7 +205,9 @@ commit that changed the file, newest first, including the commits inside PRs tha
    branch and CI runs again. On PASS, with the final head green (§8 step 2), the validator pastes the
    ` ```json evidence ` record into the PR body and `evidence.yml` verifies it against that head. The
    record lists in `inherited_block` every ENGINEERING_COMPLETE or BLOCKED_EXTERNAL `depends_on` ancestor
-   that has an `external_blocker` (§9 step 2).
+   that has an `external_blocker` (§9 step 2). A docs ticket has no run and no `evidence.yml`: its record
+   is DESIGNED, with `output` `{ path, sha256 }` of the document at the head, and the lead checks it
+   (§8, program-repository step 3).
 4. **Merge (lead):** §8. **Record (lead):** §9.
 
 ## 8. Merging ticket PRs
@@ -212,15 +215,23 @@ commit that changed the file, newest first, including the commits inside PRs tha
 Per PR into `m2/integration`, with `N` the PR number, `SHA` its head, `T` its ticket and `S` the slice it
 implements when `T` has slices:
 
-1. **Validated.** The evidence record is in the body and the `Evidence record` check is green
-   (`gh pr checks N --repo mysticalsin/AskToto-Mantu`).
-2. **Green on the head, no regression.** `SHA` is green: every run that its push triggered succeeded, and
-   the `build.yml` run had the baseline job set, with Operator Worker, both Quality checks and Security &
-   supply chain green and the two package jobs skipped (OBSERVED on baseline run 36267674617). Two
-   workflows run on every push today, `build.yml` and M2-0190's `isolation-canary.yml` (on
-   `m2/integration` since #209).
-   `gh run list --repo mysticalsin/AskToto-Mantu --commit SHA --event push --json workflowName,databaseId,conclusion`
-   A commit is **red** from the moment one of those runs fails until a re-run of it succeeds.
+1. **Validated.** The evidence record is in the body, and every check on the PR passed or was skipped:
+   `gh pr checks N --repo mysticalsin/AskToto-Mantu` exits 0 (8 while one is pending). They include the
+   `Evidence record` check, the push runs of step 2 and, for a PR that touches its paths,
+   `qa-candidate.yml`'s `pull_request` run, which has no base-branch filter.
+2. **Green on the head, no regression.** `SHA` is the full 40-character head: `gh run list --commit`
+   with a short sha prints `[]` (OBSERVED with 5a10fc7d). `SHA` is **green** when every workflow in its
+   own tree that runs on every push is listed for it with a completed run that succeeded, and the
+   `build.yml` run had the baseline job set: Operator Worker, both Quality checks and Security & supply
+   chain green and the two package jobs skipped (OBSERVED on baseline run 36267674617). Those workflows
+   are `build.yml` and, in a tree that contains #209, M2-0190's `isolation-canary.yml`; a branch not
+   synced since #209 has no canary run (OBSERVED on #238's head 266172b1). A workflow that is not listed
+   has not registered its run yet, so an empty list, such as in the seconds after a push, is never green.
+   `gh run list --repo mysticalsin/AskToto-Mantu --commit SHA --event push --json workflowName,databaseId,status,conclusion`
+   A commit is **red** from the moment one of those runs fails until a re-run of it succeeds. The
+   **trunk** is red while any commit that landed on `m2/integration` after its last green commit is red.
+   The head alone can hide one: a PR that changes no hot unit may land while its parent's runs are still
+   going (Batches).
 3. **Hot units held.** List the hot files the PR changes from the Files API, which pages through every
    file:
 
@@ -234,22 +245,25 @@ implements when `T` has slices:
    (`gh api repos/mysticalsin/AskToto-Mantu/pulls/N --jq .changed_files`) is 3,000 or more is not merged;
    it is split. The ledger check cannot see this step, and PRs have changed hot files their tickets do not
    hold (F3).
-4. **Trunk open, and up to date for hot units.** Read the integration head's runs:
+4. **Trunk open, and up to date for hot units.** Read the trunk's push runs, newest first, down to its
+   last green commit (raise `--limit` when that commit is not listed). `$TRUNK`, the integration head, is
+   a full sha:
 
    ```
    TRUNK=$(gh api repos/mysticalsin/AskToto-Mantu/branches/m2%2Fintegration --jq .commit.sha)
-   gh run list --repo mysticalsin/AskToto-Mantu --commit "$TRUNK" --event push --json workflowName,status,conclusion
+   gh run list --repo mysticalsin/AskToto-Mantu --branch m2/integration --event push --limit 20 --json headSha,workflowName,status,conclusion
    ```
 
    The containment check passes when the PR's head contains the integration head:
    `gh api repos/mysticalsin/AskToto-Mantu/compare/SHA...m2/integration --jq .ahead_by` prints `0`.
-   If the integration head is red, only a red-trunk PR merges, the revert or the fix of §9 step 1, and it
+   If the trunk is red (step 2), only a red-trunk PR merges, the revert or the fix of §9 step 1, and it
    needs the containment check whether or not it changes a hot unit (INT-4). Otherwise, if step 3 printed
-   a line, the integration head's runs must have succeeded and the PR needs the containment check (INT-3,
-   INT-4). A PR that fails the containment check is synced: the runner merges `origin/m2/integration` into
-   its branch, CI runs again and the validator re-records on the new head. Every merge after that sync
-   makes the PR stale again, so the lead asks for the sync only when the PR is next to merge and steps 1
-   to 3 pass; the runner does not chase the moving head.
+   a line, `$TRUNK` must be green (step 2), so a head whose runs are still going or not yet listed holds
+   the PR back, and the PR needs the containment check (INT-3, INT-4). A PR that fails the containment
+   check is synced: the runner merges `origin/m2/integration` into its branch, CI runs again and the
+   validator re-records on the new head. Every merge after that sync makes the PR stale again, so the lead
+   asks for the sync only when the PR is next to merge and steps 1 to 3 pass; the runner does not chase
+   the moving head.
 5. **Release window.** §11 allows it.
 6. **Packaging (when relevant).** If the PR changes `deps`, `build-wf`, `helper` or an electron-builder
    config, the package jobs have passed on the branch:
@@ -266,17 +280,27 @@ implements when `T` has slices:
      --subject "<conventional summary> [S or T] (#N)" --body-file <message file>
    ```
 
-   When step 4 holds, the squash commit has the head's tree, so INT-3 is kept. Squashing costs three
-   things that later steps allow for: the head commit the evidence record names is not reachable from
-   `m2/integration` or `main`, although GitHub keeps it as `refs/pull/N/head` (§10 step 3); the PR's test
-   and fix commits are fused on the trunk, so a backport takes them from that ref (§11); and a revert
-   takes no `-m` (§9 step 1).
+   When step 4 holds, the squash commit has the head's tree, so INT-3 is kept. Squashing costs two things
+   that later steps allow for: the head commit the evidence record names is not reachable from
+   `m2/integration` or `main`, although GitHub keeps it as `refs/pull/N/head` (§10 step 3); and the PR's
+   test and fix commits are fused on the trunk, so a backport takes them from that ref (§11). A revert of
+   a squash commit takes no `-m` (§9 step 1).
 
 **Batches.** PRs whose file sets are pairwise disjoint may merge back to back. A batch holds at most one
 hot-unit PR: it passes step 4 and merges first, before its siblings move the integration head. The others
 change no hot unit and skip step 4's containment check. Each landed commit gets its own runs, so a red run
 names its PR (OBSERVED: the four merges of 2026-09-26 23:46 UTC produced `build.yml` runs 36280486263,
 36280488859, 36280491532 and 36280495270, all green).
+
+**Reverts the owner asks for.** §9 step 1's revert relies on its ticket still holding its units. A ticket
+that has landed has released them, and reopening it could give a unit a second holder (INT-2). So on a
+green trunk the lead files the revert as its own ticket, in m3 while §11's window holds, claiming the hot
+units the reverted commits change. It is dispatched under §4 and §5, and its PR,
+`git revert <landed sha>` with `-m 1` for the merge-commit landings up to 3afebbdf (F18), merges through
+all of §8 with its own evidence record. Its landing commit (§9 step 2) returns the reverted ticket to
+TODO, and with it every dependant in a status L3 checks, reverted in the same PR if it has landed. When a
+reverted ticket is dispatched again, its branch starts with `git revert <the revert's landed sha>`, which
+restores the work whichever way it landed.
 
 **Program-repository PRs.** A ticket whose scope is a program document opens its PR into the program
 repository's `main` (§3). That repository has no `build.yml`, no `evidence.yml` and no installer, and no
@@ -306,25 +330,30 @@ therefore waits for the L15 follow-up in §16.
 
 ## 9. After a merge
 
-1. **Wait for the `m2/integration` head's runs.** When they succeed, go to step 2. While the head is red
-   (§8 step 2), the trunk is closed (INT-4): only the two PRs below merge, whether or not they change a hot
-   unit, and each needs §8 step 2 and step 4's containment check, so the tree that lands is a tree that
-   ran green.
+1. **Wait for the landed commit's runs.** When it is green (§8 step 2), go to step 2. When a run fails,
+   the trunk is red and closed (INT-4); re-run its failed jobs once, since a failure can pass on the next
+   run (F21): `gh run rerun <id> --repo mysticalsin/AskToto-Mantu --failed`. A failure that repeats keeps
+   it closed: only the two PRs below merge, whether or not they change a hot unit, and each needs
+   §8 step 2 and step 4's containment check, so the tree that lands is a tree that ran green. A landing
+   that passed the containment check has exactly the tree that ran green on its head, so a failure that
+   repeats on it points at the environment and takes the fix. On a landing that skipped the check
+   (Batches), the untested merge result may be the cause, and the revert fits.
    - **The revert**, when the merge caused the failure: `git revert <landed sha>` on a lead branch cut from
-     `origin/m2/integration`, adding `-m 1` when that commit is a merge commit, as the landings up to
-     3afebbdf are (F18). Its `T` is the reverted ticket, which stays IN_PROGRESS and keeps its units, so
-     §8 step 3 holds; its runner fixes on the ticket's branch, and the ticket's PR goes through §8 again.
-     The revert carries no evidence record, so §8 step 1 does not apply to it.
-   - **The fix**, when the merge did not cause the failure. First re-run the failed jobs once, since a
-     failure can pass on the next run (F21): `gh run rerun <id> --repo mysticalsin/AskToto-Mantu --failed`.
-     A failure that repeats, for example after a runner-image change breaks `build.yml`, becomes a ticket.
-     The lead files it in m3 while §11's window holds, dispatches it ahead of every declared order and
-     reservation (§5), and merges its PR through all of §8. If the fix needs a hot unit that another
-     ticket holds, the lead suspends that holder; if it would be a fourth `src/main` claimer (INT-5), the
-     lead suspends the `src/main` claimer dispatched last. A suspended ticket goes back to TODO in the
-     fix's dispatch commit, which releases its claims (§4), and back to IN_PROGRESS, with the same claims,
-     in the fix's landing commit, before step 2 dispatches anyone else. It loses nothing: none of its PRs
-     could merge while the trunk was red, and §8 step 4 syncs its hot-unit PR with the fix before it merges.
+     `origin/m2/integration`. Its `T` is the reverted ticket, which stays IN_PROGRESS and keeps its units,
+     so §8 step 3 holds. The revert carries no evidence record, so §8 step 1 does not apply to it. GitHub
+     cannot reopen or re-merge a merged PR, so the work returns through a new one: the ticket's runner
+     merges `origin/m2/integration`, which now holds the revert, into the ticket's branch (the landing was
+     a squash, so the merge keeps the ticket's changes), fixes the failure there and opens a new draft PR
+     from that branch. The new PR is validated and recorded on its own head and merges through §8.
+   - **The fix**, when the merge did not cause the failure, for example after a runner-image change breaks
+     `build.yml`. The failure becomes a ticket. The lead files it in m3 while §11's window holds,
+     dispatches it ahead of every declared order and reservation (§5), and merges its PR through all of
+     §8. If the fix needs a hot unit that another ticket holds, the lead suspends that holder; if it would
+     be a fourth `src/main` claimer (INT-5), the lead suspends the `src/main` claimer dispatched last. A
+     suspended ticket goes back to TODO in the fix's dispatch commit, which releases its claims (§4), and
+     back to IN_PROGRESS, with the same claims, in the fix's landing commit, before step 2 dispatches
+     anyone else. It loses nothing: none of its PRs could merge while the trunk was red, and §8 step 4
+     syncs its hot-unit PR with the fix before it merges.
 
    A program-repository merge has no run and starts at step 2.
 2. **When it is green**, one commit on the program repository's `main`, pushed:
@@ -482,7 +511,7 @@ Snapshot: the program repository's `main` at 901ceaf (2026-09-27 04:19 UTC, whos
 | F15 | Lock throughput: the eighteen PRs merged into `m2/integration` took 14 min (#205) to 5 h 24 min (#208) from open to merge; the full dispatch-to-merge cycle is not recorded. At about 6 h per cycle, the ten `index` tickets left in the PD-30 order take about 60 h in sequence, against about 140 h from the snapshot to the 2026-10-03 candidate | OBSERVED (PR times) / ASSUMED (cycle time) | `gh pr list --json createdAt,mergedAt` | §5 |
 | F16 | **Ticket ids chosen on a branch collide.** PR #2 (M2-0013) has filed its speaker-voiceprint ticket as M2-0215, then as M2-0220 (e470b8a) and as M2-0221 (95eff63). The lead gave each id to another ticket: M2-0215 to observability slice 2 (its local 71adb41, on `main` since b8f20bc), M2-0220 in 0fe0781 and M2-0221, "Open the Windows CLI setup script without cmd re-parsing its path", in c679f1f. The branch and `main` each take the next free id, so the PR's head 2f4f5a4 collides again | OBSERVED | the ledger at each named commit | §8 program-repository step 2; §16 |
 | F17 | **Program-repository PRs change paths their tickets do not claim.** #2 (M2-0013) changes DECISIONS.md and `ledger/tickets.json`; #9 (M2-0189) changes `ledger/tickets.json`; #1 (M2-0020) changes M2-0013's `review/SRC-REVERIFY.md`; #7 (M2-0101) adds 80 files under `design/settings/` and `evidence/M2-0101/`, none of them claimed; and this PR, #5, adds `runbooks/integration.md` while M2-0188 claims `INTEGRATION.md` (§16). No workflow runs there to stop them (F6) | OBSERVED | Files API per PR; ledger `scope_paths` | §8 program-repository steps 1 and 2 |
-| F18 | **The merge method changed.** The landings on `m2/integration` up to 3afebbdf (#201 to #207, #210, #212 to #214) are merge commits. #208 and #217 (02:03 UTC), #215 (02:24), #218 (02:47) and #219, #221 and #225 (04:18) landed as squash commits with hand-written messages, the lead's practice (`_relay/HANDOFF.md:29`) that §8 step 7 states. In the program repository, #4 landed as a merge commit and #8 as a squash (73c48e5) | OBSERVED / PROVIDED | `git rev-list --parents -n 1` on each landed commit; the baton | §8 step 7; §9 step 1; §10 step 3; §11; PD-31 |
+| F18 | **The merge method changed.** The landings on `m2/integration` up to 3afebbdf (#201 to #207, #210, #212 to #214) are merge commits. #208 and #217 (02:03 UTC), #215 (02:24), #218 (02:47) and #219, #221 and #225 (04:18) landed as squash commits with hand-written messages, the lead's practice (`_relay/HANDOFF.md:29`) that §8 step 7 states. In the program repository, #4 landed as a merge commit and #8 as a squash (73c48e5) | OBSERVED / PROVIDED | `git rev-list --parents -n 1` on each landed commit; the baton | §8 step 7 and "Reverts the owner asks for"; §10 step 3; §11; PD-31 |
 | F19 | `gh pr view N --json files` returns at most 100 files: for #171 it lists 100, where the paginated Files API lists 622 | OBSERVED | both commands on #171 | §8 step 3; program-repository step 1 |
 | F20 | **L15 freezes every recorded document.** L15 checks the `output` of every valid record, not only the latest (SCHEMA.md:279; `check.mjs:370-391`), and records are append-only (SCHEMA.md §6). Once M2-0188.1's DESIGNED record lands, any edit to this runbook fails the ledger check for good, and the same holds for any other recorded document | OBSERVED (rules) / DERIVED | SCHEMA.md; `check.mjs` | §8 "Amending a recorded document"; §16 |
 | F21 | **A red trunk run that its merge did not cause.** #215 (docs only) landed as bc08a419, whose run 36288445138 failed one Windows test in `src/main/infra/storage/dataless.test.ts`; #218 landed on it 23 min later without a re-run, and the run on 56292fb6 (36289553574) is green | OBSERVED | `gh run view 36288445138 --log-failed` | §9 step 1 |
@@ -505,14 +534,14 @@ Section B (program decisions):
 
 | # | Decision | Why | Alternatives rejected | Tickets |
 |---|---|---|---|---|
-| PD-30 | The hot-file queue has one holder per hot unit, the single IN_PROGRESS ticket that claims it, with claims taken all at once at dispatch. Declared orders are dispatch orders among ready tickets: a ticket that is not ready is overtaken, and one ticket at a time may reserve the units it still needs. A PR changes a hot unit only if its ticket holds it, and a hot-unit PR merges only when up to date and green on its head. While the `m2/integration` head is red, only the revert and the fix of a repeated failure merge, and the fix's ticket may suspend the tickets whose claims it needs. The `index` order gains observability slice 2 (M2-0215) after 0006 and M2-0214 after 0037 | Evidence binds to the PR head, so parallel work with serialized merges would re-sync, re-run and re-validate every open PR on a unit at each hot merge. A red trunk hides the failures of every later landing, and a fix that waited for claims held by tickets unable to merge would deadlock | Parallel development with serialized merges only; GitHub's merge queue (not evaluated for this user-owned repository, and it cannot see ledger claims) | M2-0188, 0214, 0215 |
+| PD-30 | The hot-file queue has one holder per hot unit, the single IN_PROGRESS ticket that claims it, with claims taken all at once at dispatch. Declared orders are dispatch orders among ready tickets: a ticket that is not ready is overtaken, and one ticket at a time may reserve the units it still needs. A PR changes a hot unit only if its ticket holds it, and a hot-unit PR merges only when up to date and green on its head. While the trunk is red, from a landing's failed run until that commit or a later one is green, only the revert and the fix of a repeated failure merge, and the fix's ticket may suspend the tickets whose claims it needs. A revert the owner asks for on a green trunk is a ticket of its own that claims the hot units it changes. The `index` order gains observability slice 2 (M2-0215) after 0006 and M2-0214 after 0037 | Evidence binds to the PR head, so parallel work with serialized merges would re-sync, re-run and re-validate every open PR on a unit at each hot merge. A red trunk hides the failures of every later landing, and a fix that waited for claims held by tickets unable to merge would deadlock | Parallel development with serialized merges only; GitHub's merge queue (not evaluated for this user-owned repository, and it cannot see ledger claims) | M2-0188, 0214, 0215 |
 | PD-31 | Ticket PRs land by squash, with a hand-written subject `<summary> [slice or ticket] (#N)` and a body that names no private document | One commit per PR on the trunk, and public history whose text the lead writes (PROVIDED: `_relay/HANDOFF.md:29`; lead notes, 2026-09-27) | Merge commits, as #201 to #214 used: they keep each evidence head commit reachable from `main`, per-commit backports and `git revert -m 1`, but carry every runner commit message into the public history | M2-0188 |
 
 Section D (open register):
 
 | ID | Question | Recommended default | Class | Needed by | Status | Affected tickets |
 |---|---|---|---|---|---|---|
-| D-32 | Until the 1.9.7 (m3) snapshot is cut, which PRs that change the installer may merge into `m2/integration`? | Only those of m2 and m3 tickets. M2-0004 (m4, first in the `index` order) moves to m3. Eight tickets outside m2 and m3 are already merged (F7): M2-0041, 0043, 0045, 0203 and 0204 (m5), M2-0056 (m4), M2-0120 (m8) and M2-0147 (m9). They ship in 1.9.7 and are listed in its release notes, and the T1 lists drop those on them (M2-0046's: 0041, 0043 and 0045; PLAN.md:130's: those three, 0203 and 0204; M2-0206's `depends_on`: all five). The owner may instead have the lead revert any of them through a PR (§9 step 1) before the m3 snapshot. Waiting: M2-0047, 0101, 0144 and 0190, in progress with installer claims, and the `package.json` changes of #222 (M2-0055) and #231 (M2-0223) | reversible | 2026-09-27 | OPEN | 0004, 0041, 0043, 0045, 0046, 0047, 0055, 0056, 0101, 0120, 0144, 0147, 0190, 0203, 0204, 0206, 0223 |
+| D-32 | Until the 1.9.7 (m3) snapshot is cut, which PRs that change the installer may merge into `m2/integration`? | Only those of m2 and m3 tickets. M2-0004 (m4, first in the `index` order) moves to m3. Eight tickets outside m2 and m3 are already merged (F7): M2-0041, 0043, 0045, 0203 and 0204 (m5), M2-0056 (m4), M2-0120 (m8) and M2-0147 (m9). They ship in 1.9.7 and are listed in its release notes, and the T1 lists drop those on them (M2-0046's: 0041, 0043 and 0045; PLAN.md:130's: those three, 0203 and 0204; M2-0206's `depends_on`: all five). The owner may instead have the lead revert any of them before the m3 snapshot (§8, "Reverts the owner asks for"). Such a revert waits for the hot units it changes: #206 (M2-0041) changes `ipc`, held by M2-0214, and #219 (M2-0056) changes `deps`, held by M2-0047 and M2-0214. It also takes the reverted ticket's dependants back to TODO, reverting those that have landed: M2-0218 and 0219 depend on 0041, M2-0221 and 0222 on 0147. Waiting: M2-0047, 0101, 0144 and 0190, in progress with installer claims, and the `package.json` changes of #222 (M2-0055) and #231 (M2-0223) | reversible | 2026-09-27 | OPEN | 0004, 0041, 0043, 0045, 0046, 0047, 0055, 0056, 0101, 0120, 0144, 0147, 0190, 0203, 0204, 0206, 0214, 0218, 0219, 0221, 0222, 0223 |
 | D-33 | Protect `m2/integration` on GitHub? | Yes: a ruleset with deletion and non_fast_forward, as `main` has, plus required status checks (both Quality checks, Security & supply chain, Operator Worker) without "up to date", which the queue handles. ASSUMED: push-triggered runs on a PR's head satisfy required checks; confirm on the first PR after enabling | escalate: owner configuration | 2026-09-28 | OPEN | 0188 |
 | D-34 | How is `release/1.9.x` cut, and how is a 1.9.x hotfix built and numbered? | Cut at the commit in the promoted 1.9.7 candidate's `provenance.json`. `qa-candidate.yml` also accepts the head of `release/1.9.x` (M2-0187 follow-up). A hotfix takes the next unused patch number (never 1.9.8, never reused), and the next train the one after it | reversible | 2026-10-03 | OPEN | 0046, 0187, 0206 |
 
