@@ -545,7 +545,7 @@
    "slices": [],
    "due": null,
    "status": "IN_PROGRESS",
-   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac.",
+   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac.",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27"
   },
@@ -5900,7 +5900,8 @@
    "due": null,
    "status": "IN_PROGRESS",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac."
   },
   {
    "id": "M2-0102",
@@ -11649,7 +11650,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "OD-12 (2026-09-27): DESIGNED prototypes are built as real renderer components (src/renderer, the app's own React/CSS) behind a dev-only surface and captured in CI through Electron, not as a standalone HTML site; no visible browser on the owner's Mac."
   },
   {
    "id": "M2-0202",

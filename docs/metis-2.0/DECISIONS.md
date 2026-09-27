@@ -25,6 +25,7 @@ Evidence labels follow software-architecture-engineer v1.4.0: OBSERVED, PROVIDED
 | OD-9 | 2026-09-26 | Operating model: Opus plans and validates every deliverable; Sonnet implements tickets in isolated worktrees; Opus implements and validates all design and animation work | PROVIDED | — | PLAN.md §3; owner_model in the ledger |
 | OD-10 | 2026-09-26 | A **launch video** (BRAG storyboard) at the end | PROVIDED | — | M2-0178..0182, 0212, 0213 |
 | OD-11 | 2026-09-26 | Audits: ChatGPT now; Codex CLI when its quota resets (2026-09-29 19:33) | PROVIDED | — | M2-0023 |
+| OD-12 | 2026-09-27 | Métis is an installed **desktop application** (Electron) on macOS and Windows. The web platform (Operator) is its mission control and admin console, never a replacement for the app. Standalone HTML design prototypes are internal review artifacts only: they are never shipped or presented as the product, UI evidence is captured from the real app renderer (in CI, per D-28), and no agent drives a visible browser on the owner's machine for program work | PROVIDED (owner message 2026-09-27, after an agent's Playwright capture of the Settings HTML mock appeared on his screen) | A web-first client; separate HTML prototype sites as design evidence | M2-0101, M2-0201, M2-0007, every UI ticket |
 
 ## B. Program decisions (Opus, 2026-09-26)
 
