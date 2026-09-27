@@ -1,0 +1,1940 @@
+{
+ "ticket": "M2-0101",
+ "kind": "superseded HTML mock (OD-12): design reference, not app evidence",
+ "generated_at": "2026-09-27T01:39:36Z",
+ "base_commit": "7dab8e8964e9b2814cd1477a9a7b724628a04d6a",
+ "method": "Each state rendered by design/settings/prototype in its own Chromium context (Playwright) per theme, device scale and motion preference; audited in page by prototype/audit.js; captured by prototype/capture.js. A reduced-motion capture byte-identical to its full-motion twin points at the twin file.",
+ "inputs_sha256": {
+  "inventory.json": "3223bb812632d5c113b0d842ead90dca610bd5aba862cc20fffd92d4e314a42f",
+  "prototype/index.html": "6f197c18b5910d2c14941fcd9fd6237c02a8904931652f59c5cd30f1193a7640",
+  "prototype/prototype.css": "c639d1b0f56afeff6ff68e8eb9ddf203e1b99fe85f881a6027dd8a759daa9a32",
+  "prototype/prototype.js": "1e21d8ef6109dfc902c4a0eeb32a37b589f2876d86e09b34660f09e00769f89e",
+  "prototype/states.js": "c4faef9b72850ce931716411ae67a7017f043bd35ce13070b3e0d9e06131c533",
+  "prototype/audit.js": "e483c13850d669ff9262f3986a4450d68a15035a8a168ca08a3f33ae3fd8fce6",
+  "prototype/capture.js": "ba82a226447c5b7f593bfe354af9ff6ec0e2cb00ccfa74cc2d88b9ea6527b099"
+ },
+ "summary": {
+  "captures": 136,
+  "files": 68,
+  "bytes": 11504981,
+  "states": 17,
+  "reduced_motion_identical_at_rest": 68,
+  "audit_failures": 0,
+  "text_contrast_checks": 9920,
+  "non_text_contrast_checks": 1360,
+  "clipping_checks": 26320,
+  "max_transition_ms": {
+   "motion": 150,
+   "reduced_motion": 0
+  },
+  "min_focus_indicator_ratio": 5.85,
+  "negative_control_detected_all": true,
+  "interaction_checks": "6/6"
+ },
+ "captures": [
+  {
+   "state": "S01-general",
+   "title": "General, fresh install",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S01-general/light-1x-motion.png",
+   "sha256": "1bef0096ed4505362554f232d268ed51110e813cde72904645476a51fdb1a54a",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S01-general",
+   "title": "General, fresh install",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S01-general/light-1x-motion.png",
+   "sha256": "1bef0096ed4505362554f232d268ed51110e813cde72904645476a51fdb1a54a",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S01-general",
+   "title": "General, fresh install",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S01-general/light-2x-motion.png",
+   "sha256": "5a6585ca7d394e7fada926637d3e9cffb0a0d7c8ca02baf96e183fed16d48993",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S01-general",
+   "title": "General, fresh install",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S01-general/light-2x-motion.png",
+   "sha256": "5a6585ca7d394e7fada926637d3e9cffb0a0d7c8ca02baf96e183fed16d48993",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S01-general",
+   "title": "General, fresh install",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S01-general/dark-1x-motion.png",
+   "sha256": "04d57be343ed7acea0461a548e6bbb1b4dc377c14568c4a345aad04ea78ef54f",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S01-general",
+   "title": "General, fresh install",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S01-general/dark-1x-motion.png",
+   "sha256": "04d57be343ed7acea0461a548e6bbb1b4dc377c14568c4a345aad04ea78ef54f",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S01-general",
+   "title": "General, fresh install",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S01-general/dark-2x-motion.png",
+   "sha256": "393bdc4b073e3c8637e3d146bca520e33d79249f96efbb9f4c2b1296c65fdecd",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S01-general",
+   "title": "General, fresh install",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S01-general/dark-2x-motion.png",
+   "sha256": "393bdc4b073e3c8637e3d146bca520e33d79249f96efbb9f4c2b1296c65fdecd",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S02-voice-ready",
+   "title": "Voice & meetings, Cloudflare ready",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S02-voice-ready/light-1x-motion.png",
+   "sha256": "c3c87313bbb1a0011c56328d0c066661017c0f17867f400f0600a85843b9c57e",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S02-voice-ready",
+   "title": "Voice & meetings, Cloudflare ready",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S02-voice-ready/light-1x-motion.png",
+   "sha256": "c3c87313bbb1a0011c56328d0c066661017c0f17867f400f0600a85843b9c57e",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S02-voice-ready",
+   "title": "Voice & meetings, Cloudflare ready",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S02-voice-ready/light-2x-motion.png",
+   "sha256": "58890ccb23a0f7d62ef130105aa120928386f130613469679504251bfa4eada2",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S02-voice-ready",
+   "title": "Voice & meetings, Cloudflare ready",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S02-voice-ready/light-2x-motion.png",
+   "sha256": "58890ccb23a0f7d62ef130105aa120928386f130613469679504251bfa4eada2",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S02-voice-ready",
+   "title": "Voice & meetings, Cloudflare ready",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S02-voice-ready/dark-1x-motion.png",
+   "sha256": "468c752646aa3b13baa7be5dc52f3dde7c189933ecce1e92e92dbf307c52302c",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S02-voice-ready",
+   "title": "Voice & meetings, Cloudflare ready",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S02-voice-ready/dark-1x-motion.png",
+   "sha256": "468c752646aa3b13baa7be5dc52f3dde7c189933ecce1e92e92dbf307c52302c",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S02-voice-ready",
+   "title": "Voice & meetings, Cloudflare ready",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S02-voice-ready/dark-2x-motion.png",
+   "sha256": "cc34862fe7a708ff96ae2d1139a4f40db25513b5c7f020acdd53a3a952107460",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S02-voice-ready",
+   "title": "Voice & meetings, Cloudflare ready",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S02-voice-ready/dark-2x-motion.png",
+   "sha256": "cc34862fe7a708ff96ae2d1139a4f40db25513b5c7f020acdd53a3a952107460",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "title": "Cloud speech unavailable, no silent switch",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S03-voice-unavailable/light-1x-motion.png",
+   "sha256": "4dad5d68317e930b4d4fb83a06cd1ed0f1f575eb1b71f3b2829d6079e044eeee",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "title": "Cloud speech unavailable, no silent switch",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S03-voice-unavailable/light-1x-motion.png",
+   "sha256": "4dad5d68317e930b4d4fb83a06cd1ed0f1f575eb1b71f3b2829d6079e044eeee",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "title": "Cloud speech unavailable, no silent switch",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S03-voice-unavailable/light-2x-motion.png",
+   "sha256": "78d1fdbf8256f4e853753fed94f65762a42b2263dd0a7966f2b77a0561b70364",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "title": "Cloud speech unavailable, no silent switch",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S03-voice-unavailable/light-2x-motion.png",
+   "sha256": "78d1fdbf8256f4e853753fed94f65762a42b2263dd0a7966f2b77a0561b70364",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "title": "Cloud speech unavailable, no silent switch",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S03-voice-unavailable/dark-1x-motion.png",
+   "sha256": "b2a0361eb6bd826742f045b691a06e46a4cd002fd17cd4526cde081629aa3b28",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "title": "Cloud speech unavailable, no silent switch",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S03-voice-unavailable/dark-1x-motion.png",
+   "sha256": "b2a0361eb6bd826742f045b691a06e46a4cd002fd17cd4526cde081629aa3b28",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "title": "Cloud speech unavailable, no silent switch",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S03-voice-unavailable/dark-2x-motion.png",
+   "sha256": "c97edc8092569fde44f36e0a89eec3a72902bbda412baf4fe095514f6538e0e5",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "title": "Cloud speech unavailable, no silent switch",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S03-voice-unavailable/dark-2x-motion.png",
+   "sha256": "c97edc8092569fde44f36e0a89eec3a72902bbda412baf4fe095514f6538e0e5",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S04-local-speech-review",
+   "title": "Optional local speech, review before download",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S04-local-speech-review/light-1x-motion.png",
+   "sha256": "43ac37fb1ce0f9e370c7bde5ca0c5d9602d3a90e5f78cbc8a56b5386f032cfa8",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S04-local-speech-review",
+   "title": "Optional local speech, review before download",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S04-local-speech-review/light-1x-motion.png",
+   "sha256": "43ac37fb1ce0f9e370c7bde5ca0c5d9602d3a90e5f78cbc8a56b5386f032cfa8",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S04-local-speech-review",
+   "title": "Optional local speech, review before download",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S04-local-speech-review/light-2x-motion.png",
+   "sha256": "c8d751c68a78a14a004ac61fda8d270cd7b619721577162cdfa766461020e9e3",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S04-local-speech-review",
+   "title": "Optional local speech, review before download",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S04-local-speech-review/light-2x-motion.png",
+   "sha256": "c8d751c68a78a14a004ac61fda8d270cd7b619721577162cdfa766461020e9e3",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S04-local-speech-review",
+   "title": "Optional local speech, review before download",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S04-local-speech-review/dark-1x-motion.png",
+   "sha256": "a042dbd1d956a9cdbc8acab10f4e066cd1643943e5fe204c03c102b9fe054ce1",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S04-local-speech-review",
+   "title": "Optional local speech, review before download",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S04-local-speech-review/dark-1x-motion.png",
+   "sha256": "a042dbd1d956a9cdbc8acab10f4e066cd1643943e5fe204c03c102b9fe054ce1",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S04-local-speech-review",
+   "title": "Optional local speech, review before download",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S04-local-speech-review/dark-2x-motion.png",
+   "sha256": "9c1a5e6422f95d21b7003cf1244dcf5d9f09e6019ba0e8cba9ce5d234e16328f",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S04-local-speech-review",
+   "title": "Optional local speech, review before download",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S04-local-speech-review/dark-2x-motion.png",
+   "sha256": "9c1a5e6422f95d21b7003cf1244dcf5d9f09e6019ba0e8cba9ce5d234e16328f",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "title": "Optional local speech, downloading",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S05-local-speech-downloading/light-1x-motion.png",
+   "sha256": "e2bf0c78983e1818305b30fb10d6bbc4dbb3339e4f2e04e86504c28264aedd42",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "title": "Optional local speech, downloading",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S05-local-speech-downloading/light-1x-motion.png",
+   "sha256": "e2bf0c78983e1818305b30fb10d6bbc4dbb3339e4f2e04e86504c28264aedd42",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "title": "Optional local speech, downloading",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S05-local-speech-downloading/light-2x-motion.png",
+   "sha256": "f5df5df837ee22a0319a882254a0b0b49f425a8953a8ad5b022b03d02e92ff74",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "title": "Optional local speech, downloading",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S05-local-speech-downloading/light-2x-motion.png",
+   "sha256": "f5df5df837ee22a0319a882254a0b0b49f425a8953a8ad5b022b03d02e92ff74",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "title": "Optional local speech, downloading",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S05-local-speech-downloading/dark-1x-motion.png",
+   "sha256": "21ef0fb8a9df4418f8a1ce390c5c74dd6730cee08fdfc7c817bd97295d624f91",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "title": "Optional local speech, downloading",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S05-local-speech-downloading/dark-1x-motion.png",
+   "sha256": "21ef0fb8a9df4418f8a1ce390c5c74dd6730cee08fdfc7c817bd97295d624f91",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "title": "Optional local speech, downloading",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S05-local-speech-downloading/dark-2x-motion.png",
+   "sha256": "06beb451b720607f5afdd661c207677fd535ac721a4d3adb43d1baebcd81ccd9",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "title": "Optional local speech, downloading",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S05-local-speech-downloading/dark-2x-motion.png",
+   "sha256": "06beb451b720607f5afdd661c207677fd535ac721a4d3adb43d1baebcd81ccd9",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "title": "Optional local speech, installed but not selected",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S06-local-speech-installed/light-1x-motion.png",
+   "sha256": "2067ee6da2d1ae485035f8d77785837432e0978a37049aacf52b4b146054e736",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "title": "Optional local speech, installed but not selected",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S06-local-speech-installed/light-1x-motion.png",
+   "sha256": "2067ee6da2d1ae485035f8d77785837432e0978a37049aacf52b4b146054e736",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "title": "Optional local speech, installed but not selected",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S06-local-speech-installed/light-2x-motion.png",
+   "sha256": "5a355cf9b129ecfaa6996f58e894a75ad69c5e8ba07fe83702c1a2f752963e1d",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "title": "Optional local speech, installed but not selected",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S06-local-speech-installed/light-2x-motion.png",
+   "sha256": "5a355cf9b129ecfaa6996f58e894a75ad69c5e8ba07fe83702c1a2f752963e1d",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "title": "Optional local speech, installed but not selected",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S06-local-speech-installed/dark-1x-motion.png",
+   "sha256": "ceec6ae1978e04c8e4af52932fea6e980de51466044ab50680dfcd3d1381c26c",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "title": "Optional local speech, installed but not selected",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S06-local-speech-installed/dark-1x-motion.png",
+   "sha256": "ceec6ae1978e04c8e4af52932fea6e980de51466044ab50680dfcd3d1381c26c",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "title": "Optional local speech, installed but not selected",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S06-local-speech-installed/dark-2x-motion.png",
+   "sha256": "0ff4bb481908c3d8987dceccf83cd1367f8d5449620370b09a52d4caaec5e30e",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "title": "Optional local speech, installed but not selected",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S06-local-speech-installed/dark-2x-motion.png",
+   "sha256": "0ff4bb481908c3d8987dceccf83cd1367f8d5449620370b09a52d4caaec5e30e",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S07-knowledge",
+   "title": "Knowledge & skills",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S07-knowledge/light-1x-motion.png",
+   "sha256": "955b1a40af3d9215b515f3acc94ed0a02e129ab4db560e5b9d26579ddd104c04",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S07-knowledge",
+   "title": "Knowledge & skills",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S07-knowledge/light-1x-motion.png",
+   "sha256": "955b1a40af3d9215b515f3acc94ed0a02e129ab4db560e5b9d26579ddd104c04",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S07-knowledge",
+   "title": "Knowledge & skills",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S07-knowledge/light-2x-motion.png",
+   "sha256": "4f492f9eaef943a1a759bb6b6c38dc09912c2c206ca2a015f5b7ff86e8782433",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S07-knowledge",
+   "title": "Knowledge & skills",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S07-knowledge/light-2x-motion.png",
+   "sha256": "4f492f9eaef943a1a759bb6b6c38dc09912c2c206ca2a015f5b7ff86e8782433",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S07-knowledge",
+   "title": "Knowledge & skills",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S07-knowledge/dark-1x-motion.png",
+   "sha256": "8c22debd397ec0f3db689a1a6d737c7a06d072a41fbed4d0ae0dc01fb6b20881",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S07-knowledge",
+   "title": "Knowledge & skills",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S07-knowledge/dark-1x-motion.png",
+   "sha256": "8c22debd397ec0f3db689a1a6d737c7a06d072a41fbed4d0ae0dc01fb6b20881",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S07-knowledge",
+   "title": "Knowledge & skills",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S07-knowledge/dark-2x-motion.png",
+   "sha256": "bdc373edc0069c4e102594b980be2e5dd1a6d920670f0fb018cfd4f4a3603f7f",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S07-knowledge",
+   "title": "Knowledge & skills",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S07-knowledge/dark-2x-motion.png",
+   "sha256": "bdc373edc0069c4e102594b980be2e5dd1a6d920670f0fb018cfd4f4a3603f7f",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S08-privacy-managed",
+   "title": "Privacy & account with organization locks",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S08-privacy-managed/light-1x-motion.png",
+   "sha256": "850f51479b6348ae9e221c04995f8c7d47584e441fc7049bf10cb7dfbbbb215e",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S08-privacy-managed",
+   "title": "Privacy & account with organization locks",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S08-privacy-managed/light-1x-motion.png",
+   "sha256": "850f51479b6348ae9e221c04995f8c7d47584e441fc7049bf10cb7dfbbbb215e",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S08-privacy-managed",
+   "title": "Privacy & account with organization locks",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S08-privacy-managed/light-2x-motion.png",
+   "sha256": "73397af97e44e2e60aa1d8b6218827d9a958cb81ca6c05af50a1e8afdb09b9e7",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S08-privacy-managed",
+   "title": "Privacy & account with organization locks",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S08-privacy-managed/light-2x-motion.png",
+   "sha256": "73397af97e44e2e60aa1d8b6218827d9a958cb81ca6c05af50a1e8afdb09b9e7",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S08-privacy-managed",
+   "title": "Privacy & account with organization locks",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S08-privacy-managed/dark-1x-motion.png",
+   "sha256": "5fa696cb6ee7f893e27ce1feef4cc47194b6d737ab30f28f38104d3449de6848",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S08-privacy-managed",
+   "title": "Privacy & account with organization locks",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S08-privacy-managed/dark-1x-motion.png",
+   "sha256": "5fa696cb6ee7f893e27ce1feef4cc47194b6d737ab30f28f38104d3449de6848",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S08-privacy-managed",
+   "title": "Privacy & account with organization locks",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S08-privacy-managed/dark-2x-motion.png",
+   "sha256": "c1e8ad074bc23e35128dd545b253d90b4ecf7bd0c92f127caed5e67f451c122a",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S08-privacy-managed",
+   "title": "Privacy & account with organization locks",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S08-privacy-managed/dark-2x-motion.png",
+   "sha256": "c1e8ad074bc23e35128dd545b253d90b4ecf7bd0c92f127caed5e67f451c122a",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S09-policy-sheet",
+   "title": "Effective policy",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S09-policy-sheet/light-1x-motion.png",
+   "sha256": "e8e76bb29408779581a390a9a3df55793e472410d0bbc4e9894cb79d3b00e9ed",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S09-policy-sheet",
+   "title": "Effective policy",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S09-policy-sheet/light-1x-motion.png",
+   "sha256": "e8e76bb29408779581a390a9a3df55793e472410d0bbc4e9894cb79d3b00e9ed",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S09-policy-sheet",
+   "title": "Effective policy",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S09-policy-sheet/light-2x-motion.png",
+   "sha256": "f644327afafbed3b4949f96c38034bd5bb7154f2feb174b48a4a5bc0ac6c0b7f",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S09-policy-sheet",
+   "title": "Effective policy",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S09-policy-sheet/light-2x-motion.png",
+   "sha256": "f644327afafbed3b4949f96c38034bd5bb7154f2feb174b48a4a5bc0ac6c0b7f",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S09-policy-sheet",
+   "title": "Effective policy",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S09-policy-sheet/dark-1x-motion.png",
+   "sha256": "4712600355f2802cf41ee853f22f211c2c39c07d65398746dc6f245e4e63a72e",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S09-policy-sheet",
+   "title": "Effective policy",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S09-policy-sheet/dark-1x-motion.png",
+   "sha256": "4712600355f2802cf41ee853f22f211c2c39c07d65398746dc6f245e4e63a72e",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S09-policy-sheet",
+   "title": "Effective policy",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S09-policy-sheet/dark-2x-motion.png",
+   "sha256": "b3345281ab2807abeb4364a675244d18b78e2fb7ed6235f06cf4031fff4df725",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S09-policy-sheet",
+   "title": "Effective policy",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S09-policy-sheet/dark-2x-motion.png",
+   "sha256": "b3345281ab2807abeb4364a675244d18b78e2fb7ed6235f06cf4031fff4df725",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S10-advanced",
+   "title": "Advanced drawer",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S10-advanced/light-1x-motion.png",
+   "sha256": "f4f16b4f0d14c6b45954a8206b8fd8a322ef2479023091e44903f4823a62ade2",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S10-advanced",
+   "title": "Advanced drawer",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S10-advanced/light-1x-motion.png",
+   "sha256": "f4f16b4f0d14c6b45954a8206b8fd8a322ef2479023091e44903f4823a62ade2",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S10-advanced",
+   "title": "Advanced drawer",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S10-advanced/light-2x-motion.png",
+   "sha256": "17df038b1a9ca7643705fae12406aa7b16dcf5f785c55f9ba69041fe38ca4758",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S10-advanced",
+   "title": "Advanced drawer",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S10-advanced/light-2x-motion.png",
+   "sha256": "17df038b1a9ca7643705fae12406aa7b16dcf5f785c55f9ba69041fe38ca4758",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S10-advanced",
+   "title": "Advanced drawer",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S10-advanced/dark-1x-motion.png",
+   "sha256": "66d3c745b7a524d62056300a88118fb00de0dd0947a40ec94802001ff9d4e340",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S10-advanced",
+   "title": "Advanced drawer",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S10-advanced/dark-1x-motion.png",
+   "sha256": "66d3c745b7a524d62056300a88118fb00de0dd0947a40ec94802001ff9d4e340",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S10-advanced",
+   "title": "Advanced drawer",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S10-advanced/dark-2x-motion.png",
+   "sha256": "057b33295aea411ef224a86882530aa6411d7388ef7eafa87ad26d837d3212ec",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S10-advanced",
+   "title": "Advanced drawer",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S10-advanced/dark-2x-motion.png",
+   "sha256": "057b33295aea411ef224a86882530aa6411d7388ef7eafa87ad26d837d3212ec",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S11-search",
+   "title": "Search with synonyms",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S11-search/light-1x-motion.png",
+   "sha256": "76de86e2817f2564bd5a4c297ee2fed4facdf44ce630b98a53b58e06e1c74448",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S11-search",
+   "title": "Search with synonyms",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S11-search/light-1x-motion.png",
+   "sha256": "76de86e2817f2564bd5a4c297ee2fed4facdf44ce630b98a53b58e06e1c74448",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S11-search",
+   "title": "Search with synonyms",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S11-search/light-2x-motion.png",
+   "sha256": "5cb80d305c7f2f566ff173461ff3a68d01112c73c679fc181f74221f5b32d2ea",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S11-search",
+   "title": "Search with synonyms",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S11-search/light-2x-motion.png",
+   "sha256": "5cb80d305c7f2f566ff173461ff3a68d01112c73c679fc181f74221f5b32d2ea",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S11-search",
+   "title": "Search with synonyms",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S11-search/dark-1x-motion.png",
+   "sha256": "071adede0278e456803ca0107f894c838d48a91b9649960f6383d61d11027f32",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S11-search",
+   "title": "Search with synonyms",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S11-search/dark-1x-motion.png",
+   "sha256": "071adede0278e456803ca0107f894c838d48a91b9649960f6383d61d11027f32",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S11-search",
+   "title": "Search with synonyms",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S11-search/dark-2x-motion.png",
+   "sha256": "34396f0db110332482ab86586e5e0155a48a48bf40ab0091de1318e1e9c5b093",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S11-search",
+   "title": "Search with synonyms",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S11-search/dark-2x-motion.png",
+   "sha256": "34396f0db110332482ab86586e5e0155a48a48bf40ab0091de1318e1e9c5b093",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S12-search-empty",
+   "title": "Search for a control hidden by policy",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S12-search-empty/light-1x-motion.png",
+   "sha256": "b8bf730bd2e74faf9d7aec31872967a6e3553f32fcf8881f247c9de80457a5d6",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S12-search-empty",
+   "title": "Search for a control hidden by policy",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S12-search-empty/light-1x-motion.png",
+   "sha256": "b8bf730bd2e74faf9d7aec31872967a6e3553f32fcf8881f247c9de80457a5d6",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S12-search-empty",
+   "title": "Search for a control hidden by policy",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S12-search-empty/light-2x-motion.png",
+   "sha256": "97be36c101590739a3c7a288e3dbc1d8f17b92a9b07cf893df7ed8b38fd9e4a0",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S12-search-empty",
+   "title": "Search for a control hidden by policy",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S12-search-empty/light-2x-motion.png",
+   "sha256": "97be36c101590739a3c7a288e3dbc1d8f17b92a9b07cf893df7ed8b38fd9e4a0",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S12-search-empty",
+   "title": "Search for a control hidden by policy",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S12-search-empty/dark-1x-motion.png",
+   "sha256": "936d2f9d55f827c3748089c3e4a5772b31b87dcb5eb0a3c540319971162ef38f",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S12-search-empty",
+   "title": "Search for a control hidden by policy",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S12-search-empty/dark-1x-motion.png",
+   "sha256": "936d2f9d55f827c3748089c3e4a5772b31b87dcb5eb0a3c540319971162ef38f",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S12-search-empty",
+   "title": "Search for a control hidden by policy",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S12-search-empty/dark-2x-motion.png",
+   "sha256": "2439c67878dd425b962bfd7fdaf26a353c9ed62a89f93cd917b6d96bbc45357f",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S12-search-empty",
+   "title": "Search for a control hidden by policy",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S12-search-empty/dark-2x-motion.png",
+   "sha256": "2439c67878dd425b962bfd7fdaf26a353c9ed62a89f93cd917b6d96bbc45357f",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S13-save-failed",
+   "title": "Save failed, value reverted",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S13-save-failed/light-1x-motion.png",
+   "sha256": "e10e65ce706d4a601209cada0b4a94cd1e5ba9683760579411b63772d4949f0a",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S13-save-failed",
+   "title": "Save failed, value reverted",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S13-save-failed/light-1x-motion.png",
+   "sha256": "e10e65ce706d4a601209cada0b4a94cd1e5ba9683760579411b63772d4949f0a",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S13-save-failed",
+   "title": "Save failed, value reverted",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S13-save-failed/light-2x-motion.png",
+   "sha256": "7ae9dde29bea28802a925e7e2d710f30374d2c8d75fbb5c7abcf420adebb74dd",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S13-save-failed",
+   "title": "Save failed, value reverted",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S13-save-failed/light-2x-motion.png",
+   "sha256": "7ae9dde29bea28802a925e7e2d710f30374d2c8d75fbb5c7abcf420adebb74dd",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S13-save-failed",
+   "title": "Save failed, value reverted",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S13-save-failed/dark-1x-motion.png",
+   "sha256": "899ff6997dc6278f8ebc58f24df57f5ad27510e3536c084f3aa096820a141e92",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S13-save-failed",
+   "title": "Save failed, value reverted",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S13-save-failed/dark-1x-motion.png",
+   "sha256": "899ff6997dc6278f8ebc58f24df57f5ad27510e3536c084f3aa096820a141e92",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S13-save-failed",
+   "title": "Save failed, value reverted",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S13-save-failed/dark-2x-motion.png",
+   "sha256": "6d72f29608aa6d27c15f5c39f5e4d0ad34e21edd5073d7142b851aa09d39b95f",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S13-save-failed",
+   "title": "Save failed, value reverted",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S13-save-failed/dark-2x-motion.png",
+   "sha256": "6d72f29608aa6d27c15f5c39f5e4d0ad34e21edd5073d7142b851aa09d39b95f",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S14-policy-changed",
+   "title": "Policy changed during a meeting",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S14-policy-changed/light-1x-motion.png",
+   "sha256": "4b63d28bb34b1f729ab198e7d2b017a652838c0d91a6a0000646550c76de5b64",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S14-policy-changed",
+   "title": "Policy changed during a meeting",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S14-policy-changed/light-1x-motion.png",
+   "sha256": "4b63d28bb34b1f729ab198e7d2b017a652838c0d91a6a0000646550c76de5b64",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S14-policy-changed",
+   "title": "Policy changed during a meeting",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S14-policy-changed/light-2x-motion.png",
+   "sha256": "47e67f65d942ca47b66594f30c7d56c0e79638ea805820db7ba4bbe88953cb60",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S14-policy-changed",
+   "title": "Policy changed during a meeting",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S14-policy-changed/light-2x-motion.png",
+   "sha256": "47e67f65d942ca47b66594f30c7d56c0e79638ea805820db7ba4bbe88953cb60",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S14-policy-changed",
+   "title": "Policy changed during a meeting",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S14-policy-changed/dark-1x-motion.png",
+   "sha256": "d210eafe70b39207c9786f77f83c620238a1a2d32993bb4f717eca2014393ecf",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S14-policy-changed",
+   "title": "Policy changed during a meeting",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S14-policy-changed/dark-1x-motion.png",
+   "sha256": "d210eafe70b39207c9786f77f83c620238a1a2d32993bb4f717eca2014393ecf",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S14-policy-changed",
+   "title": "Policy changed during a meeting",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S14-policy-changed/dark-2x-motion.png",
+   "sha256": "2f87738e95bb45846b63aa4ef803d63bcdd33ca23f99ef83193aa113c21534df",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S14-policy-changed",
+   "title": "Policy changed during a meeting",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S14-policy-changed/dark-2x-motion.png",
+   "sha256": "2f87738e95bb45846b63aa4ef803d63bcdd33ca23f99ef83193aa113c21534df",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S15-narrow",
+   "title": "Narrow window",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S15-narrow/light-1x-motion.png",
+   "sha256": "872db4e7d43ff0b9efd2a93ad4184f5e9f4388b71d150314caff4926066317a8",
+   "pixels": [
+    360,
+    720
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S15-narrow",
+   "title": "Narrow window",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S15-narrow/light-1x-motion.png",
+   "sha256": "872db4e7d43ff0b9efd2a93ad4184f5e9f4388b71d150314caff4926066317a8",
+   "pixels": [
+    360,
+    720
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S15-narrow",
+   "title": "Narrow window",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S15-narrow/light-2x-motion.png",
+   "sha256": "2210ccba23515242f7686603615f25419c3df054d7e4151eedaf9437c06c8b9d",
+   "pixels": [
+    720,
+    1440
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S15-narrow",
+   "title": "Narrow window",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S15-narrow/light-2x-motion.png",
+   "sha256": "2210ccba23515242f7686603615f25419c3df054d7e4151eedaf9437c06c8b9d",
+   "pixels": [
+    720,
+    1440
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S15-narrow",
+   "title": "Narrow window",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S15-narrow/dark-1x-motion.png",
+   "sha256": "6438058044eed7e264ad1a022009e40d7744e424f3abacd8014d8f7f154e4a9d",
+   "pixels": [
+    360,
+    720
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S15-narrow",
+   "title": "Narrow window",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S15-narrow/dark-1x-motion.png",
+   "sha256": "6438058044eed7e264ad1a022009e40d7744e424f3abacd8014d8f7f154e4a9d",
+   "pixels": [
+    360,
+    720
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S15-narrow",
+   "title": "Narrow window",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S15-narrow/dark-2x-motion.png",
+   "sha256": "27cea54dda5993ee665fa598f70cc6c6b5f55219f1b55ecf65acfbac88c89e5e",
+   "pixels": [
+    720,
+    1440
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S15-narrow",
+   "title": "Narrow window",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S15-narrow/dark-2x-motion.png",
+   "sha256": "27cea54dda5993ee665fa598f70cc6c6b5f55219f1b55ecf65acfbac88c89e5e",
+   "pixels": [
+    720,
+    1440
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S16-migrated",
+   "title": "First open after upgrading",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S16-migrated/light-1x-motion.png",
+   "sha256": "990d593af3c41d01d81aa2d9fa6730156ca8b7074ad09fcb07455757814aaeee",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S16-migrated",
+   "title": "First open after upgrading",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S16-migrated/light-1x-motion.png",
+   "sha256": "990d593af3c41d01d81aa2d9fa6730156ca8b7074ad09fcb07455757814aaeee",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S16-migrated",
+   "title": "First open after upgrading",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S16-migrated/light-2x-motion.png",
+   "sha256": "0b80dee8581eb36ca7491e6d4fa55a0b1eca850dfa5809217435e672474710a1",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S16-migrated",
+   "title": "First open after upgrading",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S16-migrated/light-2x-motion.png",
+   "sha256": "0b80dee8581eb36ca7491e6d4fa55a0b1eca850dfa5809217435e672474710a1",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S16-migrated",
+   "title": "First open after upgrading",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S16-migrated/dark-1x-motion.png",
+   "sha256": "6c959472d3ece90c0c5207e83a133ca84fb0ea21990969e6fc2e430947127181",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S16-migrated",
+   "title": "First open after upgrading",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S16-migrated/dark-1x-motion.png",
+   "sha256": "6c959472d3ece90c0c5207e83a133ca84fb0ea21990969e6fc2e430947127181",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S16-migrated",
+   "title": "First open after upgrading",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S16-migrated/dark-2x-motion.png",
+   "sha256": "b1768f5ff27edc9d23fbe9f65be8b60b48aa4f6037c0bc45b28508dab093a3d4",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S16-migrated",
+   "title": "First open after upgrading",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S16-migrated/dark-2x-motion.png",
+   "sha256": "b1768f5ff27edc9d23fbe9f65be8b60b48aa4f6037c0bc45b28508dab093a3d4",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S17-connected-apps",
+   "title": "Privacy & account, connected apps",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S17-connected-apps/light-1x-motion.png",
+   "sha256": "44a3e6d45dc6b6bf061d4256f59d2bf04795ea3241e659ccf5a6f222ef72cdad",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S17-connected-apps",
+   "title": "Privacy & account, connected apps",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S17-connected-apps/light-1x-motion.png",
+   "sha256": "44a3e6d45dc6b6bf061d4256f59d2bf04795ea3241e659ccf5a6f222ef72cdad",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S17-connected-apps",
+   "title": "Privacy & account, connected apps",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S17-connected-apps/light-2x-motion.png",
+   "sha256": "96609a5648885fa8814af4d4feb0bb9af0fd2104dddd027839a734b2f6129331",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S17-connected-apps",
+   "title": "Privacy & account, connected apps",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S17-connected-apps/light-2x-motion.png",
+   "sha256": "96609a5648885fa8814af4d4feb0bb9af0fd2104dddd027839a734b2f6129331",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S17-connected-apps",
+   "title": "Privacy & account, connected apps",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S17-connected-apps/dark-1x-motion.png",
+   "sha256": "cd978117975686f3f610072214b75a6b20ffd9f795971b681dbefae1dec0b6a5",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S17-connected-apps",
+   "title": "Privacy & account, connected apps",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S17-connected-apps/dark-1x-motion.png",
+   "sha256": "cd978117975686f3f610072214b75a6b20ffd9f795971b681dbefae1dec0b6a5",
+   "pixels": [
+    880,
+    800
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S17-connected-apps",
+   "title": "Privacy & account, connected apps",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S17-connected-apps/dark-2x-motion.png",
+   "sha256": "a8ce87b6b7d46bfb7f90d3ae81ce14fc03d9dfd13472f67db9abc5e3f5befd5c",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  },
+  {
+   "state": "S17-connected-apps",
+   "title": "Privacy & account, connected apps",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S17-connected-apps/dark-2x-motion.png",
+   "sha256": "a8ce87b6b7d46bfb7f90d3ae81ce14fc03d9dfd13472f67db9abc5e3f5befd5c",
+   "pixels": [
+    1760,
+    1600
+   ],
+   "audit_pass": true
+  }
+ ]
+}
