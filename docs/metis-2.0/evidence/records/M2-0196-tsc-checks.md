@@ -1,6 +1,6 @@
 # M2-0196 TypeScript compiler checks
 
-Recorded: 2026-09-27
+Recorded: 2026-09-27. Rechecked: 2026-09-27.
 
 D-28 permits static `tsc --noEmit` checks because they execute no repository code (`docs/metis-2.0/DECISIONS.md:130`). These commands were run from the public code checkout with the local TypeScript binary and no repository tests, scripts, app launch, workflow dispatch, or package install.
 
@@ -16,6 +16,16 @@ Exit code: 0
 
 Output: none.
 
+Recheck command:
+
+```bash
+./node_modules/.bin/tsc --noEmit --pretty false --tsBuildInfoFile /tmp/metis-m2-0196-node-rerun.tsbuildinfo -p tsconfig.node.json
+```
+
+Recheck exit code: 0
+
+Recheck output: none.
+
 ## `tsconfig.web.json`
 
 Command:
@@ -27,6 +37,16 @@ Command:
 Exit code: 0
 
 Output: none.
+
+Recheck command:
+
+```bash
+./node_modules/.bin/tsc --noEmit --pretty false --tsBuildInfoFile /tmp/metis-m2-0196-web-rerun.tsbuildinfo -p tsconfig.web.json
+```
+
+Recheck exit code: 0
+
+Recheck output: none.
 
 ## `tsconfig.tests.json`
 
@@ -53,3 +73,27 @@ src/main/mcp/mcpClient.test.ts(106,13): error TS2322: Type '(newSid: string) => 
 src/main/net/install-proxy.test.ts(107,58): error TS2749: 'FakeProxyAgent' refers to a value, but is being used as a type here. Did you mean 'typeof FakeProxyAgent'?
 src/main/transcripts.test.ts(1127,47): error TS2345: Argument of type '(src: string, dest: string) => Promise<void>' is not assignable to parameter of type '(oldPath: PathLike, newPath: PathLike) => Promise<void>'.
 ```
+
+Recheck command:
+
+```bash
+./node_modules/.bin/tsc --noEmit --pretty false --incremental false -p tsconfig.tests.json
+```
+
+Recheck exit code: 2
+
+Recheck diagnostic count command:
+
+```bash
+./node_modules/.bin/tsc --noEmit --pretty false --incremental false -p tsconfig.tests.json 2>&1 | rg -c " error TS[0-9]+: "
+```
+
+Recheck diagnostic count output:
+
+```text
+26
+```
+
+Bar source: `origin/m2/integration:scripts/check-test-types.mjs:50-94`, read with `git show origin/m2/integration:scripts/check-test-types.mjs`, sets `BASELINE = 24` and passes only when the diagnostic count equals 24.
+
+Result: FAIL. The node and web static compiler checks pass, but the test-type ratchet bar does not meet its source-defined baseline because the observed count is 26 and the baseline is 24.
