@@ -31,7 +31,7 @@ at 901ceaf.
 | INT-6 | Repository code runs only in GitHub Actions | D-28 (§12) |
 | INT-7 | Only the owner merges into the public repository's `main`, through milestone PRs | Owner decision of 2026-09-26 (OD-14, §15) |
 | INT-8 | A ticket's evidence lives in `docs/metis-2.0/evidence/records/<ticket>.jsonl`; the ledger holds status, not evidence | evidence/SCHEMA.md §6; the append-only step of `ledger.yml` once it is on `main` (F6) |
-| INT-9 | Only a runner's own ticket branch is ever rewritten: no session pushes with `--mirror`, `--all`, `--prune` or `--delete` or deletes a remote branch, in either repository, and the only force-push is a runner's `--force-with-lease` to its own ticket branch | PROVIDED: lead notes and runner rules, 2026-09-27, after a mirror push reset the program repository's `main` (§2). Among the branches this runbook uses, GitHub refuses a rewrite or deletion only on the public `main` and `release/*`, and only while their rulesets are on (§2, F11). The lead checks both `main` branches and `m2/integration` after each batch (§9 step 3) |
+| INT-9 | No session rewrites any branch but a runner's own ticket branch: no session pushes with `--mirror`, `--all`, `--prune` or `--delete` or deletes a remote branch, in either repository, and a session's only force-push is a runner's `--force-with-lease` to its own ticket branch. The one exception is a rewrite or deletion the owner orders, such as the history purge of 2026-09-26 (§9 step 3) | PROVIDED: lead notes and runner rules, 2026-09-27, after a mirror push reset the program repository's `main` (§2). Among the branches this runbook uses, GitHub refuses a rewrite or deletion only on the public `main` and `release/*`, and only while their rulesets are on (§2, F11). After each batch the lead checks both `main` branches and `m2/integration` for rewrites and both repositories for deleted branches (§9 step 3) |
 
 ## 2. Branches and flow
 
@@ -54,7 +54,10 @@ program repository: m2-####-slug --draft PR, validated--> main
 The public rulesets bind a session only while the owner's account, the one every session uses (F11), leaves
 them on. All five, which also cover `cursor/*`, `fix/*` and `cursor/metis-bank-grade-fable`, were updated at
 23:51:36-38Z on 2026-09-26, 18 to 21 s after one push at 23:51:18Z force-pushed the public `main`,
-`release/1.1.0`, `release/1.8.3` and `release/1.9.1` (OBSERVED, `gh api …/rulesets`, `…/activity`).
+`release/1.1.0`, `release/1.8.3` and `release/1.9.1` (OBSERVED, `gh api …/rulesets`, `…/activity`). That
+push, of 49 branches that the rulesets all cover (OBSERVED), was the second push of the owner's history
+purge (§9 step 3): the rulesets were off for that push alone and were turned back on after it (PROVIDED:
+`_relay/archive/2026-09-26-213714-claude-code.md`, "PURGE STATUS").
 
 Two properties of `.github/workflows/build.yml` shape the queue (OBSERVED):
 
@@ -449,18 +452,24 @@ therefore waits for the L15 follow-up in §16.
    required level that carries no `inherited_block` (L9, L10; README.md:63-66). L8 stays as it is, so an
    ENGINEERING_COMPLETE ticket always states what it waits on (ADR-017).
 3. **After each batch** (§8; a lone merge is a batch of one), check that no push since the previous check
-   rewrote or deleted `main` in either repository or `m2/integration` (INT-9; PROVIDED: lead notes,
-   2026-09-27). For the program `main` and `m2/integration`, which nothing on GitHub protects (§2, D-33),
-   this check is the only detection, so it must be complete. The complete read asks GitHub's activity API
-   for those branches alone: the API filters by branch and by type, and `--paginate` reads every page.
+   rewrote `main` in either repository or `m2/integration`, or deleted any branch in either repository
+   (INT-9; PROVIDED: lead notes, 2026-09-27). For the program `main`, `m2/integration` and every ticket
+   branch, which nothing on GitHub protects (§2, D-33), this check is the only detection of the events it
+   reads, so it must be complete. The complete read asks GitHub's activity API, which filters by branch and
+   by type, and `--paginate` reads every page:
 
    ```
-   gh api --paginate 'repos/<repo>/activity?ref=<branch>&activity_type=force_push' \
-     --jq '.[] | select(.timestamp >= "<previous check>") | "\(.timestamp) \(.ref) \(.before[0:8])->\(.after[0:8])"'
+   gh api --paginate 'repos/<repo>/activity?<filter>' \
+     --jq '.[] | select(.timestamp >= "<previous check>") | "\(.timestamp) \(.activity_type) \(.ref) \(.before[0:8])->\(.after[0:8])"'
    ```
 
-   It runs for `main` in `mysticalsin/Metis-2.0-Program` and in `mysticalsin/AskToto-Mantu`, and for
-   `m2/integration` in the second, then for the same three with `activity_type=branch_deletion`.
+   It runs with `<filter>` set to `ref=main&activity_type=force_push` in `mysticalsin/Metis-2.0-Program`
+   and in `mysticalsin/AskToto-Mantu`, to `ref=m2/integration&activity_type=force_push` in the second, and
+   to `activity_type=branch_deletion` in both. Force-pushes are read for those three branches alone,
+   because INT-9 lets runners force-push their own ticket branches. Deletions are read for every branch,
+   because INT-9 lets no session delete one and they are rare: from 2026-09-26 to 08:15Z on 2026-09-27
+   the two repositories recorded 11, ten of them by the 04:35:52Z push of §2 (OBSERVED,
+   `gh api …/activity`).
    `<previous check>` is the UTC time of the previous check, written as the API writes its timestamps, in
    ISO 8601 form `YYYY-MM-DDTHH:MM:SSZ`, because jq compares the two as strings. Every printed line is a
    rewrite or a deletion.
@@ -468,17 +477,32 @@ therefore waits for the L15 follow-up in §16.
    The lead's `~/AI-Brain-build/tools/repo-guard.sh <previous check>`, which lives in neither repository,
    takes the same argument and compares it the same way, but reads one unpaginated page per repository
    (`activity?per_page=100`): the newest 100 events of every branch and type. It exits 1 when that page holds
-   a force-push or deletion of either `main` or of `m2/integration` since the given time, and it is complete
-   only when the oldest event on the page is older than the previous check. At 07:56Z on 2026-09-27 the page
-   reached back to 04:23:17Z in the public repository, of 1,745 events, and to 22:48:07Z the day before in
-   the program repository, of 112 (OBSERVED, `gh api …/activity`). With its default window, the last 24
-   hours, the script would therefore not have seen three of the four force-pushes in that window that the
-   complete read lists: `m2/integration` at 19:54:33Z, the program `main` at 20:26:03Z and the public `main`
-   at 23:51:18Z on 2026-09-26.
+   a force-push or deletion of either `main` or of `m2/integration` since the given time, so it sees no
+   deleted ticket branch, and it is complete only when the oldest event on the page is older than the
+   previous check. At 07:56Z on 2026-09-27 the page reached back to 04:23:17Z in the public repository, of
+   1,745 events, and to 22:48:07Z the day before in the program repository, of 112 (OBSERVED,
+   `gh api …/activity`). With its default window, the last 24 hours, the script would therefore not have
+   seen three of the four force-pushes in that window that the complete read lists. Two were the owner's
+   history purge: `m2/integration` at 19:54:33Z, in one push of the 59 branches that no ruleset covers,
+   and the public `main` at 23:51:18Z, in the push of 49 that §2 describes (OBSERVED,
+   `gh api …/activity`). Together they are the "108 branches" of the purge (PROVIDED:
+   `_relay/archive/2026-09-26-213714-claude-code.md`, "PURGE STATUS"). The third, at 20:26:03Z, reset the
+   program `main` from 7f0527e to its parent 90ed28f, the commit the 04:35:52Z push also reset it to, and
+   a fast-forward push of 0fdfd17, a child of 7f0527e, brought 7f0527e back at 20:41:17Z (OBSERVED); no
+   baton records who made it (UNKNOWN). The fourth, the 04:35:52Z push (§2), was on the script's page.
+   Under the rule below, the purge's two lines would stop merging until the owner confirmed them, and
+   nothing they removed would come back.
 
-   Both reads need the network, so they run outside the sandbox. On a printed line or exit 1 the lead merges
-   nothing until the lost commits are back on the branch, by a fast-forward push of the old head or, when
-   commits have landed since, by a merge as af39d16 did (§2), and tells the owner.
+   Both reads need the network, so they run outside the sandbox. GitHub cannot tell the owner's rewrite
+   from an accident, because every push uses the owner's account (F11). So on a printed line or exit 1 the
+   lead merges nothing and asks the owner whether each event is the owner's, made or ordered by them:
+   - **The owner's** is never undone. No commit it removed, and no branch that still contains one, is
+     pushed or merged (`_relay/HANDOFF.md:32`): that would bring back what the owner removed, and after a
+     purge of the public repository publish it again. Merging resumes once the owner confirms the event.
+   - **Any other** is undone. The lost commits come back on the branch by a fast-forward push of the old
+     head or, when commits have landed since, by a merge as af39d16 did (§2); a deleted branch is pushed
+     again at its old head, the event's `before`, and a PR the deletion closed is reopened. Merging resumes
+     once all of it is back.
 4. Update `_relay/HANDOFF.md`.
 
 ## 10. Milestone PRs to main
