@@ -1,0 +1,153 @@
+{
+  "generated": "2026-09-27",
+  "source": "metis-2.0-exec (sibling directory, read-only)",
+  "basis": "Sanitization follows the 2026-09-27 LEAD DECISION on M2-0057 (not gated on owner curation).",
+  "path_note": "Each entry's source_path is the file's path relative to the metis-2.0-exec source root; the sanitized copy lives at that same relative path under this directory (docs/metis-2.0/review/prior-exec/).",
+  "files": [
+    {
+      "source_path": "CURRENT.md",
+      "source_sha256": "6d9d6c0c51bb2e0da81d42b517a453f2d1c5a073c8e4a0e6ae1b2eea62e59896",
+      "copy_sha256": "6d9d6c0c51bb2e0da81d42b517a453f2d1c5a073c8e4a0e6ae1b2eea62e59896"
+    },
+    {
+      "source_path": "OWNER-DECISIONS.md",
+      "source_sha256": "a4c0abf85d0f1fc165424256df1dd818d0f0d67d5fa64df0d395066bb8ec9aad",
+      "copy_sha256": "a4c0abf85d0f1fc165424256df1dd818d0f0d67d5fa64df0d395066bb8ec9aad"
+    },
+    {
+      "source_path": "BLOCKERS.md",
+      "source_sha256": "d4b306fca283563a68ab506e26a1b4e492c013432b51712a957bdae791d0d825",
+      "copy_sha256": "d4b306fca283563a68ab506e26a1b4e492c013432b51712a957bdae791d0d825"
+    },
+    {
+      "source_path": "tasks/PHASE1-STATUS.md",
+      "source_sha256": "4090be6ca346e7bedc98d584f99248a29a16ac9d1eda952e26b979c18a9a694d",
+      "copy_sha256": "e56470d887b30d52c1001a5749f1ff7eb79ca95001eaf9b81c714d8ea07ce64f",
+      "redactions": [
+        {
+          "line": 44,
+          "kind": "account-id",
+          "token": "<redacted-account-id>"
+        }
+      ]
+    },
+    {
+      "source_path": "tasks/TASK-001/source-register.md",
+      "source_sha256": "ba49427d1abefb96901946390d674f7a8401a1bb57c3f3d50acb5c2c642bc092",
+      "copy_sha256": "ba49427d1abefb96901946390d674f7a8401a1bb57c3f3d50acb5c2c642bc092"
+    },
+    {
+      "source_path": "tasks/TASK-001/source-register.json",
+      "source_sha256": "26ea85dde2dcc37708126de9aa700fd7f0be4c4691a44dfc48bdc8807b79005d",
+      "copy_sha256": "26ea85dde2dcc37708126de9aa700fd7f0be4c4691a44dfc48bdc8807b79005d"
+    },
+    {
+      "source_path": "tasks/TASK-001/service-register.md",
+      "source_sha256": "3d9bc667512fe5e3345bf057297149f391b376da69ac5162a69c2c0afd4c3937",
+      "copy_sha256": "0ff3ea336bdb15fcc23e1276aa3ffcb033070df2c695524f7806c1b77d131ba7",
+      "redactions": [
+        {
+          "line": 29,
+          "kind": "email",
+          "token": "<redacted-email>"
+        },
+        {
+          "line": 30,
+          "kind": "email",
+          "token": "<redacted-email>"
+        },
+        {
+          "line": 30,
+          "kind": "account-id",
+          "token": "<redacted-account-id>"
+        },
+        {
+          "line": 53,
+          "kind": "email",
+          "token": "<redacted-email>"
+        },
+        {
+          "line": 82,
+          "kind": "account-id",
+          "token": "<redacted-account-id>"
+        }
+      ]
+    },
+    {
+      "source_path": "tasks/TASK-002/prd-lock.md",
+      "source_sha256": "85022768f0901716935a218ff6c4556238356c11ff1acf63961908a6464014e8",
+      "copy_sha256": "b6f8aa6bb9d2711020538e375fa4d83bdef56cfd0705fdde89ac49feb72528db",
+      "redactions": [
+        {
+          "line": 236,
+          "kind": "account-id",
+          "token": "<redacted-account-id>"
+        }
+      ]
+    },
+    {
+      "source_path": "tasks/TASK-003/source-map.md",
+      "source_sha256": "e45a0714427acfa57ab0a89def1d79eec95652e8aa4e9c23f8ec6d87334bea96",
+      "copy_sha256": "e45a0714427acfa57ab0a89def1d79eec95652e8aa4e9c23f8ec6d87334bea96"
+    },
+    {
+      "source_path": "tasks/TASK-004/baselines.md",
+      "source_sha256": "9a8bd1d7c9240062e25f4ecc3ac053b879b90ee15720056e93eba5ce33395384",
+      "copy_sha256": "9a8bd1d7c9240062e25f4ecc3ac053b879b90ee15720056e93eba5ce33395384"
+    },
+    {
+      "source_path": "tasks/TASK-004/baselines.json",
+      "source_sha256": "8120c2a53f98ae37da797475b8772f7292016e2fefea72a0cb7329397b9cf293",
+      "copy_sha256": "8120c2a53f98ae37da797475b8772f7292016e2fefea72a0cb7329397b9cf293"
+    },
+    {
+      "source_path": "tasks/TASK-005/contracts.md",
+      "source_sha256": "209993acf5aafd71fce92476712b16e5965e08533a6061b306498c2803570a15",
+      "copy_sha256": "209993acf5aafd71fce92476712b16e5965e08533a6061b306498c2803570a15"
+    },
+    {
+      "source_path": "tasks/TASK-027/reconcile.md",
+      "source_sha256": "24fd982b8f8b6445e34c1368d4229f11828bb4a66fd28b556892c748e471c327",
+      "copy_sha256": "24fd982b8f8b6445e34c1368d4229f11828bb4a66fd28b556892c748e471c327"
+    },
+    {
+      "source_path": "tasks/WINDOWS-SIGNING/DECISION-BRIEF.md",
+      "source_sha256": "73f82eaf91d248a00a5d9a27487cc7f13e86b56ffd0f4ac62d056877a94f1572",
+      "copy_sha256": "73f82eaf91d248a00a5d9a27487cc7f13e86b56ffd0f4ac62d056877a94f1572"
+    },
+    {
+      "source_path": "tasks/WINDOWS-SIGNING/integration-design.md",
+      "source_sha256": "06a7ac6f8234918b826cda633255cee47239bcb8bbb00ec52b925ce477e92bd4",
+      "copy_sha256": "06a7ac6f8234918b826cda633255cee47239bcb8bbb00ec52b925ce477e92bd4"
+    },
+    {
+      "source_path": "tasks/WINDOWS-SIGNING/research-azure.md",
+      "source_sha256": "4638d14c43c9b0046a94128c9f76327b44d9a20486f63d12e0816a12f013b789",
+      "copy_sha256": "4638d14c43c9b0046a94128c9f76327b44d9a20486f63d12e0816a12f013b789"
+    },
+    {
+      "source_path": "tasks/WINDOWS-SIGNING/research-ca.md",
+      "source_sha256": "bb1f0814b41d1bda9e3683eec8f31df56b5ba1121941cf2a58943827b5192304",
+      "copy_sha256": "bb1f0814b41d1bda9e3683eec8f31df56b5ba1121941cf2a58943827b5192304"
+    }
+  ],
+  "exclusions": [
+    {
+      "path": "tasks/WINDOWS-SIGNING/build-workflow-result.json",
+      "reason": "raw CI-run artifact; no finding, ticket or TRACEABILITY row cites it"
+    },
+    {
+      "path": "receipts/",
+      "reason": "3 MB of raw CI/test-run logs; contains additional email/API-key-shaped matches beyond this ticket's approved mask list"
+    },
+    {
+      "path": ".wrangler/cache/wrangler-account.json",
+      "reason": "already absent from the source as of 2026-09-27; permanently excluded even if it reappears"
+    }
+  ],
+  "unmasked_by_decision": {
+    "decision_date": "2026-09-27",
+    "decision": "Masking scope per the 2026-09-27 lead decision is personal emails and account IDs; the copies also contain absolute home-directory paths, a private document id and session GUIDs, which are outside that scope and left as-is.",
+    "rationale": "This ticket's acceptance and verification cover gitleaks plus the email regex only; gitleaks's default ruleset does not flag these categories."
+  }
+}
