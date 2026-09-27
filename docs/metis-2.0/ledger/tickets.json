@@ -12913,6 +12913,87 @@
    "estimate_hours": 2,
    "claimed_by": "ticket runner batch 7",
    "claimed_at": "2026-09-27"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [
+    "M2-OPS-03",
+    "M2-SEC-01"
+   ],
+   "verification": [
+    "Production deploy dry-run from an unapproved non-main ref refuses before wrangler deploy",
+    "Production deploy dry-run from an approved mainline ref reaches the existing typecheck/test/build/migrate/smoke plan without changing those gates"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0225",
+   "title": "Guard production Operator deploys against unreviewed refs",
+   "milestone": "m4",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0014"
+   ],
+   "finding_refs": [
+    "M2-0014"
+   ],
+   "scope_paths": [
+    "operator/scripts/deploy.mjs",
+    "operator/scripts/deploy.test.mjs",
+    "docs/operator/"
+   ],
+   "summary": "M2-0014 found that deploy.mjs has strong quality gates (clean tree, typecheck, vitest, client build, remote migration and post-deploy smoke) but no production provenance gate: it stamps and deploys whatever clean HEAD is checked out. Add an explicit approved-ref guard for production deploys so feature branches cannot be deployed accidentally, while preserving owner-only production deployment and the existing staging path.",
+   "acceptance": [
+    "Production deploy refuses from an unapproved non-main ref before migration or wrangler deploy",
+    "The refusal names the checked-out ref/commit and the approved production refs",
+    "Staging deploy and dry-run workflows remain usable for agents",
+    "The existing typecheck, test, build, migrate and post-deploy smoke gates are not weakened"
+   ],
+   "risk": "high",
+   "estimate_hours": 3
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [
+    "M2-OPS-03",
+    "TASK-062"
+   ],
+   "verification": [
+    "Runbook review shows named backup owner role, cadence, retention, RTO/RPO and restore-drill dependency",
+    "The future M2-0159 restore-drill evidence references the same policy values"
+   ],
+   "evidence_target": "DESIGNED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0226",
+   "title": "Document Operator backup ownership, cadence, retention and recovery objectives before the restore drill",
+   "milestone": "m7",
+   "type": "docs",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0103",
+    "M2-0159"
+   ],
+   "finding_refs": [
+    "M2-0014"
+   ],
+   "scope_paths": [
+    "operator/scripts/backup.mjs",
+    "docs/metis-2.0/runbooks/operations.md",
+    "docs/metis-2.0/runbooks/staging.md"
+   ],
+   "summary": "M2-0014 found that backup.mjs is a safe command-builder and that M2-0159 already owns the actual isolated D1 restore drill, but the program still lacks explicit backup ownership, cadence, retention period and recovery objectives. Record those policy values before the staging restore drill so MASTER's restore-drill requirement is tested against named expectations rather than an ad hoc export.",
+   "acceptance": [
+    "Runbook names the backup owner role, backup cadence, retention period, RTO and RPO",
+    "Runbook states that D1 exports are sensitive full data dumps and remain out of git history",
+    "M2-0159 restore-drill steps reference the recorded owner/cadence/retention/RTO/RPO values",
+    "If staging D1 is still unavailable, the live drill remains blocked by M2-0103/M2-0159 rather than marked complete"
+   ],
+   "risk": "medium",
+   "estimate_hours": 2
   }
  ]
 }
