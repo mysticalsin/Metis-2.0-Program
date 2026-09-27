@@ -1,6 +1,6 @@
 # M2-0014 Operator Production Reality
 
-Investigation deliverable for M2-0014. Labels: OBSERVED means directly read in this worktree or supplied with a reproducible public-repo SHA/path/command citation; DERIVED means a conclusion from those observations; UNKNOWN means not knowable here; BLOCKED_EXTERNAL means owner-authorized Cloudflare access is required.
+Investigation deliverable for M2-0014. Labels: OBSERVED means directly read in this worktree, in local-only prior-execution records under `metis-2.0-exec`, or supplied with a reproducible public-repo SHA/path/command citation; DERIVED means a conclusion from those observations; UNKNOWN means not knowable here; BLOCKED_EXTERNAL means owner-authorized Cloudflare access is required.
 
 ## 1. Deployed Worker version and commit
 
@@ -12,12 +12,12 @@ Investigation deliverable for M2-0014. Labels: OBSERVED means directly read in t
 - OBSERVED (metis-2.0-exec/tasks/TASK-001/service-register.md:14,52): TASK-001 also verified a stale production secret, `OPERATOR_ADMIN_PASSWORD`, that neither current `main` nor commits `926036a0`/`9b4446c8` reference.
 - OBSERVED (operator/src/index.ts:212-224 @926036a0): `GET /health` publicly returns `version`/`builtAt` with no Cloudflare credentials.
 - OBSERVED (operator/src/index.ts:212-224 @926036a0): the `/health` branch runs before device-auth checks and returns `{ ok, service, configured, version: env.OPERATOR_VERSION, builtAt: env.OPERATOR_BUILT_AT, env, d1, schema, lastIngestAt, lastCronAt }`.
-- OBSERVED (docs/metis-2.0/BLOCKERS.md:24): the owner-runnable Cloudflare readback remains `wrangler deployments list`.
-- OBSERVED (operator/src/index.ts:212-224 @926036a0): the credential-free owner-runnable deployment-stamp probe is `curl -s https://<operator-host>/health`.
+- OBSERVED (metis-2.0-exec/tasks/TASK-001/service-register.md:63): the owner-runnable Cloudflare readback is `npx wrangler deployments list --name metis-operator`.
+- OBSERVED (operator/src/index.ts:212-224 @926036a0; operator/scripts/deploy.mjs:43 @origin/main): the credential-free owner-runnable deployment-stamp probe is `curl -s https://<operator-host>/health`; the production host is `DEPLOYED_URLS.production` in `operator/scripts/deploy.mjs:43`.
 - OBSERVED (docs/design/METIS-2.0-CAP1-FUSE-STATUS.md @633bc4fa): a 2026-09-20 about-13:13 ET `curl /health` snapshot returned version `2b26efa` and builtAt `2026-09-14T02:50:46.011Z`.
 - DERIVED (`git log -1 --format='%H %cI %s' 926036a0`; `git log -1 --format='%H %cI %s' 9b4446c8`; docs/design/METIS-2.0-CAP1-FUSE-STATUS.md @633bc4fa): the `2b26efa` snapshot was taken after Cap1 commits `9b4446c8` and `926036a0` existed, but roughly one minute before the production deploy recorded in TASK-001.
 - DERIVED (docs/design/METIS-2.0-CAP1-FUSE-STATUS.md @633bc4fa; metis-2.0-exec/tasks/TASK-001/service-register.md:11): the `2b26efa` snapshot shows the previous deploy was still live about nine minutes after the Cap1 code commits, not that the capture predated those commits.
-- UNKNOWN: today's deployed Worker version and commit until `wrangler deployments list` or `curl -s https://<operator-host>/health` is rerun by the owner or with scoped read-only access.
+- UNKNOWN: today's deployed Worker version and commit until `npx wrangler deployments list --name metis-operator` or `curl -s https://<operator-host>/health` is rerun by the owner or with scoped read-only access; the production host is `DEPLOYED_URLS.production` in `operator/scripts/deploy.mjs:43`.
 
 ## 2. Security review and merge-or-revert recommendation
 
@@ -28,7 +28,7 @@ Investigation deliverable for M2-0014. Labels: OBSERVED means directly read in t
 - OBSERVED (`git show --stat 926036a0`): commit `926036a0` touches `operator/src/access.ts` and `docs/design/METIS-2.0-VAULT-DECIDE.md`.
 - OBSERVED (`git diff --shortstat 9f4bb1a5^ 9f4bb1a5`): commit `9f4bb1a5` changes 23 files with 1571 insertions and 2 deletions.
 - OBSERVED (`git diff --shortstat 9f4bb1a5^ 9f4bb1a5`; `git show --stat 9f4bb1a5`): `9f4bb1a5` includes `src/main/metis-decide-client.ts`, `src/main/metis-decide-client.test.ts`, `src/main/desktop-adapters.ts`, `src/main/metis-command-runtime.ts` and `src/main/metis-command-register.ts`.
-- DERIVED (`git diff --shortstat 9f4bb1a5^ 9f4bb1a5`; `git show --stat 9f4bb1a5`): `9f4bb1a5` is a desktop Electron main-process Cap2 feature, not an Operator/server change.
+- DERIVED (`git diff --shortstat 9f4bb1a5^ 9f4bb1a5`; `git show --stat 9f4bb1a5`): `9f4bb1a5` is a desktop Electron Cap2 feature, not an Operator/server change.
 - OBSERVED (`git log origin/main..origin/metis-2.0-inventory --oneline`): commits `d85ce1b2` and `633bc4fa` are docs-only.
 - DERIVED (`git log origin/main..origin/metis-2.0-inventory --oneline`): the branch carries three undeployed commits beyond the two Operator commits: desktop commit `9f4bb1a5` and docs-only commits `d85ce1b2` and `633bc4fa`.
 - OBSERVED (`git log -1 --format='%H %cI %s' 926036a0`): post-rewrite `926036a0cdf1c3a46c67bab6cf39a685ac99888d` has timestamp `2026-09-20T13:04:50-04:00` and subject `fix(operator): ACCESS bypass /v1/decide + Cap1 vault-decide proof`.
@@ -44,24 +44,31 @@ Investigation deliverable for M2-0014. Labels: OBSERVED means directly read in t
 - DERIVED (`git grep -n "ACCESS_BYPASS_PATHS" origin/main`): the array is documentation-of-intent and a test fixture; the real bypass control is the manually configured Cloudflare Zero Trust Access policy.
 - OBSERVED (docs/operator/ACCESS-BYPASS-INTEGRATIONS.md @origin/main): Cloudflare Zero Trust Bypass policy configuration is the operational control that lets Worker HMAC routes answer directly.
 - OBSERVED (operator/src/index.ts @926036a0): `/v1/ingest`, `/v1/heartbeat`, `/v1/skills/manifest`, `/v1/use`, `/v1/ask`, `/v1/decide` and `/v1/integrations` route through one shared branch that calls `verifyDeviceRequest(request, bodyText, env.OPERATOR_INGEST_SECRET, store, now)` and returns on `!hmac.ok` before any individual handler runs; the `/v1/decide` dispatch to `handleDecide(...)` sits after that shared HMAC gate alongside `/v1/ask` and `/v1/use`.
-- OBSERVED (operator/src/decide.ts @926036a0): once inside `handleDecide`, further gates run for seat approval (`seatAuthorizedForKeys`, `SEAT_NOT_APPROVED`), vault-key presence (`decryptVault`/`decodeVaultPlaintext`), the fixed `DECIDE_TEMPLATES` allowlist, the `PAYLOAD_JSON_CAP = 8_000` byte cap, the clamped upstream deadline (`DEFAULT_DEADLINE_MS`/`MAX_DEADLINE_MS`) and secret redaction (`providerRefusedPayload`).
+- OBSERVED (operator/src/decide.ts @926036a0): once inside `handleDecide`, further gates run for seat approval (`seatAuthorizedForKeys`, `SEAT_NOT_APPROVED`), vault-key presence (`decryptVault`/`decodeVaultPlaintext`), the fixed `DECIDE_TEMPLATES` allowlist, the `PAYLOAD_JSON_CAP = 8_000` length cap, the clamped upstream deadline (`DEFAULT_DEADLINE_MS`/`MAX_DEADLINE_MS`) and secret redaction (`providerRefusedPayload`).
 - OBSERVED (operator/src/index.ts:273 @origin/main; operator/src/device-auth.ts:39-51 @origin/main): when the license header is absent, device auth falls back to legacy fleet HMAC using `env.OPERATOR_INGEST_SECRET`.
 - DERIVED (operator/src/index.ts:273 @origin/main; operator/src/device-auth.ts:39-51 @origin/main; metis-v2-review/lanes/L09-operator-cloud.md): anyone holding `OPERATOR_INGEST_SECRET` can call HMAC-gated routes including `/v1/decide` as any shape-valid `X-Operator-Device`; `M2-0145` tracks the device-binding risk.
 - OBSERVED (operator/src/decide.ts:1-9 @926036a0): `/v1/decide` forwards to `https://api.typesafe.ai/v1/systemone`.
 - OBSERVED (operator/src/decide.ts @926036a0): the upstream body includes caller-supplied `parsed.payload`, capped by `PAYLOAD_JSON_CAP = 8_000`.
-- DERIVED (operator/src/decide.ts @926036a0; docs/metis-2.0/kit/r11/spec/MASTER.md:1453-1479): `action_disambiguate` can forward spoken/typed command text to `api.typesafe.ai`, so supplier assurance and no-content-retention evidence belong under `M2-0149`.
+- DERIVED (operator/src/decide.ts @926036a0; src/main/metis-decide-client.ts:53-58 @9f4bb1a5; docs/metis-2.0/kit/r11/spec/MASTER.md:1453-1479): `action_disambiguate` can forward spoken/typed command text to `api.typesafe.ai`, so supplier assurance and no-content-retention evidence belong under `M2-0149`.
 - OBSERVED (operator/src/decide.ts:252 @926036a0): the audit call persists the template name and passes `null` for payload/result content.
 - DERIVED (operator/src/decide.ts:252 @926036a0): `/v1/decide` does not write prompt/command content or upstream results to Operator storage through that audit call.
 - DERIVED (operator/src/access.ts @926036a0; operator/src/device-auth.ts:39-51 @origin/main; operator/src/decide.ts @926036a0): adding `/v1/decide` to the Access bypass list is not itself an authentication bypass, but residual risk remains in the legacy fleet-wide HMAC fallback and third-party payload forwarding.
 - DERIVED (metis-v2-review/lanes/L09-operator-cloud.md F4; operator/src/decide.ts @926036a0): the `decide` rate-limit bucket inherits the non-atomic `hitRate` read-then-write pattern already flagged in the L09 Operator lane review.
 - OBSERVED (`git log origin/metis-2.0-inventory..origin/main --oneline -- operator/`): `main` has `4b7c4d8d fix(metis): stabilize onboarding and preserve operator usage integrity` and `26c039fb fix: harden metis desktop release candidate` that are not on the off-main branch.
 - DERIVED (`git log origin/metis-2.0-inventory..origin/main --oneline -- operator/`; `git diff --shortstat origin/main 926036a0 -- operator/`): reconciliation is a 33-file bidirectional reconciliation, not a fast-forward branch merge or one-line redeploy of `main`.
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:7157-7220): `M2-0123` requires `/v1/decide` with typed candidate-bound requests, budgets, circuit breakers and content-privacy controls on transcript-derived requests.
-- DERIVED (docs/metis-2.0/ledger/tickets.json:7157-7220; operator/src/decide.ts @926036a0): the off-main `decide.ts` does not meet `M2-0123` acceptance as written because it forwards caller payload to a third-party supplier and lacks the ticket's full typed candidate-bound/budget/circuit/privacy evidence.
-- RECOMMENDATION (D-8; `git log origin/main..origin/metis-2.0-inventory --oneline`; `git log origin/metis-2.0-inventory..origin/main --oneline -- operator/`): scope any merge to exact commits `9b4446c8` and `926036a0`, optionally `9f4bb1a5` for Cap2 desktop, through a reviewed PR into this program's integration branch while preserving `4b7c4d8d` and `26c039fb`.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json (ticket id M2-0123)): `M2-0123` requires `/v1/decide` with typed candidate-bound requests, budgets, circuit breakers and content-privacy controls on transcript-derived requests.
+- DERIVED (docs/metis-2.0/ledger/tickets.json (ticket id M2-0123); operator/src/decide.ts:102-109 @926036a0; operator/src/vault.ts:27 @9b4446c8; operator/src/routes/settings-store.ts:54-56 @9b4446c8): the off-main `decide.ts` does not meet `M2-0123` acceptance as written because `payload` is an untyped caller object validated only by object/length checks, not bound to a candidate set; no budgets, circuit breakers or per-attempt reconciliation are implemented; no privacy/content control specific to transcript-derived requests exists beyond the length cap; the upstream vendor version is unpinned (`JEV_PINNED_VERSION: string | null = null`); kill switches default to enabled (`jevEnabled: true, jevDesktop: true, jevIntel: true`); and no staging test exists.
+- RECOMMENDATION (D-8; metis-2.0-exec/tasks/TASK-001/service-register.md:59; `git log origin/main..origin/metis-2.0-inventory --oneline`; `git log origin/metis-2.0-inventory..origin/main --oneline -- operator/`): scope any merge to exact commits `9b4446c8` and `926036a0` only, through a reviewed PR into this program's integration branch while preserving `4b7c4d8d` and `26c039fb`; the three live-build commits are docs commit `3955000e` plus Operator commits `9b4446c8` and `926036a0`.
+- OBSERVED (src/main/metis-command-register.ts:39-45 @9f4bb1a5): `operatorDecideAuth()` returns `authorizationHeader: \`Bearer ${secret}\`` where `secret = resolveOperatorCredential(s)`.
+- OBSERVED (src/shared/operator.ts:34-45 @9f4bb1a5): `resolveOperatorCredential` returns either the seat's licence token (`settings.operatorLicenseToken`) or the legacy fleet-wide `operatorIngestSecret`, whichever is set, never a TypeSafe/Jev key.
+- DERIVED (src/main/metis-decide-client.ts:46-58 @9f4bb1a5; src/main/metis-command-register.ts:39-45 @9f4bb1a5; src/shared/operator.ts:34-45 @9f4bb1a5): `9f4bb1a5` would send that same seat/fleet credential as the `authorization` header on `POST {base}/v1/decide` and fail the Worker's HMAC gate, which expects the device-HMAC scheme rather than a Bearer license/ingest-secret token.
+- OBSERVED (src/main/index.ts @9f4bb1a5): the desktop decide path is dormant only because `jevEnabled: () => false` is hard-coded; nothing gates it besides that hard-coded false.
+- OBSERVED (src/main/metis-decide-client.ts:53-58 @9f4bb1a5): the desktop decide client sends `transcript: input.transcript.slice(0, 2000)` in the request body.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json (ticket id M2-0123)): `M2-0123` scope_paths already include `src/main/features/decision/operator-provider.ts`, so building the desktop decide-forwarding path under proper auth is `M2-0123` scope, not a defect unique to `9f4bb1a5`.
+- RECOMMENDATION (D-8; src/main/metis-decide-client.ts:46-58 @9f4bb1a5; src/main/index.ts @9f4bb1a5): `9f4bb1a5` is not security-reviewed for merge and should not be included in any merge scoped by this document.
 - BLOCKED_EXTERNAL (Cloudflare Zero Trust dashboard -> Access -> Applications -> Métis Operator -> Policies, read-only view): confirm the Bypass policy path scope exactly matches `ACCESS_BYPASS_PATHS` and does not wildcard-widen beyond it.
 - BLOCKED_EXTERNAL (`GET /accounts/{account_id}/access/apps/{app_id}/policies`): the equivalent read-only Cloudflare API read can confirm the same Bypass policy scope.
-- BLOCKED_EXTERNAL (`curl -sI https://<operator-host>/v1/decide`): `401` JSON means Worker HMAC/license auth is answering; `302` to Access login means Access still wraps the route and bypass is not applied.
+- BLOCKED_EXTERNAL (`curl -sI https://<operator-host>/v1/decide`; operator/scripts/deploy.mjs:43 @origin/main): `401` JSON means Worker HMAC/license auth is answering; `302` to Access login means Access still wraps the route and bypass is not applied; the production host is `DEPLOYED_URLS.production` in `operator/scripts/deploy.mjs:43`.
 - BLOCKED_EXTERNAL / OWNER DECISION: this report does not execute a merge or revert; D-8 remains the owner/security-reviewer decision.
 
 ## 3. Live D1 schema reconciliation
@@ -78,7 +85,7 @@ Investigation deliverable for M2-0014. Labels: OBSERVED means directly read in t
 - OBSERVED (`git show --stat 9b4446c8`; `git show --stat 926036a0`): neither off-main Operator commit changes `operator/schema.sql` or `operator/schema-alter.sql`.
 - DERIVED (`git show --stat 9b4446c8`; `git show --stat 926036a0`): the off-main branch is not a plausible source-side explanation for a 28-live-vs-source table gap because it does not touch the schema files.
 - OBSERVED (metis-2.0-exec/tasks/TASK-001/service-register.md:110): the reported live 28-table figure came from `wrangler d1 info` `num_tables`.
-- OBSERVED (docs/metis-2.0/BLOCKERS.md:24): the owner-runnable D1 verification should use `wrangler d1 execute <db> --command "SELECT type, name FROM sqlite_master WHERE type='table' ORDER BY name"`.
+- RECOMMENDATION (docs/metis-2.0/BLOCKERS.md:24; operator/scripts/migrate.mjs:156 @origin/main; operator/scripts/backup.mjs:72 @origin/main): run from `operator/`, the owner-runnable D1 verification should use `npx wrangler d1 execute metis-operator --remote --command "SELECT type, name FROM sqlite_master WHERE type='table' ORDER BY name"`.
 - DERIVED (metis-2.0-exec/tasks/TASK-001/service-register.md:110): `wrangler d1 info` `num_tables=28` is a different counting method from a `sqlite_master` query, and the live/source comparison must be like-for-like.
 - UNKNOWN: whether production D1 has 28 tables, which extra tables exist, and whether any extra table stores prohibited content until the read-only D1 query is run.
 
@@ -101,16 +108,16 @@ Investigation deliverable for M2-0014. Labels: OBSERVED means directly read in t
 - DERIVED (operator/scripts/backup.mjs:11 @origin/main; docs/metis-2.0/kit/r11/spec/MASTER.md:1453-1479): if any live row still has non-null `prompt_cipher`, running backup would write ciphertext to a local export file, contradicting MASTER §16.6.
 - OBSERVED (operator/src/export/tables.ts @origin/main): the export path uses last4-only credential/license fields, a `looksLikeSecret` guard for seat free text, and formula-injection guarding.
 - DERIVED (operator/src/export/tables.ts @origin/main): `operator/src/export/tables.ts` is a positive compliance finding for the export path only, not evidence that legacy `asks` rows are clean.
-- UNKNOWN (operator/scripts/backup.mjs @origin/main; docs/metis-2.0/ledger/tickets.json:9304-9344): unknown whether `backup.mjs` has ever been run against a real database; no restore-drill record exists in the repo or in `M2-0159`, which is TODO.
+- UNKNOWN (operator/scripts/backup.mjs @origin/main; docs/metis-2.0/ledger/tickets.json (ticket id M2-0159)): unknown whether `backup.mjs` has ever been run against a real database; no restore-drill record exists in the repo or in `M2-0159`, which is TODO.
 - OBSERVED (docs/metis-2.0/BLOCKERS.md:85,87): the missing isolated Operator staging Worker/D1 blocks live staging and restore-drill work.
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:9304-9344): `M2-0159` tracks the isolated D1 restore drill, drift alarms, kill switches and rotation runbooks.
-- DERIVED (docs/metis-2.0/ledger/tickets.json:9304-9344): no duplicate restore-drill ticket is needed; `M2-0159` owns that execution, dependent on `M2-0103`.
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:8721-8760): `M2-0149` scope and acceptance cover privacy sentinels, configuration readback, supplier assurance, finite metadata retention and Worker payload lifetime.
-- DERIVED (docs/metis-2.0/ledger/tickets.json:8721-8760; operator/schema.sql @origin/main): `M2-0149` does not explicitly mention `asks` schema cleanup for now-dead `prompt_cipher`/`prompt_iv` columns, so a follow-up may be needed if live ciphertext rows exist.
-- OBSERVED (operator/schema.sql @origin/main): the content-free owner check for that unknown is `SELECT COUNT(*) FROM asks WHERE prompt_cipher IS NOT NULL`.
-- DERIVED (docs/metis-2.0/ledger/tickets.json:13098-13137): backup ownership/cadence/retention are filed separately in `M2-0228`.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json (ticket id M2-0159)): `M2-0159` tracks the isolated D1 restore drill, drift alarms, kill switches and rotation runbooks.
+- DERIVED (docs/metis-2.0/ledger/tickets.json (ticket id M2-0159)): no duplicate restore-drill ticket is needed; `M2-0159` owns that execution, dependent on `M2-0103`.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json (ticket id M2-0149)): `M2-0149` scope and acceptance cover privacy sentinels, configuration readback, supplier assurance, finite metadata retention and Worker payload lifetime.
+- DERIVED (docs/metis-2.0/ledger/tickets.json (ticket id M2-0149); operator/schema.sql @origin/main): `M2-0149` does not explicitly mention `asks` schema cleanup for now-dead `prompt_cipher`/`prompt_iv` columns, so a follow-up may be needed if live ciphertext rows exist.
+- RECOMMENDATION (operator/schema.sql @origin/main; operator/scripts/backup.mjs:72 @origin/main): run from `operator/`, the content-free owner check for that unknown is `npx wrangler d1 execute metis-operator --remote --command "SELECT COUNT(*) FROM asks WHERE prompt_cipher IS NOT NULL"`.
+- DERIVED (docs/metis-2.0/ledger/tickets.json (ticket id M2-0228)): backup ownership/cadence/retention are filed separately in `M2-0228`.
 
 ## Follow-up tickets filed
 
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:13056-13097): `M2-0227` files the production deploy provenance guard for `operator/scripts/deploy.mjs`.
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:13098-13137): `M2-0228` files backup ownership, cadence, retention and recovery-objective documentation before the restore drill.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json (ticket id M2-0227)): `M2-0227` files the production deploy provenance guard for `operator/scripts/deploy.mjs`.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json (ticket id M2-0228)): `M2-0228` files backup ownership, cadence, retention and recovery-objective documentation before the restore drill.
