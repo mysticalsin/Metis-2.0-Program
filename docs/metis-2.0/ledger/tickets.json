@@ -1105,12 +1105,7 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Approve prd-lock.md v1.0 (it gates no ticket; the policy answers already come from M2-0189)",
-    "needed_by": "2026-10-18",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 8,
@@ -1118,7 +1113,7 @@
    "slices": [],
    "due": null,
    "status": "TODO",
-   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither."
+   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"full autopilot until everything is done for version 2.0 except signature\"): the lead approves prd-lock v1.0 from the answered policy (POLICY-2.0.md)."
   },
   {
    "id": "M2-0017",
@@ -1522,19 +1517,15 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": {
-    "owner": "OpenAI Codex CLI quota (tool account holder: program owner)",
-    "unblock_step": "After 2026-09-29 19:33 run the read-only Codex review of docs/metis-2.0/PLAN.md and ledger/tickets.json; the ChatGPT audit proceeds now",
-    "needed_by": "2026-09-30",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "UNBLOCKED 2026-09-27: Codex is available (quota restored); run the independent Codex audit of PLAN.md and the ledger now."
   },
   {
    "id": "M2-0024",
@@ -2850,19 +2841,15 @@
     "ACCEPTED",
     "MEASURED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Review the 1.9.7 evidence record, install the candidate bytes (sha256 in the lane provenance file) on the owner Mac, and approve promotion of those same bytes with the promote workflow (no rebuild; agents never push tags)",
-    "needed_by": "2026-10-04",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "high",
    "estimate_hours": 10,
    "validation_hours": 1.0,
    "slices": [],
    "due": "2026-10-04",
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first)."
   },
   {
    "id": "M2-0047",
@@ -3516,12 +3503,7 @@
     "DESIGNED",
     "LOCALLY_TESTED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Name the promised refactoring skill and its location/version (MASTER section 2.5), or confirm in writing that software-architecture-engineer v1.4.0 plus Stark v9.3.0 substitute for it",
-    "needed_by": "2026-10-05",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "low",
    "estimate_hours": 6,
@@ -3541,7 +3523,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "UNBLOCKED 2026-09-27: Owner named the methods on 2026-09-26: software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER section 2.5 skill."
   },
   {
    "id": "M2-0060",
@@ -9528,12 +9511,7 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Supply the recorded welcome video with captions, or confirm the text-led welcome ships as final (OBU-02)",
-    "needed_by": "2026-11-08",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 24,
@@ -9572,7 +9550,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged."
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: the text-led welcome ships as final (no recorded video); ASSUMED per D-20 default."
   },
   {
    "id": "M2-0161",
@@ -11523,12 +11501,7 @@
     "LOCALLY_TESTED",
     "ACCEPTED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Approve or reorder the degrade order in DECISIONS.md D-14",
-    "needed_by": "2026-10-09",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
@@ -11548,7 +11521,8 @@
     }
    ],
    "due": "2026-10-09",
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default."
   },
   {
    "id": "M2-0198",
