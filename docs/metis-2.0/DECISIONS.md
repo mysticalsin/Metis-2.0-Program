@@ -4,7 +4,7 @@
 |---|---|
 | Owner | Program owner (Tony); Opus records and validates |
 | Date | 2026-09-26 |
-| Contents | A. Owner decisions already made · B. Program decisions (Opus) · C. Engineering ADR index · D. Open decision register D-1..D-29 |
+| Contents | A. Owner decisions already made · B. Program decisions (Opus) · C. Engineering ADR index · D. Open decision register D-1..D-30 · E. D-7 follow-through: dock-lineage disposition (PROPOSED) |
 | How to answer | One line per decision in the weekly 30-minute decision slot (first slot by 2026-10-02), or in the ticket. Answers are copied into the affected tickets and `_relay/HANDOFF.md` |
 | Rule | A **reversible** decision takes its recorded default at its needed-by date if unanswered, and stays labelled ASSUMED in the affected tickets until confirmed. An **escalated** decision (spend, legal-privacy, security, owner configuration, irreversible) never auto-applies: engineering proceeds on the default labelled ASSUMED, and the release claim waits for the answer. Decision dependencies (`needs_decision`) never cap a ticket's evidence; artifact dependencies (`depends_on`) do |
 
@@ -17,7 +17,7 @@ Evidence labels follow software-architecture-engineer v1.4.0: OBSERVED, PROVIDED
 | OD-1 | 2026-09-23 | Publish 1.9.6 as a public **unsigned prerelease** (not Latest, no latest*.yml), as an exception for v1.9.6-unsigned only | Owner: "release them with no signature for now" (PROVIDED, prior OWNER-DECISIONS.md) | Hold the release until signing exists | D-13 proposes the same conditions for 1.9.7 and the trains; M2-0053 amends SIGNING.md/ENTERPRISE_RELEASE.md |
 | OD-2 | 2026-09-24 | "Figure out the Windows part": investigate Windows public signing and the Windows build | PROVIDED (stop-hook message) | — | M2-0058 |
 | OD-3 | 2026-09-24 | Windows public signing route = **Microsoft Artifact Signing (Public Trust)**, publisher = the Mantu group legal entity | PROVIDED (AskUserQuestion "Win signing") | Routes A–F in the prior WINDOWS-SIGNING decision brief (OV/EV certificates and others) | D-10 (decided); budget and identity validation remain (B-11); M2-0058, M2-0211 |
-| OD-4 | 2026-09-24 | Shipping line = **main 1.9.6 + RightEdgeSidecar**; the PR #194 dock lane is ported deliberately, not merged wholesale | PROVIDED (AskUserQuestion "Ship line") | Ship the PR #194 1.9.8 DockPanel line | D-7 (decided); M2-0022, M2-0202, M2-0095; version 1.9.8 is never reused |
+| OD-4 | 2026-09-24 | Shipping line = **main 1.9.6 + RightEdgeSidecar**; the PR #194 dock lane is ported deliberately, not merged wholesale | PROVIDED (AskUserQuestion "Ship line"; prior `metis-2.0-exec/OWNER-DECISIONS.md:8`) | Ship the PR #194 1.9.8 DockPanel line | D-7 (decided); §E; M2-0022, M2-0202, M2-0095, M2-0203; version 1.9.8 is never reused |
 | OD-5 | 2026-09-26 | Approve the program goal: deliver everything in the r11 kit and the v6 BRAG-Hindsight kit (with v5 baselines), fix the P0 bugs, refactor to simple enterprise-grade code, ship production-ready, finish with a launch video | PROVIDED (GOAL.json) | — | PLAN.md §1 |
 | OD-6 | 2026-09-26 | Outcome = **engineering-complete and tested**; anything needing an outside account or owner is wired for real and shown BLOCKED with the exact unblock step | PROVIDED (GOAL.json) | Declare external items out of scope | PLAN.md §1; M2-0002 'wired for real' |
 | OD-7 | 2026-09-26 | Deadline **2026-11-30** | PROVIDED | — | PLAN.md §6 |
@@ -104,7 +104,7 @@ Days waiting are counted from 2026-09-26. As of 2026-09-26: 0 days for every ope
 | D-4 | Which system is the 2.0 entitlement authority, and what is the licensing precedence (C-03, C-08, C-16)? | PROPOSED: the Operator seat is authoritative for 2.0; the legacy license server stays read-only for existing keys until an ADR-016 deprecation decision (Answered on the one-page policy approval (M2-0189)) | escalate: spend (commercial) | 2026-10-02 | OPEN | 0106, 0146, 0189 |
 | D-5 | Where does the server intelligence plane run: container platform, region, managed Postgres with vector, the pinned Hindsight release, and Laya hosting? | No silent default. PROPOSED: self-hosted private Hindsight (not hosted Vectorize Cloud) on one approved container platform with managed Postgres; engineering proceeds against the local compose profile | escalate: spend | 2026-10-12 | OPEN | 0119, 0124, 0125, 0133, 0138 |
 | D-6 | What is the canonical knowledge store (TASK-007) and the plaintext-mirror sharing boundary? | No silent default. Recommended: an Entra-protected knowledge API over an approved M365 location (MASTER section 17.3 state (a)); engineering proceeds behind the API contract | escalate: irreversible (data placement) | 2026-10-12 | OPEN | 0120, 0125 |
-| D-7 | Which right-edge line ships: main 1.9.6 RightEdgeSidecar or the PR #194 1.9.8 DockPanel? | Decided: main 1.9.6 RightEdgeSidecar; the PR #194 dock lane is ported deliberately, not merged wholesale (Source: prior execution OWNER-DECISIONS.md; version 1.9.8 is never reused) | decided | 2026-09-24 | DECIDED 2026-09-24 | 0022, 0025, 0095, 0168, 0202 |
+| D-7 | Which right-edge line ships: main 1.9.6 RightEdgeSidecar or the PR #194 1.9.8 DockPanel? | Decided: main 1.9.6 RightEdgeSidecar; the PR #194 dock lane is ported deliberately, not merged wholesale (Source: prior execution OWNER-DECISIONS.md:8, AskUserQuestion "Ship line"; version 1.9.8 is never reused; disposition of the dock-lineage PRs and branches in §E) | decided | 2026-09-24 | DECIDED 2026-09-24 | 0022, 0025, 0095, 0168, 0202 |
 | D-8 | The production Operator runs an off-main build (three commits including an ACCESS bypass at /v1/decide): merge through a reviewed PR with a security review, or revert? | No silent default. Recommended: security review of the bypass first; no Operator deploy from main until decided | escalate: security | 2026-10-19 | OPEN | 0014, 0103, 0123, 0145, 0159 |
 | D-9 | Which isolated macOS environment is the QA host? | A separate macOS user on the owner's Mac (about five minutes to create), signed into a dedicated test cloud account; plus a managed Windows 11 laptop from Mantu IT (The action itself is blocker B-02) | reversible | 2026-09-29 | OPEN | 0007 |
 | D-10 | Which Windows public signing route and publisher entity? | Decided: Microsoft Artifact Signing (Public Trust) under the Mantu group legal entity recorded on 2026-09-24 (Budget approval and identity validation remain (B-11)) | decided | 2026-09-24 | DECIDED 2026-09-24 | 0058, 0211 |
@@ -130,3 +130,97 @@ Days waiting are counted from 2026-09-26. As of 2026-09-26: 0 days for every ope
 | D-30 | Remove the Cahê edition? | **ANSWERED 2026-09-26 by the owner: remove the edition entirely** (code, embedded-key build path, config, workflow, docs). Published Cahê assets deleted the same day | owner decision | 2026-09-26 | ANSWERED | 0214 |
 
 **Order of the first answers:** D-28 (09-28) → D-9 (09-29) → D-1 (09-30) → D-4, D-11, D-12 on the one-page policy (10-02) → D-13 (10-03) → D-15 (10-05) → D-3, D-14, D-29 (10-09) → D-5, D-6 (10-12).
+
+## E. D-7 follow-through: dock-lineage disposition (PROPOSED, M2-0022)
+
+D-7 is decided (OD-4). This section proposes what happens to the dock-lineage PRs, branches and version. M2-0022 closed, commented on, retargeted and deleted nothing on GitHub; the lead or the owner executes E.7.
+
+The snapshot was taken on 2026-09-26 after the history rewrite, through the GitHub API (`gh pr view`, `gh api …/pulls|issues/<n>/timeline|branches|compare|commits|contents`). SHAs are post-rewrite. SHAs quoted in review files written before the rewrite still resolve on GitHub but head no branch: the v1.9.8 draft's `a105a258` and today's `claude/dock-three-fixes` tip `48ea2882` share tree `89db261ded` (OBSERVED). Paths under `plan-inputs/`, `plan-work/`, `lanes/` and `verify/` are in the review workspace `metis-v2-review/`; `metis-2.0-exec/` is the prior execution, and `reconcile.md` is its `tasks/TASK-027/reconcile.md`.
+
+### E.1 Decision source and the findings it settles
+
+| Item | Label | Source |
+|---|---|---|
+| 2026-09-24, AskUserQuestion "Ship line": shipping line = main 1.9.6 + RightEdgeSidecar; the PR #194 dock lane is ported deliberately, not merged wholesale; TASK-027.A/028.A target main's RightEdgeSidecar | PROVIDED | `metis-2.0-exec/OWNER-DECISIONS.md:8` |
+| It settles K09-R10, reconcile blockers B3 (line and version) and B5 (which dock lineage is approved), and BLOCKERS.md row 11 | DERIVED | `plan-inputs/PRIOR-EXECUTION.json` requirements[9]; `metis-2.0-exec/tasks/TASK-027/reconcile.md:210,212`; BLOCKERS.md:170 |
+| CRITIC-INV-6 (read the dock PR diffs; re-scope L06/L07 and D1-D11 to the chosen base): the diffs were read in full before the rewrite and re-checked after it (E.2). L06/L07 audited main's RightEdgeSidecar and App.tsx, which is the line that ships, so their findings stand. D1-D11 ship in M2-0202 | DERIVED | `plan-inputs/COVERAGE-CRITIC.json:55`; `plan-work/prep/GITHUB.md:8-10`; `reconcile.md:135-160` |
+| CRITIC-CON-10 (TASK-028.A "entirely unimplemented" against "real, substantial dock work"): both statements hold, for different components. K09 describes the RightEdgeSidecar repairs; K10 describes the DockPanel lineage, which does not ship | DERIVED | `plan-inputs/COVERAGE-CRITIC.json:42`; `lanes/K10-git-github.md:56` |
+| K10 ranked #189 "rebase, prioritize"; that is stale because the fix is already on main (E.2 row 3) | DERIVED | `lanes/K10-git-github.md:91`; `plan-work/prep/GITHUB.md:12-16` |
+
+### E.2 Facts the dispositions rest on
+
+| # | Fact | Label | Source |
+|---|---|---|---|
+| 1 | `DockPanel.tsx` exists on neither main (`22d1fbad`) nor m2/integration (`7dab8e89`) | OBSERVED | contents API for `src/renderer/src/components/DockPanel.tsx` returns 404 on both refs |
+| 2 | package.json is 1.9.6 on main and m2/integration, 1.9.8 on `claude/dock-three-fixes`, and 1.9.5 or 1.9.1 on the other lineage branches | OBSERVED | contents API per ref |
+| 3 | #189's force-quit mechanism is already on main: `EMERGENCY_FORCE_QUIT_GRACE_MS = 4000`, `stopSidecarsForHardExit()`, `forceQuitMétis()` | OBSERVED | `src/main/index.ts:4160,4169,4195` (main); `:4162,4171,4197` (m2/integration) |
+| 4 | The onFatal "Relaunch Métis" path still calls `app.relaunch(); app.exit(0)` with no sidecar teardown | OBSERVED | m2/integration `src/main/index.ts:3576-3578` |
+| 5 | Relationships still drops meeting nodes, the defect #187 fixes | OBSERVED | `intelligence/src/lib/brainAdapter.ts:485` on main and m2/integration |
+| 6 | The Cap3 QA_TIP force-paint that #190 and #192 guard exists on neither main nor m2/integration | OBSERVED | `grep -cE 'QA_TIP\|cap3QaForcePaint' src/main/intelligence.ts` = 0 on both refs |
+| 7 | #192's tip commit contains every changed test line of #190's tip commit, plus the `isPackagedBuild()` gate | OBSERVED | patches of `532e7fc9` and `17fc6160`: all 14 changed lines of `17fc6160` are present in `532e7fc9` |
+| 8 | #187, #189 and #190 fail Quality checks (ubuntu and windows) on TS2345 in the lineage's own `src/main/island/geometry.ts` (the literal 880 bar width against the 380 dock width); #188 fails 6 of 526 test files (`ReferenceError: document is not defined`) | OBSERVED | runs 36267679017 (#187), 36267677825 (#189), 36267678157 (#190), 36267668701 (#188), all pushed 2026-09-26 19:54Z |
+| 9 | #192, #193 and #194 were closed at 19:54:35-36Z by the repository owner's account, each followed within a second by a head or base force-push, with no comment | OBSERVED | `gh api repos/mysticalsin/AskToto-Mantu/issues/<n>/timeline` |
+| 10 | Those three closures are a side effect of the history rewrite, not a disposition | DERIVED | row 9 timing; the rewrite ran at about 20:00Z |
+| 11 | The updater never takes a prerelease or a downgrade, and its feed is `mysticalsin/Metis-Releases` | OBSERVED | m2/integration `src/main/updater.ts:345-346` (`allowPrerelease = false`, `allowDowngrade = false`); `electron-builder.yml:319-330` |
+| 12 | v1.9.8 on the feed is a draft prerelease that was never published; neither repository has a v1.9.8 or v2.* tag | OBSERVED | `gh release view v1.9.8 --repo mysticalsin/Metis-Releases` (isDraft true, publishedAt null); `gh api …/git/matching-refs/tags/v1.9` and `…/tags/v2` in both repositories |
+| 13 | The owner's installed app is 1.9.6 | OBSERVED | `verify/RUNTIME-EVIDENCE.md:6` |
+
+### E.3 PR dispositions
+
+| PR | Branch → base, state | Proposed action | Replacement | Salvage |
+|---|---|---|---|---|
+| #186 | `fix/win-quality-crlf-right-edge` → main, OPEN | Not dock lineage (a test-only CRLF fix to main's right-edge contract); merge after green CI | M2-0025 | The whole PR |
+| #187 | `claude/intelligence-relationship-notes` → `codex/review-release-1.9.1`, OPEN, CI red (E.2 row 8) | Close unmerged | M2-0203 | Re-implement on main with `84db50da` (brainAdapter, GraphView, data type, tests) as the reference: notes are the smallest square nodes, a Notes toggle defaults on, account and sector filters apply to notes, and the empty state names its three causes. `0ffb005d` only enriches the bundled example data. No cherry-pick, because the branch carries 53 files of Cap and dock work |
+| #188 | `claude/dock-panel-design` → `codex/review-release-1.9.1`, OPEN, CI red | Close unmerged | M2-0202 (composer and tool row: D6, D7); M2-0095 (definite-height body under one geometry authority) | Ideas, not code: the composer never scrolls away; every tool has the same hit-target size; Start and Stop are never shown together; a live meeting gets its own full-width strip; Mode opens inside the panel. Its `OVERLAY_BAR_REST` typecheck fix is not needed, because the break exists only in the lineage's geometry |
+| #189 | `claude/force-quit-contract` → `codex/review-release-1.9.1`, OPEN, CI red | Close unmerged | M2-0026 | Nothing: main carries the mechanism (E.2 row 3). The remaining gap, the onFatal relaunch without teardown (E.2 row 4), is M2-0026 |
+| #190 | `claude/content-protection-stub` → `codex/review-release-1.9.1`, OPEN, CI red | Close as superseded by #192 | none | Nothing: #192 contains it (E.2 row 7), and the code it tests is not on main (E.2 row 6) |
+| #191 | `cursor/cap4-glass-sidecar` → main, OPEN, CONFLICTING | Close unmerged | none | Nothing: an earlier DockPanel design iteration; its own comment of 2026-09-20 names #188 as its successor |
+| #192 | `fix/cap3-qa-tip-cp-packaged-gate` → `codex/review-release-1.9.1`, CLOSED by the rewrite | Stays closed; add the E.4 comment | none now | `532e7fc9` stays on file (`src/main/intelligence.ts` +5/−3, `src/main/content-protection.contract.test.ts` +43/−2): a packaged build ignores `QA_TIP.txt`, and the audit no longer counts `setContentProtection(false)` as coverage. If the Cap3 QA force-paint is ever ported to main, this gate lands in the same PR |
+| #193 | `claude/cap4-motion` → `release/1.9.1`, CLOSED by the rewrite | Stays closed; add the E.4 comment | none | Nothing: DockPanel motion, to be re-reviewed only if D-7 is reopened |
+| #194 | `claude/dock-three-fixes` → main, CLOSED by the rewrite | Stays closed and is never merged wholesale (D-7); add the E.4 comment | M2-0202, M2-0095, M2-0203, M2-0042 | Its consolidation table (PROVIDED, PR body) says it holds #187 and #192 and every test of #188 and #190, so those rows cover it. Its three right-edge fixes (the panel stays centred on the resting handle, History/Review/Brain/Agenda get a definite-height host, no full bar at the right edge) are checked against RightEdgeSidecar in M2-0095 and ported only where the defect reproduces there. Its #196/#197 fixes are already on main through PR #199, which is the functional superset (`reconcile.md:195-199`); M2-0042 verifies them |
+
+### E.4 Comments to post
+
+The repository is public, so the comments name ticket IDs only.
+
+- **#187** (close): "Closed without merging. On 2026-09-24 main's RightEdgeSidecar was chosen as the shipping line; the dock lane is ported piece by piece, not merged. The notes-as-nodes fix is re-implemented on main in M2-0203, with commit 84db50da as the reference."
+- **#188** (close): "Closed without merging: DockPanel does not ship (shipping-line decision of 2026-09-24). The composer and tool-row ideas carry into the RightEdgeSidecar repairs in M2-0202 and the geometry work in M2-0095."
+- **#189** (close): "Closed without merging: the force-quit grace period and sidecar teardown are already on main. The remaining gap, the crash-dialog relaunch that skips sidecar teardown, is fixed in M2-0026."
+- **#190** (close): "Closed as superseded by #192, which carries this audit fix plus the packaged-build gate. The force-paint code it tests is not on main."
+- **#191** (close): "Closed: an earlier DockPanel design iteration, and DockPanel does not ship (shipping-line decision of 2026-09-24). No replacement."
+- **#192** (comment): "Closed by the 2026-09-26 history rewrite. Kept on file: if the Cap3 QA force-paint is ever ported to main, this packaged-build gate and the audit fix land in the same PR."
+- **#193** (comment): "Closed by the 2026-09-26 history rewrite. DockPanel motion does not ship under the 2026-09-24 shipping-line decision. No replacement."
+- **#194** (comment): "Closed by the 2026-09-26 history rewrite and not to be merged: main's RightEdgeSidecar ships (decision of 2026-09-24). Ported instead: right-edge repairs (M2-0202, M2-0095), notes as nodes (M2-0203), #196/#197 verification (M2-0042). Version 1.9.8 is retired."
+
+### E.5 Branches
+
+Every lineage branch stays unchanged as the port reference. No agent deletes, rebases or pushes to them, and nothing is built, tagged or published from them. Once M2-0202, M2-0095 and M2-0203 are DONE, the owner may delete them. OBSERVED values (head, package version, commits ahead/behind main):
+
+| Branch | Head | Version | Ahead/behind main | Role |
+|---|---|---|---|---|
+| `codex/review-release-1.9.1` | `9a33e795` | 1.9.5 | 0/64 | Base of #187-#190 and #192; nothing unique |
+| `release/1.9.1` | `faac0cb4` | 1.9.1 | 0/86 | Base of #193; nothing unique |
+| `metis-2.0-dock-lineage` | `1e6b2889` | 1.9.5 | 31/58 | Integration point named by #194's handoff doc |
+| `claude/dock-three-fixes` | `48ea2882` | 1.9.8 | 81/53 | #194 head; green on its own branch (run 36267676162) |
+| `cursor/cap4-glass-sidecar` | `932517c8` | 1.9.5 | 8/58 | #191 head |
+| `claude/dock-panel-design` | `fde39589` | 1.9.5 | 21/58 | #188 head |
+| `claude/intelligence-relationship-notes` | `0ffb005d` | 1.9.5 | 7/58 | #187 head; M2-0203 reference |
+| `claude/force-quit-contract` | `2158b037` | 1.9.5 | 8/58 | #189 head |
+| `claude/content-protection-stub` | `17fc6160` | 1.9.5 | 8/58 | #190 head |
+| `fix/cap3-qa-tip-cp-packaged-gate` | `532e7fc9` | 1.9.5 | 5/58 | #192 head; kept for a future force-paint port |
+| `claude/cap4-motion` | `ad17437d` | 1.9.5 | 41/58 | #193 head |
+
+### E.6 Version 1.9.8
+
+- PROPOSED (restates PD-08): 1.9.8 is retired. No build, tag, release or package.json on main, m2/integration or release/1.9.x uses it. The next versions are 1.9.7, then 1.9.9 (M2-0206), then 2.0.0-beta.1.
+- PROPOSED: the v1.9.8 draft on Metis-Releases stays a draft, and the owner may delete it. No v1.9.8 tag exists, so deleting the draft removes no tag (E.2 row 12).
+- DERIVED from E.2 rows 11 and 12: while it stays a draft, no install is offered 1.9.8. Had it been published as Latest, its installs could not take 1.9.7 (downgrade refused) and would wait for 1.9.9.
+- UNKNOWN: whether any machine other than the owner's (1.9.6, E.2 row 13) runs a sideloaded dock-lane 1.9.8 pack; the prior execution kept such packs (`reconcile.md:37-38`). Those machines update only from 1.9.9 onward. M2-0168 verifies feed continuity from 1.9.6, 1.9.7 and the trains.
+- OBSERVED: PR #194's body says the lane was "bumped to 2.0.0", but its branch's package.json reads 1.9.8 (E.2 row 2), and no v2 tag exists. 2.0.0 stays reserved for the final release (PD-08).
+
+### E.7 Execution (lead or owner)
+
+1. Close #187 to #191 with the E.4 texts: `gh pr close <n> --repo mysticalsin/AskToto-Mantu --comment "<text>"`.
+2. Comment on #192 to #194: `gh pr comment <n> --repo mysticalsin/AskToto-Mantu --body "<text>"`.
+3. Verify: `gh pr list --repo mysticalsin/AskToto-Mantu --state open --json number --jq '[.[].number]'` lists none of 187 to 194, and `gh pr view <n> --repo mysticalsin/AskToto-Mantu --json comments` shows each text.
+4. Leave the branches (E.5) and the v1.9.8 draft (E.6) as they are.
