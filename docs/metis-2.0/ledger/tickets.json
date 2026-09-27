@@ -2978,7 +2978,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values."
   },
   {
    "id": "M2-0050",
@@ -11021,10 +11022,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-02",
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers.",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/11",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 6); rebuilt clean from #9"
+   }
   },
   {
    "id": "M2-0190",
@@ -11076,9 +11082,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/209",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0191",
@@ -12676,7 +12687,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0218",
    "title": "Make Cloudflare OAuth provisioning atomic (no half-written vault state)",
    "milestone": "m4",
@@ -12703,7 +12714,12 @@
    "risk": "medium",
    "estimate_hours": 3,
    "claimed_by": "claude-code ticket runner (batch 5)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/226",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 5)"
+   }
   },
   {
    "wave": "W2",
@@ -12715,7 +12731,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0219",
    "title": "Reduce the Cloudflare OAuth scopes to what the ask path needs",
    "milestone": "m4",
@@ -12741,7 +12757,12 @@
    "risk": "medium",
    "estimate_hours": 2,
    "claimed_by": "claude-code ticket runner (batch 5)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/223",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 5)"
+   }
   },
   {
    "id": "M2-0220",
