@@ -551,10 +551,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac.",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/235",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "id": "M2-0008",
@@ -1466,9 +1471,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/3",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "id": "M2-0023",
@@ -1693,9 +1703,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/236",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "id": "M2-0027",
@@ -8529,9 +8544,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/216",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "id": "M2-0145",
@@ -11234,9 +11254,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/237",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "id": "M2-0193",
@@ -12844,9 +12869,14 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/230",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "wave": "W2",
