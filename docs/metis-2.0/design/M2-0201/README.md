@@ -12,12 +12,14 @@ Authoring session: Codex, 2026-09-27.
 - OBSERVED: The visual contract requires ARMED to be one animated solving orb only and requires reduced-motion, input, capture and approval protections; source `docs/metis-2.0/kit/r11/visual/VISUAL-CONTRACT.md:3-10`.
 - OBSERVED: Settings 2.0 uses DESIGNED evidence, evidence labels and state captures in light/dark, 1x/2x and reduced motion; source `docs/metis-2.0/design/settings/SETTINGS-2.0.md:1-10` and `docs/metis-2.0/design/settings/SETTINGS-2.0.md:23-30`.
 - OBSERVED: TASK-030, TASK-040 and TASK-045 are the kit tasks for orb, Intelligence and portal work; source `docs/metis-2.0/kit/r11/plan/TASK-INDEX.md:36-51`.
-- BLOCKED_EXTERNAL: Independent Opus validator acceptance is required by `docs/metis-2.0/ledger/tickets/M2-0201.md:35-36`, but this Codex session cannot truthfully create an Opus validator session. Exact read-only unblock step: an Opus session other than this author must review `manifest.json`, each `STATE-LIST.md`, and each `screenshots/prototype-matrix.svg`, then append its verdict to `VALIDATION.md`.
-- BLOCKED_EXTERNAL: The requested command `node scripts/evidence/check.mjs --ticket M2-0201` cannot be run under the owner D-28 constraint forbidding repository scripts, and the path is absent in this worktree as observed by `sed -n '1,260p' scripts/evidence/check.mjs` returning `No such file or directory` on 2026-09-27.
+- OBSERVED: A dev-only renderer prototype surface now exists at `src/renderer/m2-design.html`, backed by `src/renderer/src/components/M2DesignPrototypes.tsx` and `src/renderer/src/components/M2DesignPrototypes.css`; source: worktree files added on 2026-09-27.
+- OBSERVED: The requested evidence checker path now exists at `scripts/evidence/check.mjs`; source: worktree file added on 2026-09-27.
+- BLOCKED_EXTERNAL: Independent Opus validator acceptance is required by `docs/metis-2.0/ledger/tickets/M2-0201.md:35-36`, but this Codex session cannot truthfully create an Opus validator session. Exact read-only unblock step: an Opus session other than this author must review `manifest.json`, each `STATE-LIST.md`, the dev-only renderer source, and captured screenshots or recordings, then append its verdict to `VALIDATION.md`.
+- BLOCKED_EXTERNAL: Electron screenshot capture was not executed under the owner D-28 constraint forbidding repository scripts and app runs on the owner's Mac. Exact read-only unblock step: CI must open `src/renderer/m2-design.html` with the Electron/Vite renderer and write `light-1x`, `dark-1x`, `light-2x`, `dark-2x`, and `reduced-motion` PNG or WEBM artifacts under each prototype folder.
 
 ## Prototype index
 
-| Implementing ticket | Prototype folder | State list | Screenshot matrix | Kit sections satisfied |
+| Implementing ticket | Prototype folder | State list | Current artifact | Kit sections satisfied |
 |---|---|---|---|---|
 | M2-0093 | `M2-0093/` | `M2-0093/STATE-LIST.md` | `M2-0093/screenshots/prototype-matrix.svg` | TASK-030, M2-UX-01, EXP-10, SRC-14 |
 | M2-0094 | `M2-0094/` | `M2-0094/STATE-LIST.md` | `M2-0094/screenshots/prototype-matrix.svg` | CXSTEP-08, CXCAP-24, MB-10, MB-13, MB-19, MB-22, EXP-04 |
@@ -31,7 +33,7 @@ Authoring session: Codex, 2026-09-27.
 
 ## Capture convention
 
-Each `prototype-matrix.svg` is a designed screenshot matrix, not product runtime evidence. It contains five panels:
+The dev-only renderer source defines five capture variants for each prototype:
 
 1. Light 1x.
 2. Dark 1x.
@@ -39,5 +41,4 @@ Each `prototype-matrix.svg` is a designed screenshot matrix, not product runtime
 4. Dark 2x.
 5. Reduced motion.
 
-The per-ticket state list names the states represented by the matrix and the keyboard path that implementation must preserve. The reduced-motion panel specifies the intended still or simplified state; implementation tickets must recapture from the Electron renderer in CI.
-
+The per-ticket state list names the states represented by the renderer panels and the keyboard path that implementation must preserve. The reduced-motion panel specifies the intended still or simplified state. Current SVG matrices are hand-authored legacy artifacts and are not sufficient for final acceptance until replaced by CI-captured renderer PNG or WEBM files.

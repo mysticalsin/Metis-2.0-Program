@@ -9,6 +9,14 @@
     "ticket_slices": "docs/metis-2.0/ledger/tickets/M2-0201.md:50-60"
   },
   "variants": ["light-1x", "dark-1x", "light-2x", "dark-2x", "reduced-motion"],
+  "renderer_surface": {
+    "html": "src/renderer/m2-design.html",
+    "entry": "src/renderer/src/m2-design-entry.tsx",
+    "component": "src/renderer/src/components/M2DesignPrototypes.tsx",
+    "styles": "src/renderer/src/components/M2DesignPrototypes.css",
+    "capture_status": "BLOCKED_EXTERNAL",
+    "capture_unblock_step": "CI opens the Electron/Vite renderer surface and writes PNG or WEBM artifacts for every ticket and required variant."
+  },
   "prototypes": [
     {"ticket": "M2-0093", "state_list": "M2-0093/STATE-LIST.md", "screenshot_matrix": "M2-0093/screenshots/prototype-matrix.svg", "kit_sections": ["TASK-030", "M2-UX-01", "EXP-10", "SRC-14"]},
     {"ticket": "M2-0094", "state_list": "M2-0094/STATE-LIST.md", "screenshot_matrix": "M2-0094/screenshots/prototype-matrix.svg", "kit_sections": ["CXSTEP-08", "CXCAP-24", "MB-10", "MB-13", "MB-19", "MB-22", "EXP-04"]},
@@ -22,6 +30,9 @@
   ],
   "validation": {
     "author_review": "VALIDATION.md",
-    "independent_opus_validator": "BLOCKED_EXTERNAL"
+    "independent_opus_validator": {
+      "status": "BLOCKED_EXTERNAL",
+      "unblock_step": "Opus validator session other than the author reviews manifest, state lists, renderer source and captured artifacts, then appends ACCEPTED or REVISE to VALIDATION.md."
+    }
   }
 }
