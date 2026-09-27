@@ -1,35 +1,35 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 5
+shift: 6
 agent: claude-code
-updated: 2026-09-27 01:30 EDT
-status: in-progress (usage limit reached mid-shift)
-branch: private main (worktree ~/AI-Brain-build/metis-prog-main); public m2/integration = 5993c7e3
+updated: 2026-09-27 03:40 EDT
+status: in-progress
+branch: private main (~/AI-Brain-build/metis-prog-main); public m2/integration = 202c0d90 (CI run 36305283772 green)
 ---
 
 # Handoff — Métis 2.0 program
 
 ## Objective & acceptance criteria
-Deliver Métis 2.0 by 2026-11-30: every ledger ticket (224, docs/metis-2.0/ledger/tickets.json) at its evidence level with Opus validation; external items BLOCKED-visible; launch film; owner signs off milestone PRs into main.
+Deliver Métis 2.0 by 2026-11-30: every ledger ticket (227) at its evidence level with Opus validation; external items BLOCKED-visible; launch film; owner signs off milestone PRs into main.
 
 ## Current state
-- Operating model OD-13 (owner, 2026-09-27): Codex implements, Claude plans/challenges/validates; Opus owns design/animation. Runner script implements it (codexDriver + /Users/tony/AI-Brain-build/tools/codex-build.sh). OD-12: Métis is the Electron desktop app; no HTML prototype sites; no visible browsers on the owner's Mac.
-- Owner answered D-4, D-6, D-9 (CI runners), D-11, D-12, D-13 (DECISIONS.md).
-- DONE this shift (merged, squash): M2-0006, 0017, 0056, 0120 (ENG-COMPLETE, D-6 now answered → update ADR-019 then DONE), 0147, 0203, 0212 (+ private #8), 0010, 0041, 0187, 0204.
-- Rocket-fuel engagement 1 (~/AI-Brain-build/metis-rf/.rocket-fuel): plan APPROVED meet-r8. Rock 2 DONE 96/100 (rf/rock-2-future-schema f81f2618, run 36291770360). Rock 1 DONE 90/100 (rf/rock-1-preserve-unreadable-index 7b017a94, run 36293541999; behavioural red 36292707895). Engagement refine round 1 launched (label engagement-refine-1) — result unread.
-- Workflows possibly still running/stopped: wf_3a1f49e4-97d (batch 4), wf_6f56322b-801 (5), wf_858cce22-1e4 (6), wf_33710872-a3a (7), wf_62e09923-d63 (8, first Codex-implements batch). Resume each with Workflow({scriptPath: <runner>, resumeFromRunId}).
+- Ledger: {'DONE': 36, 'IN_PROGRESS': 21, 'TODO': 168, 'ENGINEERING_COMPLETE': 1, 'CANCELLED': 1}
+- P0 "heavy on PC": FIXED in integration (M2-0026 stopAll, #236). P0 History freeze: gateway core merged (M2-0030 #227); wiring into History/Recall = M2-0031 (batch 9, carries Codex audit-r4's six requirements).
+- Operating model OD-13: Codex implements (tools/codex-build.sh), Claude plans/challenges, Opus validates; OD-12 desktop app only.
+- Rocket-fuel engagement 1: Rocks 1+2 DONE (97/96), branch rf/rock-1-preserve-unreadable-index e9c7ceed; G6 PENDING — owner said "Fix M2-0225 first" (decrypt path must not create secret-key.bin; batch 9).
+- Running workflows: batch 9 wf_74d92306-897 (M2-0225, 0031, 0011 carry, 0013 carry), batch 10 wf_78a905a0-511 (0227, 0226, 0053, 0005, 0021, 0102, 0092), batch 11 wf_c84cc805-0d5 (carries 0037, 0214, 0057, 0101, 0188, 0020), batch 8 wf_62e09923-d63 (0033, 0215, 0047, 0014).
 
 ## Next steps (in order)
-1. Read each batch journal (…/subagents/workflows/<wf>/journal.jsonl); merge READY_TO_MERGE PRs (squash, clean message, check private refs); mark DONE in ledger; carry CHANGES_REQUIRED tickets (carry files: scratchpad/carry/<id>.json).
-2. Rocket-fuel: read codex/engagement-refine-1.last.txt; review diff; commit/push; re-run BOTH rock proofs (ROCKS.md); record G5.5; then G6 presentation to owner (scorecard, proofs, diff stat, meeting trend, residual deductions) → only after owner approval open PR rf/rock-1 → m2/integration.
-3. Ready tickets next (Codex-implements): M2-0025, 0053, 0021, 0092, 0102, 0216 (after Rock 1 merges), 0031 (after 0030).
-4. Private docs PRs #1,2,3,5,6,7,9 awaiting validation/merge.
+1. On each batch completion: merge READY PRs one at a time with hygiene check, then run ci-proof on m2/integration; mark DONE; run tools/repo-guard.sh.
+2. When M2-0225 merges: merge m2/integration into rf/rock-1 (ordinary merge), re-run both rock proofs (ROCKS.md), present G6 again to the owner.
+3. After M2-0031 merges: Codex audit of the freeze fix path; then plan the 1.9.7 cut (D-13 publishing rules).
+4. Held tickets: M2-0216 (after rocks), M2-0201 (after M2-0007 capture lane — merged; needs Electron capture design), M2-0025 (outward GitHub triage; needs owner OK).
 
 ## Decisions made (don't relitigate)
-- D-28 CI only; merges to m2/integration after Opus PASS + green CI (lead squash-merges); milestones → main by owner; OD-12; OD-13; D-4/6/9/11/12/13 answered.
+- D-28 CI only; OD-12; OD-13; D-4/6/9/11/12/13 answered; M2-0011: accept history, squash-merge (no force-push); private-repo rulesets unavailable (GitHub Pro) → repo-guard.sh.
 
 ## Watch out
-- Never push tags or pre-rewrite refs. Never git stash. Program docs never in the public repo.
-- SendMessage to a workflow agent id resumes a SEPARATE copy (caused a double writer on M2-0101).
-- rf-codex build briefs need a line starting "Proof:"; Codex cannot run tests — CI is its feedback.
-- Leftover harmless dir ~/AI-Brain-build/tools/codex-smoke (delete was denied).
+- Merging several PRs back-to-back can break integration even when each passed (M2-0223 x M2-0007 → fixed #245). Always ci-proof integration after merges.
+- ci-proof test-name patterns don't work for fast tests (vitest prints only slow ones); use test-proof.sh or run success.
+- 2026-09-27T04:35Z external mirror push reset private main; restored (af39d16). Never trust a stale clone.
+- Agents never add ledger tickets (lead files them); SendMessage to a workflow agent spawns a copy.
