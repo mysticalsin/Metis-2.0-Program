@@ -50,7 +50,7 @@ gh workflow run windows-qa.yml --ref main -f probe=capabilities
 Then capture the redacted probe output with:
 
 ```bash
-gh run view <run-id> --repo mysticalsin/AskToto-Mantu --log
+gh run view <run-id> --repo mysticalsin/Metis-2.0-Program --log
 ```
 
 Check the redacted output into `docs/metis-2.0/evidence/records/` and cite it from `docs/metis-2.0/runbooks/windows-lanes.md`.
