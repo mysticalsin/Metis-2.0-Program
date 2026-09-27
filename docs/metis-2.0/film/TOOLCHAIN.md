@@ -1,7 +1,7 @@
 # Film toolchain: pins, proof render and measurements
 
 Ticket: M2-0212 (W2, m11). Recorded 2026-09-27 against public PR mysticalsin/AskToto-Mantu#225, head
-`1cc0cf947e2ab3bbdfbd6cbfe7070387568be7be` on `m2/M2-0212-film-toolchain-spike`. Labels follow the
+`4b852fdcb79ec426fe97467b3a73d4c14ec6851a` on `m2/M2-0212-film-toolchain-spike`. Labels follow the
 software-architecture-engineer convention: OBSERVED (read off a run log, registry or source at the pin),
 DERIVED (computed from OBSERVED facts), ASSUMED (a default taken without an owner answer).
 
@@ -36,15 +36,16 @@ there cannot compete with a meeting. **DERIVED:** that criterion is met by const
 gating. If the owner wants film renders on a specific machine instead, that machine becomes a new pin in this table.
 
 Runner capacity during the proof: 4 vCPU, 15989 MiB memory, 84.7 GB free disk, `/dev/shm` 7994 MB. The CPU model
-varies by run: AMD EPYC 9V74 in runs 36287443916 and 36289049340 (GREEN), AMD EPYC 7763 in runs 36287703457 and
-36288895533. Chrome ran with software GL (SwiftShader), because GitHub-hosted runners have no GPU (OBSERVED,
-`hyperframes doctor --json` and the render summary).
+varies by run: AMD EPYC 9V74 in runs 36287443916 and 36289049340, AMD EPYC 7763 in runs 36287703457, 36288895533
+and 36292638629 (GREEN). Chrome ran with software GL (SwiftShader), because GitHub-hosted runners have no GPU
+(OBSERVED, `hyperframes doctor --json` and the render summary).
 
 ## 3. Proof render and delivery
 
 The workflow runs, in order: `hyperframes check composition --strict`, `hyperframes render composition --quality
 high`, BRAG's poster pick, BRAG's frame-0 bake, `ffprobe`, a contact sheet, the artifact upload, and the
-acceptance test. The composition has been byte-identical since `495c8ec2`.
+acceptance test. The composition's markup and styles have been byte-identical since `495c8ec2`; `4b852fdc` adds
+only the documented `window.__timelines = window.__timelines || {}` guard before the timeline registers.
 
 | Run | Head | What it showed |
 |---|---|---|
@@ -53,16 +54,17 @@ acceptance test. The composition has been byte-identical since `495c8ec2`.
 | [36287703457](https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36287703457) | `495c8ec2` | Render green with `npm ci` and `check --strict`, before the delivery tail existed |
 | [36288787433](https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36288787433) RED | `1085039f` | Poster test before the bake existed. Tests 1 to 3 pass; test 4 fails: `Error opening input file …/poster.jpg` |
 | [36288895533](https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36288895533) | `df2b9c23` | BRAG's bake exactly as step 4 writes it. Duration, frame count and poster pass (frame 0 SSIM 0.999458). The provenance test fails: `hyperframes_version` is gone (section 5) |
-| [36289049340](https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36289049340) **GREEN** | `1cc0cf94` | Final head: bake with `use_metadata_tags`, 4 of 4 tests pass |
+| [36289049340](https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36289049340) | `1cc0cf94` | Bake with `use_metadata_tags`, 4 of 4 tests pass |
+| [36292638629](https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36292638629) **GREEN** | `4b852fdc` | Final head: the bake's `mv` on its own line, so a failed bake fails the step (section 5), and the timeline-registry guard. 4 of 4 tests pass |
 
-| Item | Value (GREEN run 36289049340) |
+| Item | Value (GREEN run 36292638629) |
 |---|---|
-| Artifact | `film-toolchain-spike`, id 10921951965, zip sha256 `021df1a17ac85544621a7355b9eb8a0dcaaf6c74a23f3f96f3a2e9f0d9b1c3dc`, 2103962 bytes, expires 2026-12-26 |
-| `spike.mp4` (delivered, poster baked) | sha256 `df613b611fe3d17512dc43a014f02d6ee7413533abad1b99bd36e01c90feb85f`, 1747812 bytes |
-| `poster.jpg` | sha256 `f6d955158d869fd32dcee79634a13d7d0152b1e45cc5f8cec8881de82fcf79b9`, 3840x2160, picked at 3.0 s. Inspected: title and caption fully in, progress bar at 60%, nothing mid-transition |
-| `contact-sheet.png` | sha256 `e820a6196e7afac67268798bdae828972912cbb97b4faaa273651647869ded11`. The `fps=1` filter samples near 0.5 s, 1.5 s and so on, so it shows the scene, not frame 0 |
+| Artifact | `film-toolchain-spike`, id 10922598212, zip sha256 `981051c67831787d1c55b47789c9e281b3944e60aaf05368b06317928f1005b8`, 2102207 bytes, expires 2026-12-26 |
+| `spike.mp4` (delivered, poster baked) | sha256 `26c37845d8dd188d58cb0258353c7cee3b226bf106ded9fec1e9a226c0cc893e`, 1746630 bytes |
+| `poster.jpg` | sha256 `273b998cfeda42899560191a45860e1e4b8c0d22ca2b8c14438283dcc2b94c61`, 3840x2160, picked at 3.0 s. Inspected: title and caption fully in, progress bar at 60%, nothing mid-transition |
+| `contact-sheet.png` | sha256 `c5d9dc99ad75a4f1ef1a6f1d82b435021ba14fe14c7927eecf424ecc14cb5607`. The `fps=1` filter samples near 0.5 s, 1.5 s and so on, so it shows the scene, not frame 0 |
 | BRAG gate | `hyperframes check composition --strict`: lint 0 errors and 0 warnings, runtime 0/0, layout 0 issues across 9 samples, motion 0/0, contrast 9/9 WCAG AA |
-| Acceptance test | `film/toolchain/spike.test.mjs` (`node --test`) runs against the delivered MP4, 4 of 4 pass. ffprobe decodes and counts every frame: 3840x2160, H.264, yuv420p, `avg_frame_rate` 30/1, 150 frames, duration 5 s ± one frame, `hyperframes_version` tag equals the pinned 0.8.79. Frame 0's luma SSIM to `poster.jpg` is 0.999464, at or above the 0.99 bar. Frame 1 is 0.965795, below it, which proves the bar tells the poster from the opening it replaced |
+| Acceptance test | `film/toolchain/spike.test.mjs` (`node --test`) runs against the delivered MP4, 4 of 4 pass. ffprobe decodes and counts every frame: 3840x2160, H.264, yuv420p, `avg_frame_rate` 30/1, 150 frames, duration 5 s ± one frame, `hyperframes_version` tag equals the pinned 0.8.79. Frame 0's luma SSIM to `poster.jpg` is 0.999458, at or above the 0.99 bar. Frame 1 is 0.9658, below it, which proves the bar tells the poster from the opening it replaced |
 
 ffprobe output of the delivered `spike.mp4` (OBSERVED, GREEN run, step "Probe the spike"):
 
@@ -70,12 +72,12 @@ ffprobe output of the delivered `spike.mp4` (OBSERVED, GREEN run, step "Probe th
     hyperframes_version: 0.8.79
     hyperframes_renderer: hyperframes
     encoder         : Lavf60.16.100
-  Duration: 00:00:05.00, start: 0.000000, bitrate: 2796 kb/s
-  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 3840x2160 [SAR 1:1 DAR 16:9], 2791 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+  Duration: 00:00:05.00, start: 0.000000, bitrate: 2794 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 3840x2160 [SAR 1:1 DAR 16:9], 2789 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
       encoder         : Lavc60.31.102 libx264
 ```
 
-Before the bake, the same run's render probed at `Duration: 00:00:05.00`, 3840x2160, 30 fps, 4190 kb/s. The bake
+Before the bake, the same run's render probed at `Duration: 00:00:05.00`, 3840x2160, 30 fps, 4189 kb/s. The bake
 kept the duration and frame count and cut the bitrate by a third (section 5).
 
 The composition is authored natively at 3840x2160 (`data-width`/`data-height`), not supersampled with
@@ -88,39 +90,39 @@ The composition is authored natively at 3840x2160 (`data-width`/`data-height`), 
 in `packages/engine/src/services/chunkEncoder.ts` at the tag), `auto` workers, which resolved to 2 Chrome workers
 on 4 cores. GNU `time -v` measured the command; `vmstat` sampled the whole runner once a second.
 
-| Measure | 36287443916 (9V74) | 36287703457 (7763) | 36288895533 (7763) | 36289049340 GREEN (9V74) |
-|---|---|---|---|---|
-| Hyperframes render time | 16.6 s | 21.6 s | 21.9 s | 17.7 s |
-| Capture (encode streamed during capture) | 14.6 s | 19.7 s | 19.6 s | 15.7 s |
-| Other stages (compile, setup, assemble) | 0.6, 1.2, 0.1 s | 0.4, 1.3, 0.1 s | 0.8, 1.4, 0.1 s | 0.7, 1.1, 0.1 s |
-| Wall clock of the command, including npx start | 18.03 s | 23.27 s | 23.74 s | 19.02 s |
-| CPU used by the render process tree | 262% | 260% | 251% | 250% |
-| Largest single process RSS | 2034 MiB | 1984 MiB | 1984 MiB | 2030 MiB |
-| Runner CPU busy, mean / peak | 77% / 99% | 83% / 99% | 80% / 99% | 78% / 99% |
-| Runner memory in use, peak (of 15989 MiB) | 3467 MiB | 3408 MiB | 3459 MiB | 3545 MiB |
-| Load average after the render (1, 5, 15 min) | 1.78, 0.65, 0.25 | 2.29, 0.61, 0.21 | 2.21, 0.57, 0.20 | 1.85, 0.52, 0.19 |
+| Measure | 36287443916 (9V74) | 36287703457 (7763) | 36288895533 (7763) | 36289049340 (9V74) | 36292638629 GREEN (7763) |
+|---|---|---|---|---|---|
+| Hyperframes render time | 16.6 s | 21.6 s | 21.9 s | 17.7 s | 21.8 s |
+| Capture (encode streamed during capture) | 14.6 s | 19.7 s | 19.6 s | 15.7 s | 19.9 s |
+| Other stages (compile, setup, assemble) | 0.6, 1.2, 0.1 s | 0.4, 1.3, 0.1 s | 0.8, 1.4, 0.1 s | 0.7, 1.1, 0.1 s | 0.3, 1.4, 0.1 s |
+| Wall clock of the command, including npx start | 18.03 s | 23.27 s | 23.74 s | 19.02 s | 23.53 s |
+| CPU used by the render process tree | 262% | 260% | 251% | 250% | 259% |
+| Largest single process RSS | 2034 MiB | 1984 MiB | 1984 MiB | 2030 MiB | 1986 MiB |
+| Runner CPU busy, mean / peak | 77% / 99% | 83% / 99% | 80% / 99% | 78% / 99% | 82% / 99% |
+| Runner memory in use, peak (of 15989 MiB) | 3467 MiB | 3408 MiB | 3459 MiB | 3545 MiB | 3405 MiB |
+| Load average after the render (1, 5, 15 min) | 1.78, 0.65, 0.25 | 2.29, 0.61, 0.21 | 2.21, 0.57, 0.20 | 1.85, 0.52, 0.19 | 2.65, 0.70, 0.24 |
 
 **Bake.** BRAG's frame-0 bake decodes the whole render and re-encodes it with libx264 CRF 18 preset slow. GNU
 `time -v` measured the ffmpeg command.
 
-| Measure | 36288895533 (7763) | 36289049340 GREEN (9V74) |
-|---|---|---|
-| Wall clock | 8.92 s | 7.07 s |
-| CPU | 352% | 347% |
-| Maximum RSS | 2501 MiB | 2547 MiB |
-| Encode speed at the end (ffmpeg progress) | not recorded | 21 fps, 0.7x real time |
+| Measure | 36288895533 (7763) | 36289049340 (9V74) | 36292638629 GREEN (7763) |
+|---|---|---|---|
+| Wall clock | 8.92 s | 7.07 s | 9.17 s |
+| CPU | 352% | 347% | 348% |
+| Maximum RSS | 2501 MiB | 2547 MiB | 2501 MiB |
+| Encode speed at the end (ffmpeg progress) | not recorded | 21 fps, 0.7x real time | 17 fps, 0.54x real time |
 
-The poster pick is a single-frame seek and decode, under half a second (log timestamps).
+The poster pick is a single-frame seek and decode, about half a second (log timestamps).
 
 **DERIVED:**
 
 - Capture costs 0.10 s per 4K frame on the EPYC 9V74 and 0.13 s on the EPYC 7763. The bake costs 0.047 and
-  0.059 s per frame on the same CPUs: 45% of the capture time on both. The CPU model, not the run, explains the
-  25 to 30% spread, since runs on the same model agree within 8%. Budget for the slower one.
+  0.059 to 0.061 s per frame on the same CPUs: 45 to 46% of the capture time on both. The CPU model, not the run,
+  explains the spread of about 30%, since runs on the same model agree within 8%. Budget for the slower one.
 - The bake uses 3.5 of the 4 vCPU and is CPU-bound. Its RSS, about 2.5 GiB, is the largest of any process in the
   pipeline, but still only 16% of the runner's memory.
-- The 60-second hero is 1800 frames at 30 fps. For a scene of this complexity, capture takes 3.0 to 3.9 minutes
-  and the bake 1.4 to 1.8 minutes: about 4.5 to 5.7 minutes, plus about 2 seconds of setup. The bake adds about
+- The 60-second hero is 1800 frames at 30 fps. For a scene of this complexity, capture takes 3.0 to 4.0 minutes
+  and the bake 1.4 to 1.8 minutes: about 4.5 to 5.8 minutes, plus about 2 seconds of setup. The bake adds about
   45% to the render.
 - Treat this as a floor, not a forecast, and the bake's share most of all. Capture cost grows with layers and
   effects. The bake's cost grows with detail and motion, and this scene has almost none: libx264 skipped 82% of
@@ -144,8 +146,15 @@ Findings from the delivery tail. The film week must act on each:
   input's global metadata, but the MP4 muxer writes only its standard keys unless `-movflags use_metadata_tags`
   is set. Run 36288895533 ran BRAG's bake exactly as written: `hyperframes_version` and `hyperframes_renderer`
   were gone from the delivered file, and the provenance test failed. The workflow's bake therefore uses
-  `-movflags +faststart+use_metadata_tags`. This is its only change to BRAG's commands, and the film's bake must
-  carry the same flag, or the delivered film cannot be traced to its renderer (LFAC-10's probe metadata).
+  `-movflags +faststart+use_metadata_tags`, and the film's bake must carry the same flag, or the delivered film
+  cannot be traced to its renderer (LFAC-10's probe metadata).
+- **BRAG's bake command hides a failed bake. The workflow deviates from BRAG to surface it.** BRAG writes
+  `ffmpeg … brag.poster.mp4 && mv brag.poster.mp4 brag.mp4`. GitHub runs each step with `bash -e` (the step log
+  prints `shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}`), and bash ignores a failing command left
+  of `&&`. Chained, a failed bake skips the `mv`, the step passes, and the unbaked render is probed and uploaded
+  as the delivered spike. The workflow therefore runs the `mv` on its own line, so a failed bake fails the step.
+  BRAG's ffmpeg arguments are unchanged. The film's bake must also stop when ffmpeg fails.
+  These two are the workflow's only changes to BRAG's commands besides the file names.
 - **The bake makes a frame-zero flash when the poster differs from the opening.** It overlays a settled beat
   onto frame 0, and frame 1 is the opening as rendered. In the spike, frame 0 shows the finished title and
   caption with the bar at 60%. Frame 1, at 0.033 s, is almost empty: the title starts to fade in only at 0.2 s,
@@ -157,9 +166,14 @@ Findings from the delivery tail. The film week must act on each:
   a real bake from a no-op; it does not claim LFAC-11.
 - **The bake re-encodes the whole film at a lower quality than the render.** `--quality high` renders at CRF 15;
   the bake re-encodes every frame at CRF 18, so the delivered master is a second-generation CRF 18 encode. The
-  spike's bitrate fell from 4190 to 2791 kb/s. Before the final render, the film lead decides whether that is
-  acceptable. The alternative is to raise the bake's quality to match the render, which would be a second
+  spike's bitrate fell from 4189 to 2789 kb/s. Before the final render, the film lead decides whether that is
+  acceptable. The alternative is to raise the bake's quality to match the render, which would be a third
   deviation from BRAG.
+- **The poster JPEG is decoded as BT.601, though the render is BT.709.** OBSERVED: the bake's log reads BRAG's
+  `poster.jpg` back as `yuvj420p(pc, bt470bg/unknown/unknown)`, while the render is `yuv420p(tv, bt709)`. The
+  frame-0 overlay round-trips consistently (luma SSIM 0.9995), but a platform that shows `poster.jpg` as the uploaded
+  thumbnail may shift saturated brand colours slightly. Before upload, compare the poster with frame 0 on the
+  brand colours.
 
 Not exercised by a 5-second synthetic scene. Each item is a known gap, not a failure:
 
@@ -186,10 +200,10 @@ Not exercised by a 5-second synthetic scene. Each item is a known gap, not a fai
 
 | Criterion | Status | Evidence |
 |---|---|---|
-| A 5-second 3840x2160 render of a synthetic scene | MET | GREEN run 36289049340; ffprobe in section 3 |
-| … through the BRAG pipeline | MET for the render tail | BRAG c893c5ed step 4 ran end to end in CI: `check --strict`, `render --quality high`, poster pick, frame-0 bake, with one documented deviation (`use_metadata_tags`, section 5). BRAG's agent-authoring steps are out of scope for a toolchain spike (section 5) |
+| A 5-second 3840x2160 render of a synthetic scene | MET | GREEN run 36292638629; ffprobe in section 3 |
+| … through the BRAG pipeline | MET for the render tail | BRAG c893c5ed step 4 ran end to end in CI: `check --strict`, `render --quality high`, poster pick, frame-0 bake, with two documented deviations (`use_metadata_tags`, and the bake's `mv` on its own line so a failed bake fails the step; section 5). BRAG's agent-authoring steps are out of scope for a toolchain spike (section 5) |
 | Toolchain versions pinned in TOOLCHAIN.md | MET | Section 1 |
-| Render time and machine load measured | MET | Section 4: four render runs and two bake runs |
+| Render time and machine load measured | MET | Section 4: five render runs and three bake runs |
 | Renders on a machine the owner approves, never during the owner's meetings | MET, ASSUMED | Section 2. Owner confirmation that a GitHub-hosted runner is the approved machine is still open |
 
 ## 7. Reproduce
