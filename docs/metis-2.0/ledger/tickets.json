@@ -1379,9 +1379,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/1",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 11)"
+   }
   },
   {
    "id": "M2-0021",
@@ -2332,9 +2337,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/228",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 11)"
+   }
   },
   {
    "id": "M2-0038",
@@ -3381,9 +3391,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/6",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 11)"
+   }
   },
   {
    "id": "M2-0058",
@@ -5954,10 +5969,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
    "claimed_at": "2026-09-26",
-   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac."
+   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/7",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 11)",
+    "note": "DESIGNED level; captures are a superseded HTML mock per OD-12 — re-capture from the Electron renderer in CI is pending (M2-0007 lane merged)"
+   }
   },
   {
    "id": "M2-0102",
