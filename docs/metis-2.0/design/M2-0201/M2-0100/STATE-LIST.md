@@ -16,4 +16,3 @@ Keyboard path: Cmd/Ctrl+K opens Agent Home; Tab moves through agents; Enter open
 | Reduced motion | All | Static orb glyphs, no idle loops | Continuous animation |
 
 Screenshot matrix: `screenshots/prototype-matrix.svg`.
-

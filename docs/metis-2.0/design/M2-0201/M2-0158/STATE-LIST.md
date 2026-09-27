@@ -16,4 +16,3 @@ Keyboard path: G then D opens Data health; G then S opens Speech readiness; Tab 
 | Reduced motion | Portal | Static map/cards and no animated counters | Counting animation as only cue |
 
 Screenshot matrix: `screenshots/prototype-matrix.svg`.
-

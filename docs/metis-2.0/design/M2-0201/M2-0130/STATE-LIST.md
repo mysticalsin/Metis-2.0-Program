@@ -16,4 +16,3 @@ Keyboard path: Cmd/Ctrl+1 opens Briefings; Cmd/Ctrl+2 opens Meetings and actions
 | Reduced motion | Workspace | Static transitions and no graph fly-in | Animated node storm |
 
 Screenshot matrix: `screenshots/prototype-matrix.svg`.
-

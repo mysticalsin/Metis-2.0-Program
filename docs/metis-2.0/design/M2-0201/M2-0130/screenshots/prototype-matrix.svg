@@ -9,4 +9,3 @@
   <g transform="translate(228 348)"><rect class="card" width="350" height="230" fill="#111317" stroke="#3b414a"/><text x="20" y="34" class="s" fill="#f4f2ec">Dark 2x: graph advanced</text><circle cx="100" cy="115" r="20" fill="#8fb6ff"/><circle cx="170" cy="85" r="16" fill="#c1d4ff"/><circle cx="226" cy="138" r="18" fill="#c1d4ff"/><line x1="116" y1="107" x2="156" y2="91" stroke="#73849f"/><line x1="118" y1="122" x2="210" y2="136" stroke="#73849f"/><text x="72" y="186" class="m" fill="#bfc7d5">Clustered cap before render.</text></g>
   <g transform="translate(620 348)"><rect class="card" width="350" height="230" fill="#fff" stroke="#c8c1b6"/><text x="20" y="34" class="s">Reduced motion</text><rect x="42" y="76" width="266" height="92" rx="8" fill="#f5f6f8" stroke="#c6ccd6"/><text x="60" y="110" class="m">Drawer opens without slide.</text><text x="60" y="140" class="m">Graph has no fly-in.</text></g>
 </svg>
-

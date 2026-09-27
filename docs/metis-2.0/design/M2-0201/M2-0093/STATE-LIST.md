@@ -15,4 +15,3 @@ Keyboard path: Tab to orb button; Enter or Space opens typing only; Escape colla
 | Reduced motion | Both | Static orb pose, no shimmer; level shown as stepped opacity | Continuous animation |
 
 Screenshot matrix: `screenshots/prototype-matrix.svg`.
-

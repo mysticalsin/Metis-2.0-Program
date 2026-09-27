@@ -16,4 +16,3 @@ Keyboard path: Cmd/Ctrl+F focuses search; Tab reaches destination nav, readiness
 | Reduced motion | Settings | No animated disclosure flourish | Motion-only feedback |
 
 Screenshot matrix: `screenshots/prototype-matrix.svg`.
-

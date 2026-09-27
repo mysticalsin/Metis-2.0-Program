@@ -16,4 +16,3 @@ Keyboard path: Cmd/Ctrl+M opens memory review; Tab reaches approve/forget; Enter
 | Reduced motion | Panel | Static status changes | Animated recall trail |
 
 Screenshot matrix: `screenshots/prototype-matrix.svg`.
-

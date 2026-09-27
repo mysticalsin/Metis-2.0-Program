@@ -9,4 +9,3 @@
   <g transform="translate(228 348)"><rect class="card" width="350" height="230" fill="#111317" stroke="#3b414a"/><text x="20" y="34" class="s" fill="#f4f2ec">Dark 2x: partial usage</text><rect x="48" y="66" width="254" height="116" rx="8" fill="#171b22" stroke="#3d4654"/><text x="68" y="100" class="m" fill="#f4f2ec">Measured: 42 min</text><text x="68" y="130" class="m" fill="#f4f2ec">Estimated: 11 min</text><text x="68" y="160" class="m" fill="#bfc7d5">Unavailable remains separate.</text></g>
   <g transform="translate(620 348)"><rect class="card" width="350" height="230" fill="#fff" stroke="#c8c1b6"/><text x="20" y="34" class="s">Reduced motion</text><rect x="42" y="76" width="266" height="92" rx="8" fill="#f5f6f8" stroke="#c6ccd6"/><text x="60" y="110" class="m">No animated counters.</text><text x="60" y="140" class="m">Map and cards update statically.</text></g>
 </svg>
-

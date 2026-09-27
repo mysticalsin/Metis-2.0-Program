@@ -16,4 +16,3 @@ Keyboard path: Tab enters task card; Enter expands details; Space toggles pause/
 | Reduced motion | Any | Static step changes and polite status text | Animated progress sweep |
 
 Screenshot matrix: `screenshots/prototype-matrix.svg`.
-

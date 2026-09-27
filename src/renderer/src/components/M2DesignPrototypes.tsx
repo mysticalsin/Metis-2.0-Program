@@ -101,8 +101,10 @@ function Orb({ reduced }: { reduced?: boolean }): JSX.Element {
 }
 
 function PrototypePanel({ spec, mode, scale, reduced = false }: { spec: PrototypeSpec; mode: 'light' | 'dark'; scale: '1x' | '2x'; reduced?: boolean }): JSX.Element {
+  const variant = reduced ? 'reduced-motion' : `${mode}-${scale}`
+
   return (
-    <section className={`m2-panel ${mode} scale-${scale}`} data-ticket={spec.ticket} data-variant={`${mode}-${scale}${reduced ? '-reduced' : ''}`}>
+    <section className={`m2-panel ${mode} scale-${scale}`} data-ticket={spec.ticket} data-variant={variant}>
       <header>
         <Orb reduced={reduced} />
         <div>

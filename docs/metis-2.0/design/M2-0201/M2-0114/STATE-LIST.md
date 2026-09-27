@@ -16,4 +16,3 @@ Keyboard path: Ctrl/Cmd+L focuses quiet assistance; Enter drafts a typed reply; 
 | Reduced motion | Rail/drawer | Instant transitions and static capture icon | Pulsing recording animation |
 
 Screenshot matrix: `screenshots/prototype-matrix.svg`.
-

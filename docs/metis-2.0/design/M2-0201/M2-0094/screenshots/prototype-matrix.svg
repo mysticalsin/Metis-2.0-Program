@@ -10,4 +10,3 @@
   <g transform="translate(228 348)"><rect class="card" width="350" height="230" fill="#111317" stroke="#3b414a"/><text x="20" y="34" class="s" fill="#f4f2ec">Dark 2x: quiet call mode</text><rect x="34" y="72" width="282" height="92" rx="8" fill="#171b22" stroke="#3d4654"/><text x="52" y="103" class="m" fill="#f4f2ec">Typed reply ready</text><text x="52" y="132" class="m" fill="#bfc7d5">No TTS. Low motion.</text></g>
   <g transform="translate(620 348)"><rect class="card" width="350" height="230" fill="#fff" stroke="#c8c1b6"/><text x="20" y="34" class="s">Reduced motion</text><rect x="34" y="70" width="282" height="106" rx="8" fill="#f5f6f8" stroke="#c6ccd6"/><text x="52" y="103" class="m">Step changes update instantly.</text><text x="52" y="132" class="m">No progress sweep animation.</text></g>
 </svg>
-

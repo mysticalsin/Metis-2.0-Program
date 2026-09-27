@@ -9,4 +9,3 @@
   <g transform="translate(228 348)"><rect class="card" width="350" height="230" fill="#111317" stroke="#3b414a"/><text x="20" y="34" class="s" fill="#f4f2ec">Dark 2x: forget confirm</text><rect x="48" y="66" width="254" height="116" rx="8" fill="#21181b" stroke="#cc6670"/><text x="68" y="100" class="m" fill="#ffd9dd">Forget this memory?</text><text x="68" y="132" class="m" fill="#ffd9dd">Scope and effect are explicit.</text></g>
   <g transform="translate(620 348)"><rect class="card" width="350" height="230" fill="#fff" stroke="#c8c1b6"/><text x="20" y="34" class="s">Reduced motion</text><rect x="42" y="76" width="266" height="92" rx="8" fill="#f5f6f8" stroke="#c6ccd6"/><text x="60" y="110" class="m">Static status changes.</text><text x="60" y="140" class="m">No recall trail animation.</text></g>
 </svg>
-

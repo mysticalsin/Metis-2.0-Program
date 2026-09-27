@@ -9,4 +9,3 @@
   <g transform="translate(228 348)"><rect class="card" width="350" height="230" fill="#111317" stroke="#3b414a"/><text x="20" y="34" class="s" fill="#f4f2ec">Dark 2x: policy changed</text><rect x="34" y="64" width="282" height="94" rx="8" fill="#2b2415" stroke="#d2a33d"/><text x="52" y="94" class="m" fill="#ffe7aa">Next session: Cloudflare</text><text x="52" y="124" class="m" fill="#ffe7aa">Current meeting unchanged.</text></g>
   <g transform="translate(620 348)"><rect class="card" width="350" height="230" fill="#fff" stroke="#c8c1b6"/><text x="20" y="34" class="s">Reduced motion</text><rect x="42" y="76" width="266" height="94" rx="8" fill="#f5f6f8" stroke="#c6ccd6"/><text x="60" y="110" class="m">Disclosure opens instantly.</text><text x="60" y="140" class="m">Feedback uses text and icons.</text></g>
 </svg>
-

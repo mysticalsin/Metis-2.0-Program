@@ -16,4 +16,3 @@ Keyboard path: Tab follows scene order; Enter activates primary; Escape pauses s
 | Reduced motion | Onboarding | Static scene changes and no parallax | Motion-only explanation |
 
 Screenshot matrix: `screenshots/prototype-matrix.svg`.
-
