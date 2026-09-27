@@ -45,7 +45,7 @@ here is copied yet.
 | File | Size | Why excluded |
 |---|---:|---|
 | `tasks/WINDOWS-SIGNING/build-workflow-result.json` | 98.5 KB | Raw CI-run artifact; no finding, ticket or TRACEABILITY row cites it as needed. Adds bulk with no reviewed narrative value. |
-| `receipts/` (28 files, 3.0 MB total — `baseline-desktop.json` alone is 2.5 MB) | 3.0 MB | Raw CI/test-run logs and JSON, not cited by K09-R23 or any downstream ticket dependency found in TRACEABILITY. **They also contain email-pattern strings this ticket did not anticipate** (see §2, "found beyond the ticket's 3") — including them would need its own separate mask/count decision. |
+| `receipts/` (28 files, 3.0 MB total — `baseline-desktop.json` alone is 2.5 MB) | 3.0 MB | Mostly raw CI/test-run logs and JSON, plus a release note, a reviewer-qualification report and a SHA256SUMS file; none of the 28 files are cited by K09-R23 or any downstream ticket dependency found in TRACEABILITY. **Some also contain email-pattern strings this ticket did not anticipate** (see §2, "found beyond the ticket's 3") — including any of them would need its own separate mask/count decision. |
 
 ### Excluded, not a choice — named per the required-changes instruction
 
@@ -64,8 +64,8 @@ the local part leak). This is the finding K09-R23 was opened for.
 
 | File | What | Count |
 |---|---|---:|
-| `receipts/baseline-desktop.json` | Same partial-mask pattern (`x***y@amaris.com`) | 4 |
-| `receipts/baseline-desktop.json` | A generic company alias, not a personal address (`support@mantu.com`) | 2 |
+| `receipts/baseline-desktop.json` | Partly masked addresses at a corporate domain, same pattern as the ticket's 3 | 4 |
+| `receipts/baseline-desktop.json` | A generic support alias at the company domain, not a personal address | 2 |
 | `receipts/baseline-operator.json` | An **unmasked** email-shaped string inside a CI test title — reads as a test fixture value, not confirmed as anyone's real address | 2 |
 | `receipts/npm-ci.log` | A third-party open-source maintainer's public contact address, from npm package metadata, unrelated to this program | 1 |
 
@@ -114,9 +114,13 @@ whatever you're comfortable leaving as the approval trail), the next agent on th
    redaction count, and the mask token used, plus the exclusions list (naming the `.wrangler`
    cache explicitly).
 4. Runs `gitleaks detect --no-git --source docs/metis-2.0/review/prior-exec` and an email-regex
-   scan over the copies (must be 0 matches) with a control count over the untouched source
-   `service-register.md` (3, or 4 if you said yes to question 3), and confirms the source's
-   sha256 values are unchanged before and after.
+   scan over the copies (must be 0 matches), with a control count over the untouched source
+   `service-register.md` of exactly 3 email matches regardless of your answers — the account-ID
+   suffix in question 3 is not an email and is never part of this count. If you said yes to
+   question 3, the account-ID mask is recorded as its own, separate redaction in `MANIFEST.json`
+   (its own token, not the email mask, and not part of the email-regex count), so `MANIFEST.json`
+   shows 3 redactions total, or 4 if you said yes to question 3. Confirms the source's sha256
+   values are unchanged before and after.
 5. Pastes the exit codes and counts — never the matched text — into the PR as evidence.
 
 No copy, mask, or commit happens before that. This file is the only thing this round of the
