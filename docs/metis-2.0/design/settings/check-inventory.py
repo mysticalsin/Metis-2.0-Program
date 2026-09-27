@@ -141,8 +141,13 @@ def problems(inventory, fields):
     for k in keys:
         top = re.split(r"[.\[]", k["key"], maxsplit=1)[0]
         by_top.setdefault(top, []).append(k["key"])
-    for top, entries in by_top.items():
-        if top not in fields:
+    # A key that a later ticket adds (`planned_by`) is the only entry allowed outside the schema, and only
+    # until it lands there.
+    planned = {k["key"]: k["planned_by"] for k in keys if "planned_by" in k}
+    for top in by_top:
+        if top in planned and top in fields:
+            out.append(f"{top}: in BaseSettingsSchema, so no longer planned by {planned[top]}")
+        elif top not in planned and top not in fields:
             out.append(f"{top}: inventoried but not in BaseSettingsSchema")
     for top, paths in fields.items():
         entries = set(by_top.get(top, []))
@@ -228,7 +233,8 @@ def main():
     found = problems(inventory, fields)
     settings_keys = [k for k in inventory["keys"] if k["store"] == "settings"]
     print(f"base {inventory['base_commit'][:12]}: {len(fields)} schema keys, "
-          f"{sum(len(v) for v in fields.values())} leaf paths; {len(settings_keys)} settings entries, "
+          f"{sum(len(v) for v in fields.values())} leaf paths; {len(settings_keys)} settings entries "
+          f"({sum('planned_by' in k for k in settings_keys)} planned), "
           f"{len(inventory['keys']) - len(settings_keys)} non-schema entries, {len(inventory['controls'])} controls")
     print("classes:", ", ".join(f"{c} {n}" for c, n in sorted(Counter(k["class"] for k in inventory["keys"]).items())))
     print("controls per destination:",
