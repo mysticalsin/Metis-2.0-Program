@@ -1,0 +1,5672 @@
+{
+ "schema": "metis.settings-inventory.v1",
+ "ticket": "M2-0101",
+ "base_commit": "7dab8e8964e9b2814cd1477a9a7b724628a04d6a",
+ "schema_source": "src/shared/ipc.ts:926-1488 (BaseSettingsSchema)",
+ "classes": {
+  "KEEP": "An everyday control in one of the four destinations, same key and meaning (it may be relabelled). A state key with no control is KEEP when it is persisted unchanged.",
+  "MERGE": "Kept in storage, but edited through one control shared with other keys; the control maps each of its values to exact key values.",
+  "ADVANCED": "Kept, reachable only through a labelled disclosure (the Advanced drawer or a disclosure inside a destination) and through search.",
+  "OPERATOR-ONLY": "No device control. The value comes from the organization (managed policy, Operator, the server); the device shows the effective value read-only where it matters.",
+  "DEPRECATED": "No control and no new writes. Read only for migration or backward compatibility, then removed by a versioned migration.",
+  "PLATFORM-SPECIFIC": "Exists only on the platforms where it has an effect; other platforms neither show nor search it."
+ },
+ "destinations": [
+  {
+   "id": "general",
+   "label": "General",
+   "summary": "How Métis looks, where it sits, its language, shortcuts and sounds.",
+   "groups": [
+    {
+     "id": "appearance",
+     "label": "Appearance"
+    },
+    {
+     "id": "language",
+     "label": "Language"
+    },
+    {
+     "id": "shortcuts",
+     "label": "Keyboard shortcuts"
+    },
+    {
+     "id": "sounds",
+     "label": "Sounds and motion"
+    },
+    {
+     "id": "startup",
+     "label": "Startup"
+    }
+   ]
+  },
+  {
+   "id": "voice",
+   "label": "Voice & meetings",
+   "summary": "Speech readiness, microphone, meeting participation and what happens during meetings.",
+   "groups": [
+    {
+     "id": "speech",
+     "label": "Speech"
+    },
+    {
+     "id": "microphone",
+     "label": "Microphone"
+    },
+    {
+     "id": "meetings",
+     "label": "Meetings"
+    },
+    {
+     "id": "live",
+     "label": "During meetings"
+    },
+    {
+     "id": "vocabulary",
+     "label": "Names and vocabulary",
+     "disclosure": true
+    },
+    {
+     "id": "local-speech",
+     "label": "Optional local speech",
+     "disclosure": true
+    },
+    {
+     "id": "desk-tap",
+     "label": "Desk tap control",
+     "disclosure": true
+    },
+    {
+     "id": "capture",
+     "label": "Capture"
+    }
+   ]
+  },
+  {
+   "id": "knowledge",
+   "label": "Knowledge & skills",
+   "summary": "Where knowledge lives, who it is shared with, skills, memory and knowledge sources.",
+   "groups": [
+    {
+     "id": "space",
+     "label": "Knowledge space"
+    },
+    {
+     "id": "sharing",
+     "label": "Sharing"
+    },
+    {
+     "id": "skills",
+     "label": "Skills and modes"
+    },
+    {
+     "id": "memory",
+     "label": "Memory"
+    },
+    {
+     "id": "about-you",
+     "label": "About you"
+    },
+    {
+     "id": "sources",
+     "label": "Source connections",
+     "disclosure": true
+    },
+    {
+     "id": "indexing",
+     "label": "Indexing and graph",
+     "disclosure": true
+    },
+    {
+     "id": "time-saved",
+     "label": "Time-saved estimate",
+     "disclosure": true
+    }
+   ]
+  },
+  {
+   "id": "privacy",
+   "label": "Privacy & account",
+   "summary": "Account, connected apps, what Métis can see, record and send, storage and retention, organization policy.",
+   "groups": [
+    {
+     "id": "account",
+     "label": "Account"
+    },
+    {
+     "id": "capture",
+     "label": "Recording and consent"
+    },
+    {
+     "id": "screen",
+     "label": "Screen"
+    },
+    {
+     "id": "sending",
+     "label": "What is sent to AI"
+    },
+    {
+     "id": "storage",
+     "label": "Storage and retention"
+    },
+    {
+     "id": "connected-apps",
+     "label": "Connected apps"
+    },
+    {
+     "id": "permissions",
+     "label": "System permissions"
+    },
+    {
+     "id": "policy",
+     "label": "Organization policy"
+    },
+    {
+     "id": "data",
+     "label": "Your data"
+    }
+   ]
+  },
+  {
+   "id": "advanced",
+   "label": "Advanced",
+   "drawer": true,
+   "summary": "Optional local generation and vision, approved personal and developer integrations, diagnostics.",
+   "groups": [
+    {
+     "id": "local-generation",
+     "label": "Optional local generation"
+    },
+    {
+     "id": "local-vision",
+     "label": "Optional local vision"
+    },
+    {
+     "id": "ai-providers",
+     "label": "Personal AI providers"
+    },
+    {
+     "id": "developer",
+     "label": "Developer integrations"
+    },
+    {
+     "id": "organization",
+     "label": "Organization connection"
+    },
+    {
+     "id": "diagnostics",
+     "label": "Diagnostics and updates"
+    }
+   ]
+  }
+ ],
+ "controls": [
+  {
+   "id": "general.overlay-layout",
+   "type": "picker",
+   "label": "Where Métis lives",
+   "help": "Hidden appears when you move the pointer to the top edge. Island keeps a small capsule visible. Bar stays on screen.",
+   "keys": [
+    "overlayLayout",
+    "autoHideOverlay"
+   ],
+   "synonyms": [
+    "hide",
+    "island",
+    "bar",
+    "notch",
+    "overlay",
+    "chrome",
+    "auto-hide"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "hide",
+     "label": "Hidden",
+     "maps": {
+      "overlayLayout": "hide",
+      "autoHideOverlay": true
+     }
+    },
+    {
+     "value": "island",
+     "label": "Island",
+     "maps": {
+      "overlayLayout": "island",
+      "autoHideOverlay": true
+     }
+    },
+    {
+     "value": "bar",
+     "label": "Bar",
+     "maps": {
+      "overlayLayout": "bar",
+      "autoHideOverlay": false
+     }
+    }
+   ],
+   "destination": "general",
+   "group": "appearance"
+  },
+  {
+   "id": "general.overlay-placement",
+   "type": "segmented",
+   "label": "Position",
+   "help": "Top center, or a right-edge sidecar you can drag up and down.",
+   "keys": [
+    "overlayPlacement"
+   ],
+   "synonyms": [
+    "placement",
+    "right edge",
+    "sidecar",
+    "top center",
+    "dock"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "top-center",
+     "label": "Top center"
+    },
+    {
+     "value": "right-edge",
+     "label": "Right edge"
+    }
+   ],
+   "destination": "general",
+   "group": "appearance"
+  },
+  {
+   "id": "general.bar-rest",
+   "type": "segmented",
+   "label": "Bar at rest",
+   "help": "What the bar shows while idle. Only applies to the Bar layout.",
+   "keys": [
+    "overlayOrbStyle"
+   ],
+   "synonyms": [
+    "orb",
+    "circle",
+    "jarvis",
+    "thinking orb"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "overlayLayout == 'bar'",
+   "options": [
+    {
+     "value": "jakub",
+     "label": "Circle"
+    },
+    {
+     "value": "obsidian",
+     "label": "Jarvis"
+    }
+   ],
+   "destination": "general",
+   "group": "appearance"
+  },
+  {
+   "id": "general.transparency",
+   "type": "slider",
+   "label": "Background transparency",
+   "help": "How much of your desktop shows through the bar.",
+   "keys": [
+    "overlayOpacity"
+   ],
+   "synonyms": [
+    "opacity",
+    "glass",
+    "see-through"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "range": {
+    "min": 0.3,
+    "max": 1.5,
+    "step": 0.05
+   },
+   "destination": "general",
+   "group": "appearance"
+  },
+  {
+   "id": "general.reset-position",
+   "type": "action",
+   "label": "Reset position",
+   "help": "Moves the right-edge sidecar back to its default height on every display.",
+   "keys": [
+    "overlayRightEdgeYByDisplay"
+   ],
+   "synonyms": [
+    "recenter",
+    "position",
+    "drag"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "overlayPlacement == 'right-edge'",
+   "destination": "general",
+   "group": "appearance"
+  },
+  {
+   "id": "general.quick-action-ring",
+   "type": "toggle",
+   "label": "Animated ring on quick actions",
+   "help": "Decorative. Off whenever your system asks for reduced motion.",
+   "keys": [
+    "quickActionsRainbow"
+   ],
+   "synonyms": [
+    "rainbow",
+    "animation",
+    "quick actions"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "disclosure": true,
+   "destination": "general",
+   "group": "appearance"
+  },
+  {
+   "id": "general.answer-language",
+   "type": "select",
+   "label": "Answer language",
+   "help": "Language for answers and live help.",
+   "keys": [
+    "outputLanguage"
+   ],
+   "synonyms": [
+    "language",
+    "translate",
+    "french",
+    "english"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "auto",
+     "label": "Match the conversation"
+    },
+    {
+     "value": "*",
+     "label": "LANGUAGE_OPTIONS (src/shared/lang-id.ts)"
+    }
+   ],
+   "destination": "general",
+   "group": "language"
+  },
+  {
+   "id": "general.summary-language",
+   "type": "select",
+   "label": "Summary language",
+   "help": "A different language for saved summaries and recaps.",
+   "keys": [
+    "summaryLanguage"
+   ],
+   "synonyms": [
+    "recap language",
+    "notes language"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "disclosure": true,
+   "options": [
+    {
+     "value": "auto",
+     "label": "Same as answers"
+    },
+    {
+     "value": "*",
+     "label": "LANGUAGE_OPTIONS (src/shared/lang-id.ts)"
+    }
+   ],
+   "destination": "general",
+   "group": "language"
+  },
+  {
+   "id": "general.shortcuts",
+   "type": "shortcut-list",
+   "label": "Keyboard shortcuts",
+   "help": "Select a shortcut to change it.",
+   "keys": [
+    "shortcuts"
+   ],
+   "synonyms": [
+    "hotkeys",
+    "keybinds",
+    "keyboard"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "general",
+   "group": "shortcuts"
+  },
+  {
+   "id": "general.sounds",
+   "type": "segmented",
+   "label": "Sounds",
+   "help": "Clicks are soft taps on buttons. Answer cues play when an answer is ready or fails.",
+   "keys": [
+    "uiSounds",
+    "soundCues"
+   ],
+   "synonyms": [
+    "sound",
+    "audio feedback",
+    "click",
+    "cue",
+    "silent"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "off",
+     "label": "Off",
+     "maps": {
+      "uiSounds": false
+     }
+    },
+    {
+     "value": "clicks",
+     "label": "Clicks only",
+     "maps": {
+      "uiSounds": true,
+      "soundCues": false
+     }
+    },
+    {
+     "value": "all",
+     "label": "Clicks and cues",
+     "maps": {
+      "uiSounds": true,
+      "soundCues": true
+     }
+    }
+   ],
+   "destination": "general",
+   "group": "sounds"
+  },
+  {
+   "id": "general.motion",
+   "type": "readout",
+   "label": "Motion",
+   "help": "Follows your system's reduced motion setting.",
+   "keys": [],
+   "synonyms": [
+    "reduce motion",
+    "animation",
+    "accessibility"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "general",
+   "group": "sounds"
+  },
+  {
+   "id": "general.launch-at-login",
+   "type": "toggle",
+   "label": "Open Métis when you sign in",
+   "help": "",
+   "keys": [
+    "launchAtLogin",
+    "loginItem"
+   ],
+   "synonyms": [
+    "login",
+    "startup",
+    "autostart",
+    "boot"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "general",
+   "group": "startup"
+  },
+  {
+   "id": "general.replay-setup",
+   "type": "action",
+   "label": "Replay setup",
+   "help": "Runs the welcome and setup again. Your settings do not change.",
+   "keys": [
+    "onboardingDone"
+   ],
+   "synonyms": [
+    "onboarding",
+    "tour",
+    "welcome"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "general",
+   "group": "startup"
+  },
+  {
+   "id": "general.quit",
+   "type": "action",
+   "label": "Quit Métis",
+   "help": "",
+   "keys": [],
+   "synonyms": [
+    "exit",
+    "close app"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "general",
+   "group": "startup"
+  },
+  {
+   "id": "voice.speech-processing",
+   "type": "route",
+   "label": "Speech processing",
+   "help": "Turns meeting and command audio into text. Choosing where speech is processed is a privacy choice: it never changes on its own.",
+   "keys": [
+    "cloudSttProvider"
+   ],
+   "synonyms": [
+    "speech",
+    "transcription",
+    "stt",
+    "asr",
+    "cloudflare",
+    "nova",
+    "soniox",
+    "offline",
+    "local",
+    "cloud"
+   ],
+   "apply": "confirm",
+   "timing": "next-session",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "cloudflare-nova3",
+     "label": "Cloudflare"
+    },
+    {
+     "value": "local",
+     "label": "Local speech on this device",
+     "maps": {
+      "cloudSttProvider": "unconfigured"
+     },
+     "requires": "an installed, verified local pack; otherwise choosing it opens Optional local speech"
+    },
+    {
+     "value": "soniox",
+     "label": "Soniox",
+     "visible_when": "organization allows soniox"
+    }
+   ],
+   "destination": "voice",
+   "group": "speech"
+  },
+  {
+   "id": "voice.speech-issues",
+   "type": "notice-list",
+   "label": "Recent speech issues",
+   "help": "Problems from recent meetings, with what to do. Dismiss each once handled.",
+   "keys": [
+    "asrLastFallbackAt",
+    "asrWebgpuFallbackAt",
+    "asrImportTierFallbackAt",
+    "micOnlyFallbackAt"
+   ],
+   "synonyms": [
+    "fallback",
+    "microphone only",
+    "system audio",
+    "screen recording",
+    "missing audio"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "speech"
+  },
+  {
+   "id": "voice.spoken-language",
+   "type": "select",
+   "label": "Spoken language",
+   "help": "The language meetings usually start in. Auto detects it. Applies immediately, even during a meeting.",
+   "keys": [
+    "asrLanguage"
+   ],
+   "synonyms": [
+    "language",
+    "accent",
+    "detect",
+    "multilingual"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "auto",
+     "label": "Detect automatically"
+    },
+    {
+     "value": "*",
+     "label": "LANGUAGE_OPTIONS (src/shared/lang-id.ts)"
+    }
+   ],
+   "destination": "voice",
+   "group": "speech"
+  },
+  {
+   "id": "voice.microphone",
+   "type": "device-select",
+   "label": "Microphone",
+   "help": "System default follows your computer's input. Test plays back a short level check.",
+   "keys": [
+    "micDeviceId"
+   ],
+   "synonyms": [
+    "mic",
+    "input",
+    "headset",
+    "airpods",
+    "test sound"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "microphone"
+  },
+  {
+   "id": "voice.listen-to",
+   "type": "segmented",
+   "label": "Listen to",
+   "help": "Whose audio Métis transcribes in a meeting.",
+   "keys": [
+    "audioSource"
+   ],
+   "synonyms": [
+    "system audio",
+    "others",
+    "record",
+    "both"
+   ],
+   "apply": "immediate",
+   "timing": "next-session",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "mic",
+     "label": "Me"
+    },
+    {
+     "value": "system",
+     "label": "Others"
+    },
+    {
+     "value": "both",
+     "label": "Both"
+    }
+   ],
+   "destination": "voice",
+   "group": "microphone"
+  },
+  {
+   "id": "voice.wake",
+   "type": "toggle",
+   "label": "Hey Métis",
+   "help": "Off until you turn it on. Detection runs on this device.",
+   "keys": [],
+   "synonyms": [
+    "wake word",
+    "voice activation",
+    "hands-free"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "planned_by": "M2-0081",
+   "destination": "voice",
+   "group": "microphone"
+  },
+  {
+   "id": "voice.meeting-assistant",
+   "type": "segmented",
+   "label": "Meeting assistant",
+   "help": "Manual, or join eligible meetings automatically. You can skip any single meeting.",
+   "keys": [],
+   "synonyms": [
+    "teams",
+    "attendance",
+    "auto join",
+    "bot",
+    "record"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "manual",
+     "label": "Manual"
+    },
+    {
+     "value": "automatic",
+     "label": "Automatic for eligible meetings"
+    }
+   ],
+   "planned_by": "M2-0153",
+   "destination": "voice",
+   "group": "meetings"
+  },
+  {
+   "id": "voice.today",
+   "type": "meeting-list",
+   "label": "Today",
+   "help": "Today's meetings, whether each is eligible, and Skip for one meeting.",
+   "keys": [],
+   "synonyms": [
+    "agenda",
+    "calendar",
+    "outlook",
+    "skip",
+    "pause"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "planned_by": "M2-0153",
+   "destination": "voice",
+   "group": "meetings"
+  },
+  {
+   "id": "voice.meeting-alerts",
+   "type": "toggle",
+   "label": "Alert me a minute before meetings",
+   "help": "",
+   "keys": [
+    "meetingNotifications"
+   ],
+   "synonyms": [
+    "notification",
+    "reminder",
+    "calendar"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "meetings"
+  },
+  {
+   "id": "voice.recording-chime",
+   "type": "toggle",
+   "label": "Play a chime when recording starts",
+   "help": "Lets everyone hear the moment Métis starts listening.",
+   "keys": [
+    "playListenChime"
+   ],
+   "synonyms": [
+    "chime",
+    "tone",
+    "notice",
+    "record"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "meetings"
+  },
+  {
+   "id": "voice.speaker-labels",
+   "type": "toggle",
+   "label": "Label speakers by voice",
+   "help": "Recognizes who is speaking from voice characteristics. Runs on this device.",
+   "keys": [
+    "speakerId"
+   ],
+   "synonyms": [
+    "speaker identification",
+    "diarization",
+    "voice print",
+    "who is speaking"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "meetings"
+  },
+  {
+   "id": "voice.auto-answer",
+   "type": "toggle",
+   "label": "Suggest replies automatically",
+   "help": "Drafts a reply when someone asks you a question.",
+   "keys": [
+    "autoSuggest"
+   ],
+   "synonyms": [
+    "auto-answer",
+    "copilot",
+    "suggestion"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "live"
+  },
+  {
+   "id": "voice.auto-answer-cooldown",
+   "type": "slider",
+   "label": "Wait between suggestions",
+   "help": "",
+   "keys": [
+    "suggestEverySec"
+   ],
+   "synonyms": [
+    "cooldown",
+    "frequency"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "disclosure": true,
+   "visible_when": "autoSuggest",
+   "range": {
+    "min": 5,
+    "max": 120,
+    "step": 5
+   },
+   "destination": "voice",
+   "group": "live"
+  },
+  {
+   "id": "voice.prepare-suggestions",
+   "type": "toggle",
+   "label": "Prepare suggestions ahead",
+   "help": "Faster answers, uses more credits during meetings.",
+   "keys": [
+    "instantSuggestions"
+   ],
+   "synonyms": [
+    "instant",
+    "credits",
+    "prefetch"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "disclosure": true,
+   "destination": "voice",
+   "group": "live"
+  },
+  {
+   "id": "voice.live-transcript",
+   "type": "toggle",
+   "label": "Show the live transcript",
+   "help": "",
+   "keys": [
+    "showLiveTranscript"
+   ],
+   "synonyms": [
+    "captions",
+    "transcript"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "live"
+  },
+  {
+   "id": "voice.review-transcript",
+   "type": "toggle",
+   "label": "Open finished meetings on the full transcript",
+   "help": "Off opens the summary first.",
+   "keys": [
+    "showFullTranscriptInReview"
+   ],
+   "synonyms": [
+    "review",
+    "summary first"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "disclosure": true,
+   "destination": "voice",
+   "group": "live"
+  },
+  {
+   "id": "voice.known-names",
+   "type": "toggle",
+   "label": "Spell known names correctly",
+   "help": "Uses people and account names from your meetings.",
+   "keys": [
+    "asrEntityBias"
+   ],
+   "synonyms": [
+    "names",
+    "spelling",
+    "entity"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "vocabulary"
+  },
+  {
+   "id": "voice.corrections",
+   "type": "pair-list",
+   "label": "Word corrections",
+   "help": "Words transcription keeps getting wrong, and what they should be.",
+   "keys": [
+    "asrCorrections"
+   ],
+   "synonyms": [
+    "vocabulary",
+    "mishear",
+    "custom words"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "vocabulary"
+  },
+  {
+   "id": "voice.local-speech-packs",
+   "type": "pack-list",
+   "label": "Local speech packs",
+   "help": "Optional. Nothing is downloaded or selected until you choose. Downloading contacts the approved asset host; local speech itself sends no audio to the cloud.",
+   "keys": [
+    "asrEngine"
+   ],
+   "synonyms": [
+    "offline",
+    "local",
+    "on-device",
+    "parakeet",
+    "whisper",
+    "apple speech",
+    "download"
+   ],
+   "apply": "confirm",
+   "timing": "next-session",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "parakeet",
+     "label": "Parakeet"
+    },
+    {
+     "value": "whisper",
+     "label": "Whisper"
+    },
+    {
+     "value": "apple",
+     "label": "Apple Speech",
+     "platforms": [
+      "darwin"
+     ]
+    }
+   ],
+   "destination": "voice",
+   "group": "local-speech"
+  },
+  {
+   "id": "voice.local-quality",
+   "type": "segmented",
+   "label": "Local transcription quality",
+   "help": "Best is more accurate. Fast uses less of your computer.",
+   "keys": [
+    "asrQuality"
+   ],
+   "synonyms": [
+    "whisper quality",
+    "fast",
+    "best"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "local route and asrEngine == 'whisper'",
+   "options": [
+    {
+     "value": "best",
+     "label": "Best"
+    },
+    {
+     "value": "fast",
+     "label": "Fast"
+    }
+   ],
+   "destination": "voice",
+   "group": "local-speech"
+  },
+  {
+   "id": "voice.desk-tap",
+   "type": "calibration",
+   "label": "Desk tap control",
+   "help": "Tap your desk to trigger an action. Always armed keeps the microphone on between meetings.",
+   "keys": [
+    "tapControl"
+   ],
+   "synonyms": [
+    "tap",
+    "knock",
+    "gesture"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "desk-tap"
+  },
+  {
+   "id": "voice.stop-capture",
+   "type": "action",
+   "label": "Stop all capture",
+   "help": "Stops every microphone, system audio and screen capture right now.",
+   "keys": [],
+   "synonyms": [
+    "stop",
+    "pause",
+    "mute",
+    "record"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "voice",
+   "group": "capture"
+  },
+  {
+   "id": "knowledge.space",
+   "type": "readout",
+   "label": "Knowledge space",
+   "help": "My space or an approved team space, with sync health.",
+   "keys": [],
+   "synonyms": [
+    "team space",
+    "sync",
+    "brain"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "planned_by": "M2-0125",
+   "destination": "knowledge",
+   "group": "space"
+  },
+  {
+   "id": "knowledge.meetings-folder",
+   "type": "folder",
+   "label": "Meetings folder",
+   "help": "Where meetings are saved.",
+   "keys": [
+    "meetingsFolder"
+   ],
+   "synonyms": [
+    "folder",
+    "onedrive",
+    "storage",
+    "location"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "knowledge",
+   "group": "space"
+  },
+  {
+   "id": "knowledge.team-folders",
+   "type": "folder-list",
+   "label": "Team folders",
+   "help": "Shared folders whose meetings also feed your knowledge, labelled by folder name.",
+   "keys": [
+    "teamTranscriptFolders"
+   ],
+   "synonyms": [
+    "shared folder",
+    "team transcripts"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "knowledge",
+   "group": "space"
+  },
+  {
+   "id": "knowledge.publish-wiki",
+   "type": "toggle",
+   "label": "Publish readable meeting pages",
+   "help": "Writes plain-text account, people and meeting pages to your meetings folder so Dust can read them. Confidential meetings are excluded.",
+   "keys": [
+    "publishBrainPages"
+   ],
+   "synonyms": [
+    "wiki",
+    "dust",
+    "share",
+    "publish",
+    "plain text"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "knowledge",
+   "group": "sharing"
+  },
+  {
+   "id": "knowledge.skills",
+   "type": "skill-list",
+   "label": "Available skills",
+   "help": "Skills you can use, and your favorites.",
+   "keys": [],
+   "synonyms": [
+    "skills",
+    "favorite actions",
+    "recap templates"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "planned_by": "M2-0142",
+   "destination": "knowledge",
+   "group": "skills"
+  },
+  {
+   "id": "knowledge.default-mode",
+   "type": "select",
+   "label": "Active mode",
+   "help": "Shapes answers and recaps. Changed only here; the bar shows it.",
+   "keys": [
+    "mode",
+    "native:metis.mode"
+   ],
+   "synonyms": [
+    "mode",
+    "interview",
+    "sales",
+    "meeting",
+    "recruiting"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "general",
+     "label": "General"
+    },
+    {
+     "value": "meeting",
+     "label": "Meeting"
+    },
+    {
+     "value": "sales",
+     "label": "Sales"
+    },
+    {
+     "value": "cold-call",
+     "label": "Cold calling"
+    },
+    {
+     "value": "interview",
+     "label": "Interview"
+    },
+    {
+     "value": "recruiting",
+     "label": "Recruiting"
+    },
+    {
+     "value": "negotiation",
+     "label": "Negotiation"
+    },
+    {
+     "value": "presentation",
+     "label": "Presentation"
+    },
+    {
+     "value": "support",
+     "label": "Support"
+    },
+    {
+     "value": "*",
+     "label": "customModes"
+    }
+   ],
+   "destination": "knowledge",
+   "group": "skills"
+  },
+  {
+   "id": "knowledge.personal-instructions",
+   "type": "textarea",
+   "label": "Personal instructions",
+   "help": "Added to every answer.",
+   "keys": [
+    "systemPrompt"
+   ],
+   "synonyms": [
+    "custom instructions",
+    "prompt",
+    "system prompt"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "disclosure": true,
+   "destination": "knowledge",
+   "group": "skills"
+  },
+  {
+   "id": "knowledge.personal-modes",
+   "type": "mode-editor",
+   "label": "Personal modes",
+   "help": "Your own modes, their instructions and reference files.",
+   "keys": [
+    "modePrompts",
+    "contextDocs",
+    "customModes"
+   ],
+   "synonyms": [
+    "custom mode",
+    "context files",
+    "prompt"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "disclosure": true,
+   "destination": "knowledge",
+   "group": "skills"
+  },
+  {
+   "id": "knowledge.answer-style",
+   "type": "select",
+   "label": "Answer style",
+   "help": "How compressed typed answers are.",
+   "keys": [
+    "askCaveman"
+   ],
+   "synonyms": [
+    "caveman",
+    "concise",
+    "terse",
+    "short answers"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "disclosure": true,
+   "options": [
+    {
+     "value": "off",
+     "label": "Normal"
+    },
+    {
+     "value": "lite",
+     "label": "Short"
+    },
+    {
+     "value": "full",
+     "label": "Shorter"
+    },
+    {
+     "value": "ultra",
+     "label": "Shortest"
+    },
+    {
+     "value": "wenyan-lite",
+     "label": "Classical, short"
+    },
+    {
+     "value": "wenyan-full",
+     "label": "Classical, shorter"
+    },
+    {
+     "value": "wenyan-ultra",
+     "label": "Classical, shortest"
+    }
+   ],
+   "destination": "knowledge",
+   "group": "skills"
+  },
+  {
+   "id": "knowledge.follow-up-memory",
+   "type": "toggle",
+   "label": "Remember my recent questions",
+   "help": "For 10 minutes, a new question can refer to the last answers. Off: every question starts fresh.",
+   "keys": [
+    "askFollowUpMemory"
+   ],
+   "synonyms": [
+    "memory",
+    "conversation",
+    "context",
+    "follow-up"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "knowledge",
+   "group": "memory"
+  },
+  {
+   "id": "knowledge.memory",
+   "type": "readout",
+   "label": "What Métis remembers",
+   "help": "Inspect, correct or forget remembered facts. Organization-locked items say who manages them.",
+   "keys": [],
+   "synonyms": [
+    "memory",
+    "forget",
+    "correct",
+    "hindsight"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "planned_by": "M2-0137",
+   "destination": "knowledge",
+   "group": "memory"
+  },
+  {
+   "id": "knowledge.about-you",
+   "type": "profile-fields",
+   "label": "About you",
+   "help": "Used by interview and sales modes.",
+   "keys": [
+    "profile"
+   ],
+   "synonyms": [
+    "profile",
+    "resume",
+    "role",
+    "company",
+    "job description"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "knowledge",
+   "group": "about-you"
+  },
+  {
+   "id": "knowledge.dust-options",
+   "type": "connection-options",
+   "label": "Dust region and thinking agent",
+   "help": "The region of your Dust workspace and the agent used for harder questions. Connect or disconnect Dust in Privacy & account › Connected apps.",
+   "keys": [
+    "dustBaseUrl",
+    "providerModelsThinking[dust]"
+   ],
+   "synonyms": [
+    "region",
+    "eu",
+    "thinking agent",
+    "dust",
+    "source"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "knowledge",
+   "group": "sources"
+  },
+  {
+   "id": "knowledge.batch-indexing",
+   "type": "toggle",
+   "label": "Index meetings in batches",
+   "help": "Groups indexing into a few passes a day instead of after every meeting.",
+   "keys": [
+    "brainConsolidation.enabled"
+   ],
+   "synonyms": [
+    "consolidation",
+    "index",
+    "batch"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "knowledge",
+   "group": "indexing"
+  },
+  {
+   "id": "knowledge.batch-passes",
+   "type": "slider",
+   "label": "Passes per day",
+   "help": "",
+   "keys": [
+    "brainConsolidation.maxPassesPerDay"
+   ],
+   "synonyms": [
+    "consolidation"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "brainConsolidation.enabled",
+   "range": {
+    "min": 1,
+    "max": 4,
+    "step": 1
+   },
+   "destination": "knowledge",
+   "group": "indexing"
+  },
+  {
+   "id": "knowledge.graph",
+   "type": "toggle",
+   "label": "Build a knowledge graph",
+   "help": "Sends note text to the engine below to build the graph. Paused while meetings are encrypted.",
+   "keys": [
+    "graphifyEnabled"
+   ],
+   "synonyms": [
+    "graph",
+    "graphify",
+    "knowledge graph"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "knowledge",
+   "group": "indexing"
+  },
+  {
+   "id": "knowledge.graph-rebuild",
+   "type": "toggle",
+   "label": "Rebuild after each note",
+   "help": "",
+   "keys": [
+    "graphifyAutoRebuild"
+   ],
+   "synonyms": [
+    "graph"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "graphifyEnabled",
+   "destination": "knowledge",
+   "group": "indexing"
+  },
+  {
+   "id": "knowledge.graph-engine",
+   "type": "select",
+   "label": "Graph engine",
+   "help": "Which AI builds the graph.",
+   "keys": [
+    "graphifyBackend"
+   ],
+   "synonyms": [
+    "graph",
+    "claude",
+    "openai"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "graphifyEnabled",
+   "options": [
+    {
+     "value": "auto",
+     "label": "Automatic"
+    },
+    {
+     "value": "claude",
+     "label": "Claude"
+    },
+    {
+     "value": "openai",
+     "label": "OpenAI"
+    }
+   ],
+   "destination": "knowledge",
+   "group": "indexing"
+  },
+  {
+   "id": "knowledge.time-saved",
+   "type": "number-fields",
+   "label": "Time-saved estimate",
+   "help": "The assumptions behind the time-saved figure.",
+   "keys": [
+    "timeSaved"
+   ],
+   "synonyms": [
+    "time saved",
+    "roi",
+    "estimate"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "knowledge",
+   "group": "time-saved"
+  },
+  {
+   "id": "privacy.microsoft-account",
+   "type": "account",
+   "label": "Microsoft account",
+   "help": "Your work account and organization.",
+   "keys": [
+    "entraSession"
+   ],
+   "synonyms": [
+    "entra",
+    "sign in",
+    "outlook",
+    "microsoft",
+    "account"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "planned_by": "M2-0121",
+   "store": "session",
+   "destination": "privacy",
+   "group": "account"
+  },
+  {
+   "id": "privacy.licence",
+   "type": "licence",
+   "label": "Métis licence",
+   "help": "Connects this device to managed AI. No personal API key needed.",
+   "keys": [
+    "operatorLicenseToken",
+    "operatorLicenseJti",
+    "operatorLicenseLast4",
+    "operatorLicenseExpiresAt"
+   ],
+   "synonyms": [
+    "license",
+    "licence",
+    "seat",
+    "activate",
+    "key"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "account"
+  },
+  {
+   "id": "privacy.plan",
+   "type": "readout",
+   "label": "Your plan",
+   "help": "What your organization has turned on for you.",
+   "keys": [
+    "operatorTier",
+    "operatorEntitlements",
+    "operatorEntitlementsAt",
+    "operatorIntegrationsVersion"
+   ],
+   "synonyms": [
+    "entitlements",
+    "tier",
+    "features"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "account"
+  },
+  {
+   "id": "privacy.sign-out",
+   "type": "action",
+   "label": "Sign out",
+   "help": "",
+   "keys": [],
+   "synonyms": [
+    "log out",
+    "logout"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "store": "session",
+   "destination": "privacy",
+   "group": "account"
+  },
+  {
+   "id": "privacy.recording-consent",
+   "type": "toggle",
+   "label": "I tell participants before I record",
+   "help": "Métis cannot notify other participants. Telling them is on you, as your policy and local law require.",
+   "keys": [
+    "recordingConsent",
+    "native:metis.consent"
+   ],
+   "synonyms": [
+    "consent",
+    "record",
+    "participants",
+    "legal"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "capture"
+  },
+  {
+   "id": "privacy.consent-reminder",
+   "type": "toggle",
+   "label": "Remind me every time recording starts",
+   "help": "",
+   "keys": [
+    "requireConsentIndicator"
+   ],
+   "synonyms": [
+    "consent",
+    "reminder",
+    "record"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "capture"
+  },
+  {
+   "id": "privacy.hide-in-shares",
+   "type": "toggle",
+   "label": "Hide Métis in screen shares",
+   "help": "Others never see the Métis window when you share your screen. Does not affect what Métis sees.",
+   "keys": [
+    "contentProtection"
+   ],
+   "synonyms": [
+    "content protection",
+    "screen share",
+    "invisible",
+    "undetectable"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "screen"
+  },
+  {
+   "id": "privacy.private-view",
+   "type": "toggle",
+   "label": "Private View",
+   "help": "Métis does not look at or capture your screen while this is on.",
+   "keys": [
+    "privateView"
+   ],
+   "synonyms": [
+    "screen",
+    "privacy",
+    "capture"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "screen"
+  },
+  {
+   "id": "privacy.screen-ask",
+   "type": "toggle",
+   "label": "Let Métis see your screen when you ask",
+   "help": "Only the Capture button, its shortcut, quick actions and Enter on an empty box. Typed questions never capture.",
+   "keys": [
+    "screenAsk"
+   ],
+   "synonyms": [
+    "screenshot",
+    "capture",
+    "screen"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "screen"
+  },
+  {
+   "id": "privacy.background-screen",
+   "type": "toggle",
+   "label": "Read my screen in the background, on this device",
+   "help": "Reads the screen when you switch windows so screen questions answer instantly. Nothing extra leaves this device. Private View turns it off.",
+   "keys": [
+    "backgroundScreenContext"
+   ],
+   "synonyms": [
+    "screen context",
+    "preload",
+    "ocr",
+    "background"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "screen"
+  },
+  {
+   "id": "privacy.redact",
+   "type": "toggle",
+   "label": "Remove secrets before sending to AI",
+   "help": "Strips card numbers, API keys, national IDs and private keys from transcripts sent to AI. Screenshots are not redacted.",
+   "keys": [
+    "redactSensitive"
+   ],
+   "synonyms": [
+    "redact",
+    "pii",
+    "sensitive",
+    "secrets"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "sending"
+  },
+  {
+   "id": "privacy.encrypt",
+   "type": "toggle",
+   "label": "Encrypt saved meetings",
+   "help": "Saved meetings stay unreadable outside Métis, even in a synced folder.",
+   "keys": [
+    "encryptTranscripts"
+   ],
+   "synonyms": [
+    "encryption",
+    "keychain",
+    "at rest",
+    "storage"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "storage"
+  },
+  {
+   "id": "privacy.retention",
+   "type": "select",
+   "label": "Delete meetings after",
+   "help": "Older meetings are deleted from this device when Métis starts.",
+   "keys": [
+    "transcriptRetentionDays"
+   ],
+   "synonyms": [
+    "retention",
+    "auto-delete",
+    "gdpr",
+    "storage"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": 0,
+     "label": "Never"
+    },
+    {
+     "value": 30,
+     "label": "30 days"
+    },
+    {
+     "value": 90,
+     "label": "90 days"
+    },
+    {
+     "value": 180,
+     "label": "180 days"
+    },
+    {
+     "value": 365,
+     "label": "1 year"
+    }
+   ],
+   "destination": "privacy",
+   "group": "storage"
+  },
+  {
+   "id": "privacy.dust",
+   "type": "connection",
+   "label": "Dust",
+   "help": "The Dust workspace Métis sends your questions to, and the agent that answers them.",
+   "keys": [
+    "dustWorkspaceId",
+    "providerModels[dust]",
+    "dustSession"
+   ],
+   "synonyms": [
+    "dust",
+    "agent",
+    "workspace"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "connected-apps"
+  },
+  {
+   "id": "privacy.task-apps",
+   "type": "connection-list",
+   "label": "Task and CRM apps",
+   "help": "Connected apps that can receive meeting actions. Organization-managed connections are marked.",
+   "keys": [
+    "mcpConnections",
+    "mcpSecrets[<connection>]"
+   ],
+   "synonyms": [
+    "clickup",
+    "plane",
+    "crm",
+    "polo",
+    "bidstack",
+    "mcp",
+    "integrations"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "connected-apps"
+  },
+  {
+   "id": "privacy.permission-microphone",
+   "type": "permission",
+   "label": "Microphone permission",
+   "help": "",
+   "keys": [
+    "permission.microphone"
+   ],
+   "synonyms": [
+    "mic",
+    "permission",
+    "privacy"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "store": "os",
+   "destination": "privacy",
+   "group": "permissions"
+  },
+  {
+   "id": "privacy.permission-screen",
+   "type": "permission",
+   "label": "Screen and system audio permission",
+   "help": "Needed to hear the other side of a call and to answer about your screen.",
+   "keys": [
+    "permission.screenRecording"
+   ],
+   "synonyms": [
+    "screen recording",
+    "system audio",
+    "permission"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin"
+   ],
+   "store": "os",
+   "destination": "privacy",
+   "group": "permissions"
+  },
+  {
+   "id": "privacy.org-policy",
+   "type": "policy-readout",
+   "label": "Organization policy",
+   "help": "Settings your organization manages, who manages them and why.",
+   "keys": [
+    "enterpriseLive"
+   ],
+   "synonyms": [
+    "managed",
+    "policy",
+    "locked",
+    "it",
+    "admin"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "policy"
+  },
+  {
+   "id": "privacy.delete-all",
+   "type": "action",
+   "label": "Delete all meetings and notes on this device",
+   "help": "Permanent. Removes saved meetings, notes and the knowledge graph from this device.",
+   "keys": [],
+   "synonyms": [
+    "delete",
+    "erase",
+    "gdpr"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "privacy",
+   "group": "data"
+  },
+  {
+   "id": "privacy.data-request",
+   "type": "action",
+   "label": "Export or delete my data",
+   "help": "Ask your organization for a copy or deletion of data held beyond this device.",
+   "keys": [],
+   "synonyms": [
+    "export",
+    "subject access",
+    "gdpr"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "planned_by": "M2-0150",
+   "destination": "privacy",
+   "group": "data"
+  },
+  {
+   "id": "advanced.local-generation",
+   "type": "pack-list",
+   "label": "Local generation model",
+   "help": "Optional on-device model for text. Off, not installed and not running by default. Installing does not turn it on.",
+   "keys": [
+    "localLlm.enabled",
+    "localLlm.modelId"
+   ],
+   "synonyms": [
+    "local ai",
+    "offline",
+    "on-device",
+    "qwen",
+    "llm",
+    "download"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "local-generation"
+  },
+  {
+   "id": "advanced.local-use-for",
+   "type": "checklist",
+   "label": "Use it for",
+   "help": "Tasks that run on this device first.",
+   "keys": [
+    "localLlm.useFor.suggest",
+    "localLlm.useFor.summary",
+    "brainConsolidation.preferLocal"
+   ],
+   "synonyms": [
+    "local",
+    "summaries",
+    "suggestions",
+    "indexing"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "localLlm.enabled",
+   "options": [
+    {
+     "key": "localLlm.useFor.suggest",
+     "label": "Live suggestions"
+    },
+    {
+     "key": "localLlm.useFor.summary",
+     "label": "Summaries"
+    },
+    {
+     "key": "brainConsolidation.preferLocal",
+     "label": "Meeting indexing"
+    }
+   ],
+   "destination": "advanced",
+   "group": "local-generation"
+  },
+  {
+   "id": "advanced.local-when",
+   "type": "segmented",
+   "label": "When to use it",
+   "help": "",
+   "keys": [
+    "routingMode"
+   ],
+   "synonyms": [
+    "routing",
+    "local first",
+    "api"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "localLlm.enabled",
+   "options": [
+    {
+     "value": "auto",
+     "label": "For the tasks above"
+    },
+    {
+     "value": "local",
+     "label": "First for everything"
+    },
+    {
+     "value": "api",
+     "label": "Never first"
+    }
+   ],
+   "destination": "advanced",
+   "group": "local-generation"
+  },
+  {
+   "id": "advanced.local-fallback",
+   "type": "toggle",
+   "label": "Use it when cloud AI is unavailable",
+   "help": "",
+   "keys": [
+    "localLlm.fallback"
+   ],
+   "synonyms": [
+    "fallback",
+    "offline",
+    "safety net"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "localLlm.enabled",
+   "destination": "advanced",
+   "group": "local-generation"
+  },
+  {
+   "id": "advanced.local-vision",
+   "type": "toggle",
+   "label": "Read screenshots on this device",
+   "help": "A separate capability from local generation, off by default. Needs a local generation model installed first.",
+   "keys": [
+    "localLlm.useFor.vision"
+   ],
+   "synonyms": [
+    "vision",
+    "screenshots",
+    "local"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "local-vision"
+  },
+  {
+   "id": "advanced.ai-provider",
+   "type": "select",
+   "label": "Answer with",
+   "help": "Métis uses managed AI through your licence. Choose a personal provider only if your organization allows it.",
+   "keys": [
+    "provider"
+   ],
+   "synonyms": [
+    "provider",
+    "anthropic",
+    "openai",
+    "claude",
+    "gemini",
+    "model"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "cloudflare",
+     "label": "Managed AI (Cloudflare)"
+    },
+    {
+     "value": "*",
+     "label": "PROVIDERS allowed by policy (src/shared/providers.ts)"
+    }
+   ],
+   "destination": "advanced",
+   "group": "ai-providers"
+  },
+  {
+   "id": "advanced.api-keys",
+   "type": "secret-list",
+   "label": "API keys",
+   "help": "Stored encrypted on this device and sent only to that provider.",
+   "keys": [
+    "apiKeys[<provider>]"
+   ],
+   "synonyms": [
+    "api key",
+    "token",
+    "metis_proxy_key"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "store": "secret",
+   "destination": "advanced",
+   "group": "ai-providers"
+  },
+  {
+   "id": "advanced.custom-endpoint",
+   "type": "text",
+   "label": "Custom endpoint",
+   "help": "For an OpenAI-compatible service. Must be https.",
+   "keys": [
+    "customBaseUrl"
+   ],
+   "synonyms": [
+    "base url",
+    "endpoint",
+    "openai compatible"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "provider == 'custom'",
+   "destination": "advanced",
+   "group": "ai-providers"
+  },
+  {
+   "id": "advanced.model-overrides",
+   "type": "text-list",
+   "label": "Model overrides",
+   "help": "Leave empty to use the recommended models.",
+   "keys": [
+    "providerModels[*]",
+    "providerModelsThinking[*]"
+   ],
+   "synonyms": [
+    "model id",
+    "override"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "ai-providers"
+  },
+  {
+   "id": "advanced.thinking",
+   "type": "segmented",
+   "label": "Deeper thinking",
+   "help": "When harder questions use a slower, stronger model.",
+   "keys": [
+    "thinkingMode"
+   ],
+   "synonyms": [
+    "thinking",
+    "reasoning",
+    "opus"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "options": [
+    {
+     "value": "auto",
+     "label": "Automatic"
+    },
+    {
+     "value": "always",
+     "label": "Always"
+    },
+    {
+     "value": "never",
+     "label": "Never"
+    }
+   ],
+   "destination": "advanced",
+   "group": "ai-providers"
+  },
+  {
+   "id": "advanced.temperature",
+   "type": "slider",
+   "label": "Creativity",
+   "help": "Lower is more predictable.",
+   "keys": [
+    "temperature"
+   ],
+   "synonyms": [
+    "temperature"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "range": {
+    "min": 0,
+    "max": 1,
+    "step": 0.05
+   },
+   "destination": "advanced",
+   "group": "ai-providers"
+  },
+  {
+   "id": "advanced.backup-order",
+   "type": "ordered-list",
+   "label": "Backup order",
+   "help": "Which providers to try, in order, when the first one fails.",
+   "keys": [
+    "providerFallbackOrder"
+   ],
+   "synonyms": [
+    "failover",
+    "fallback",
+    "order"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "ai-providers"
+  },
+  {
+   "id": "advanced.prefer-free",
+   "type": "toggle",
+   "label": "Prefer a free backup when a paid provider runs out",
+   "help": "",
+   "keys": [
+    "resilience.preferFreeOnExhaustion"
+   ],
+   "synonyms": [
+    "credit",
+    "quota"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "ai-providers"
+  },
+  {
+   "id": "advanced.switch-early",
+   "type": "toggle",
+   "label": "Switch before hitting a limit",
+   "help": "",
+   "keys": [
+    "resilience.budgetPreempt"
+   ],
+   "synonyms": [
+    "rate limit",
+    "quota"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "ai-providers"
+  },
+  {
+   "id": "advanced.race-backup",
+   "type": "toggle",
+   "label": "Race a backup on a slow answer",
+   "help": "Can use credits on two providers.",
+   "keys": [
+    "resilience.hedge"
+   ],
+   "synonyms": [
+    "hedge",
+    "latency"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "ai-providers"
+  },
+  {
+   "id": "advanced.cli",
+   "type": "connection",
+   "label": "Claude Code and Codex CLI",
+   "help": "Answer with a CLI subscription already signed in on this computer.",
+   "keys": [
+    "cliConnected",
+    "lastClickedCli",
+    "cliNoticeAck"
+   ],
+   "synonyms": [
+    "claude code",
+    "codex",
+    "cli"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "developer"
+  },
+  {
+   "id": "advanced.cli-first",
+   "type": "toggle",
+   "label": "Use my CLI subscription first",
+   "help": "",
+   "keys": [
+    "providerPriority"
+   ],
+   "synonyms": [
+    "cli",
+    "priority"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "a CLI is connected",
+   "options": [
+    {
+     "value": "cli",
+     "label": "On"
+    },
+    {
+     "value": "api",
+     "label": "Off"
+    }
+   ],
+   "destination": "advanced",
+   "group": "developer"
+  },
+  {
+   "id": "advanced.operator-url",
+   "type": "text",
+   "label": "Operator address",
+   "help": "Change only when your administrator asks. Changing it disconnects your licence.",
+   "keys": [
+    "operatorUrl"
+   ],
+   "synonyms": [
+    "operator",
+    "server",
+    "url"
+   ],
+   "apply": "confirm",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "organization",
+   "read_only_when": "an organization layer or the deployment environment sets operatorUrl"
+  },
+  {
+   "id": "advanced.sign-in-setup",
+   "type": "fields",
+   "label": "Organization sign-in setup",
+   "help": "Only shown when nothing else configures your organization's sign-in.",
+   "keys": [
+    "azureClientId",
+    "azureTenantId",
+    "azureAllowedDomain"
+   ],
+   "synonyms": [
+    "entra",
+    "azure",
+    "tenant",
+    "client id"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "visible_when": "ssoBootstrapAllowed()",
+   "destination": "advanced",
+   "group": "organization"
+  },
+  {
+   "id": "advanced.usage",
+   "type": "readout",
+   "label": "Usage on this device",
+   "help": "Computed from the local audit log. Never leaves this device.",
+   "keys": [],
+   "synonyms": [
+    "usage",
+    "metrics",
+    "performance"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "diagnostics"
+  },
+  {
+   "id": "advanced.support-bundle",
+   "type": "action",
+   "label": "Export logs for support",
+   "help": "Never includes meetings, notes or the knowledge graph.",
+   "keys": [],
+   "synonyms": [
+    "logs",
+    "support",
+    "diagnostics",
+    "bundle"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "diagnostics"
+  },
+  {
+   "id": "advanced.repair-speech",
+   "type": "action",
+   "label": "Repair speech components",
+   "help": "",
+   "keys": [],
+   "synonyms": [
+    "repair",
+    "asr assets",
+    "reinstall"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "diagnostics"
+  },
+  {
+   "id": "advanced.updates",
+   "type": "action",
+   "label": "Check for updates",
+   "help": "",
+   "keys": [],
+   "synonyms": [
+    "update",
+    "version",
+    "release"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "diagnostics"
+  },
+  {
+   "id": "advanced.about",
+   "type": "action",
+   "label": "About Métis",
+   "help": "Version, story and thanks.",
+   "keys": [],
+   "synonyms": [
+    "about",
+    "version",
+    "credits"
+   ],
+   "apply": "immediate",
+   "timing": "now",
+   "platforms": [
+    "darwin",
+    "win32"
+   ],
+   "destination": "advanced",
+   "group": "diagnostics"
+  }
+ ],
+ "keys": [
+  {
+   "key": "provider",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.ai-provider",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'cloudflare'",
+    "anchor": "src/shared/ipc.ts:1629"
+   },
+   "today": {
+    "surface": "AI › provider tiles",
+    "anchor": "src/renderer/src/components/Settings.tsx:979"
+   },
+   "migration": "none; legacy 'together'/'fireworks' already coerced to the default on read",
+   "basis": "OBSERVED src/main/store.ts:652 (legacy coercion); OBSERVED org allowlist filters the picker (src/main/index.ts:1933, allowedProviders). DERIVED MASTER §5.6: no provider shopping in normal setup."
+  },
+  {
+   "key": "providerPriority",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.cli-first",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'api'",
+    "anchor": "src/shared/ipc.ts:1630"
+   },
+   "today": {
+    "surface": "AI › CLI Integration › Provider priority",
+    "anchor": "src/renderer/src/components/Settings.tsx:3065"
+   },
+   "migration": "none",
+   "basis": "OBSERVED 'cli' only matters with a CLI connected (ipc.ts:937-940)."
+  },
+  {
+   "key": "providerFallbackOrder",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.backup-order",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "[]",
+    "anchor": "src/shared/ipc.ts:1631"
+   },
+   "today": {
+    "surface": "AI › Backups & limits › order editor",
+    "anchor": "src/renderer/src/components/Settings.tsx:1872"
+   },
+   "migration": "none",
+   "basis": "OBSERVED empty list = today's order (ipc.ts:941-946)."
+  },
+  {
+   "key": "providerModels[dust]",
+   "store": "settings",
+   "kind": "connection",
+   "class": "KEEP",
+   "control": "privacy.dust",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Dust › Base agent",
+    "anchor": "src/renderer/src/components/Settings.tsx:4574"
+   },
+   "migration": "none; blank never persists (setSettings restores the Métis agent)",
+   "basis": "OBSERVED src/main/store.ts:795-798 blank guard; DERIVED the base agent is how a Dust user picks the agent Métis asks, so it stays with the Dust connection."
+  },
+  {
+   "key": "providerModels[*]",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.model-overrides",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › provider key card › Base model",
+    "anchor": "src/renderer/src/components/Settings.tsx:1330"
+   },
+   "migration": "none; retired provider model ids already migrated on read",
+   "basis": "OBSERVED src/main/store.ts:659-664 (migrateRetiredModelMap)."
+  },
+  {
+   "key": "customBaseUrl",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.custom-endpoint",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1641"
+   },
+   "today": {
+    "surface": "AI › Custom › Base URL",
+    "anchor": "src/renderer/src/components/Settings.tsx:1382"
+   },
+   "migration": "none",
+   "basis": "OBSERVED https-only validation and cross-field refine (ipc.ts:948-954, 1490-1496)."
+  },
+  {
+   "key": "cloudflareBaseUrl",
+   "store": "settings",
+   "kind": "policy",
+   "class": "OPERATOR-ONLY",
+   "control": null,
+   "owner": "organization",
+   "write": "managed",
+   "default": {
+    "value": "METIS_WORKER_URL",
+    "anchor": "src/shared/ipc.ts:1642"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:965-971"
+   },
+   "migration": "none; stays the shipped Worker URL unless managed policy overrides it",
+   "basis": "OBSERVED no Settings control writes it; the default is METIS_WORKER_URL (src/shared/ipc.ts:965-971), read by the Cloudflare speech credentials (src/main/cloud-stt/credentials.ts:51-54) and live session (src/main/index.ts:6620). DERIVED MASTER §5.6: vendor endpoints belong in Operator."
+  },
+  {
+   "key": "providerModelsThinking[dust]",
+   "store": "settings",
+   "kind": "connection",
+   "class": "ADVANCED",
+   "control": "knowledge.dust-options",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Dust › Thinking agent",
+    "anchor": "src/renderer/src/components/Settings.tsx:4567"
+   },
+   "migration": "none",
+   "basis": "OBSERVED the Dust thinking agent sId (src/shared/ipc.ts:972-974), read through resolveModelTier for harder asks and meeting extraction (src/main/brain/ingest.ts:160, src/main/import-recap.ts:128). DERIVED agent choice beyond the base agent is source detail, so it sits in Knowledge & skills › Source connections (MASTER §5.6)."
+  },
+  {
+   "key": "providerModelsThinking[*]",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.model-overrides",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › provider key card › Thinking model",
+    "anchor": "src/renderer/src/components/Settings.tsx:1351"
+   },
+   "migration": "none; retired ids migrated on read",
+   "basis": "OBSERVED src/main/store.ts:659-664."
+  },
+  {
+   "key": "providerModelsDeep",
+   "store": "settings",
+   "kind": "policy",
+   "class": "OPERATOR-ONLY",
+   "control": null,
+   "owner": "organization",
+   "write": "managed",
+   "default": {
+    "value": "{}",
+    "anchor": "src/shared/ipc.ts:1634"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:975-977"
+   },
+   "migration": "none; retired ids migrated on read",
+   "basis": "OBSERVED no Settings control writes it; only managed-config or a hand edit sets it (src/shared/ipc.ts:975-977). Read as the deep tier (src/main/brain/ingest.ts:160)."
+  },
+  {
+   "key": "providerModelsSpotlightRef",
+   "store": "settings",
+   "kind": "policy",
+   "class": "OPERATOR-ONLY",
+   "control": null,
+   "owner": "organization",
+   "write": "managed",
+   "default": {
+    "value": "DUST_SPOTLIGHT_REF_AGENT_ID ? { dust: DUST_SPOTLIGHT_REF_AGENT_ID } : {}",
+    "anchor": "src/shared/ipc.ts:1635"
+   },
+   "today": {
+    "surface": "AI › Dust › Spotlight Ref (read-only)",
+    "anchor": "src/shared/ipc.ts:1621-1626"
+   },
+   "migration": "none",
+   "basis": "OBSERVED hard-locked; rotated only through managed-config (ipc.ts:1621-1624)."
+  },
+  {
+   "key": "thinkingMode",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.thinking",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'auto'",
+    "anchor": "src/shared/ipc.ts:1638"
+   },
+   "today": {
+    "surface": "AI › Thinking mode",
+    "anchor": "src/renderer/src/components/Settings.tsx:1660"
+   },
+   "migration": "none",
+   "basis": "OBSERVED picks the model tier of every ask: auto, always deep or never (src/shared/ipc.ts:981-982; src/main/index.ts:7004, 7566). DERIVED MASTER §5.6: normal users should not need model-tier vocabulary."
+  },
+  {
+   "key": "temperature",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.temperature",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "0.4",
+    "anchor": "src/shared/ipc.ts:1665"
+   },
+   "today": {
+    "surface": "AI › provider key card › Temperature",
+    "anchor": "src/renderer/src/components/Settings.tsx:1401"
+   },
+   "migration": "none",
+   "basis": "OBSERVED reaches requests (src/main/index.ts:7562, src/main/import-recap.ts:229). DERIVED MASTER §5.6 names temperature as expert-only."
+  },
+  {
+   "key": "routingMode",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.local-when",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'auto'",
+    "anchor": "src/shared/ipc.ts:1636"
+   },
+   "today": {
+    "surface": "AI › Backups & limits › Routing mode",
+    "anchor": "src/renderer/src/components/Settings.tsx:1758"
+   },
+   "migration": "none; value kept, now edited inside Optional local generation",
+   "basis": "OBSERVED 'local' overrides the per-task useFor toggles (src/main/index.ts:1968-1971). DERIVED it only has meaning with local generation, so it moves into that group."
+  },
+  {
+   "key": "resilience.preferFreeOnExhaustion",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.prefer-free",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Backups & limits",
+    "anchor": "src/renderer/src/components/Settings.tsx:1807"
+   },
+   "migration": "none",
+   "basis": "OBSERVED reorders backups only after a paid provider is exhausted and never changes the first choice (src/shared/ipc.ts:1308-1316; src/main/index.ts:7493). DERIVED provider routing sits with personal providers in the Advanced drawer (MASTER §5.6)."
+  },
+  {
+   "key": "resilience.budgetPreempt",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.switch-early",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Backups & limits",
+    "anchor": "src/renderer/src/components/Settings.tsx:1814"
+   },
+   "migration": "none",
+   "basis": "OBSERVED skips a provider whose live rate-limit headers say it is spent (src/shared/ipc.ts:1317-1319; src/main/index.ts:7067-7070, 7742). DERIVED provider routing, Advanced drawer (MASTER §5.6)."
+  },
+  {
+   "key": "resilience.hedge",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.race-backup",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Backups & limits",
+    "anchor": "src/renderer/src/components/Settings.tsx:1821"
+   },
+   "migration": "none",
+   "basis": "OBSERVED races a second provider on a slow base-tier ask and can pay for both (src/shared/ipc.ts:1320-1325; src/main/index.ts:7751). DERIVED cost and routing detail of personal providers, Advanced drawer (MASTER §5.6)."
+  },
+  {
+   "key": "askFollowUpMemory",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "knowledge.follow-up-memory",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1639"
+   },
+   "today": {
+    "surface": "Privacy › Conversation memory",
+    "anchor": "src/renderer/src/components/Settings.tsx:7071"
+   },
+   "migration": "none",
+   "basis": "OBSERVED flipping it resets the Dust conversation (src/main/index.ts:5024-5027). DERIVED HM-13: memory lives in Knowledge & skills."
+  },
+  {
+   "key": "askCaveman",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "knowledge.answer-style",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'full'",
+    "anchor": "src/shared/ipc.ts:1640"
+   },
+   "today": {
+    "surface": "no Settings control (typed commands only)",
+    "anchor": "src/renderer/src/App.tsx:1608-1609"
+   },
+   "migration": "none",
+   "basis": "OBSERVED set only by typed commands today (src/renderer/src/App.tsx:1608-1609, src/main/index.ts:6862-6863) and applied to typed asks only (src/main/personas.ts:151). DERIVED searchable under a disclosure so it is discoverable and reversible."
+  },
+  {
+   "key": "dustWorkspaceId",
+   "store": "settings",
+   "kind": "connection",
+   "class": "KEEP",
+   "control": "privacy.dust",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1643"
+   },
+   "today": {
+    "surface": "AI › Dust › Workspace",
+    "anchor": "src/renderer/src/components/Settings.tsx:4819"
+   },
+   "migration": "none",
+   "basis": "OBSERVED gates every Dust call (src/main/brain/ingest.ts:154, src/main/import-recap.ts:124) and is written by Dust sign-in as well as the Settings field (src/main/dust-oauth.ts:255). DERIVED part of the Dust connection, an everyday control in Privacy & account › Connected apps (MASTER §5.6)."
+  },
+  {
+   "key": "dustBaseUrl",
+   "store": "settings",
+   "kind": "connection",
+   "class": "ADVANCED",
+   "control": "knowledge.dust-options",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'https://dust.tt'",
+    "anchor": "src/shared/ipc.ts:1644"
+   },
+   "today": {
+    "surface": "AI › Dust › Region",
+    "anchor": "src/renderer/src/components/Settings.tsx:4831-4839"
+   },
+   "migration": "none",
+   "basis": "OBSERVED https-only region base, US unless set (src/shared/ipc.ts:996-1000); sign-in sets it to the account's region (src/main/dust-oauth.ts:256). DERIVED the region follows the account and rarely changes, so it sits in Knowledge & skills › Source connections (MASTER §5.6)."
+  },
+  {
+   "key": "dustSessionOrigin",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": null,
+   "owner": "device",
+   "write": "main",
+   "default": {
+    "value": "'oauth'",
+    "anchor": "src/shared/ipc.ts:1645"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1001-1005"
+   },
+   "migration": "none",
+   "basis": "OBSERVED records which login path minted the Dust session, and the refresh path follows it (src/shared/ipc.ts:1001-1005; src/main/index.ts:838-849); written by main only (src/main/dust-oauth.ts:258). State, not a user choice."
+  },
+  {
+   "key": "dustTokenMintedAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": null,
+   "owner": "device",
+   "write": "main",
+   "default": {
+    "value": "0",
+    "anchor": "src/shared/ipc.ts:1714"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1230-1233"
+   },
+   "migration": "none",
+   "basis": "OBSERVED epoch of the last Dust token import; launch skips the keychain refresh while the token is fresh (src/shared/ipc.ts:1230-1233; src/main/index.ts:9231). Written by main only (src/main/dust-oauth.ts:257, 332); state with no control."
+  },
+  {
+   "key": "azureClientId",
+   "store": "settings",
+   "kind": "policy",
+   "class": "OPERATOR-ONLY",
+   "control": "advanced.sign-in-setup",
+   "owner": "organization",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1646"
+   },
+   "today": {
+    "surface": "Calendar › Microsoft / Outlook (self-serve IDs)",
+    "anchor": "src/renderer/src/components/Settings.tsx:8570"
+   },
+   "migration": "none; value kept; editable only through the sign-in recovery path",
+   "basis": "OBSERVED env and managed config outrank Settings (src/main/auth.ts:142-170); OBSERVED the SSO bootstrap narrows an unauthenticated patch to these three keys (src/main/index.ts:4825-4836).",
+   "notes": "The only device control is the recovery path shown when ssoBootstrapAllowed() is true."
+  },
+  {
+   "key": "azureTenantId",
+   "store": "settings",
+   "kind": "policy",
+   "class": "OPERATOR-ONLY",
+   "control": "advanced.sign-in-setup",
+   "owner": "organization",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1647"
+   },
+   "today": {
+    "surface": "Calendar › Microsoft / Outlook (self-serve IDs)",
+    "anchor": "src/renderer/src/components/Settings.tsx:8570"
+   },
+   "migration": "none; value kept; editable only through the sign-in recovery path",
+   "basis": "OBSERVED env and managed config outrank Settings (src/main/auth.ts:142-170); OBSERVED the SSO bootstrap narrows an unauthenticated patch to these three keys (src/main/index.ts:4825-4836).",
+   "notes": "The only device control is the recovery path shown when ssoBootstrapAllowed() is true."
+  },
+  {
+   "key": "azureAllowedDomain",
+   "store": "settings",
+   "kind": "policy",
+   "class": "OPERATOR-ONLY",
+   "control": "advanced.sign-in-setup",
+   "owner": "organization",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1648"
+   },
+   "today": {
+    "surface": "Calendar › Microsoft / Outlook (self-serve IDs)",
+    "anchor": "src/renderer/src/components/Settings.tsx:8570"
+   },
+   "migration": "none; value kept; editable only through the sign-in recovery path",
+   "basis": "OBSERVED env and managed config outrank Settings (src/main/auth.ts:142-170); OBSERVED the SSO bootstrap narrows an unauthenticated patch to these three keys (src/main/index.ts:4825-4836).",
+   "notes": "The only device control is the recovery path shown when ssoBootstrapAllowed() is true."
+  },
+  {
+   "key": "graphifyEnabled",
+   "store": "settings",
+   "kind": "consent",
+   "class": "ADVANCED",
+   "control": "knowledge.graph",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1649"
+   },
+   "today": {
+    "surface": "Brain › Knowledge graph",
+    "anchor": "src/renderer/src/components/Settings.tsx:8131"
+   },
+   "migration": "none",
+   "basis": "OBSERVED backend 'auto' sends note text to a local Claude CLI, a stored Claude key or a stored OpenAI key (ipc.ts:1013-1015); OBSERVED builds are blocked while encryption is on (index.ts at-rest purge comment).",
+   "notes": "Default true, but inert under the default encryptTranscripts=true. The control must name the engine that receives note text."
+  },
+  {
+   "key": "graphifyAutoRebuild",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "knowledge.graph-rebuild",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1650"
+   },
+   "today": {
+    "surface": "Brain › Knowledge graph",
+    "anchor": "src/renderer/src/components/Settings.tsx:8166"
+   },
+   "migration": "none",
+   "basis": "OBSERVED incremental rebuild after each saved note, only while graphifyEnabled (src/main/graphify.ts:357). DERIVED a tuning of the knowledge graph, so it lives with it under Indexing and graph."
+  },
+  {
+   "key": "graphifyBackend",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "knowledge.graph-engine",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'auto'",
+    "anchor": "src/shared/ipc.ts:1651"
+   },
+   "today": {
+    "surface": "Brain › Knowledge graph › Engine",
+    "anchor": "src/renderer/src/components/Settings.tsx:8172"
+   },
+   "migration": "none",
+   "basis": "OBSERVED picks the engine that receives note text: the local Claude Code CLI, a stored Claude key or a stored OpenAI key (src/shared/ipc.ts:1013-1015; src/main/graphify.ts:189). DERIVED engine choice is expert detail under Indexing and graph (MASTER §5.6)."
+  },
+  {
+   "key": "outputLanguage",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "general.answer-language",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'auto'",
+    "anchor": "src/shared/ipc.ts:1652"
+   },
+   "today": {
+    "surface": "Modes & Display › Language",
+    "anchor": "src/renderer/src/components/Settings.tsx:6655"
+   },
+   "migration": "none",
+   "basis": "OBSERVED sets the language of answers and live assist through the system prompt (src/main/index.ts:7548) and of imported recaps when no summary language is set (src/main/import-recap.ts:63-66). DERIVED MASTER §5.6 lists language among General's everyday controls."
+  },
+  {
+   "key": "summaryLanguage",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "general.summary-language",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'auto'",
+    "anchor": "src/shared/ipc.ts:1653"
+   },
+   "today": {
+    "surface": "Modes & Display › Language",
+    "anchor": "src/renderer/src/components/Settings.tsx:6672"
+   },
+   "migration": "none",
+   "basis": "OBSERVED overrides outputLanguage for recaps only; 'auto' follows it (src/shared/ipc.ts:1022; src/main/import-recap.ts:63-66). DERIVED a refinement of Answer language that most people never set, so it sits under More options."
+  },
+  {
+   "key": "encryptTranscripts",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "privacy.encrypt",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1654"
+   },
+   "today": {
+    "surface": "Meetings › Meetings & transcripts",
+    "anchor": "src/renderer/src/components/Settings.tsx:7311"
+   },
+   "migration": "none",
+   "basis": "OBSERVED consent gate when encryption turns on while publishing (src/main/index.ts:4921-4937); OBSERVED turning it on purges the cleartext graph."
+  },
+  {
+   "key": "publishBrainPages",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "knowledge.publish-wiki",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1655"
+   },
+   "today": {
+    "surface": "Brain › Published wiki",
+    "anchor": "src/renderer/src/components/Settings.tsx:7984"
+   },
+   "migration": "none",
+   "basis": "OBSERVED native consent dialog before it turns on while encrypted (src/main/index.ts:4895-4911); OBSERVED never derived from encryptTranscripts (src/main/store.ts:704-708)."
+  },
+  {
+   "key": "transcriptRetentionDays",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "privacy.retention",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "0",
+    "anchor": "src/shared/ipc.ts:1656"
+   },
+   "today": {
+    "surface": "Meetings › Danger zone › Auto-delete",
+    "anchor": "src/renderer/src/components/Settings.tsx:8251"
+   },
+   "migration": "none",
+   "basis": "OBSERVED 0 = keep forever; swept once per launch (ipc.ts:1037-1040)."
+  },
+  {
+   "key": "meetingsFolder",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "knowledge.meetings-folder",
+   "owner": "device",
+   "write": "main",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1677"
+   },
+   "today": {
+    "surface": "Meetings › Meetings & transcripts",
+    "anchor": "src/renderer/src/components/Settings.tsx:7198-7228"
+   },
+   "migration": "none",
+   "basis": "OBSERVED written by the folder picker in main, not a renderer patch (src/main/index.ts:8509). DERIVED where meetings are saved is part of the knowledge space (MASTER §5.6)."
+  },
+  {
+   "key": "teamTranscriptFolders",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "knowledge.team-folders",
+   "owner": "device",
+   "write": "main",
+   "default": {
+    "value": "[]",
+    "anchor": "src/shared/ipc.ts:1678"
+   },
+   "today": {
+    "surface": "Meetings › Team transcripts",
+    "anchor": "src/renderer/src/components/Settings.tsx:7243-7286"
+   },
+   "migration": "none",
+   "basis": "OBSERVED each folder's meetings are ingested into this brain, attributed by folder name (src/shared/ipc.ts:1090-1095; src/main/brain/ingest.ts:1854, 2634-2640), and published pages include them (src/main/brain/publish.ts:197). DERIVED which knowledge feeds the space is an everyday Knowledge & skills choice (MASTER §5.6)."
+  },
+  {
+   "key": "autoSaveTranscripts",
+   "store": "settings",
+   "kind": "preference",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1679"
+   },
+   "today": {
+    "surface": "no Settings control ('Meetings are always saved')",
+    "anchor": "src/renderer/src/components/Settings.tsx:7293"
+   },
+   "migration": "drop at settings version 2; no behaviour depends on it",
+   "basis": "OBSERVED the only non-test reader is src/main/selftest.ts:77; Settings states meetings are always saved."
+  },
+  {
+   "key": "systemPrompt",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "knowledge.personal-instructions",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "built-in Métis prompt",
+    "anchor": "src/shared/ipc.ts:1657-1660"
+   },
+   "today": {
+    "surface": "Modes & Display › Custom instructions",
+    "anchor": "src/renderer/src/components/Settings.tsx:6688"
+   },
+   "migration": "none",
+   "basis": "OBSERVED prefixed to every mode's prompt (src/main/personas.ts:96-109; src/main/index.ts:7548). DERIVED personal prompt authoring is expert customization, kept under a disclosure in Knowledge & skills."
+  },
+  {
+   "key": "modePrompts",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "knowledge.personal-modes",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "{}",
+    "anchor": "src/shared/ipc.ts:1661"
+   },
+   "today": {
+    "surface": "Modes & Display › Modes",
+    "anchor": "src/renderer/src/components/Settings.tsx:5536"
+   },
+   "migration": "none",
+   "basis": "OBSERVED per-mode prompt, pre-filled from the shipped mode prompts and overridden by edits (src/shared/ipc.ts:1042-1043; src/main/personas.ts:130). DERIVED SRC-22: the nine role recaps migrate into the central skill registry (M2-0142); personal edits stay the user's."
+  },
+  {
+   "key": "contextDocs",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "knowledge.personal-modes",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "{}",
+    "anchor": "src/shared/ipc.ts:1662"
+   },
+   "today": {
+    "surface": "Modes & Display › Modes › files",
+    "anchor": "src/renderer/src/components/Settings.tsx:5600"
+   },
+   "migration": "none",
+   "basis": "OBSERVED per-mode reference text added to that mode's prompt (src/shared/ipc.ts:1044-1051; src/main/index.ts:7548), withheld from an unauthenticated caller because it can hold personal content (src/main/index.ts:4649-4658). DERIVED part of Personal modes, kept under a disclosure."
+  },
+  {
+   "key": "customModes",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "knowledge.personal-modes",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "[]",
+    "anchor": "src/shared/ipc.ts:1663"
+   },
+   "today": {
+    "surface": "Modes & Display › Modes",
+    "anchor": "src/renderer/src/components/Settings.tsx:5812"
+   },
+   "migration": "none",
+   "basis": "OBSERVED user-created modes (id and label) offered in the bar's mode picker (src/shared/ipc.ts:1052-1056; src/renderer/src/components/ModePicker.tsx:35). DERIVED personal mode authoring sits with Personal modes under a disclosure."
+  },
+  {
+   "key": "mode",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "knowledge.default-mode",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'general'",
+    "anchor": "src/shared/ipc.ts:1671"
+   },
+   "today": {
+    "surface": "Modes & Display › Modes › Set active",
+    "anchor": "src/renderer/src/components/Settings.tsx:6102"
+   },
+   "migration": "none",
+   "basis": "OBSERVED the bar only shows the mode; it is changed in Settings (src/renderer/src/components/ModePicker.tsx:29-32)."
+  },
+  {
+   "key": "profile",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "knowledge.about-you",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "{ name: '', role: '', company: '', resume: '', jobDescription: '', notes: '' }",
+    "anchor": "src/shared/ipc.ts:1672"
+   },
+   "today": {
+    "surface": "Identity › About you",
+    "anchor": "src/renderer/src/components/Settings.tsx:7355"
+   },
+   "migration": "none",
+   "basis": "OBSERVED feeds every answer's system prompt (src/main/index.ts:7548); name and role also go to the cloud speech session (src/main/index.ts:6616); résumé, job description and notes are withheld from an unauthenticated caller (src/main/index.ts:4649-4658). DERIVED personal context for answers belongs in Knowledge & skills (MASTER §5.6)."
+  },
+  {
+   "key": "meetingNotifications",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "voice.meeting-alerts",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1664"
+   },
+   "today": {
+    "surface": "Calendar › Notifications",
+    "anchor": "src/renderer/src/components/Settings.tsx:8639"
+   },
+   "migration": "none",
+   "basis": "OBSERVED gates the native notice one minute before a calendar meeting, off by default (src/main/index.ts:4327-4333). DERIVED a meeting behaviour, so it moves from Calendar to Voice & meetings › Meetings (MASTER §5.6)."
+  },
+  {
+   "key": "contentProtection",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "privacy.hide-in-shares",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1666"
+   },
+   "today": {
+    "surface": "Privacy › Screen capture",
+    "anchor": "src/renderer/src/components/Settings.tsx:7037"
+   },
+   "migration": "none",
+   "basis": "OBSERVED publicSettings reports the value actually applied (src/main/index.ts:1987-1990)."
+  },
+  {
+   "key": "privateView",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "privacy.private-view",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1667"
+   },
+   "today": {
+    "surface": "Privacy › Screen capture",
+    "anchor": "src/renderer/src/components/Settings.tsx:7048"
+   },
+   "migration": "none",
+   "basis": "OBSERVED split from contentProtection with no remap by design (src/main/store.ts:665-671)."
+  },
+  {
+   "key": "audioSource",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "voice.listen-to",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'both'",
+    "anchor": "src/shared/ipc.ts:1668"
+   },
+   "today": {
+    "surface": "Speech › Listen to",
+    "anchor": "src/renderer/src/components/Settings.tsx:5103"
+   },
+   "migration": "none",
+   "basis": "OBSERVED chooses the tracks a listen session opens (microphone, system audio or both) when the session starts (src/renderer/src/App.tsx:2235, 2252). DERIVED what is captured is chosen before a meeting, so it stays visible in Voice & meetings and applies to the next session (MASTER §5.6, §5.7)."
+  },
+  {
+   "key": "micDeviceId",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "voice.microphone",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1669"
+   },
+   "today": {
+    "surface": "Speech › Listen to › Microphone",
+    "anchor": "src/renderer/src/components/Settings.tsx:5310"
+   },
+   "migration": "none",
+   "basis": "OBSERVED '' follows the system default and a missing device falls back to it (ipc.ts:1069-1072)."
+  },
+  {
+   "key": "suggestEverySec",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "voice.auto-answer-cooldown",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "8",
+    "anchor": "src/shared/ipc.ts:1670"
+   },
+   "today": {
+    "surface": "Speech › In meetings",
+    "anchor": "src/renderer/src/components/Settings.tsx:6752"
+   },
+   "migration": "none",
+   "basis": "OBSERVED the wait between automatic suggestions and speculative runs (src/renderer/src/App.tsx:1281, 1829). DERIVED a tuning of Suggest replies automatically, kept under More options and shown only while that is on."
+  },
+  {
+   "key": "shortcuts",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "general.shortcuts",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "{}",
+    "anchor": "src/shared/ipc.ts:1673"
+   },
+   "today": {
+    "surface": "Identity › Keyboard shortcuts",
+    "anchor": "src/renderer/src/components/Settings.tsx:9219"
+   },
+   "migration": "none",
+   "basis": "OBSERVED '' is the unbind sentinel (ipc.ts:1076-1081)."
+  },
+  {
+   "key": "autoSuggest",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "voice.auto-answer",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1674"
+   },
+   "today": {
+    "surface": "Speech › In meetings › Auto-answer",
+    "anchor": "src/renderer/src/components/Settings.tsx:6736"
+   },
+   "migration": "none",
+   "basis": "OBSERVED gates automatic answers when the other person asks a question (src/renderer/src/App.tsx:1275, 1313). DERIVED a core live-meeting behaviour, so it stays an everyday control in Voice & meetings."
+  },
+  {
+   "key": "screenAsk",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "privacy.screen-ask",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1675"
+   },
+   "today": {
+    "surface": "Privacy › Screen access",
+    "anchor": "src/renderer/src/components/Settings.tsx:7057"
+   },
+   "migration": "none",
+   "basis": "OBSERVED governs only the explicit screen gestures; a typed question never captures (src/shared/ipc.ts:1083-1087; src/renderer/src/App.tsx:1567, 1616, 1700). DERIVED a capture permission, visible in Privacy & account and never behind a disclosure (MASTER §5.6)."
+  },
+  {
+   "key": "showLiveTranscript",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "voice.live-transcript",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1676"
+   },
+   "today": {
+    "surface": "Speech › In meetings",
+    "anchor": "src/renderer/src/components/Settings.tsx:6760"
+   },
+   "migration": "none",
+   "basis": "OBSERVED seeds each meeting's transcript visibility; the per-meeting toggle never writes it back (src/renderer/src/App.tsx:929, 2227-2229). DERIVED an everyday meeting display preference in Voice & meetings."
+  },
+  {
+   "key": "launchAtLogin",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "general.launch-at-login",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1680"
+   },
+   "today": {
+    "surface": "Meetings › Launch at login",
+    "anchor": "src/renderer/src/components/Settings.tsx:7326"
+   },
+   "migration": "none",
+   "basis": "OBSERVED the OS login item is reported separately as loginItemOpenAtLogin (src/main/index.ts:1920-1924)."
+  },
+  {
+   "key": "onboardingDone",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": "general.replay-setup",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1681"
+   },
+   "today": {
+    "surface": "footer › Replay onboarding",
+    "anchor": "src/renderer/src/components/Settings.tsx:6350"
+   },
+   "migration": "none",
+   "basis": "OBSERVED Replay writes false and waits for main to confirm before re-entering setup (Settings.tsx:6346-6362)."
+  },
+  {
+   "key": "onboardingDoneAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": null,
+   "owner": "user",
+   "write": "onboarding",
+   "default": {
+    "value": "0",
+    "anchor": "src/shared/ipc.ts:1682"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1099-1102"
+   },
+   "migration": "none",
+   "basis": "OBSERVED written when setup finishes (src/renderer/src/components/Onboarding.tsx:508), anchors the API-key nudge (src/renderer/src/App.tsx:561-577) and counts as completed setup for the Parakeet default (src/main/store.ts:593-595). State with no control."
+  },
+  {
+   "key": "recordingConsent",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "privacy.recording-consent",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1683"
+   },
+   "today": {
+    "surface": "Privacy › Recording consent",
+    "anchor": "src/renderer/src/components/Settings.tsx:7084"
+   },
+   "migration": "none",
+   "basis": "OBSERVED affirmed during setup, which cannot finish without it (src/renderer/src/components/Onboarding.tsx:463, 508). DERIVED a consent statement, visible in Privacy & account › Recording and consent (MASTER §5.6: privacy disclosures are never buried)."
+  },
+  {
+   "key": "playListenChime",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "voice.recording-chime",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1684"
+   },
+   "today": {
+    "surface": "Speech › In meetings",
+    "anchor": "src/renderer/src/components/Settings.tsx:6948"
+   },
+   "migration": "none",
+   "basis": "OBSERVED plays a chime when a listen session starts (src/renderer/src/App.tsx:2230). DERIVED an audible recording cue, kept in Voice & meetings next to meeting participation."
+  },
+  {
+   "key": "soundCues",
+   "store": "settings",
+   "kind": "preference",
+   "class": "MERGE",
+   "control": "general.sounds",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1685"
+   },
+   "today": {
+    "surface": "Speech › In meetings › Sound cues",
+    "anchor": "src/renderer/src/components/Settings.tsx:6955"
+   },
+   "migration": "none; both keys kept and written together by the Sounds control",
+   "basis": "OBSERVED uiSounds is the master gate for clicks and cues (src/renderer/src/lib/sound.ts:8-13); soundCues gates answer cues (App.tsx:1249). DERIVED three reachable states, so one three-way control loses nothing."
+  },
+  {
+   "key": "uiSounds",
+   "store": "settings",
+   "kind": "preference",
+   "class": "MERGE",
+   "control": "general.sounds",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1686"
+   },
+   "today": {
+    "surface": "Speech › In meetings › Interface sounds",
+    "anchor": "src/renderer/src/components/Settings.tsx:6962"
+   },
+   "migration": "none; see soundCues",
+   "basis": "OBSERVED src/renderer/src/lib/sound.ts:8-13."
+  },
+  {
+   "key": "quickActionsRainbow",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "general.quick-action-ring",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1687"
+   },
+   "today": {
+    "surface": "Speech › In meetings › Rainbow ring",
+    "anchor": "src/renderer/src/components/Settings.tsx:6969"
+   },
+   "migration": "none",
+   "basis": "OBSERVED decorative border on the quick-action chips (src/shared/ipc.ts:1107; src/renderer/src/App.tsx:4111). DERIVED MASTER §5.4: decorative motion follows reduced motion; the stored value is kept but ignored while reduced motion is on."
+  },
+  {
+   "key": "instantSuggestions",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "voice.prepare-suggestions",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1688"
+   },
+   "today": {
+    "surface": "Speech › In meetings",
+    "anchor": "src/renderer/src/components/Settings.tsx:6976"
+   },
+   "migration": "none",
+   "basis": "OBSERVED pre-generates suggestions during a live meeting at the cost of extra base-tier calls (src/shared/ipc.ts:1108-1111; src/renderer/src/App.tsx:1795, 1822). DERIVED a cost and latency tuning of suggestions, kept under More options."
+  },
+  {
+   "key": "backgroundScreenContext",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "privacy.background-screen",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1689"
+   },
+   "today": {
+    "surface": "Speech › In meetings › Preload screen context",
+    "anchor": "src/renderer/src/components/Settings.tsx:6999"
+   },
+   "migration": "none",
+   "basis": "OBSERVED default off, explicit opt-in, Private View blocks it (ipc.ts:1112-1119). DERIVED continuous screen reading is a capture consent, so it moves to Privacy and is never in Advanced (MASTER §5.6)."
+  },
+  {
+   "key": "overlayOpacity",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "general.transparency",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "1",
+    "anchor": "src/shared/ipc.ts:1690"
+   },
+   "today": {
+    "surface": "Modes & Display › Appearance",
+    "anchor": "src/renderer/src/components/Settings.tsx:6582"
+   },
+   "migration": "none",
+   "basis": "OBSERVED multiplies the bar's glass opacity (src/shared/ipc.ts:1120-1124; src/renderer/src/App.tsx:940). DERIVED appearance, an everyday General control (MASTER §5.6)."
+  },
+  {
+   "key": "autoHideOverlay",
+   "store": "settings",
+   "kind": "preference",
+   "class": "MERGE",
+   "control": "general.overlay-layout",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1691"
+   },
+   "today": {
+    "surface": "written with Overlay chrome",
+    "anchor": "src/renderer/src/components/Settings.tsx:6624-6627"
+   },
+   "migration": "legacy boolean maps to a layout on read (false → bar, true → island) when overlayLayout is absent",
+   "basis": "OBSERVED src/shared/overlay-chrome.ts:303-308 and Settings writes autoHideOverlayForLayout(layout)."
+  },
+  {
+   "key": "overlayLayout",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "general.overlay-layout",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'hide'",
+    "anchor": "src/shared/ipc.ts:1692"
+   },
+   "today": {
+    "surface": "Modes & Display › Overlay chrome",
+    "anchor": "src/renderer/src/components/Settings.tsx:6622"
+   },
+   "migration": "none",
+   "basis": "OBSERVED three chromes, Hidden, Island and Bar (src/shared/ipc.ts:1131-1132), read on every render (src/renderer/src/App.tsx:662); DESIGN.md's chrome contract draws them as cards with a desktop diagram."
+  },
+  {
+   "key": "overlayOrbStyle",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "general.bar-rest",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'jakub'",
+    "anchor": "src/shared/ipc.ts:1693"
+   },
+   "today": {
+    "surface": "Modes & Display › Bar rest",
+    "anchor": "src/renderer/src/components/Settings.tsx:6638"
+   },
+   "migration": "none",
+   "basis": "OBSERVED 'bar' renders as the Circle card (src/shared/overlay-orb.ts:30-32)."
+  },
+  {
+   "key": "overlayPlacement",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "general.overlay-placement",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "'top-center'",
+    "anchor": "src/shared/ipc.ts:1694"
+   },
+   "today": {
+    "surface": "Modes & Display › Overlay position",
+    "anchor": "src/renderer/src/components/Settings.tsx:6602"
+   },
+   "migration": "none",
+   "basis": "OBSERVED one of three writes with saving and failed states today, with Replay onboarding and the legacy Operator secret (src/renderer/src/components/Settings.tsx:6363-6379, 6605-6614)."
+  },
+  {
+   "key": "overlayRightEdgeYByDisplay",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": "general.reset-position",
+   "owner": "device",
+   "write": "main",
+   "default": {
+    "value": "{}",
+    "anchor": "src/shared/ipc.ts:1695"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1137-1141"
+   },
+   "migration": "none",
+   "basis": "OBSERVED normalized per-display Y set by dragging the sidecar, written by main and left alone while locked (src/shared/ipc.ts:1137-1141; src/main/index.ts:3013, 3057-3072). DERIVED MASTER §5.10 asks for reset and recenter."
+  },
+  {
+   "key": "showFullTranscriptInReview",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "voice.review-transcript",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1696"
+   },
+   "today": {
+    "surface": "Speech › In meetings",
+    "anchor": "src/renderer/src/components/Settings.tsx:6767"
+   },
+   "migration": "none",
+   "basis": "OBSERVED opens a finished meeting's review on the full transcript instead of the summary (src/renderer/src/App.tsx:3516). DERIVED a rarely changed review preference, kept under More options in During meetings."
+  },
+  {
+   "key": "asrQuality",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "voice.local-quality",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "'best'",
+    "anchor": "src/shared/ipc.ts:1697"
+   },
+   "today": {
+    "surface": "Speech › Whisper quality",
+    "anchor": "src/renderer/src/components/Settings.tsx:1944"
+   },
+   "migration": "none",
+   "basis": "OBSERVED selects Best or Fast for the local Whisper worker (src/renderer/src/lib/listen.ts:3095; src/renderer/src/App.tsx:2236). DERIVED local speech tuning belongs inside Optional local speech and shows only while local Whisper is the route (MASTER §5.6, §14.7)."
+  },
+  {
+   "key": "asrEngine",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "voice.local-speech-packs",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "'parakeet'",
+    "anchor": "src/shared/ipc.ts:1698"
+   },
+   "today": {
+    "surface": "Speech › In meetings › Transcription engine",
+    "anchor": "src/renderer/src/components/Settings.tsx:6860"
+   },
+   "migration": "versioned S-1: persisted with its effective value only when the Métis default layer supplies it (absent from the user layer and set by no managed layer); a managed default or lock stays live and is never persisted",
+   "basis": "OBSERVED fresh-profile hardware preference and the sparse-profile Parakeet default (src/main/store.ts:691-703, 815-825). DERIVED MASTER §9.6: installed or modern hardware never selects an engine.",
+   "platform_values": {
+    "apple": [
+     "darwin"
+    ]
+   }
+  },
+  {
+   "key": "enterpriseLive",
+   "store": "settings",
+   "kind": "policy",
+   "class": "OPERATOR-ONLY",
+   "control": "privacy.org-policy",
+   "owner": "organization",
+   "write": "managed",
+   "default": {
+    "value": "{ managed: false, inferenceMode: 'legacy', summaryOnly: false }",
+    "anchor": "src/shared/ipc.ts:1699"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1152-1162"
+   },
+   "migration": "none",
+   "basis": "OBSERVED trusted from managed configuration only (src/shared/enterprise-live-profile.ts:1-8); cloud-only forbids local fallback, summaryOnly omits full transcripts."
+  },
+  {
+   "key": "cloudSttProvider",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "voice.speech-processing",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'unconfigured'",
+    "anchor": "src/shared/ipc.ts:1700"
+   },
+   "today": {
+    "surface": "Speech › Transcript source (cloud-only profiles only)",
+    "anchor": "src/renderer/src/components/Settings.tsx:6793"
+   },
+   "migration": "versioned S-1 (settings version 2): compares the 1.x route with the 2.0 route over the same layers and, where they differ, writes 'unconfigured' to the user layer so the route in force is kept; a lock that would change the route holds the profile at version 1",
+   "basis": "OBSERVED 1.x: cloud speech only under a managed cloud-only profile, where 'unconfigured' resolves to Cloudflare; a stored cloud id is ignored everywhere else (src/shared/cloud-stt-provider.ts:35-54). DERIVED MASTER §9.6: the selected engine is one value, so from settings version 2 'unconfigured' means the local route and a cloud id that cloud route for every profile, managed cloud-only still winning. ASSUMED D-11 recommended answer: the fresh-install default becomes 'cloudflare-nova3' (src/shared/ipc.ts:1169, 1700).",
+   "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Soniox is offered only when organization policy allows it.",
+   "assumed_decisions": [
+    "D-11"
+   ]
+  },
+  {
+   "key": "cfAiGatewayId",
+   "store": "settings",
+   "kind": "policy",
+   "class": "OPERATOR-ONLY",
+   "control": null,
+   "owner": "organization",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1701"
+   },
+   "today": {
+    "surface": "AI › Cloudflare · AI Gateway; Speech › Nova",
+    "anchor": "src/renderer/src/components/Settings.tsx:1569"
+   },
+   "migration": "ignored on the device once the speech-session broker (M2-0107) holds gateway configuration server-side; value kept until then",
+   "basis": "OBSERVED the AI Gateway for Nova-3 live speech, read when a cloud session starts (src/shared/ipc.ts:1170-1174; src/main/index.ts:6622). DERIVED MASTER §9.6: account and provider credentials are injected only on the server."
+  },
+  {
+   "key": "cloudflareAccountId",
+   "store": "settings",
+   "kind": "policy",
+   "class": "OPERATOR-ONLY",
+   "control": null,
+   "owner": "organization",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1702"
+   },
+   "today": {
+    "surface": "AI › Cloudflare · AI Gateway; Speech › Nova",
+    "anchor": "src/renderer/src/components/Settings.tsx:1557"
+   },
+   "migration": "ignored on the device once M2-0107 lands; value kept until then",
+   "basis": "OBSERVED the account id used to build the Cloudflare speech endpoint (src/shared/ipc.ts:1175-1186; src/main/cloud-stt/credentials.ts:52-56). DERIVED as cfAiGatewayId: server-side once M2-0107 lands (MASTER §9.6)."
+  },
+  {
+   "key": "asrLanguage",
+   "store": "settings",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "voice.spoken-language",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "'auto'",
+    "anchor": "src/shared/ipc.ts:1703"
+   },
+   "today": {
+    "surface": "Speech › Spoken language",
+    "anchor": "src/renderer/src/components/Settings.tsx:6882"
+   },
+   "migration": "none",
+   "basis": "OBSERVED pins the Whisper decoder and the Apple Speech locale and is passed to cloud speech; Parakeet auto-detects (src/shared/ipc.ts:1187-1191; src/main/apple-speech.ts:34-36; src/main/index.ts:6614). DERIVED it applies to every route, cloud or local, so it sits in Speech rather than inside Optional local speech."
+  },
+  {
+   "key": "asrLastFallbackAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "MERGE",
+   "control": "voice.speech-issues",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "null",
+    "anchor": "src/shared/ipc.ts:1704"
+   },
+   "today": {
+    "surface": "Speech › dismissible note",
+    "anchor": "src/renderer/src/components/Settings.tsx:6913"
+   },
+   "migration": "none; each key stays and becomes one row of Recent speech issues",
+   "basis": "OBSERVED four separate after-the-fact notes with a Dismiss each (Settings.tsx:6709-6943)."
+  },
+  {
+   "key": "asrWebgpuFallbackAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "MERGE",
+   "control": "voice.speech-issues",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "null",
+    "anchor": "src/shared/ipc.ts:1705"
+   },
+   "today": {
+    "surface": "Speech › dismissible note",
+    "anchor": "src/renderer/src/components/Settings.tsx:6937"
+   },
+   "migration": "none; each key stays and becomes one row of Recent speech issues",
+   "basis": "OBSERVED four separate after-the-fact notes with a Dismiss each (Settings.tsx:6709-6943)."
+  },
+  {
+   "key": "asrImportTierFallbackAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "MERGE",
+   "control": "voice.speech-issues",
+   "owner": "device",
+   "write": "renderer",
+   "today": {
+    "surface": "Speech › dismissible note",
+    "anchor": "src/renderer/src/components/Settings.tsx:6925"
+   },
+   "migration": "none; each key stays and becomes one row of Recent speech issues",
+   "basis": "OBSERVED four separate after-the-fact notes with a Dismiss each (Settings.tsx:6709-6943)."
+  },
+  {
+   "key": "micOnlyFallbackAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "MERGE",
+   "control": "voice.speech-issues",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "null",
+    "anchor": "src/shared/ipc.ts:1706"
+   },
+   "today": {
+    "surface": "Speech › dismissible note",
+    "anchor": "src/renderer/src/components/Settings.tsx:6725"
+   },
+   "migration": "none; each key stays and becomes one row of Recent speech issues",
+   "basis": "OBSERVED four separate after-the-fact notes with a Dismiss each (Settings.tsx:6709-6943)."
+  },
+  {
+   "key": "requireConsentIndicator",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "privacy.consent-reminder",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1707"
+   },
+   "today": {
+    "surface": "Privacy › Recording consent",
+    "anchor": "src/renderer/src/components/Settings.tsx:7091"
+   },
+   "migration": "none",
+   "basis": "OBSERVED shows the person recording a reminder, never the participants; it is the only consent mechanism today (src/shared/ipc.ts:1211-1214; src/renderer/src/App.tsx:3905). DERIVED a consent control, visible in Privacy & account (MASTER §5.6)."
+  },
+  {
+   "key": "redactSensitive",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "privacy.redact",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1708"
+   },
+   "today": {
+    "surface": "Privacy › Sensitive data",
+    "anchor": "src/renderer/src/components/Settings.tsx:7106"
+   },
+   "migration": "none",
+   "basis": "OBSERVED strips high-confidence secrets from transcripts and flagged prompts before a cloud model sees them (src/main/index.ts:6890-6898; src/main/brain/ingest.ts:679; src/main/import-recap.ts:185). DERIVED it governs what is sent, so it stays visible in Privacy & account (MASTER §5.6)."
+  },
+  {
+   "key": "lastConsentReminderAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": null,
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "0",
+    "anchor": "src/shared/ipc.ts:1709"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/renderer/src/App.tsx:3904-3907"
+   },
+   "migration": "none",
+   "basis": "OBSERVED records when the consent reminder was last acknowledged (src/renderer/src/App.tsx:3904-3907). State with no control, persisted unchanged."
+  },
+  {
+   "key": "asrCorrections",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "voice.corrections",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "[]",
+    "anchor": "src/shared/ipc.ts:1710"
+   },
+   "today": {
+    "surface": "Speech › Vocabulary corrections",
+    "anchor": "src/renderer/src/components/Settings.tsx:7013"
+   },
+   "migration": "none",
+   "basis": "OBSERVED applied to every committed live-transcript line and extended when a name is corrected in the brain (src/renderer/src/App.tsx:407; src/main/index.ts:8118-8128). DERIVED MASTER §9.10: custom vocabulary is sensitive content, never log-safe metadata."
+  },
+  {
+   "key": "asrEntityBias",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "voice.known-names",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "true",
+    "anchor": "src/shared/ipc.ts:1711"
+   },
+   "today": {
+    "surface": "Speech › Vocabulary corrections",
+    "anchor": "src/renderer/src/components/Settings.tsx:7008"
+   },
+   "migration": "none",
+   "basis": "OBSERVED exact-match casing of names the brain already knows in the live transcript, never phonetic (src/shared/ipc.ts:1221-1224; src/renderer/src/App.tsx:411). DERIVED vocabulary tuning, grouped with Word corrections under Names and vocabulary."
+  },
+  {
+   "key": "cliConnected",
+   "store": "settings",
+   "kind": "state",
+   "class": "ADVANCED",
+   "control": "advanced.cli",
+   "owner": "device",
+   "write": "main",
+   "default": {
+    "value": "{}",
+    "anchor": "src/shared/ipc.ts:1712"
+   },
+   "today": {
+    "surface": "AI › CLI Integration",
+    "anchor": "src/main/index.ts:5591"
+   },
+   "migration": "none",
+   "basis": "OBSERVED main-owned connection state per CLI, written at connect (src/main/index.ts:5591) and read by every provider-eligibility check (src/main/brain/ingest.ts:152, src/main/import-recap.ts:119, src/main/index.ts:1543). DERIVED state of the developer integration, so it takes that control's class (MASTER §5.6)."
+  },
+  {
+   "key": "lastClickedCli",
+   "store": "settings",
+   "kind": "state",
+   "class": "ADVANCED",
+   "control": "advanced.cli",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "null",
+    "anchor": "src/shared/ipc.ts:1713"
+   },
+   "today": {
+    "surface": "AI › CLI Integration",
+    "anchor": "src/renderer/src/components/Settings.tsx:2578"
+   },
+   "migration": "none",
+   "basis": "OBSERVED picks the primary CLI when both work (src/shared/ipc.ts:1227-1229; src/main/index.ts:1860, 5592). DERIVED state of the developer integration; same class as its control."
+  },
+  {
+   "key": "cliNoticeAck",
+   "store": "settings",
+   "kind": "state",
+   "class": "ADVANCED",
+   "control": "advanced.cli",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1715"
+   },
+   "today": {
+    "surface": "AI › CLI Integration notice",
+    "anchor": "src/renderer/src/components/Settings.tsx:2549"
+   },
+   "migration": "none",
+   "basis": "OBSERVED dismissal of the CLI integration notice, read only by Settings (src/renderer/src/components/Settings.tsx:2549). DERIVED state of the developer integration; same class as its control."
+  },
+  {
+   "key": "mcpConnections",
+   "store": "settings",
+   "kind": "connection",
+   "class": "KEEP",
+   "control": "privacy.task-apps",
+   "owner": "user",
+   "write": "main",
+   "default": {
+    "value": "[]",
+    "anchor": "src/shared/ipc.ts:1716"
+   },
+   "today": {
+    "surface": "Brain › Polo Pre-Sales, Plane, ClickUp",
+    "anchor": "src/renderer/src/components/Settings.tsx:8008-8040"
+   },
+   "migration": "legacy bidstackEndpointUrl/bidstackConnected/bidstackTools already synthesized on read (see legacy table)",
+   "basis": "OBSERVED main-owned: stripped from renderer patches (src/main/index.ts:4867-4869)."
+  },
+  {
+   "key": "clickupClientId",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": null,
+   "owner": "device",
+   "write": "main",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1717"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1245-1250"
+   },
+   "migration": "none",
+   "basis": "OBSERVED main-owned (src/main/index.ts:4867-4869)."
+  },
+  {
+   "key": "planeClientId",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": null,
+   "owner": "device",
+   "write": "main",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1718"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1251-1253"
+   },
+   "migration": "none",
+   "basis": "OBSERVED main-owned (src/main/index.ts:4867-4869)."
+  },
+  {
+   "key": "localLlm.enabled",
+   "store": "settings",
+   "kind": "consent",
+   "class": "ADVANCED",
+   "control": "advanced.local-generation",
+   "owner": "device",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Local AI › Enable Métis Local",
+    "anchor": "src/renderer/src/components/Settings.tsx:2279"
+   },
+   "migration": "versioned S-2: enabled profiles stay selected; a missing model shows Download (with bytes) instead of downloading at launch",
+   "basis": "OBSERVED enabling starts provisioning immediately (src/main/index.ts:5033-5037) and boot provisions when enabled (src/main/index.ts:8884); OBSERVED provisioning never runs when disabled (src/main/local-model-provisioning.ts:8-9). DERIVED MASTER §14.8: install and select are separate, explicit steps.",
+   "notes": "ipc.ts:1259-1263 still says weights download in the background whenever the app opens; the provisioning gate contradicts it. M2-0117 corrects the comment."
+  },
+  {
+   "key": "localLlm.modelId",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.local-generation",
+   "owner": "device",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Local AI › model",
+    "anchor": "src/renderer/src/components/Settings.tsx:2343"
+   },
+   "migration": "none; retired 'qwen3.5-2b' already maps to the bundled floor on parse",
+   "basis": "OBSERVED src/shared/ipc.ts:871-878."
+  },
+  {
+   "key": "localLlm.useFor.suggest",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.local-use-for",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Local AI › Live suggestions",
+    "anchor": "src/renderer/src/components/Settings.tsx:2407"
+   },
+   "migration": "none",
+   "basis": "OBSERVED makes the on-device model first for live suggestions, ahead of a configured cloud provider (src/shared/ipc.ts:1267-1272; src/main/llm/local-routing.ts:196; src/main/index.ts:1969). DERIVED an optional local-generation choice in the Advanced drawer (MASTER §5.6, §14.7)."
+  },
+  {
+   "key": "localLlm.useFor.summary",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.local-use-for",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Local AI › Summaries",
+    "anchor": "src/renderer/src/components/Settings.tsx:2415"
+   },
+   "migration": "none",
+   "basis": "OBSERVED makes the on-device model the exclusive meeting-extraction route (src/shared/ipc.ts:1267-1272; src/main/import-recap.ts:95; src/main/index.ts:1970). DERIVED an optional local-generation choice in the Advanced drawer (MASTER §14.7)."
+  },
+  {
+   "key": "localLlm.useFor.vision",
+   "store": "settings",
+   "kind": "consent",
+   "class": "ADVANCED",
+   "control": "advanced.local-vision",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Local AI › Screenshots",
+    "anchor": "src/renderer/src/components/Settings.tsx:2423"
+   },
+   "migration": "none",
+   "basis": "OBSERVED routes screen questions to the on-device model when Local is on (src/main/llm/local-routing.ts:153; src/main/index.ts:1971). DERIVED MASTER §14.7: vision is a separate, explicitly selected capability."
+  },
+  {
+   "key": "localLlm.fallback",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "advanced.local-fallback",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "AI › Local AI › fallback",
+    "anchor": "src/renderer/src/components/Settings.tsx:2434"
+   },
+   "migration": "none",
+   "basis": "OBSERVED reachable only when Local is enabled and provisioned (ipc.ts:1280-1292)."
+  },
+  {
+   "key": "brainConsolidation.enabled",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "knowledge.batch-indexing",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "Brain › Brain consolidation",
+    "anchor": "src/renderer/src/components/Settings.tsx:7933"
+   },
+   "migration": "none",
+   "basis": "OBSERVED batches meeting extraction into daily passes instead of one call per meeting (src/shared/ipc.ts:1328-1336; src/main/brain/consolidate.ts:58, 93; src/main/index.ts:7890). DERIVED an indexing tuning, under Indexing and graph."
+  },
+  {
+   "key": "brainConsolidation.maxPassesPerDay",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "knowledge.batch-passes",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "Brain › Brain consolidation",
+    "anchor": "src/renderer/src/components/Settings.tsx:7944"
+   },
+   "migration": "none",
+   "basis": "OBSERVED caps the daily consolidation passes at 1 to 4 (src/shared/ipc.ts:1337; src/main/brain/consolidate.ts:59). DERIVED shown only while batching is on, under Indexing and graph."
+  },
+  {
+   "key": "brainConsolidation.preferLocal",
+   "store": "settings",
+   "kind": "preference",
+   "class": "MERGE",
+   "control": "advanced.local-use-for",
+   "owner": "user",
+   "write": "renderer",
+   "today": {
+    "surface": "Brain › Prefer on-device model for consolidation",
+    "anchor": "src/renderer/src/components/Settings.tsx:7964"
+   },
+   "migration": "none; key kept, shown as one more 'Use it for' item",
+   "basis": "OBSERVED sends the intelligence pass to the on-device model, as localLlm.useFor.summary and routingMode 'local' do (src/shared/intelligence-pass.ts:17). DERIVED a per-task local-first choice, the same shape as localLlm.useFor."
+  },
+  {
+   "key": "speakerId",
+   "store": "settings",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "voice.speaker-labels",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "{ enabled: true }",
+    "anchor": "src/shared/ipc.ts:1725"
+   },
+   "today": {
+    "surface": "AI › Local AI › Speaker identification",
+    "anchor": "src/renderer/src/components/Settings.tsx:2443"
+   },
+   "migration": "none",
+   "basis": "OBSERVED default on since 2026-08-21, on-device (ipc.ts:1342-1350); OBSERVED turning it off discards keyed buffers (src/main/index.ts:444-465).",
+   "notes": "Voice characteristics used to identify speakers may be special-category data in some jurisdictions: open question for the owner (legal-privacy)."
+  },
+  {
+   "key": "usageStats",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": null,
+   "owner": "user",
+   "write": "main",
+   "default": {
+    "value": "{ meetingsSummarized: 0, conversationMinutes: 0, firstMeetingAt: 0 }",
+    "anchor": "src/shared/ipc.ts:1727"
+   },
+   "today": {
+    "surface": "Brain › Time saved (display)",
+    "anchor": "src/main/store.ts:753-763"
+   },
+   "migration": "none",
+   "basis": "OBSERVED lifetime counters written once per saved meeting by main (src/main/store.ts:753-763) and shown by the Intelligence view (src/renderer/src/components/BrainView.tsx:476-511); metadata only (src/shared/ipc.ts:1351-1357). State with no control."
+  },
+  {
+   "key": "timeSaved",
+   "store": "settings",
+   "kind": "preference",
+   "class": "ADVANCED",
+   "control": "knowledge.time-saved",
+   "owner": "user",
+   "write": "renderer",
+   "default": {
+    "value": "{ writeupRatio: 0.2, floorMin: 5, capMin: 30 }",
+    "anchor": "src/shared/ipc.ts:1728"
+   },
+   "today": {
+    "surface": "Brain › Time saved",
+    "anchor": "src/renderer/src/components/Settings.tsx:7704"
+   },
+   "migration": "none",
+   "basis": "OBSERVED the adjustable assumptions behind the time-saved estimate (src/shared/ipc.ts:1365-1369; src/renderer/src/components/BrainView.tsx:512). DERIVED an estimate tuning, under a disclosure in Knowledge & skills."
+  },
+  {
+   "key": "tapControl",
+   "store": "settings",
+   "kind": "consent",
+   "class": "ADVANCED",
+   "control": "voice.desk-tap",
+   "owner": "device",
+   "write": "renderer",
+   "default": {
+    "value": "{ enabled: false, armOnlyWhileListening: true, sensitivity: 0.5, zoneActions: [], profile: null }",
+    "anchor": "src/shared/ipc.ts:1729"
+   },
+   "today": {
+    "surface": "Speech › Desk tap control card",
+    "anchor": "src/renderer/src/components/TapCalibration.tsx"
+   },
+   "migration": "none",
+   "basis": "OBSERVED armOnlyWhileListening=false keeps the microphone on to start a session by tap (ipc.ts:1385-1388).",
+   "notes": "Turning Always armed on needs the explicit confirmation of a capture change."
+  },
+  {
+   "key": "licenseServerUrl",
+   "store": "settings",
+   "kind": "policy",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "server",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1736"
+   },
+   "today": {
+    "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
+    "anchor": "src/renderer/src/components/Settings.tsx:201"
+   },
+   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "licenseKey",
+   "store": "settings",
+   "kind": "state",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "server",
+   "write": "main",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1737"
+   },
+   "today": {
+    "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
+    "anchor": "src/renderer/src/components/Settings.tsx:201"
+   },
+   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "licenseCompanyName",
+   "store": "settings",
+   "kind": "state",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "server",
+   "write": "main",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1738"
+   },
+   "today": {
+    "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
+    "anchor": "src/renderer/src/components/Settings.tsx:201"
+   },
+   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "licenseSeatCap",
+   "store": "settings",
+   "kind": "state",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "server",
+   "write": "main",
+   "default": {
+    "value": "0",
+    "anchor": "src/shared/ipc.ts:1739"
+   },
+   "today": {
+    "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
+    "anchor": "src/renderer/src/components/Settings.tsx:201"
+   },
+   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "licenseExpiresAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "server",
+   "write": "main",
+   "default": {
+    "value": "null",
+    "anchor": "src/shared/ipc.ts:1740"
+   },
+   "today": {
+    "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
+    "anchor": "src/renderer/src/components/Settings.tsx:201"
+   },
+   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "licenseValid",
+   "store": "settings",
+   "kind": "state",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "server",
+   "write": "main",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1741"
+   },
+   "today": {
+    "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
+    "anchor": "src/renderer/src/components/Settings.tsx:201"
+   },
+   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "licenseLastValidatedAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "server",
+   "write": "main",
+   "default": {
+    "value": "0",
+    "anchor": "src/shared/ipc.ts:1742"
+   },
+   "today": {
+    "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
+    "anchor": "src/renderer/src/components/Settings.tsx:201"
+   },
+   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "licenseGateEnabled",
+   "store": "settings",
+   "kind": "policy",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "server",
+   "write": "renderer",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1743"
+   },
+   "today": {
+    "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
+    "anchor": "src/renderer/src/components/Settings.tsx:201"
+   },
+   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "licenseLease",
+   "store": "settings",
+   "kind": "state",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "server",
+   "write": "main",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1744"
+   },
+   "today": {
+    "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
+    "anchor": "src/renderer/src/components/Settings.tsx:201"
+   },
+   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "trialStartedAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "server",
+   "write": "main",
+   "default": {
+    "value": "null",
+    "anchor": "src/shared/ipc.ts:1745"
+   },
+   "today": {
+    "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
+    "anchor": "src/renderer/src/components/Settings.tsx:201"
+   },
+   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "operatorUrl",
+   "store": "settings",
+   "kind": "policy",
+   "class": "ADVANCED",
+   "control": "advanced.operator-url",
+   "owner": "organization",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1746"
+   },
+   "today": {
+    "surface": "Privacy › Operator › Operator URL",
+    "anchor": "src/renderer/src/components/Settings.tsx:7139"
+   },
+   "migration": "none",
+   "basis": "OBSERVED changing the address clears the stored licence and secret (src/main/index.ts:4938-4945)."
+  },
+  {
+   "key": "operatorIngestSecret",
+   "store": "settings",
+   "kind": "policy",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "organization",
+   "write": "renderer",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1747"
+   },
+   "today": {
+    "surface": "Privacy › Operator › Legacy administrator connection",
+    "anchor": "src/renderer/src/components/Settings.tsx:7156"
+   },
+   "migration": "kept and honoured while set; no entry field for new devices; removed with the legacy path after M2-0146",
+   "basis": "OBSERVED labelled legacy and 'not needed with a licence' (Settings.tsx:7146-7155). ASSUMED D-4 recommended default.",
+   "assumed_decisions": [
+    "D-4"
+   ]
+  },
+  {
+   "key": "sendAskText",
+   "store": "settings",
+   "kind": "policy",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "organization",
+   "write": "managed",
+   "default": {
+    "value": "false",
+    "anchor": "src/shared/ipc.ts:1748"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1450"
+   },
+   "migration": "drop at settings version 2",
+   "basis": "OBSERVED shouldSendAskText always returns false (src/shared/operator.ts:91-97): the key has no effect."
+  },
+  {
+   "key": "operatorLicenseToken",
+   "store": "settings",
+   "kind": "connection",
+   "class": "KEEP",
+   "control": "privacy.licence",
+   "owner": "user",
+   "write": "main",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1749"
+   },
+   "today": {
+    "surface": "Privacy › Operator › licence card",
+    "anchor": "src/renderer/src/components/Settings.tsx:7180"
+   },
+   "migration": "none",
+   "basis": "OBSERVED never sent to the renderer (src/main/index.ts:1979-1980) and main-owned (src/main/index.ts:4874-4885)."
+  },
+  {
+   "key": "operatorLicenseJti",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": "privacy.licence",
+   "owner": "user",
+   "write": "main",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1750"
+   },
+   "today": {
+    "surface": "Privacy › Operator › licence card",
+    "anchor": "src/renderer/src/components/Settings.tsx:3754"
+   },
+   "migration": "none",
+   "basis": "OBSERVED main-owned (src/main/index.ts:4874-4885)."
+  },
+  {
+   "key": "operatorLicenseLast4",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": "privacy.licence",
+   "owner": "user",
+   "write": "main",
+   "default": {
+    "value": "''",
+    "anchor": "src/shared/ipc.ts:1751"
+   },
+   "today": {
+    "surface": "Privacy › Operator › licence card",
+    "anchor": "src/renderer/src/components/Settings.tsx:3754"
+   },
+   "migration": "none",
+   "basis": "OBSERVED main-owned (src/main/index.ts:4874-4885)."
+  },
+  {
+   "key": "operatorLicenseExpiresAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "KEEP",
+   "control": "privacy.licence",
+   "owner": "user",
+   "write": "main",
+   "default": {
+    "value": "null",
+    "anchor": "src/shared/ipc.ts:1752"
+   },
+   "today": {
+    "surface": "Privacy › Operator › licence card",
+    "anchor": "src/renderer/src/components/Settings.tsx:3754"
+   },
+   "migration": "none",
+   "basis": "OBSERVED main-owned (src/main/index.ts:4874-4885)."
+  },
+  {
+   "key": "operatorTier",
+   "store": "settings",
+   "kind": "state",
+   "class": "OPERATOR-ONLY",
+   "control": "privacy.plan",
+   "owner": "server",
+   "write": "server",
+   "default": {
+    "value": "null",
+    "anchor": "src/shared/ipc.ts:1753"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1465-1487"
+   },
+   "migration": "none",
+   "basis": "OBSERVED written only after a successful heartbeat; stripped from renderer patches (src/main/index.ts:4874-4885)."
+  },
+  {
+   "key": "operatorEntitlements",
+   "store": "settings",
+   "kind": "state",
+   "class": "OPERATOR-ONLY",
+   "control": "privacy.plan",
+   "owner": "server",
+   "write": "server",
+   "default": {
+    "value": "null",
+    "anchor": "src/shared/ipc.ts:1754"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1465-1487"
+   },
+   "migration": "none",
+   "basis": "OBSERVED written only after a successful heartbeat; stripped from renderer patches (src/main/index.ts:4874-4885)."
+  },
+  {
+   "key": "operatorIntegrationsVersion",
+   "store": "settings",
+   "kind": "state",
+   "class": "OPERATOR-ONLY",
+   "control": "privacy.plan",
+   "owner": "server",
+   "write": "server",
+   "default": {
+    "value": "0",
+    "anchor": "src/shared/ipc.ts:1755"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1465-1487"
+   },
+   "migration": "none",
+   "basis": "OBSERVED written only after a successful heartbeat; stripped from renderer patches (src/main/index.ts:4874-4885)."
+  },
+  {
+   "key": "operatorEntitlementsAt",
+   "store": "settings",
+   "kind": "state",
+   "class": "OPERATOR-ONLY",
+   "control": "privacy.plan",
+   "owner": "server",
+   "write": "server",
+   "default": {
+    "value": "0",
+    "anchor": "src/shared/ipc.ts:1756"
+   },
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "src/shared/ipc.ts:1465-1487"
+   },
+   "migration": "none",
+   "basis": "OBSERVED written only after a successful heartbeat; stripped from renderer patches (src/main/index.ts:4874-4885)."
+  },
+  {
+   "key": "apiKeys[<provider>]",
+   "store": "secret",
+   "kind": "connection",
+   "class": "ADVANCED",
+   "control": "advanced.api-keys",
+   "owner": "user",
+   "write": "main",
+   "today": {
+    "surface": "AI › provider key card",
+    "anchor": "src/renderer/src/components/Settings.tsx:1140"
+   },
+   "migration": "none",
+   "basis": "OBSERVED encrypted key files via setApiKey/clearApiKey (src/main/store.ts:916-982); OBSERVED env-provided keys cannot be removed in-app (envKeys)."
+  },
+  {
+   "key": "apiKeys[soniox]",
+   "store": "secret",
+   "kind": "connection",
+   "class": "OPERATOR-ONLY",
+   "control": null,
+   "owner": "organization",
+   "write": "main",
+   "today": {
+    "surface": "Speech › Soniox key seat (cloud-only profiles)",
+    "anchor": "src/renderer/src/components/Settings.tsx:6840"
+   },
+   "migration": "ignored on the device once M2-0107 holds speech credentials server-side",
+   "basis": "OBSERVED a device key file or SONIOX_API_KEY (src/main/store.ts:328, 1289), entered only under a cloud-only profile (src/renderer/src/components/Settings.tsx:6840). DERIVED MASTER §9.6: provider credentials live only on the server."
+  },
+  {
+   "key": "dustSession",
+   "store": "secret",
+   "kind": "connection",
+   "class": "KEEP",
+   "control": "privacy.dust",
+   "owner": "user",
+   "write": "main",
+   "today": {
+    "surface": "AI › Dust › sign in / disconnect",
+    "anchor": "src/renderer/src/components/Settings.tsx:4640-4650"
+   },
+   "migration": "none",
+   "basis": "OBSERVED refresh token stored by setDustRefreshToken (src/main/store.ts:1209)."
+  },
+  {
+   "key": "mcpSecrets[<connection>]",
+   "store": "secret",
+   "kind": "connection",
+   "class": "KEEP",
+   "control": "privacy.task-apps",
+   "owner": "user",
+   "write": "main",
+   "today": {
+    "surface": "Brain › connection cards",
+    "anchor": "src/renderer/src/components/Settings.tsx:3092"
+   },
+   "migration": "none",
+   "basis": "OBSERVED encrypted per-connection keys and refresh tokens, set and cleared by main only (src/main/mcp/mcpSecrets.ts:114-181), ids typed to the connection enum. DERIVED part of the connection it authorizes, in Privacy & account › Connected apps (MASTER §5.6)."
+  },
+  {
+   "key": "entraSession",
+   "store": "session",
+   "kind": "connection",
+   "class": "KEEP",
+   "control": "privacy.microsoft-account",
+   "owner": "user",
+   "write": "main",
+   "today": {
+    "surface": "Calendar › Microsoft / Outlook › Sign in",
+    "anchor": "src/renderer/src/components/Settings.tsx:8576"
+   },
+   "migration": "none",
+   "basis": "OBSERVED the validated Microsoft sign-in, persisted encrypted in auth-session.bin rather than in settings (src/main/auth.ts:31, 187-188). DERIVED MASTER §5.6 lists the Entra account among Privacy & account's everyday controls."
+  },
+  {
+   "key": "permission.microphone",
+   "store": "os",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "privacy.permission-microphone",
+   "owner": "device",
+   "write": "os",
+   "today": {
+    "surface": "Privacy › Permissions",
+    "anchor": "src/renderer/src/components/Settings.tsx:8843"
+   },
+   "migration": "none",
+   "basis": "OBSERVED read from the operating system on macOS and Windows (src/main/platform-perms.ts:69-84). DERIVED a capture precondition, shown in Privacy & account › System permissions (MASTER §5.6)."
+  },
+  {
+   "key": "permission.screenRecording",
+   "store": "os",
+   "kind": "consent",
+   "class": "PLATFORM-SPECIFIC",
+   "control": "privacy.permission-screen",
+   "owner": "device",
+   "write": "os",
+   "today": {
+    "surface": "Privacy › Permissions",
+    "anchor": "src/renderer/src/components/Settings.tsx:8852"
+   },
+   "migration": "none",
+   "basis": "OBSERVED Windows needs no permission to capture system audio (Settings.tsx:6714-6716).",
+   "platforms": [
+    "darwin"
+   ]
+  },
+  {
+   "key": "loginItem",
+   "store": "os",
+   "kind": "state",
+   "class": "KEEP",
+   "control": "general.launch-at-login",
+   "owner": "device",
+   "write": "os",
+   "today": {
+    "surface": "derived loginItemOpenAtLogin",
+    "anchor": "src/main/index.ts:1920-1924"
+   },
+   "migration": "none",
+   "basis": "OBSERVED the OS login-item state, read back separately from launchAtLogin (src/main/index.ts:1919-1924)."
+  },
+  {
+   "key": "native:metis.mode",
+   "store": "native-defaults",
+   "kind": "preference",
+   "class": "KEEP",
+   "control": "knowledge.default-mode",
+   "owner": "user",
+   "write": "native",
+   "today": {
+    "surface": "native Settings › Personalize › Primary use",
+    "anchor": "native-app/App/Settings/SettingsView.swift:9"
+   },
+   "migration": "native reads and writes the registry key `mode` instead of its own UserDefaults key (M2-SET-02 native parity)",
+   "basis": "OBSERVED separate @AppStorage key written by onboarding and Settings (native-app/App/MetisApp.swift:51).",
+   "platforms": [
+    "darwin"
+   ],
+   "maps_to": "mode"
+  },
+  {
+   "key": "native:metis.language",
+   "store": "native-defaults",
+   "kind": "preference",
+   "class": "DEPRECATED",
+   "control": null,
+   "owner": "user",
+   "write": "native",
+   "today": {
+    "surface": "native Settings › Personalize › Language",
+    "anchor": "native-app/App/Settings/SettingsView.swift:10"
+   },
+   "migration": "S-3: maps once into asrLanguage ('system' → 'auto', 'en' → English, 'fr' → French, 'es' → Spanish, 'de' → German) only when asrLanguage is absent from the user layer, and S16 names the change; then the key is dropped",
+   "basis": "OBSERVED no reader outside the native Settings and onboarding pickers (native-app/App/Settings/SettingsView.swift:10; git grep at the base commit): the choice has no effect today.",
+   "platforms": [
+    "darwin"
+   ],
+   "maps_to": "asrLanguage"
+  },
+  {
+   "key": "native:metis.consent",
+   "store": "native-defaults",
+   "kind": "consent",
+   "class": "KEEP",
+   "control": "privacy.recording-consent",
+   "owner": "user",
+   "write": "native",
+   "today": {
+    "surface": "native Settings › Privacy",
+    "anchor": "native-app/App/Settings/SettingsView.swift:11"
+   },
+   "migration": "native reads and writes the registry key `recordingConsent`",
+   "basis": "OBSERVED written by onboarding (native-app/App/MetisApp.swift:52) and Settings; no capture path reads it.",
+   "platforms": [
+    "darwin"
+   ],
+   "maps_to": "recordingConsent"
+  },
+  {
+   "key": "native:metis.onboardingDoneAt",
+   "store": "native-defaults",
+   "kind": "state",
+   "class": "KEEP",
+   "control": null,
+   "owner": "user",
+   "write": "native",
+   "today": {
+    "surface": "no Settings control",
+    "anchor": "native-app/App/MetisApp.swift:45"
+   },
+   "migration": "native reads the registry key `onboardingDoneAt`",
+   "basis": "OBSERVED native UserDefaults key that shows the native onboarding once (native-app/App/MetisApp.swift:45-53). DERIVED MASTER §5.7, one store per choice: the native app reads the registry key onboardingDoneAt instead (§9.3).",
+   "platforms": [
+    "darwin"
+   ],
+   "maps_to": "onboardingDoneAt"
+  }
+ ],
+ "legacy": [
+  {
+   "legacy": "bidstackEndpointUrl, bidstackConnected, bidstackTools",
+   "to": "mcpConnections[{id:'bidstack'}]",
+   "rule": "synthesized on read only while mcpConnections is absent; an explicit [] (a disconnect) is never resurrected",
+   "anchor": "src/main/store.ts:519-542, 672-682",
+   "status": "existing"
+  },
+  {
+   "legacy": "provider 'together' | 'fireworks'",
+   "to": "provider default",
+   "rule": "coerced on read",
+   "anchor": "src/main/store.ts:647-652",
+   "status": "existing"
+  },
+  {
+   "legacy": "retired model ids (deepseek-chat, deepseek-reasoner)",
+   "to": "registry default",
+   "rule": "migrateRetiredModelMap on read for providerModels, providerModelsThinking, providerModelsDeep",
+   "anchor": "src/main/store.ts:653-664",
+   "status": "existing"
+  },
+  {
+   "legacy": "localLlm.modelId 'qwen3.5-2b'",
+   "to": "'qwen3.5-0.8b'",
+   "rule": "schema preprocess; boot re-upgrades if the machine allows",
+   "anchor": "src/shared/ipc.ts:871-878",
+   "status": "existing"
+  },
+  {
+   "legacy": "autoHideOverlay without overlayLayout",
+   "to": "overlayLayout",
+   "rule": "false → bar, true → island",
+   "anchor": "src/shared/overlay-chrome.ts:303-308",
+   "status": "existing"
+  },
+  {
+   "legacy": "contentProtection (pre-split meaning)",
+   "to": "contentProtection + privateView",
+   "rule": "deliberately no remap; the eye button kept its original meaning",
+   "anchor": "src/main/store.ts:665-671",
+   "status": "existing"
+  },
+  {
+   "legacy": "managed-config 'lockedKeys'",
+   "to": "'locked'",
+   "rule": "both accepted",
+   "anchor": "src/main/store.ts:156-168",
+   "status": "existing"
+  },
+  {
+   "legacy": "managed-config flat enterpriseLive* keys",
+   "to": "enterpriseLive{managed, inferenceMode, summaryOnly}",
+   "rule": "both shapes accepted",
+   "anchor": "src/shared/enterprise-live-profile.ts:36-50",
+   "status": "existing"
+  },
+  {
+   "legacy": "cloudSttProvider on a profile that existed before settings version 2",
+   "to": "the speech route in force before the upgrade, kept",
+   "rule": "S-1: compute the 1.x route and the 2.0 route from the same layers; where they differ (outside managed cloud-only, a 2.0 value that is a cloud id: the new Cloudflare default, a cloud id left in the user layer by an earlier managed cloud-only profile, or an organization default), write 'unconfigured' to the user layer and offer the S16 choice; where they agree write nothing, so a managed cloud-only profile with no stored provider gets no write; a lock that would change the route holds the profile at version 1",
+   "status": "new",
+   "owner": "M2-0117.1"
+  },
+  {
+   "legacy": "asrEngine supplied by the Métis default on a profile that existed before settings version 2",
+   "to": "asrEngine persisted with its effective value",
+   "rule": "S-1: pin the engine the profile used (Parakeet on completed sparse profiles, the hardware preference on incomplete ones) so a default change never moves it; a managed default or lock is never persisted",
+   "status": "new",
+   "owner": "M2-0117.1"
+  },
+  {
+   "legacy": "native:metis.language",
+   "to": "asrLanguage",
+   "rule": "S-3: mapped once, only when asrLanguage is absent from the user layer; S16 names the change; the key is then dropped",
+   "status": "new",
+   "owner": "M2-0117.1"
+  },
+  {
+   "legacy": "localLlm.enabled true, model missing",
+   "to": "selected, not installed",
+   "rule": "S-2: no download at launch; Download shows bytes first",
+   "status": "new",
+   "owner": "M2-0117.3"
+  },
+  {
+   "legacy": "autoSaveTranscripts, sendAskText",
+   "to": "(dropped)",
+   "rule": "S-3: removed from the schema and ignored if present; no behaviour depended on them",
+   "status": "new",
+   "owner": "M2-0117.1"
+  }
+ ],
+ "legacy_tabs": [
+  {
+   "tab": "personalize",
+   "label": "Modes & Display",
+   "to": "general",
+   "notes": "Modes move to knowledge › skills"
+  },
+  {
+   "tab": "ai",
+   "label": "AI",
+   "to": "readiness-owner",
+   "notes": "Resolves to the control that owns the failing readiness: privacy › account (licence) for managed AI, advanced › ai-providers for a personal provider, privacy › connected-apps for Dust"
+  },
+  {
+   "tab": "audio",
+   "label": "Speech",
+   "to": "voice"
+  },
+  {
+   "tab": "calendar",
+   "label": "Calendar",
+   "to": "privacy.account",
+   "notes": "The 'enter your organization's sign-in IDs' nudge opens advanced › organization › sign-in setup only while ssoBootstrapAllowed(); otherwise privacy › account"
+  },
+  {
+   "tab": "meetings",
+   "label": "Meetings",
+   "to": "knowledge.space",
+   "notes": "Encryption and retention move to privacy › storage"
+  },
+  {
+   "tab": "intelligence",
+   "label": "Brain",
+   "to": "knowledge",
+   "notes": "Polo Pre-Sales, Plane and ClickUp move to privacy › connected-apps"
+  },
+  {
+   "tab": "privacy",
+   "label": "Privacy",
+   "to": "privacy"
+  },
+  {
+   "tab": "profile",
+   "label": "Identity",
+   "to": "knowledge.about-you",
+   "notes": "Shortcuts move to general; the member pass and licence to privacy › account"
+  },
+  {
+   "tab": "about",
+   "label": "About",
+   "to": "advanced.diagnostics"
+  }
+ ],
+ "policy_sources": [
+  {
+   "source": "managed-config (per user)",
+   "path": "userData/managed-config.json",
+   "trust": "user-writable; a convenience layer, not a security boundary",
+   "anchor": "src/main/store.ts:273-280"
+  },
+  {
+   "source": "managed-config (machine)",
+   "path": "admin policy file (win32: honoured only when admin-owned and not user-writable)",
+   "trust": "organization",
+   "anchor": "src/main/store.ts:248-270"
+  },
+  {
+   "source": "edition policy",
+   "path": "caheEditionPolicy()",
+   "trust": "build",
+   "anchor": "src/main/cahe-edition.ts:84-86",
+   "notes": "Returns no locks or defaults today; removed with the edition (D-30, M2-0214)."
+  },
+  {
+   "source": "environment",
+   "path": "process.env",
+   "trust": "deployment",
+   "keys": [
+    "provider key variables (store.ts ENV_VAR)",
+    "SONIOX_API_KEY",
+    "AZURE_CLIENT_ID",
+    "AZURE_TENANT_ID",
+    "ASKTOTO_ALLOWED_DOMAIN",
+    "ASKTOTO_REQUIRE_AUTH",
+    "METIS_OPERATOR_URL",
+    "METIS_OPERATOR_INGEST_SECRET",
+    "METIS_PROXY_KEY"
+   ],
+   "anchor": "src/main/store.ts:94-116, 326-330; src/main/auth.ts:157-170, 669"
+  },
+  {
+   "source": "server",
+   "path": "Operator heartbeat",
+   "trust": "server",
+   "keys": [
+    "operatorTier",
+    "operatorEntitlements",
+    "operatorIntegrationsVersion",
+    "operatorEntitlementsAt"
+   ],
+   "anchor": "src/main/index.ts:4874-4885"
+  }
+ ],
+ "policy_keys": [
+  {
+   "key": "locked",
+   "alias": "lockedKeys",
+   "effect": "listed settings keys ignore user writes and user values on read",
+   "anchor": "src/main/store.ts:156-176, 283-288, 689-690, 783-791"
+  },
+  {
+   "key": "allowedProviders",
+   "effect": "LLM provider allowlist; [] denies all",
+   "anchor": "src/main/store.ts:178-199, 312-322"
+  },
+  {
+   "key": "egressAllowlist",
+   "effect": "network host allowlist enforced at boot",
+   "anchor": "src/main/net/egress-policy.ts:5-47"
+  },
+  {
+   "key": "requireAuth",
+   "effect": "forces Entra sign-in (machine policy or per-user file)",
+   "anchor": "src/main/auth.ts:669-690"
+  },
+  {
+   "key": "azure",
+   "effect": "{ clientId, tenantId, allowedDomain } sign-in configuration",
+   "anchor": "src/main/auth.ts:51-84"
+  },
+  {
+   "key": "escrowPubKey",
+   "effect": "key escrow for transcript encryption (machine policy only)",
+   "anchor": "src/main/transcripts.ts:78-110"
+  },
+  {
+   "key": "disableAutoUpdate",
+   "effect": "freezes updates (machine policy only)",
+   "anchor": "src/main/updater.ts:13-32"
+  },
+  {
+   "key": "updateFeedUrl",
+   "effect": "private https update feed (machine policy only)",
+   "anchor": "src/main/updater.ts:34-47"
+  }
+ ],
+ "non_settings": [
+  {
+   "surface": "Brain › Mantu Intelligence (Open dashboard)",
+   "anchor": "src/renderer/src/components/Settings.tsx:7834-7855",
+   "disposition": "leaves Settings; the dashboard is a top-level view (EXP-05)"
+  },
+  {
+   "surface": "Brain › Meetings & follow-up (recent meetings)",
+   "anchor": "src/renderer/src/components/Settings.tsx:7859-7915",
+   "disposition": "leaves Settings; History is a top-level view"
+  },
+  {
+   "surface": "Calendar › Today's agenda",
+   "anchor": "src/renderer/src/components/Settings.tsx:8756",
+   "disposition": "becomes voice › Today with eligibility and Skip (M2-0153)"
+  },
+  {
+   "surface": "About › Why Métis, Thanks, footer links",
+   "anchor": "src/renderer/src/components/Settings.tsx:7374-7494",
+   "disposition": "advanced › diagnostics › About Métis sheet"
+  },
+  {
+   "surface": "footer › Log out, Quit, Done",
+   "anchor": "src/renderer/src/components/Settings.tsx:7501-7548",
+   "disposition": "Sign out → privacy › account; Quit → general › startup; Done → the close button (changes already apply)"
+  },
+  {
+   "surface": "Identity › member pass",
+   "anchor": "src/renderer/src/components/Settings.tsx:7351",
+   "disposition": "privacy › account (licence card)"
+  }
+ ]
+}

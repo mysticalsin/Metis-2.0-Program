@@ -1,0 +1,7859 @@
+{
+ "ticket": "M2-0101",
+ "generated_at": "2026-09-27T01:39:36Z",
+ "standard": "WCAG 2.2 AA: 1.4.3 text contrast (4.5:1, large text 3:1) and 1.4.11 non-text contrast of controls and the focus indicator (3:1); no clipped text, horizontal scrolling or content outside the window; transitions at most 200 ms and none under reduced motion",
+ "captures": [
+  {
+   "state": "S01-general",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S01-general/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 147,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S01-general",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S01-general/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 147,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S01-general",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S01-general/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 147,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S01-general",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S01-general/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 147,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S01-general",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S01-general/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 147,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S01-general",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S01-general/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 147,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S01-general",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S01-general/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 147,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S01-general",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S01-general/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 147,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S02-voice-ready",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S02-voice-ready/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 69,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 191,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S02-voice-ready",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S02-voice-ready/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 69,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 191,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S02-voice-ready",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S02-voice-ready/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 69,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 191,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S02-voice-ready",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S02-voice-ready/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 69,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 191,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S02-voice-ready",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S02-voice-ready/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 69,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 191,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S02-voice-ready",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S02-voice-ready/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 69,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 191,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S02-voice-ready",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S02-voice-ready/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 69,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 191,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S02-voice-ready",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S02-voice-ready/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 69,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 191,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S03-voice-unavailable/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 77,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 207,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S03-voice-unavailable/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 77,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 207,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S03-voice-unavailable/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 77,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 207,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S03-voice-unavailable/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 77,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 207,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S03-voice-unavailable/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 77,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 207,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S03-voice-unavailable/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 77,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 207,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S03-voice-unavailable/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 77,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 207,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S03-voice-unavailable",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S03-voice-unavailable/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 77,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 207,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S04-local-speech-review",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S04-local-speech-review/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 85,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 220,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S04-local-speech-review",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S04-local-speech-review/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 85,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 220,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S04-local-speech-review",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S04-local-speech-review/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 85,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 220,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S04-local-speech-review",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S04-local-speech-review/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 85,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 220,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S04-local-speech-review",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S04-local-speech-review/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 85,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 220,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S04-local-speech-review",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S04-local-speech-review/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 85,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 220,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S04-local-speech-review",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S04-local-speech-review/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 85,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 220,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S04-local-speech-review",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S04-local-speech-review/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 85,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 220,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S05-local-speech-downloading/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 225,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S05-local-speech-downloading/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 225,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S05-local-speech-downloading/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 225,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S05-local-speech-downloading/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 225,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S05-local-speech-downloading/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 225,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S05-local-speech-downloading/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 225,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S05-local-speech-downloading/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 225,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S05-local-speech-downloading",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S05-local-speech-downloading/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 225,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S06-local-speech-installed/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 223,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S06-local-speech-installed/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 223,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S06-local-speech-installed/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 223,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S06-local-speech-installed/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 223,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S06-local-speech-installed/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 223,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S06-local-speech-installed/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 223,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S06-local-speech-installed/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 223,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S06-local-speech-installed",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S06-local-speech-installed/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 87,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 223,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S07-knowledge",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S07-knowledge/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 3,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S07-knowledge",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S07-knowledge/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 3,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S07-knowledge",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S07-knowledge/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 3,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S07-knowledge",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S07-knowledge/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 3,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S07-knowledge",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S07-knowledge/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 3,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S07-knowledge",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S07-knowledge/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 3,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S07-knowledge",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S07-knowledge/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 3,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S07-knowledge",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S07-knowledge/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 3,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S08-privacy-managed",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S08-privacy-managed/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 218,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S08-privacy-managed",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S08-privacy-managed/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 218,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S08-privacy-managed",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S08-privacy-managed/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 218,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S08-privacy-managed",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S08-privacy-managed/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 218,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S08-privacy-managed",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S08-privacy-managed/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 218,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S08-privacy-managed",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S08-privacy-managed/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 218,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S08-privacy-managed",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S08-privacy-managed/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 218,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S08-privacy-managed",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S08-privacy-managed/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 218,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S09-policy-sheet",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S09-policy-sheet/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 108,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 257,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S09-policy-sheet",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S09-policy-sheet/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 108,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 257,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S09-policy-sheet",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S09-policy-sheet/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 108,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 257,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S09-policy-sheet",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S09-policy-sheet/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 108,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 257,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S09-policy-sheet",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S09-policy-sheet/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 108,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 257,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S09-policy-sheet",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S09-policy-sheet/dark-1x-reduced-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 108,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 257,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S09-policy-sheet",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S09-policy-sheet/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 108,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 257,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S09-policy-sheet",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S09-policy-sheet/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 108,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 6,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 257,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S10-advanced",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S10-advanced/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 8,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S10-advanced",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S10-advanced/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 8,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S10-advanced",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S10-advanced/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 8,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S10-advanced",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S10-advanced/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 8,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S10-advanced",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S10-advanced/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 8,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S10-advanced",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S10-advanced/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 8,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S10-advanced",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S10-advanced/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 8,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S10-advanced",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S10-advanced/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 81,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 8,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S11-search",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S11-search/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S11-search",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S11-search/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S11-search",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S11-search/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S11-search",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S11-search/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S11-search",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S11-search/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S11-search",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S11-search/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S11-search",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S11-search/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S11-search",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S11-search/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 166,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S12-search-empty",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S12-search-empty/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 149,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S12-search-empty",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S12-search-empty/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 149,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S12-search-empty",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S12-search-empty/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 149,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S12-search-empty",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S12-search-empty/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 149,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S12-search-empty",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S12-search-empty/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 149,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S12-search-empty",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S12-search-empty/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 149,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S12-search-empty",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S12-search-empty/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 149,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S12-search-empty",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S12-search-empty/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 50,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 149,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S13-save-failed",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S13-save-failed/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 71,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 194,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S13-save-failed",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S13-save-failed/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 71,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 194,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S13-save-failed",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S13-save-failed/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 71,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 194,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S13-save-failed",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S13-save-failed/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 71,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 194,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S13-save-failed",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S13-save-failed/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 71,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 194,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S13-save-failed",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S13-save-failed/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 71,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 194,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S13-save-failed",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S13-save-failed/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 71,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 194,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S13-save-failed",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S13-save-failed/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 71,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 194,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S14-policy-changed",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S14-policy-changed/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 76,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 11,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 209,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S14-policy-changed",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S14-policy-changed/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 76,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 11,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 209,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S14-policy-changed",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S14-policy-changed/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 76,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 11,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 209,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S14-policy-changed",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S14-policy-changed/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 76,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 11,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 209,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S14-policy-changed",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S14-policy-changed/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 76,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 11,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 209,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S14-policy-changed",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S14-policy-changed/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 76,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 11,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 209,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S14-policy-changed",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S14-policy-changed/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 76,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 11,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 209,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S14-policy-changed",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S14-policy-changed/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 76,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 11,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 209,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S15-narrow",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S15-narrow/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 163,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S15-narrow",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S15-narrow/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 163,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S15-narrow",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S15-narrow/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 163,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S15-narrow",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S15-narrow/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 163,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S15-narrow",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S15-narrow/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 163,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S15-narrow",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S15-narrow/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 163,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S15-narrow",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S15-narrow/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 163,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S15-narrow",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S15-narrow/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 62,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 13,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 163,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S16-migrated",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S16-migrated/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 58,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 161,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S16-migrated",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S16-migrated/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 58,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 161,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S16-migrated",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S16-migrated/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 58,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 161,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S16-migrated",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S16-migrated/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 58,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 161,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S16-migrated",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S16-migrated/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 58,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 161,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S16-migrated",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S16-migrated/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 58,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 161,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S16-migrated",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S16-migrated/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 58,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 161,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S16-migrated",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S16-migrated/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 58,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 161,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S17-connected-apps",
+   "theme": "light",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S17-connected-apps/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 74,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S17-connected-apps",
+   "theme": "light",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S17-connected-apps/light-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 74,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S17-connected-apps",
+   "theme": "light",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S17-connected-apps/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 74,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S17-connected-apps",
+   "theme": "light",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S17-connected-apps/light-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 74,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 6.39,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 6.83,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 7.2,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 5.85,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "light"
+   }
+  },
+  {
+   "state": "S17-connected-apps",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "no-preference",
+   "file": "S17-connected-apps/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 74,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S17-connected-apps",
+   "theme": "dark",
+   "scale": 1,
+   "motion": "reduce",
+   "file": "S17-connected-apps/dark-1x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 74,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S17-connected-apps",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "no-preference",
+   "file": "S17-connected-apps/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 74,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 150,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  },
+  {
+   "state": "S17-connected-apps",
+   "theme": "dark",
+   "scale": 2,
+   "motion": "reduce",
+   "file": "S17-connected-apps/dark-2x-motion.png",
+   "errors": [],
+   "audit": {
+    "pass": true,
+    "text": {
+     "checked": 74,
+     "failures": [],
+     "unverifiable": []
+    },
+    "nonText": {
+     "checked": 9,
+     "failures": []
+    },
+    "focusIndicator": [
+     {
+      "against": "--bg",
+      "ratio": 9.59,
+      "pass": true
+     },
+     {
+      "against": "--surface",
+      "ratio": 9.38,
+      "pass": true
+     },
+     {
+      "against": "--card",
+      "ratio": 8.72,
+      "pass": true
+     },
+     {
+      "against": "--raised",
+      "ratio": 8.05,
+      "pass": true
+     },
+     {
+      "against": "--accent-soft",
+      "ratio": 7.48,
+      "pass": true
+     }
+    ],
+    "clipping": {
+     "checked": 197,
+     "failures": []
+    },
+    "motion": {
+     "maxTransitionMs": 0,
+     "running": 0,
+     "failures": []
+    },
+    "colorScheme": "dark"
+   }
+  }
+ ],
+ "negative_control": {
+  "injected": [
+   "low-contrast summary text",
+   "toggle edge without contrast",
+   "clipped label",
+   "clipped select text",
+   "400 ms transition"
+  ],
+  "pass": false,
+  "text": [
+   {
+    "element": "p.dest-summary “Speech readiness, microphone, meeting participat”",
+    "ratio": 1.89,
+    "required": 4.5
+   }
+  ],
+  "nonText": [
+   {
+    "element": "button.toggle “Hey Métis”",
+    "ratio": 1.08,
+    "required": 3
+   }
+  ],
+  "clipping": [
+   {
+    "element": "div.label “Speech processing”",
+    "problem": "text clipped"
+   },
+   {
+    "element": "select “System default (MacBook Pro Microphone)”",
+    "problem": "control text clipped"
+   }
+  ],
+  "motion": [
+   "transition longer than 200 ms",
+   "1 animation(s) still running after settle"
+  ]
+ },
+ "interactions": [
+  {
+   "name": "local route without a pack opens Optional local speech instead of switching",
+   "actual": [
+    "voice.local-speech-packs",
+    false
+   ],
+   "expected": [
+    "voice.local-speech-packs",
+    false
+   ],
+   "pass": true
+  },
+  {
+   "name": "Cmd+F, type, Enter lands on the control and focuses it",
+   "actual": [
+    "Privacy & account",
+    "Delete meetings after"
+   ],
+   "expected": [
+    "Privacy & account",
+    "Delete meetings after"
+   ],
+   "pass": true
+  },
+  {
+   "name": "a consequential change asks first and Cancel keeps the value",
+   "actual": "Never",
+   "expected": "Never",
+   "pass": true
+  },
+  {
+   "name": "confirmed change is saved and says so",
+   "actual": [
+    "90 days",
+    "Saved"
+   ],
+   "expected": [
+    "90 days",
+    "Saved"
+   ],
+   "pass": true
+  },
+  {
+   "name": "a reversible preference applies at once",
+   "actual": "true",
+   "expected": "true",
+   "pass": true
+  },
+  {
+   "name": "a failed save keeps the confirmed value on screen and explains it",
+   "actual": [
+    "true",
+    true
+   ],
+   "expected": [
+    "true",
+    true
+   ],
+   "pass": true
+  }
+ ]
+}

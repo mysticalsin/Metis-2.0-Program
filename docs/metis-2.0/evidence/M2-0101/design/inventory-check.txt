@@ -1,0 +1,6 @@
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 126 settings entries, 12 non-schema entries, 99 controls
+classes: ADVANCED 46, DEPRECATED 14, KEEP 55, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+PASS
+exit 0
