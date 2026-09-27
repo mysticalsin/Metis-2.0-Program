@@ -9,7 +9,7 @@ UNKNOWN with a source. Rules cite the decision they rest on. Anything this runbo
 and has a row in §15; DECISIONS.md is not edited here. "The lead" is the Opus orchestrator session
 (PLAN.md:44). Public-repository line numbers refer to `m2/integration` at 7dab8e89 unless stated.
 Program-document paths are relative to `docs/metis-2.0/`, and their line numbers refer to the lead's
-ledger commit 521162f (`ledger: M2-0191 and M2-0002 done`).
+ledger commit 521162f (`ledger: M2-0191 and M2-0002 done`) and are unchanged at 8cae2a6.
 
 ## 1. Invariants
 
@@ -34,7 +34,7 @@ main commit C --qa-candidate, owner approves--> promoted 1.9.7 --> release/1.9.x
 | Branch | Created from | Written by | GitHub protection (OBSERVED, `gh api …/rulesets`, 2026-09-27) |
 |---|---|---|---|
 | `m2/M2-####-slug` | `origin/m2/integration` | its ticket runner only; brought up to date by merging `origin/m2/integration` in, never rebased or force-pushed once pushed | none |
-| `m2/integration` | `main` (2026-09-26) | the lead, by merging PRs | none: `rules/branches/m2%2Fintegration` returns `[]` (D-32) |
+| `m2/integration` | `main` (2026-09-26) | the lead, by merging PRs | none: `rules/branches/m2%2Fintegration` returns `[]` (D-33) |
 | `m2/milestone-<mN>` | a green `m2/integration` commit | the lead, once; never updated | none needed |
 | `main` | — | the owner, by merging milestone PRs | `protect-main-deletion`: deletion and non_fast_forward; no required checks |
 | `release/1.9.x` | the promoted 1.9.7 candidate's commit (§11) | the lead, by merging backport PRs | `protect-release-branches` (`release/*`): deletion and non_fast_forward |
@@ -106,10 +106,12 @@ re-sync, a new CI run and a re-recorded validation (DERIVED). The W1 shape keeps
 
 **`index`** — declared for 1.9.7 (M2-0188 acceptance 2; PLAN.md:132): M2-0004 → 0006 → 0026 → 0036 →
 0030 → 0031 → 0193 → 0033 → 0037. Two m3 tickets created later also claim it (OBSERVED, ledger). PROPOSED
-(PD-30): M2-0215 directly after 0006, because it is 0006's split-off remainder and inherits its slot; M2-0214
-after 0037, because the Cahê key it served is already revoked (`_relay/HANDOFF.md`, "PURGE STATUS") and it
-should not delay the 0030 → 0031 → 0193 critical path. Result: 0004 → 0006 → 0215 → 0026 → 0036 → 0030 →
-0031 → 0193 → 0033 → 0037 → 0214, then the W3 tickets by the default rule.
+(PD-30): M2-0215, observability slice 2, directly after 0006, because it is 0006's split-off remainder
+(71adb41) and inherits its slot; M2-0214 after 0037, because the Cahê key it served is already revoked
+(`_relay/HANDOFF.md`, "PURGE STATUS") and it should not delay the 0030 → 0031 → 0193 critical path.
+Result: 0004 → 0006 → 0215 → 0026 → 0036 → 0030 → 0031 → 0193 → 0033 → 0037 → 0214, then the W3 tickets
+by the default rule. The slot after 0006 belongs to the observability slice under whatever id it keeps:
+PR #2 files a different ticket as M2-0215 (F18).
 
 **`helper`** — declared (M2-0188 acceptance 2; ARCHITECTURE.md:245): M2-0027 → 0191 → 0192 → 0028 →
 0084. M2-0191 landed first (PR #210, merge f75383e7) while M2-0027 was not ready: it needs M2-0026 and
@@ -206,10 +208,11 @@ Per PR, with `N` the PR number, `SHA` its head and `T` its ticket:
    gh pr merge N --repo mysticalsin/AskToto-Mantu --merge --match-head-commit SHA --subject "Merge pull request #N [T]"
    ```
 
-**Batches.** PRs that change no hot unit and whose file sets are pairwise disjoint may merge back to back
-without step 4. Each merge commit gets its own `build.yml` run, so a red run names its merge (OBSERVED: the
-four merges of 2026-09-26 23:46 UTC produced runs 36280486263, 36280488859, 36280491532 and 36280495270,
-all green). Merge a batch's hot-unit PR first, so its siblings never make it stale.
+**Batches.** PRs whose file sets are pairwise disjoint may merge back to back. A batch holds at most one
+hot-unit PR: it passes step 4 and merges first, before its siblings move the integration head. The others
+change no hot unit and skip step 4. Each merge commit gets its own `build.yml` run, so a red run names its
+merge (OBSERVED: the four merges of 2026-09-26 23:46 UTC produced runs 36280486263, 36280488859,
+36280491532 and 36280495270, all green).
 
 ## 9. After a merge
 
@@ -217,27 +220,30 @@ all green). Merge a batch's hot-unit PR first, so its siblings never make it sta
    through a PR (`git revert -m 1 <merge>` on a lead branch cut from `origin/m2/integration`), and leave the
    ticket IN_PROGRESS. It keeps its units, fixes on its branch and lands again through §8.
 2. **When it is green**, one commit on the program repository's `main`, pushed:
-   - append the PR's evidence record, compacted with `jq -c`, to `evidence/records/<T>.jsonl`, never
-     editing an existing line (SCHEMA.md §6);
+   - append each evidence record in the PR body (a PR can carry one per level, such as DESIGNED and
+     LOCALLY_TESTED), compacted with `jq -c`, one line each, to `evidence/records/<T>.jsonl`, never editing
+     an existing line (SCHEMA.md §6);
    - set the status. **DONE** when every `required_evidence` level has a latest PASS record and no
      `depends_on` ancestor is ENGINEERING_COMPLETE or BLOCKED_EXTERNAL (L9). Otherwise
      **ENGINEERING_COMPLETE** (L8), and when a level the ticket still lacks needs the owner (LIVE_VERIFIED
      on a candidate, HOST_CONFIGURED, MEASURED), set `external_blocker` to that owner step as below; a
      ticket capped only by an ancestor needs no blocker of its own. Either way the ticket releases its
-     units and its dependants become ready (L3). A landed ticket never stays IN_PROGRESS: it would keep
-     its units and stall its dependants (F1);
+     units and no longer holds back its dependants (L3). A landed ticket never stays IN_PROGRESS: it would
+     keep its units and stall its dependants (F1);
    - dispatch the next holder of each released unit (§5);
    - subject `ledger: <T> landed (#N, <merge sha>)`.
 
    The ticket's fields when LIVE_VERIFIED is missing; a HOST_CONFIGURED or MEASURED gap names its own
-   owner step the same way:
+   owner step the same way. The text cites ticket ids, runbook sections and invariants only, never a
+   proposed decision id, so it stays true whatever id the QA-host proposal lands under (§15) and however
+   the owner answers it:
 
    ```json
    {
      "status": "ENGINEERING_COMPLETE",
      "external_blocker": {
        "owner": "Program owner (Tony)",
-       "unblock_step": "Merge the milestone PR that contains <merge sha> (#<N>) into main (INT-7). The lead then builds a candidate from main's head (runbooks/qa-candidate.md §3), and <T>'s LIVE_VERIFIED check runs against that candidate's sha256 on the QA host (M2-0007, D-34)",
+       "unblock_step": "Merge the milestone PR that contains <merge sha> (#<N>) into main (runbooks/integration.md INT-7). The lead then builds a candidate from main's head (runbooks/qa-candidate.md §3), and <T>'s LIVE_VERIFIED check runs against that candidate's sha256 on the QA host (M2-0007) once the owner permits candidate runs on the QA user (runbooks/integration.md §12)",
        "needed_by": "<the milestone's candidate date: 2026-10-03 for 1.9.7>",
        "raised_on": "<landing date>"
      }
@@ -246,10 +252,11 @@ all green). Merge a batch's hot-unit PR first, so its siblings never make it sta
 
    While `<T>` is ENGINEERING_COMPLETE, a dependant that lands also closes as ENGINEERING_COMPLETE, and
    each of its latest records lists `{ "ticket": "<T>", "unblock_step": … }` in `inherited_block` (L10;
-   SCHEMA.md:125). When `<T>`'s LIVE_VERIFIED PASS record is appended, `<T>` becomes DONE and its
-   `external_blocker` returns to null; each dependant then records every required level again, without that
-   entry, before it can be DONE (L9, L10; README.md:63-66). L8 stays as it is, so an ENGINEERING_COMPLETE
-   ticket always states what it waits on (ADR-017).
+   SCHEMA.md:125). When `<T>`'s LIVE_VERIFIED PASS record is appended, its `external_blocker` returns to
+   null, or names the next owner step if another level it lacks needs one, and `<T>` may become DONE (L9,
+   as above). A dependant can become DONE only after `<T>` does, and only with a new record at each
+   required level that carries no `inherited_block` (L9, L10; README.md:63-66). L8 stays as it is, so an
+   ENGINEERING_COMPLETE ticket always states what it waits on (ADR-017).
 3. Update `_relay/HANDOFF.md`.
 
 ## 10. Milestone PRs to main
@@ -267,14 +274,14 @@ all green). Merge a batch's hot-unit PR first, so its siblings never make it sta
 
 ## 11. The 1.9.7 release window and release/1.9.x
 
-**Window (PROPOSED, D-31).** The candidate lane builds only from `main`'s head (OBSERVED:
+**Window (PROPOSED, D-32).** The candidate lane builds only from `main`'s head (OBSERVED:
 `.github/workflows/qa-candidate.yml:41,45-51` at PR #213's head e1127f87), so 1.9.7 contains everything on
 `m2/integration` when the m3 snapshot is cut. Until then, a PR that changes what goes into the installer
 (`src/**` other than tests, `native/**`, `intelligence/**`, `deps`, electron-builder configs) merges only if
 its ticket is in milestone m2 or m3. PRs that change only tests, `scripts/`, `docs/`, other workflows or
 `operator/` are not held.
 
-**Cut (PROPOSED, D-33).** After the owner approves promotion (ACCEPTED), the lead creates `release/1.9.x`
+**Cut (PROPOSED, D-34).** After the owner approves promotion (ACCEPTED), the lead creates `release/1.9.x`
 at the commit recorded in the promoted candidate's `provenance.json`:
 `gh api repos/mysticalsin/AskToto-Mantu/git/refs -f ref=refs/heads/release/1.9.x -f sha=<commit>`. That
 commit is what M2-0046 and M2-0188 call "the 1.9.7 tag": the lane never tags this repository (ADR-022
@@ -290,7 +297,7 @@ INV-6; runbooks/qa-candidate.md:16).
    own PR, and link the two PRs to each other and to the ticket.
 4. The lead merges backport PRs with a merge commit. A 1.9.x candidate is built and promoted like any other,
    with the owner's approval. Today the lane cannot build from `release/1.9.x` and no hotfix version number
-   is defined (F11, D-33).
+   is defined (F11, D-34).
 
 ## 12. Where things run (D-28)
 
@@ -299,7 +306,7 @@ INV-6; runbooks/qa-candidate.md:16).
 | Full suites, targeted tests, `npm run typecheck`, builds | GitHub Actions only. D-28 (DECISIONS.md:128) supersedes M2-0188 acceptance 4's "local runs are targeted files under the hermetic harness": no repository test, script or app runs on any Mac |
 | On any Mac | git, gh, reading files, `npx tsc --noEmit -p <tsconfig>` (executes no repository code) |
 | Packaging | `build.yml` package jobs (PRs into `main`, dispatch) and `qa-candidate.yml` |
-| Packaged runs of a candidate | CI runners (`qa-candidate.yml` smoke jobs). On the QA macOS user only if the owner grants D-34, and then one run at a time: a run starts only after it creates the lock directory on the QA account with `mkdir` (atomic), writes the ticket id, the candidate sha256 and the start time into it, and removes it when it ends. A lock left by a dead run is cleared by the lead, never by another run. The QA host runbook (M2-0007) implements this contract |
+| Packaged runs of a candidate | CI runners (`qa-candidate.yml` smoke jobs). On the QA macOS user only if the owner grants D-35, and then one run at a time: a run starts only after it creates the lock directory on the QA account with `mkdir` (atomic), writes the ticket id, the candidate sha256 and the start time into it, and removes it when it ends. A lock left by a dead run is cleared by the lead, never by another run. The QA host runbook (M2-0007) implements this contract |
 | docker-compose service suites | CI jobs only, never the owner's Mac |
 
 ## 13. claims-check.mjs contract (M2-0188.2)
@@ -335,32 +342,40 @@ on `helper` (M2-0190, M2-0191) and C2 with four tickets (M2-0006, 0144, 0147, 01
 521162f, where M2-0191 has left IN_PROGRESS, neither fires: `helper` has one holder (M2-0190) and three
 tickets claim `src/main` (M2-0006, 0144, 0147), the cap (DERIVED; F4, F5).
 
-## 14. Findings (2026-09-27 00:10 UTC)
+## 14. Findings
+
+Collected 2026-09-27 00:10 UTC and re-checked at 01:20 UTC. A ledger fact names its snapshot: `origin/main`
+is the program repository's published `main` (8876e1c, 2026-09-26 21:46 UTC); 88106e2 (23:54 UTC) and
+521162f (2026-09-27 00:47 UTC) are the lead's unpushed ledger commits, and 8cae2a6 (00:56 UTC) adds only
+M2-0216 to the ledger (F15). Rows without a snapshot state GitHub or public-repository facts.
 
 | # | Finding | Label | Source | Handled by |
 |---|---|---|---|---|
-| F1 | **The 1.9.7 chain stalls only while landed tickets stay IN_PROGRESS.** A dependant may start only when each `depends_on` is ENGINEERING_COMPLETE, DONE, DEFERRED or BLOCKED_EXTERNAL (`scripts/evidence/check.mjs:22,179`, L3). A landed ticket whose remaining level is LIVE_VERIFIED waits on the owner: only the owner merges milestone PRs into `main` (INT-7), the lane builds only `main`'s head, and the QA host needs M2-0007 and D-34. The program routes anything that needs an owner to an external blocker with the exact unblock step (README.md:37; AGENTS.md §4, `:71-72`), so ENGINEERING_COMPLETE with an owner-gated `external_blocker` passes L8 (`check.mjs:216`) and satisfies L3 for its dependants without a code change; 48 ledger tickets already carry owner blockers. Live case: M2-0191 landed (#210) and is IN_PROGRESS on the program repository's `origin/main`, which keeps M2-0192 and M2-0193 from starting. The lead's commit 521162f sets it DONE without a LIVE_VERIFIED record, which L9 rejects; ENGINEERING_COMPLETE with the §9 blocker is the status that passes | OBSERVED (rules, ledger) / DERIVED (stall) | `check.mjs`; ledger `required_evidence`, `depends_on`, `external_blocker`; `qa-candidate.yml:41,45-51` (PR #213 head e1127f87) | §9 step 2 |
+| F1 | **The 1.9.7 chain stalls only while landed tickets stay IN_PROGRESS.** A dependant may start only when each `depends_on` is ENGINEERING_COMPLETE, DONE, DEFERRED or BLOCKED_EXTERNAL (`scripts/evidence/check.mjs:22,179`, L3). A landed ticket whose remaining level is LIVE_VERIFIED waits on the owner: only the owner merges milestone PRs into `main` (INT-7), the lane builds only `main`'s head, and the QA host needs M2-0007 and D-35. The program routes anything that needs an owner or an outside account to an external blocker with the exact unblock step (README.md:37; AGENTS.md §4, `:71-72`), so ENGINEERING_COMPLETE with an owner-gated `external_blocker` passes L8 (`check.mjs:216`) and satisfies L3 for its dependants without a code change. At 521162f, 48 tickets carry an `external_blocker` (45 TODO, 3 IN_PROGRESS, none ENGINEERING_COMPLETE yet), several owned by other roles such as the Cloudflare account owner or the Entra tenant administrator. Live case: M2-0191 landed (#210) and is IN_PROGRESS on `origin/main`, where its cost today is that it co-holds `helper` with M2-0190 (F5) and is one of five `src/main` claimers against a cap of three (F4). Its dependants could not start even without it: M2-0192 also waits on M2-0006 (IN_PROGRESS), M2-0193 on M2-0030 and M2-0031 (TODO). 521162f sets it DONE without a LIVE_VERIFIED record, which L9 rejects; ENGINEERING_COMPLETE with the §9 blocker is the status that passes | OBSERVED (rules, ledger) / DERIVED (stall) | `check.mjs`; ledger `required_evidence`, `depends_on`, `external_blocker` at `origin/main` and 521162f; `qa-candidate.yml:41,45-51` (PR #213 head e1127f87) | §9 step 2 |
 | F2 | M2-0003 changed `index.ts` (#207) outside the declared order and without claiming it | OBSERVED | `gh api …/commits?path=src/main/index.ts`; ledger `scope_paths` | §5, §8 step 3 |
 | F3 | PRs change hot files their tickets do not claim: #207 (`index.ts`, M2-0003), #213 (`package.json`, M2-0187), #206 (`ipc.ts`, M2-0041) | OBSERVED | `gh pr view <n> --json files`; ledger `scope_paths` | §8 step 3; add `package.json` to M2-0187 now (`deps` is free) |
-| F4 | The `src/main` cap was exceeded: batch 1 dispatched four claimers (M2-0003, 0006, 0035, 0043); four are IN_PROGRESS now (M2-0006, 0144, 0147, 0191), one only because its status lags its merge | DERIVED | ledger `scope_paths`; batch lists in `_relay/HANDOFF.md` | §6, §13 |
-| F5 | `helper` is claimed twice: M2-0190 (`native/mac-helper/`) and M2-0191, both IN_PROGRESS; #209 changes no file under `native/` | OBSERVED | ledger; `gh pr view 209 --json files` | narrow M2-0190's claim |
+| F4 | The `src/main` cap was exceeded from batch 1 on, which dispatched four claimers (M2-0003, 0006, 0035, 0043). `origin/main` lists five IN_PROGRESS claimers (those four and M2-0191); 88106e2 lists four (M2-0006, 0144, 0147 and M2-0191, which landed at 22:12 UTC). At 521162f three remain (M2-0006, 0144, 0147), the cap | DERIVED | ledger `scope_paths` at each snapshot; batch 1 worktrees in `_relay/HANDOFF.md` | §6, §13 |
+| F5 | `helper` is claimed twice on `origin/main` and at 88106e2: M2-0190 (`native/mac-helper/`) and M2-0191, both IN_PROGRESS. At 521162f M2-0190 holds it alone, although its PR #209 changes no file under `native/` | OBSERVED | ledger at each snapshot; `gh pr view 209 --json files` | narrow M2-0190's claim |
 | F6 | The ledger lags merges: M2-0002 (#212, merged 23:14 UTC) and M2-0191 (#210, 22:12 UTC) are IN_PROGRESS on the program repository's `origin/main`. 521162f sets both DONE: right for M2-0002 once its record exists (F7), wrong for M2-0191 (F1) | OBSERVED | `gh pr list --base m2/integration --state merged`; ledger | §9 step 2 |
-| F7 | `evidence/records/` holds only `.gitkeep`; the six DONE tickets (M2-0001, 0003, 0024, 0035, 0043, 0045) carry an inline `evidence` object in `tickets.json` instead. DONE needs a PASS record per required level, so the ledger check fails on all six once it runs. Whether M2-0001, merged "on local evidence", has a green run on its PR head is UNKNOWN | OBSERVED / DERIVED | `ls evidence/records`; ledger; `check.mjs` | INT-8; backfill the records |
-| F8 | Program CI has never run: `gh run list --repo mysticalsin/Metis-2.0-Program` is empty and GitHub lists no workflow; `ledger.yml` is not on `origin/main` but on the local branch `m2-0020-hindsight-pin-round2`, 7 commits ahead | OBSERVED | `gh api …/actions/workflows`; `git cat-file -e origin/main:.github/workflows/ledger.yml` | §7 step 1 |
-| F9 | T1 work is already on the trunk: M2-0043 (#202) and M2-0045 (#203), deferred to T1 by M2-0046's acceptance, merged on 2026-09-26; M2-0041 (#206, T1) is open | OBSERVED | `gh pr list`; M2-0046 acceptance | D-31 |
-| F10 | There is no 1.9.7 tag to cut at: the lane never tags this repository, while PLAN.md:225 still says the promote workflow creates tags | OBSERVED | ADR-022 INV-6; qa-candidate.md:16 | D-33 |
-| F11 | No 1.9.x hotfix path: the lane builds only `main`'s head, and PD-08's sequence (1.9.7 → 1.9.9 → …) leaves no number for a 1.9.x hotfix before T1 | OBSERVED / DERIVED | `qa-candidate.yml:41,45-51`; DECISIONS.md PD-08 | D-33 |
-| F12 | `m2/integration` can be deleted or force-pushed; no branch has required status checks | OBSERVED | `gh api …/rulesets`, `…/rules/branches/…` | D-32 |
+| F7 | At 521162f `evidence/records/` holds only `.gitkeep`, and the eight DONE tickets (M2-0001, 0002, 0003, 0024, 0035, 0043, 0045, 0191; six at 88106e2, without M2-0002 and M2-0191) carry an inline `evidence` object in `tickets.json` instead. DONE needs a PASS record per required level, so the ledger check fails on all eight once it runs. Whether M2-0001, merged "on local evidence", has a green run on its PR head is UNKNOWN | OBSERVED / DERIVED | `ls evidence/records`; ledger; `check.mjs` | INT-8; backfill the records |
+| F8 | Program CI has never run: `gh run list --repo mysticalsin/Metis-2.0-Program` is empty and GitHub lists no workflow; `ledger.yml` is not on `origin/main`, only in the lead's unpushed lineage (added by 71adb41) | OBSERVED | `gh api …/actions/workflows`; `git cat-file -e origin/main:.github/workflows/ledger.yml` | §7 step 1 |
+| F9 | T1 work is already on the trunk: M2-0043 (#202) and M2-0045 (#203), deferred to T1 by M2-0046's acceptance, merged on 2026-09-26; M2-0041 (#206, T1) is open | OBSERVED | `gh pr list`; M2-0046 acceptance | D-32 |
+| F10 | There is no 1.9.7 tag to cut at: the lane never tags this repository, while PLAN.md:225 still says the promote workflow creates tags | OBSERVED | ADR-022 INV-6; qa-candidate.md:16 | D-34 |
+| F11 | No 1.9.x hotfix path: the lane builds only `main`'s head, and PD-08's sequence (1.9.7 → 1.9.9 → …) leaves no number for a 1.9.x hotfix before T1 | OBSERVED / DERIVED | `qa-candidate.yml:41,45-51`; DECISIONS.md PD-08 | D-34 |
+| F12 | `m2/integration` can be deleted or force-pushed; no branch has required status checks | OBSERVED | `gh api …/rulesets`, `…/rules/branches/…` | D-33 |
 | F13 | GitHub cannot tell the lead from a subagent: every merge into `m2/integration` was made by the owner's account, the one `gh` credential every session on this Mac uses | OBSERVED (merges) / DERIVED (shared credential) | `gh pr list --json mergedBy` | INT-1 |
 | F14 | Ticket views are stale: `ledger/tickets/M2-0003.md` shows status TODO and an empty Validation section. `tickets.json` and the records are the place of record | OBSERVED | the file | — |
-| F15 | M2-0214 and M2-0215 carry the v1 field `evidence_target` and no `required_evidence`, which rule L1 rejects | OBSERVED | ledger | add `required_evidence` |
-| F16 | D-28 forbids any app run on any Mac, while 1.9.7 acceptance needs real cloud-backed dataless fixtures on the QA host | DERIVED | DECISIONS.md:128; M2-0046 acceptance 2; D-9 | D-34 |
+| F15 | At 521162f M2-0214 and M2-0215 (observability slice 2) carry the v1 field `evidence_target` and no `required_evidence`, which rule L1 rejects; 8cae2a6 adds M2-0216 in the same shape | OBSERVED | ledger | add `required_evidence` |
+| F16 | D-28 forbids any app run on any Mac, while 1.9.7 acceptance needs real cloud-backed dataless fixtures on the QA host | DERIVED | DECISIONS.md:128; M2-0046 acceptance 2; D-9 | D-35 |
 | F17 | Lock throughput: PRs merged on 2026-09-26 took 15 minutes to 4 hours from open to merge; the full dispatch-to-merge cycle is not recorded. At about 6 h per cycle, the eleven 1.9.7 `index` tickets take about 66 h in sequence, against 144 h from 2026-09-27 00:00 UTC to the 10-03 candidate; every hour the queue idles comes out of that margin | OBSERVED (PR times) / ASSUMED (cycle time) | `gh pr list --json createdAt,mergedAt` | §5 |
+| F18 | Two tickets share the id M2-0215. The lead's 71adb41 gives it to observability slice 2, split from M2-0006; PR #2 (M2-0013), branched from `origin/main`, adds "Fresh-install speaker-ID default must not persist a voiceprint…" under the same id. This runbook's M2-0215 is the observability slice (§5, PD-30, F15) | OBSERVED | ledger at 521162f; `git diff origin/main...origin/m2-0013-src-reverify-round3 -- docs/metis-2.0/ledger/tickets.json` | §16 |
 
 ## 15. Proposed rows for DECISIONS.md
 
-Row ids are proposals; renumber on entry. D-31 is already taken: PR #2 (M2-0013) gives that id to its
-speaker-voiceprint question.
+D-32 to D-35 are the next free ids: DECISIONS.md ends at D-30 at 521162f and 8cae2a6, and PR #2 (M2-0013)
+takes D-31 for its speaker-voiceprint question. OD-12 and PD-30 follow OD-11 and PD-29. An id still shifts
+if another row lands first, so ledger text cites a row only once it is in DECISIONS.md, by the id it landed
+under; until then it cites this runbook's section, as the §9 step 2 template does.
 
 Section A (owner decision already made, not yet in DECISIONS.md):
 
@@ -372,16 +387,16 @@ Section B (program decisions):
 
 | # | Decision | Why | Alternatives rejected | Tickets |
 |---|---|---|---|---|
-| PD-30 | The hot-file queue has one holder per hot unit, the single IN_PROGRESS ticket that claims it, with claims taken all at once at dispatch. Declared orders are dispatch orders among ready tickets, and a ticket that is not ready is overtaken. A PR changes a hot unit only if its ticket holds it, and a hot-unit PR merges only when up to date and green on its head. The `index` order gains M2-0215 after 0006 and M2-0214 after 0037 | Evidence binds to the PR head, so parallel work with serialized merges would re-sync, re-run and re-validate every open PR on a unit at each hot merge | Parallel development with serialized merges only; GitHub's merge queue (not evaluated for this user-owned repository, and it cannot see ledger claims) | M2-0188, 0214, 0215 |
+| PD-30 | The hot-file queue has one holder per hot unit, the single IN_PROGRESS ticket that claims it, with claims taken all at once at dispatch. Declared orders are dispatch orders among ready tickets, and a ticket that is not ready is overtaken. A PR changes a hot unit only if its ticket holds it, and a hot-unit PR merges only when up to date and green on its head. The `index` order gains observability slice 2 (M2-0215 at 521162f; F18) after 0006 and M2-0214 after 0037 | Evidence binds to the PR head, so parallel work with serialized merges would re-sync, re-run and re-validate every open PR on a unit at each hot merge | Parallel development with serialized merges only; GitHub's merge queue (not evaluated for this user-owned repository, and it cannot see ledger claims) | M2-0188, 0214, 0215 |
 
 Section D (open register):
 
 | ID | Question | Recommended default | Class | Needed by | Status | Affected tickets |
 |---|---|---|---|---|---|---|
-| D-31 | Until the 1.9.7 (m3) snapshot is cut, which PRs that change the installer may merge into `m2/integration`? | Only m2 and m3 tickets. M2-0004 (m4, first in the `index` order) moves to m3. M2-0043 and M2-0045, already merged, ship in 1.9.7 and are listed in its release notes; M2-0046's T1 list drops them. M2-0041 waits | reversible | 2026-09-28 | OPEN | 0004, 0041, 0043, 0045, 0046 |
-| D-32 | Protect `m2/integration` on GitHub? | Yes: a ruleset with deletion and non_fast_forward, as `main` has, plus required status checks (both Quality checks, Security & supply chain, Operator Worker) without "up to date", which the queue handles. ASSUMED: push-triggered runs on a PR's head satisfy required checks; confirm on the first PR after enabling | escalate: owner configuration | 2026-09-28 | OPEN | 0188 |
-| D-33 | How is `release/1.9.x` cut, and how is a 1.9.x hotfix built and numbered? | Cut at the commit in the promoted 1.9.7 candidate's `provenance.json`. `qa-candidate.yml` also accepts the head of `release/1.9.x` (M2-0187 follow-up). A hotfix takes the next unused patch number (never 1.9.8, never reused), and the next train the one after it | reversible | 2026-10-03 | OPEN | 0046, 0187, 0206 |
-| D-34 | May lane-built candidate bytes (not repository tests or scripts) run on the QA macOS user, one run at a time behind the §12 lock? | Yes, only sha256-verified candidate bytes and only on the QA account. Otherwise every 1.9.7 check that needs a real cloud-backed file is BLOCKED_EXTERNAL and packaged evidence comes from CI runners alone | escalate: owner (amends D-28) | 2026-10-02 | OPEN | 0007, 0008, 0046, 0187 |
+| D-32 | Until the 1.9.7 (m3) snapshot is cut, which PRs that change the installer may merge into `m2/integration`? | Only m2 and m3 tickets. M2-0004 (m4, first in the `index` order) moves to m3. M2-0043 and M2-0045, already merged, ship in 1.9.7 and are listed in its release notes; M2-0046's T1 list drops them. M2-0041 waits | reversible | 2026-09-28 | OPEN | 0004, 0041, 0043, 0045, 0046 |
+| D-33 | Protect `m2/integration` on GitHub? | Yes: a ruleset with deletion and non_fast_forward, as `main` has, plus required status checks (both Quality checks, Security & supply chain, Operator Worker) without "up to date", which the queue handles. ASSUMED: push-triggered runs on a PR's head satisfy required checks; confirm on the first PR after enabling | escalate: owner configuration | 2026-09-28 | OPEN | 0188 |
+| D-34 | How is `release/1.9.x` cut, and how is a 1.9.x hotfix built and numbered? | Cut at the commit in the promoted 1.9.7 candidate's `provenance.json`. `qa-candidate.yml` also accepts the head of `release/1.9.x` (M2-0187 follow-up). A hotfix takes the next unused patch number (never 1.9.8, never reused), and the next train the one after it | reversible | 2026-10-03 | OPEN | 0046, 0187, 0206 |
+| D-35 | May lane-built candidate bytes (not repository tests or scripts) run on the QA macOS user, one run at a time behind the §12 lock? | Yes, only sha256-verified candidate bytes and only on the QA account. Otherwise every 1.9.7 check that needs a real cloud-backed file is BLOCKED_EXTERNAL and packaged evidence comes from CI runners alone | escalate: owner (amends D-28) | 2026-10-02 | OPEN | 0007, 0008, 0046, 0187 |
 
 ## 16. Corrections other documents need (lead)
 
@@ -394,10 +409,12 @@ Section D (open register):
   this file"): `:30` and `:32-33` still say to branch from `main` and target PRs at `main` (OD-12), and
   `:38-39` still say "targeted runs on the isolated QA macOS user" (D-28).
 - M2-0188: scope path `docs/metis-2.0/runbooks/integration.md` (not `INTEGRATION.md`) plus
-  `scripts/program/program.test.ts`; acceptance 4 per D-28; acceptance 6 per D-33. The ticket closes only
-  once slice M2-0188.2 (§13) lands.
-- M2-0046: the T1 list per D-31; "cut at the 1.9.7 tag" per D-33.
+  `scripts/program/program.test.ts`; acceptance 4 per D-28; acceptance 6 per D-34 once it is decided. The
+  ticket closes only once slice M2-0188.2 (§13) lands.
+- M2-0046, once D-32 and D-34 are decided: the T1 list per D-32; "cut at the 1.9.7 tag" per D-34.
+- Ticket ids (F18): one of the two M2-0215 tickets takes a new id when PR #2 lands. The `index` slot after
+  M2-0006 (§5, PD-30) and F15 follow the observability slice under whichever id it keeps.
 - Ledger, now: M2-0191 as ENGINEERING_COMPLETE with the §9 step 2 blocker, not DONE (F1, F6);
   `package.json` in M2-0187's `scope_paths` (F3); M2-0190's claim narrowed (F5); `required_evidence` on
-  M2-0214 and M2-0215 (F15); records backfilled for every DONE and landed ticket (F7); `ledger.yml` pushed
-  to the program repository's `main` (F8).
+  M2-0214, the observability M2-0215 and M2-0216 (F15); records backfilled for every DONE and landed
+  ticket (F7); `ledger.yml` pushed to the program repository's `main` (F8).
