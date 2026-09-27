@@ -4207,7 +4207,7 @@
     "surface": "Speech › Transcript source (cloud-only profiles only)",
     "anchor": "src/renderer/src/components/Settings.tsx:6793"
    },
-   "migration": "versioned S-1 (settings version 2): compares the 1.x route with the 2.0 route over the same layers and, where they differ, writes 'unconfigured' to the user layer so the route in force is kept; a lock that would change the route holds the profile at version 1",
+   "migration": "versioned S-1 (settings version 2): compares the 1.x route with the 2.0 route over the same layers and, where they differ, writes 'unconfigured' to the user layer so the route in force is kept; a lock that would change the route holds the profile at version 1. The version is read only from a readable user file and written only by main (when it creates a profile, and when S-1 completes); DEFAULT_SETTINGS declares none and every managed layer's value or lock for it is ignored, so an unreadable settings.json or a managed settingsVersion resolves as version 1 and keeps the 1.x route",
    "basis": "OBSERVED 1.x: cloud speech only under a managed cloud-only profile, where 'unconfigured' resolves to Cloudflare; a stored cloud id is ignored everywhere else (src/shared/cloud-stt-provider.ts:35-54). DERIVED MASTER §9.6: the selected engine is one value, so from settings version 2 'unconfigured' means the local route and a cloud id that cloud route for every profile, managed cloud-only still winning. ASSUMED D-11 recommended answer: the fresh-install default becomes 'cloudflare-nova3' (src/shared/ipc.ts:1169, 1700).",
    "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Soniox is offered only when organization policy allows it.",
    "assumed_decisions": [
@@ -5458,7 +5458,7 @@
   {
    "legacy": "cloudSttProvider on a profile that existed before settings version 2",
    "to": "the speech route in force before the upgrade, kept",
-   "rule": "S-1: compute the 1.x route and the 2.0 route from the same layers; where they differ (outside managed cloud-only, a 2.0 value that is a cloud id: the new Cloudflare default, a cloud id left in the user layer by an earlier managed cloud-only profile, or an organization default), write 'unconfigured' to the user layer and offer the S16 choice; where they agree write nothing, so a managed cloud-only profile with no stored provider gets no write; a lock that would change the route holds the profile at version 1",
+   "rule": "S-1: compute the 1.x route and the 2.0 route from the same layers; where they differ (outside managed cloud-only, a 2.0 value that is a cloud id: the new Cloudflare default, a cloud id left in the user layer by an earlier managed cloud-only profile, or an organization default), write 'unconfigured' to the user layer and offer the S16 choice; where they agree write nothing, so a managed cloud-only profile with no stored provider gets no write; a lock that would change the route holds the profile at version 1. The version is read only from a readable user file and written only by main (when it creates a profile, and when S-1 completes); DEFAULT_SETTINGS declares none and every managed layer's value or lock for it is ignored, so an unreadable settings.json or a managed settingsVersion resolves as version 1 and keeps the 1.x route",
    "status": "new",
    "owner": "M2-0117.1"
   },

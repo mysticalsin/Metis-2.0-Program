@@ -31,7 +31,9 @@ SOURCE_ANCHOR = re.compile(r"[\w./-]+\.(?:ts|tsx|swift):\d+")
 def code_only(src):
     """Blank out comments, string literals and regex literals so brackets can be counted."""
     out, i, n = list(src), 0, len(src)
-    last = ""  # last significant code character, to tell a regex literal from a division
+    # The last significant code character tells a regex literal from a division. It starts as "", which `in`
+    # finds in every string, so a slash at the very start opens a regex.
+    last = ""
 
     def blank(a, b):
         for j in range(a, b):
@@ -49,7 +51,7 @@ def code_only(src):
             end = src.index("*/", i + 2) + 2
             blank(i, end)
             i = end
-        elif ch in "'\"`" or (ch == "/" and (last == "" or last in "(,=:[!&|?{};+")):
+        elif ch in "'\"`" or (ch == "/" and last in "(,=:[!&|?{};+"):
             j, in_class = i + 1, False
             while j < n:
                 if src[j] == "\\":
@@ -132,6 +134,7 @@ def problems(inventory, fields):
         out.append(f"destinations must be exactly {DESTINATIONS} plus the {DRAWER} drawer, got {dest_ids}")
 
     seen = Counter(k["key"] for k in inventory["keys"])
+    bound = {k["key"]: k["control"] for k in inventory["keys"]}
     out += [f"{key}: inventoried {n} times" for key, n in seen.items() if n > 1]
 
     by_top = {}
@@ -190,6 +193,11 @@ def problems(inventory, fields):
                 out.append(f"{key}: bad decision id {decision}")
 
     for ctl in inventory["controls"]:
+        for key in ctl["keys"]:
+            if key not in bound:
+                out.append(f"{ctl['id']}: lists {key}, which has no inventory entry")
+            elif bound[key] != ctl["id"]:
+                out.append(f"{ctl['id']}: lists {key}, which the inventory binds to {bound[key] or 'no control'}")
         if (ctl["destination"], ctl["group"]) not in groups:
             out.append(f"{ctl['id']}: unknown group {ctl['destination']}.{ctl['group']}")
             continue

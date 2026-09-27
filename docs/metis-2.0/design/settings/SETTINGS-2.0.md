@@ -34,7 +34,7 @@ reduced motion, and passed automated WCAG AA contrast, clipping and motion check
 | `design/settings/inventory.json` | The inventory: destinations, 99 controls, 138 classified keys, legacy and deep-link migration tables, policy sources |
 | `design/settings/check-inventory.py` | Static completeness and consistency check of the inventory against `BaseSettingsSchema` at the base commit (no repository code runs) |
 | `design/settings/prototype/` | Interactive concept (`index.html`, `prototype.css`, `prototype.js`, `states.js`), in-page audit (`audit.js`), capture harness (`capture.js`) |
-| `evidence/M2-0101/design/` | 136 captures (69 image files), `manifest.json`, `audit.json`, `inventory-check.txt` |
+| `evidence/M2-0101/design/` | 136 captures (68 image files), `manifest.json`, `audit.json`, `inventory-check.txt` |
 
 The ticket's scope also names `src/renderer/src/features/settings/inventory.json` and
 `scripts/settings/check-inventory.mjs` in the public repository. This session had no public worktree or
@@ -115,7 +115,8 @@ meaning except one: `cloudSttProvider`, whose meaning widens at settings version
 of a managed cloud-only profile" to "the speech route of every profile" (§5, §9.1). No key is renamed. The
 design adds one key, `settingsVersion` (§9), and new capabilities add keys only in their owning tickets (§4,
 "new"). The inventory binds each key to exactly one control or to none, and each control lists exactly the
-keys it writes (`check-inventory.py` enforces both directions).
+keys it writes. `check-inventory.py` enforces both directions: a key's control lists that key, and every key
+a control lists is bound to that control.
 
 **INV-2 (no silent privacy change).** Where speech is processed, what is captured and what is shared change
 only through an explicit user action or an organization policy the user can see. A default change, an
@@ -309,7 +310,8 @@ The choices that needed judgement:
      `unconfigured` resolves to Cloudflare exactly as `effectiveCloudSttProvider` does today
      (`cloud-stt-provider.ts:35-44`). Speech processing offers no local option under it.
   2. Otherwise the stored value decides: `unconfigured` is the local route, a cloud id is that cloud route.
-  3. A profile still at version 1 keeps the 1.x rule (§9.1).
+  3. A profile still at version 1 keeps the 1.x rule. The version comes only from a readable user file, so
+     a snapshot without one counts as version 1 (§9.1).
 
   The fresh-install default changes from `'unconfigured'` to `'cloudflare-nova3'` in both of its
   declarations, `DEFAULT_SETTINGS.cloudSttProvider` (`src/shared/ipc.ts:1700`) and the schema's `.default()`
@@ -393,8 +395,11 @@ as "Set by deployment" instead.
 2. An optional non-schema managed-config key `policyInfo: { owner, revision, reasons: { <key>: text } }` so a
    lock can say who and why. Without it the UI says "Locked by your organization" and no reason.
 3. Policy changes carry a revision. A change to a capture or speech setting applies at the next session
-   boundary and the open window says so (S14); an emergency revocation (a key that stops capture or egress)
-   applies immediately (MASTER §5.7).
+   boundary and the open window says so (S14), whether the organization adds, changes or removes a value. A
+   removal is a change like any other: when an organization drops an `'unconfigured'` default from a
+   version-2 profile that never chose, the route falls back to the Métis Cloudflare default and moves from
+   local to cloud, so S14 names it. An emergency revocation (a key that stops capture or egress) applies
+   immediately (MASTER §5.7).
 4. Engines allowed by policy are a separate question from the engine selected (MASTER §9.6). The design
    proposes a managed key `allowedSpeechEngines` (absent = all qualified engines); Soniox appears in
    Speech processing only when it is allowed. ASSUMED shape; M2-0117 confirms with M2-0107.
@@ -439,13 +444,32 @@ which the current `patch` already guarantees; the change is that every call site
 
 ### 9.1 Versioned steps (new; M2-0117.1 owns code and fixtures)
 
-Add `settingsVersion` (integer). A settings file without it is version 1; a profile with no settings file is
-new and is created at version 2. Settings version 2 is where `cloudSttProvider` takes its wider meaning
+Add `settingsVersion` (integer). Settings version 2 is where `cloudSttProvider` takes its wider meaning
 (§5), and the speech resolver reads the version: below 2 it keeps the 1.x rule, cloud speech only under a
 managed cloud-only profile (`src/shared/cloud-stt-provider.ts:47-54`), so a profile whose S-1 has not
 completed keeps the route it had. Each step is idempotent, runs at startup, is written in the same atomic
 save as its result and is audited as `settings.migrated` with the step id. S-1 moves a profile to version 2;
 S-2 and S-3 change no route, so they run whatever the profile's version.
+
+**Where the version comes from.** The version decides whether the Cloudflare default can move audio to the
+cloud, so neither a failure nor a policy layer may supply it (INV-2):
+
+- Main alone writes it: `settingsVersion: 2` in the save that creates a new profile and in the save that
+  completes S-1. It is on M2-0062's server-authoritative key list, so a renderer patch carrying it is
+  stripped.
+- It has no Métis default. Neither `DEFAULT_SETTINGS` nor the schema declares one, so a merged snapshot never
+  carries a version that no user file recorded.
+- Every managed layer (per-user, machine, edition) is ignored for it, value and lock alike. Managed parsing
+  keeps any schema key (`src/main/store.ts:137-142`), so M2-0117.1 drops `settingsVersion` from each managed
+  layer and from its lock list explicitly; a managed file cannot skip S-1.
+- It is read only from the user layer main actually read: `settings.json`, or the `.recovered` copy served
+  when the live file is missing (`src/main/store.ts:429-439`). A user layer without it is version 1.
+- A snapshot with no readable user layer resolves as version 1. That includes the DEFAULT + managed snapshot
+  served while `settings.json` exists but cannot be read (`src/main/store.ts:641-646`, a case M2-0076
+  records has happened): a legacy profile keeps the 1.x route while its file is locked, and no step runs.
+- A new profile is one where main finds neither `settings.json` nor a `.recovered` copy. Main creates the
+  file at that start with an explicit `settingsVersion: 2`; until that save succeeds the profile resolves as
+  version 1.
 
 | Step | Applies to | Change | Why |
 |---|---|---|---|
@@ -467,12 +491,18 @@ S-1 on the cases that matter (each at version 1 before the step):
 Organization-locked keys are never written by a step, and managed defaults are never persisted into the user
 layer. A lock on a cloud id outside cloud-only was inert in 1.x, so it cannot start uploading audio merely
 because Métis was upgraded: S-1 does not complete for that profile. The profile stays at version 1 and keeps
-the local route, the effective policy sheet lists the organization value as not applied ("kept on this
-device until <Org> reviews its speech policy"), and S-1 runs again at each start. It completes once the
-managed configuration no longer changes the route, for example when the organization removes the lock or
-adds cloud-only, which changes the route as policy the person can see (INV-2, S14). Any other failed step
-keeps the profile at its previous version, loads it with its previous effective values and reports through
-the unreadable-settings path (M2-0076).
+the local route, and the effective policy sheet lists the organization value as not applied, naming the
+conditions under which it would apply ("Not applied: it would send meeting audio to <provider>, which an
+upgrade never starts on its own. It applies if <Org> turns on cloud-only speech."). S-1 runs again at each
+start and completes once the managed configuration no longer changes the route. If the organization turns
+on cloud-only, the locked value applies as a policy change the person sees (INV-2, S14); if it removes the
+lock, S-1 completes like any unlocked profile and the local route is kept. Any other failed step keeps the
+profile at its previous version, loads it with its previous effective values and reports through the
+unreadable-settings path (M2-0076).
+
+S16 reports what the upgrade did. Its line "Everything you chose is unchanged" appears only when S-1
+replaced no stored cloud id and S-3 mapped no language; otherwise S16 names each of those changes in its
+place.
 
 ### 9.2 Existing on-read migrations (kept unchanged)
 
@@ -490,14 +520,22 @@ effective speech route instead of "nothing is uploaded". Owner: M2-0117 with the
 
 ### 9.4 Regression fixtures for M2-0117.1
 
-- Speech route, one fixture per S-1 case above: fresh profile (no settings file: version 2, Cloudflare);
-  completed sparse legacy profile on Parakeet; incomplete legacy profile on a large-memory Mac (its hardware
-  engine is pinned); explicit Whisper; a cloud id left in the user layer after the organization removed
-  cloud-only (rewritten to `'unconfigured'`, route stays local, S16 offered); an organization default cloud
-  id outside cloud-only; managed cloud-only with no provider stored (no user-layer write, route Cloudflare);
-  managed cloud-only with Soniox; an organization lock on a cloud id outside cloud-only (no write, version
-  stays 1, route local, policy sheet marks it not applied, S-1 completes after the lock is removed); an S-1
-  save that fails (version stays 1, route local).
+- Speech route, one fixture per S-1 case above: fresh profile (neither `settings.json` nor a `.recovered`
+  copy: main writes version 2 explicitly, route Cloudflare); completed sparse legacy profile on Parakeet;
+  incomplete legacy profile on a large-memory Mac (its hardware engine is pinned); explicit Whisper; a cloud
+  id left in the user layer after the organization removed cloud-only (rewritten to `'unconfigured'`, route
+  stays local, S16 names the replaced choice instead of "Everything you chose is unchanged"); an organization
+  default cloud id outside cloud-only; managed cloud-only with no provider stored (no user-layer write, route
+  Cloudflare); managed cloud-only with Soniox; an organization lock on a cloud id outside cloud-only (no
+  write, version stays 1, route local, policy sheet marks it not applied; S-1 completes with the local route
+  kept after the lock is removed, and with the locked route after cloud-only is turned on); an S-1 save that
+  fails (version stays 1, route local).
+- Version source: `settings.json` present but unreadable (the DEFAULT + managed snapshot resolves as version
+  1: local outside cloud-only, the cloud-only route under it; no step runs and nothing is written); a
+  per-user or machine managed-config carrying `settingsVersion: 2`, and one locking `settingsVersion` (both
+  ignored: a legacy profile still resolves as version 1 and S-1 runs); a renderer patch carrying
+  `settingsVersion` (stripped); a missing `settings.json` with a legacy `.recovered` copy (version 1 until
+  S-1).
 - `asrEngine`: managed-locked, and a managed unlocked default; neither is persisted by S-1.
 - `localLlm.enabled` without weights; BidStack legacy fields with and without an explicit empty
   `mcpConnections`; Cahê-written settings (M2-0214).
@@ -531,15 +569,18 @@ path is written in it.
 | S13-save-failed | failed save, confirmed value kept, Try again | UC-099 |
 | S14-policy-changed | policy revision during a meeting: the meeting keeps local speech, the locked Cloudflare value is shown as applying when it ends; Stop all capture in the header | UC-099, §5.7 |
 | S15-narrow | 360 px: destination full width with Back | EXP-05, §5.9 |
-| S16-migrated | first open after upgrade: where things moved, and the speech choice | UC-098, §9.6 |
+| S16-migrated | first open after upgrade, for a profile no step changed: where things moved, and the speech choice | UC-098, §9.6 |
 | S17-connected-apps | Privacy & account › Connected apps: Dust and task apps next to storage and permissions | §5.6 |
 
 **Captures.** 17 states × light/dark × 1x/2x × motion/reduced motion = 136 captures under
 `evidence/M2-0101/design/<state>/<theme>-<scale>x-<motion>.png`. A reduced-motion capture byte-identical to
-its full-motion twin is recorded against the twin's file (67 of 68); the one stored separately is
-pixel-identical to its twin and differs only in PNG encoding. `manifest.json` lists all 136 with file, sha256
-and pixel size. Because the settled screens do not move, the reduced-motion screenshots add no evidence
-about motion; that evidence is the transition durations `audit.js` computes for every capture.
+its full-motion twin is recorded against the twin's file. All 68 are, so the 136 captures are stored as 68
+files. `manifest.json` lists all 136 with file, sha256 and pixel size. Because the settled screens do not
+move, the reduced-motion screenshots add no evidence about motion; that evidence is the transition durations
+`audit.js` computes for every capture. The captures were rendered from the inputs whose hashes
+`manifest.json › inputs_sha256` records. Since then `inventory.json` has changed only in the
+`cloudSttProvider` migration text of `keys` and `legacy`, which the prototype does not read: it renders
+`controls` and `destinations` alone.
 
 **Automated checks** (`prototype/audit.js`, run in page for every capture; results in `audit.json`):
 WCAG 2.2 AA text contrast (1.4.3) for every rendered text node, input value, placeholder and select; non-text
@@ -598,18 +639,24 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
   requirement ids such as UC-, HM-, SRC-, EXP- and M2-SET- ids) and references to this document, and keeps
   every code anchor. It adds `scripts/settings/check-inventory.mjs`, which replaces `check-inventory.py` and
   enforces its rules against the live zod schema as a CI step (every schema key and leaf classified, no
-  stale keys, class rules, control/key back-references, a labelled and anchored basis on every entry,
+  stale keys, class rules, control and key bindings in both directions (a key's control lists that key, and
+  every key a control lists is bound to that control), a labelled and anchored basis on every entry,
   required synonyms, Privacy never behind a disclosure) and also rejects any decision id or kit reference, so
   the public copy cannot drift back. It implements §9 with the §9.4 fixtures.
 - **M2-0112** changes the fresh-install default and the speech resolver (§5) against the `settingsVersion`
   contract of M2-0117.1; the version gate makes their landing order safe, because a profile below version 2
-  keeps the 1.x route.
+  keeps the 1.x route. Main enforces the route as well as the renderer: `IPC.cloudSttStart` resolves the
+  provider but never checks the route (`src/main/index.ts:6588-6592`), so under a Cloudflare default a
+  renderer bug could open a cloud session for a local-route profile. Before it opens a session, main applies
+  the version-aware `shouldUseCloudSttEngine` and refuses when the route is local (M2-0112, carried into the
+  speech-session broker by M2-0107).
 - **M2-0117.2** renders destinations, groups and controls from the registry (MASTER §5.7), implements §6–§8,
   and records LOCALLY_TESTED evidence with behaviour tests (search ranking and visibility, deep-link
   resolution, failure and retry, lock rendering, next-session apply).
 - **M2-0117.3** implements the pack states of S04–S06 against M2-0115 and M2-0163.
 - **M2-0062** (one server-authoritative key list) and **M2-0071** (the Settings.tsx split) come first; the
-  inventory's `write: "main"` entries are the keys M2-0062's constant must cover.
+  inventory's `write: "main"` entries and `settingsVersion` (§9.1) are the keys M2-0062's constant must
+  cover.
 - The comment at `src/shared/ipc.ts:1259-1263` is corrected with M2-0117.3.
 
 ## 13. Open questions
@@ -622,15 +669,19 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
    owner (UNKNOWN); the design keeps the toggle in Voice & meetings with the explanation inline.
 4. The shape of `policyInfo` and `allowedSpeechEngines` (§6) is PROPOSED; the Operator policy surface
    (D-16, M2-0158) may prefer to deliver them from the server.
+5. An organization lock on a cloud id outside cloud-only holds a profile at version 1 until the organization
+   turns on cloud-only or removes the lock (§9.1). Whether a policy revision published after the upgrade
+   should release it instead, applying the value as a visible S14 change at the next session, is an owner
+   question; that release would depend on the policy revision of §6.
 
 ## 14. Acceptance status
 
 | Criterion | Status | Evidence |
 |---|---|---|
-| Every setting classified in the six classes | MET | `inventory.json`; `evidence/M2-0101/design/inventory-check.txt` (115 keys, 150 leaves, every entry with a labelled and anchored basis, PASS) |
+| Every setting classified in the six classes | MET | `inventory.json`; `evidence/M2-0101/design/inventory-check.txt` (115 keys, 150 leaves, every entry with a labelled and anchored basis, control and key bindings consistent both ways, PASS; its negative control, a control listing a key bound elsewhere, fails) |
 | Four destinations plus search designed with task flows | MET | §4, §8, §11; prototype states S01–S17 |
 | Mapped to stable keys and actual policy semantics; migration table for legacy keys | MET | §5, §6, §9; `inventory.json › keys, legacy, legacy_tabs, policy_keys` |
-| Design evidence: states × light/dark × 1x/2x × reduced motion, checked against the spec with automated WCAG AA contrast and clipping checks | PARTIAL | captured and checked against the kit sections (`evidence/M2-0101/design/manifest.json`, `audit.json`); the M2-0201 prototype it should also be checked against does not exist yet |
+| Design evidence: states × light/dark × 1x/2x × reduced motion, checked against the spec with automated WCAG AA contrast and clipping checks | PARTIAL | 136 captures in 68 files, all passing, checked against the kit sections (`evidence/M2-0101/design/manifest.json`, `audit.json`); the M2-0201 prototype it should also be checked against does not exist yet |
 | Validated by an Opus session other than the implementer | PENDING | validator session |
 | `node scripts/settings/check-inventory.mjs` | NOT RUN | lands with M2-0117.1 (§12); the equivalent static check passed |
 

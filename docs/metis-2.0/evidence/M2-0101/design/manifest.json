@@ -15,13 +15,10 @@
  },
  "summary": {
   "captures": 136,
-  "files": 69,
-  "bytes": 11608902,
+  "files": 68,
+  "bytes": 11504981,
   "states": 17,
-  "reduced_motion_identical_at_rest": 67,
-  "reduced_motion_stored_separately": [
-   "S09-policy-sheet/dark-1x-reduced-motion.png"
-  ],
+  "reduced_motion_identical_at_rest": 68,
   "audit_failures": 0,
   "text_contrast_checks": 9920,
   "non_text_contrast_checks": 1360,
@@ -1007,7 +1004,7 @@
    "theme": "dark",
    "scale": 1,
    "motion": "reduce",
-   "file": "S09-policy-sheet/dark-1x-reduced-motion.png",
+   "file": "S09-policy-sheet/dark-1x-motion.png",
    "sha256": "4712600355f2802cf41ee853f22f211c2c39c07d65398746dc6f245e4e63a72e",
    "pixels": [
     880,

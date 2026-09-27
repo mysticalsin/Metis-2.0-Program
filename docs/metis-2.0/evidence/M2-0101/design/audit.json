@@ -3941,7 +3941,7 @@
    "theme": "dark",
    "scale": 1,
    "motion": "reduce",
-   "file": "S09-policy-sheet/dark-1x-reduced-motion.png",
+   "file": "S09-policy-sheet/dark-1x-motion.png",
    "errors": [],
    "audit": {
     "pass": true,

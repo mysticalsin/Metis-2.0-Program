@@ -4,3 +4,13 @@ classes: ADVANCED 46, DEPRECATED 14, KEEP 55, MERGE 8, OPERATOR-ONLY 14, PLATFOR
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 PASS
 exit 0
+
+Negative control: a copy of inventory.json whose general.overlay-layout control also lists micDeviceId,
+a key the inventory binds to voice.microphone. The checker without the control-to-key rule passed it.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <mutated copy>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 126 settings entries, 12 non-schema entries, 99 controls
+classes: ADVANCED 46, DEPRECATED 14, KEEP 55, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+FAIL general.overlay-layout: lists micDeviceId, which the inventory binds to voice.microphone
+1 problem(s)
+exit 1
