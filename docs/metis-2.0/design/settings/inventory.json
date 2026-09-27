@@ -8,7 +8,7 @@
   "MERGE": "Kept in storage, but edited through one control shared with other keys; the control maps each of its values to exact key values.",
   "ADVANCED": "Kept, reachable only through a labelled disclosure (the Advanced drawer or a disclosure inside a destination) and through search.",
   "OPERATOR-ONLY": "No device control. The value comes from the organization (managed policy, Operator, the server); the device shows the effective value read-only where it matters.",
-  "DEPRECATED": "No control and no new writes. Read only for migration or backward compatibility, then removed by a versioned migration.",
+  "DEPRECATED": "No control and no new writes: where base code still writes it, its migration names the change that stops the write. Read only for migration or backward compatibility, then removed by a versioned migration.",
   "PLATFORM-SPECIFIC": "Exists only on the platforms where it has an effect; other platforms neither show nor search it."
  },
  "destinations": [
@@ -199,6 +199,32 @@
    ]
   }
  ],
+ "conditions": {
+  "visible_when": "On a control: the control is shown, and search and deep links reach it, only while this predicate holds.",
+  "read_only_when": "On a control: while this predicate holds, the control shows its value in force read-only, with its source.",
+  "offered_when": "On an option: the option may be chosen only while this predicate holds. An option not offered is not shown, except the option in force (for a route, the engine in force), which is always shown, selected, with not_offered.reason.",
+  "requires": "On an option: the option can take effect only while this predicate holds. Choosing it while it fails opens unavailable.opens when that is set, and otherwise shows unavailable.reason; the option in force shows unavailable.reason.",
+  "<Org>": "In a reason, the owner that policyInfo names, or 'your organization' without one."
+ },
+ "predicates": {
+  "overlayLayout == 'bar'": "The layout in force is the bar.",
+  "overlayPlacement == 'right-edge'": "The bar sits on the right edge of the screen.",
+  "autoSuggest": "Suggest replies automatically is on.",
+  "local route and asrEngine == 'whisper'": "The engine in force is local speech (SETTINGS-2.0.md §5) and its selected pack is Whisper.",
+  "brainConsolidation.enabled": "Index meetings in batches is on.",
+  "graphifyEnabled": "Build a knowledge graph is on.",
+  "provider == 'custom'": "Answer with is set to a custom endpoint.",
+  "localLlm.enabled": "A local generation model is turned on.",
+  "a CLI is connected": "cliConnected marks at least one CLI as connected (src/main/index.ts:5581-5595).",
+  "ssoBootstrapAllowed()": "Sign-in is required, nobody is signed in, and no sign-in has succeeded since the last sign-out (src/main/auth.ts:967-972).",
+  "the environment or a managed azure block supplies a sign-in configuration": "The environment (AZURE_CLIENT_ID, AZURE_TENANT_ID, ASKTOTO_ALLOWED_DOMAIN) or a managed azure block supplies a usable client id, tenant id and allowed domain, which sign-in uses before these settings (src/main/auth.ts:51-79, 161-175).",
+  "an organization layer or the deployment environment sets operatorUrl": "A managed default or lock, or METIS_OPERATOR_URL, sets the Operator address (SETTINGS-2.0.md §6).",
+  "cloudflare allowed": "Cloudflare is an allowed engine (SETTINGS-2.0.md §6): the organization's allowedSpeechEngines lists it, or no organization sets that key.",
+  "local allowed outside cloud-only": "Local speech is an allowed engine (SETTINGS-2.0.md §6), because the organization's allowedSpeechEngines lists it or no organization sets that key, and no managed cloud-only profile applies (§5 rule 3).",
+  "soniox allowed": "Soniox is an allowed engine (SETTINGS-2.0.md §6): the organization's allowedSpeechEngines lists it or, while no organization sets that key, Soniox is the engine in force or the value of an organization default or lock.",
+  "verified local pack": "An installed local speech pack has passed verification (M2-0115, M2-0163).",
+  "soniox key in force": "A Soniox key is in force: hasKeys.soniox, which SONIOX_API_KEY also sets (src/main/store.ts:1280-1285, 1369-1378)."
+ },
  "controls": [
   {
    "id": "general.overlay-layout",
@@ -652,7 +678,10 @@
     {
      "value": "cloudflare-nova3",
      "label": "Cloudflare",
-     "visible_when": "cloudflare allowed"
+     "offered_when": "cloudflare allowed",
+     "not_offered": {
+      "reason": "Not allowed by <Org>."
+     }
     },
     {
      "value": "local",
@@ -660,16 +689,23 @@
      "maps": {
       "cloudSttProvider": "unconfigured"
      },
-     "visible_when": "local allowed",
+     "offered_when": "local allowed outside cloud-only",
+     "not_offered": {
+      "reason": "Not allowed by <Org>."
+     },
      "requires": "verified local pack",
      "unavailable": {
+      "reason": "No verified local speech pack is installed.",
       "opens": "voice.local-speech-packs"
      }
     },
     {
      "value": "soniox",
      "label": "Soniox",
-     "visible_when": "soniox allowed",
+     "offered_when": "soniox allowed",
+     "not_offered": {
+      "reason": "Not allowed by <Org>."
+     },
      "requires": "soniox key in force",
      "unavailable": {
       "reason": "No Soniox key is set up on this device."
@@ -2763,7 +2799,7 @@
    "id": "advanced.sign-in-setup",
    "type": "fields",
    "label": "Organization sign-in setup",
-   "help": "Shown only while your organization requires sign-in and nobody is signed in on this device.",
+   "help": "Shown only while your organization requires sign-in and nobody is signed in on this device. Read-only when your organization already supplies these values.",
    "keys": [
     "azureClientId",
     "azureTenantId",
@@ -2784,7 +2820,8 @@
    "visible_when": "ssoBootstrapAllowed()",
    "recovery_path": true,
    "destination": "advanced",
-   "group": "organization"
+   "group": "organization",
+   "read_only_when": "the environment or a managed azure block supplies a sign-in configuration"
   },
   {
    "id": "advanced.usage",
@@ -3565,7 +3602,7 @@
     "surface": "no Settings control ('Meetings are always saved')",
     "anchor": "src/renderer/src/components/Settings.tsx:7293"
    },
-   "migration": "S-3 drops it, at either settings version; no behaviour depends on it. M2-0117.1 corrects the admin guide row and removes the key from both example managed configs (SETTINGS-2.0.md §12)",
+   "migration": "S-3 drops it, at either settings version; no behaviour depends on it. M2-0117.1 removes main's self-test write (src/main/selftest.ts:77), corrects the admin guide row and removes the key from both example managed configs (SETTINGS-2.0.md §12)",
    "basis": "OBSERVED nothing reads it; its one writer is main's self-test (src/main/selftest.ts:77), and no renderer code writes it. Settings states meetings are always saved (src/renderer/src/components/Settings.tsx:7293). OBSERVED the public admin guide documents a managed autoSaveTranscripts: false as 'Disable all transcript saving' (docs/asktoto-architecture.md:1168), the enterprise example config sets and locks it (build/managed-config.enterprise.example.json:30, 14) and the basic one sets it (build/managed-config.example.json:8), so an organization that followed the guide believes saving is off while every meeting is saved.",
    "policy_sheet": {
     "text": "No effect: Métis always saves meetings on this device.",
@@ -4279,7 +4316,7 @@
    },
    "migration": "versioned S-1 (settings version 2): compares the 1.x route with the 2.0 route over the same layers and, where they differ, writes 'unconfigured' to the user layer so the route in force is kept; a lock that would change the route holds the profile at version 1. The version and the stored value come only from a readable settings.json, and the version is written only by main (when it creates a profile, and when S-1 completes); DEFAULT_SETTINGS declares none and every managed layer's value or lock for it is ignored, so a managed settingsVersion never skips S-1. While settings.json is present but cannot be read or decoded, or a readable .recovered copy stands in for a missing one, the version and the stored value are unknown, whatever the copy records, for a legacy and a version-2 profile alike: a route applies only where organization locks fix it at both versions (a locked provider under managed cloud-only, or a locked 'unconfigured' with a locked asrEngine outside it); otherwise no speech session opens, cloud or local, and Voice & meetings shows speech unavailable with typing offered. No step runs and every write is refused until settings.json reads again or the person keeps the copy",
    "basis": "OBSERVED 1.x: cloud speech only under a managed cloud-only profile, where 'unconfigured' resolves to Cloudflare; a stored cloud id is ignored everywhere else (src/shared/cloud-stt-provider.ts:35-54). DERIVED MASTER §9.6: the selected engine is one value, so from settings version 2 'unconfigured' means the local route and a cloud id that cloud route for every profile, managed cloud-only still winning. DERIVED from D-11, answered 2026-09-27 (Cloudflare speech through the Operator broker): the fresh-install default becomes 'cloudflare-nova3' (src/shared/ipc.ts:1169, 1700).",
-   "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Allowed engines never select or move a route (§6): an engine is allowed when the organization lists it in allowedSpeechEngines or, while no organization sets that key, when it is Cloudflare, local speech or the engine in force. So a Soniox route in force at upgrade, whether a stored cloud-only selection or an organization default or lock, keeps running; Soniox is offered for a new choice only where the organization lists it, and can be selected only while a Soniox key is in force. An engine in force that an organization list excludes stops at the next session boundary, and no other engine opens in its place."
+   "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Allowed engines never select or move a route (§6): an engine is allowed when the organization lists it in allowedSpeechEngines or, while no organization sets that key, when it is Cloudflare, local speech, the engine in force or the value of an organization default or lock. So a Soniox route in force at upgrade, whether a stored cloud-only selection or an organization default or lock, keeps running; without a list, Soniox is offered for a new choice only where an organization default or lock sets it, and can be selected only while a Soniox key is in force. An engine in force that an organization list excludes stops at the next session boundary, and no other engine opens in its place."
   },
   {
    "key": "cfAiGatewayId",
@@ -4849,10 +4886,10 @@
     "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
-   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8385); managed configuration pins it (src/main/index.ts:5233-5238; build/managed-config.enterprise.example.json:7, 22), and the compiled-off activation stores it (src/main/license.ts:243). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys, so only managed configuration sets it in 2.0.",
+   "migration": "kept and read-only, set by managed configuration alone; M2-0146 removes the setup step and the 12-hour check that read it, and rewrites this policy-sheet text (SETTINGS-2.0.md §12); removed with the legacy path in a later settings version",
+   "basis": "OBSERVED read only while licenseGateEnabled is on: setup's licence step prefills it (src/renderer/src/components/OnboardingExperience.tsx:640), activation stores it (src/main/license.ts:243) and, when managed configuration locks it, uses it instead of the typed address (src/main/index.ts:5233-5238), and the 12-hour check posts to it (src/main/license.ts:267-277, src/main/index.ts:9273-9280). The member-licence client that also reads it is compiled off (src/main/license/client.ts:74-77, src/shared/license-types.ts:15). OBSERVED renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off licence section does (src/renderer/src/components/Settings.tsx:8385); the enterprise example config sets and locks it without the gate (build/managed-config.enterprise.example.json:7, 22). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority and the legacy licence server stays read-only for existing keys, so no new key is activated, and only managed configuration sets it in 2.0 (SETTINGS-2.0.md §12).",
    "policy_sheet": {
-    "text": "No effect: Métis no longer checks the legacy licence server. Your Métis licence applies instead.",
+    "text": "Used only while the legacy licence gate is on: setup then offers a step that activates a legacy licence key with this server, and Métis checks the activated key with it every 12 hours. It never limits what you can use.",
     "show_value": true
    }
   },
@@ -4872,10 +4909,10 @@
     "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
-   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "migration": "kept and read-only once M2-0146 removes the activation and the 12-hour check that write and send it (SETTINGS-2.0.md §12); it names the seat until the legacy path is removed in a later settings version",
+   "basis": "OBSERVED main stores it when a legacy activation succeeds (src/main/license.ts:242-244), which only setup's licence step starts today (see licenseGateEnabled); the 12-hour check sends it to the legacy licence server (src/main/license.ts:267-277), and the Operator heartbeat and its ask and CRM-send events name this device's seat by its hash while it is stored (src/main/operator-ingest.ts:131-149, 335, 468, 496). Client enforcement is compiled off (src/renderer/src/App.tsx:311). OBSERVED renderer patches cannot write it (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority and the legacy licence server stays read-only for existing keys, so no new key is activated (SETTINGS-2.0.md §12).",
    "policy_sheet": {
-    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "text": "A legacy licence key activated on this device. Métis sends it to the legacy licence server while the legacy licence gate is on, and identifies this device to your organization's Operator by a hash of it. It never limits what you can use.",
     "show_value": false
    }
   },
@@ -4895,10 +4932,10 @@
     "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
-   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "migration": "kept and read-only once M2-0146 removes the activation and the 12-hour check that write it (SETTINGS-2.0.md §12); removed with the legacy path in a later settings version",
+   "basis": "OBSERVED main writes it from the legacy licence server's reply to an activation or a 12-hour check (src/main/license.ts:245, 280), which only setup's licence step starts today (see licenseGateEnabled). No behaviour depends on it: the check rereads it only to keep it when a reply omits it (src/main/license.ts:280), and otherwise only the licence status read (src/main/index.ts:5250-5281), whose one caller is the compiled-off Settings licence section (src/renderer/src/components/Settings.tsx:201, 8360) reads it. OBSERVED renderer patches cannot write it (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority and the legacy licence server stays read-only for existing keys, so no new key is activated (SETTINGS-2.0.md §12).",
    "policy_sheet": {
-    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "text": "No effect: a record the legacy licence server sent about this device's legacy licence key. Your Métis licence applies instead.",
     "show_value": true
    }
   },
@@ -4918,10 +4955,10 @@
     "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
-   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "migration": "kept and read-only once M2-0146 removes the activation and the 12-hour check that write it (SETTINGS-2.0.md §12); removed with the legacy path in a later settings version",
+   "basis": "OBSERVED main writes it from the legacy licence server's reply to an activation or a 12-hour check (src/main/license.ts:246, 281), which only setup's licence step starts today (see licenseGateEnabled). No behaviour depends on it: the check rereads it only to keep it when a reply omits it (src/main/license.ts:281), and otherwise only the licence status read (src/main/index.ts:5250-5281), whose one caller is the compiled-off Settings licence section (src/renderer/src/components/Settings.tsx:201, 8360) reads it. OBSERVED renderer patches cannot write it (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority and the legacy licence server stays read-only for existing keys, so no new key is activated (SETTINGS-2.0.md §12).",
    "policy_sheet": {
-    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "text": "No effect: a record the legacy licence server sent about this device's legacy licence key. Your Métis licence applies instead.",
     "show_value": true
    }
   },
@@ -4941,10 +4978,10 @@
     "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
-   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "migration": "kept and read-only once M2-0146 removes the activation and the 12-hour check that write it (SETTINGS-2.0.md §12); removed with the legacy path in a later settings version",
+   "basis": "OBSERVED main writes it from the legacy licence server's reply to an activation or a 12-hour check (src/main/license.ts:247, 282), which only setup's licence step starts today (see licenseGateEnabled). No behaviour depends on it: the check rereads it only to keep it when a reply omits it (src/main/license.ts:282), and otherwise only the licence status read (src/main/index.ts:5250-5281), whose one caller is the compiled-off Settings licence section (src/renderer/src/components/Settings.tsx:201, 8360) reads it. OBSERVED renderer patches cannot write it (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority and the legacy licence server stays read-only for existing keys, so no new key is activated (SETTINGS-2.0.md §12).",
    "policy_sheet": {
-    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "text": "No effect: a record the legacy licence server sent about this device's legacy licence key. Your Métis licence applies instead.",
     "show_value": true
    }
   },
@@ -4964,10 +5001,10 @@
     "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
-   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "migration": "kept and read-only once M2-0146 removes the activation and the 12-hour check that write it (SETTINGS-2.0.md §12); removed with the legacy path in a later settings version",
+   "basis": "OBSERVED main sets it from the legacy licence server's reply to an activation or a 12-hour check (src/main/license.ts:248, 283, 292), which only setup's licence step starts today (see licenseGateEnabled). While it and the gate are on, main runs the 12-hour check (src/main/index.ts:9273-9280), and while it is on, the licence state this device reports to the Operator is never 'trial' (src/main/license.ts:403-411, src/main/operator-ingest.ts:111-117). Client enforcement is compiled off (src/renderer/src/App.tsx:311). OBSERVED renderer patches cannot write it (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority and the legacy licence server stays read-only for existing keys, so no new key is activated (SETTINGS-2.0.md §12).",
    "policy_sheet": {
-    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "text": "Whether the legacy licence server last accepted this device's legacy licence key. While it and the legacy licence gate are on, Métis checks the key with that server every 12 hours. It never limits what you can use.",
     "show_value": true
    }
   },
@@ -4987,10 +5024,10 @@
     "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
-   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "migration": "kept and read-only once M2-0146 removes the activation and the 12-hour check that write it (SETTINGS-2.0.md §12); removed with the legacy path in a later settings version",
+   "basis": "OBSERVED main writes it from the legacy licence server's reply to an activation or a 12-hour check (src/main/license.ts:249, 284), which only setup's licence step starts today (see licenseGateEnabled). No behaviour depends on it: only the client gate (src/main/license.ts:352), which is compiled off (src/renderer/src/App.tsx:311), and the licence status read (src/main/index.ts:5250-5281), whose one caller is the compiled-off Settings licence section (src/renderer/src/components/Settings.tsx:201, 8360) read it. OBSERVED renderer patches cannot write it (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority and the legacy licence server stays read-only for existing keys, so no new key is activated (SETTINGS-2.0.md §12).",
    "policy_sheet": {
-    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "text": "No effect: a record the legacy licence server sent about this device's legacy licence key. Your Métis licence applies instead.",
     "show_value": true
    }
   },
@@ -5010,10 +5047,10 @@
     "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
-   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8483); main never writes it. DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys, so only managed configuration sets it in 2.0. OBSERVED today a true value adds a licence-key step to setup whose Continue never blocks (src/renderer/src/components/OnboardingExperience.tsx:627, 1818, 1833).",
+   "migration": "kept and read-only, set by managed configuration alone; M2-0146 removes setup's licence step and the 12-hour check, after which nothing reads it, and rewrites this policy-sheet text (SETTINGS-2.0.md §12); removed with the legacy path in a later settings version",
+   "basis": "OBSERVED client enforcement and the Settings licence section are compiled off (src/renderer/src/App.tsx:311, src/renderer/src/components/Settings.tsx:201), but a true value still adds a licence-key step to setup (src/renderer/src/lib/onboarding-flow.ts:48-50; src/renderer/src/components/OnboardingExperience.tsx:1818, 1833) whose Continue never blocks (src/renderer/src/components/OnboardingExperience.tsx:627). A key activated there is posted with the machine id and the host name to the legacy licence server, and main stores the licence record (src/main/index.ts:5223-5239, src/main/license.ts:231-257); while the gate is on and the record valid, main checks the key with that server every 12 hours (src/main/index.ts:9273-9280, src/main/license.ts:267-295). OBSERVED the header of src/main/license.ts:5-14, which says no activation can happen, predates that setup step. OBSERVED renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off licence section does (src/renderer/src/components/Settings.tsx:8483); main never writes it. DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority and the legacy licence server stays read-only for existing keys, so no new key is activated, and only managed configuration sets it in 2.0 (SETTINGS-2.0.md §12).",
    "policy_sheet": {
-    "text": "No effect: Métis no longer checks the legacy licence server. Your Métis licence applies instead.",
+    "text": "When on, setup offers a step for a legacy licence key, and Métis checks a key activated there with the legacy licence server every 12 hours. It never limits what you can use.",
     "show_value": true
    }
   },
@@ -5033,10 +5070,10 @@
     "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
-   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "migration": "kept and read-only once M2-0146 removes the activation and the 12-hour check that write it (SETTINGS-2.0.md §12); removed with the legacy path in a later settings version",
+   "basis": "OBSERVED main writes it from the legacy licence server's reply to an activation or a 12-hour check (src/main/license.ts:254, 285), which only setup's licence step starts today (see licenseGateEnabled). No behaviour depends on it: only the client gate (src/main/license.ts:336), which is compiled off (src/renderer/src/App.tsx:311), and the licence display status (src/main/license.ts:405-406) read it, and the lease expiry the display status derives reaches only the licence status read (src/main/index.ts:5250-5281), whose one caller is the compiled-off Settings licence section (src/renderer/src/components/Settings.tsx:201, 8360); the Operator report that also calls the display status uses its trial flag alone (src/main/operator-ingest.ts:115-116). OBSERVED renderer patches cannot write it (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority and the legacy licence server stays read-only for existing keys, so no new key is activated (SETTINGS-2.0.md §12).",
    "policy_sheet": {
-    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "text": "No effect: a record the legacy licence server sent about this device's legacy licence key. Your Métis licence applies instead.",
     "show_value": false
    }
   },
@@ -5046,7 +5083,7 @@
    "kind": "state",
    "class": "DEPRECATED",
    "control": null,
-   "owner": "server",
+   "owner": "device",
    "write": "main",
    "default": {
     "value": "null",
@@ -5056,10 +5093,10 @@
     "surface": "Identity › License (hidden: LICENSE_UI_ENABLED=false)",
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
-   "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "migration": "kept and read-only once M2-0146 stops the write, and its licensingMode decides the licence state a seat reports (SETTINGS-2.0.md §12); removed with the legacy path in a later settings version",
+   "basis": "OBSERVED not a record from the legacy licence server: main writes it once, at this profile's first suggestion, summary or recap, whatever the licence gate (src/main/index.ts:7695, src/main/license.ts:386-391, src/main/license-trial.ts:32-34, 61-64). For 14 days from it, while no legacy or member licence is valid, this device reports its licence state to the Operator as 'trial' (src/main/license.ts:403-411, src/main/license-trial.ts:47-56, src/main/operator-ingest.ts:107-120); the client gate that would end the trial is compiled off (src/main/license.ts:341-349, src/renderer/src/App.tsx:311). OBSERVED renderer patches cannot write it (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, so a device-local trial clock sets no licence state in 2.0: M2-0146 stops the write (SETTINGS-2.0.md §12).",
    "policy_sheet": {
-    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "text": "When Métis first gave this device a suggestion or summary. For 14 days after it, unless a legacy licence key is active, Métis reports this device to your organization's Operator as on a trial. It never limits what you can use.",
     "show_value": true
    }
   },
@@ -5098,7 +5135,7 @@
     "surface": "Privacy › Operator › Legacy administrator connection",
     "anchor": "src/renderer/src/components/Settings.tsx:7156"
    },
-   "migration": "kept and honoured while set; no entry field for new devices; removed with the legacy path after M2-0146",
+   "migration": "kept and honoured while set; no entry field, and M2-0062 removes the legacy administrator connection's write (SETTINGS-2.0.md §12); main's copy of METIS_OPERATOR_INGEST_SECRET at launch, and its clearing when the Operator address changes, last until the legacy path is removed after M2-0146",
    "basis": "OBSERVED labelled legacy and 'not needed with a licence' (Settings.tsx:7146-7155). OBSERVED main copies METIS_OPERATOR_INGEST_SECRET into it at launch (src/main/index.ts:8861-8862) and clears it when a patch moves the Operator address (src/main/index.ts:4938-4945); the legacy administrator connection also writes it through a settings patch (Settings.tsx:6326-6337), which M2-0062 removes (SETTINGS-2.0.md §12). DERIVED from D-4, answered 2026-09-27: the Operator seat licence is the 2.0 entitlement path, so the legacy secret gets no entry field.",
    "policy_sheet": {
     "text": "Connects this device to the legacy Operator connection until that connection is retired.",
@@ -5451,7 +5488,7 @@
     "surface": "native Settings › Personalize › Language",
     "anchor": "native-app/App/Settings/SettingsView.swift:10"
    },
-   "migration": "S-3: maps once into asrLanguage ('system' → 'auto', 'en' → English, 'fr' → French, 'es' → Spanish, 'de' → German) only when asrLanguage is absent from the user layer, and S16 names the change; then the key is dropped",
+   "migration": "S-3: maps once into asrLanguage ('system' → 'auto', 'en' → English, 'fr' → French, 'es' → Spanish, 'de' → German) only when asrLanguage is absent from the user layer, and S16 names the change; then the key is dropped; from then on the native Language picker writes asrLanguage instead (SETTINGS-2.0.md §9.3)",
    "basis": "OBSERVED no reader outside the native Settings and onboarding pickers (native-app/App/Settings/SettingsView.swift:10; git grep at the base commit): the choice has no effect today.",
    "platforms": [
     "darwin"

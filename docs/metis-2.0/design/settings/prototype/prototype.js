@@ -50,7 +50,8 @@ function h(tag, props = {}, ...children) {
 
 const normalize = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 
-/** Predicates named in the inventory's `visible_when` and `requires` fields, evaluated on example state. */
+/** The declared predicates (`inventory.json › predicates`) that the mock evaluates, on example state: every
+ *  `visible_when`, `offered_when` and `requires` id. The mock does not render `read_only_when`. */
 const PREDICATES = {
   "overlayLayout == 'bar'": (m) => m.value('overlayLayout') === 'bar',
   "overlayPlacement == 'right-edge'": (m) => m.value('overlayPlacement') === 'right-edge',
@@ -62,10 +63,11 @@ const PREDICATES = {
   'localLlm.enabled': (m) => m.value('localLlm.enabled') === true,
   'a CLI is connected': () => false,
   'ssoBootstrapAllowed()': () => false,
-  // The example policy lists no speech engines and applies no cloud-only profile, so Cloudflare, local
-  // speech and the engine in force are allowed (SETTINGS-2.0.md §6); it seats no Soniox key.
+  // The example policy lists no speech engines, sets no Soniox default or lock and applies no cloud-only
+  // profile, so Cloudflare, local speech and the engine in force are allowed (SETTINGS-2.0.md §6); it seats
+  // no Soniox key.
   'cloudflare allowed': () => true,
-  'local allowed': () => true,
+  'local allowed outside cloud-only': () => true,
   'soniox allowed': (m) => m.value('cloudSttProvider') === 'soniox',
   'verified local pack': (m) => m.state.speechPacks.some((p) => p.state === 'installed' || p.state === 'in-use'),
   'soniox key in force': () => false
@@ -99,6 +101,19 @@ function createModel(inventory, fixture) {
       return (control.options ?? []).find((o) =>
         o.maps ? Object.entries(o.maps).every(([k, v]) => state.values[k] === v) : o.value === state.values[control.keys[0]]
       )
+    },
+    /** An option may be chosen while its `offered_when` holds; the option in force is shown regardless. */
+    shownOption(control, option) {
+      return !option.offered_when || PREDICATES[option.offered_when](model) || model.currentOption(control) === option
+    },
+    /** The reasons of the preconditions the option in force fails, with `<Org>` named. */
+    unmetReasons(control) {
+      const option = model.currentOption(control)
+      if (!option) return []
+      const org = state.organization?.name ?? 'your organization'
+      return [['offered_when', 'not_offered'], ['requires', 'unavailable']]
+        .filter(([test]) => option[test] && !PREDICATES[option[test]](model))
+        .map(([, outcome]) => option[outcome].reason.replace('<Org>', org))
     },
     path(control) {
       const dest = destinations.get(control.destination)
@@ -165,11 +180,16 @@ function createApp(root, inventory, fixture) {
     } else commit(control, changes)
   }
 
-  /** Choosing an option whose precondition fails never switches the value: it opens the control named by
-   *  `unavailable.opens`. No example state offers an option that is unavailable for a `reason`. */
+  /** Choosing an option whose `requires` fails never switches the value: it opens the control named by
+   *  `unavailable.opens`, or else says why the option is unavailable. */
   function choose(control, option) {
     if (option.requires && !PREDICATES[option.requires](model)) {
-      if (option.unavailable.opens) jump(model.controls.get(option.unavailable.opens))
+      const { opens, reason } = option.unavailable
+      if (opens) jump(model.controls.get(opens))
+      else {
+        ui.statuses.set(control.id, { kind: 'error', text: reason })
+        render()
+      }
       return
     }
     request(control, option.maps ?? { [control.keys[0]]: option.value })
@@ -284,7 +304,7 @@ function createApp(root, inventory, fixture) {
     if (!status) return null
     if (status.kind === 'error') {
       return h('div', { class: 'status error', role: 'alert' }, h('span', { text: status.text }),
-        h('button', { type: 'button', class: 'link', text: 'Try again', onClick: () => commit(control, status.retry) }))
+        status.retry && h('button', { type: 'button', class: 'link', text: 'Try again', onClick: () => commit(control, status.retry) }))
     }
     return h('div', { class: 'status saved', role: 'status', text: status.text })
   }
@@ -314,7 +334,7 @@ function createApp(root, inventory, fixture) {
       case 'route':
         return h('div', { class: 'segmented', role: 'radiogroup', 'aria-label': control.label, 'data-contrast': 'ui' },
           control.options.filter((o) => !o.platforms || o.platforms.includes(model.state.platform))
-            .filter((o) => !o.visible_when || PREDICATES[o.visible_when]?.(model))
+            .filter((o) => model.shownOption(control, o))
             .map((o) => h('button', { type: 'button', role: 'radio', 'aria-checked': model.currentOption(control) === o ? 'true' : 'false',
               text: o.label, onClick: () => choose(control, o) })))
       case 'select': {
@@ -357,6 +377,7 @@ function createApp(root, inventory, fixture) {
       isAction ? null : h('div', { class: 'label', id: `label-${control.id}`, text: control.label }),
       control.help ? h('div', { class: 'help', text: control.help }) : null,
       summary && !special && !INLINE_SUMMARY.has(control.type) ? h('div', { class: 'help summary', text: summary }) : null,
+      model.unmetReasons(control).map((reason) => h('div', { class: 'help', text: reason })),
       lock ? lockLine(lock) : null,
       statusLine(control))
     const stacked = Boolean(special) && !lock

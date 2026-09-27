@@ -131,6 +131,14 @@ def problems(inventory, fields):
     keys = [k for k in inventory["keys"] if k["store"] == "settings"]
     controls = {c["id"]: c for c in inventory["controls"]}
     groups = {(d["id"], g["id"]): g for d in inventory["destinations"] for g in d["groups"]}
+    predicates = inventory.get("predicates", {})
+    used_predicates = set()
+
+    def predicate(where, field, pid):
+        """Every condition a renderer evaluates is a declared predicate id, never free text."""
+        used_predicates.add(pid)
+        if pid not in predicates:
+            out.append(f'{where}: {field} names "{pid}", which is not a declared predicate')
 
     dest_ids = [d["id"] for d in inventory["destinations"]]
     if dest_ids != DESTINATIONS + [DRAWER]:
@@ -220,6 +228,9 @@ def problems(inventory, fields):
             continue
         if not ctl["synonyms"]:
             out.append(f"{ctl['id']}: no search synonyms")
+        for field in ("visible_when", "read_only_when"):
+            if field in ctl:
+                predicate(ctl["id"], field, ctl[field])
         if ctl.get("recovery_path") and not ctl.get("visible_when"):
             out.append(f"{ctl['id']}: a recovery path needs the visible_when condition that opens it")
         # A settings patch never carries a server-authoritative key, so a control that changes one must name
@@ -231,18 +242,29 @@ def problems(inventory, fields):
                 SOURCE_ANCHOR.fullmatch(h.get("anchor", "")) or h.get("planned_by") for h in handlers)):
             out.append(f"{ctl['id']}: writes {', '.join(via_main)} through main, so it needs handlers, "
                        "each with a file:line anchor or planned_by")
-        # An option precondition is a predicate id (`requires`) plus what choosing the option does while it
-        # fails (`unavailable`): open the control that can meet it, or show why the option is unavailable.
+        # An option has two preconditions, each a predicate id with the reason shown while it fails.
+        # `offered_when`: the option may be chosen; one not offered is hidden, except the option in force,
+        # which is always shown with `not_offered.reason`. `requires`: the option can take effect; choosing
+        # it while it fails opens `unavailable.opens` if given and otherwise shows `unavailable.reason`.
         for option in ctl.get("options", []):
-            if "requires" not in option and "unavailable" not in option:
-                continue
-            unavailable = option.get("unavailable", {})
-            opens, reason = unavailable.get("opens"), unavailable.get("reason")
-            if "requires" not in option or bool(opens) == bool(reason) or (opens and opens not in controls):
-                out.append(f"{ctl['id']}: option {option['value']} needs requires and exactly one unavailable "
-                           "behaviour: opens (a control id) or reason")
+            where = f"{ctl['id']}: option {option.get('value', option.get('key'))}"
+            if "visible_when" in option:
+                out.append(f"{where}: an option is offered through offered_when, never visible_when")
+            for test, outcome in (("offered_when", "not_offered"), ("requires", "unavailable")):
+                if test in option:
+                    predicate(where, test, option[test])
+                if (test in option) != (outcome in option) or (outcome in option and not option[outcome].get("reason")):
+                    out.append(f"{where}: {test} and {outcome}.reason go together")
+            opens = option.get("unavailable", {}).get("opens")
+            if opens and opens not in controls:
+                out.append(f"{where}: unavailable.opens names {opens}, which is not a control")
         if ctl["destination"] == "privacy" and (ctl.get("disclosure") or groups[("privacy", ctl["group"])].get("disclosure")):
             out.append(f"{ctl['id']}: privacy controls are never behind a disclosure")
+    for pid, definition in predicates.items():
+        if pid not in used_predicates:
+            out.append(f'predicates: "{pid}" is declared but no control or option uses it')
+        if not definition.strip():
+            out.append(f'predicates: "{pid}" has no definition')
     stop = controls.get("voice.stop-capture")
     if not stop or stop.get("disclosure"):
         out.append("voice.stop-capture: Stop all capture must exist outside any disclosure")
@@ -268,7 +290,8 @@ def main():
     print(f"base {inventory['base_commit'][:12]}: {len(fields)} schema keys, "
           f"{sum(len(v) for v in fields.values())} leaf paths; {len(settings_keys)} settings entries "
           f"({sum('planned_by' in k for k in settings_keys)} planned), "
-          f"{len(inventory['keys']) - len(settings_keys)} non-schema entries, {len(inventory['controls'])} controls")
+          f"{len(inventory['keys']) - len(settings_keys)} non-schema entries, {len(inventory['controls'])} controls, "
+          f"{len(inventory.get('predicates', {}))} predicates")
     print("classes:", ", ".join(f"{c} {n}" for c, n in sorted(Counter(k["class"] for k in inventory["keys"]).items())))
     print("controls per destination:",
           ", ".join(f"{d} {n}" for d, n in Counter(c["destination"] for c in inventory["controls"]).items()))

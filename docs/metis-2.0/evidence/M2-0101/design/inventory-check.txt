@@ -1,5 +1,5 @@
 $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone>
-base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 server-authoritative settings entries (M2-0062): 38
@@ -10,7 +10,7 @@ Negative controls: copies of inventory.json with one defect each. Every copy fai
 
 1. general.overlay-layout also lists micDeviceId, a key the inventory binds to voice.microphone.
 $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 1>
-base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 server-authoritative settings entries (M2-0062): 38
@@ -20,7 +20,7 @@ exit 1
 
 2. settingsVersion without planned_by: a key outside the base schema that no ticket adds.
 $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 2>
-base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (0 planned), 12 non-schema entries, 99 controls
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (0 planned), 12 non-schema entries, 99 controls, 17 predicates
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 server-authoritative settings entries (M2-0062): 38
@@ -30,7 +30,7 @@ exit 1
 
 3. micDeviceId with planned_by: a key the base schema already has, still marked as planned.
 $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 3>
-base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (2 planned), 12 non-schema entries, 99 controls
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (2 planned), 12 non-schema entries, 99 controls, 17 predicates
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 server-authoritative settings entries (M2-0062): 38
@@ -40,7 +40,7 @@ exit 1
 
 4. resilience.removedLeaf: an inventoried leaf that BaseSettingsSchema lacks (KEEP, no control).
 $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 4>
-base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 128 settings entries (1 planned), 12 non-schema entries, 99 controls
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 128 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
 classes: ADVANCED 46, DEPRECATED 14, KEEP 57, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 server-authoritative settings entries (M2-0062): 38
@@ -51,7 +51,7 @@ The round-3 checker, which compared schema leaves with entries in one direction 
 
 5. cfAiGatewayId written by the renderer: an OPERATOR-ONLY key that a settings patch could still carry.
 $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 5>
-base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 server-authoritative settings entries (M2-0062): 37
@@ -61,7 +61,7 @@ exit 1
 
 6. privacy.licence without handlers: a control that changes server-authoritative keys and names no main handler.
 $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 6>
-base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 server-authoritative settings entries (M2-0062): 38
@@ -71,7 +71,7 @@ exit 1
 
 7. licenseServerUrl without policy_sheet: a DEPRECATED key a managed layer can set, with no text for the policy sheet.
 $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 7>
-base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 server-authoritative settings entries (M2-0062): 38
@@ -79,22 +79,102 @@ FAIL licenseServerUrl: DEPRECATED settings entry needs policy_sheet text and sho
 1 problem(s)
 exit 1
 
-8. the Soniox option of Speech processing without unavailable: a precondition with no behaviour while it fails.
+8. the Soniox option of Speech processing without unavailable: a precondition with no reason while it fails.
 $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 8>
-base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 server-authoritative settings entries (M2-0062): 38
-FAIL voice.speech-processing: option soniox needs requires and exactly one unavailable behaviour: opens (a control id) or reason
+FAIL voice.speech-processing: option soniox: requires and unavailable.reason go together
 1 problem(s)
 exit 1
 
-9. Organization sign-in setup without visible_when: a recovery path with no condition that opens it.
+9. Organization sign-in setup without visible_when, and without the predicate that only it used: a recovery path with no condition that opens it.
 $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 9>
-base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 16 predicates
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
 server-authoritative settings entries (M2-0062): 38
 FAIL advanced.sign-in-setup: a recovery path needs the visible_when condition that opens it
 1 problem(s)
+exit 1
+
+10. the Cloudflare option requires "nonsense predicate": a condition that no predicate declares.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 10>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
+FAIL voice.speech-processing: option cloudflare-nova3: requires names "nonsense predicate", which is not a declared predicate
+1 problem(s)
+exit 1
+
+11. the Soniox option without not_offered: an offering condition with no reason for the option in force.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 11>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
+FAIL voice.speech-processing: option soniox: offered_when and not_offered.reason go together
+1 problem(s)
+exit 1
+
+12. the Cloudflare option also carries visible_when: option visibility outside offered_when.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 12>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
+FAIL voice.speech-processing: option cloudflare-nova3: an option is offered through offered_when, never visible_when
+1 problem(s)
+exit 1
+
+13. a declared predicate that no control or option uses.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 13>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 18 predicates
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
+FAIL predicates: "unused predicate" is declared but no control or option uses it
+1 problem(s)
+exit 1
+
+14. the Local speech option opens a control that does not exist while its precondition fails.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 14>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 17 predicates
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
+FAIL voice.speech-processing: option local: unavailable.opens names voice.no-such-control, which is not a control
+1 problem(s)
+exit 1
+
+Round-9 rules (a declared predicate vocabulary, offered_when and requires each with its reason, no
+visible_when on an option) against the round-8 inventory (dc8f2d9):
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <round-8 inventory.json>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls, 0 predicates
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
+FAIL general.bar-rest: visible_when names "overlayLayout == 'bar'", which is not a declared predicate
+FAIL general.reset-position: visible_when names "overlayPlacement == 'right-edge'", which is not a declared predicate
+FAIL voice.speech-processing: option cloudflare-nova3: an option is offered through offered_when, never visible_when
+FAIL voice.speech-processing: option local: an option is offered through offered_when, never visible_when
+FAIL voice.speech-processing: option local: requires names "verified local pack", which is not a declared predicate
+FAIL voice.speech-processing: option local: requires and unavailable.reason go together
+FAIL voice.speech-processing: option soniox: an option is offered through offered_when, never visible_when
+FAIL voice.speech-processing: option soniox: requires names "soniox key in force", which is not a declared predicate
+FAIL voice.auto-answer-cooldown: visible_when names "autoSuggest", which is not a declared predicate
+FAIL voice.local-quality: visible_when names "local route and asrEngine == 'whisper'", which is not a declared predicate
+FAIL knowledge.batch-passes: visible_when names "brainConsolidation.enabled", which is not a declared predicate
+FAIL knowledge.graph-rebuild: visible_when names "graphifyEnabled", which is not a declared predicate
+FAIL knowledge.graph-engine: visible_when names "graphifyEnabled", which is not a declared predicate
+FAIL advanced.local-use-for: visible_when names "localLlm.enabled", which is not a declared predicate
+FAIL advanced.local-when: visible_when names "localLlm.enabled", which is not a declared predicate
+FAIL advanced.local-fallback: visible_when names "localLlm.enabled", which is not a declared predicate
+FAIL advanced.custom-endpoint: visible_when names "provider == 'custom'", which is not a declared predicate
+FAIL advanced.cli-first: visible_when names "a CLI is connected", which is not a declared predicate
+FAIL advanced.operator-url: read_only_when names "an organization layer or the deployment environment sets operatorUrl", which is not a declared predicate
+FAIL advanced.sign-in-setup: visible_when names "ssoBootstrapAllowed()", which is not a declared predicate
+20 problem(s)
 exit 1
