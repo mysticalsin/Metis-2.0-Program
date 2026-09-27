@@ -53,3 +53,4 @@ The kit copies were first written verbatim, without this scan. The final validat
 ## Notes
 
 - `plan-work/drafts/` does not exist yet (source directory not created upstream as of this render). `review/drafts/` is intentionally absent — re-run this renderer once drafts exist.
+- The quoted `SCRATCH_DIR` code snippet in `prep/UNCOVERED-RENDERER-OPS.md` had only its username token substituted by this same redaction pass: the real source code contains the owner's actual username at that position, not the literal string `<redacted-user>`, so treat the snippet's path shape as evidence while knowing that one token was altered from the original.
