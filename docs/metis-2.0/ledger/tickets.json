@@ -13275,6 +13275,39 @@
    "risk": "low",
    "estimate_hours": 2,
    "status": "TODO"
+  },
+  {
+   "id": "M2-0229",
+   "title": "Run the packaged-app smoke lane on every push to m2/integration",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0007"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OWNER-2026-09-27-TEST-THE-APP"
+   ],
+   "scope_paths": [
+    ".github/workflows/packaged-smoke.yml"
+   ],
+   "summary": "Owner request (2026-09-27): the real app must be tested continuously on the way to 2.0. packaged-smoke.yml (M2-0007) builds the unsigned Electron app on macos-latest and windows-latest and checks start, renderer-ready, clean quit and no orphaned children — but it only runs when its own files change. Make it run on every push to m2/integration (and keep workflow_dispatch), without tags, secrets or release triggers.",
+   "acceptance": [
+    "packaged-smoke.yml runs on every push to m2/integration (branch filter), still never on tags",
+    "The first integration run after merge is green on both OSes, or its failure is filed as a ticket",
+    "No change to release.yml or build.yml"
+   ],
+   "verification": [
+    "CI packaged-smoke run on m2/integration"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 1,
+   "status": "TODO"
   }
  ]
 }
