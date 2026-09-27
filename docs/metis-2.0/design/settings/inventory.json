@@ -2945,8 +2945,8 @@
     "surface": "no Settings control",
     "anchor": "src/shared/ipc.ts:965-971"
    },
-   "migration": "none; stays the shipped Worker URL unless managed policy overrides it",
-   "basis": "OBSERVED no Settings control writes it; the default is METIS_WORKER_URL (src/shared/ipc.ts:965-971), read by the Cloudflare speech credentials (src/main/cloud-stt/credentials.ts:51-54) and live session (src/main/index.ts:6620). DERIVED MASTER §5.6: vendor endpoints belong in Operator."
+   "migration": "none; stays the shipped Worker URL unless managed policy or an embedded credential's endpoint replaces it",
+   "basis": "OBSERVED no Settings control writes it; main writes it to the user layer when an embedded credential carries a base URL and the stored value is still the Worker URL (src/main/embedded-cloudflare-key.ts:116-120); the default is METIS_WORKER_URL (src/shared/ipc.ts:965-971), read by the Cloudflare speech credentials (src/main/cloud-stt/credentials.ts:51-54) and live session (src/main/index.ts:6620). DERIVED MASTER §5.6: vendor endpoints belong in Operator."
   },
   {
    "key": "providerModelsThinking[dust]",
@@ -3499,8 +3499,8 @@
     "surface": "no Settings control ('Meetings are always saved')",
     "anchor": "src/renderer/src/components/Settings.tsx:7293"
    },
-   "migration": "drop at settings version 2; no behaviour depends on it",
-   "basis": "OBSERVED the only non-test reader is src/main/selftest.ts:77; Settings states meetings are always saved."
+   "migration": "S-3 drops it, at either settings version; no behaviour depends on it",
+   "basis": "OBSERVED nothing reads it; its one writer is main's self-test (src/main/selftest.ts:77), and no renderer code writes it, although a renderer patch still can. Settings states meetings are always saved (src/renderer/src/components/Settings.tsx:7293)."
   },
   {
    "key": "systemPrompt",
@@ -5007,7 +5007,7 @@
     "surface": "no Settings control",
     "anchor": "src/shared/ipc.ts:1450"
    },
-   "migration": "drop at settings version 2",
+   "migration": "S-3 drops it, at either settings version",
    "basis": "OBSERVED shouldSendAskText always returns false (src/shared/operator.ts:91-97): the key has no effect."
   },
   {
@@ -5206,8 +5206,8 @@
     "surface": "Speech › Soniox key seat (cloud-only profiles)",
     "anchor": "src/renderer/src/components/Settings.tsx:6840"
    },
-   "migration": "ignored on the device once M2-0107 holds speech credentials server-side",
-   "basis": "OBSERVED a device key file or SONIOX_API_KEY (src/main/store.ts:328, 1289), entered only under a cloud-only profile (src/renderer/src/components/Settings.tsx:6840). DERIVED MASTER §9.6: provider credentials live only on the server."
+   "migration": "no 2.0 control: today's seat goes when M2-0117.2 replaces Settings, and until M2-0107 the key in force is SONIOX_API_KEY or else a key stored before M2-0117.2; ignored on the device once M2-0107 holds speech credentials server-side",
+   "basis": "OBSERVED a device key file or SONIOX_API_KEY, the variable winning (src/main/store.ts:1289, 1369-1374), entered today only through the Speech seat under a cloud-only profile (src/renderer/src/components/Settings.tsx:6840), the one caller of the set and clear handlers (src/main/index.ts:6682-6696). DERIVED the key alone chooses the Soniox account that receives meeting audio, so 2.0 gives the renderer no path to it (SETTINGS-2.0.md §12). DERIVED MASTER §9.6: provider credentials live only on the server."
   },
   {
    "key": "dustSession",

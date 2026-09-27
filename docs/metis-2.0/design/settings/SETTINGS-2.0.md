@@ -100,8 +100,8 @@ All OBSERVED at the base commit unless labelled.
   (`src/main/local-model-provisioning.ts:8-9`), which contradicts the schema comment that weights "still
   download in the background whenever the app opens" (`src/shared/ipc.ts:1259-1263`).
 
-**Dead or inert keys.** `autoSaveTranscripts` has no reader outside the self-test
-(`src/main/selftest.ts:77`) while Settings says meetings are always saved (`Settings.tsx:7293`);
+**Dead or inert keys.** `autoSaveTranscripts` has no reader, and its one writer is main's self-test
+(`src/main/selftest.ts:77`), while Settings says meetings are always saved (`Settings.tsx:7293`);
 `sendAskText` has no effect (`src/shared/operator.ts:91-97` always returns false); the legacy license server's
 UI and enforcement are compiled off (`Settings.tsx:201`, `src/renderer/src/App.tsx:311`,
 `src/main/license.ts:5-14`).
@@ -319,7 +319,8 @@ The choices that needed judgement:
      (below). The route is cloud whatever is stored, and `unconfigured` resolves to Cloudflare exactly as
      `effectiveCloudSttProvider` does today (`cloud-stt-provider.ts:35-44`). Speech processing offers no
      local option under it.
-  4. Otherwise the stored value decides: `unconfigured` is the local route, a cloud id is that cloud route.
+  4. Otherwise the value in force (Métis default < managed < user, §6) decides: `unconfigured` is the local
+     route, a cloud id is that cloud route.
 
   Following D-11, answered on 2026-09-27 (Cloudflare speech through the Operator broker), the fresh-install
   default changes from `'unconfigured'` to `'cloudflare-nova3'` in both of its declarations,
@@ -350,10 +351,11 @@ The choices that needed judgement:
   (HM-13 keeps memory there); `encryptTranscripts` and `transcriptRetentionDays` move to Privacy & account.
 - **OPERATOR-ONLY.** Vendor endpoints and credentials (`cloudflareBaseUrl`, `cfAiGatewayId`,
   `cloudflareAccountId`, the Soniox key) belong to the organization and, once the speech-session broker
-  (M2-0107) lands, to the server (MASTER §9.6); M2-0062 strips the three settings keys from renderer patches
-  (§12). `providerModelsDeep` and `providerModelsSpotlightRef` have no Settings control today and stay
-  policy-set. The Entra identifiers keep their one device path: the sign-in recovery that
-  `ssoBootstrapAllowed()` permits (`src/main/index.ts:4825-4836`), shown only in that case.
+  (M2-0107) lands, to the server (MASTER §9.6). M2-0062 strips the three settings keys from renderer
+  patches, and the Soniox key, which no settings patch carries, gets no 2.0 control (§12).
+  `providerModelsDeep` and `providerModelsSpotlightRef` have no Settings control today and stay policy-set.
+  The Entra identifiers are the only OPERATOR-ONLY keys the device can set, through the sign-in recovery
+  that `ssoBootstrapAllowed()` permits (`src/main/index.ts:4825-4836`), shown only in that case.
 - **DEPRECATED.** The ten legacy license-server keys and `operatorIngestSecret` follow D-4, answered on
   2026-09-27 (DECISIONS.md): the Operator seat is the 2.0 entitlement authority, and the legacy license
   server stays read-only for existing keys until the ADR-016 deprecation decision. They are read-only until
@@ -498,7 +500,8 @@ default can move audio to the cloud, so neither a failure nor a policy layer may
 A new profile is recognised only by the absence of both files. An existing profile whose `settings.json` a
 sync tool or antivirus removed, leaving no copy, is therefore taken for a new one and moves to the Cloudflare
 default, but not silently: its empty user layer shows setup again (`onboardingDone` defaults to false,
-`src/shared/ipc.ts:1681`), and setup names the speech route it configures before the first meeting
+`src/shared/ipc.ts:1681`), setup holds the display exclusively until `onboardingDone` is set
+(`src/main/index.ts:2050-2053`), and setup names the speech route it configures before the first meeting
 (M2-0160). The other profile files are no reliable sign of an older profile, because a first start can write
 key files next to `settings.json` (the embedded-key seed, `src/main/index.ts:8854`): a first install whose
 creating save failed would then look like a lost profile and be pinned to local speech.
@@ -713,7 +716,7 @@ size. Because the settled screens do not move, the reduced-motion screenshots ad
 that evidence is the transition durations `audit.js` computes for every capture. The captures were
 rendered from the inputs whose hashes `manifest.json › inputs_sha256` records. Two inputs have changed since,
 neither in what was rendered. `inventory.json` has changed only in `keys` (the basis and migration texts of
-13 entries, the dropped `assumed_decisions` arrays and the new `settingsVersion` entry) and in `legacy` (the
+17 entries, the dropped `assumed_decisions` arrays and the new `settingsVersion` entry) and in `legacy` (the
 `cloudSttProvider` rule and the two `enterpriseLive` rows), which the prototype does not read: it renders
 `controls` and `destinations` alone. `capture.js` has changed only in its header comment, which now records
 OD-12 instead of telling the reader how to run it; its hash differs for that reason alone.
@@ -778,10 +781,12 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
   `planned_by` only on keys the schema does not have yet, class rules, control and key bindings in both
   directions (a key's control lists that key, and every key a control lists is bound to that control), a
   labelled and anchored basis on every entry, required synonyms, Privacy never behind a disclosure) and also
-  rejects any decision id or kit reference, so the public copy cannot drift back. It
-  implements §9 with the §9.4 fixtures, including the store changes §9.1 names (the write refusal while a
-  `.recovered` copy stands in, and `settings.json.recovered` in the profile archive), and it reads
-  `enterpriseLive` from managed layers only and removes the unused flat branch (§5, §9.2).
+  rejects any decision id or kit reference, so the public copy cannot drift back. It also asserts that
+  M2-0062's `SERVER_AUTHORITATIVE_SETTINGS_KEYS` equals the two sets the inventory defines for it (the
+  M2-0062 item below), so the constant and the inventory cannot drift apart. It implements §9 with the §9.4
+  fixtures, including the store changes §9.1 names (the write refusal while a `.recovered` copy stands in,
+  and `settings.json.recovered` in the profile archive), and it reads `enterpriseLive` from managed layers
+  only and removes the unused flat branch (§5, §9.2).
 - **M2-0112** changes the fresh-install default and the speech resolver (§5) against the `settingsVersion`
   contract of M2-0117.1; the version gate makes their landing order safe, because a profile below version 2
   keeps the 1.x route. Main enforces the route as well as the renderer: `IPC.cloudSttStart` resolves the
@@ -799,12 +804,13 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
 - **M2-0076** shows its unreadable-settings banner whenever §9.1 marks the version and the selection
   unknown, with Keep the saved copy among its recovery options while a copy stands in.
 - **M2-0062** (one server-authoritative key list) and **M2-0071** (the Settings.tsx split) come first.
-  M2-0062's constant covers two sets of the inventory's settings entries: every entry whose `write` is
-  `"main"`, `"server"` or `"managed"`, and every OPERATOR-ONLY or DEPRECATED entry, none of which 2.0 gives a
-  control that writes it. The three `azure*` keys are the one exception: the sign-in recovery (§5) stays
-  their device path. The first set includes `settingsVersion` (§9.1) and the managed `enterpriseLive`,
-  `cloudflareBaseUrl`, `providerModelsDeep`, `providerModelsSpotlightRef` and `sendAskText`. The second adds
-  six keys that the renderer writes today:
+  M2-0062's constant, `SERVER_AUTHORITATIVE_SETTINGS_KEYS`, covers two sets of the inventory's settings
+  entries: every entry whose `write` is `"main"`, `"server"` or `"managed"`, and every OPERATOR-ONLY or
+  DEPRECATED entry, none of which 2.0 gives a control that writes it. The three `azure*` keys are the one
+  exception: the sign-in recovery (§5) stays their device path. The first set includes `settingsVersion`
+  (§9.1) and the managed `enterpriseLive`, `cloudflareBaseUrl`, `providerModelsDeep`,
+  `providerModelsSpotlightRef` and `sendAskText`. The second adds six keys that a renderer patch can still
+  set today, five of which today's Settings writes:
   - `cloudflareAccountId` and `cfAiGatewayId` choose the Cloudflare account and gateway that main's live
     speech socket connects to, carrying the device's Cloudflare token (`src/main/index.ts:6619-6622`). The
     default `cloudflareBaseUrl` is the Worker URL, which has no `/accounts/` path, so the account comes from
@@ -813,22 +819,40 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
   - `licenseServerUrl` and `licenseGateEnabled`, the legacy licence server's address and gate, which D-4
     keeps read-only and today's strip leaves writable on purpose (`src/main/index.ts:4841`), and
     `operatorIngestSecret`, the legacy ingest secret, which 2.0 gives no entry field.
-  - `autoSaveTranscripts`, which has no effect and which S-3 drops.
+  - `autoSaveTranscripts`, which has no effect and which S-3 drops. No renderer code writes it; its one
+    writer is main's self-test (`src/main/selftest.ts:77`).
 
   Their strip takes effect in M2-0062's first release, before M2-0107 and before M2-0117.2 replaces
   today's Settings. `SettingsPatch` then excludes these keys, so the same change removes the renderer writes
   that remain: the two pairs of Cloudflare account and gateway fields (`Settings.tsx:1551-1574, 6815-6836`),
   the legacy administrator connection (`Settings.tsx:6326-6337, 7146-7165`) and the compiled-off licence
-  section's two patches (`Settings.tsx:8385, 8483`). No control is left writing a key that main discards.
+  section's two patches (`Settings.tsx:8385, 8483`). `SettingsPatch` also excludes `mcpConnections`, which
+  today's strip already discards (`src/main/index.ts:4864-4868`), so the change replaces that key's five
+  echo patches (`Settings.tsx:3161, 3187, 3433, 3481, 3508`), which only re-read what main has just saved,
+  with a settings refresh. The exclusion reaches these writes only through a `patch` typed `SettingsPatch`
+  (`src/renderer/src/state.ts:542`): 25 Settings components widen that prop to `Partial<PublicSettings>`,
+  the two echo cards among them (`Settings.tsx:3104, 3397`), and M2-0062 narrows them in the same change.
+  No control is then left writing a key that main discards; the runtime strip stays the boundary.
   The strip covers writes only. Stored values stay in force until their own migration, so a device where
   Nova is already configured keeps working until M2-0107 moves the account and gateway into the
-  speech-session broker, and an organization whose people type the account or gateway id by hand today sets
-  it through managed configuration instead.
+  speech-session broker. An organization whose people type the account or gateway id by hand today sets it
+  through managed configuration instead, which every organization using Nova already deploys: at the base,
+  cloud speech runs only under a managed cloud-only profile (`src/shared/cloud-stt-provider.ts:47-54`).
 
-  One speech credential sits outside every settings patch: the Soniox key, which the renderer sets through
-  `IPC.cloudSttSetSonioxKey` (`src/main/index.ts:6682-6689`) and which alone chooses the Soniox account. It
-  stays a device seat, shown only under a cloud-only profile, until M2-0107 moves speech credentials to the
-  server (`apiKeys[soniox]` in the inventory).
+  The Soniox key gets no 2.0 control (`apiKeys[soniox]` in the inventory). It is the one speech credential
+  that alone chooses the account that receives meeting audio. The Cloudflare token (`apiKeys[cloudflare]`)
+  is also set outside every settings patch, through the API-keys path where today's Speech tab sends the
+  person (`Settings.tsx:6809`), and main reads it when a session starts (`src/main/index.ts:6619`); but the
+  Cloudflare account comes from `cloudflareAccountId` or the base URL, which the strip now covers. Today's
+  Soniox seat (`Settings.tsx:6840`) is the one caller of `IPC.cloudSttSetSonioxKey` and
+  `IPC.cloudSttClearSonioxKey` (`src/main/index.ts:6682-6696`). It lasts until M2-0117.2 replaces today's
+  Settings, which removes the seat with both handlers and their preload bridge
+  (`src/preload/index.ts:233-236`). From then until M2-0107 moves speech credentials to the server, no one
+  can enter a Soniox key on the device: the key in force is `SONIOX_API_KEY` from deployment, which wins
+  over a stored key (`src/main/store.ts:1369-1374`), or else a key seated before M2-0117.2. Speech
+  processing still offers Soniox wherever policy allows it (§6). On a device with neither key, a Soniox
+  session fails for missing credentials (`src/main/cloud-stt/credentials.ts:100-104`) and Voice & meetings
+  shows S03, so an organization that allows Soniox deploys `SONIOX_API_KEY`.
 - The comment at `src/shared/ipc.ts:1259-1263` is corrected with M2-0117.3.
 
 ## 13. Open questions
