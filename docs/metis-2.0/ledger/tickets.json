@@ -987,7 +987,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0015",
@@ -2091,7 +2093,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0034",
@@ -2865,7 +2869,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0048",
@@ -12565,7 +12571,9 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 8,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0216",
@@ -12769,7 +12777,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "id": "M2-0221",
    "title": "Open the Windows CLI setup script without cmd re-parsing its path",
    "milestone": "m3",
@@ -12791,7 +12799,9 @@
     "No regression in the macOS/Linux open path"
    ],
    "risk": "high",
-   "estimate_hours": 2
+   "estimate_hours": 2,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
   },
   {
    "wave": "W2",
@@ -12803,7 +12813,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "id": "M2-0222",
    "title": "Keep the MCP metadata/DNS-rebinding refusal on the system-proxy route",
    "milestone": "m3",
@@ -12827,7 +12837,9 @@
     "Behaviour tests per route"
    ],
    "risk": "medium",
-   "estimate_hours": 4
+   "estimate_hours": 4,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
   },
   {
    "wave": "W2",
@@ -12839,7 +12851,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "id": "M2-0223",
    "title": "Pin GitHub Actions to full commit SHAs in build and release workflows",
    "milestone": "m4",
@@ -12862,7 +12874,9 @@
     "release.yml behaviour otherwise unchanged; no release run triggered"
    ],
    "risk": "medium",
-   "estimate_hours": 2
+   "estimate_hours": 2,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
   },
   {
    "wave": "W2",
@@ -12874,7 +12888,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "id": "M2-0224",
    "title": "Replace the renderer-ready source-text contract with a wiring behaviour test",
    "milestone": "m3",
@@ -12896,7 +12910,9 @@
     "It fails when the binding is moved after navigation"
    ],
    "risk": "low",
-   "estimate_hours": 2
+   "estimate_hours": 2,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
   }
  ]
 }
