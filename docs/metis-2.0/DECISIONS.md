@@ -135,7 +135,7 @@ Days waiting are counted from 2026-09-26. As of 2026-09-26: 0 days for every ope
 
 D-7 is decided (OD-4). This section proposes what happens to the dock-lineage PRs, branches and version. M2-0022 closed, commented on, retargeted and deleted nothing on GitHub; the lead or the owner executes E.7.
 
-The snapshot was taken on 2026-09-26 after the history rewrite, through the GitHub API (`gh pr view`, `gh api …/pulls|issues/<n>/timeline|branches|compare|commits|contents`). SHAs are post-rewrite. SHAs quoted in review files written before the rewrite still resolve on GitHub but head no branch: the v1.9.8 draft's `a105a258` and today's `claude/dock-three-fixes` tip `48ea2882` share tree `89db261ded` (OBSERVED). Paths under `plan-inputs/`, `plan-work/`, `lanes/` and `verify/` are in the review workspace `metis-v2-review/`; `metis-2.0-exec/` is the prior execution, and `reconcile.md` is its `tasks/TASK-027/reconcile.md`.
+The snapshot was taken on 2026-09-26 after the history rewrite, through the GitHub API (`gh pr view`, `gh api …/pulls|issues/<n>/timeline|branches|compare|commits|contents`). SHAs are post-rewrite. SHAs quoted in review files written before the rewrite still resolve on GitHub but head no branch. The v1.9.8 draft's release body and `reconcile.md:31,195` name `a105a258` as the draft's tip (PROVIDED; the release object's `targetCommitish` reads `main`), and `a105a258` and today's `claude/dock-three-fixes` tip `48ea2882` share tree `89db261ded` (OBSERVED). Paths under `plan-inputs/`, `plan-work/`, `lanes/` and `verify/` are in the review workspace `metis-v2-review/`; `metis-2.0-exec/` is the prior execution, and `reconcile.md` is its `tasks/TASK-027/reconcile.md`.
 
 ### E.1 Decision source and the findings it settles
 
@@ -164,37 +164,41 @@ The snapshot was taken on 2026-09-26 after the history rewrite, through the GitH
 | 11 | The updater never takes a prerelease or a downgrade, and its feed is `mysticalsin/Metis-Releases` | OBSERVED | m2/integration `src/main/updater.ts:345-346` (`allowPrerelease = false`, `allowDowngrade = false`); `electron-builder.yml:319-330` |
 | 12 | v1.9.8 on the feed is a draft prerelease that was never published; neither repository has a v1.9.8 or v2.* tag | OBSERVED | `gh release view v1.9.8 --repo mysticalsin/Metis-Releases` (isDraft true, publishedAt null); `gh api …/git/matching-refs/tags/v1.9` and `…/tags/v2` in both repositories |
 | 13 | The owner's installed app is 1.9.6 | OBSERVED | `verify/RUNTIME-EVIDENCE.md:6` |
+| 14 | `84db50da` (#187's fix) modifies four files, `intelligence/src/lib/brainAdapter.ts`, `intelligence/src/lib/brainAdapter.test.ts`, `intelligence/src/types/data.ts` and `intelligence/src/views/GraphView.tsx`, that are byte-identical on its parent `abbb698e`, on main and on m2/integration, so it applies to both unchanged; it adds `intelligence/src/views/GraphView.notes.test.ts`. `0ffb005d` changes only `intelligence/public/data.example.json`, also identical on the three refs | OBSERVED | commits API for `84db50da` and `0ffb005d`; contents API blob SHAs per file and ref |
+| 15 | `GraphView.notes.test.ts` is a source-text contract: it reads `GraphView.tsx`, `brainAdapter.ts` and `data.ts` with `readFileSync` and matches regexes against them. The same commit's `brainAdapter.test.ts` change is a fixture test (the display graph keeps 4 meeting nodes and 13 edges) that relaxes its two degree checks to lower bounds | OBSERVED | `GraphView.notes.test.ts:16-22` at `84db50da`; its `brainAdapter.test.ts` patch |
+| 16 | Main's content-protection audit counts any `<window>.setContentProtection(` call after construction as coverage, a literal `false` included; #190 and #192 add a negative lookahead for `false` | OBSERVED | `src/main/content-protection.contract.test.ts:88`, the same blob `08f1483e` on main and m2/integration; patches of `17fc6160` and `532e7fc9` |
+| 17 | #192's PR head is still the pre-rewrite `a5eb53dc`; its branch head `532e7fc9` is in neither `claude/dock-three-fixes` nor `metis-2.0-dock-lineage` | OBSERVED | `gh pr view 192 --json headRefOid`; compare API `532e7fc9...<branch>` (behind_by 1 on both) |
 
 ### E.3 PR dispositions
 
 | PR | Branch → base, state | Proposed action | Replacement | Salvage |
 |---|---|---|---|---|
 | #186 | `fix/win-quality-crlf-right-edge` → main, OPEN | Not dock lineage (a test-only CRLF fix to main's right-edge contract); merge after green CI | M2-0025 | The whole PR |
-| #187 | `claude/intelligence-relationship-notes` → `codex/review-release-1.9.1`, OPEN, CI red (E.2 row 8) | Close unmerged | M2-0203 | Re-implement on main with `84db50da` (brainAdapter, GraphView, data type, tests) as the reference: notes are the smallest square nodes, a Notes toggle defaults on, account and sector filters apply to notes, and the empty state names its three causes. `0ffb005d` only enriches the bundled example data. No cherry-pick, because the branch carries 53 files of Cap and dock work |
+| #187 | `claude/intelligence-relationship-notes` → `codex/review-release-1.9.1`, OPEN, CI red (E.2 row 8) | Close unmerged | M2-0203 | Port `84db50da` (notes are the smallest square nodes, a Notes toggle defaults on, account and sector filters apply to notes, the empty state names its three causes). It applies to main unchanged (E.2 row 14) and is a post-rewrite commit, so M2-0203 may cherry-pick its production hunks in `brainAdapter.ts`, `data.ts` and `GraphView.tsx`, and its `brainAdapter.test.ts` fixture update, whose degree checks are only lower bounds (E.2 row 15). The commit is not taken whole: `GraphView.notes.test.ts` is a source-text regex contract (E.2 row 15), which M2-0203 replaces with a behaviour test, and M2-0203's acceptance needs a fixture brain test that fails on the parent commit. `0ffb005d` (notes in the bundled example data) may come along if wanted |
 | #188 | `claude/dock-panel-design` → `codex/review-release-1.9.1`, OPEN, CI red | Close unmerged | M2-0202 (composer and tool row: D6, D7); M2-0095 (definite-height body under one geometry authority) | Ideas, not code: the composer never scrolls away; every tool has the same hit-target size; Start and Stop are never shown together; a live meeting gets its own full-width strip; Mode opens inside the panel. Its `OVERLAY_BAR_REST` typecheck fix is not needed, because the break exists only in the lineage's geometry |
 | #189 | `claude/force-quit-contract` → `codex/review-release-1.9.1`, OPEN, CI red | Close unmerged | M2-0026 | Nothing: main carries the mechanism (E.2 row 3). The remaining gap, the onFatal relaunch without teardown (E.2 row 4), is M2-0026 |
-| #190 | `claude/content-protection-stub` → `codex/review-release-1.9.1`, OPEN, CI red | Close as superseded by #192 | none | Nothing: #192 contains it (E.2 row 7), and the code it tests is not on main (E.2 row 6) |
+| #190 | `claude/content-protection-stub` → `codex/review-release-1.9.1`, OPEN, CI red | Close as superseded by #192 | The audit-fix ticket (E.7 step 1) | Nothing of its own: #192 contains it (E.2 row 7), and its audit fix is routed in #192's row |
 | #191 | `cursor/cap4-glass-sidecar` → main, OPEN, CONFLICTING | Close unmerged | none | Nothing: an earlier DockPanel design iteration; its own comment of 2026-09-20 names #188 as its successor |
-| #192 | `fix/cap3-qa-tip-cp-packaged-gate` → `codex/review-release-1.9.1`, CLOSED by the rewrite | Stays closed; add the E.4 comment | none now | `532e7fc9` stays on file (`src/main/intelligence.ts` +5/−3, `src/main/content-protection.contract.test.ts` +43/−2): a packaged build ignores `QA_TIP.txt`, and the audit no longer counts `setContentProtection(false)` as coverage. If the Cap3 QA force-paint is ever ported to main, this gate lands in the same PR |
+| #192 | `fix/cap3-qa-tip-cp-packaged-gate` → `codex/review-release-1.9.1`, CLOSED by the rewrite | Stays closed; add the E.4 comment | The audit-fix ticket (E.7 step 1) | `532e7fc9` (`src/main/intelligence.ts` +5/−3, `src/main/content-protection.contract.test.ts` +43/−2) holds two fixes. The audit fix, which stops a literal `setContentProtection(false)` counting as coverage, closes a gap main has today (E.2 row 16): PROPOSED as a new ticket that ports it with a test feeding the audit a window whose only call is `setContentProtection(false)` and expecting a violation. The packaged-build gate (a packaged build ignores `QA_TIP.txt`) stays on file (E.5) and lands in the same PR as any port of the Cap3 QA force-paint to main |
 | #193 | `claude/cap4-motion` → `release/1.9.1`, CLOSED by the rewrite | Stays closed; add the E.4 comment | none | Nothing: DockPanel motion, to be re-reviewed only if D-7 is reopened |
 | #194 | `claude/dock-three-fixes` → main, CLOSED by the rewrite | Stays closed and is never merged wholesale (D-7); add the E.4 comment | M2-0202, M2-0095, M2-0203, M2-0042 | Its consolidation table (PROVIDED, PR body) says it holds #187 and #192 and every test of #188 and #190, so those rows cover it. Its three right-edge fixes (the panel stays centred on the resting handle, History/Review/Brain/Agenda get a definite-height host, no full bar at the right edge) are checked against RightEdgeSidecar in M2-0095 and ported only where the defect reproduces there. Its #196/#197 fixes are already on main through PR #199, which is the functional superset (`reconcile.md:195-199`); M2-0042 verifies them |
 
 ### E.4 Comments to post
 
-The repository is public, so the comments name ticket IDs only.
+The repository is public, so the comments name ticket IDs only and do not mention the history rewrite while the GitHub Support request (`GITHUB-SUPPORT-REQUEST.md`) is open. `<audit ticket>` is the ticket E.7 step 1 adds.
 
-- **#187** (close): "Closed without merging. On 2026-09-24 main's RightEdgeSidecar was chosen as the shipping line; the dock lane is ported piece by piece, not merged. The notes-as-nodes fix is re-implemented on main in M2-0203, with commit 84db50da as the reference."
+- **#187** (close): "Closed without merging. On 2026-09-24 main's RightEdgeSidecar was chosen as the shipping line; the dock lane is ported piece by piece, not merged. The notes-as-nodes fix (commit 84db50da) is ported to main in M2-0203."
 - **#188** (close): "Closed without merging: DockPanel does not ship (shipping-line decision of 2026-09-24). The composer and tool-row ideas carry into the RightEdgeSidecar repairs in M2-0202 and the geometry work in M2-0095."
 - **#189** (close): "Closed without merging: the force-quit grace period and sidecar teardown are already on main. The remaining gap, the crash-dialog relaunch that skips sidecar teardown, is fixed in M2-0026."
-- **#190** (close): "Closed as superseded by #192, which carries this audit fix plus the packaged-build gate. The force-paint code it tests is not on main."
+- **#190** (close): "Closed as superseded by #192, which carries this audit fix plus the packaged-build gate. The audit fix is ported to main in `<audit ticket>`."
 - **#191** (close): "Closed: an earlier DockPanel design iteration, and DockPanel does not ship (shipping-line decision of 2026-09-24). No replacement."
-- **#192** (comment): "Closed by the 2026-09-26 history rewrite. Kept on file: if the Cap3 QA force-paint is ever ported to main, this packaged-build gate and the audit fix land in the same PR."
-- **#193** (comment): "Closed by the 2026-09-26 history rewrite. DockPanel motion does not ship under the 2026-09-24 shipping-line decision. No replacement."
-- **#194** (comment): "Closed by the 2026-09-26 history rewrite and not to be merged: main's RightEdgeSidecar ships (decision of 2026-09-24). Ported instead: right-edge repairs (M2-0202, M2-0095), notes as nodes (M2-0203), #196/#197 verification (M2-0042). Version 1.9.8 is retired."
+- **#192** (comment): "Closed; not to be merged. The content-protection audit fix is ported to main in `<audit ticket>`. The packaged-build gate is kept on file: if the Cap3 QA force-paint is ever ported to main, it lands in the same PR."
+- **#193** (comment): "Closed; not to be merged. DockPanel motion does not ship under the 2026-09-24 shipping-line decision. No replacement."
+- **#194** (comment): "Closed; not to be merged: main's RightEdgeSidecar ships (decision of 2026-09-24). Ported instead: right-edge repairs (M2-0202, M2-0095), notes as nodes (M2-0203), #196/#197 verification (M2-0042). Version 1.9.8 is retired."
 
 ### E.5 Branches
 
-Every lineage branch stays unchanged as the port reference. No agent deletes, rebases or pushes to them, and nothing is built, tagged or published from them. Once M2-0202, M2-0095 and M2-0203 are DONE, the owner may delete them. OBSERVED values (head, package version, commits ahead/behind main):
+Every lineage branch stays unchanged as the port reference. No agent deletes, rebases or pushes to them, and nothing is built, tagged or published from them. Once M2-0202, M2-0095, M2-0203 and the audit-fix ticket are DONE, the owner may delete them, except `fix/cap3-qa-tip-cp-packaged-gate`: #192's PR head still points at the pre-rewrite commit and neither consolidating branch holds `532e7fc9` (E.2 row 17), so the branch stays until the Cap3 force-paint is ported or dropped. OBSERVED values (head, package version, commits ahead/behind main):
 
 | Branch | Head | Version | Ahead/behind main | Role |
 |---|---|---|---|---|
@@ -204,10 +208,10 @@ Every lineage branch stays unchanged as the port reference. No agent deletes, re
 | `claude/dock-three-fixes` | `48ea2882` | 1.9.8 | 81/53 | #194 head; green on its own branch (run 36267676162) |
 | `cursor/cap4-glass-sidecar` | `932517c8` | 1.9.5 | 8/58 | #191 head |
 | `claude/dock-panel-design` | `fde39589` | 1.9.5 | 21/58 | #188 head |
-| `claude/intelligence-relationship-notes` | `0ffb005d` | 1.9.5 | 7/58 | #187 head; M2-0203 reference |
+| `claude/intelligence-relationship-notes` | `0ffb005d` | 1.9.5 | 7/58 | #187 head; M2-0203 ports `84db50da` from it |
 | `claude/force-quit-contract` | `2158b037` | 1.9.5 | 8/58 | #189 head |
 | `claude/content-protection-stub` | `17fc6160` | 1.9.5 | 8/58 | #190 head |
-| `fix/cap3-qa-tip-cp-packaged-gate` | `532e7fc9` | 1.9.5 | 5/58 | #192 head; kept for a future force-paint port |
+| `fix/cap3-qa-tip-cp-packaged-gate` | `532e7fc9` | 1.9.5 | 5/58 | #192 head; source of the audit-fix ticket and of the gate kept for a future force-paint port |
 | `claude/cap4-motion` | `ad17437d` | 1.9.5 | 41/58 | #193 head |
 
 ### E.6 Version 1.9.8
@@ -220,7 +224,8 @@ Every lineage branch stays unchanged as the port reference. No agent deletes, re
 
 ### E.7 Execution (lead or owner)
 
-1. Close #187 to #191 with the E.4 texts: `gh pr close <n> --repo mysticalsin/AskToto-Mantu --comment "<text>"`.
-2. Comment on #192 to #194: `gh pr comment <n> --repo mysticalsin/AskToto-Mantu --body "<text>"`.
-3. Verify: `gh pr list --repo mysticalsin/AskToto-Mantu --state open --json number --jq '[.[].number]'` lists none of 187 to 194, and `gh pr view <n> --repo mysticalsin/AskToto-Mantu --json comments` shows each text.
-4. Leave the branches (E.5) and the v1.9.8 draft (E.6) as they are.
+1. Add the audit-fix ticket to the ledger (E.3 #192: port the lookahead from `532e7fc9` to `src/main/content-protection.contract.test.ts:88` with its test) and write its ID for `<audit ticket>` in the #190 and #192 texts.
+2. Close #187 to #191 with the E.4 texts: `gh pr close <n> --repo mysticalsin/AskToto-Mantu --comment "<text>"`.
+3. Comment on #192 to #194: `gh pr comment <n> --repo mysticalsin/AskToto-Mantu --body "<text>"`.
+4. Verify: `gh pr list --repo mysticalsin/AskToto-Mantu --state open --limit 100 --json number --jq '[.[].number]'` lists none of 187 to 194, and `gh pr view <n> --repo mysticalsin/AskToto-Mantu --json comments` shows each text.
+5. Leave the branches (E.5) and the v1.9.8 draft (E.6) as they are.
