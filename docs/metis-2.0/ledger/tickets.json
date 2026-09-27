@@ -2816,9 +2816,7 @@
     "CHATGPT-A8"
    ],
    "scope_paths": [
-    "package.json",
-    "docs/metis-2.0/evidence/release-1.9.7/",
-    "docs/metis-2.0/evidence/release-1.9.7/RELEASE-NOTES.md"
+    "docs/metis-2.0/releases/1.9.7.md"
    ],
    "summary": "The stabilization release closes the loop behind the owner's two bugs only if the bytes that were tested are the bytes promoted. Its scope is the P0 closure: hermetic tests, evidence chain, foreign-key guard, observability and stall sampler, one stopAll, registry and reaper, dataless detection, storage gateway with the .brain readers and History, degraded rows, one retry/exhaustion policy, the model-hash cache, one reveal(), a bounded reload loop and the build lane. Everything else moves to the T1 train. The release states residual risks; the bugs close only through the owner-machine gate M2-0199.",
    "acceptance": [
@@ -2849,7 +2847,7 @@
    "slices": [],
    "due": "2026-10-04",
    "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first)."
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases."
   },
   {
    "id": "M2-0047",
