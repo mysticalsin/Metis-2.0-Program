@@ -4,6 +4,8 @@ Recorded: 2026-09-27
 
 This artifact captures the owner-approved capabilities-dispatch command requested by M2-0196. It did not dispatch a workflow from this environment because GitHub was unreachable here; therefore it is blocker evidence only, not the required capability-probe output.
 
+Update on 2026-09-27: this branch now adds `.github/workflows/windows-qa.yml`, so the missing-workflow part of the blocker is addressed in the worktree. A successful `--ref main` dispatch still cannot be recorded until that workflow exists on `main` and a GitHub-authorized runner run is available.
+
 ## Command
 
 ```bash
@@ -39,7 +41,13 @@ fatal: path '.github/workflows/windows-qa.yml' does not exist in 'origin/main'
 
 ## Required next read-only step
 
-After a reviewer with GitHub access confirms `windows-qa.yml` exists on `main` and successfully runs the dispatch, capture the redacted probe output with:
+After this branch lands and a reviewer with GitHub access confirms `windows-qa.yml` exists on `main`, run:
+
+```bash
+gh workflow run windows-qa.yml --ref main -f probe=capabilities
+```
+
+Then capture the redacted probe output with:
 
 ```bash
 gh run view <run-id> --repo mysticalsin/AskToto-Mantu --log

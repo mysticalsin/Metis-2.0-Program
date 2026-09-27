@@ -1,0 +1,124 @@
+name: Windows QA
+
+# Probe-only Windows lane for M2-0196. The capabilities probe records what the
+# GitHub-hosted windows-latest runner exposes before any packaged gate relies on
+# it. It does not build installers, run repository scripts, launch the app, or
+# use secrets.
+on:
+  workflow_dispatch:
+    inputs:
+      probe:
+        description: Capability probe to run
+        required: true
+        default: capabilities
+        type: choice
+        options:
+          - capabilities
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-qa-${{ github.ref }}-${{ inputs.probe }}
+  cancel-in-progress: false
+
+jobs:
+  capabilities:
+    name: Probe windows-latest capabilities
+    if: inputs.probe == 'capabilities'
+    runs-on: windows-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Record runner capabilities
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $outDir = Join-Path $env:RUNNER_TEMP 'windows-qa-capabilities'
+          New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+          $out = Join-Path $outDir 'capabilities.txt'
+
+          function Write-Probe {
+            param([string] $Name, [object] $Value)
+            "$Name=$Value" | Tee-Object -FilePath $out -Append
+          }
+
+          Set-Content -Path $out -Value "probe=capabilities"
+          Write-Probe 'source' 'M2-0196 windows-qa.yml'
+          Write-Probe 'github.repository' $env:GITHUB_REPOSITORY
+          Write-Probe 'github.ref' $env:GITHUB_REF
+          Write-Probe 'github.sha' $env:GITHUB_SHA
+          Write-Probe 'runner.os' $env:RUNNER_OS
+          Write-Probe 'runner.arch' $env:RUNNER_ARCH
+          Write-Probe 'image.os' $env:ImageOS
+          Write-Probe 'image.version' $env:ImageVersion
+          Write-Probe 'computer.name' $env:COMPUTERNAME
+          Write-Probe 'user.interactive' ([Environment]::UserInteractive)
+          Write-Probe 'session.id' ([System.Diagnostics.Process]::GetCurrentProcess().SessionId)
+
+          $os = Get-CimInstance Win32_OperatingSystem
+          Write-Probe 'os.caption' $os.Caption
+          Write-Probe 'os.version' $os.Version
+          Write-Probe 'os.build' $os.BuildNumber
+          Write-Probe 'os.last_boot_utc' $os.LastBootUpTime.ToUniversalTime().ToString('o')
+
+          $system = Get-CimInstance Win32_ComputerSystem
+          Write-Probe 'system.manufacturer' $system.Manufacturer
+          Write-Probe 'system.model' $system.Model
+          Write-Probe 'system.total_physical_memory' $system.TotalPhysicalMemory
+
+          $cpu = Get-CimInstance Win32_Processor | Select-Object -First 1
+          Write-Probe 'cpu.name' $cpu.Name
+          Write-Probe 'cpu.logical_processors' $cpu.NumberOfLogicalProcessors
+
+          $video = @(Get-CimInstance Win32_VideoController | ForEach-Object {
+            "$($_.Name)|driver=$($_.DriverVersion)|processor=$($_.VideoProcessor)"
+          })
+          Write-Probe 'gpu.controllers' (($video -join '; ') -replace "`r|`n", ' ')
+
+          $audio = @(Get-CimInstance Win32_SoundDevice -ErrorAction SilentlyContinue | ForEach-Object {
+            "$($_.Name)|status=$($_.Status)"
+          })
+          Write-Probe 'audio.devices' (($audio -join '; ') -replace "`r|`n", ' ')
+
+          $explorer = @(Get-Process explorer -ErrorAction SilentlyContinue).Count
+          Write-Probe 'desktop.explorer_process_count' $explorer
+
+          try {
+            Add-Type -AssemblyName UIAutomationClient
+            $uiaAvailable = [type]::GetType('System.Windows.Automation.AutomationElement, UIAutomationClient') -ne $null
+          } catch {
+            $uiaAvailable = "ERROR: $($_.Exception.GetType().FullName): $($_.Exception.Message)"
+          }
+          Write-Probe 'uia.automation_element_available' $uiaAvailable
+
+          try {
+            $nativeInputSource = @(
+              'using System;'
+              'using System.Runtime.InteropServices;'
+              'public static class NativeInputProbe {'
+              '  [DllImport("user32.dll", SetLastError=true)]'
+              '  public static extern uint SendInput(uint nInputs, IntPtr pInputs, int cbSize);'
+              '}'
+            ) -join [Environment]::NewLine
+            Add-Type -TypeDefinition $nativeInputSource
+            $sendInputPresent = [NativeInputProbe].GetMethod('SendInput') -ne $null
+          } catch {
+            $sendInputPresent = "ERROR: $($_.Exception.GetType().FullName): $($_.Exception.Message)"
+          }
+          Write-Probe 'sendinput.symbol_available' $sendInputPresent
+
+          Write-Probe 'onedrive.env_present' ([bool]($env:OneDrive -or $env:OneDriveCommercial -or $env:OneDriveConsumer))
+          Write-Probe 'edr.assumed' 'UNKNOWN_FROM_CI_PROBE'
+
+          $hash = Get-FileHash -Algorithm SHA256 -Path $out
+          "$($hash.Hash.ToLowerInvariant())  capabilities.txt" | Tee-Object -FilePath (Join-Path $outDir 'SHA256SUMS.txt')
+          Get-Content $out
+          Get-Content (Join-Path $outDir 'SHA256SUMS.txt')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: windows-qa-capabilities
+          path: ${{ runner.temp }}/windows-qa-capabilities/
+          if-no-files-found: error
+          retention-days: 14
