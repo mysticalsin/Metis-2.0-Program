@@ -1922,12 +1922,17 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "notes": [
     "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
    ],
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/227",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
   },
   {
    "id": "M2-0031",
@@ -1987,10 +1992,12 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "notes": [
     "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
-   ]
+   ],
+   "claimed_by": "ticket runner batch 9 (Codex implements)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0032",
@@ -3252,9 +3259,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/222",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
   },
   {
    "id": "M2-0056",
@@ -12666,7 +12678,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0217",
    "title": "Require per-asset PASS evidence before promoting a QA candidate",
    "milestone": "m3",
@@ -12692,7 +12704,12 @@
    "risk": "high",
    "estimate_hours": 3,
    "claimed_by": "claude-code ticket runner (batch 5)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/224",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
   },
   {
    "wave": "W2",
@@ -13004,7 +13021,9 @@
    "flag": null,
    "risk": "high",
    "estimate_hours": 3,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 9 (Codex implements)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0226",
