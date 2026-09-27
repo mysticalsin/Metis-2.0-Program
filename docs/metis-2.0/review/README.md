@@ -3,6 +3,8 @@
 This index maps the source names used by the `finding_refs` convention in
 `SYNTHESIS-NOTES.md` to committed source files.
 
+`K01`-`K09`'s `-DEC-*`, `-BLK-*`, `-CONFLICT-*` and `-SEQ-*` refs (and K01-K08's bare `K0x-*` refs) are synthesizer-assigned slugs over each lane's decision/blocker/conflict lists in `SYNTHESIS-NOTES.md`'s convention; they are located in the lane file by reading its decisions/blockers/conflicts section, not by an exact-phrase match. For example, `K03-DEC-knowledge-model` and `K06-DEC-native-onboarding` do not appear as literal strings in `lanes/K03-master-s15-20.md` or `lanes/K06-master-s32-35.md` (confirmed by grep). The structured, literal-id form of these refs is `KIT-REQUIREMENTS.json`, which is not committed here. If `KIT-REQUIREMENTS.json` is ever committed to this directory, redact the Dust workspace ID (`<redacted-account-id>`) from it too, since it names the same workspace.
+
 ## Committed sources
 
 | Source name / `finding_refs` pattern | Committed path or paths |
@@ -31,7 +33,8 @@ This index maps the source names used by the `finding_refs` convention in
 | Lane `K06` (`K06-R*`, `K06-DEC-*`, `K06-BLK-*`, `K06-CONFLICT-*`, bare `K06-*`) | `docs/metis-2.0/review/lanes/K06-master-s32-35.md` |
 | Lane `K07` (`K07-R*`, `K07-DEC-*`, `K07-BLK-*`, `K07-CONFLICT-*`, bare `K07-*`) | `docs/metis-2.0/review/lanes/K07-kit-other.md` |
 | Lane `K08` (`K08-R*`, `K08-DEC-*`, `K08-BLK-*`, `K08-CONFLICT-*`, bare `K08-*`) | `docs/metis-2.0/review/lanes/K08-v6-v5-lineage.md` |
-| Lane `K09` (`K09-R*`, `K09-DEC-*`, `K09-BLK-*`, `K09-CONFLICT-*`, bare `K09-*`) | `docs/metis-2.0/review/lanes/K09-prior-execution.md` |
+| Lane K09, requirement refs (`K09-R01`..`K09-R30`) | `docs/metis-2.0/review/plan-inputs/PRIOR-EXECUTION.json`, its `requirements[].id` field — each ref is a literal id present verbatim in the committed JSON. |
+| Lane K09, decision/blocker/conflict refs (`K09-DEC-*`, `K09-BLK-*`, `K09-CONFLICT-*`, bare `K09-*`) | `docs/metis-2.0/review/lanes/K09-prior-execution.md` — see the note below on how K01-K09's DEC/BLK/CONFLICT refs resolve (they are not literal-string matches). |
 | Lane `K10` (`K10-R*`, `K10-DEC-*`, `K10-BLK-*`, `K10-CONFLICT-*`, bare `K10-*`) | `docs/metis-2.0/review/lanes/K10-git-github.md` |
 | Lane `L01` (`L01-*`) | `docs/metis-2.0/review/lanes/L01-main-lifecycle.md` |
 | Lane `L02` (`L02-*`) | `docs/metis-2.0/review/lanes/L02-main-sidecars-ai.md` |
@@ -48,16 +51,32 @@ This index maps the source names used by the `finding_refs` convention in
 | Codex audit round 2 (`RF-AUDIT-R2-*`) | `docs/metis-2.0/review/codex/audit-r2.txt`. Ledger-cited refs are `RF-AUDIT-R2-B1` (`M2-0217`), the file's one `blocker:` line, and `RF-AUDIT-R2-R1` (`M2-0218`) / `RF-AUDIT-R2-R2` (`M2-0219`), its two `risk:` lines in order. |
 | Codex audit round 3 (`RF-AUDIT-R3-*`) | `docs/metis-2.0/review/codex/audit-r3.txt`. Ledger-cited refs are `RF-AUDIT-R3-B1` (`M2-0221`), the file's one `blocker:` line; `RF-AUDIT-R3-R1` (`M2-0222`), `RF-AUDIT-R3-R3` and `RF-AUDIT-R3-R4` (`M2-0223`), three of its four `risk:` lines. `RF-AUDIT-R3-R5` (`M2-0224`) resolves to the file's fourth `rock:` line, "Replace renderer-ready source contract with wiring behavior"; the `R5` suffix does not mean "5th risk line" here. |
 | Codex audit round 4 (`RF-AUDIT-R4-*`) | `docs/metis-2.0/review/codex/audit-r4.txt`. Ledger-cited refs `RF-AUDIT-R4-R1` and `RF-AUDIT-R4-R2` (both `M2-0227`) are the file's two `risk:` lines in order. |
+| `RF-MEET-R1-Q` | `docs/metis-2.0/review/codex/meet-r1.txt` (`M2-0216`), the file's single `question:` line: "PLAN.md:14 says explicit rebuild remains the repair path for a permanently lost key, but the preserved prior index is then outside the purged tree; what user-visible restore/delete path owns `.brain-preserved`?" |
+| `RF-MEET-R2-B5` | `docs/metis-2.0/review/codex/meet-r2.txt` (`M2-0216`). The file has 5 labelled `blocker:` lines followed by `VERDICT: REVISE`; `B5` means the file's 5th (last) `blocker:` line, not "the 5th line specifically about a blocker distinct from others" — same naming quirk already documented here for `RF-AUDIT-R3-R5`. Its 5th blocker line: "PLAN.md:17 says a restore UI follow-up ledger ticket will be filed, but `rg "brain-preserved&#124;restore of a preserved&#124;offer restore" /Users/<redacted-user>/AI-Brain-build/metis-2.0-program/docs/metis-2.0/ledger` finds no existing ticket; missing_evidence for the ownership/restore path." |
+| `GIT-TRACE-REC` | `docs/metis-2.0/review/lanes/K10-git-github.md`, cited by `M2-0025`, `M2-0049`, `M2-0188`. This is a 12-item positional list from an uncommitted `GIT-STATE.json`'s `traceability_recommendations` field (that field's own `report_path` names this lane): items 1-10 are §12's 10 numbered recommendations in order; item 11 is §2's finding that no local "2.0" branch exists on GitHub; item 12 is §2/§13's finding that `codex/operator-ux-rock-1` has a misconfigured upstream and no open PR. `GIT-STATE.json` itself is not committed (outside this ticket's acceptance list) but the positional rule is fully documented here so the ref is checkable. |
 | `PUBLIC-AUDIT-B1` | `docs/metis-2.0/review/PUBLIC-READINESS.md`, section "B1 — Secret rotation" (`M2-0214`). |
 | `M2-0013-SRC-13-DEFAULT-ON` | `docs/metis-2.0/review/SRC-REVERIFY.md` §SRC-13 (`M2-0226`), which documents `speakerId` defaulting to `{ enabled: true }` in `src/shared/ipc.ts`. |
 | `OWNER-2026-09-26-REMOVE-CAHE` | `docs/metis-2.0/DECISIONS.md` D-30 (`M2-0214`), the owner's 2026-09-26 decision to remove the Cahê edition entirely. |
 | `RF-G5.5-R2` | `docs/metis-2.0/designs/M2-0225-DESIGN.md` (`M2-0225`). This is the finding's committed analysis/design record: it names and analyses `RF-G5.5-R2` as its subject and specifies the fix; it is not the original raw audit text where the finding first appeared. |
 
+## Runtime evidence label key
+
+`RUNTIME-EVIDENCE.md` itself carries no E-numbered headings; the E1-E9 labels are lane-prose shorthand cross-referenced here in one place.
+
+| Label | Substantiated by |
+|---|---|
+| E1 — the 3.3GB local-llm directory size | `docs/metis-2.0/review/RUNTIME-EVIDENCE.md` "## Installed app" (lines 5-7) |
+| E2 — orphaned `llama-server`/`chrome_crashpad_handler` processes, ppid=1 | `docs/metis-2.0/review/RUNTIME-EVIDENCE.md` "## Processes" (lines 9-17) |
+| E3 — 8 `app.started` events in one day, no clean-shutdown event type | `docs/metis-2.0/review/RUNTIME-EVIDENCE.md` "## audit.log" (lines 19-22, specifically the `app.started` timestamp list) |
+| E4 — cold local-LLM start, `llm.call` `ttaMs` 41282 / 29637 | `docs/metis-2.0/review/RUNTIME-EVIDENCE.md` "## audit.log" (lines 27-28) |
+| E5 — `capture.failed` x5394, Screen Recording permission retry loop | `docs/metis-2.0/review/RUNTIME-EVIDENCE.md` "## audit.log" (line 20, event counts) |
+| E6 — `render-process-gone reason=killed` / `app.unresponsive` | `docs/metis-2.0/review/RUNTIME-EVIDENCE.md` "## audit.log" (lines 20, 25-26) |
+| E7 — Crashpad pending minidumps | `docs/metis-2.0/review/RUNTIME-EVIDENCE.md` "## Crash artefacts" (lines 32-34) |
+| E8 — `local.runtime.start` x62 vs `local.runtime.stop` x108 (accounting mismatch) | `docs/metis-2.0/review/RUNTIME-EVIDENCE.md` "## audit.log" (line 20, event counts) |
+| E9 — `SingletonLock` present | `docs/metis-2.0/review/RUNTIME-EVIDENCE.md` "## Installed app" (line 7) |
+
 ## External / not committed to this ticket
 
 | `finding_refs` pattern or id | Status |
 |---|---|
-| `RF-MEET-R1-Q` | Cited by `M2-0216`. This ref points at meeting-derived audit content; this ticket's scope and this repo's confidentiality rule exclude meeting content from the repository entirely, so no committed source can exist here by design. This is the intended boundary, not a source gap to close. |
-| `RF-MEET-R2-B5` | Cited by `M2-0216`. This ref points at meeting-derived audit content; this ticket's scope and this repo's confidentiality rule exclude meeting content from the repository entirely, so no committed source can exist here by design. This is the intended boundary, not a source gap to close. |
-| `M2-0006-VAL-R3-ADV1` | Cited by `M2-0220`. Whole-repo grep for `M2-0006-VAL-R3-ADV1` matches only `docs/metis-2.0/ledger/tickets.json` and this README row, so no committed source names this exact ref string. |
-| `GIT-TRACE-REC` | Cited by `M2-0025`, `M2-0049` and `M2-0188`. Candidate follow-up: the expected source is a `GIT-STATE.json` snapshot, but that file was never in ticket `M2-0021`'s acceptance list (`BUG-ROOT-CAUSES`, `CODE-FINDINGS`, `COVERAGE-CRITIC`, lane reports, prep reports and `RUNTIME-EVIDENCE`); do not add `GIT-STATE.json` here. |
+| `M2-0006-VAL-R3-ADV1` | Cited by `M2-0220`. This is advisory finding 1 from the Opus round-3 validation of ticket `M2-0006` — that validation record itself was never committed anywhere (`docs/metis-2.0/ledger/tickets/M2-0006.md`'s own "Validation (Opus)" section is empty, and `M2-0220`'s ticket summary is the only place this finding's content survives, in paraphrase: "run-observability keeps its own `suspended` flag duplicating StallMonitor's paused state..."). Whole-repo grep for `M2-0006-VAL-R3-ADV1` matches only `tickets.json` and this README row. |

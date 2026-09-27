@@ -91,7 +91,7 @@ not respond — indistinguishable from "the app is running but frozen."
 
 A second, corroborating instance from the same day (cited in `plan-inputs/BUG-ROOT-CAUSES.json`'s
 verifications, PROVIDED not re-derived here): a macOS spindump
-(`/Library/Logs/DiagnosticReports/Metis_2026-09-25-135445_Totos-Mac.spin`) for the *main* process (not a
+(`/Library/Logs/DiagnosticReports/Metis_2026-09-25-135445_Toto…-Mac.spin`) for the *main* process (not a
 Helper), 85.55s, reason "Slow response to HID event," with the stack
 `… -> uv__run_timers -> JS -> uv_fs_read -> read -> apfs_materialize_dataless_file_ext -> lck_mtx_sleep`,
 i.e. the main thread blocked inside the exact "materialize a cloud-only file" syscall a synchronous
