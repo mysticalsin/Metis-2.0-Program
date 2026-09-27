@@ -475,12 +475,20 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
    "claimed_at": "2026-09-26",
    "notes": [
     "Slice 1 (PR #208) delivers acceptance 1, 2, 4 and 10; items 3, 5, 6, 7, 8, 9 moved to M2-0215."
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/208",
+    "merge_commit": "squash into m2/integration",
+    "merged_into": "m2/integration",
+    "red_run": "36281490092",
+    "green_run": "36286182629",
+    "validation": "Opus PASS round 3 (batch 3)"
+   }
   },
   {
    "id": "M2-0007",
@@ -6970,7 +6978,7 @@
     "K03-DEC-knowledge-model"
    ],
    "scope_paths": [
-    "docs/metis-2.0/adr/ADR-019-canonical-knowledge.md",
+    "docs/metis-2.0/design/knowledge/ADR-019-canonical-knowledge.md",
     "src/shared/contracts/knowledge/"
    ],
    "summary": "Every knowledge, Dust and memory feature depends on one canonical store. Decide whether the section 17.4 record model extends brain/corrections.ts and store.ts or is built fresh, define the ten provenance states, revisions, ACLs, conflicts, deletion and the plaintext wiki sharing boundary.",
@@ -6989,10 +6997,10 @@
     "LOCALLY_TESTED"
    ],
    "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Select the canonical knowledge store (current .brain on OneDrive, an approved M365 location, or the service database) and the plaintext-mirror sharing boundary (decision D-6)",
+    "owner": "Tony (owner decision D-6)",
+    "unblock": "Answer D-6 (canonical store); then update ADR-019 status row and section 2.2",
     "needed_by": "2026-10-12",
-    "raised_on": "2026-09-26"
+    "raised_on": "2026-09-27"
    },
    "flag": null,
    "risk": "medium",
@@ -7000,9 +7008,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/217",
+    "merged_into": "m2/integration (squash)",
+    "red_run": "36285223679",
+    "green_run": "36286531924",
+    "validation": "Opus PASS round 2 (batch 3); acceptance 1 blocked on D-6"
+   }
   },
   {
    "id": "M2-0121",
@@ -12669,6 +12684,43 @@
    ],
    "risk": "medium",
    "estimate_hours": 2
+  },
+  {
+   "id": "M2-0220",
+   "title": "Restart the stall heartbeat only when paused (one StallMonitor path for resume and unlock-screen)",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0006"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "M2-0006-VAL-R3-ADV1"
+   ],
+   "scope_paths": [
+    "src/main/observability/stall-monitor.ts",
+    "src/main/observability/run-observability.ts",
+    "src/main/observability/run-observability.test.ts"
+   ],
+   "summary": "Opus validation of M2-0006 (round 3): run-observability keeps its own `suspended` flag duplicating StallMonitor's paused state, and 'resume' calls resync() unconditionally, so a 'resume' that arrives after 'unlock-screen' restarted the heartbeat discards real lateness. Give StallMonitor a restart-only-if-paused method used by both events, delete the duplicate flag, make the unlock test behavioural (drive suspend, clock gap, unlock, on-time tick; assert on audit), and switch responsiveness-tracker to performance.now.",
+   "acceptance": [
+    "RED test for suspend → unlock-screen → stall → resume shows the stall is reported",
+    "One StallMonitor method handles resume and unlock-screen; run-observability has no suspended flag",
+    "Unlock-screen test asserts behaviour (audit events), not setInterval call counts",
+    "responsiveness-tracker uses a monotonic clock"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
+   "status": "TODO"
   }
  ]
 }
