@@ -1,0 +1,10 @@
+blocker: Windows login helper still opens the generated script through `cmd.exe /c start` with raw `scriptPath`, so a temp/profile path containing cmd metacharacters can misparse or execute extra commands | src/main/cli.ts:1595
+risk: MCP DNS-rebinding/metadata guard is bypassed on the system-proxy route because `routeDispatcher(lookup)` returns `new ProxyAgent(route.proxy)` and never applies the supplied lookup | src/main/net/install-proxy.ts:62
+risk: M2-0147 tests cover generated script content but not the Windows `start` launcher path, so the unquoted `scriptPath` regression would pass CI | src/main/cli-setup-script.test.ts:74
+risk: customer release workflow runs mutable major-version actions in privileged tag builds instead of SHA-pinned actions, widening release supply-chain blast radius | .github/workflows/release.yml:27
+risk: branch/PR build workflow also uses mutable major-version actions for checkout/setup/upload in CI, while the newer QA lane proves SHA-pinning is feasible | .github/workflows/build.yml:37
+rock: Harden Windows script opening | files: src/main/cli.ts src/main/cli-setup-script.test.ts | proof: a temp path containing `&`, `%`, spaces, and parentheses opens as one script path and cannot append a command
+rock: Make MCP metadata refusal proxy-aware | files: src/main/net/install-proxy.ts src/main/mcp/mcpClient.ts src/main/net/install-proxy.test.ts src/main/mcp/mcpClient.test.ts | proof: direct, env-proxy NO_PROXY, and system-proxy cases refuse a hostname resolving to 169.254.0.0/16 or explicitly document/block unsupported proxy-side DNS pinning
+rock: Pin release workflow actions | files: .github/workflows/release.yml .github/workflows/build.yml | proof: workflow lint/check rejects `uses: actions/*@vN` in release-capable jobs unless pinned to full commit SHA
+rock: Replace renderer-ready source contract with wiring behavior | files: src/main/renderer-readiness.test.ts src/main/index.ts | proof: a mocked BrowserWindow creation path proves readiness is bound before navigation without regex/body slicing
+VERDICT: REVISE
