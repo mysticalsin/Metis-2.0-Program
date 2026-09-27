@@ -2,6 +2,7 @@ $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repos
 base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
 PASS
 exit 0
 
@@ -12,6 +13,7 @@ $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repos
 base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
 FAIL general.overlay-layout: lists micDeviceId, which the inventory binds to voice.microphone
 1 problem(s)
 exit 1
@@ -21,6 +23,7 @@ $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repos
 base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (0 planned), 12 non-schema entries, 99 controls
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
 FAIL settingsVersion: inventoried but not in BaseSettingsSchema
 1 problem(s)
 exit 1
@@ -30,6 +33,7 @@ $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repos
 base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (2 planned), 12 non-schema entries, 99 controls
 classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
 FAIL micDeviceId: in BaseSettingsSchema, so no longer planned by M2-0117.1
 1 problem(s)
 exit 1
@@ -39,7 +43,18 @@ $ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repos
 base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 128 settings entries (1 planned), 12 non-schema entries, 99 controls
 classes: ADVANCED 46, DEPRECATED 14, KEEP 57, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
 controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
 FAIL resilience.removedLeaf: inventoried but not in BaseSettingsSchema
 1 problem(s)
 exit 1
 The round-3 checker, which compared schema leaves with entries in one direction only, passed the same copy (PASS, exit 0).
+
+5. cfAiGatewayId written by the renderer: an OPERATOR-ONLY key that a settings patch could still carry.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 5>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 37
+FAIL cfAiGatewayId: OPERATOR-ONLY settings entry written by renderer; only main, the server or managed configuration may write it
+1 problem(s)
+exit 1

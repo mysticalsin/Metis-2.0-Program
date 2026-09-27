@@ -24,6 +24,9 @@ DESTINATIONS = ["general", "voice", "knowledge", "privacy"]
 DRAWER = "advanced"
 REQUIRED_SYNONYMS = ["microphone", "offline", "local", "record", "teams", "privacy", "storage"]
 READ_ONLY_TYPES = {"readout", "policy-readout"}
+# Writers that never go through a settings patch. M2-0062's SERVER_AUTHORITATIVE_SETTINGS_KEYS is exactly the
+# settings entries whose `write` is one of them (SETTINGS-2.0.md §5, §12).
+SERVER_AUTHORITATIVE_WRITERS = {"main", "server", "managed"}
 EVIDENCE_LABEL = re.compile(r"\b(?:OBSERVED|DERIVED|ASSUMED)\b")
 SOURCE_ANCHOR = re.compile(r"[\w./-]+\.(?:ts|tsx|swift):\d+")
 
@@ -191,6 +194,11 @@ def problems(inventory, fields):
             out.append(f"{key}: DEPRECATED needs no control and a migration rule")
         if cls == "OPERATOR-ONLY" and ctl and ctl["type"] not in READ_ONLY_TYPES and not ctl.get("visible_when"):
             out.append(f"{key}: OPERATOR-ONLY control {ctl_id} must be read-only or a conditional recovery path")
+        recovery_path = bool(ctl and ctl.get("visible_when"))
+        if (k["store"] == "settings" and cls in {"OPERATOR-ONLY", "DEPRECATED"} and not recovery_path
+                and k["write"] not in SERVER_AUTHORITATIVE_WRITERS):
+            out.append(f"{key}: {cls} settings entry written by {k['write']}; only main, the server or managed "
+                       "configuration may write it")
         if cls == "PLATFORM-SPECIFIC" and not (ctl and ctl["platforms"] != ["darwin", "win32"]) and "platforms" not in k:
             out.append(f"{key}: PLATFORM-SPECIFIC needs a platform restriction")
         if not (EVIDENCE_LABEL.search(k["basis"]) and SOURCE_ANCHOR.search(k["basis"])):
@@ -238,6 +246,8 @@ def main():
     print("classes:", ", ".join(f"{c} {n}" for c, n in sorted(Counter(k["class"] for k in inventory["keys"]).items())))
     print("controls per destination:",
           ", ".join(f"{d} {n}" for d, n in Counter(c["destination"] for c in inventory["controls"]).items()))
+    print("server-authoritative settings entries (M2-0062):",
+          sum(k["write"] in SERVER_AUTHORITATIVE_WRITERS for k in settings_keys))
     for line in found:
         print("FAIL", line)
     print("PASS" if not found else f"{len(found)} problem(s)")

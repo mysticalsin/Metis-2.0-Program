@@ -658,7 +658,8 @@
     {
      "value": "soniox",
      "label": "Soniox",
-     "visible_when": "organization allows soniox"
+     "visible_when": "organization allows soniox",
+     "requires": "a Soniox key in force (hasKeys.soniox, set by SONIOX_API_KEY or a key stored before M2-0117.2); otherwise shown as unavailable with the reason"
     }
    ],
    "destination": "voice",
@@ -3230,7 +3231,7 @@
     "anchor": "src/shared/ipc.ts:1230-1233"
    },
    "migration": "none",
-   "basis": "OBSERVED epoch of the last Dust token import; launch skips the keychain refresh while the token is fresh (src/shared/ipc.ts:1230-1233; src/main/index.ts:9231). Written by main only (src/main/dust-oauth.ts:257, 332); state with no control."
+   "basis": "OBSERVED epoch of the last Dust token import; launch skips the keychain refresh while the token is fresh (src/shared/ipc.ts:1230-1233; src/main/index.ts:9231). Main sets it whenever it mints or imports a Dust token (src/main/dust-oauth.ts:257, 332; src/main/index.ts:858, 5456, 5478, 9251; src/main/brain/ingest.ts:230) and resets it to 0 when the Dust key is cleared (src/main/index.ts:5407-5416). Dust Disconnect awaits that clear and then resets it again in its settings patch (src/renderer/src/components/Settings.tsx:4424-4450), a duplicate M2-0062 deletes (SETTINGS-2.0.md §12). State with no control."
   },
   {
    "key": "azureClientId",
@@ -3490,7 +3491,7 @@
    "class": "DEPRECATED",
    "control": null,
    "owner": "user",
-   "write": "renderer",
+   "write": "main",
    "default": {
     "value": "false",
     "anchor": "src/shared/ipc.ts:1679"
@@ -3499,8 +3500,8 @@
     "surface": "no Settings control ('Meetings are always saved')",
     "anchor": "src/renderer/src/components/Settings.tsx:7293"
    },
-   "migration": "S-3 drops it, at either settings version; no behaviour depends on it",
-   "basis": "OBSERVED nothing reads it; its one writer is main's self-test (src/main/selftest.ts:77), and no renderer code writes it, although a renderer patch still can. Settings states meetings are always saved (src/renderer/src/components/Settings.tsx:7293)."
+   "migration": "S-3 drops it, at either settings version; no behaviour depends on it. M2-0117.1 corrects the admin guide row and removes the key from both example managed configs (SETTINGS-2.0.md §12)",
+   "basis": "OBSERVED nothing reads it; its one writer is main's self-test (src/main/selftest.ts:77), and no renderer code writes it. Settings states meetings are always saved (src/renderer/src/components/Settings.tsx:7293). OBSERVED the public admin guide documents a managed autoSaveTranscripts: false as 'Disable all transcript saving' (docs/asktoto-architecture.md:1168), the enterprise example config sets and locks it (build/managed-config.enterprise.example.json:30, 14) and the basic one sets it (build/managed-config.example.json:8), so an organization that followed the guide believes saving is off while every meeting is saved."
   },
   {
    "key": "systemPrompt",
@@ -4108,7 +4109,7 @@
     "anchor": "src/shared/ipc.ts:1137-1141"
    },
    "migration": "none",
-   "basis": "OBSERVED normalized per-display Y set by dragging the sidecar, written by main and left alone while locked (src/shared/ipc.ts:1137-1141; src/main/index.ts:3013, 3057-3072). DERIVED MASTER §5.10 asks for reset and recenter."
+   "basis": "OBSERVED normalized per-display Y set by dragging the sidecar, written only by main and left alone while locked (src/shared/ipc.ts:1137-1141; src/main/index.ts:3013, 3056-3079); the base has no reset path. DERIVED Reset position writes it through a main handler that M2-0117.2 adds (SETTINGS-2.0.md §12), and MASTER §5.10 asks for reset and recenter."
   },
   {
    "key": "showFullTranscriptInReview",
@@ -4209,7 +4210,7 @@
    },
    "migration": "versioned S-1 (settings version 2): compares the 1.x route with the 2.0 route over the same layers and, where they differ, writes 'unconfigured' to the user layer so the route in force is kept; a lock that would change the route holds the profile at version 1. The version and the stored value come only from a readable settings.json, and the version is written only by main (when it creates a profile, and when S-1 completes); DEFAULT_SETTINGS declares none and every managed layer's value or lock for it is ignored, so a managed settingsVersion never skips S-1. While settings.json is present but cannot be read or decoded, or a readable .recovered copy stands in for a missing one, the version and the stored value are unknown, whatever the copy records, for a legacy and a version-2 profile alike: a route applies only where organization locks fix it at both versions (a locked provider under managed cloud-only, or a locked 'unconfigured' with a locked asrEngine outside it); otherwise no speech session opens, cloud or local, and Voice & meetings shows speech unavailable with typing offered. No step runs and every write is refused until settings.json reads again or the person keeps the copy",
    "basis": "OBSERVED 1.x: cloud speech only under a managed cloud-only profile, where 'unconfigured' resolves to Cloudflare; a stored cloud id is ignored everywhere else (src/shared/cloud-stt-provider.ts:35-54). DERIVED MASTER §9.6: the selected engine is one value, so from settings version 2 'unconfigured' means the local route and a cloud id that cloud route for every profile, managed cloud-only still winning. DERIVED from D-11, answered 2026-09-27 (Cloudflare speech through the Operator broker): the fresh-install default becomes 'cloudflare-nova3' (src/shared/ipc.ts:1169, 1700).",
-   "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Soniox is offered only when organization policy allows it."
+   "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Soniox is offered only when organization policy lists it, and can be selected only while a Soniox key is in force (§6)."
   },
   {
    "key": "cfAiGatewayId",
@@ -4218,7 +4219,7 @@
    "class": "OPERATOR-ONLY",
    "control": null,
    "owner": "organization",
-   "write": "renderer",
+   "write": "managed",
    "default": {
     "value": "''",
     "anchor": "src/shared/ipc.ts:1701"
@@ -4228,7 +4229,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:1569"
    },
    "migration": "ignored on the device once the speech-session broker (M2-0107) holds gateway configuration server-side; value kept until then",
-   "basis": "OBSERVED the AI Gateway for Nova-3 live speech, read when a cloud session starts (src/shared/ipc.ts:1170-1174; src/main/index.ts:6622). DERIVED MASTER §9.6: account and provider credentials are injected only on the server."
+   "basis": "OBSERVED the AI Gateway for Nova-3 live speech, read when a cloud session starts (src/shared/ipc.ts:1170-1174; src/main/index.ts:6622); today's Settings writes it through a settings patch (src/renderer/src/components/Settings.tsx:1569, 6831). DERIVED MASTER §9.6: account and provider credentials are injected only on the server, so until M2-0107 an organization sets the gateway through managed configuration, and M2-0062 strips it from renderer patches (SETTINGS-2.0.md §12)."
   },
   {
    "key": "cloudflareAccountId",
@@ -4237,7 +4238,7 @@
    "class": "OPERATOR-ONLY",
    "control": null,
    "owner": "organization",
-   "write": "renderer",
+   "write": "managed",
    "default": {
     "value": "''",
     "anchor": "src/shared/ipc.ts:1702"
@@ -4247,7 +4248,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:1557"
    },
    "migration": "ignored on the device once M2-0107 lands; value kept until then",
-   "basis": "OBSERVED the account id used to build the Cloudflare speech endpoint (src/shared/ipc.ts:1175-1186; src/main/cloud-stt/credentials.ts:52-56). DERIVED as cfAiGatewayId: server-side once M2-0107 lands (MASTER §9.6)."
+   "basis": "OBSERVED the account id used to build the Cloudflare speech endpoint (src/shared/ipc.ts:1175-1186; src/main/cloud-stt/credentials.ts:52-56); today's Settings writes it through a settings patch (src/renderer/src/components/Settings.tsx:1557, 6820). DERIVED as cfAiGatewayId: server-side once M2-0107 lands (MASTER §9.6), set through managed configuration until then, and stripped from renderer patches by M2-0062 (SETTINGS-2.0.md §12)."
   },
   {
    "key": "asrLanguage",
@@ -4452,7 +4453,7 @@
     "anchor": "src/main/index.ts:5591"
    },
    "migration": "none",
-   "basis": "OBSERVED main-owned connection state per CLI, written at connect (src/main/index.ts:5591) and read by every provider-eligibility check (src/main/brain/ingest.ts:152, src/main/import-recap.ts:119, src/main/index.ts:1543). DERIVED state of the developer integration, so it takes that control's class (MASTER §5.6)."
+   "basis": "OBSERVED connection state per CLI, read by every provider-eligibility check (src/main/brain/ingest.ts:152, src/main/import-recap.ts:119, src/main/index.ts:1543). Main sets it at connect (src/main/index.ts:5581-5595) and clears it when a CLI session has ended (src/main/index.ts:1853-1863, 1899-1905); CLI Disconnect also clears it through a settings patch (src/renderer/src/components/Settings.tsx:2781-2799), which M2-0062 moves into a main handler (SETTINGS-2.0.md §12). DERIVED state of the developer integration, so it takes that control's class (MASTER §5.6)."
   },
   {
    "key": "lastClickedCli",
@@ -4770,7 +4771,7 @@
    "class": "DEPRECATED",
    "control": null,
    "owner": "server",
-   "write": "renderer",
+   "write": "managed",
    "default": {
     "value": "''",
     "anchor": "src/shared/ipc.ts:1736"
@@ -4780,7 +4781,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8385). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8385); managed configuration pins it (src/main/index.ts:5233-5238; build/managed-config.enterprise.example.json:7, 22), and the compiled-off activation stores it (src/main/license.ts:243). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys, so only managed configuration sets it in 2.0."
   },
   {
    "key": "licenseKey",
@@ -4903,7 +4904,7 @@
    "class": "DEPRECATED",
    "control": null,
    "owner": "server",
-   "write": "renderer",
+   "write": "managed",
    "default": {
     "value": "false",
     "anchor": "src/shared/ipc.ts:1743"
@@ -4913,7 +4914,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8483). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8483); main never writes it. DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys, so only managed configuration sets it in 2.0."
   },
   {
    "key": "licenseLease",
@@ -4979,7 +4980,7 @@
    "class": "DEPRECATED",
    "control": null,
    "owner": "organization",
-   "write": "renderer",
+   "write": "main",
    "default": {
     "value": "''",
     "anchor": "src/shared/ipc.ts:1747"
@@ -4989,7 +4990,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:7156"
    },
    "migration": "kept and honoured while set; no entry field for new devices; removed with the legacy path after M2-0146",
-   "basis": "OBSERVED labelled legacy and 'not needed with a licence' (Settings.tsx:7146-7155). DERIVED from D-4, answered 2026-09-27: the Operator seat licence is the 2.0 entitlement path, so the legacy secret gets no entry field."
+   "basis": "OBSERVED labelled legacy and 'not needed with a licence' (Settings.tsx:7146-7155). OBSERVED main copies METIS_OPERATOR_INGEST_SECRET into it at launch (src/main/index.ts:8861-8862) and clears it when a patch moves the Operator address (src/main/index.ts:4938-4945); the legacy administrator connection also writes it through a settings patch (Settings.tsx:6326-6337), which M2-0062 removes (SETTINGS-2.0.md §12). DERIVED from D-4, answered 2026-09-27: the Operator seat licence is the 2.0 entitlement path, so the legacy secret gets no entry field."
   },
   {
    "key": "sendAskText",

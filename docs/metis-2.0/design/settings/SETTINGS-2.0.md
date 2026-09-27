@@ -101,10 +101,14 @@ All OBSERVED at the base commit unless labelled.
   download in the background whenever the app opens" (`src/shared/ipc.ts:1259-1263`).
 
 **Dead or inert keys.** `autoSaveTranscripts` has no reader, and its one writer is main's self-test
-(`src/main/selftest.ts:77`), while Settings says meetings are always saved (`Settings.tsx:7293`);
-`sendAskText` has no effect (`src/shared/operator.ts:91-97` always returns false); the legacy license server's
-UI and enforcement are compiled off (`Settings.tsx:201`, `src/renderer/src/App.tsx:311`,
-`src/main/license.ts:5-14`).
+(`src/main/selftest.ts:77`), while Settings says meetings are always saved (`Settings.tsx:7293`). The public
+admin guide still documents a managed `autoSaveTranscripts: false` as "Disable all transcript saving"
+(`docs/asktoto-architecture.md:1168`); the enterprise example config sets and locks the key
+(`build/managed-config.enterprise.example.json:30, 14`) and the basic one sets it
+(`build/managed-config.example.json:8`). An organization that followed the guide believes saving is off
+while every meeting is saved. `sendAskText` has no effect (`src/shared/operator.ts:91-97` always returns
+false); the legacy license server's UI and enforcement are compiled off (`Settings.tsx:201`,
+`src/renderer/src/App.tsx:311`, `src/main/license.ts:5-14`).
 
 **Native Mac.** The native Settings keeps its own UserDefaults keys `metis.mode`, `metis.language` and
 `metis.consent` (`native-app/App/Settings/SettingsView.swift:9-11`). Language and consent have no reader
@@ -372,6 +376,24 @@ Per-key evidence (anchor, writer, owner, default, migration, basis) is in `inven
 carries an evidence label (OBSERVED, DERIVED or ASSUMED) and at least one `file:line` anchor at the base
 commit, and `check-inventory.py` fails on any entry without both.
 
+**What `write` means.** An entry's `write` names who writes the key in 2.0, which is not always who writes
+it at the base:
+
+| `write` | Writer in 2.0 |
+|---|---|
+| `renderer` | the renderer, through a settings patch: a Settings control, or renderer state such as `lastConsentReminderAt` |
+| `onboarding` | the setup flow, through a settings patch |
+| `main` | main process code alone: its own logic, or a main handler that a control calls |
+| `server` | main, from the Operator's replies |
+| `managed` | managed configuration; the basis names any value main also seeds |
+| `os`, `native` | the OS or the native app, outside `settings.json` |
+
+No settings patch may carry a settings entry whose `write` is `main`, `server` or `managed`; those entries
+are M2-0062's constant (§12). Every OPERATOR-ONLY and DEPRECATED settings entry is one of them unless a
+conditional recovery path writes it, which leaves out only the three `azure*` keys (above), and
+`check-inventory.py` enforces it. Where base code still writes one of them through a settings patch, its
+basis says so and §12 names the change that removes the write.
+
 ## 6. Effective policy
 
 **Sources, in precedence order (OBSERVED).**
@@ -397,6 +419,14 @@ a lock line naming the owner and the reason (S08); the header chip counts the lo
 policy sheet, which lists every value that is not a Métis default, with its source and reason (S09). When a
 lock sets a value that applies only at the next session, the control shows the value in force and the lock
 line names the value to come (S14).
+
+**Deprecated keys on the sheet.** The sheet also lists every managed value or lock of a DEPRECATED key,
+whatever the Métis default, with what it does in this version, which its inventory basis records. A key
+that no behaviour reads is listed as having no effect, with what Métis does instead: a managed
+`autoSaveTranscripts`, `false` or `true`, reads "No effect: Métis always saves meetings on this device". A
+managed `false` equals the Métis default, so without this rule the sheet would never show the value that an
+organization following the admin guide set to stop saving (§2). `operatorIngestSecret`, which still connects
+the legacy Operator path until M2-0146, is listed without its value.
 
 **Partial locks on shared controls.** A control that writes several keys (MERGE) can be locked on only some
 of them. It then disables every option or checkbox that would write another value to a locked key, and the
@@ -426,8 +456,12 @@ as "Set by deployment" instead.
    local to cloud, so S14 names it. An emergency revocation (a key that stops capture or egress) applies
    immediately (MASTER §5.7).
 4. Engines allowed by policy are a separate question from the engine selected (MASTER §9.6). The design
-   proposes a managed key `allowedSpeechEngines` (absent = all qualified engines); Soniox appears in
-   Speech processing only when it is allowed. ASSUMED shape; M2-0117 confirms with M2-0107.
+   proposes a managed key `allowedSpeechEngines`. Absent, it allows Cloudflare and the verified local packs,
+   never Soniox: Soniox is allowed only where the organization lists it. Like Local speech, which needs a
+   verified pack, the Soniox option in Speech processing has a precondition: it appears only when allowed,
+   and a person can select it only while a Soniox key is in force (`hasKeys.soniox`, which `SONIOX_API_KEY`
+   also sets: `src/main/store.ts:1280-1285, 1369-1378`); otherwise it shows as unavailable with the reason.
+   ASSUMED shape; M2-0117 confirms with M2-0107.
 
 ## 7. Saving, applying and failure
 
@@ -698,7 +732,7 @@ that folder from the shared tab's URL fragment, so no checkout path is written i
 | S06-local-speech-installed | installed, not selected; Cloudflare still selected | UC-071, COV-20 |
 | S07-knowledge | Knowledge & skills | HM-13, EXP-01 |
 | S08-privacy-managed | locked controls with owner and reason | M2-SET-02 |
-| S09-policy-sheet | effective policy: value, source, reason | §5.7 |
+| S09-policy-sheet | effective policy: value, source, reason; a managed value of a deprecated key listed with what it does ("No effect: …") | §5.7 |
 | S10-advanced | Advanced drawer: local generation and vision apart, personal providers | §5.6 |
 | S11-search | "mic": synonyms, paths, keyboard selection | §5.7, UC-097 |
 | S12-search-empty | "anthropic" while policy hides personal providers: the ordinary empty result, nothing revealed | INV-6 |
@@ -715,11 +749,15 @@ files. `manifest.json` labels them a superseded HTML mock and lists all 136 with
 size. Because the settled screens do not move, the reduced-motion screenshots add no evidence about motion;
 that evidence is the transition durations `audit.js` computes for every capture. The captures were
 rendered from the inputs whose hashes `manifest.json › inputs_sha256` records. Two inputs have changed since,
-neither in what was rendered. `inventory.json` has changed only in `keys` (the basis and migration texts of
-17 entries, the dropped `assumed_decisions` arrays and the new `settingsVersion` entry) and in `legacy` (the
-`cloudSttProvider` rule and the two `enterpriseLive` rows), which the prototype does not read: it renders
-`controls` and `destinations` alone. `capture.js` has changed only in its header comment, which now records
-OD-12 instead of telling the reader how to run it; its hash differs for that reason alone.
+neither in what was rendered. `inventory.json` has changed in `keys` (the basis, migration, notes or `write`
+of 22 entries, the dropped `assumed_decisions` arrays and the new `settingsVersion` entry) and in `legacy`
+(the `cloudSttProvider` rule and the two `enterpriseLive` rows), which the prototype does not read: it renders
+`controls` and `destinations` alone. In `controls` one field changed: the Soniox option of Speech processing
+gained its `requires` text (§6). The prototype hides that option in every state, because no state's policy
+allows Soniox (`prototype/prototype.js:65, 307`), so no capture shows it. `capture.js` has changed only in
+its header comment, which now records OD-12 instead of telling the reader how to run it; its hash differs
+for that reason alone. The S09 captures predate the deprecated-key rule of §6. The mock's example policy sets
+no deprecated key, so they show no such row; the Electron-renderer capture of S09 is to show one.
 
 **Automated checks** (`prototype/audit.js`, run in page for every capture; results in `audit.json`):
 WCAG 2.2 AA text contrast (1.4.3) for every rendered text node, input value, placeholder and select; non-text
@@ -780,13 +818,19 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
   the live zod schema as a CI step (every schema key and leaf classified, no stale keys or leaves,
   `planned_by` only on keys the schema does not have yet, class rules, control and key bindings in both
   directions (a key's control lists that key, and every key a control lists is bound to that control), a
-  labelled and anchored basis on every entry, required synonyms, Privacy never behind a disclosure) and also
-  rejects any decision id or kit reference, so the public copy cannot drift back. It also asserts that
-  M2-0062's `SERVER_AUTHORITATIVE_SETTINGS_KEYS` equals the two sets the inventory defines for it (the
-  M2-0062 item below), so the constant and the inventory cannot drift apart. It implements §9 with the §9.4
-  fixtures, including the store changes §9.1 names (the write refusal while a `.recovered` copy stands in,
-  and `settings.json.recovered` in the profile archive), and it reads `enterpriseLive` from managed layers
-  only and removes the unused flat branch (§5, §9.2).
+  labelled and anchored basis on every entry, required synonyms, Privacy never behind a disclosure, no
+  OPERATOR-ONLY or DEPRECATED settings entry written through a settings patch unless a conditional recovery
+  path writes it) and also rejects any decision id or kit reference, so the public copy cannot drift back.
+  It also asserts that M2-0062's `SERVER_AUTHORITATIVE_SETTINGS_KEYS` equals the inventory's settings entries
+  whose `write` is `main`, `server` or `managed` (§5), so the constant and the inventory cannot drift apart.
+  It implements §9 with the §9.4 fixtures, including the store changes §9.1 names (the write refusal while a
+  `.recovered` copy stands in, and `settings.json.recovered` in the profile archive), and it reads
+  `enterpriseLive` from managed layers only and removes the unused flat branch (§5, §9.2). With S-3 it
+  corrects the public admin guide's `autoSaveTranscripts` row (`docs/asktoto-architecture.md:1168`), which
+  offers a managed `false` as "Disable all transcript saving", to say that the key has no effect and Métis
+  always saves meetings on the device, and it removes the key's value and lock from both example configs
+  (`build/managed-config.enterprise.example.json:14, 30`; `build/managed-config.example.json:8`). That
+  correction needs no code and may land ahead of the rest of the slice.
 - **M2-0112** changes the fresh-install default and the speech resolver (§5) against the `settingsVersion`
   contract of M2-0117.1; the version gate makes their landing order safe, because a profile below version 2
   keeps the 1.x route. Main enforces the route as well as the renderer: `IPC.cloudSttStart` resolves the
@@ -797,42 +841,72 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
   `enterpriseLive` comes from managed layers alone (§5): today a renderer patch
   `{enterpriseLive: {managed: true, inferenceMode: 'cloud-only'}}` would pass it. M2-0112 adds the check,
   and M2-0107 carries it into the speech-session broker.
-- **M2-0117.2** renders destinations, groups and controls from the registry (MASTER §5.7), implements §6–§8,
-  and records LOCALLY_TESTED evidence with behaviour tests (search ranking and visibility, deep-link
-  resolution, failure and retry, lock rendering, next-session apply).
+- **M2-0117.2** renders destinations, groups and controls from the registry (MASTER §5.7), implements
+  §6–§8, adds the main handler that Reset position needs (the M2-0062 item below), and records
+  LOCALLY_TESTED evidence with behaviour tests (search ranking and visibility, deep-link resolution, failure
+  and retry, lock rendering, next-session apply).
 - **M2-0117.3** implements the pack states of S04–S06 against M2-0115 and M2-0163.
 - **M2-0076** shows its unreadable-settings banner whenever §9.1 marks the version and the selection
   unknown, with Keep the saved copy among its recovery options while a copy stands in.
 - **M2-0062** (one server-authoritative key list) and **M2-0071** (the Settings.tsx split) come first.
-  M2-0062's constant, `SERVER_AUTHORITATIVE_SETTINGS_KEYS`, covers two sets of the inventory's settings
-  entries: every entry whose `write` is `"main"`, `"server"` or `"managed"`, and every OPERATOR-ONLY or
-  DEPRECATED entry, none of which 2.0 gives a control that writes it. The three `azure*` keys are the one
-  exception: the sign-in recovery (§5) stays their device path. The first set includes `settingsVersion`
-  (§9.1) and the managed `enterpriseLive`, `cloudflareBaseUrl`, `providerModelsDeep`,
-  `providerModelsSpotlightRef` and `sendAskText`. The second adds six keys that a renderer patch can still
-  set today, five of which today's Settings writes:
+  M2-0062's constant, `SERVER_AUTHORITATIVE_SETTINGS_KEYS`, is every settings entry whose `write` is
+  `"main"`, `"server"` or `"managed"` (§5): 38 keys. Today's strip covers 19 of them
+  (`src/main/index.ts:4845-4885`). The other 19 are new to it, among them `settingsVersion` (§9.1), the
+  managed `enterpriseLive` (§5) and every OPERATOR-ONLY and DEPRECATED key that today's strip leaves
+  writable, the three `azure*` keys aside (§5). Their strip takes effect in M2-0062's first release, before
+  M2-0107 and before M2-0117.2 replaces today's Settings.
+
+  Today's renderer writes seven of the new keys through settings patches. M2-0062 removes or moves each
+  write in the same change:
   - `cloudflareAccountId` and `cfAiGatewayId` choose the Cloudflare account and gateway that main's live
     speech socket connects to, carrying the device's Cloudflare token (`src/main/index.ts:6619-6622`). The
     default `cloudflareBaseUrl` is the Worker URL, which has no `/accounts/` path, so the account comes from
     `cloudflareAccountId` (`src/main/cloud-stt/credentials.ts:46-59`). Today a renderer patch can therefore
-    point meeting audio at another account or gateway.
-  - `licenseServerUrl` and `licenseGateEnabled`, the legacy licence server's address and gate, which D-4
-    keeps read-only and today's strip leaves writable on purpose (`src/main/index.ts:4841`), and
-    `operatorIngestSecret`, the legacy ingest secret, which 2.0 gives no entry field.
-  - `autoSaveTranscripts`, which has no effect and which S-3 drops. No renderer code writes it; its one
-    writer is main's self-test (`src/main/selftest.ts:77`).
+    point meeting audio at another account or gateway. The two pairs of fields that write them
+    (`Settings.tsx:1551-1574, 6815-6836`) go.
+  - `licenseServerUrl` and `licenseGateEnabled` are the legacy licence server's address and gate, which D-4
+    keeps read-only and today's strip leaves writable on purpose (`src/main/index.ts:4841`). The
+    compiled-off licence section's two patches (`Settings.tsx:8385, 8483`) go.
+  - `operatorIngestSecret` is the legacy ingest secret, which 2.0 gives no entry field. The legacy
+    administrator connection (`Settings.tsx:6326-6337, 7146-7165`) goes.
+  - `cliConnected`: main sets it at connect (`src/main/index.ts:5581-5595`) and clears it when a CLI session
+    has ended (`src/main/index.ts:1853-1863, 1899-1905`), but CLI Disconnect clears it through a patch
+    (`Settings.tsx:2781-2799`). With that patch stripped, Disconnect would switch the provider and leave the
+    CLI marked connected. M2-0062 therefore adds a main disconnect handler, shaped like `mcpDisconnect`
+    (`src/main/index.ts:5825-5849`), that clears the flag and recomputes `lastClickedCli` as main's own
+    clearing paths do; Disconnect then patches only `provider`, when the CLI was the active one.
+  - `dustTokenMintedAt`: Dust Disconnect resets it to 0 in its patch (`Settings.tsx:4424-4450`) after
+    awaiting the Dust key clear, in which main has already reset it (`src/main/index.ts:5407-5416`). M2-0062
+    deletes the duplicate.
 
-  Their strip takes effect in M2-0062's first release, before M2-0107 and before M2-0117.2 replaces
-  today's Settings. `SettingsPatch` then excludes these keys, so the same change removes the renderer writes
-  that remain: the two pairs of Cloudflare account and gateway fields (`Settings.tsx:1551-1574, 6815-6836`),
-  the legacy administrator connection (`Settings.tsx:6326-6337, 7146-7165`) and the compiled-off licence
-  section's two patches (`Settings.tsx:8385, 8483`). `SettingsPatch` also excludes `mcpConnections`, which
-  today's strip already discards (`src/main/index.ts:4864-4868`), so the change replaces that key's five
-  echo patches (`Settings.tsx:3161, 3187, 3433, 3481, 3508`), which only re-read what main has just saved,
-  with a settings refresh. The exclusion reaches these writes only through a `patch` typed `SettingsPatch`
-  (`src/renderer/src/state.ts:542`): 25 Settings components widen that prop to `Partial<PublicSettings>`,
-  the two echo cards among them (`Settings.tsx:3104, 3397`), and M2-0062 narrows them in the same change.
-  No control is then left writing a key that main discards; the runtime strip stays the boundary.
+  Behaviour tests pin both changes: after CLI Disconnect the flag is off and the provider has moved off the
+  CLI, after Dust Disconnect `dustTokenMintedAt` is 0, and a renderer patch carrying either key is stripped.
+  No renderer code writes `autoSaveTranscripts`; its one writer is main's self-test
+  (`src/main/selftest.ts:77`). The same change replaces the five echo patches of `mcpConnections`
+  (`Settings.tsx:3161, 3187, 3433, 3481, 3508`), a key today's strip already discards
+  (`src/main/index.ts:4864-4868`) and whose patches only re-read what main has just saved, with a settings
+  refresh.
+
+  `SettingsPatch` then declares every key in the constant as `?: never`. Omitting the keys would not be
+  enough: excess-property checks apply only to object literals, so the `Partial<PublicSettings>` variables
+  that CLI and Dust Disconnect pass to `patch` (`Settings.tsx:2783, 4431`) would still compile. With
+  `?: never`, no value whose type can carry a constant key is a `SettingsPatch`, so M2-0062 also narrows
+  every signature that takes a patch as `Partial<PublicSettings>` today: `patch` itself
+  (`src/renderer/src/state.ts:607`), 30 `patch` parameters (25 in `Settings.tsx`, the two echo cards at
+  `Settings.tsx:3104, 3397` among them, and five in the onboarding and overlay-placement code) and the
+  preload bridge, which also accepts `Partial<Settings>` (`src/preload/index.ts:95`). The compiler then
+  reports every renderer write of a constant key, so no control is left writing a key that main discards;
+  the runtime strip stays the boundary.
+
+  Every 2.0 control bound to a key in the constant writes through a main handler, never a settings patch.
+  At the base that handler exists for Meetings folder (`IPC.pickFolder`, `src/main/index.ts:8496-8511`),
+  Team folders (`src/main/index.ts:8516-8538`), Task and CRM apps (`src/main/index.ts:5769, 5825, 5992`),
+  Métis licence (`src/main/index.ts:5126`) and the CLI's Connect (`src/main/index.ts:5581`); Your plan and
+  Organization policy only show values. Two are missing: CLI Disconnect, which M2-0062 adds (above), and
+  Reset position (`overlayRightEdgeYByDisplay`). Main writes that key only when the sidecar is dragged, and
+  not while the key is locked (`src/main/index.ts:3056-3079`), so M2-0117.2 adds a main handler that clears
+  the stored heights under the same lock check and places the bar again.
+
   The strip covers writes only. Stored values stay in force until their own migration, so a device where
   Nova is already configured keeps working until M2-0107 moves the account and gateway into the
   speech-session broker. An organization whose people type the account or gateway id by hand today sets it
@@ -850,9 +924,11 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
   (`src/preload/index.ts:233-236`). From then until M2-0107 moves speech credentials to the server, no one
   can enter a Soniox key on the device: the key in force is `SONIOX_API_KEY` from deployment, which wins
   over a stored key (`src/main/store.ts:1369-1374`), or else a key seated before M2-0117.2. Speech
-  processing still offers Soniox wherever policy allows it (§6). On a device with neither key, a Soniox
-  session fails for missing credentials (`src/main/cloud-stt/credentials.ts:100-104`) and Voice & meetings
-  shows S03, so an organization that allows Soniox deploys `SONIOX_API_KEY`.
+  processing offers Soniox only where policy lists it, and a person can select it only while a key is in
+  force (§6). A Soniox route that no key serves, such as an organization default or lock, fails for missing
+  credentials (`src/main/cloud-stt/credentials.ts:100-104`) and Voice & meetings shows S03, so an
+  organization that allows Soniox deploys `SONIOX_API_KEY`. Whether a person keeps a way to remove a stored
+  key until M2-0107 is open (§13).
 - The comment at `src/shared/ipc.ts:1259-1263` is corrected with M2-0117.3.
 
 ## 13. Open questions
@@ -866,14 +942,18 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
    turns on cloud-only or removes the lock (§9.1). Whether a policy revision published after the upgrade
    should release it instead, applying the value as a visible S14 change at the next session, is an owner
    question; that release would depend on the policy revision of §6.
+4. M2-0117.2 removes `IPC.cloudSttClearSonioxKey` with the Soniox seat (§12), so from then until M2-0107 a
+   person cannot delete a Soniox key stored on the device before M2-0117.2. Removing a key cannot point
+   audio at another account, so keeping a remove-only action until M2-0107 would cost nothing in security.
+   Whether 2.0 keeps one, and where it sits, is an owner question.
 
 ## 14. Acceptance status
 
 | Criterion | Status | Evidence |
 |---|---|---|
-| Every setting classified in the six classes | MET | `inventory.json`; `evidence/M2-0101/design/inventory-check.txt` (115 keys, 150 leaves, one planned key, every entry with a labelled and anchored basis, control and key bindings consistent both ways, PASS; each negative control fails: a control listing a key bound elsewhere, the planned key without `planned_by`, `planned_by` on a key the schema has, and an inventoried leaf the schema lacks) |
+| Every setting classified in the six classes | MET | `inventory.json`; `evidence/M2-0101/design/inventory-check.txt` (115 keys, 150 leaves, one planned key, every entry with a labelled and anchored basis, control and key bindings consistent both ways, no OPERATOR-ONLY or DEPRECATED settings entry written through a settings patch outside the sign-in recovery, 38 server-authoritative entries, PASS; each negative control fails: a control listing a key bound elsewhere, the planned key without `planned_by`, `planned_by` on a key the schema has, an inventoried leaf the schema lacks, and an OPERATOR-ONLY key a settings patch writes) |
 | Four destinations plus search designed with task flows | MET | §4, §8, §11; prototype states S01–S17 |
-| Mapped to stable keys and actual policy semantics; migration table for legacy keys | MET | §5, §6, §9; `inventory.json › keys, legacy, legacy_tabs, policy_keys` |
+| Mapped to stable keys and actual policy semantics; migration table for legacy keys | MET | §5, §6, §9, §12 (including the managed `autoSaveTranscripts` that the admin guide documents and nothing reads, §2, §6); `inventory.json › keys, legacy, legacy_tabs, policy_keys` |
 | Design evidence: states × light/dark × 1x/2x × reduced motion, checked against the spec with automated WCAG AA contrast and clipping checks | PARTIAL | 136 captures in 68 files of the superseded HTML mock, all passing, checked against the kit sections (`evidence/M2-0101/design/manifest.json`, `audit.json`); under OD-12 they are design reference, and the Electron-renderer captures are not made yet (§10); the M2-0201 prototype it should also be checked against does not exist yet |
 | Validated by an Opus session other than the implementer | PENDING | validator session |
 | `node scripts/settings/check-inventory.mjs` | NOT RUN | lands with M2-0117.1 (§12); the equivalent static check passed |
