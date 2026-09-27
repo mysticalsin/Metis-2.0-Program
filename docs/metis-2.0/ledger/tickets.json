@@ -240,9 +240,15 @@
     }
    ],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/212",
+    "merge_commit": "67f30d8d",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (batch 2)"
+   }
   },
   {
    "id": "M2-0003",
@@ -297,9 +303,20 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/207",
+    "merge_commit": "e8ddf8a7",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)",
+    "red_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36269307693",
+    "green_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36275239813"
+   },
+   "notes": [
+    "Design amendments A1-A3, A7-A8 applied: no index.owner.json stamp; cause-based read-only rule (io/undecryptable/unsupported/corrupt-kept) with brain.index.unavailable {cause}; decoded-but-invalid set aside as index.corrupt-auto-*, cap 5, legacy files untouched."
+   ]
   },
   {
    "id": "M2-0004",
@@ -341,7 +358,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0005",
@@ -456,9 +475,20 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "notes": [
+    "Slice 1 (PR #208) delivers acceptance 1, 2, 4 and 10; items 3, 5, 6, 7, 8, 9 moved to M2-0215."
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/208",
+    "merge_commit": "squash into m2/integration",
+    "merged_into": "m2/integration",
+    "red_run": "36281490092",
+    "green_run": "36286182629",
+    "validation": "Opus PASS round 3 (batch 3)"
+   }
   },
   {
    "id": "M2-0007",
@@ -514,7 +544,10 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac.",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0008",
@@ -697,7 +730,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/4",
+    "merge_commit": "ec47478",
+    "merged_into": "main",
+    "validation": "Opus PASS round 2 (batch 3)"
+   }
   },
   {
    "id": "M2-0011",
@@ -1112,7 +1153,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/215",
+    "merged_into": "m2/integration (squash bc08a419)",
+    "validation": "Opus PASS (batch 3)"
+   }
   },
   {
    "id": "M2-0018",
@@ -1406,7 +1454,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0023",
@@ -1631,7 +1681,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0027",
@@ -1862,7 +1914,12 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "notes": [
+    "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
+   ],
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0031",
@@ -1922,7 +1979,10 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": [
+    "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
+   ]
   },
   {
    "id": "M2-0032",
@@ -2115,9 +2175,18 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/204",
+    "merge_commit": "584e7acd",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)"
+   },
+   "notes": [
+    "Acceptance 3 (cold-start before/after) deferred to M2-0009: measure repeat cold start within one process separately from first cold start after launch."
+   ]
   },
   {
    "id": "M2-0036",
@@ -2226,7 +2295,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0038",
@@ -2441,9 +2512,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/206",
+    "merge_commit": "3afebbdf",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS round 1 (batch 3)"
+   }
   },
   {
    "id": "M2-0042",
@@ -2541,9 +2618,17 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/202",
+    "merge_commit": "7f0e29bf",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)",
+    "red_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36269376031",
+    "green_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36269665029"
+   }
   },
   {
    "id": "M2-0044",
@@ -2632,9 +2717,16 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/203",
+    "merge_commit": "7dab8e89",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)",
+    "red_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36267670237"
+   }
   },
   {
    "id": "M2-0046",
@@ -3147,7 +3239,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0056",
@@ -3197,7 +3291,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0057",
@@ -3233,7 +3329,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0058",
@@ -5800,7 +5898,10 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac."
   },
   {
    "id": "M2-0102",
@@ -6890,7 +6991,7 @@
     "K03-DEC-knowledge-model"
    ],
    "scope_paths": [
-    "docs/metis-2.0/adr/ADR-019-canonical-knowledge.md",
+    "docs/metis-2.0/design/knowledge/ADR-019-canonical-knowledge.md",
     "src/shared/contracts/knowledge/"
    ],
    "summary": "Every knowledge, Dust and memory feature depends on one canonical store. Decide whether the section 17.4 record model extends brain/corrections.ts and store.ts or is built fresh, define the ten provenance states, revisions, ACLs, conflicts, deletion and the plaintext wiki sharing boundary.",
@@ -6909,10 +7010,10 @@
     "LOCALLY_TESTED"
    ],
    "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Select the canonical knowledge store (current .brain on OneDrive, an approved M365 location, or the service database) and the plaintext-mirror sharing boundary (decision D-6)",
+    "owner": "Tony (owner decision D-6)",
+    "unblock": "Answer D-6 (canonical store); then update ADR-019 status row and section 2.2",
     "needed_by": "2026-10-12",
-    "raised_on": "2026-09-26"
+    "raised_on": "2026-09-27"
    },
    "flag": null,
    "risk": "medium",
@@ -6920,7 +7021,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "ENGINEERING_COMPLETE",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/217",
+    "merged_into": "m2/integration (squash)",
+    "red_run": "36285223679",
+    "green_run": "36286531924",
+    "validation": "Opus PASS round 2 (batch 3); acceptance 1 blocked on D-6"
+   }
   },
   {
    "id": "M2-0121",
@@ -8371,7 +8481,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0145",
@@ -8403,7 +8515,8 @@
     "operator/src/hmac.ts",
     "operator/src/ask.ts",
     "operator/src/use.ts",
-    "cloudflare-proxy/src/index.ts"
+    "cloudflare-proxy/src/index.ts",
+    "src/shared/operator-entitlements.ts"
    ],
    "summary": "Brokered MCP mode hands every seat a /v1/mcp/:id endpoint the Worker can never route; the legacy no-license HMAC path authenticates knowledge of a shared secret rather than a device; and the proxy forwards chat bodies with no size cap. Fix each with a test, and extract the shared 'provider not allowed for Operator-funded call' guard.",
    "acceptance": [
@@ -8425,7 +8538,10 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": [
+    "Also covers the desktop side found in M2-0045 validation: parseOperatorIntegration ignores the brokered row shape {transport, mode, endpoint, gatewayToken}, so brokered rows parse with baseUrl/credential null and are never registered. Fix both ends together (Worker /v1/mcp/:id route + desktop brokered parsing) or stop defaulting to brokered."
+   ]
   },
   {
    "id": "M2-0146",
@@ -8534,7 +8650,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/218",
+    "merged_into": "m2/integration (squash 56292fb6)",
+    "green_run": "36288662387",
+    "validation": "Opus PASS (batch 3)"
+   }
   },
   {
    "id": "M2-0148",
@@ -10767,9 +10891,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/213",
+    "merge_commit": "179b65f3",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS round 3 (batch 2)"
+   }
   },
   {
    "id": "M2-0188",
@@ -10826,7 +10956,9 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0189",
@@ -10878,7 +11010,10 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-02",
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers.",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0190",
@@ -10982,9 +11117,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/210",
+    "merge_commit": "f75383e7",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (batch 2)"
+   }
   },
   {
    "id": "M2-0192",
@@ -11031,7 +11172,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0193",
@@ -11507,7 +11650,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "OD-12 (2026-09-27): DESIGNED prototypes are built as real renderer components (src/renderer, the app's own React/CSS) behind a dev-only surface and captured in CI through Electron, not as a standalone HTML site; no visible browser on the owner's Mac."
   },
   {
    "id": "M2-0202",
@@ -11600,7 +11744,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0204",
@@ -11638,7 +11784,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/214",
+    "merge_commit": "f637ae36",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS round 2 (batch 3)"
+   }
   },
   {
    "id": "M2-0205",
@@ -12240,7 +12394,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-09",
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 5)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0213",
@@ -12354,7 +12510,393 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "id": "M2-0215",
+   "title": "Observability v1, slice 2: crash taxonomy, reveal and sidecar events, History request timings, allowlist projection, threadpool size, tray diagnostics",
+   "wave": "W0",
+   "milestone": "m3",
+   "type": "infra",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0006"
+   ],
+   "kit_refs": [
+    "M2-OPS-03",
+    "M2-PRIV-03"
+   ],
+   "finding_refs": [
+    "CHATGPT-A1",
+    "B3-RC1",
+    "B3-RC3",
+    "B1-RC2",
+    "P7-INSTR",
+    "L06-F5",
+    "L01-F9",
+    "L02-F5",
+    "B3-RC4"
+   ],
+   "scope_paths": [
+    "src/main/index.ts",
+    "src/main/logger.ts",
+    "src/main/infra/observability/",
+    "src/renderer/src/components/RecallView.tsx",
+    "src/renderer/src/main.tsx",
+    "src/preload/index.ts"
+   ],
+   "summary": "Remainder of M2-0006 after its first PR: app.crash fatal flag and app.error.* for handled errors (messages capped at 300 chars), reveal events at activate/second-instance/ensureWindow and sidecar spawn/exit events, History requestId with per-stage timings through IPC, renderer crash reports with {view, listening}, an allowlist-projection test proving no event carries titles, transcript text, paths or emails, UV_THREADPOOL_SIZE in app.started, and a tray \"Copy diagnostics summary\".",
+   "acceptance": [
+    "app.crash carries fatal:boolean; handled failures emit app.error.* with recoveryStatus; messages at most 300 chars",
+    "reveal events record reason, isVisible, layout, outcome and ms; sidecar.spawn/exit record name, pid, pgid",
+    "History clicks carry a requestId through preload, IPC and main with per-stage timings",
+    "Renderer crash reports include {view, listening}",
+    "Allowlist-projection test: no event field can carry titles, transcript text, paths or emails",
+    "app.started includes UV_THREADPOOL_SIZE; tray offers Copy diagnostics summary (content-free)"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 8,
    "status": "TODO"
+  },
+  {
+   "id": "M2-0216",
+   "title": "Offer restore of a preserved brain index once it decrypts again, and show preserved copies in Settings",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "feature",
+   "owner_model": "opus",
+   "depends_on": [
+    "M2-0003"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "RF-MEET-R1-Q",
+    "RF-MEET-R2-B5"
+   ],
+   "scope_paths": [
+    "src/main/brain/store.ts",
+    "src/renderer/src/components/Settings.tsx",
+    "src/shared/ipc.ts"
+   ],
+   "summary": "An explicit Rebuild preserves an unreadable brain index byte-identical under .brain-preserved (rocket-fuel engagement 1, rock 1). Give the user the ownership path for those copies: list them in Settings with size and date, offer Restore when a preserved copy decrypts with the current key (e.g. the keychain was only locked), and Delete for each copy. Restore must verify decryption before replacing and never overwrite a readable current index without confirmation.",
+   "acceptance": [
+    "Settings lists each preserved index copy (date, size) without exposing content",
+    "Restore is offered only when the copy decrypts with this install's key; restoring replaces the current index only after confirmation and keeps the current one preserved",
+    "Delete removes one preserved copy after confirmation; Delete all Métis data removes all",
+    "Behaviour tests for list, restore (decrypting and non-decrypting copy) and delete"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 6,
+   "status": "TODO"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "IN_PROGRESS",
+   "id": "M2-0217",
+   "title": "Require per-asset PASS evidence before promoting a QA candidate",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0187"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R2-B1"
+   ],
+   "scope_paths": [
+    "scripts/qa/provenance.mjs",
+    "scripts/qa/provenance.test.mjs",
+    ".github/workflows/promote-candidate.yml"
+   ],
+   "summary": "Codex audit-r2 (verified by Opus at 3afebbdf): evidenceProblems (scripts/qa/provenance.mjs:319-365) accepts the candidate when at least one PASS record names any one asset hash of the run, while prepare-release (.github/workflows/promote-candidate.yml:104) stages every promotable asset. One PASS for a macOS DMG can therefore promote untested Windows or zip bytes. Promotion must require a PASS record bound to this run for every asset it stages.",
+   "acceptance": [
+    "prepare-release refuses when any staged asset's sha256 has no PASS record bound to this candidate run, naming each uncovered asset",
+    "A PASS for one asset never covers another asset or platform",
+    "Behaviour tests: full coverage passes; one missing asset fails; a record for another run fails; existing tests stay green"
+   ],
+   "risk": "high",
+   "estimate_hours": 3,
+   "claimed_by": "claude-code ticket runner (batch 5)",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "IN_PROGRESS",
+   "id": "M2-0218",
+   "title": "Make Cloudflare OAuth provisioning atomic (no half-written vault state)",
+   "milestone": "m4",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0041"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R2-R1"
+   ],
+   "scope_paths": [
+    "operator/src/cloudflare-connect.ts",
+    "operator/src/store.ts",
+    "operator/src/d1.ts",
+    "operator/src/cloudflare-connect.test.ts"
+   ],
+   "summary": "Codex audit-r2 (verified by Opus at 3afebbdf): provisioning writes the 'cloudflare' vault row (operator/src/cloudflare-connect.ts:182) and then the paired account row (:196) as two independent INSERT OR REPLACE writes (operator/src/d1.ts:711). If the second write, its audit or the store fails, a usable provider token remains with inconsistent account/admin state. Write both rows in one D1 batch/transaction, or compensate by removing the first row, so a failure leaves no new active rows and no misleading audit event.",
+   "acceptance": [
+    "An injected failure after the first write leaves zero new active vault rows and no success audit/event",
+    "The success path writes both rows and one audit event",
+    "Behaviour tests in operator vitest for both paths"
+   ],
+   "risk": "medium",
+   "estimate_hours": 3,
+   "claimed_by": "claude-code ticket runner (batch 5)",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "IN_PROGRESS",
+   "id": "M2-0219",
+   "title": "Reduce the Cloudflare OAuth scopes to what the ask path needs",
+   "milestone": "m4",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0041"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R2-R2"
+   ],
+   "scope_paths": [
+    "operator/src/cloudflare-connect.ts",
+    "operator/src/cloudflare-connect.test.ts",
+    "operator/src/ask.ts"
+   ],
+   "summary": "Codex audit-r2 (verified by Opus at 3afebbdf): CF_OAUTH_SCOPES (operator/src/cloudflare-connect.ts:14-) requests ai-gateway:edit, workers:read and further scopes, and the stored token is later used as the provider bearer (operator/src/ask.ts:100). Establish from the code which scopes each call actually needs (account read, gateway read for the privacy certification, Workers AI run), drop the rest, and lock the set with a test. If a scope is required, record the call that needs it.",
+   "acceptance": [
+    "Each requested scope is justified by a named call site",
+    "The authorization URL contains only those scopes; a test fails if a removed scope returns",
+    "Gateway privacy certification and ask still work (existing tests green)"
+   ],
+   "risk": "medium",
+   "estimate_hours": 2,
+   "claimed_by": "claude-code ticket runner (batch 5)",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "id": "M2-0220",
+   "title": "Restart the stall heartbeat only when paused (one StallMonitor path for resume and unlock-screen)",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0006"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "M2-0006-VAL-R3-ADV1"
+   ],
+   "scope_paths": [
+    "src/main/observability/stall-monitor.ts",
+    "src/main/observability/run-observability.ts",
+    "src/main/observability/run-observability.test.ts"
+   ],
+   "summary": "Opus validation of M2-0006 (round 3): run-observability keeps its own `suspended` flag duplicating StallMonitor's paused state, and 'resume' calls resync() unconditionally, so a 'resume' that arrives after 'unlock-screen' restarted the heartbeat discards real lateness. Give StallMonitor a restart-only-if-paused method used by both events, delete the duplicate flag, make the unlock test behavioural (drive suspend, clock gap, unlock, on-time tick; assert on audit), and switch responsiveness-tracker to performance.now.",
+   "acceptance": [
+    "RED test for suspend → unlock-screen → stall → resume shows the stall is reported",
+    "One StallMonitor method handles resume and unlock-screen; run-observability has no suspended flag",
+    "Unlock-screen test asserts behaviour (audit events), not setInterval call counts",
+    "responsiveness-tracker uses a monotonic clock"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0221",
+   "title": "Open the Windows CLI setup script without cmd re-parsing its path",
+   "milestone": "m3",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0147"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R3-B1"
+   ],
+   "scope_paths": [
+    "src/main/cli.ts",
+    "src/main/cli-setup-script.test.ts"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus at 56292fb6): openCliScript (src/main/cli.ts:1586-1600) spawns `cmd /d /c start \"\" <scriptPath>` with shell:false; Node quotes only arguments containing spaces or quotes, so cmd re-parses a profile/temp path containing & ^ % ( ) and can run the part after & as a separate command. Launch the script without cmd re-parsing (quote per cmd rules or avoid cmd entirely) and test the launcher argument construction.",
+   "acceptance": [
+    "A script path containing &, %, ^, spaces and parentheses is passed as one path and cannot append a command (behaviour test on the launcher's argv)",
+    "No regression in the macOS/Linux open path"
+   ],
+   "risk": "high",
+   "estimate_hours": 2
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0222",
+   "title": "Keep the MCP metadata/DNS-rebinding refusal on the system-proxy route",
+   "milestone": "m3",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0147"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R3-R1"
+   ],
+   "scope_paths": [
+    "src/main/net/install-proxy.ts",
+    "src/main/net/install-proxy.test.ts",
+    "src/main/mcp/mcpClient.ts",
+    "src/main/mcp/mcpClient.test.ts"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus at 56292fb6): routeDispatcher (src/main/net/install-proxy.ts:53-67) applies the guarded lookup to the env and direct routes but returns `new ProxyAgent(route.proxy)` for the system route, so the metadata/DNS-rebinding refusal does not apply when a system proxy resolves the host. Either enforce the refusal for proxied MCP connections (e.g. resolve-and-pin before CONNECT, or refuse MCP over an unverifiable proxy) or block and document it explicitly; test direct, env (with NO_PROXY) and system routes.",
+   "acceptance": [
+    "A hostname resolving to 169.254.0.0/16 is refused on direct, env-proxy and system-proxy routes, or the system-proxy case is explicitly refused with an actionable message",
+    "Behaviour tests per route"
+   ],
+   "risk": "medium",
+   "estimate_hours": 4
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0223",
+   "title": "Pin GitHub Actions to full commit SHAs in build and release workflows",
+   "milestone": "m4",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "finding_refs": [
+    "RF-AUDIT-R3-R3",
+    "RF-AUDIT-R3-R4"
+   ],
+   "scope_paths": [
+    ".github/workflows/build.yml",
+    ".github/workflows/release.yml",
+    "scripts/ci/"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus): release.yml (e.g. :27, :38, :61) and build.yml (:37) use mutable major tags (actions/checkout@v4, setup-node@v4, upload-artifact) in jobs that can hold release credentials. Pin every third-party action to a full commit SHA with a version comment, and add a CI check that rejects unpinned `uses:` in workflows. Editing release.yml must not trigger it: never push tags; verify with a dry syntax check only.",
+   "acceptance": [
+    "Every `uses:` in .github/workflows is pinned to a 40-char SHA with a version comment",
+    "A CI check fails on an unpinned `uses:` (proven red then green)",
+    "release.yml behaviour otherwise unchanged; no release run triggered"
+   ],
+   "risk": "medium",
+   "estimate_hours": 2
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0224",
+   "title": "Replace the renderer-ready source-text contract with a wiring behaviour test",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0006"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R3-R5"
+   ],
+   "scope_paths": [
+    "src/main/renderer-readiness.test.ts",
+    "src/main/index.ts"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus): src/main/renderer-readiness.test.ts:122-133 reads index.ts with readFileSync and slices/regex-matches its body to prove readiness is bound before navigation. Replace with a behaviour test through a mocked BrowserWindow creation path (extract the wiring into a testable function if needed).",
+   "acceptance": [
+    "The test proves readiness is bound before loadURL/loadFile via behaviour, with no readFileSync of source",
+    "It fails when the binding is moved after navigation"
+   ],
+   "risk": "low",
+   "estimate_hours": 2
   }
  ]
 }
