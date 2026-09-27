@@ -12560,6 +12560,115 @@
    "risk": "medium",
    "estimate_hours": 6,
    "status": "TODO"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0217",
+   "title": "Require per-asset PASS evidence before promoting a QA candidate",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0187"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R2-B1"
+   ],
+   "scope_paths": [
+    "scripts/qa/provenance.mjs",
+    "scripts/qa/provenance.test.mjs",
+    ".github/workflows/promote-candidate.yml"
+   ],
+   "summary": "Codex audit-r2 (verified by Opus at 3afebbdf): evidenceProblems (scripts/qa/provenance.mjs:319-365) accepts the candidate when at least one PASS record names any one asset hash of the run, while prepare-release (.github/workflows/promote-candidate.yml:104) stages every promotable asset. One PASS for a macOS DMG can therefore promote untested Windows or zip bytes. Promotion must require a PASS record bound to this run for every asset it stages.",
+   "acceptance": [
+    "prepare-release refuses when any staged asset's sha256 has no PASS record bound to this candidate run, naming each uncovered asset",
+    "A PASS for one asset never covers another asset or platform",
+    "Behaviour tests: full coverage passes; one missing asset fails; a record for another run fails; existing tests stay green"
+   ],
+   "risk": "high",
+   "estimate_hours": 3
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0218",
+   "title": "Make Cloudflare OAuth provisioning atomic (no half-written vault state)",
+   "milestone": "m4",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0041"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R2-R1"
+   ],
+   "scope_paths": [
+    "operator/src/cloudflare-connect.ts",
+    "operator/src/store.ts",
+    "operator/src/d1.ts",
+    "operator/src/cloudflare-connect.test.ts"
+   ],
+   "summary": "Codex audit-r2 (verified by Opus at 3afebbdf): provisioning writes the 'cloudflare' vault row (operator/src/cloudflare-connect.ts:182) and then the paired account row (:196) as two independent INSERT OR REPLACE writes (operator/src/d1.ts:711). If the second write, its audit or the store fails, a usable provider token remains with inconsistent account/admin state. Write both rows in one D1 batch/transaction, or compensate by removing the first row, so a failure leaves no new active rows and no misleading audit event.",
+   "acceptance": [
+    "An injected failure after the first write leaves zero new active vault rows and no success audit/event",
+    "The success path writes both rows and one audit event",
+    "Behaviour tests in operator vitest for both paths"
+   ],
+   "risk": "medium",
+   "estimate_hours": 3
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0219",
+   "title": "Reduce the Cloudflare OAuth scopes to what the ask path needs",
+   "milestone": "m4",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0041"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R2-R2"
+   ],
+   "scope_paths": [
+    "operator/src/cloudflare-connect.ts",
+    "operator/src/cloudflare-connect.test.ts",
+    "operator/src/ask.ts"
+   ],
+   "summary": "Codex audit-r2 (verified by Opus at 3afebbdf): CF_OAUTH_SCOPES (operator/src/cloudflare-connect.ts:14-) requests ai-gateway:edit, workers:read and further scopes, and the stored token is later used as the provider bearer (operator/src/ask.ts:100). Establish from the code which scopes each call actually needs (account read, gateway read for the privacy certification, Workers AI run), drop the rest, and lock the set with a test. If a scope is required, record the call that needs it.",
+   "acceptance": [
+    "Each requested scope is justified by a named call site",
+    "The authorization URL contains only those scopes; a test fails if a removed scope returns",
+    "Gateway privacy certification and ask still work (existing tests green)"
+   ],
+   "risk": "medium",
+   "estimate_hours": 2
   }
  ]
 }
