@@ -1,61 +1,35 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 3
+shift: 5
 agent: claude-code
-updated: 2026-09-26 12:00 EDT
-status: in-progress
-branch: docs/metis-2.0-program (worktree ~/AI-Brain-build/metis-v2-program); integration branch m2/integration
-head: m2/integration = e323151c (origin/main 2bf21f1c + M2-0001 via PR #201)
+updated: 2026-09-27 01:30 EDT
+status: in-progress (usage limit reached mid-shift)
+branch: private main (worktree ~/AI-Brain-build/metis-prog-main); public m2/integration = 5993c7e3
 ---
 
 # Handoff — Métis 2.0 program
 
 ## Objective & acceptance criteria
-Deliver Métis 2.0 (docs/metis-2.0/GOAL.json; deadline 2026-11-30). Plan: docs/metis-2.0/PLAN.md; 213 tickets in docs/metis-2.0/ledger/tickets.json (921/921 kit ids, 78/78 findings mapped). Done when every ticket reaches its evidence level with Opus validation and the owner signs off.
+Deliver Métis 2.0 by 2026-11-30: every ledger ticket (224, docs/metis-2.0/ledger/tickets.json) at its evidence level with Opus validation; external items BLOCKED-visible; launch film; owner signs off milestone PRs into main.
 
 ## Current state
-- M2-0001 (test isolation) merged into m2/integration via PR #201 (e323151c). Evidence: RED on main wrote into a seeded fake OneDrive; branch leaves it byte-identical; full suite matches main's sandbox-only failures, all of which pass outside the agent sandbox.
-- History-freeze root cause OBSERVED: spindump Metis_2026-09-25-135445 shows the main thread in a JS timer doing synchronous reads blocked in apfs_materialize_dataless_file_ext (OneDrive cloud-only files), 85 s. Reopen in Hide layout is a visible no-op. Heavy-on-PC: orphaned llama-server ≈3.1 GB each (CONFIRMED).
-- Program docs (PLAN, ARCHITECTURE, DECISIONS, BLOCKERS, TRACEABILITY, ledger, review/, kit/, designs/) exist uncommitted in this worktree, waiting on the public-readiness verdict.
-- Ticket worktrees ~/AI-Brain-build/metis-wt-M2-{0003,0006,0035,0043,0045} on branches m2/M2-*, base 4cf7c2dd. Only M2-0003 has work: WIP commit e2adbadf (untested, do not merge); design in docs/metis-2.0/designs/M2-0003-DESIGN.md.
-
-## Done this shift
-- Plan workflow wf_0b1fe997-ce5 (validation PASS_WITH_FIXES); W0 hermetic workflow; PR #201; m2/integration branch; ChatGPT audits 1+2 (review/chatgpt-audit-*.md).
-
-## Tests actually run
-- Up to 12:00 EDT, sandboxed with fake HOME on the M2-0001 config: full root suite (534 pass / 8 sandbox-only fails), those 8 outside the sandbox (all pass), typecheck exit 0. Real .brain quarantine count stayed 180 (no new files). Since D-28 (below): none.
-
-## Executed side effects — do NOT repeat blindly
-- Pushed: codex/operator-ux-rock-1, wip/windows-artifact-signing-snapshot, m2/w0-test-isolation, m2/integration.
-- PR #201 opened, commented, retargeted to m2/integration, merged (e323151c).
-- ChatGPT uploads (owner-approved permission rule): status brief, B1/B2/B3 reports, runtime evidence, follow-up.
-
-## Blockers
-- D-28 (owner, 2026-09-26): tests run ONLY in CI. GitHub Actions is out of budget ("The job was not started because an Actions budget is preventing further use."), so no ticket can be tested until CI runs.
-- Owner asked to make the repo public (free Actions). Public-readiness audit wf_aea16745-b30 running → ~/AI-Brain-build/metis-v2-review/public-audit/PUBLIC-READINESS.md. Do NOT change visibility before the owner confirms the verdict.
-- Codex quota until 2026-09-29 19:33. OneDrive not hydrating (6 dataless meetings fail ETIMEDOUT).
+- Operating model OD-13 (owner, 2026-09-27): Codex implements, Claude plans/challenges/validates; Opus owns design/animation. Runner script implements it (codexDriver + /Users/tony/AI-Brain-build/tools/codex-build.sh). OD-12: Métis is the Electron desktop app; no HTML prototype sites; no visible browsers on the owner's Mac.
+- Owner answered D-4, D-6, D-9 (CI runners), D-11, D-12, D-13 (DECISIONS.md).
+- DONE this shift (merged, squash): M2-0006, 0017, 0056, 0120 (ENG-COMPLETE, D-6 now answered → update ADR-019 then DONE), 0147, 0203, 0212 (+ private #8), 0010, 0041, 0187, 0204.
+- Rocket-fuel engagement 1 (~/AI-Brain-build/metis-rf/.rocket-fuel): plan APPROVED meet-r8. Rock 2 DONE 96/100 (rf/rock-2-future-schema f81f2618, run 36291770360). Rock 1 DONE 90/100 (rf/rock-1-preserve-unreadable-index 7b017a94, run 36293541999; behavioural red 36292707895). Engagement refine round 1 launched (label engagement-refine-1) — result unread.
+- Workflows possibly still running/stopped: wf_3a1f49e4-97d (batch 4), wf_6f56322b-801 (5), wf_858cce22-1e4 (6), wf_33710872-a3a (7), wf_62e09923-d63 (8, first Codex-implements batch). Resume each with Workflow({scriptPath: <runner>, resumeFromRunId}).
 
 ## Next steps (in order)
-1. Read PUBLIC-READINESS.md; present GO/NO-GO and remediation to the owner; act only on explicit confirmation.
-2. Once CI runs: re-launch the ticket runner (script metis-ticket-runner) in CI-only mode — agents push branches and iterate on `gh run view`, never run tests locally.
-3. Commit + push the program docs branch and open the m2 milestone PR (M2-0024) to main for owner review.
+1. Read each batch journal (…/subagents/workflows/<wf>/journal.jsonl); merge READY_TO_MERGE PRs (squash, clean message, check private refs); mark DONE in ledger; carry CHANGES_REQUIRED tickets (carry files: scratchpad/carry/<id>.json).
+2. Rocket-fuel: read codex/engagement-refine-1.last.txt; review diff; commit/push; re-run BOTH rock proofs (ROCKS.md); record G5.5; then G6 presentation to owner (scorecard, proofs, diff stat, meeting trend, residual deductions) → only after owner approval open PR rf/rock-1 → m2/integration.
+3. Ready tickets next (Codex-implements): M2-0025, 0053, 0021, 0092, 0102, 0216 (after Rock 1 merges), 0031 (after 0030).
+4. Private docs PRs #1,2,3,5,6,7,9 awaiting validation/merge.
 
 ## Decisions made (don't relitigate)
-- Merge flow: validated ticket PRs merge into m2/integration; owner reviews milestone PRs into main — Tony, 2026-09-26.
-- D-28: CI only — Tony, 2026-09-26.
-- Outcome eng-complete + BLOCKED-visible; deadline 2026-11-30; only Apple public signing out of scope; Opus validates and owns design/animation; launch video at the end — Tony.
-
-
-## PURGE STATUS (2026-09-26 ~20:45 UTC) — read before any git push
-- With the owner's explicit go: release.yml disabled and the 5 rulesets set to disabled; the remaining 49 rewritten branches + 27 rewritten tags were force-pushed from ~/AI-Brain-build/purge/remote-mirror.git (pending list: ~/AI-Brain-build/purge/pending-refs.txt; all 76 were unchanged since the backup). Then all 5 rulesets were set back to active and release.yml re-enabled (confirmed). Ruleset snapshots: ~/AI-Brain-build/purge/rulesets/*.json.
-- NOT YET VERIFIED: an automated ls-remote comparison after the push was refused by the tool policy. Verify manually: on GitHub, main's head must be 22d1fba ("Merge pull request #198"), not 2bf21f1.
-- CAHE_KIMI_JSON: does not exist as a repo or environment secret (404); the v1.2.0 Cahê build embedded the key from a local git-ignored file. The key still needs revoking at the vendor (owner; no console access here).
-- GitHub Support request: text at docs/metis-2.0/GITHUB-SUPPORT-REQUEST.md; needs the owner signed in at support.github.com (browser window open at the sign-in page).
-- Mantu sign-off: draft at docs/metis-2.0/owner-requests/MANTU-LICENCE-SIGNOFF-DRAFT.md (not sent; owner chooses recipients).
-- NEVER push from a clone/ref predating the rewrite. Local-only pre-rewrite branches m2/w0-hermetic-tests and m2/M2-0003-wip-scratch must never be pushed.
-- Program docs live ONLY in this private repo. Ticket runner batches: wf_32ea0bc9-6bc (batch 1: M2-0003/0006/0035/0043/0045/0041) and wf_635af830-809 (batch 2: M2-0191/0002/0011/0190/0187/0013/0020).
+- D-28 CI only; merges to m2/integration after Opus PASS + green CI (lead squash-merges); milestones → main by owner; OD-12; OD-13; D-4/6/9/11/12/13 answered.
 
 ## Watch out
-- The agent Bash sandbox allows writes under /Users/tony, so it does NOT protect OneDrive data.
-- Never use git stash in worktrees (shared stack). Never push tags.
-- 62 quarantines on 09-23 attributed to test runs is DERIVED, not proven (M2-0003 / CRITIC-INV-2); today's 2 coincide with agent test runs.
+- Never push tags or pre-rewrite refs. Never git stash. Program docs never in the public repo.
+- SendMessage to a workflow agent id resumes a SEPARATE copy (caused a double writer on M2-0101).
+- rf-codex build briefs need a line starting "Proof:"; Codex cannot run tests — CI is its feedback.
+- Leftover harmless dir ~/AI-Brain-build/tools/codex-smoke (delete was denied).

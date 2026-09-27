@@ -240,9 +240,15 @@
     }
    ],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/212",
+    "merge_commit": "67f30d8d",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (batch 2)"
+   }
   },
   {
    "id": "M2-0003",
@@ -297,9 +303,20 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/207",
+    "merge_commit": "e8ddf8a7",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)",
+    "red_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36269307693",
+    "green_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36275239813"
+   },
+   "notes": [
+    "Design amendments A1-A3, A7-A8 applied: no index.owner.json stamp; cause-based read-only rule (io/undecryptable/unsupported/corrupt-kept) with brain.index.unavailable {cause}; decoded-but-invalid set aside as index.corrupt-auto-*, cap 5, legacy files untouched."
+   ]
   },
   {
    "id": "M2-0004",
@@ -341,7 +358,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/220",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
   },
   {
    "id": "M2-0005",
@@ -456,9 +480,20 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "notes": [
+    "Slice 1 (PR #208) delivers acceptance 1, 2, 4 and 10; items 3, 5, 6, 7, 8, 9 moved to M2-0215."
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/208",
+    "merge_commit": "squash into m2/integration",
+    "merged_into": "m2/integration",
+    "red_run": "36281490092",
+    "green_run": "36286182629",
+    "validation": "Opus PASS round 3 (batch 3)"
+   }
   },
   {
    "id": "M2-0007",
@@ -514,7 +549,10 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac.",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0008",
@@ -697,7 +735,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/4",
+    "merge_commit": "ec47478",
+    "merged_into": "main",
+    "validation": "Opus PASS round 2 (batch 3)"
+   }
   },
   {
    "id": "M2-0011",
@@ -946,7 +992,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0015",
@@ -1062,7 +1110,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither."
   },
   {
    "id": "M2-0017",
@@ -1112,7 +1161,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/215",
+    "merged_into": "m2/integration (squash bc08a419)",
+    "validation": "Opus PASS (batch 3)"
+   }
   },
   {
    "id": "M2-0018",
@@ -1406,7 +1462,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0023",
@@ -1631,7 +1689,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0027",
@@ -1862,7 +1922,12 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "notes": [
+    "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
+   ],
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0031",
@@ -1922,7 +1987,10 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": [
+    "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
+   ]
   },
   {
    "id": "M2-0032",
@@ -2031,7 +2099,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0034",
@@ -2115,9 +2185,18 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/204",
+    "merge_commit": "584e7acd",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)"
+   },
+   "notes": [
+    "Acceptance 3 (cold-start before/after) deferred to M2-0009: measure repeat cold start within one process separately from first cold start after launch."
+   ]
   },
   {
    "id": "M2-0036",
@@ -2226,7 +2305,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0038",
@@ -2441,9 +2522,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/206",
+    "merge_commit": "3afebbdf",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS round 1 (batch 3)"
+   }
   },
   {
    "id": "M2-0042",
@@ -2541,9 +2628,17 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/202",
+    "merge_commit": "7f0e29bf",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)",
+    "red_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36269376031",
+    "green_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36269665029"
+   }
   },
   {
    "id": "M2-0044",
@@ -2632,9 +2727,16 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/203",
+    "merge_commit": "7dab8e89",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (ticket runner wf_32ea0bc9-6bc)",
+    "red_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36267670237"
+   }
   },
   {
    "id": "M2-0046",
@@ -2773,7 +2875,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0048",
@@ -2880,7 +2984,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values."
   },
   {
    "id": "M2-0050",
@@ -3147,7 +3252,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0056",
@@ -3197,7 +3304,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/219",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0057",
@@ -3233,7 +3347,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0058",
@@ -3616,7 +3732,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the fresh default is Cloudflare-hosted speech through the Operator broker. The speech contract reports a selected engine that is not ready as not-ready and has no implicit cloud/local fallback path. Acceptance unchanged."
   },
   {
    "id": "M2-0065",
@@ -5320,7 +5437,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "C-08 (which chrome modes show the ARMED orb, and whether `hide` stays the fresh default) is still an open owner question with no D-row: D-4 was labelled C-03/C-08/C-16 but answers C-16 only (docs/metis-2.0/POLICY-2.0.md). Do not change the fresh default silently."
   },
   {
    "id": "M2-0094",
@@ -5800,7 +5918,10 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac."
   },
   {
    "id": "M2-0102",
@@ -5858,7 +5979,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 and D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): qualify Cloudflare-hosted speech reached only through the Operator broker. The route record also states the gateway log mode per transport (the per-request payload header exists for HTTP; the Worker binding has only collectLog), whether the account uses Legacy Logs or Workers Logs, and the metadata retention bound. Acceptance unchanged."
   },
   {
    "id": "M2-0103",
@@ -5969,7 +6091,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "RE-VALIDATE acceptance 1 before starting: D-12 (answered as default on 2026-09-27, docs/metis-2.0/POLICY-2.0.md) keeps metadata-only gateway logs, so cf-aig-collect-log:false on every request no longer applies. Control set: gateway logging stays off (the landed ai-gateway.ts readback is unchanged); protected Operator requests send cf-aig-collect-log:true, cf-aig-collect-log-payload:false and cf-aig-skip-cache:true; a transport without a proven metadata-only result (including a Worker binding route) sends cf-aig-collect-log:false; a transport where neither is proven is BLOCKED."
   },
   {
    "id": "M2-0105",
@@ -6113,7 +6236,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-4 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the Operator seat is the entitlement authority. Metering and quota identity is the seat's principal and device; a legacy license-server key is never a metering identity. Acceptance unchanged."
   },
   {
    "id": "M2-0107",
@@ -6173,7 +6297,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the broker grant is the only credential for the default speech route. An organization token stored by an earlier version is removed on upgrade, because D-11 allows no organization token on the device. Acceptance unchanged."
   },
   {
    "id": "M2-0108",
@@ -6410,7 +6535,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): Cloudflare speech through the Operator broker is the fresh default on every profile. Until the route's privacy readiness is VERIFIED, speech shows unavailable with an explicit local-install choice; it never selects local by itself. Acceptance unchanged."
   },
   {
    "id": "M2-0113",
@@ -6890,7 +7016,7 @@
     "K03-DEC-knowledge-model"
    ],
    "scope_paths": [
-    "docs/metis-2.0/adr/ADR-019-canonical-knowledge.md",
+    "docs/metis-2.0/design/knowledge/ADR-019-canonical-knowledge.md",
     "src/shared/contracts/knowledge/"
    ],
    "summary": "Every knowledge, Dust and memory feature depends on one canonical store. Decide whether the section 17.4 record model extends brain/corrections.ts and store.ts or is built fresh, define the ten provenance states, revisions, ACLs, conflicts, deletion and the plaintext wiki sharing boundary.",
@@ -6909,10 +7035,10 @@
     "LOCALLY_TESTED"
    ],
    "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Select the canonical knowledge store (current .brain on OneDrive, an approved M365 location, or the service database) and the plaintext-mirror sharing boundary (decision D-6)",
+    "owner": "Tony (owner decision D-6)",
+    "unblock": "Answer D-6 (canonical store); then update ADR-019 status row and section 2.2",
     "needed_by": "2026-10-12",
-    "raised_on": "2026-09-26"
+    "raised_on": "2026-09-27"
    },
    "flag": null,
    "risk": "medium",
@@ -6920,7 +7046,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "ENGINEERING_COMPLETE",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/217",
+    "merged_into": "m2/integration (squash)",
+    "red_run": "36285223679",
+    "green_run": "36286531924",
+    "validation": "Opus PASS round 2 (batch 3); acceptance 1 blocked on D-6"
+   }
   },
   {
    "id": "M2-0121",
@@ -8371,7 +8506,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0145",
@@ -8403,7 +8540,8 @@
     "operator/src/hmac.ts",
     "operator/src/ask.ts",
     "operator/src/use.ts",
-    "cloudflare-proxy/src/index.ts"
+    "cloudflare-proxy/src/index.ts",
+    "src/shared/operator-entitlements.ts"
    ],
    "summary": "Brokered MCP mode hands every seat a /v1/mcp/:id endpoint the Worker can never route; the legacy no-license HMAC path authenticates knowledge of a shared secret rather than a device; and the proxy forwards chat bodies with no size cap. Fix each with a test, and extract the shared 'provider not allowed for Operator-funded call' guard.",
    "acceptance": [
@@ -8425,7 +8563,10 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": [
+    "Also covers the desktop side found in M2-0045 validation: parseOperatorIntegration ignores the brokered row shape {transport, mode, endpoint, gatewayToken}, so brokered rows parse with baseUrl/credential null and are never registered. Fix both ends together (Worker /v1/mcp/:id route + desktop brokered parsing) or stop defaulting to brokered."
+   ]
   },
   {
    "id": "M2-0146",
@@ -8483,7 +8624,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-4 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the Operator seat is authoritative; the license server stays read-only for existing keys until an ADR-016 deprecation decision. Precedence: a seat decides its profile even when a legacy key is present; a key-only profile is validated read-only; no new keys are issued. D-4 answers C-16 only (C-03 is D-25; C-08 is open). RE-VALIDATE external_blocker: the remaining unblock step is read-only Fly.io access."
   },
   {
    "id": "M2-0147",
@@ -8534,7 +8676,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/218",
+    "merged_into": "m2/integration (squash 56292fb6)",
+    "green_run": "36288662387",
+    "validation": "Opus PASS (batch 3)"
+   }
   },
   {
    "id": "M2-0148",
@@ -8642,7 +8792,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the claim is the MASTER section 16.6.5 sentence tailored to the verified route, shown only while readiness is VERIFIED, and it keeps 'Authorized usage metadata is retained for administration'; never 'zero retention', 'no logs' or 'Cloudflare stores no data'. Sentinels prove the metadata-only control on HTTP and WebSocket. Record the log regime: Legacy Logs keep entries until deleted, so a finite metadata retention bound needs a deletion job."
   },
   {
    "id": "M2-0150",
@@ -9344,7 +9495,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged."
   },
   {
    "id": "M2-0161",
@@ -10314,7 +10466,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): any privacy line in the film is the M2-0149-verified sentence verbatim, or it is cut. Acceptance unchanged."
   },
   {
    "id": "M2-0179",
@@ -10767,9 +10920,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/213",
+    "merge_commit": "179b65f3",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS round 3 (batch 2)"
+   }
   },
   {
    "id": "M2-0188",
@@ -10826,7 +10985,9 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26"
   },
   {
    "id": "M2-0189",
@@ -10878,7 +11039,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-02",
-   "status": "TODO"
+   "status": "DONE",
+   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only.",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/11",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 6); rebuilt clean from #9"
+   }
   },
   {
    "id": "M2-0190",
@@ -10930,9 +11099,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/209",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0191",
@@ -10982,9 +11156,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/210",
+    "merge_commit": "f75383e7",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS (batch 2)"
+   }
   },
   {
    "id": "M2-0192",
@@ -11031,7 +11211,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0193",
@@ -11507,7 +11689,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "OD-12 (2026-09-27): DESIGNED prototypes are built as real renderer components (src/renderer, the app's own React/CSS) behind a dev-only surface and captured in CI through Electron, not as a standalone HTML site; no visible browser on the owner's Mac."
   },
   {
    "id": "M2-0202",
@@ -11600,7 +11783,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/221",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0204",
@@ -11638,7 +11828,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 3)",
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/214",
+    "merge_commit": "f637ae36",
+    "merged_into": "m2/integration",
+    "validation": "Opus PASS round 2 (batch 3)"
+   }
   },
   {
    "id": "M2-0205",
@@ -12240,7 +12438,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-09",
-   "status": "TODO"
+   "status": "DONE",
+   "claimed_by": "claude-code ticket runner (batch 5)",
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/225",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 5); 4K spike rendered in CI"
+   }
   },
   {
    "id": "M2-0213",
@@ -12354,7 +12559,498 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "id": "M2-0215",
+   "title": "Observability v1, slice 2: crash taxonomy, reveal and sidecar events, History request timings, allowlist projection, threadpool size, tray diagnostics",
+   "wave": "W0",
+   "milestone": "m3",
+   "type": "infra",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0006"
+   ],
+   "kit_refs": [
+    "M2-OPS-03",
+    "M2-PRIV-03"
+   ],
+   "finding_refs": [
+    "CHATGPT-A1",
+    "B3-RC1",
+    "B3-RC3",
+    "B1-RC2",
+    "P7-INSTR",
+    "L06-F5",
+    "L01-F9",
+    "L02-F5",
+    "B3-RC4"
+   ],
+   "scope_paths": [
+    "src/main/index.ts",
+    "src/main/logger.ts",
+    "src/main/infra/observability/",
+    "src/renderer/src/components/RecallView.tsx",
+    "src/renderer/src/main.tsx",
+    "src/preload/index.ts"
+   ],
+   "summary": "Remainder of M2-0006 after its first PR: app.crash fatal flag and app.error.* for handled errors (messages capped at 300 chars), reveal events at activate/second-instance/ensureWindow and sidecar spawn/exit events, History requestId with per-stage timings through IPC, renderer crash reports with {view, listening}, an allowlist-projection test proving no event carries titles, transcript text, paths or emails, UV_THREADPOOL_SIZE in app.started, and a tray \"Copy diagnostics summary\".",
+   "acceptance": [
+    "app.crash carries fatal:boolean; handled failures emit app.error.* with recoveryStatus; messages at most 300 chars",
+    "reveal events record reason, isVisible, layout, outcome and ms; sidecar.spawn/exit record name, pid, pgid",
+    "History clicks carry a requestId through preload, IPC and main with per-stage timings",
+    "Renderer crash reports include {view, listening}",
+    "Allowlist-projection test: no event field can carry titles, transcript text, paths or emails",
+    "app.started includes UV_THREADPOOL_SIZE; tray offers Copy diagnostics summary (content-free)"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 8,
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "id": "M2-0216",
+   "title": "Offer restore of a preserved brain index once it decrypts again, and show preserved copies in Settings",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "feature",
+   "owner_model": "opus",
+   "depends_on": [
+    "M2-0003"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "RF-MEET-R1-Q",
+    "RF-MEET-R2-B5"
+   ],
+   "scope_paths": [
+    "src/main/brain/store.ts",
+    "src/renderer/src/components/Settings.tsx",
+    "src/shared/ipc.ts"
+   ],
+   "summary": "An explicit Rebuild preserves an unreadable brain index byte-identical under .brain-preserved (rocket-fuel engagement 1, rock 1). Give the user the ownership path for those copies: list them in Settings with size and date, offer Restore when a preserved copy decrypts with the current key (e.g. the keychain was only locked), and Delete for each copy. Restore must verify decryption before replacing and never overwrite a readable current index without confirmation.",
+   "acceptance": [
+    "Settings lists each preserved index copy (date, size) without exposing content",
+    "Restore is offered only when the copy decrypts with this install's key; restoring replaces the current index only after confirmation and keeps the current one preserved",
+    "Delete removes one preserved copy after confirmation; Delete all Métis data removes all",
+    "Behaviour tests for list, restore (decrypting and non-decrypting copy) and delete"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 6,
    "status": "TODO"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "IN_PROGRESS",
+   "id": "M2-0217",
+   "title": "Require per-asset PASS evidence before promoting a QA candidate",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0187"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R2-B1"
+   ],
+   "scope_paths": [
+    "scripts/qa/provenance.mjs",
+    "scripts/qa/provenance.test.mjs",
+    ".github/workflows/promote-candidate.yml"
+   ],
+   "summary": "Codex audit-r2 (verified by Opus at 3afebbdf): evidenceProblems (scripts/qa/provenance.mjs:319-365) accepts the candidate when at least one PASS record names any one asset hash of the run, while prepare-release (.github/workflows/promote-candidate.yml:104) stages every promotable asset. One PASS for a macOS DMG can therefore promote untested Windows or zip bytes. Promotion must require a PASS record bound to this run for every asset it stages.",
+   "acceptance": [
+    "prepare-release refuses when any staged asset's sha256 has no PASS record bound to this candidate run, naming each uncovered asset",
+    "A PASS for one asset never covers another asset or platform",
+    "Behaviour tests: full coverage passes; one missing asset fails; a record for another run fails; existing tests stay green"
+   ],
+   "risk": "high",
+   "estimate_hours": 3,
+   "claimed_by": "claude-code ticket runner (batch 5)",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "DONE",
+   "id": "M2-0218",
+   "title": "Make Cloudflare OAuth provisioning atomic (no half-written vault state)",
+   "milestone": "m4",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0041"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R2-R1"
+   ],
+   "scope_paths": [
+    "operator/src/cloudflare-connect.ts",
+    "operator/src/store.ts",
+    "operator/src/d1.ts",
+    "operator/src/cloudflare-connect.test.ts"
+   ],
+   "summary": "Codex audit-r2 (verified by Opus at 3afebbdf): provisioning writes the 'cloudflare' vault row (operator/src/cloudflare-connect.ts:182) and then the paired account row (:196) as two independent INSERT OR REPLACE writes (operator/src/d1.ts:711). If the second write, its audit or the store fails, a usable provider token remains with inconsistent account/admin state. Write both rows in one D1 batch/transaction, or compensate by removing the first row, so a failure leaves no new active rows and no misleading audit event.",
+   "acceptance": [
+    "An injected failure after the first write leaves zero new active vault rows and no success audit/event",
+    "The success path writes both rows and one audit event",
+    "Behaviour tests in operator vitest for both paths"
+   ],
+   "risk": "medium",
+   "estimate_hours": 3,
+   "claimed_by": "claude-code ticket runner (batch 5)",
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/226",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 5)"
+   }
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "DONE",
+   "id": "M2-0219",
+   "title": "Reduce the Cloudflare OAuth scopes to what the ask path needs",
+   "milestone": "m4",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0041"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R2-R2"
+   ],
+   "scope_paths": [
+    "operator/src/cloudflare-connect.ts",
+    "operator/src/cloudflare-connect.test.ts",
+    "operator/src/ask.ts"
+   ],
+   "summary": "Codex audit-r2 (verified by Opus at 3afebbdf): CF_OAUTH_SCOPES (operator/src/cloudflare-connect.ts:14-) requests ai-gateway:edit, workers:read and further scopes, and the stored token is later used as the provider bearer (operator/src/ask.ts:100). Establish from the code which scopes each call actually needs (account read, gateway read for the privacy certification, Workers AI run), drop the rest, and lock the set with a test. If a scope is required, record the call that needs it.",
+   "acceptance": [
+    "Each requested scope is justified by a named call site",
+    "The authorization URL contains only those scopes; a test fails if a removed scope returns",
+    "Gateway privacy certification and ask still work (existing tests green)"
+   ],
+   "risk": "medium",
+   "estimate_hours": 2,
+   "claimed_by": "claude-code ticket runner (batch 5)",
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/223",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 5)"
+   }
+  },
+  {
+   "id": "M2-0220",
+   "title": "Restart the stall heartbeat only when paused (one StallMonitor path for resume and unlock-screen)",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0006"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "M2-0006-VAL-R3-ADV1"
+   ],
+   "scope_paths": [
+    "src/main/observability/stall-monitor.ts",
+    "src/main/observability/run-observability.ts",
+    "src/main/observability/run-observability.test.ts"
+   ],
+   "summary": "Opus validation of M2-0006 (round 3): run-observability keeps its own `suspended` flag duplicating StallMonitor's paused state, and 'resume' calls resync() unconditionally, so a 'resume' that arrives after 'unlock-screen' restarted the heartbeat discards real lateness. Give StallMonitor a restart-only-if-paused method used by both events, delete the duplicate flag, make the unlock test behavioural (drive suspend, clock gap, unlock, on-time tick; assert on audit), and switch responsiveness-tracker to performance.now.",
+   "acceptance": [
+    "RED test for suspend → unlock-screen → stall → resume shows the stall is reported",
+    "One StallMonitor method handles resume and unlock-screen; run-observability has no suspended flag",
+    "Unlock-screen test asserts behaviour (audit events), not setInterval call counts",
+    "responsiveness-tracker uses a monotonic clock"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 6)",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "IN_PROGRESS",
+   "id": "M2-0221",
+   "title": "Open the Windows CLI setup script without cmd re-parsing its path",
+   "milestone": "m3",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0147"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R3-B1"
+   ],
+   "scope_paths": [
+    "src/main/cli.ts",
+    "src/main/cli-setup-script.test.ts"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus at 56292fb6): openCliScript (src/main/cli.ts:1586-1600) spawns `cmd /d /c start \"\" <scriptPath>` with shell:false; Node quotes only arguments containing spaces or quotes, so cmd re-parses a profile/temp path containing & ^ % ( ) and can run the part after & as a separate command. Launch the script without cmd re-parsing (quote per cmd rules or avoid cmd entirely) and test the launcher argument construction.",
+   "acceptance": [
+    "A script path containing &, %, ^, spaces and parentheses is passed as one path and cannot append a command (behaviour test on the launcher's argv)",
+    "No regression in the macOS/Linux open path"
+   ],
+   "risk": "high",
+   "estimate_hours": 2,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "IN_PROGRESS",
+   "id": "M2-0222",
+   "title": "Keep the MCP metadata/DNS-rebinding refusal on the system-proxy route",
+   "milestone": "m3",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0147"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R3-R1"
+   ],
+   "scope_paths": [
+    "src/main/net/install-proxy.ts",
+    "src/main/net/install-proxy.test.ts",
+    "src/main/mcp/mcpClient.ts",
+    "src/main/mcp/mcpClient.test.ts"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus at 56292fb6): routeDispatcher (src/main/net/install-proxy.ts:53-67) applies the guarded lookup to the env and direct routes but returns `new ProxyAgent(route.proxy)` for the system route, so the metadata/DNS-rebinding refusal does not apply when a system proxy resolves the host. Either enforce the refusal for proxied MCP connections (e.g. resolve-and-pin before CONNECT, or refuse MCP over an unverifiable proxy) or block and document it explicitly; test direct, env (with NO_PROXY) and system routes.",
+   "acceptance": [
+    "A hostname resolving to 169.254.0.0/16 is refused on direct, env-proxy and system-proxy routes, or the system-proxy case is explicitly refused with an actionable message",
+    "Behaviour tests per route"
+   ],
+   "risk": "medium",
+   "estimate_hours": 4,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "IN_PROGRESS",
+   "id": "M2-0223",
+   "title": "Pin GitHub Actions to full commit SHAs in build and release workflows",
+   "milestone": "m4",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "finding_refs": [
+    "RF-AUDIT-R3-R3",
+    "RF-AUDIT-R3-R4"
+   ],
+   "scope_paths": [
+    ".github/workflows/build.yml",
+    ".github/workflows/release.yml",
+    "scripts/ci/"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus): release.yml (e.g. :27, :38, :61) and build.yml (:37) use mutable major tags (actions/checkout@v4, setup-node@v4, upload-artifact) in jobs that can hold release credentials. Pin every third-party action to a full commit SHA with a version comment, and add a CI check that rejects unpinned `uses:` in workflows. Editing release.yml must not trigger it: never push tags; verify with a dry syntax check only.",
+   "acceptance": [
+    "Every `uses:` in .github/workflows is pinned to a 40-char SHA with a version comment",
+    "A CI check fails on an unpinned `uses:` (proven red then green)",
+    "release.yml behaviour otherwise unchanged; no release run triggered"
+   ],
+   "risk": "medium",
+   "estimate_hours": 2,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "wave": "W2",
+   "kit_refs": [],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "DONE",
+   "id": "M2-0224",
+   "title": "Replace the renderer-ready source-text contract with a wiring behaviour test",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0006"
+   ],
+   "finding_refs": [
+    "RF-AUDIT-R3-R5"
+   ],
+   "scope_paths": [
+    "src/main/renderer-readiness.test.ts",
+    "src/main/index.ts"
+   ],
+   "summary": "Codex audit-r3 (verified by Opus): src/main/renderer-readiness.test.ts:122-133 reads index.ts with readFileSync and slices/regex-matches its body to prove readiness is bound before navigation. Replace with a behaviour test through a mocked BrowserWindow creation path (extract the wiring into a testable function if needed).",
+   "acceptance": [
+    "The test proves readiness is bound before loadURL/loadFile via behaviour, with no readFileSync of source",
+    "It fails when the binding is moved after navigation"
+   ],
+   "risk": "low",
+   "estimate_hours": 2,
+   "claimed_by": "ticket runner batch 7",
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/229",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
+  },
+  {
+   "id": "M2-0225",
+   "title": "Decrypting saved bytes must never create secret-key.bin",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "RF-G5.5-R2"
+   ],
+   "scope_paths": [
+    "src/main/secrets.ts",
+    "src/main/transcripts.ts",
+    "src/main/secrets.test.ts"
+   ],
+   "summary": "Found by the Integrator in rocket-fuel G5.5 round 2 (2026-09-27): decryptSecret() loads its key through getOrCreateKey(), which generates and writes a new secret-key.bin when none exists. Every decode of an F:-wrapped envelope on an install without a key file (a synced index or transcript from another device, classifyIndexBytes at boot, a rebuild's re-check) therefore creates a key as a side effect of a read. Decrypt paths must load an existing key only (fail as undecryptable when absent); only an explicit write may create the key. An attempted fix inside the rebuild path (c9a5cb94) regressed 12 rebuild tests and was reverted — fix it at the key-loading root.",
+   "acceptance": [
+    "decryptSecret with no key file fails without creating secret-key.bin (behaviour test)",
+    "encryptSecret / prepareFileKeyForWrite still create the key on first write",
+    "Every existing secrets/transcripts/brain test stays green; the rebuild 'no key' test also asserts the key file stays absent"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 3,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0226",
+   "title": "Fresh-install speaker-ID default must not persist a voiceprint without explicit opt-in",
+   "wave": "W5",
+   "milestone": "m7",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "needs_decision": [
+    "D-31"
+   ],
+   "kit_refs": [
+    "SRC-13",
+    "F-13"
+   ],
+   "finding_refs": [
+    "M2-0013-SRC-13-DEFAULT-ON"
+   ],
+   "scope_paths": [
+    "src/shared/ipc.ts",
+    "src/main/speaker-id.ts",
+    "src/main/speaker-id.test.ts"
+   ],
+   "summary": "M2-0013's re-verification found `speakerId` defaults to `{ enabled: true }` (ipc.ts:1348-1350 schema default, :1725 DEFAULT_SETTINGS) — a fresh install auto-enrolls and persists voiceprints (userData/voiceprints.json) with no opt-in step, the opposite of SRC-13's required_change (\"disable unapproved persistent enrollment... keep default attribution session-local and uncertain\"). M2-0109's acceptance covers only that speaker labels never gate command authority; nothing in the ledger covers this default. D-31 asks the owner whether default-on retention is the intended posture (2026-08-21's MQA-235/Plaud-parity rationale, recorded in ipc.ts's own comment) or must change to opt-in.",
+   "acceptance": [
+    "A fresh install (no prior settings, no explicit speakerId opt-in) writes no persistent voiceprint file, including for the operator's own profile",
+    "Persistent enrollment (a file written to userData/voiceprints.json) happens only after an explicit, approved opt-in action — never from the schema default alone",
+    "An existing voiceprints.json from a prior default-on install migrates without a destructive surprise: no silent deletion of profiles enrolled under the old default, and the user is told the setting changed",
+    "A behaviour test exercises the fresh-default case end-to-end (no settings on disk, no explicit opt-in) and asserts nothing is written to voiceprints.json"
+   ],
+   "verification": [
+    "npx vitest run src/main/speaker-id.test.ts src/main/speaker-id-off-switch.test.ts src/shared/ipc.test.ts"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
+   "validation_hours": 0.5,
+   "slices": [],
+   "due": null,
+   "status": "TODO",
+   "notes": "Filed centrally by the lead on 2026-09-27 (proposed by M2-0013 as M2-0221, which collided with the audit-r3 ticket of the same id)."
   }
  ]
 }
