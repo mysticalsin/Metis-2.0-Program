@@ -45,16 +45,19 @@ This index maps the source names used by the `finding_refs` convention in
 | Lane `L10` (`L10-*`) | `docs/metis-2.0/review/lanes/L10-intelligence-native.md` |
 | Lane `L11` (`L11-*`) | `docs/metis-2.0/review/lanes/L11-build-ci-quality.md` |
 | Lane `L12` (`L12-*`) | `docs/metis-2.0/review/lanes/L12-arch-graph.md` |
+| Codex audit round 2 (`RF-AUDIT-R2-*`) | `docs/metis-2.0/review/codex/audit-r2.txt`. Ledger-cited refs are `RF-AUDIT-R2-B1` (`M2-0217`), the file's one `blocker:` line, and `RF-AUDIT-R2-R1` (`M2-0218`) / `RF-AUDIT-R2-R2` (`M2-0219`), its two `risk:` lines in order. |
+| Codex audit round 3 (`RF-AUDIT-R3-*`) | `docs/metis-2.0/review/codex/audit-r3.txt`. Ledger-cited refs are `RF-AUDIT-R3-B1` (`M2-0221`), the file's one `blocker:` line; `RF-AUDIT-R3-R1` (`M2-0222`), `RF-AUDIT-R3-R3` and `RF-AUDIT-R3-R4` (`M2-0223`), three of its four `risk:` lines. `RF-AUDIT-R3-R5` (`M2-0224`) resolves to the file's fourth `rock:` line, "Replace renderer-ready source contract with wiring behavior"; the `R5` suffix does not mean "5th risk line" here. |
+| Codex audit round 4 (`RF-AUDIT-R4-*`) | `docs/metis-2.0/review/codex/audit-r4.txt`. Ledger-cited refs `RF-AUDIT-R4-R1` and `RF-AUDIT-R4-R2` (both `M2-0227`) are the file's two `risk:` lines in order. |
+| `PUBLIC-AUDIT-B1` | `docs/metis-2.0/review/PUBLIC-READINESS.md`, section "B1 — Secret rotation" (`M2-0214`). |
+| `M2-0013-SRC-13-DEFAULT-ON` | `docs/metis-2.0/review/SRC-REVERIFY.md` §SRC-13 (`M2-0226`), which documents `speakerId` defaulting to `{ enabled: true }` in `src/shared/ipc.ts`. |
+| `OWNER-2026-09-26-REMOVE-CAHE` | `docs/metis-2.0/DECISIONS.md` D-30 (`M2-0214`), the owner's 2026-09-26 decision to remove the Cahê edition entirely. |
+| `RF-G5.5-R2` | `docs/metis-2.0/designs/M2-0225-DESIGN.md` (`M2-0225`). This is the finding's committed analysis/design record: it names and analyses `RF-G5.5-R2` as its subject and specifies the fix; it is not the original raw audit text where the finding first appeared. |
 
 ## External / not committed to this ticket
 
 | `finding_refs` pattern or id | Status |
 |---|---|
-| `RF-AUDIT-*` | Cited only by tickets `M2-0217` through `M2-0224` and `M2-0227`, which postdate ticket `M2-0021`'s source set. No committed file under `docs/metis-2.0/review/` or elsewhere in this repo resolves these refs for this ticket. |
-| `RF-MEET-*` | Cited only by ticket `M2-0216`, which postdates ticket `M2-0021`'s source set. No committed file under `docs/metis-2.0/review/` or elsewhere in this repo resolves these refs for this ticket. |
-| `RF-G5.5-R2` | Cited only by ticket `M2-0225`, which postdates ticket `M2-0021`'s source set. No committed file under `docs/metis-2.0/review/` or elsewhere in this repo resolves this ref for this ticket. |
-| `PUBLIC-AUDIT-B1` | Cited only by ticket `M2-0214`, which postdates ticket `M2-0021`'s source set. No committed file under `docs/metis-2.0/review/` or elsewhere in this repo resolves this ref for this ticket. |
-| `M2-0006-VAL-R3-ADV1` | Cited only by ticket `M2-0220`, which postdates ticket `M2-0021`'s source set. No committed file under `docs/metis-2.0/review/` or elsewhere in this repo resolves this ref for this ticket. |
-| `M2-0013-SRC-13-DEFAULT-ON` | Cited only by ticket `M2-0226`, which postdates ticket `M2-0021`'s source set. No committed file under `docs/metis-2.0/review/` or elsewhere in this repo resolves this ref for this ticket. |
-| `OWNER-2026-09-26-REMOVE-CAHE` | Cited only by ticket `M2-0214`, which postdates ticket `M2-0021`'s source set. No committed file under `docs/metis-2.0/review/` or elsewhere in this repo resolves this ref for this ticket. |
-| `GIT-TRACE-REC` | Pre-existing gap: the expected source is a `GIT-STATE.json` snapshot, but that file was never in ticket `M2-0021`'s acceptance list (`BUG-ROOT-CAUSES`, `CODE-FINDINGS`, `COVERAGE-CRITIC`, lane reports, prep reports and `RUNTIME-EVIDENCE`). The current ledger cites this ref from `M2-0025`, `M2-0049` and `M2-0188`; keep it as a candidate follow-up ticket and do not add `GIT-STATE.json` here. |
+| `RF-MEET-R1-Q` | Cited by `M2-0216`. This ref points at meeting-derived audit content; this ticket's scope and this repo's confidentiality rule exclude meeting content from the repository entirely, so no committed source can exist here by design. This is the intended boundary, not a source gap to close. |
+| `RF-MEET-R2-B5` | Cited by `M2-0216`. This ref points at meeting-derived audit content; this ticket's scope and this repo's confidentiality rule exclude meeting content from the repository entirely, so no committed source can exist here by design. This is the intended boundary, not a source gap to close. |
+| `M2-0006-VAL-R3-ADV1` | Cited by `M2-0220`. Whole-repo grep for `M2-0006-VAL-R3-ADV1` matches only `docs/metis-2.0/ledger/tickets.json` and this README row, so no committed source names this exact ref string. |
+| `GIT-TRACE-REC` | Cited by `M2-0025`, `M2-0049` and `M2-0188`. Candidate follow-up: the expected source is a `GIT-STATE.json` snapshot, but that file was never in ticket `M2-0021`'s acceptance list (`BUG-ROOT-CAUSES`, `CODE-FINDINGS`, `COVERAGE-CRITIC`, lane reports, prep reports and `RUNTIME-EVIDENCE`); do not add `GIT-STATE.json` here. |

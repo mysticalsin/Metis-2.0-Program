@@ -32,7 +32,7 @@ Every file copied from `metis-v2-review/` into `docs/metis-2.0/review/` was scan
 | review/lanes/L10-intelligence-native.md | 0 | 0 | 0 | 2 |
 | review/lanes/L11-build-ci-quality.md | 0 | 0 | 0 | 2 |
 | review/lanes/L12-arch-graph.md | 0 | 0 | 0 | 1 |
-| review/plan-inputs/BUG-ROOT-CAUSES.json | 0 | 0 | 0 | 5 |
+| review/plan-inputs/BUG-ROOT-CAUSES.json | 0 | 0 | 0 | 6 |
 | review/plan-inputs/CODE-FINDINGS.json | 0 | 0 | 0 | 15 |
 | review/plan-inputs/COVERAGE-CRITIC.json | 0 | 0 | 0 | 2 |
 | review/prep/FREEZE-HYPOTHESES.md | 0 | 0 | 0 | 1 |
@@ -40,7 +40,7 @@ Every file copied from `metis-v2-review/` into `docs/metis-2.0/review/` was scan
 | review/prep/HERMETIC-TESTS.md | 0 | 0 | 0 | 5 |
 | review/prep/KIT-PATCHES.md | 0 | 0 | 0 | 3 |
 | review/prep/UNCOVERED-RENDERER-OPS.md | 0 | 0 | 0 | 1 |
-| **Total** | **1** | **0** | **0** | **93** |
+| **Total** | **1** | **0** | **0** | **94** |
 
 ## Kit copies (`docs/metis-2.0/kit/`)
 
