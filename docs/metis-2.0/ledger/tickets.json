@@ -775,11 +775,10 @@
     "CRITIC-CON-15"
    ],
    "scope_paths": [
-    "scripts/trace/build-traceability.mjs",
+    "docs/metis-2.0/tools/trace/build-traceability.mjs",
+    "docs/metis-2.0/tools/trace/build-traceability.test.mjs",
     "docs/metis-2.0/TRACEABILITY.md",
-    "docs/metis-2.0/ledger/traceability.json",
-    "docs/metis-2.0/kit/ID-INVENTORY.json",
-    "_relay/HANDOFF.md"
+    "docs/metis-2.0/ledger/traceability.json"
    ],
    "summary": "The kit's section 27 linter cannot pass without a per-ID matrix: 937 inventory rows (921 unique IDs) across 37 families, most cited only as ranges. Build the matrix from ledger/tickets.json and the inventory, give each ID a repo status derived from ticket status and evidence, and fail CI on an unmapped ID or a dangling ticket reference. This also serves as TASK-003's bounded source map and numbered handoff.",
    "acceptance": [
@@ -807,7 +806,8 @@
    "due": null,
    "status": "IN_PROGRESS",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket)."
   },
   {
    "id": "M2-0012",
@@ -1379,9 +1379,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/1",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 11)"
+   }
   },
   {
    "id": "M2-0021",
@@ -2126,9 +2131,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/239",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS",
+    "implementer": "codex"
+   }
   },
   {
    "id": "M2-0034",
@@ -2332,9 +2343,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/228",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 11)"
+   }
   },
   {
    "id": "M2-0038",
@@ -2902,9 +2918,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/238",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS",
+    "implementer": "codex"
+   }
   },
   {
    "id": "M2-0048",
@@ -3381,9 +3403,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/6",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 11)"
+   }
   },
   {
    "id": "M2-0058",
@@ -5954,10 +5981,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
    "claimed_at": "2026-09-26",
-   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac."
+   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/7",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 11)",
+    "note": "DESIGNED level; captures are a superseded HTML mock per OD-12 — re-capture from the Electron renderer in CI is pending (M2-0007 lane merged)"
+   }
   },
   {
    "id": "M2-0102",
@@ -11028,9 +11061,15 @@
     }
    ],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/5",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS",
+    "implementer": "opus"
+   }
   },
   {
    "id": "M2-0189",
@@ -12607,9 +12646,15 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/233",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS",
+    "implementer": "codex"
+   }
   },
   {
    "id": "M2-0215",
@@ -13077,9 +13122,15 @@
    "flag": null,
    "risk": "high",
    "estimate_hours": 3,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "ticket runner batch 9 (Codex implements)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/240",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0226",
@@ -13124,10 +13175,16 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "notes": "Filed centrally by the lead on 2026-09-27 (proposed by M2-0013 as M2-0221, which collided with the audit-r3 ticket of the same id).",
    "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/246",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0227",
@@ -13163,9 +13220,49 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 2,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/243",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
+  },
+  {
+   "id": "M2-0228",
+   "title": "Make the QA fault-hook packaged test deterministic (asar read before bytes are flushed)",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0026"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "INT-FLAKE-2026-09-27"
+   ],
+   "scope_paths": [
+    "scripts/lib/qa-fault-hook.test.ts",
+    "scripts/lib/qa-fault-hook.mjs"
+   ],
+   "summary": "m2/integration run 36318608972 (head 64f015bc) failed only 'Q2: a shipping package whose main bundle carries the hook fails' on ubuntu with \"Unexpected token '\\u0000'\" from JSON.parse(extractFile(archive,'package.json')), while the same tree passed on the hotfix branch (run 36318270055): a flaky read of an asar archive whose bytes were not all on disk yet (or a stale @electron/asar header cache). Find the root cause and make the test and helper deterministic; never retry or skip.",
+   "acceptance": [
+    "Root cause identified and stated with evidence (asar createPackage completion semantics or header cache)",
+    "Fix makes Q1-Q4 deterministic without retries or skips",
+    "CI green on ubuntu and windows across at least 3 consecutive runs of the file (e.g. a repeat loop in the test job or three pushes)"
+   ],
+   "verification": [
+    "CI build.yml runs"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
+   "status": "TODO"
   }
  ]
 }
