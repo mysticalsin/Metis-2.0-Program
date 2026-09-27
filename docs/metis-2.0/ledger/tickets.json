@@ -13211,6 +13211,40 @@
    "status": "IN_PROGRESS",
    "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
    "claimed_at": "2026-09-27"
+  },
+  {
+   "id": "M2-0228",
+   "title": "Make the QA fault-hook packaged test deterministic (asar read before bytes are flushed)",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0026"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "INT-FLAKE-2026-09-27"
+   ],
+   "scope_paths": [
+    "scripts/lib/qa-fault-hook.test.ts",
+    "scripts/lib/qa-fault-hook.mjs"
+   ],
+   "summary": "m2/integration run 36318608972 (head 64f015bc) failed only 'Q2: a shipping package whose main bundle carries the hook fails' on ubuntu with \"Unexpected token '\\u0000'\" from JSON.parse(extractFile(archive,'package.json')), while the same tree passed on the hotfix branch (run 36318270055): a flaky read of an asar archive whose bytes were not all on disk yet (or a stale @electron/asar header cache). Find the root cause and make the test and helper deterministic; never retry or skip.",
+   "acceptance": [
+    "Root cause identified and stated with evidence (asar createPackage completion semantics or header cache)",
+    "Fix makes Q1-Q4 deterministic without retries or skips",
+    "CI green on ubuntu and windows across at least 3 consecutive runs of the file (e.g. a repeat loop in the test job or three pushes)"
+   ],
+   "verification": [
+    "CI build.yml runs"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
+   "status": "TODO"
   }
  ]
 }
