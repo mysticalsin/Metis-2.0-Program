@@ -1,0 +1,1871 @@
+{
+ "schema": "metis2.task004.baselines/1",
+ "task": "TASK-004",
+ "title": "Size, capture and hardware baselines",
+ "requirements": [
+  "M2-PKG-01",
+  "M2-ASR-01",
+  "M2-LOCAL-02"
+ ],
+ "closure_refs": [
+  "SRC-16",
+  "EXP-12",
+  "HC-03"
+ ],
+ "master_revision": "4.5",
+ "overall_status": "PARTIAL: sizes/composition/hardware VERIFIED; startup, resource and capture baselines NOT_RUN; Windows device inventory NOT_AVAILABLE. This is a baseline record, not a product pass (MASTER 33).",
+ "measured_at_utc": "2026-09-24, approx. 03:45-04:16 UTC (session clock; per-command timestamps not recorded)",
+ "measured_by": "Claude Code subagent (workflow lane TASK-004). Model identity is self-reported, not attested.",
+ "evidence_legend": {
+  "VERIFIED": "observed by an executed command or read at file:line in this session",
+  "DERIVED": "arithmetic over VERIFIED numbers",
+  "ASSUMED": "stated inference, not observed",
+  "UNKNOWN": "not determinable here",
+  "NOT_RUN": "deliberately not executed, reason given",
+  "NOT_AVAILABLE": "input or host not reachable"
+ },
+ "provenance": {
+  "ci_run": {
+   "id": 35872259580,
+   "workflow": "Build & Test",
+   "event": "push",
+   "head_branch": "main",
+   "head_sha": "2bf21f1ceefe117838325342574b57852e5cadcb",
+   "conclusion": "success",
+   "created_at": "2026-09-23T14:10:38Z",
+   "updated_at": "2026-09-23T14:36:58Z",
+   "evidence": "VERIFIED: `gh run view 35872259580 --repo mysticalsin/AskToto-Mantu --json ...` (read-only, sandbox disabled)"
+  },
+  "ci_artifacts": [
+   {
+    "name": "metis-macos",
+    "size_in_bytes": 3657108377,
+    "digest": "sha256:28f9443c85313c7f7e325e415c48502ac01b312767a58eeb5fb03c2a6628084f",
+    "local_files_sum": 3657107711,
+    "note": "Local mac files (dmg, zip, 2 blockmaps, latest-mac.yml) sum to 666 B less than the artifact zip, consistent with zip container overhead."
+   },
+   {
+    "name": "metis-windows",
+    "size_in_bytes": 4766437569,
+    "digest": "sha256:a9e85a805e5ba0a780cfa9f667bbf445a9d874e98839f0bc54bf91f06f6696bb",
+    "local_files_sum": 4766436719,
+    "note": "Local win files (Setup, Portable, blockmap, latest.yml, appx) sum to 850 B less than the artifact zip, consistent with zip container overhead."
+   }
+  ],
+  "binding": "ASSUMED: local files = CI artifact contents, based on the size-sum consistency above and NOTES.md (\"Build & Test run 35872259580\"). Not hash-verified: the artifact digests cover the artifact zip containers, which were not re-downloaded.",
+  "source": {
+   "repo": "mysticalsin/AskToto-Mantu",
+   "worktree": "/Users/tony/AI-Brain-build/metis-2.0",
+   "branch": "claude/metis-2.0-task-001",
+   "head": "2bf21f1ceefe117838325342574b57852e5cadcb",
+   "package_version": "1.9.6",
+   "app_Info_plist_version": "1.9.6",
+   "evidence": "VERIFIED: `git log -1` (HEAD -> claude/metis-2.0-task-001, origin/main, main); package.json version; PlistBuddy CFBundleShortVersionString"
+  },
+  "update_metadata_consistency": "VERIFIED: base64(sha512) of zip, dmg and Setup equals latest-mac.yml / latest.yml values (openssl dgst -sha512 -binary | base64)."
+ },
+ "measurement_host": {
+  "model_identifier": "Mac17,2 (MacBook Pro)",
+  "chip": "Apple M5",
+  "machdep.cpu.brand_string": "Apple M5",
+  "hw.memsize_bytes": 34359738368,
+  "memory": "32 GiB",
+  "hw.ncpu": 10,
+  "hw.physicalcpu": 10,
+  "hw.logicalcpu": 10,
+  "perf_levels": [
+   {
+    "name": "Super",
+    "physicalcpu": 4
+   },
+   {
+    "name": "Efficiency",
+    "physicalcpu": 6
+   }
+  ],
+  "arch": "arm64",
+  "hw.optional.arm64": 1,
+  "gpu": "Apple M5, 10 GPU cores, Metal: Supported (system_profiler)",
+  "rosetta2": "present (`/usr/bin/arch -x86_64 /usr/bin/true` exit 0)",
+  "macos": {
+   "ProductVersion": "27.2",
+   "BuildVersion": "26B5091g"
+  },
+  "disk_free": {
+   "volume": "/System/Volumes/Data (APFS, /dev/disk3s5)",
+   "size_1K_blocks": 971298980,
+   "available_1K_blocks": 84800000,
+   "available_human": "87G (df -H)",
+   "capacity_used": "91%",
+   "note": "Free space varied 84,400,000-84,800,000 KiB during the session (other jobs running)."
+  },
+  "neural_engine": "UNKNOWN (not reported by the queried tools; not inferred from the chip name)",
+  "identifiers_omitted": "serial number, hardware UUID, provisioning UDID and part number deliberately not recorded",
+  "evidence": "VERIFIED: `sysctl -n machdep.cpu.brand_string hw.memsize hw.ncpu hw.physicalcpu hw.logicalcpu hw.nperflevels hw.perflevel{0,1}.{physicalcpu,name} hw.optional.arm64 hw.model kern.osproductversion kern.osversion` (sandbox disabled: sandboxed sysctl returned \"Operation not permitted\"); `sw_vers`; `df -k / /System/Volumes/Data`; `df -H`; `system_profiler SPHardwareDataType SPDisplaysDataType` (serial/UUID lines filtered out)"
+ },
+ "sizes": {
+  "compressed_installers": [
+   {
+    "file": "Metis-1.9.6.dmg",
+    "bytes": 1827062492,
+    "sha256": "1687e2ca89e8db14840ded63c20e0812ceadb544e0169e1efa92bef77eddb0e4",
+    "platform": "macOS universal (x86_64+arm64)",
+    "container": "UDIF read-only compressed (zlib), HFS+ volume",
+    "sha512_matches_update_metadata": "latest-mac.yml",
+    "gb": 1.827,
+    "gib": 1.7016,
+    "vs_check_release_gate": {
+     "warn_1_7_GiB_exceeded": true,
+     "fail_1_9_GiB_exceeded": false,
+     "bytes_below_fail_gate": 213046973
+    },
+    "evidence": "VERIFIED: `shasum -a 256 -c SHA256SUMS.txt` -> OK (all 4); size from `ls -la`"
+   },
+   {
+    "file": "Metis-1.9.6.zip",
+    "bytes": 1826300776,
+    "sha256": "227c65e64f2156fe054580b21a558c86e76e9e20a7169459b54c2114c8848df4",
+    "platform": "macOS universal (x86_64+arm64)",
+    "container": "zip (deflate)",
+    "sha512_matches_update_metadata": "latest-mac.yml",
+    "gb": 1.826,
+    "gib": 1.7009,
+    "vs_check_release_gate": {
+     "warn_1_7_GiB_exceeded": true,
+     "fail_1_9_GiB_exceeded": false,
+     "bytes_below_fail_gate": 213808689
+    },
+    "evidence": "VERIFIED: `shasum -a 256 -c SHA256SUMS.txt` -> OK (all 4); size from `ls -la`"
+   },
+   {
+    "file": "Metis-Setup-1.9.6.exe",
+    "bytes": 1532977165,
+    "sha256": "77a532f3c33a0be6f9315e7e0df02c2420c25a297e90c5fa6baff18f84193df8",
+    "platform": "Windows x64 (PE32+ machine 0x8664)",
+    "container": "NSIS-3 Unicode; payload $PLUGINSDIR/app-64.7z (stored)",
+    "sha512_matches_update_metadata": "latest.yml",
+    "gb": 1.533,
+    "gib": 1.4277,
+    "vs_check_release_gate": {
+     "warn_1_7_GiB_exceeded": false,
+     "fail_1_9_GiB_exceeded": false,
+     "bytes_below_fail_gate": 507132300
+    },
+    "evidence": "VERIFIED: `shasum -a 256 -c SHA256SUMS.txt` -> OK (all 4); size from `ls -la`"
+   },
+   {
+    "file": "Metis-Portable-1.9.6.exe",
+    "bytes": 1523263850,
+    "sha256": "f76bbd441cda774a0d51942bd6410b5727d72723a30385110575992baab3f0bd",
+    "platform": "Windows x64",
+    "container": "NSIS-3 Unicode; payload $PLUGINSDIR/app-64.7z (stored)",
+    "sha512_matches_update_metadata": null,
+    "gb": 1.523,
+    "gib": 1.4187,
+    "vs_check_release_gate": {
+     "warn_1_7_GiB_exceeded": false,
+     "fail_1_9_GiB_exceeded": false,
+     "bytes_below_fail_gate": 516845615
+    },
+    "evidence": "VERIFIED: `shasum -a 256 -c SHA256SUMS.txt` -> OK (all 4); size from `ls -la`"
+   }
+  ],
+  "supplementary_appx": {
+   "file": "Metis-1.9.6.appx",
+   "path": "/Users/tony/AI-Brain-build/release-1.9.6/win/release-appx/Metis-1.9.6.appx",
+   "bytes": 1708625779,
+   "sha256": "58364bc323fa932a3b1bc1f2256fa940b43222ea30cfd4dd1aa099de1cd39397",
+   "zip_entries_files": 324,
+   "uncompressed_bytes": 2713448759,
+   "compressed_bytes": 1708550605,
+   "note": "Not in SHA256SUMS.txt / upload set. Size consistent with CI artifact metis-windows (see provenance). Listed only as a supplementary fact."
+  },
+  "dmg_image": {
+   "format": "UDIF read-only compressed (zlib)",
+   "image_total_bytes": 3570708480,
+   "non_empty_bytes": 3435169792,
+   "compressed_bytes": 1826858525,
+   "compressed_ratio": 0.5318,
+   "evidence": "VERIFIED: `hdiutil imageinfo` (sandbox disabled)"
+  },
+  "unpacked": {
+   "mac_app": {
+    "apparent_bytes": 3191016308,
+    "allocated_bytes_hfs_dmg_volume": 3215839232,
+    "du_sk_KiB": 3140548,
+    "du_sk_A_KiB": 3120356,
+    "regular_files": 10116,
+    "symlinks": 20,
+    "dirs": 2581,
+    "cross_check": "zip central directory uncompressed = 3,191,016,820 B = 3,191,016,308 B of file content + 512 B of symlink targets (20 links)",
+    "evidence": "VERIFIED: lstat walk of the read-only mounted DMG (no symlink following); `du -sk`; `zipinfo -t`"
+   },
+   "windows_payload_app_64_7z": {
+    "uncompressed_bytes": 2701091865,
+    "files": 318,
+    "packed_bytes": 1522778933,
+    "setup_and_portable_payload_identical": true,
+    "evidence": "VERIFIED: `7z l -t7z -slt <exe>` (7-Zip found the embedded archive by signature: Setup offset 311653, Portable offset 196919, physical size 1,522,778,933 each)"
+   },
+   "windows_setup_extra_entries": {
+    "onboarding_mp4_bytes": 9360049,
+    "uninstaller_bytes": 283048,
+    "nsis_plugins": "small (<250 KB each)"
+   }
+  },
+  "install_footprint": {
+   "mac_steady_installed": {
+    "bytes": 3191016308,
+    "label": "DERIVED: bundle apparent bytes. APFS allocation after a real copy was not measured (copy step denied)."
+   },
+   "mac_dmg_peak_disk": {
+    "bytes": 5018078800,
+    "label": "DERIVED: DMG kept on disk + app copied to /Applications. A read-only mount consumes no extra disk."
+   },
+   "mac_zip_peak_disk": {
+    "bytes": 5017317596,
+    "label": "ASSUMED: extraction beside the zip with no extra temp copy."
+   },
+   "win_setup_steady_installed": {
+    "bytes": 2710734962,
+    "label": "DERIVED: 7z payload + separate mp4 + uninstaller. NTFS cluster overhead unmeasured."
+   },
+   "win_setup_peak_disk": {
+    "bytes": 5766491060,
+    "label": "ASSUMED: NSIS writes $PLUGINSDIR/app-64.7z to a temp dir before nsis7z decompresses it into the install dir."
+   },
+   "win_portable_per_launch_temp": {
+    "bytes": 4223870798,
+    "label": "ASSUMED: the portable build extracts the 7z then the app to temp on each launch. Repo comment scripts/check-packaged-launch.mjs:219: a portable build \"unpacks well over a gigabyte before the first paint\"."
+   }
+  }
+ },
+ "mac_bundle": {
+  "components": [
+   {
+    "path": "Contents/MacOS",
+    "files": 1,
+    "apparent_bytes": 118752,
+    "allocated_bytes": 118784
+   },
+   {
+    "path": "Contents/Frameworks",
+    "files": 262,
+    "apparent_bytes": 521793455,
+    "allocated_bytes": 522686464
+   },
+   {
+    "path": "Contents/Frameworks/Electron Framework.framework",
+    "files": 236,
+    "apparent_bytes": 518274219,
+    "allocated_bytes": 519098368
+   },
+   {
+    "path": "Contents/Frameworks/Metis Helper.app",
+    "files": 4,
+    "apparent_bytes": 471467,
+    "allocated_bytes": 483328
+   },
+   {
+    "path": "Contents/Frameworks/Metis Helper (GPU).app",
+    "files": 4,
+    "apparent_bytes": 471489,
+    "allocated_bytes": 483328
+   },
+   {
+    "path": "Contents/Frameworks/Metis Helper (Renderer).app",
+    "files": 4,
+    "apparent_bytes": 471509,
+    "allocated_bytes": 483328
+   },
+   {
+    "path": "Contents/Frameworks/Metis Helper (Plugin).app",
+    "files": 4,
+    "apparent_bytes": 471501,
+    "allocated_bytes": 483328
+   },
+   {
+    "path": "Contents/Frameworks/Squirrel.framework",
+    "files": 4,
+    "apparent_bytes": 571380,
+    "allocated_bytes": 577536
+   },
+   {
+    "path": "Contents/Frameworks/Mantle.framework",
+    "files": 3,
+    "apparent_bytes": 295499,
+    "allocated_bytes": 303104
+   },
+   {
+    "path": "Contents/Frameworks/ReactiveObjC.framework",
+    "files": 3,
+    "apparent_bytes": 766391,
+    "allocated_bytes": 774144
+   },
+   {
+    "path": "Contents/Resources",
+    "files": 9850,
+    "apparent_bytes": 2665302037,
+    "allocated_bytes": 2689220608
+   },
+   {
+    "path": "Contents/Resources/app.asar",
+    "files": 1,
+    "apparent_bytes": 218395316,
+    "allocated_bytes": 218398720
+   },
+   {
+    "path": "Contents/Resources/default_app.asar",
+    "files": 1,
+    "apparent_bytes": 111073,
+    "allocated_bytes": 114688
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked",
+    "files": 123,
+    "apparent_bytes": 337642888,
+    "allocated_bytes": 337948672
+   },
+   {
+    "path": "Contents/Resources/asr",
+    "files": 8,
+    "apparent_bytes": 671239000,
+    "allocated_bytes": 671252480
+   },
+   {
+    "path": "Contents/Resources/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8/test_wavs",
+    "files": 4,
+    "apparent_bytes": 760228,
+    "allocated_bytes": 770048
+   },
+   {
+    "path": "Contents/Resources/models",
+    "files": 12,
+    "apparent_bytes": 110860192,
+    "allocated_bytes": 110886912
+   },
+   {
+    "path": "Contents/Resources/models/Xenova/whisper-base",
+    "files": 11,
+    "apparent_bytes": 81263214,
+    "allocated_bytes": 81289216
+   },
+   {
+    "path": "Contents/Resources/models/speaker",
+    "files": 1,
+    "apparent_bytes": 29596978,
+    "allocated_bytes": 29597696
+   },
+   {
+    "path": "Contents/Resources/local-llm",
+    "files": 3,
+    "apparent_bytes": 763771056,
+    "allocated_bytes": 763777024
+   },
+   {
+    "path": "Contents/Resources/local-llm/models/qwen3.5-0.8b/model.gguf",
+    "files": 1,
+    "apparent_bytes": 558772480,
+    "allocated_bytes": 558776320
+   },
+   {
+    "path": "Contents/Resources/local-llm/models/qwen3.5-0.8b/mmproj.gguf",
+    "files": 1,
+    "apparent_bytes": 204987232,
+    "allocated_bytes": 204988416
+   },
+   {
+    "path": "Contents/Resources/llama",
+    "files": 71,
+    "apparent_bytes": 106621026,
+    "allocated_bytes": 106803200
+   },
+   {
+    "path": "Contents/Resources/llama/mac/arm64",
+    "files": 37,
+    "apparent_bytes": 52884793,
+    "allocated_bytes": 52973568
+   },
+   {
+    "path": "Contents/Resources/llama/mac/x64",
+    "files": 34,
+    "apparent_bytes": 53736233,
+    "allocated_bytes": 53829632
+   },
+   {
+    "path": "Contents/Resources/ffmpeg",
+    "files": 4,
+    "apparent_bytes": 30947650,
+    "allocated_bytes": 30957568
+   },
+   {
+    "path": "Contents/Resources/ffmpeg/darwin-arm64",
+    "files": 1,
+    "apparent_bytes": 13723712,
+    "allocated_bytes": 13725696
+   },
+   {
+    "path": "Contents/Resources/ffmpeg/darwin-x64",
+    "files": 1,
+    "apparent_bytes": 17196256,
+    "allocated_bytes": 17199104
+   },
+   {
+    "path": "Contents/Resources/mac-helper",
+    "files": 1,
+    "apparent_bytes": 282888,
+    "allocated_bytes": 286720
+   },
+   {
+    "path": "Contents/Resources/managed-node",
+    "files": 9596,
+    "apparent_bytes": 396933701,
+    "allocated_bytes": 420237312
+   },
+   {
+    "path": "Contents/Resources/managed-node/darwin-arm64",
+    "files": 4798,
+    "apparent_bytes": 196895980,
+    "allocated_bytes": 208547840
+   },
+   {
+    "path": "Contents/Resources/managed-node/darwin-x64",
+    "files": 4798,
+    "apparent_bytes": 200037721,
+    "allocated_bytes": 211689472
+   },
+   {
+    "path": "Contents/Resources/ort",
+    "files": 2,
+    "apparent_bytes": 21640503,
+    "allocated_bytes": 21643264
+   },
+   {
+    "path": "Contents/Resources/intelligence",
+    "files": 9,
+    "apparent_bytes": 1342052,
+    "allocated_bytes": 1368064
+   },
+   {
+    "path": "Contents/Resources/skills",
+    "files": 11,
+    "apparent_bytes": 39393,
+    "allocated_bytes": 53248
+   },
+   {
+    "path": "Contents/Resources/*.lproj (top-level locale dirs)",
+    "files": 0,
+    "apparent_bytes": 0,
+    "allocated_bytes": 0
+   },
+   {
+    "path": "Contents/Resources (other top-level files)",
+    "files": 8,
+    "apparent_bytes": 5475299,
+    "allocated_bytes": 5492736,
+    "members": [
+     [
+      "icon.icns",
+      4069354
+     ],
+     [
+      "icon.png",
+      1387485
+     ],
+     [
+      "graphify_runner.py",
+      5352
+     ],
+     [
+      "THIRD_PARTY_NOTICES.md",
+      5079
+     ],
+     [
+      "runtime-assets-manifest.json",
+      3741
+     ],
+     [
+      "managed-config.enterprise.example.json",
+      2851
+     ],
+     [
+      "managed-config.example.json",
+      1322
+     ],
+     [
+      "app-update.yml",
+      115
+     ]
+    ]
+   }
+  ],
+  "app_asar_unpacked_packages": [
+   {
+    "package": "onnxruntime-node",
+    "files": 31,
+    "apparent_bytes": 148090165
+   },
+   {
+    "package": "sherpa-onnx-darwin-arm64",
+    "files": 7,
+    "apparent_bytes": 75845555
+   },
+   {
+    "package": "sherpa-onnx-darwin-x64",
+    "files": 7,
+    "apparent_bytes": 64537207
+   },
+   {
+    "package": "@img/sharp-libvips-darwin-x64",
+    "files": 5,
+    "apparent_bytes": 20306338
+   },
+   {
+    "package": "@img/sharp-libvips-darwin-arm64",
+    "files": 5,
+    "apparent_bytes": 18172018
+   },
+   {
+    "package": "sharp",
+    "files": 37,
+    "apparent_bytes": 665346
+   },
+   {
+    "package": "@img/sharp-darwin-arm64",
+    "files": 4,
+    "apparent_bytes": 291532
+   },
+   {
+    "package": "@img/sharp-darwin-x64",
+    "files": 4,
+    "apparent_bytes": 266569
+   },
+   {
+    "package": "sherpa-onnx-node",
+    "files": 18,
+    "apparent_bytes": 57441
+   },
+   {
+    "package": "@img/colour",
+    "files": 4,
+    "apparent_bytes": 50668
+   }
+  ],
+  "app_asar_contents": {
+   "header_json_bytes": 2558236,
+   "file_entries": 9757,
+   "unpacked_marked_entries": 123,
+   "packed_bytes": 215837064,
+   "node_modules_bytes": 184334109,
+   "out_bytes": 31501957,
+   "top25_groups": [
+    {
+     "group": "node_modules/onnxruntime-web",
+     "bytes": 93633190,
+     "files": 642
+    },
+    {
+     "group": "node_modules/@huggingface/transformers",
+     "bytes": 47640781,
+     "files": 259
+    },
+    {
+     "group": "out/renderer",
+     "bytes": 29920478,
+     "files": 61
+    },
+    {
+     "group": "node_modules/openai",
+     "bytes": 7932222,
+     "files": 2289
+    },
+    {
+     "group": "node_modules/@anthropic-ai/sdk",
+     "bytes": 5241263,
+     "files": 1181
+    },
+    {
+     "group": "node_modules/zod",
+     "bytes": 3307119,
+     "files": 507
+    },
+    {
+     "group": "node_modules/@dust-tt/client",
+     "bytes": 2921417,
+     "files": 66
+    },
+    {
+     "group": "node_modules/protobufjs",
+     "bytes": 2907329,
+     "files": 74
+    },
+    {
+     "group": "node_modules/@modelcontextprotocol/sdk",
+     "bytes": 2867535,
+     "files": 508
+    },
+    {
+     "group": "node_modules/@azure/msal-common",
+     "bytes": 2522683,
+     "files": 537
+    },
+    {
+     "group": "node_modules/@azure/msal-node",
+     "bytes": 2175548,
+     "files": 262
+    },
+    {
+     "group": "node_modules/tar",
+     "bytes": 2136930,
+     "files": 188
+    },
+    {
+     "group": "node_modules/undici",
+     "bytes": 1498294,
+     "files": 161
+    },
+    {
+     "group": "out/main",
+     "bytes": 1473495,
+     "files": 6
+    },
+    {
+     "group": "node_modules/hono",
+     "bytes": 1004861,
+     "files": 380
+    },
+    {
+     "group": "node_modules/js-yaml",
+     "bytes": 951248,
+     "files": 35
+    },
+    {
+     "group": "node_modules/ajv",
+     "bytes": 940690,
+     "files": 359
+    },
+    {
+     "group": "node_modules/electron-updater",
+     "bytes": 595053,
+     "files": 117
+    },
+    {
+     "group": "node_modules/onnxruntime-common",
+     "bytes": 394943,
+     "files": 150
+    },
+    {
+     "group": "node_modules/@huggingface/jinja",
+     "bytes": 334454,
+     "files": 19
+    },
+    {
+     "group": "node_modules/iconv-lite",
+     "bytes": 325140,
+     "files": 24
+    },
+    {
+     "group": "node_modules/minipass",
+     "bytes": 300446,
+     "files": 10
+    },
+    {
+     "group": "node_modules/@babel/runtime",
+     "bytes": 247400,
+     "files": 248
+    },
+    {
+     "group": "node_modules/flatbuffers",
+     "bytes": 239605,
+     "files": 54
+    },
+    {
+     "group": "node_modules/ip-address",
+     "bytes": 225985,
+     "files": 20
+    }
+   ]
+  },
+  "top25_files": [
+   {
+    "path": "Contents/Resources/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8/encoder.int8.onnx",
+    "apparent_bytes": 652184281
+   },
+   {
+    "path": "Contents/Resources/local-llm/models/qwen3.5-0.8b/model.gguf",
+    "apparent_bytes": 558772480
+   },
+   {
+    "path": "Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework",
+    "apparent_bytes": 408004576
+   },
+   {
+    "path": "Contents/Resources/app.asar",
+    "apparent_bytes": 218395316
+   },
+   {
+    "path": "Contents/Resources/local-llm/models/qwen3.5-0.8b/mmproj.gguf",
+    "apparent_bytes": 204987232
+   },
+   {
+    "path": "Contents/Resources/managed-node/darwin-x64/bin/node",
+    "apparent_bytes": 125270960
+   },
+   {
+    "path": "Contents/Resources/managed-node/darwin-arm64/bin/node",
+    "apparent_bytes": 122129232
+   },
+   {
+    "path": "Contents/Resources/models/Xenova/whisper-base/onnx/decoder_model_merged_quantized.onnx",
+    "apparent_bytes": 53707539
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/darwin/x64/libonnxruntime.1.21.0.dylib",
+    "apparent_bytes": 35619040
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/sherpa-onnx-darwin-arm64/libonnxruntime.1.24.4.dylib",
+    "apparent_bytes": 35418600
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/sherpa-onnx-darwin-arm64/libonnxruntime.dylib",
+    "apparent_bytes": 35418600
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/darwin/arm64/libonnxruntime.1.21.0.dylib",
+    "apparent_bytes": 31847304
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/sherpa-onnx-darwin-x64/libonnxruntime.1.24.4.dylib",
+    "apparent_bytes": 29624256
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/sherpa-onnx-darwin-x64/libonnxruntime.dylib",
+    "apparent_bytes": 29624256
+   },
+   {
+    "path": "Contents/Resources/models/speaker/embedding.onnx",
+    "apparent_bytes": 29596978
+   },
+   {
+    "path": "Contents/Resources/models/Xenova/whisper-base/onnx/encoder_model_quantized.onnx",
+    "apparent_bytes": 23200850
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/x64/libonnxruntime.so.1",
+    "apparent_bytes": 21914784
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/x64/libonnxruntime.so.1.21.0",
+    "apparent_bytes": 21914784
+   },
+   {
+    "path": "Contents/Resources/ort/ort-wasm-simd-threaded.jsep.wasm",
+    "apparent_bytes": 21596019
+   },
+   {
+    "path": "Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libvk_swiftshader.dylib",
+    "apparent_bytes": 21161776
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/@img/sharp-libvips-darwin-x64/lib/libvips-cpp.8.18.6.dylib",
+    "apparent_bytes": 20298840
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.18.6.dylib",
+    "apparent_bytes": 18164536
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/arm64/libonnxruntime.so.1",
+    "apparent_bytes": 17446360
+   },
+   {
+    "path": "Contents/Resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/arm64/libonnxruntime.so.1.21.0",
+    "apparent_bytes": 17446360
+   },
+   {
+    "path": "Contents/Resources/ffmpeg/darwin-x64/ffmpeg",
+    "apparent_bytes": 17196256
+   }
+  ],
+  "weights_inventory": [
+   {
+    "path": "Contents/Resources/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8/encoder.int8.onnx",
+    "apparent_bytes": 652184281
+   },
+   {
+    "path": "Contents/Resources/local-llm/models/qwen3.5-0.8b/model.gguf",
+    "apparent_bytes": 558772480
+   },
+   {
+    "path": "Contents/Resources/local-llm/models/qwen3.5-0.8b/mmproj.gguf",
+    "apparent_bytes": 204987232
+   },
+   {
+    "path": "Contents/Resources/models/Xenova/whisper-base/onnx/decoder_model_merged_quantized.onnx",
+    "apparent_bytes": 53707539
+   },
+   {
+    "path": "Contents/Resources/models/speaker/embedding.onnx",
+    "apparent_bytes": 29596978
+   },
+   {
+    "path": "Contents/Resources/models/Xenova/whisper-base/onnx/encoder_model_quantized.onnx",
+    "apparent_bytes": 23200850
+   },
+   {
+    "path": "Contents/Resources/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8/decoder.int8.onnx",
+    "apparent_bytes": 11845275
+   },
+   {
+    "path": "Contents/Resources/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8/joiner.int8.onnx",
+    "apparent_bytes": 6355277
+   },
+   {
+    "path": "Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/v8_context_snapshot.arm64.bin",
+    "apparent_bytes": 740048
+   },
+   {
+    "path": "Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/v8_context_snapshot.x86_64.bin",
+    "apparent_bytes": 740048
+   }
+  ],
+  "zip_compressed_waterfall": [
+   {
+    "group": "Parakeet ASR (asr/)",
+    "files": 8,
+    "uncompressed_bytes": 671239000,
+    "zip_deflate_bytes": 478269063
+   },
+   {
+    "group": "Qwen 0.8B model.gguf",
+    "files": 1,
+    "uncompressed_bytes": 558772480,
+    "zip_deflate_bytes": 544592302
+   },
+   {
+    "group": "Qwen vision mmproj.gguf",
+    "files": 1,
+    "uncompressed_bytes": 204987232,
+    "zip_deflate_bytes": 155970419
+   },
+   {
+    "group": "local-llm license",
+    "files": 1,
+    "uncompressed_bytes": 11344,
+    "zip_deflate_bytes": 3947
+   },
+   {
+    "group": "Electron Framework + helpers (Frameworks/)",
+    "files": 276,
+    "uncompressed_bytes": 521793725,
+    "zip_deflate_bytes": 221501727
+   },
+   {
+    "group": "app.asar",
+    "files": 1,
+    "uncompressed_bytes": 218395316,
+    "zip_deflate_bytes": 49338616
+   },
+   {
+    "group": "app.asar.unpacked",
+    "files": 123,
+    "uncompressed_bytes": 337642888,
+    "zip_deflate_bytes": 114710857
+   },
+   {
+    "group": "managed-node darwin-arm64",
+    "files": 4801,
+    "uncompressed_bytes": 196896101,
+    "zip_deflate_bytes": 54820869
+   },
+   {
+    "group": "managed-node darwin-x64",
+    "files": 4801,
+    "uncompressed_bytes": 200037842,
+    "zip_deflate_bytes": 56131129
+   },
+   {
+    "group": "whisper-base + speaker (models/)",
+    "files": 12,
+    "uncompressed_bytes": 110860192,
+    "zip_deflate_bytes": 79474277
+   },
+   {
+    "group": "llama-server mac arm64",
+    "files": 37,
+    "uncompressed_bytes": 52884793,
+    "zip_deflate_bytes": 19999196
+   },
+   {
+    "group": "llama-server mac x64",
+    "files": 34,
+    "uncompressed_bytes": 53736233,
+    "zip_deflate_bytes": 20649685
+   },
+   {
+    "group": "ffmpeg (both arches)",
+    "files": 4,
+    "uncompressed_bytes": 30947650,
+    "zip_deflate_bytes": 14804190
+   },
+   {
+    "group": "ort wasm (Resources/ort)",
+    "files": 2,
+    "uncompressed_bytes": 21640503,
+    "zip_deflate_bytes": 5058664
+   },
+   {
+    "group": "mac-helper",
+    "files": 1,
+    "uncompressed_bytes": 282888,
+    "zip_deflate_bytes": 62937
+   },
+   {
+    "group": "intelligence dashboard",
+    "files": 9,
+    "uncompressed_bytes": 1342052,
+    "zip_deflate_bytes": 362014
+   },
+   {
+    "group": "default_app.asar",
+    "files": 1,
+    "uncompressed_bytes": 111073,
+    "zip_deflate_bytes": 85881
+   },
+   {
+    "group": "everything else",
+    "files": 23,
+    "uncompressed_bytes": 9435508,
+    "zip_deflate_bytes": 5903685
+   }
+  ],
+  "macho": {
+   "count": 107,
+   "fat_count": 16,
+   "thin_count": 91,
+   "slice_bytes_by_arch": {
+    "x86_64": 547310400,
+    "arm64": 538134909
+   },
+   "thin_by_arch": {
+    "arm64": {
+     "files": 47,
+     "bytes": 315108437
+    },
+    "x86_64": {
+     "files": 44,
+     "bytes": 317146736
+    }
+   },
+   "largest_fat": [
+    {
+     "path": "Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework",
+     "bytes": 408004576,
+     "slices": [
+      {
+       "arch": "x86_64",
+       "bytes": 213247360
+      },
+      {
+       "arch": "arm64",
+       "bytes": 194734048
+      }
+     ]
+    },
+    {
+     "path": "Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libvk_swiftshader.dylib",
+     "bytes": 21161776,
+     "slices": [
+      {
+       "arch": "x86_64",
+       "bytes": 4579888
+      },
+      {
+       "arch": "arm64",
+       "bytes": 16574256
+      }
+     ]
+    },
+    {
+     "path": "Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libGLESv2.dylib",
+     "bytes": 13044992,
+     "slices": [
+      {
+       "arch": "x86_64",
+       "bytes": 6750016
+      },
+      {
+       "arch": "arm64",
+       "bytes": 6278400
+      }
+     ]
+    },
+    {
+     "path": "Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libffmpeg.dylib",
+     "bytes": 4721152,
+     "slices": [
+      {
+       "arch": "x86_64",
+       "bytes": 2485596
+      },
+      {
+       "arch": "arm64",
+       "bytes": 2230784
+      }
+     ]
+    },
+    {
+     "path": "Contents/Frameworks/Electron Framework.framework/Versions/A/Helpers/chrome_crashpad_handler",
+     "bytes": 2534000,
+     "slices": [
+      {
+       "arch": "x86_64",
+       "bytes": 1288368
+      },
+      {
+       "arch": "arm64",
+       "bytes": 1223280
+      }
+     ]
+    },
+    {
+     "path": "Contents/Frameworks/ReactiveObjC.framework/Versions/A/ReactiveObjC",
+     "bytes": 762176,
+     "slices": [
+      {
+       "arch": "x86_64",
+       "bytes": 375152
+      },
+      {
+       "arch": "arm64",
+       "bytes": 368960
+      }
+     ]
+    },
+    {
+     "path": "Contents/Frameworks/Metis Helper (GPU).app/Contents/MacOS/Metis Helper (GPU)",
+     "bytes": 467616,
+     "slices": [
+      {
+       "arch": "x86_64",
+       "bytes": 214800
+      },
+      {
+       "arch": "arm64",
+       "bytes": 221856
+      }
+     ]
+    },
+    {
+     "path": "Contents/Frameworks/Metis Helper (Plugin).app/Contents/MacOS/Metis Helper (Plugin)",
+     "bytes": 467616,
+     "slices": [
+      {
+       "arch": "x86_64",
+       "bytes": 214800
+      },
+      {
+       "arch": "arm64",
+       "bytes": 221856
+      }
+     ]
+    },
+    {
+     "path": "Contents/Frameworks/Metis Helper (Renderer).app/Contents/MacOS/Metis Helper (Renderer)",
+     "bytes": 467616,
+     "slices": [
+      {
+       "arch": "x86_64",
+       "bytes": 214800
+      },
+      {
+       "arch": "arm64",
+       "bytes": 221856
+      }
+     ]
+    },
+    {
+     "path": "Contents/Frameworks/Metis Helper.app/Contents/MacOS/Metis Helper",
+     "bytes": 467616,
+     "slices": [
+      {
+       "arch": "x86_64",
+       "bytes": 214800
+      },
+      {
+       "arch": "arm64",
+       "bytes": 221856
+      }
+     ]
+    }
+   ]
+  },
+  "arch_payload": {
+   "x64_only_trees": {
+    "files": 4851,
+    "apparent_bytes": 391932884
+   },
+   "arm64_only_trees": {
+    "files": 4854,
+    "apparent_bytes": 389894579
+   },
+   "x64_slices_in_fat_binaries_bytes": 230163664,
+   "arm64_slices_in_fat_binaries_bytes": 223026472,
+   "x64_bytes_idle_on_apple_silicon": 622096548,
+   "arm64_bytes_idle_on_intel": 612921051,
+   "method": "per-arch directory trees from the zip central directory (regular files, symlinks excluded) + per-arch slice sizes from Mach-O fat headers measured on the mounted DMG"
+  },
+  "duplicates": {
+   "all_sizes_exact_sha256_redundant_bytes": 292988007,
+   "groups": 2370,
+   "by_area": [
+    {
+     "area": "Resources/managed-node (OpenSSL/C headers replicated across include/ trees and arch dirs)",
+     "redundant_bytes": 131394516
+    },
+    {
+     "area": "Resources/llama (symlink triplets materialised as 3 identical copies, both arches)",
+     "redundant_bytes": 57158688
+    },
+    {
+     "area": "app.asar.unpacked/onnxruntime-node (linux .so and .so.1.21.0 identical pairs)",
+     "redundant_bytes": 39361144
+    },
+    {
+     "area": "app.asar.unpacked/sherpa-onnx-darwin-arm64 (libonnxruntime.dylib == libonnxruntime.1.24.4.dylib)",
+     "redundant_bytes": 35418600
+    },
+    {
+     "area": "app.asar.unpacked/sherpa-onnx-darwin-x64 (libonnxruntime.dylib == libonnxruntime.1.24.4.dylib)",
+     "redundant_bytes": 29624256
+    }
+   ],
+   "asar_internal_wasm_redundant_bytes": 64788057,
+   "asar_wasm_sha256": "c46655e8a94afc45338d4cb2b840475f88e5012d524509916e505079c00bfa39",
+   "ge_256KiB_detail": {
+    "groups": 18,
+    "redundant_bytes_total": 162239537,
+    "groups_detail": [
+     {
+      "sha256": "872533f130f1839a5bc01788ddb4f75c83a189763441ba1178788ed965449289",
+      "bytes_each": 35418600,
+      "copies": 2,
+      "redundant_bytes": 35418600,
+      "paths": [
+       "Contents/Resources/app.asar.unpacked/node_modules/sherpa-onnx-darwin-arm64/libonnxruntime.1.24.4.dylib",
+       "Contents/Resources/app.asar.unpacked/node_modules/sherpa-onnx-darwin-arm64/libonnxruntime.dylib"
+      ]
+     },
+     {
+      "sha256": "fffcd900fe36d9318b8dc05a5df68d944c7238d3209933c112ed8e5d614b8c2e",
+      "bytes_each": 29624256,
+      "copies": 2,
+      "redundant_bytes": 29624256,
+      "paths": [
+       "Contents/Resources/app.asar.unpacked/node_modules/sherpa-onnx-darwin-x64/libonnxruntime.1.24.4.dylib",
+       "Contents/Resources/app.asar.unpacked/node_modules/sherpa-onnx-darwin-x64/libonnxruntime.dylib"
+      ]
+     },
+     {
+      "sha256": "05bfddeefc536a44478c20226218dae8853995518bb2a994b4fa15a996f5f412",
+      "bytes_each": 21914784,
+      "copies": 2,
+      "redundant_bytes": 21914784,
+      "paths": [
+       "Contents/Resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/x64/libonnxruntime.so.1",
+       "Contents/Resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/x64/libonnxruntime.so.1.21.0"
+      ]
+     },
+     {
+      "sha256": "36671b53885a8433882c4db360138bd060f3580f7d7cb6578050e755e83b6128",
+      "bytes_each": 17446360,
+      "copies": 2,
+      "redundant_bytes": 17446360,
+      "paths": [
+       "Contents/Resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/arm64/libonnxruntime.so.1",
+       "Contents/Resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/arm64/libonnxruntime.so.1.21.0"
+      ]
+     },
+     {
+      "sha256": "189ecd1023db8fa79753a562026f474afb945e628b77cef6aaa7470efe5beb27",
+      "bytes_each": 8196648,
+      "copies": 3,
+      "redundant_bytes": 16393296,
+      "paths": [
+       "Contents/Resources/llama/mac/x64/libllama-common.0.0.9957.dylib",
+       "Contents/Resources/llama/mac/x64/libllama-common.0.dylib",
+       "Contents/Resources/llama/mac/x64/libllama-common.dylib"
+      ]
+     },
+     {
+      "sha256": "80db013710d80b855d1e06a11ba114686f54a7cead6b120bc4ee59b67c6c1225",
+      "bytes_each": 7805272,
+      "copies": 3,
+      "redundant_bytes": 15610544,
+      "paths": [
+       "Contents/Resources/llama/mac/arm64/libllama-common.0.0.9957.dylib",
+       "Contents/Resources/llama/mac/arm64/libllama-common.0.dylib",
+       "Contents/Resources/llama/mac/arm64/libllama-common.dylib"
+      ]
+     },
+     {
+      "sha256": "3fa902bd061298500795b2173ecd851f2ad43578964cd698a7074b6d023162f6",
+      "bytes_each": 2855344,
+      "copies": 3,
+      "redundant_bytes": 5710688,
+      "paths": [
+       "Contents/Resources/llama/mac/x64/libllama.0.0.9957.dylib",
+       "Contents/Resources/llama/mac/x64/libllama.0.dylib",
+       "Contents/Resources/llama/mac/x64/libllama.dylib"
+      ]
+     },
+     {
+      "sha256": "de1708980511e33bc13edd686bf761eb219d8c821eb27397e65f364520d39c91",
+      "bytes_each": 2643136,
+      "copies": 3,
+      "redundant_bytes": 5286272,
+      "paths": [
+       "Contents/Resources/llama/mac/arm64/libllama.0.0.9957.dylib",
+       "Contents/Resources/llama/mac/arm64/libllama.0.dylib",
+       "Contents/Resources/llama/mac/arm64/libllama.dylib"
+      ]
+     },
+     {
+      "sha256": "22963776061bd9f776c18738a7f04949549e9e271ae33dce7f59f343905ee798",
+      "bytes_each": 1329480,
+      "copies": 3,
+      "redundant_bytes": 2658960,
+      "paths": [
+       "Contents/Resources/llama/mac/x64/libggml-cpu.0.16.0.dylib",
+       "Contents/Resources/llama/mac/x64/libggml-cpu.0.dylib",
+       "Contents/Resources/llama/mac/x64/libggml-cpu.dylib"
+      ]
+     },
+     {
+      "sha256": "f34e6307bd7ca72a958e661cf5ed81e60b5476d0f31d7206e8fdae117fc47c20",
+      "bytes_each": 1126752,
+      "copies": 3,
+      "redundant_bytes": 2253504,
+      "paths": [
+       "Contents/Resources/llama/mac/x64/libmtmd.0.0.9957.dylib",
+       "Contents/Resources/llama/mac/x64/libmtmd.0.dylib",
+       "Contents/Resources/llama/mac/x64/libmtmd.dylib"
+      ]
+     },
+     {
+      "sha256": "a155577cffda51f2205ff75956fe69db497d9dfe7ac4ef520d3be688539fa114",
+      "bytes_each": 1030160,
+      "copies": 3,
+      "redundant_bytes": 2060320,
+      "paths": [
+       "Contents/Resources/llama/mac/arm64/libmtmd.0.0.9957.dylib",
+       "Contents/Resources/llama/mac/arm64/libmtmd.0.dylib",
+       "Contents/Resources/llama/mac/arm64/libmtmd.dylib"
+      ]
+     },
+     {
+      "sha256": "a0a0f98dbdfbb4f21a8702f773a564cf4abd2bc566d07137f480c1dd2396979a",
+      "bytes_each": 901216,
+      "copies": 3,
+      "redundant_bytes": 1802432,
+      "paths": [
+       "Contents/Resources/llama/mac/arm64/libggml-cpu.0.16.0.dylib",
+       "Contents/Resources/llama/mac/arm64/libggml-cpu.0.dylib",
+       "Contents/Resources/llama/mac/arm64/libggml-cpu.dylib"
+      ]
+     },
+     {
+      "sha256": "8be09449ad673c6aa87a787334788b9c68185d5c66225d908b7a1bade676cf5b",
+      "bytes_each": 832776,
+      "copies": 3,
+      "redundant_bytes": 1665552,
+      "paths": [
+       "Contents/Resources/llama/mac/arm64/libggml-metal.0.16.0.dylib",
+       "Contents/Resources/llama/mac/arm64/libggml-metal.0.dylib",
+       "Contents/Resources/llama/mac/arm64/libggml-metal.dylib"
+      ]
+     },
+     {
+      "sha256": "296c5801ef7d1f08b6256c0db57c3572f14f30ee42dc502d542cb6a782c571ec",
+      "bytes_each": 710232,
+      "copies": 3,
+      "redundant_bytes": 1420464,
+      "paths": [
+       "Contents/Resources/llama/mac/arm64/libggml-base.0.16.0.dylib",
+       "Contents/Resources/llama/mac/arm64/libggml-base.0.dylib",
+       "Contents/Resources/llama/mac/arm64/libggml-base.dylib"
+      ]
+     },
+     {
+      "sha256": "f314226d009a5ae14174ef05ac1502807e8a9c120a0ae79945d0b257b5007e95",
+      "bytes_each": 706440,
+      "copies": 3,
+      "redundant_bytes": 1412880,
+      "paths": [
+       "Contents/Resources/llama/mac/x64/libggml-base.0.16.0.dylib",
+       "Contents/Resources/llama/mac/x64/libggml-base.0.dylib",
+       "Contents/Resources/llama/mac/x64/libggml-base.dylib"
+      ]
+     },
+     {
+      "sha256": "e010a0c12ab4d8c2306faa0269e844eaae8fd3f20580277c44d806a0bfb947fb",
+      "bytes_each": 741086,
+      "copies": 2,
+      "redundant_bytes": 741086,
+      "paths": [
+       "Contents/Resources/managed-node/darwin-arm64/CHANGELOG.md",
+       "Contents/Resources/managed-node/darwin-x64/CHANGELOG.md"
+      ]
+     },
+     {
+      "sha256": "abd6f0e7b4e2af310243e202fd908ea64cda545786222f0a3d3f62426e8ad66e",
+      "bytes_each": 530014,
+      "copies": 2,
+      "redundant_bytes": 530014,
+      "paths": [
+       "Contents/Resources/managed-node/darwin-arm64/lib/node_modules/corepack/dist/lib/corepack.cjs",
+       "Contents/Resources/managed-node/darwin-x64/lib/node_modules/corepack/dist/lib/corepack.cjs"
+      ]
+     },
+     {
+      "sha256": "d51cb3f619888a0485ba46ad886f76ac605ce78a3cfbc080460947ab2dbb3a02",
+      "bytes_each": 289525,
+      "copies": 2,
+      "redundant_bytes": 289525,
+      "paths": [
+       "Contents/Resources/managed-node/darwin-arm64/include/node/openssl/obj_mac.h",
+       "Contents/Resources/managed-node/darwin-x64/include/node/openssl/obj_mac.h"
+      ]
+     }
+    ]
+   }
+  },
+  "onnxruntime_node_by_platform_bytes": {
+   "darwin/arm64": 32080989,
+   "darwin/x64": 35852560,
+   "linux/arm64": 35285480,
+   "linux/x64": 44191568,
+   "win32/arm64": 361520,
+   "win32/x64": 280632
+  },
+  "electron_framework_locale_paks": {
+   "dirs": 220,
+   "bytes": 48655461
+  },
+  "measured_mount": "/private/tmp/claude-501/m196 (hdiutil attach -nobrowse -readonly -noautoopen), detached afterwards (\"disk4\" ejected; `mount` and `hdiutil info` show no remaining image)"
+ },
+ "windows_payload": {
+  "components_uncompressed": [
+   {
+    "group": "Parakeet ASR",
+    "files": 8,
+    "uncompressed_bytes": 671239000
+   },
+   {
+    "group": "Qwen model.gguf",
+    "files": 1,
+    "uncompressed_bytes": 558772480
+   },
+   {
+    "group": "Electron runtime root files (Metis.exe, dlls, paks)",
+    "files": 73,
+    "uncompressed_bytes": 377750233
+   },
+   {
+    "group": "app.asar.unpacked",
+    "files": 108,
+    "uncompressed_bytes": 259684323
+   },
+   {
+    "group": "app.asar",
+    "files": 1,
+    "uncompressed_bytes": 219063678
+   },
+   {
+    "group": "Qwen mmproj.gguf",
+    "files": 1,
+    "uncompressed_bytes": 204987232
+   },
+   {
+    "group": "llama (win)",
+    "files": 63,
+    "uncompressed_bytes": 138151746
+   },
+   {
+    "group": "models (whisper-base+speaker)",
+    "files": 12,
+    "uncompressed_bytes": 110860192
+   },
+   {
+    "group": "managed-node",
+    "files": 15,
+    "uncompressed_bytes": 93852935
+   },
+   {
+    "group": "resources other",
+    "files": 21,
+    "uncompressed_bytes": 27189326
+   },
+   {
+    "group": "ort wasm",
+    "files": 2,
+    "uncompressed_bytes": 21640503
+   },
+   {
+    "group": "ffmpeg",
+    "files": 3,
+    "uncompressed_bytes": 16545835
+   },
+   {
+    "group": "intelligence",
+    "files": 9,
+    "uncompressed_bytes": 1343038
+   },
+   {
+    "group": "local-llm other",
+    "files": 1,
+    "uncompressed_bytes": 11344
+   }
+  ],
+  "waterfall_7z_packed": [
+   {
+    "group": "Parakeet ASR",
+    "files": 8,
+    "uncompressed_bytes": 671239000,
+    "packed_7z_bytes": 461490166
+   },
+   {
+    "group": "Qwen model.gguf",
+    "files": 1,
+    "uncompressed_bytes": 558772480,
+    "packed_7z_bytes": 545215719
+   },
+   {
+    "group": "Qwen mmproj.gguf",
+    "files": 1,
+    "uncompressed_bytes": 204987232,
+    "packed_7z_bytes": 146333887
+   },
+   {
+    "group": "local-llm license",
+    "files": 1,
+    "uncompressed_bytes": 11344,
+    "packed_7z_bytes": 3833
+   },
+   {
+    "group": "app.asar",
+    "files": 1,
+    "uncompressed_bytes": 219063678,
+    "packed_7z_bytes": 34983760
+   },
+   {
+    "group": "app.asar.unpacked",
+    "files": 108,
+    "uncompressed_bytes": 259684323,
+    "packed_7z_bytes": 64245358
+   },
+   {
+    "group": "models (whisper-base+speaker)",
+    "files": 12,
+    "uncompressed_bytes": 110860192,
+    "packed_7z_bytes": 75654747
+   },
+   {
+    "group": "llama win cpu",
+    "files": 31,
+    "uncompressed_bytes": 44784033,
+    "packed_7z_bytes": 13550116
+   },
+   {
+    "group": "llama win vulkan",
+    "files": 32,
+    "uncompressed_bytes": 93367713,
+    "packed_7z_bytes": 18944586
+   },
+   {
+    "group": "ffmpeg",
+    "files": 3,
+    "uncompressed_bytes": 16545835,
+    "packed_7z_bytes": 5620486
+   },
+   {
+    "group": "managed-node win-x64",
+    "files": 15,
+    "uncompressed_bytes": 93852935,
+    "packed_7z_bytes": 23524523
+   },
+   {
+    "group": "vcredist",
+    "files": 2,
+    "uncompressed_bytes": 25636149,
+    "packed_7z_bytes": 24762167
+   },
+   {
+    "group": "ort wasm",
+    "files": 2,
+    "uncompressed_bytes": 21640503,
+    "packed_7z_bytes": 3105429
+   },
+   {
+    "group": "intelligence",
+    "files": 9,
+    "uncompressed_bytes": 1343038,
+    "packed_7z_bytes": 293604
+   },
+   {
+    "group": "resources other",
+    "files": 19,
+    "uncompressed_bytes": 1553177,
+    "packed_7z_bytes": 1464742
+   },
+   {
+    "group": "Electron runtime (root: Metis.exe, DLLs, paks, locales, licenses)",
+    "files": 73,
+    "uncompressed_bytes": 377750233,
+    "packed_7z_bytes": 103579612
+   }
+  ],
+  "packed_total": 1522772735,
+  "top25_files": [
+   {
+    "path": "resources/asr/sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8/encoder.int8.onnx",
+    "uncompressed_bytes": 652184281
+   },
+   {
+    "path": "resources/local-llm/models/qwen3.5-0.8b/model.gguf",
+    "uncompressed_bytes": 558772480
+   },
+   {
+    "path": "Metis.exe",
+    "uncompressed_bytes": 239118336
+   },
+   {
+    "path": "resources/app.asar",
+    "uncompressed_bytes": 219063678
+   },
+   {
+    "path": "resources/local-llm/models/qwen3.5-0.8b/mmproj.gguf",
+    "uncompressed_bytes": 204987232
+   },
+   {
+    "path": "resources/managed-node/win-x64/node.exe",
+    "uncompressed_bytes": 93580104
+   },
+   {
+    "path": "resources/models/Xenova/whisper-base/onnx/decoder_model_merged_quantized.onnx",
+    "uncompressed_bytes": 53707539
+   },
+   {
+    "path": "resources/llama/win/vulkan/ggml-vulkan.dll",
+    "uncompressed_bytes": 48583680
+   },
+   {
+    "path": "resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/darwin/x64/libonnxruntime.1.21.0.dylib",
+    "uncompressed_bytes": 35619040
+   },
+   {
+    "path": "resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/darwin/arm64/libonnxruntime.1.21.0.dylib",
+    "uncompressed_bytes": 31847304
+   },
+   {
+    "path": "resources/models/speaker/embedding.onnx",
+    "uncompressed_bytes": 29596978
+   },
+   {
+    "path": "resources/vcredist/vc_redist.x64.exe",
+    "uncompressed_bytes": 25635768
+   },
+   {
+    "path": "dxcompiler.dll",
+    "uncompressed_bytes": 25610752
+   },
+   {
+    "path": "resources/models/Xenova/whisper-base/onnx/encoder_model_quantized.onnx",
+    "uncompressed_bytes": 23200850
+   },
+   {
+    "path": "resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/x64/libonnxruntime.so.1",
+    "uncompressed_bytes": 21914784
+   },
+   {
+    "path": "resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/x64/libonnxruntime.so.1.21.0",
+    "uncompressed_bytes": 21914784
+   },
+   {
+    "path": "resources/ort/ort-wasm-simd-threaded.jsep.wasm",
+    "uncompressed_bytes": 21596019
+   },
+   {
+    "path": "LICENSES.chromium.html",
+    "uncompressed_bytes": 20313960
+   },
+   {
+    "path": "resources/app.asar.unpacked/node_modules/@img/sharp-win32-x64/lib/libvips-42.dll",
+    "uncompressed_bytes": 18614784
+   },
+   {
+    "path": "resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/win32/x64/DirectML.dll",
+    "uncompressed_bytes": 18527776
+   },
+   {
+    "path": "resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/win32/arm64/DirectML.dll",
+    "uncompressed_bytes": 18444832
+   },
+   {
+    "path": "resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/arm64/libonnxruntime.so.1",
+    "uncompressed_bytes": 17446360
+   },
+   {
+    "path": "resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/linux/arm64/libonnxruntime.so.1.21.0",
+    "uncompressed_bytes": 17446360
+   },
+   {
+    "path": "resources/app.asar.unpacked/node_modules/onnxruntime-node/bin/napi-v3/win32/arm64/onnxruntime.dll",
+    "uncompressed_bytes": 16823296
+   },
+   {
+    "path": "resources/ffmpeg/win32-x64/ffmpeg.exe",
+    "uncompressed_bytes": 16517632
+   }
+  ],
+  "app_asar_unpacked_packages": [
+   {
+    "package": "onnxruntime-node",
+    "bytes": 217907573
+   },
+   {
+    "package": "sherpa-onnx-win-x64",
+    "bytes": 21600820
+   },
+   {
+    "package": "@img/sharp-win32-x64",
+    "bytes": 19402475
+   },
+   {
+    "package": "sharp",
+    "bytes": 665346
+   },
+   {
+    "package": "sherpa-onnx-node",
+    "bytes": 57441
+   },
+   {
+    "package": "@img/colour",
+    "bytes": 50668
+   }
+  ],
+  "llama": {
+   "resources/llama/win/cpu": 44784033,
+   "resources/llama/win/vulkan": 93367713
+  },
+  "duplicates_size_crc32": {
+   "redundant_bytes": 84145112,
+   "by_area": {
+    "resources/app.asar.unpacked/node_modules": 39361144,
+    "resources/llama/win": 44783968
+   }
+  },
+  "onnxruntime_node_non_win32_x64_bytes": 183040245,
+  "label": "VERIFIED from 7z listings; per-file packed sizes valid because the archive is non-solid (Solid = -, 318 blocks)"
+ },
+ "historical_inventory_reconciliation": {
+  "master_declared_bytes": 1567510751,
+  "runtime_manifest_declared_bytes": 803739695,
+  "runtime_manifest_assets": 22,
+  "runtime_manifest_assets_hash_matched_in_zip": 22,
+  "local_model_bytes_measured": 763771056,
+  "qwen_sha256": {
+   "model.gguf": "3177ebd67afe4438374da19e690bc1b98756f7e0fea9240e1be404336156a7b5",
+   "mmproj.gguf": "56e4c6cfe73b0c82e3e82bc518d7591997e61d81f723fc41a586f4fa69ea2453"
+  },
+  "share_of_mac_unpacked": 0.4912,
+  "share_of_mac_zip_compressed": 0.6935,
+  "mac_zip_compressed_bytes_of_declared_set": 1263368672,
+  "share_of_win_7z_packed": 0.8089,
+  "win_7z_packed_bytes_of_declared_set": 1231803781,
+  "note": "The 1.57 GB number stays a source-inventory figure. This section only shows those exact assets inside the measured 1.9.6 artifacts."
+ },
+ "startup_resource_baseline": {
+  "status": "NOT_RUN",
+  "documented_isolation_flag": {
+   "name": "ASKTOTO_USERDATA",
+   "evidence": "VERIFIED src/main/index.ts:889-891 (app.setPath(\"userData\", process.env.ASKTOTO_USERDATA) before any service resolves a path); used by scripts/check-packaged-launch.mjs:59-67 (mac gate) and :202-203 (win gate)"
+  },
+  "reasons": [
+   "VERIFIED: a real Metis install exists on this host: /Applications/Metis.app CFBundleIdentifier com.mantu.asktoto, version 1.8.9 (PlistBuddy). The 1.9.6 DMG copy has the same CFBundleIdentifier com.mantu.asktoto (Info.plist). ASKTOTO_USERDATA relocates only the Electron userData directory; bundle-id-keyed state (TCC grants, login-item registration, NSUserDefaults domain, Keychain \"Metis Safe Storage\" item) is shared with the real install. ASSUMED: this sharing follows standard macOS semantics; not tested here on purpose.",
+   "VERIFIED: the main-process diagnostic log is not relocated. src/main/logger.ts:15-22 overrides electron-log's path only when process.type !== \"browser\"; scripts/check-packaged-launch.mjs:21 states the audit log lives under the isolated userData override \"unlike electron-log's macOS main.log\". A launch would append to the real app's main.log (ASSUMED location: electron-log default ~/Library/Logs/Metis/main.log; not read).",
+   "VERIFIED: every boot reconciles the OS login item: src/main/index.ts:8899-8906 calls app.setLoginItemSettings({openAtLogin: want}) when app.getLoginItemSettings().openAtLogin !== want, and a fresh profile defaults launchAtLogin to false (src/shared/ipc.ts:1097, :1680). ASSUMED: on macOS 13+ the login-item status is bundle-scoped, so a throwaway-profile launch could unregister the real app's login item.",
+   "Lane rule: \"only if it can be measured without touching Tony's real profile\". The flag isolates userData but not the items above, so that condition is not met."
+  ],
+  "command_that_would_run_it": "# On a dedicated macOS QA user account or VM with NO other com.mantu.asktoto install:\nhdiutil attach -nobrowse -readonly -noautoopen -mountpoint /tmp/m196 Metis-1.9.6.dmg\nP=$(mktemp -d /tmp/metis-qa.XXXXXX)\nT0=$(python3 -c \"import time;print(time.time())\")\nASKTOTO_USERDATA=\"$P\" /tmp/m196/Metis.app/Contents/MacOS/Metis & APP=$!\n# renderer-ready = first \"app.renderer.ready\" line in \"$P/logs/audit.log\" (same signal as scripts/check-packaged-launch.mjs:87)\nfor i in $(seq 1 120); do date +%s.%N; ps -axo pid,ppid,rss,vsz,pcpu,comm | awk -v r=$APP '$1==r||$2==r'; sleep 1; done > \"$P/proc-tree.txt\"\nkill $APP; hdiutil detach /tmp/m196\n# Repeat under Rosetta for the x64 slice: arch -x86_64 /tmp/m196/Metis.app/Contents/MacOS/Metis",
+  "repo_gate_alternative": "ASKTOTO_MAC_LAUNCH_GATE=1 node scripts/check-packaged-launch.mjs /tmp/m196/Metis.app (renderer-ready and 3 s survival only; records no memory or CPU)"
+ },
+ "capture_baseline": {
+  "status": "NOT_RUN",
+  "reason": "Real capture needs OS permission prompts: macOS Microphone and Screen & System Audio Recording TCC grants (Windows: the microphone privacy setting). These grants are keyed to com.mantu.asktoto, which the real 1.8.9 install shares. No automated capture or stream latency harness exists in source. VERIFIED: scripts/ contains bench-asr-ttfc.mjs, which is scheduling-only with a stub 400 ms decode (its own header says so), and docs/asr/QUALITY.md:32 says decode time \"must also be measured on the actual packaged engine\".",
+  "configured_not_measured": {
+   "pcm_rate_hz": "16000 (listen.ts:30 SR; whisper-worklet-src.ts:26)",
+   "first_partial_ms": "1200 (src/shared/asr-latency.ts:10)",
+   "max_window_ms": "6000 (listen.ts:66 WINDOW_SEC; asr-latency.ts:14; worklet MAX_SAMPLES)",
+   "native_app_mic_tap_buffer_frames": "4096 (native-app/App/AudioCapture.swift:29)",
+   "label": "CONFIGURED constants from source. These are not latency measurements."
+  },
+  "paths": [
+   {
+    "id": "electron-mic",
+    "what": "Microphone (\"you\" channel)",
+    "platforms": "macOS, Windows",
+    "mechanism": "renderer navigator.mediaDevices.getUserMedia({audio:{channelCount:1, echoCancellation:true, noiseSuppression:true}}) with optional exact deviceId -> AudioContext(16 kHz) -> AudioWorklet \"whisper-worklet\" (VAD, 1.2 s first partial, 6 s cap) -> IPC to main-process ASR (Parakeet/sherpa-onnx or Whisper/transformers)",
+    "anchors": "src/renderer/src/lib/listen.ts:677-686, :1761-1790; src/renderer/src/lib/whisper-worklet-src.ts:26-28",
+    "permission": "macOS: TCC Microphone; Info.plist NSMicrophoneUsageDescription present; entitlement com.apple.security.device.audio-input present (codesign); main prompts via systemPreferences.askForMediaAccess(\"microphone\") (src/main/index.ts:4722). Windows: OS microphone privacy setting; no main-process prompt API (index.ts:4733 comment)."
+   },
+   {
+    "id": "electron-system-audio",
+    "what": "System audio loopback (\"them\" channel)",
+    "platforms": "macOS, Windows",
+    "mechanism": "renderer getDisplayMedia with echoCancellation/noiseSuppression/autoGainControl all false (listen.ts:717-721, :741-750); main session.setDisplayMediaRequestHandler grants {audio:\"loopback\"} only while Listen is armed, from the main frame, to an expected origin (src/main/index.ts:986, :9013-9040, :9077-9099). macOS binds loopback to a 1 fps ScreenCaptureKit screen stream (video track dropped); Windows tries audio-only first, then 1 fps video.",
+    "anchors": "src/renderer/src/lib/listen.ts:700-752; src/main/index.ts:9013-9110",
+    "permission": "macOS: TCC Screen & System Audio Recording (NSScreenCaptureUsageDescription and NSAudioCaptureUsageDescription present in Info.plist). Windows: no queryable permission (src/main/platform-perms.ts:21-29, :87-90)."
+   },
+   {
+    "id": "electron-screen",
+    "what": "Screen capture (screenshots/visual asks, permission probe)",
+    "platforms": "macOS, Windows",
+    "mechanism": "main desktopCapturer.getSources({types:[\"screen\"], thumbnailSize}) with retry on empty/blank sources; 1 px probe registers the app with TCC",
+    "anchors": "src/main/index.ts:3606-3614, :4710; src/main/screen-capture.ts; src/main/platform-perms.ts:50-66",
+    "permission": "macOS: TCC Screen Recording (status via systemPreferences.getMediaAccessStatus(\"screen\"), platform-perms.ts:69-100). Windows: none queryable; probe result only."
+   },
+   {
+    "id": "mac-helper",
+    "what": "metis-mac-helper Swift sidecar (universal x86_64+arm64, 282,888 B)",
+    "platforms": "macOS",
+    "mechanism": "modes watch-frontmost (NSWorkspace), ocr (Vision VNRecognizeTextRequest over a supplied image), transcribe <wav> [locale] (SFSpeechRecognizer on-device, one-shot over a file), screen-metrics",
+    "anchors": "native/mac-helper/main.swift:13-23, :139-167, :290-305",
+    "permission": "Speech Recognition TCC for transcribe (embedded NSSpeechRecognitionUsageDescription found in binary strings). It captures no audio or screen itself; it consumes files/images produced elsewhere."
+   },
+   {
+    "id": "native-app-mic",
+    "what": "Native SwiftUI Mac app microphone path",
+    "platforms": "macOS 26+, SpeechAnalyzer",
+    "mechanism": "AVAudioEngine input-node tap (bufferSize 4096) -> AnalyzerInput -> SpeechAnalyzer + SpeechTranscriber. System audio via SCStream is a TODO, not implemented (AudioCapture.swift:44).",
+    "anchors": "native-app/App/AudioCapture.swift:9-44; native-app/MetisKit/Sources/MetisKit/SpeechTranscription.swift:5-39; native-app/App/Permissions/PermissionsService.swift:26-60; native-app/project.yml:54,58",
+    "permission": "AVCaptureDevice.requestAccess(.audio), SFSpeechRecognizer.requestAuthorization, CGRequestScreenCaptureAccess. Not part of the measured Electron artifact; no native-app build was measured."
+   },
+   {
+    "id": "import-decode",
+    "what": "Recorded-file import (not live capture)",
+    "platforms": "macOS, Windows",
+    "mechanism": "bundled LGPL ffmpeg 7.1.1 sidecar decodes files for Whisper/Parakeet import (Resources/ffmpeg/manifest.json)",
+    "anchors": "electron-builder.yml:121-122; scripts/check-packaged-asr.mjs (Windows import gate)",
+    "permission": "none (user-picked file)"
+   }
+  ],
+  "command_that_would_run_it": "# Dedicated QA macOS account/VM (fresh TCC), pinned reference clip played through the speakers:\nhdiutil attach -nobrowse -readonly -noautoopen -mountpoint /tmp/m196 Metis-1.9.6.dmg\nP=$(mktemp -d /tmp/metis-cap.XXXXXX); ASKTOTO_USERDATA=\"$P\" ASKTOTO_DEBUG=1 /tmp/m196/Metis.app/Contents/MacOS/Metis\n# then: start Listen, grant Microphone + Screen & System Audio Recording, play the clip, stop; derive speech-onset -> first caption from audit/transcript timestamps.\n# A timestamped capture->caption harness does not exist yet; it must be written (see docs/asr/QUALITY.md:32)."
+ },
+ "device_inventory": {
+  "macOS_artifact": {
+   "architectures": "universal: Contents/MacOS/Metis, Electron Framework, helpers and metis-mac-helper are fat x86_64+arm64 (lipo -archs); llama-server, ffmpeg, managed-node, sherpa-onnx, sharp and onnxruntime-node ship as separate per-arch trees",
+   "min_os": "LSMinimumSystemVersion 12.0 (Info.plist)",
+   "electron": "43.6.0 (Electron Framework CFBundleVersion)",
+   "accelerator_libraries_present": "llama mac/arm64: libggml-metal + libggml-blas + libggml-cpu; mac/x64: libggml-blas + libggml-cpu (no Metal backend file)",
+   "signing": "ad-hoc (Signature=adhoc, flags adhoc,runtime on the app); metis-mac-helper ad-hoc linker-signed without the hardened-runtime flag (flags 0x20002); not notarized",
+   "entitlements": [
+    "com.apple.security.cs.allow-jit",
+    "com.apple.security.cs.allow-unsigned-executable-memory",
+    "com.apple.security.cs.disable-library-validation",
+    "com.apple.security.device.audio-input",
+    "com.apple.security.network.client"
+   ],
+   "label": "VERIFIED (file facts from the mounted DMG). Accelerator files present != accelerator used at runtime (UNKNOWN)."
+  },
+  "windows_artifact": {
+   "architectures": "x64 only (Metis.exe PE32+ machine 0x8664; NSIS app-64.7z). onnxruntime-node also carries win32/arm64, darwin and linux binaries that an x64 install cannot use",
+   "accelerator_libraries_present": "llama win/vulkan (ggml-vulkan.dll 48,583,680 B) and win/cpu variants, each with 14 per-microarchitecture ggml-cpu-*.dll; onnxruntime-node win32/x64 DirectML.dll 18,527,776 B; root d3dcompiler_47/dxcompiler/dxil/vk_swiftshader/vulkan-1",
+   "bundled_redistributables": "resources/vcredist/vc_redist.x64.exe 25,635,768 B; resources/elevate.exe 107,520 B",
+   "signing": "no Authenticode signature (per NOTES.md; not re-verified here, no Windows host)",
+   "label": "VERIFIED from the 7z listing and a 4 KB PE header read (7z e -so ... Metis.exe | head -c 4096)."
+  },
+  "windows_devices": "NOT_AVAILABLE: no Windows host or device inventory is reachable from this session. Supported Windows device classes, GPUs, drivers and NPUs remain unmeasured.",
+  "languages": "UNKNOWN as a measured property. Bundled ASR models: Parakeet TDT 0.6b v3 int8 (sherpa-onnx) and Xenova/whisper-base (quantized). The Parakeet folder ships de/en/es/fr test WAVs. Language coverage beyond that is a model-card claim, not a measurement, so it is not recorded here."
+ },
+ "findings": [
+  {
+   "id": "T4-F01",
+   "kind": "size-gate",
+   "evidence": "VERIFIED",
+   "text": "DMG 1.7016 GiB and ZIP 1.7009 GiB are just over scripts/check-release.mjs:33 WARN threshold (1.7 GiB = 1,825,361,100 B) and 213,046,973 B below the 1.9 GiB FAIL gate (check-release.mjs:32). Windows Setup 1.4277 GiB and Portable 1.4187 GiB are below WARN."
+  },
+  {
+   "id": "T4-F02",
+   "kind": "inventory-reconciliation",
+   "evidence": "VERIFIED",
+   "text": "The historical declared inventory (MASTER 2.1/14.1: 1,567,510,751 B = runtime manifest 803,739,695 + local model 763,771,056) is present exactly once in the measured 1.9.6 mac bundle and in the Windows payload. All 22 runtime-manifest assets match bytes and sha256 inside the zip, and both Qwen files match the pins in scripts/local-model-assets.mjs:25,32. It makes up 49.1% of mac unpacked bytes, 69.3% of mac zip-compressed bytes (1,263,368,672 of 1,821,739,458) and 80.9% of Windows 7z packed bytes (1,231,803,781 of 1,522,772,735). The 1.57 GB figure is still a source-inventory number, not an installed-size test; the installed sizes in this report come from the actual 1.9.6 artifacts."
+  },
+  {
+   "id": "T4-F03",
+   "kind": "architecture-overhead (HC-03)",
+   "evidence": "VERIFIED",
+   "text": "Universal mac bundle: 622,096,548 B (19.5% of unpacked) is x64-only payload that an Apple-silicon install never uses (binaries plus per-arch copies of arch-neutral files such as Node headers and npm). That is 391,932,884 B of x64-only trees plus 230,163,664 B of x86_64 slices in fat binaries. The Intel-idle arm64 counterpart is 612,921,051 B. Both Mac architectures are packaged, the pattern HC-03 flags."
+  },
+  {
+   "id": "T4-F04",
+   "kind": "bundled-execution-payload (HC-03)",
+   "evidence": "VERIFIED",
+   "text": "managed-node ships two full Node.js 24.21.0 distributions (darwin-arm64 + darwin-x64) at 396,933,701 B, including npm/corepack and 121,949,031 B of C/OpenSSL headers under include/ (for every OpenSSL target arch). Windows ships one win-x64 node.exe tree at 93,852,935 B. Purpose per electron-builder.yml comments: the managed Dust CLI/keytar."
+  },
+  {
+   "id": "T4-F05",
+   "kind": "duplication",
+   "evidence": "VERIFIED",
+   "text": "Exact duplicate file content (sha256, all sizes) inside Metis.app: 292,988,007 B redundant across 2,370 groups. Inside app.asar, the 21,596,019 B ORT jsep wasm (sha256 c46655e8a94a...) appears 3 times (out/renderer/assets, onnxruntime-web/dist, @huggingface/transformers/dist), plus a 4th copy at Resources/ort: 64,788,057 B redundant. app.asar also carries 52,427,372 B in 3,360 .map files from node_modules. Windows payload: 84,145,112 B redundant by size+CRC32 (llama cpu/vulkan share 44,783,968 B; onnxruntime-node linux .so pairs 39,361,144 B)."
+  },
+  {
+   "id": "T4-F06",
+   "kind": "packaging-config",
+   "evidence": "VERIFIED (mac) / ASSUMED (win)",
+   "text": "electron-builder.yml:57 excludes out/renderer/assets/ort-wasm-*.wasm only in the top-level files list. The mac.files override (electron-builder.yml:147-160) and electron-builder.win.yml files (:11-31) replace that list and do not repeat the exclusion, so the Vite wasm copy ships in the mac asar (VERIFIED from the asar header). ASSUMED the same for Windows: the Windows asar header was not parsed, although it is 668,362 B larger than the mac one."
+  },
+  {
+   "id": "T4-F07",
+   "kind": "foreign-platform binaries",
+   "evidence": "VERIFIED",
+   "text": "onnxruntime-node ships binaries for platforms the artifact cannot run: 80,119,200 B of linux/win32 on mac, and 183,040,245 B of darwin/linux/win32-arm64 on Windows x64."
+  },
+  {
+   "id": "T4-F08",
+   "kind": "artifact-content",
+   "evidence": "VERIFIED listing / UNKNOWN runtime effect",
+   "text": "Metis-Setup carries resources/app.asar.unpacked/out/renderer/assets/onboarding-hero-lady-planet-CpyqQ-62.mp4 (9,360,049 B) as a separate NSIS entry outside app-64.7z. Metis-Portable has no .mp4 entry: its 7z payload lists identical paths, sizes and CRCs to Setup, and its NSIS byte accounting leaves about 5 KB unexplained. So the Portable build appears to lack the onboarding hero video. Runtime effect UNKNOWN (not launched)."
+  },
+  {
+   "id": "T4-F09",
+   "kind": "bundle-hygiene",
+   "evidence": "VERIFIED",
+   "text": "The mac bundle ships Electron's default_app.asar (111,073 B), Parakeet test_wavs (760,228 B), and llama tool implementation libraries (libllama-{cli,bench,batched-bench,perplexity,quantize,completion,fit-params}-impl) next to llama-server. Whether llama-server needs the tool libs is ASSUMED no, and is unverified."
+  },
+  {
+   "id": "T4-F10",
+   "kind": "permission-strings (SRC-16)",
+   "evidence": "VERIFIED",
+   "text": "Info.plist permission strings describe on-device processing: NSMicrophoneUsageDescription \"Métis transcribes audio on-device to give you live AI suggestions.\"; NSSpeechRecognitionUsageDescription \"...on-device using Apple Speech...\"; NSScreenCaptureUsageDescription and NSAudioCaptureUsageDescription are present. NSCameraUsageDescription is a generic \"This app needs access to the camera\". A cloud-first profile has to change these together with packaging (SRC-16)."
+  }
+ ],
+ "unmeasured": [
+  "Installed size on APFS after a real copy: NOT_RUN (the permission system denied the ditto copy-to-scratch step). Installed size is given as bundle apparent bytes plus HFS+ allocation on the DMG volume.",
+  "Windows installed size on NTFS, NSIS temp usage, Portable per-launch extraction: NOT_AVAILABLE (no Windows host). Temporary figures are DERIVED/ASSUMED from listings.",
+  "Startup time, process-tree RSS/CPU, idle and steady-state resource use (both mac slices, Windows): NOT_RUN (see startup_resource_baseline).",
+  "Capture/stream latency (speech onset to first caption, loopback gaps, reconnect): NOT_RUN (see capture_baseline).",
+  "First-value time (install to first useful typed/voice result): NOT_RUN.",
+  "Native SwiftUI Mac app size and capture: NOT_AVAILABLE (no native-app artifact was built or supplied).",
+  "Accelerator use at runtime (Metal/Vulkan/DirectML/CPU fallback), GPU/NPU memory, thermals, battery: NOT_RUN.",
+  "Language coverage as a measured property: UNKNOWN.",
+  "Windows device/driver inventory: NOT_AVAILABLE.",
+  "Download/transfer timing and delta-update (blockmap) efficiency: NOT_RUN."
+ ],
+ "safety": {
+  "dmg_detached": true,
+  "real_profile_touched": false,
+  "notes": "Never read ~/Library/Application Support or ~/Library/Logs of the real app. /Applications/Metis.app was read only for CFBundleIdentifier/CFBundleShortVersionString. No app was launched. No remote writes; gh calls were GET only."
+ }
+}
