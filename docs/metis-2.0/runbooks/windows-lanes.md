@@ -35,15 +35,17 @@ No repository tests, scripts, app launches, or workflow dispatches were run for 
 | S16 | GitHub Docs, "Choosing the runner for a job", lines 78-90 and 97-107, retrieved 2026-09-27: https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job | 2026-09-27 | OBSERVED: each GitHub-hosted job gets a fresh runner image; private-repo `windows-latest` is a standard x64 VM with 2 CPU, 8 GB RAM, 14 GB SSD; GPU-powered machines are a separate larger-runner offering. |
 | S17 | GitHub Docs, "Larger runners reference", lines 60-64, retrieved 2026-09-27: https://docs.github.com/en/actions/reference/runners/larger-runners | 2026-09-27 | OBSERVED: GPU larger runners are a distinct runner class, with GPU listed only under larger-runner specifications. |
 | S18 | `docs/metis-2.0/evidence/records/M2-0196-readonly-source-checks.md:7-21` | 2026-09-27 | OBSERVED: `windows-qa.yml` is not present on `origin/m2/integration`, so no checked-in capability-dispatch workflow output exists in this worktree. Artifact sha256: `1d1fea98a42df2c7d56ca3071be59691e49af971b652b9c6c7131d13c19975c1`. |
-| S19 | `docs/metis-2.0/evidence/records/M2-0196-tsc-checks.md:1-58` | 2026-09-27 | OBSERVED: `tsconfig.node.json` and `tsconfig.web.json` compile with exit code 0; `tsconfig.tests.json` exits 2 with existing test-type diagnostics, so the three-compiler-check bar is not met. Artifact sha256: `367dfc8149f4ab425114d13748c6959a9727f99117c218b3306753e4dfd9186a`. |
+| S19 | `docs/metis-2.0/evidence/records/M2-0196-tsc-checks.md:1-58` | 2026-09-27 | OBSERVED: direct `tsc --noEmit` passes for `tsconfig.node.json` and `tsconfig.web.json`; direct `tsc --noEmit -p tsconfig.tests.json` exits 2 with known test-type diagnostics. Artifact sha256: `367dfc8149f4ab425114d13748c6959a9727f99117c218b3306753e4dfd9186a`. |
+| S20 | Public code ref `origin/m2/integration:scripts/check-test-types.mjs:50-94`, read with `git show origin/m2/integration:scripts/check-test-types.mjs` on 2026-09-27 | 2026-09-27 | OBSERVED: the test-type bar is the ratchet script's baseline comparison, not a raw zero-error `tsconfig.tests.json` compile; it exits 0 only when the count equals `BASELINE = 24`. The script itself was not run in this worktree under D-28. |
+| S21 | `docs/metis-2.0/evidence/records/M2-0196-capabilities-dispatch-attempt.md:1-48` | 2026-09-27 | OBSERVED: the owner-approved `gh workflow run windows-qa.yml --ref main -f probe=capabilities` command exited 1 here with `error connecting to api.github.com`; read-only source checks also found no `windows-qa.yml` at `origin/m2/integration` or `origin/main`. Artifact sha256: `49fafd6408c3b23d760217c4f78dd8d78c1930904330eaea7b60825338b7e284`. |
 
 ## Capability Probe Status
 
 | Probe | Status | Exact current output / blocker |
 |---|---|---|
-| Source check: scoped runbook | OBSERVED | `nl -ba docs/metis-2.0/runbooks/windows-lanes.md` initially returned `No such file or directory`; this file is the scoped deliverable. |
-| Source check: `windows-qa.yml` on `origin/m2/integration` | OBSERVED | S18 records the read-only output: `fatal: path '.github/workflows/windows-qa.yml' does not exist in 'origin/m2/integration'`; the existing Windows install/launch evidence is in `qa-candidate.yml` and `packaged-smoke.yml` (S5, S6). |
-| Owner-approved live capabilities dispatch | BLOCKED_EXTERNAL | Required output is absent. Exact owner step: `gh workflow run windows-qa.yml --ref main -f probe=capabilities`, after `windows-qa.yml` exists on main. Read-only reviewer step after owner dispatch: `gh run view <run-id> --repo mysticalsin/AskToto-Mantu --log` and attach redacted capability output under `docs/metis-2.0/evidence/records/`. |
+| Source check: scoped runbook | OBSERVED | This checked-in runbook is the scoped deliverable: `docs/metis-2.0/runbooks/windows-lanes.md`. |
+| Source check: `windows-qa.yml` on public refs | OBSERVED | S18 records the read-only `origin/m2/integration` absence; S21 records the read-only `origin/main` absence. Existing Windows install/launch evidence is in `qa-candidate.yml` and `packaged-smoke.yml` (S5, S6). |
+| Owner-approved live capabilities dispatch | BLOCKED_EXTERNAL | S21 records the exact owner-approved dispatch attempt: `gh workflow run windows-qa.yml --ref main -f probe=capabilities` exited 1 because GitHub was unreachable from this environment. Required per-gate probe output remains absent. Exact reviewer step after a successful dispatch: `gh run view <run-id> --repo mysticalsin/AskToto-Mantu --log` and attach redacted capability output under `docs/metis-2.0/evidence/records/`. |
 | HOST_CONFIGURED record | BLOCKED_EXTERNAL | Required record is absent. Per S14, the record must include non-CI `environment`, `command`, `exit_code`, and `output.path`/`output.sha256` under `docs/metis-2.0/`. Until that record exists, M2-0196 acceptance is not satisfied. |
 
 ## Lane Matrix
@@ -88,10 +90,10 @@ Every `CANNOT` or `PARTIAL` gate in the matrix is assigned to the physical Windo
 - [x] No secrets, personal data, raw paths from reports, or client data are included.
 - [ ] Required owner-approved capability probe output is checked in.
 - [ ] Required HOST_CONFIGURED record is checked in with non-CI environment, command, exit_code, output path, and output sha256.
-- [ ] Three TypeScript compiler checks meet their bars; S19 records that the tests project currently fails.
+- [ ] TypeScript bars are fully proven; S19 records direct compiler output and S20 identifies the test-type ratchet bar, but the ratchet script was not run here under D-28.
 
 ## Verification Notes
 
-- OBSERVED: S19 records the three requested compiler checks from the public code checkout. `tsconfig.node.json` and `tsconfig.web.json` pass; `tsconfig.tests.json` fails, so the compiler stop condition is not met.
-- BLOCKED_EXTERNAL: the ticket's verification command is `gh workflow run windows-qa.yml --ref main -f probe=capabilities`; it needs owner-approved GitHub workflow dispatch and a workflow that is not present on `origin/m2/integration` at the time of this runbook's source check.
+- OBSERVED: S19 records direct TypeScript compiler output from the public code checkout. `tsconfig.node.json` and `tsconfig.web.json` pass. Direct `tsconfig.tests.json` compile exits 2 with known diagnostics; S20 shows the actual bar is the `check-test-types.mjs` ratchet, which was not run here under D-28.
+- BLOCKED_EXTERNAL: the ticket's verification command is `gh workflow run windows-qa.yml --ref main -f probe=capabilities`; S21 records that the dispatch attempt failed before reaching GitHub from this environment, and that `windows-qa.yml` is not present in the local public checkout's `origin/main` or `origin/m2/integration` refs.
 - BLOCKED_EXTERNAL: no `HOST_CONFIGURED` evidence record exists for M2-0196 in `docs/metis-2.0/evidence/records/`; acceptance is not satisfied until that record and the capability probe output are checked in.
