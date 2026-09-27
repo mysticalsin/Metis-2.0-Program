@@ -4,7 +4,7 @@ Every file copied from `metis-v2-review/` into `docs/metis-2.0/review/` was scan
 
 | File | Emails | Secrets | Account IDs | Paths |
 |---|---:|---:|---:|---:|
-| review/DIGEST-code-critic.md | 0 | 0 | 0 | 5 |
+| review/DIGEST-code-critic.md | 0 | 0 | 0 | 4 |
 | review/PUBLIC-READINESS.md | 0 | 0 | 0 | 1 |
 | review/SRC-REVERIFY.md | 0 | 0 | 0 | 3 |
 | review/SYNTHESIS-NOTES.md | 0 | 0 | 0 | 1 |
@@ -32,12 +32,15 @@ Every file copied from `metis-v2-review/` into `docs/metis-2.0/review/` was scan
 | review/lanes/L10-intelligence-native.md | 0 | 0 | 0 | 2 |
 | review/lanes/L11-build-ci-quality.md | 0 | 0 | 0 | 2 |
 | review/lanes/L12-arch-graph.md | 0 | 0 | 0 | 1 |
+| review/plan-inputs/BUG-ROOT-CAUSES.json | 0 | 0 | 0 | 5 |
+| review/plan-inputs/CODE-FINDINGS.json | 0 | 0 | 0 | 15 |
+| review/plan-inputs/COVERAGE-CRITIC.json | 0 | 0 | 0 | 2 |
 | review/prep/FREEZE-HYPOTHESES.md | 0 | 0 | 0 | 1 |
 | review/prep/GITHUB.md | 0 | 0 | 0 | 2 |
 | review/prep/HERMETIC-TESTS.md | 0 | 0 | 0 | 5 |
 | review/prep/KIT-PATCHES.md | 0 | 0 | 0 | 3 |
 | review/prep/UNCOVERED-RENDERER-OPS.md | 0 | 0 | 0 | 1 |
-| **Total** | **1** | **0** | **0** | **72** |
+| **Total** | **1** | **0** | **0** | **93** |
 
 ## Kit copies (`docs/metis-2.0/kit/`)
 
