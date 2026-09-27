@@ -137,6 +137,7 @@ def problems(inventory, fields):
         out.append(f"destinations must be exactly {DESTINATIONS} plus the {DRAWER} drawer, got {dest_ids}")
 
     seen = Counter(k["key"] for k in inventory["keys"])
+    by_key = {k["key"]: k for k in inventory["keys"]}
     bound = {k["key"]: k["control"] for k in inventory["keys"]}
     out += [f"{key}: inventoried {n} times" for key, n in seen.items() if n > 1]
 
@@ -192,9 +193,13 @@ def problems(inventory, fields):
             out.append(f"{key}: ADVANCED needs a control behind a disclosure")
         if cls == "DEPRECATED" and (ctl or k["migration"] == "none"):
             out.append(f"{key}: DEPRECATED needs no control and a migration rule")
-        if cls == "OPERATOR-ONLY" and ctl and ctl["type"] not in READ_ONLY_TYPES and not ctl.get("visible_when"):
-            out.append(f"{key}: OPERATOR-ONLY control {ctl_id} must be read-only or a conditional recovery path")
-        recovery_path = bool(ctl and ctl.get("visible_when"))
+        sheet = k.get("policy_sheet", {})
+        if cls == "DEPRECATED" and k["store"] == "settings" and not (
+                sheet.get("text") and isinstance(sheet.get("show_value"), bool)):
+            out.append(f"{key}: DEPRECATED settings entry needs policy_sheet text and show_value for the policy sheet")
+        recovery_path = bool(ctl and ctl.get("recovery_path"))
+        if cls == "OPERATOR-ONLY" and ctl and ctl["type"] not in READ_ONLY_TYPES and not recovery_path:
+            out.append(f"{key}: OPERATOR-ONLY control {ctl_id} must be read-only or a recovery path")
         if (k["store"] == "settings" and cls in {"OPERATOR-ONLY", "DEPRECATED"} and not recovery_path
                 and k["write"] not in SERVER_AUTHORITATIVE_WRITERS):
             out.append(f"{key}: {cls} settings entry written by {k['write']}; only main, the server or managed "
@@ -215,6 +220,27 @@ def problems(inventory, fields):
             continue
         if not ctl["synonyms"]:
             out.append(f"{ctl['id']}: no search synonyms")
+        if ctl.get("recovery_path") and not ctl.get("visible_when"):
+            out.append(f"{ctl['id']}: a recovery path needs the visible_when condition that opens it")
+        # A settings patch never carries a server-authoritative key, so a control that changes one must name
+        # the main handler it calls: an existing one by its anchor, a missing one by the ticket that adds it.
+        via_main = [key for key in ctl["keys"] if by_key.get(key, {}).get("store") == "settings"
+                    and by_key[key]["write"] in SERVER_AUTHORITATIVE_WRITERS]
+        handlers = ctl.get("handlers", [])
+        if via_main and ctl["type"] not in READ_ONLY_TYPES and not (handlers and all(
+                SOURCE_ANCHOR.fullmatch(h.get("anchor", "")) or h.get("planned_by") for h in handlers)):
+            out.append(f"{ctl['id']}: writes {', '.join(via_main)} through main, so it needs handlers, "
+                       "each with a file:line anchor or planned_by")
+        # An option precondition is a predicate id (`requires`) plus what choosing the option does while it
+        # fails (`unavailable`): open the control that can meet it, or show why the option is unavailable.
+        for option in ctl.get("options", []):
+            if "requires" not in option and "unavailable" not in option:
+                continue
+            unavailable = option.get("unavailable", {})
+            opens, reason = unavailable.get("opens"), unavailable.get("reason")
+            if "requires" not in option or bool(opens) == bool(reason) or (opens and opens not in controls):
+                out.append(f"{ctl['id']}: option {option['value']} needs requires and exactly one unavailable "
+                           "behaviour: opens (a control id) or reason")
         if ctl["destination"] == "privacy" and (ctl.get("disclosure") or groups[("privacy", ctl["group"])].get("disclosure")):
             out.append(f"{ctl['id']}: privacy controls are never behind a disclosure")
     stop = controls.get("voice.stop-capture")

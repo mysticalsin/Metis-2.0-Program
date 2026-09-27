@@ -58,3 +58,43 @@ server-authoritative settings entries (M2-0062): 37
 FAIL cfAiGatewayId: OPERATOR-ONLY settings entry written by renderer; only main, the server or managed configuration may write it
 1 problem(s)
 exit 1
+
+6. privacy.licence without handlers: a control that changes server-authoritative keys and names no main handler.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 6>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
+FAIL privacy.licence: writes operatorLicenseToken, operatorLicenseJti, operatorLicenseLast4, operatorLicenseExpiresAt through main, so it needs handlers, each with a file:line anchor or planned_by
+1 problem(s)
+exit 1
+
+7. licenseServerUrl without policy_sheet: a DEPRECATED key a managed layer can set, with no text for the policy sheet.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 7>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
+FAIL licenseServerUrl: DEPRECATED settings entry needs policy_sheet text and show_value for the policy sheet
+1 problem(s)
+exit 1
+
+8. the Soniox option of Speech processing without unavailable: a precondition with no behaviour while it fails.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 8>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
+FAIL voice.speech-processing: option soniox needs requires and exactly one unavailable behaviour: opens (a control id) or reason
+1 problem(s)
+exit 1
+
+9. Organization sign-in setup without visible_when: a recovery path with no condition that opens it.
+$ python3 docs/metis-2.0/design/settings/check-inventory.py --repo <public repository clone> --inventory <copy 9>
+base 7dab8e8964e9: 115 schema keys, 150 leaf paths; 127 settings entries (1 planned), 12 non-schema entries, 99 controls
+classes: ADVANCED 46, DEPRECATED 14, KEEP 56, MERGE 8, OPERATOR-ONLY 14, PLATFORM-SPECIFIC 1
+controls per destination: general 14, voice 22, knowledge 19, privacy 20, advanced 24
+server-authoritative settings entries (M2-0062): 38
+FAIL advanced.sign-in-setup: a recovery path needs the visible_when condition that opens it
+1 problem(s)
+exit 1

@@ -356,6 +356,12 @@
    "keys": [
     "overlayRightEdgeYByDisplay"
    ],
+   "handlers": [
+    {
+     "name": "reset right-edge position",
+     "planned_by": "M2-0117.2"
+    }
+   ],
    "synonyms": [
     "recenter",
     "position",
@@ -645,7 +651,8 @@
    "options": [
     {
      "value": "cloudflare-nova3",
-     "label": "Cloudflare"
+     "label": "Cloudflare",
+     "visible_when": "cloudflare allowed"
     },
     {
      "value": "local",
@@ -653,13 +660,20 @@
      "maps": {
       "cloudSttProvider": "unconfigured"
      },
-     "requires": "an installed, verified local pack; otherwise choosing it opens Optional local speech"
+     "visible_when": "local allowed",
+     "requires": "verified local pack",
+     "unavailable": {
+      "opens": "voice.local-speech-packs"
+     }
     },
     {
      "value": "soniox",
      "label": "Soniox",
-     "visible_when": "organization allows soniox",
-     "requires": "a Soniox key in force (hasKeys.soniox, set by SONIOX_API_KEY or a key stored before M2-0117.2); otherwise shown as unavailable with the reason"
+     "visible_when": "soniox allowed",
+     "requires": "soniox key in force",
+     "unavailable": {
+      "reason": "No Soniox key is set up on this device."
+     }
     }
    ],
    "destination": "voice",
@@ -1239,6 +1253,12 @@
    "keys": [
     "meetingsFolder"
    ],
+   "handlers": [
+    {
+     "ipc": "IPC.pickFolder",
+     "anchor": "src/main/index.ts:8496"
+    }
+   ],
    "synonyms": [
     "folder",
     "onedrive",
@@ -1261,6 +1281,16 @@
    "help": "Shared folders whose meetings also feed your knowledge, labelled by folder name.",
    "keys": [
     "teamTranscriptFolders"
+   ],
+   "handlers": [
+    {
+     "ipc": "IPC.addTeamTranscriptFolder",
+     "anchor": "src/main/index.ts:8516"
+    },
+    {
+     "ipc": "IPC.removeTeamTranscriptFolder",
+     "anchor": "src/main/index.ts:8531"
+    }
    ],
    "synonyms": [
     "shared folder",
@@ -1770,6 +1800,12 @@
     "operatorLicenseLast4",
     "operatorLicenseExpiresAt"
    ],
+   "handlers": [
+    {
+     "ipc": "IPC.operatorLicenseActivate",
+     "anchor": "src/main/index.ts:5126"
+    }
+   ],
    "synonyms": [
     "license",
     "licence",
@@ -2090,6 +2126,24 @@
    "keys": [
     "mcpConnections",
     "mcpSecrets[<connection>]"
+   ],
+   "handlers": [
+    {
+     "ipc": "IPC.mcpSaveConnection",
+     "anchor": "src/main/index.ts:5769"
+    },
+    {
+     "ipc": "IPC.mcpClickupConnect",
+     "anchor": "src/main/index.ts:5992"
+    },
+    {
+     "ipc": "IPC.mcpPlaneConnect",
+     "anchor": "src/main/index.ts:6045"
+    },
+    {
+     "ipc": "IPC.mcpDisconnect",
+     "anchor": "src/main/index.ts:5825"
+    }
    ],
    "synonyms": [
     "clickup",
@@ -2626,6 +2680,16 @@
     "lastClickedCli",
     "cliNoticeAck"
    ],
+   "handlers": [
+    {
+     "ipc": "IPC.cliTest",
+     "anchor": "src/main/index.ts:5581"
+    },
+    {
+     "name": "CLI disconnect",
+     "planned_by": "M2-0062"
+    }
+   ],
    "synonyms": [
     "claude code",
     "codex",
@@ -2699,7 +2763,7 @@
    "id": "advanced.sign-in-setup",
    "type": "fields",
    "label": "Organization sign-in setup",
-   "help": "Only shown when nothing else configures your organization's sign-in.",
+   "help": "Shown only while your organization requires sign-in and nobody is signed in on this device.",
    "keys": [
     "azureClientId",
     "azureTenantId",
@@ -2718,6 +2782,7 @@
     "win32"
    ],
    "visible_when": "ssoBootstrapAllowed()",
+   "recovery_path": true,
    "destination": "advanced",
    "group": "organization"
   },
@@ -3249,8 +3314,8 @@
     "surface": "Calendar › Microsoft / Outlook (self-serve IDs)",
     "anchor": "src/renderer/src/components/Settings.tsx:8570"
    },
-   "migration": "none; value kept; editable only through the sign-in recovery path",
-   "basis": "OBSERVED env and managed config outrank Settings (src/main/auth.ts:142-170); OBSERVED the SSO bootstrap narrows an unauthenticated patch to these three keys (src/main/index.ts:4825-4836).",
+   "migration": "none; value kept; editable only through the sign-in recovery path, which M2-0117.2 makes their only writer (SETTINGS-2.0.md §12)",
+   "basis": "OBSERVED env and managed config outrank Settings (src/main/auth.ts:142-170); OBSERVED the SSO bootstrap narrows an unauthenticated patch to these three keys (src/main/index.ts:4825-4836). OBSERVED the general settings path after that branch strips none of them, so a signed-in renderer, or any renderer while no sign-in configuration resolves, can write them (src/main/index.ts:4837-4885, src/main/auth.ts:721-726).",
    "notes": "The only device control is the recovery path shown when ssoBootstrapAllowed() is true."
   },
   {
@@ -3269,8 +3334,8 @@
     "surface": "Calendar › Microsoft / Outlook (self-serve IDs)",
     "anchor": "src/renderer/src/components/Settings.tsx:8570"
    },
-   "migration": "none; value kept; editable only through the sign-in recovery path",
-   "basis": "OBSERVED env and managed config outrank Settings (src/main/auth.ts:142-170); OBSERVED the SSO bootstrap narrows an unauthenticated patch to these three keys (src/main/index.ts:4825-4836).",
+   "migration": "none; value kept; editable only through the sign-in recovery path, which M2-0117.2 makes their only writer (SETTINGS-2.0.md §12)",
+   "basis": "OBSERVED env and managed config outrank Settings (src/main/auth.ts:142-170); OBSERVED the SSO bootstrap narrows an unauthenticated patch to these three keys (src/main/index.ts:4825-4836). OBSERVED the general settings path after that branch strips none of them, so a signed-in renderer, or any renderer while no sign-in configuration resolves, can write them (src/main/index.ts:4837-4885, src/main/auth.ts:721-726).",
    "notes": "The only device control is the recovery path shown when ssoBootstrapAllowed() is true."
   },
   {
@@ -3289,8 +3354,8 @@
     "surface": "Calendar › Microsoft / Outlook (self-serve IDs)",
     "anchor": "src/renderer/src/components/Settings.tsx:8570"
    },
-   "migration": "none; value kept; editable only through the sign-in recovery path",
-   "basis": "OBSERVED env and managed config outrank Settings (src/main/auth.ts:142-170); OBSERVED the SSO bootstrap narrows an unauthenticated patch to these three keys (src/main/index.ts:4825-4836).",
+   "migration": "none; value kept; editable only through the sign-in recovery path, which M2-0117.2 makes their only writer (SETTINGS-2.0.md §12)",
+   "basis": "OBSERVED env and managed config outrank Settings (src/main/auth.ts:142-170); OBSERVED the SSO bootstrap narrows an unauthenticated patch to these three keys (src/main/index.ts:4825-4836). OBSERVED the general settings path after that branch strips none of them, so a signed-in renderer, or any renderer while no sign-in configuration resolves, can write them (src/main/index.ts:4837-4885, src/main/auth.ts:721-726).",
    "notes": "The only device control is the recovery path shown when ssoBootstrapAllowed() is true."
   },
   {
@@ -3501,7 +3566,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:7293"
    },
    "migration": "S-3 drops it, at either settings version; no behaviour depends on it. M2-0117.1 corrects the admin guide row and removes the key from both example managed configs (SETTINGS-2.0.md §12)",
-   "basis": "OBSERVED nothing reads it; its one writer is main's self-test (src/main/selftest.ts:77), and no renderer code writes it. Settings states meetings are always saved (src/renderer/src/components/Settings.tsx:7293). OBSERVED the public admin guide documents a managed autoSaveTranscripts: false as 'Disable all transcript saving' (docs/asktoto-architecture.md:1168), the enterprise example config sets and locks it (build/managed-config.enterprise.example.json:30, 14) and the basic one sets it (build/managed-config.example.json:8), so an organization that followed the guide believes saving is off while every meeting is saved."
+   "basis": "OBSERVED nothing reads it; its one writer is main's self-test (src/main/selftest.ts:77), and no renderer code writes it. Settings states meetings are always saved (src/renderer/src/components/Settings.tsx:7293). OBSERVED the public admin guide documents a managed autoSaveTranscripts: false as 'Disable all transcript saving' (docs/asktoto-architecture.md:1168), the enterprise example config sets and locks it (build/managed-config.enterprise.example.json:30, 14) and the basic one sets it (build/managed-config.example.json:8), so an organization that followed the guide believes saving is off while every meeting is saved.",
+   "policy_sheet": {
+    "text": "No effect: Métis always saves meetings on this device.",
+    "show_value": true
+   }
   },
   {
    "key": "systemPrompt",
@@ -4210,7 +4279,7 @@
    },
    "migration": "versioned S-1 (settings version 2): compares the 1.x route with the 2.0 route over the same layers and, where they differ, writes 'unconfigured' to the user layer so the route in force is kept; a lock that would change the route holds the profile at version 1. The version and the stored value come only from a readable settings.json, and the version is written only by main (when it creates a profile, and when S-1 completes); DEFAULT_SETTINGS declares none and every managed layer's value or lock for it is ignored, so a managed settingsVersion never skips S-1. While settings.json is present but cannot be read or decoded, or a readable .recovered copy stands in for a missing one, the version and the stored value are unknown, whatever the copy records, for a legacy and a version-2 profile alike: a route applies only where organization locks fix it at both versions (a locked provider under managed cloud-only, or a locked 'unconfigured' with a locked asrEngine outside it); otherwise no speech session opens, cloud or local, and Voice & meetings shows speech unavailable with typing offered. No step runs and every write is refused until settings.json reads again or the person keeps the copy",
    "basis": "OBSERVED 1.x: cloud speech only under a managed cloud-only profile, where 'unconfigured' resolves to Cloudflare; a stored cloud id is ignored everywhere else (src/shared/cloud-stt-provider.ts:35-54). DERIVED MASTER §9.6: the selected engine is one value, so from settings version 2 'unconfigured' means the local route and a cloud id that cloud route for every profile, managed cloud-only still winning. DERIVED from D-11, answered 2026-09-27 (Cloudflare speech through the Operator broker): the fresh-install default becomes 'cloudflare-nova3' (src/shared/ipc.ts:1169, 1700).",
-   "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Soniox is offered only when organization policy lists it, and can be selected only while a Soniox key is in force (§6)."
+   "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Allowed engines never select or move a route (§6): an engine is allowed when the organization lists it in allowedSpeechEngines or, while no organization sets that key, when it is Cloudflare, local speech or the engine in force. So a Soniox route in force at upgrade, whether a stored cloud-only selection or an organization default or lock, keeps running; Soniox is offered for a new choice only where the organization lists it, and can be selected only while a Soniox key is in force. An engine in force that an organization list excludes stops at the next session boundary, and no other engine opens in its place."
   },
   {
    "key": "cfAiGatewayId",
@@ -4510,7 +4579,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:8008-8040"
    },
    "migration": "legacy bidstackEndpointUrl/bidstackConnected/bidstackTools already synthesized on read (see legacy table)",
-   "basis": "OBSERVED main-owned: stripped from renderer patches (src/main/index.ts:4867-4869)."
+   "basis": "OBSERVED main-owned: stripped from renderer patches (src/main/index.ts:4867-4869). OBSERVED today's renderer still sends five echo patches of it (src/renderer/src/components/Settings.tsx:3161, 3187, 3433, 3481, 3508), which that strip discards; M2-0062 replaces them with a settings refresh (SETTINGS-2.0.md §12)."
   },
   {
    "key": "clickupClientId",
@@ -4781,7 +4850,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8385); managed configuration pins it (src/main/index.ts:5233-5238; build/managed-config.enterprise.example.json:7, 22), and the compiled-off activation stores it (src/main/license.ts:243). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys, so only managed configuration sets it in 2.0."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8385); managed configuration pins it (src/main/index.ts:5233-5238; build/managed-config.enterprise.example.json:7, 22), and the compiled-off activation stores it (src/main/license.ts:243). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys, so only managed configuration sets it in 2.0.",
+   "policy_sheet": {
+    "text": "No effect: Métis no longer checks the legacy licence server. Your Métis licence applies instead.",
+    "show_value": true
+   }
   },
   {
    "key": "licenseKey",
@@ -4800,7 +4873,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "policy_sheet": {
+    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "show_value": false
+   }
   },
   {
    "key": "licenseCompanyName",
@@ -4819,7 +4896,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "policy_sheet": {
+    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "show_value": true
+   }
   },
   {
    "key": "licenseSeatCap",
@@ -4838,7 +4919,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "policy_sheet": {
+    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "show_value": true
+   }
   },
   {
    "key": "licenseExpiresAt",
@@ -4857,7 +4942,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "policy_sheet": {
+    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "show_value": true
+   }
   },
   {
    "key": "licenseValid",
@@ -4876,7 +4965,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "policy_sheet": {
+    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "show_value": true
+   }
   },
   {
    "key": "licenseLastValidatedAt",
@@ -4895,7 +4988,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "policy_sheet": {
+    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "show_value": true
+   }
   },
   {
    "key": "licenseGateEnabled",
@@ -4914,7 +5011,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8483); main never writes it. DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys, so only managed configuration sets it in 2.0."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8483); main never writes it. DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys, so only managed configuration sets it in 2.0. OBSERVED today a true value adds a licence-key step to setup whose Continue never blocks (src/renderer/src/components/OnboardingExperience.tsx:627, 1818, 1833).",
+   "policy_sheet": {
+    "text": "No effect: Métis no longer checks the legacy licence server. Your Métis licence applies instead.",
+    "show_value": true
+   }
   },
   {
    "key": "licenseLease",
@@ -4933,7 +5034,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "policy_sheet": {
+    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "show_value": false
+   }
   },
   {
    "key": "trialStartedAt",
@@ -4952,7 +5057,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys.",
+   "policy_sheet": {
+    "text": "No effect: a record from the legacy licence server, which Métis no longer checks. Your Métis licence applies instead.",
+    "show_value": true
+   }
   },
   {
    "key": "operatorUrl",
@@ -4990,7 +5099,11 @@
     "anchor": "src/renderer/src/components/Settings.tsx:7156"
    },
    "migration": "kept and honoured while set; no entry field for new devices; removed with the legacy path after M2-0146",
-   "basis": "OBSERVED labelled legacy and 'not needed with a licence' (Settings.tsx:7146-7155). OBSERVED main copies METIS_OPERATOR_INGEST_SECRET into it at launch (src/main/index.ts:8861-8862) and clears it when a patch moves the Operator address (src/main/index.ts:4938-4945); the legacy administrator connection also writes it through a settings patch (Settings.tsx:6326-6337), which M2-0062 removes (SETTINGS-2.0.md §12). DERIVED from D-4, answered 2026-09-27: the Operator seat licence is the 2.0 entitlement path, so the legacy secret gets no entry field."
+   "basis": "OBSERVED labelled legacy and 'not needed with a licence' (Settings.tsx:7146-7155). OBSERVED main copies METIS_OPERATOR_INGEST_SECRET into it at launch (src/main/index.ts:8861-8862) and clears it when a patch moves the Operator address (src/main/index.ts:4938-4945); the legacy administrator connection also writes it through a settings patch (Settings.tsx:6326-6337), which M2-0062 removes (SETTINGS-2.0.md §12). DERIVED from D-4, answered 2026-09-27: the Operator seat licence is the 2.0 entitlement path, so the legacy secret gets no entry field.",
+   "policy_sheet": {
+    "text": "Connects this device to the legacy Operator connection until that connection is retired.",
+    "show_value": false
+   }
   },
   {
    "key": "sendAskText",
@@ -5009,7 +5122,11 @@
     "anchor": "src/shared/ipc.ts:1450"
    },
    "migration": "S-3 drops it, at either settings version",
-   "basis": "OBSERVED shouldSendAskText always returns false (src/shared/operator.ts:91-97): the key has no effect."
+   "basis": "OBSERVED shouldSendAskText always returns false (src/shared/operator.ts:91-97): the key has no effect.",
+   "policy_sheet": {
+    "text": "No effect: this setting no longer changes what Métis sends to the Operator.",
+    "show_value": true
+   }
   },
   {
    "key": "operatorLicenseToken",

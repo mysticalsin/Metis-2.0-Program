@@ -50,7 +50,7 @@ function h(tag, props = {}, ...children) {
 
 const normalize = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 
-/** Visibility predicates named in the inventory's `visible_when` fields, evaluated on example state. */
+/** Predicates named in the inventory's `visible_when` and `requires` fields, evaluated on example state. */
 const PREDICATES = {
   "overlayLayout == 'bar'": (m) => m.value('overlayLayout') === 'bar',
   "overlayPlacement == 'right-edge'": (m) => m.value('overlayPlacement') === 'right-edge',
@@ -62,7 +62,13 @@ const PREDICATES = {
   'localLlm.enabled': (m) => m.value('localLlm.enabled') === true,
   'a CLI is connected': () => false,
   'ssoBootstrapAllowed()': () => false,
-  'organization allows soniox': () => false
+  // The example policy lists no speech engines and applies no cloud-only profile, so Cloudflare, local
+  // speech and the engine in force are allowed (SETTINGS-2.0.md §6); it seats no Soniox key.
+  'cloudflare allowed': () => true,
+  'local allowed': () => true,
+  'soniox allowed': (m) => m.value('cloudSttProvider') === 'soniox',
+  'verified local pack': (m) => m.state.speechPacks.some((p) => p.state === 'installed' || p.state === 'in-use'),
+  'soniox key in force': () => false
 }
 
 function mergeState(base, patch = {}) {
@@ -159,10 +165,14 @@ function createApp(root, inventory, fixture) {
     } else commit(control, changes)
   }
 
-  const localPackReady = () => model.state.speechPacks.some((p) => p.state === 'installed' || p.state === 'in-use')
-
-  function openLocalSpeech() {
-    jump(model.controls.get('voice.local-speech-packs'))
+  /** Choosing an option whose precondition fails never switches the value: it opens the control named by
+   *  `unavailable.opens`. No example state offers an option that is unavailable for a `reason`. */
+  function choose(control, option) {
+    if (option.requires && !PREDICATES[option.requires](model)) {
+      if (option.unavailable.opens) jump(model.controls.get(option.unavailable.opens))
+      return
+    }
+    request(control, option.maps ?? { [control.keys[0]]: option.value })
   }
 
   function jump(control) {
@@ -306,7 +316,7 @@ function createApp(root, inventory, fixture) {
           control.options.filter((o) => !o.platforms || o.platforms.includes(model.state.platform))
             .filter((o) => !o.visible_when || PREDICATES[o.visible_when]?.(model))
             .map((o) => h('button', { type: 'button', role: 'radio', 'aria-checked': model.currentOption(control) === o ? 'true' : 'false',
-              text: o.label, onClick: () => (o.requires && !localPackReady() ? openLocalSpeech() : request(control, o.maps ?? { [key]: o.value })) })))
+              text: o.label, onClick: () => choose(control, o) })))
       case 'select': {
         // '*' stands for a list that lives in code (languages, providers, custom modes); the prototype shows
         // only the concrete entries.

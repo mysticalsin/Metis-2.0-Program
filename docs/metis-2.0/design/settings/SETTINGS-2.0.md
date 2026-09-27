@@ -280,7 +280,7 @@ the next meeting or command session; "new: M2-xxxx" = control delivered by that 
 | Developer integrations | Claude Code and Codex CLI | `cliConnected`, `lastClickedCli`, `cliNoticeAck` (ADVANCED) |
 |  | Use my CLI subscription first | `providerPriority` (ADVANCED) |
 | Organization connection | Operator address _(confirm; read-only when the organization or deployment sets it, §6)_ | `operatorUrl` (ADVANCED) |
-|  | Organization sign-in setup (only while nothing else configures sign-in) | `azureClientId`, `azureTenantId`, `azureAllowedDomain` (OPERATOR-ONLY) |
+|  | Organization sign-in setup (only while sign-in is required and nobody is signed in: `ssoBootstrapAllowed()`, §5) | `azureClientId`, `azureTenantId`, `azureAllowedDomain` (OPERATOR-ONLY) |
 | Diagnostics and updates | Usage on this device; Export logs for support; Repair speech components; Check for updates; About Métis | actions and readouts |
 
 What leaves Settings (not settings): the Intelligence dashboard link and recent meetings (top-level views,
@@ -326,6 +326,11 @@ The choices that needed judgement:
   4. Otherwise the value in force (Métis default < managed < user, §6) decides: `unconfigured` is the local
      route, a cloud id is that cloud route.
 
+  These rules decide the engine in force. None of them consults the engines that policy allows or those that
+  are ready, which MASTER §9.6 keeps apart from the selection: whether the engine in force may run is §6's
+  allowed-engines rule, and whether it can is its readiness. When either fails, no speech session opens on
+  it, and none opens on another engine in its place (INV-2).
+
   Following D-11, answered on 2026-09-27 (Cloudflare speech through the Operator broker), the fresh-install
   default changes from `'unconfigured'` to `'cloudflare-nova3'` in both of its declarations,
   `DEFAULT_SETTINGS.cloudSttProvider` (`src/shared/ipc.ts:1700`) and the schema's `.default()`
@@ -359,7 +364,9 @@ The choices that needed judgement:
   patches, and the Soniox key, which no settings patch carries, gets no 2.0 control (§12).
   `providerModelsDeep` and `providerModelsSpotlightRef` have no Settings control today and stay policy-set.
   The Entra identifiers are the only OPERATOR-ONLY keys the device can set, through the sign-in recovery
-  that `ssoBootstrapAllowed()` permits (`src/main/index.ts:4825-4836`), shown only in that case.
+  that `ssoBootstrapAllowed()` permits (`src/main/index.ts:4825-4836`): sign-in is required, nobody is signed
+  in, and no sign-in has succeeded since the last sign-out (`src/main/auth.ts:967-972`). Organization sign-in
+  setup is shown only then, and the inventory marks it as the one `recovery_path` control.
 - **DEPRECATED.** The ten legacy license-server keys and `operatorIngestSecret` follow D-4, answered on
   2026-09-27 (DECISIONS.md): the Operator seat is the 2.0 entitlement authority, and the legacy license
   server stays read-only for existing keys until the ADR-016 deprecation decision. They are read-only until
@@ -389,10 +396,12 @@ it at the base:
 | `os`, `native` | the OS or the native app, outside `settings.json` |
 
 No settings patch may carry a settings entry whose `write` is `main`, `server` or `managed`; those entries
-are M2-0062's constant (§12). Every OPERATOR-ONLY and DEPRECATED settings entry is one of them unless a
-conditional recovery path writes it, which leaves out only the three `azure*` keys (above), and
-`check-inventory.py` enforces it. Where base code still writes one of them through a settings patch, its
-basis says so and §12 names the change that removes the write.
+are M2-0062's constant (§12). Every OPERATOR-ONLY and DEPRECATED settings entry is one of them unless its
+control is a recovery path (`recovery_path`, which also needs the `visible_when` condition that opens it),
+which leaves out only the three `azure*` keys (above), and `check-inventory.py` enforces it. Where base code
+still writes one of them through a settings patch, its basis says so and §12 names the change that removes
+the write. A control that changes an entry in the constant names, in `handlers`, the main handler it calls:
+an existing one by its anchor, a missing one by the ticket that adds it (§12).
 
 ## 6. Effective policy
 
@@ -421,12 +430,18 @@ lock sets a value that applies only at the next session, the control shows the v
 line names the value to come (S14).
 
 **Deprecated keys on the sheet.** The sheet also lists every managed value or lock of a DEPRECATED key,
-whatever the Métis default, with what it does in this version, which its inventory basis records. A key
-that no behaviour reads is listed as having no effect, with what Métis does instead: a managed
-`autoSaveTranscripts`, `false` or `true`, reads "No effect: Métis always saves meetings on this device". A
-managed `false` equals the Métis default, so without this rule the sheet would never show the value that an
-organization following the admin guide set to stop saving (§2). `operatorIngestSecret`, which still connects
-the legacy Operator path until M2-0146, is listed without its value.
+whatever the Métis default, with the text of that entry's `policy_sheet` in the inventory, and shows the
+value only where `policy_sheet.show_value` allows it: never for the credentials `licenseKey`, `licenseLease`
+and `operatorIngestSecret` (the last still connects the legacy Operator path until M2-0146). A key that no
+behaviour reads says so, with what Métis does instead. A managed `autoSaveTranscripts`, `false` or `true`, reads "No
+effect: Métis always saves meetings on this device"; a managed `false` equals the Métis default, so without
+this rule the sheet would never show the value that an organization following the admin guide set to stop
+saving (§2). The enterprise example config sets and locks `licenseServerUrl`
+(`build/managed-config.enterprise.example.json:7, 22`), so its row will be the most common: "No effect:
+Métis no longer checks the legacy licence server. Your Métis licence applies instead." M2-0117 reads these
+keys from the managed files as written, not from the parsed layers: managed parsing drops every key the
+schema lacks (`src/main/store.ts:126-142`), so once a DEPRECATED key is removed from the schema, only the
+file still shows that the organization sets it.
 
 **Partial locks on shared controls.** A control that writes several keys (MERGE) can be locked on only some
 of them. It then disables every option or checkbox that would write another value to a locked key, and the
@@ -456,12 +471,34 @@ as "Set by deployment" instead.
    local to cloud, so S14 names it. An emergency revocation (a key that stops capture or egress) applies
    immediately (MASTER §5.7).
 4. Engines allowed by policy are a separate question from the engine selected (MASTER §9.6). The design
-   proposes a managed key `allowedSpeechEngines`. Absent, it allows Cloudflare and the verified local packs,
-   never Soniox: Soniox is allowed only where the organization lists it. Like Local speech, which needs a
-   verified pack, the Soniox option in Speech processing has a precondition: it appears only when allowed,
-   and a person can select it only while a Soniox key is in force (`hasKeys.soniox`, which `SONIOX_API_KEY`
-   also sets: `src/main/store.ts:1280-1285, 1369-1378`); otherwise it shows as unavailable with the reason.
-   ASSUMED shape; M2-0117 confirms with M2-0107.
+   proposes a managed key `allowedSpeechEngines` (ASSUMED shape; M2-0117 confirms with M2-0107) and one rule
+   for it: **an engine is allowed when the organization lists it or, while no organization sets the key,
+   when it is Cloudflare, local speech or the engine in force; Speech processing offers only allowed engines
+   (and no local option under managed cloud-only, §5), and the engine in force runs only while it is
+   allowed.** The engine in force is the one §5 resolves from the stored settings, which the next session
+   uses. §5 never consults this rule, and neither does S-1 (§9.1). It follows that:
+   - Allowed never selects or moves a route. No organization sets the key today, so at upgrade every engine
+     in force stays allowed: a managed cloud-only profile on a stored `'soniox'`, and an organization default
+     or lock of `'soniox'`, keep Soniox. Soniox is offered for a new choice only where the organization lists
+     it, so a person who switches away from it cannot choose it again until then, and the confirmation says
+     so first ("You can't switch back to Soniox later: <Org> doesn't list it.").
+   - A list that excludes the engine in force, whatever put it there, stops that engine at the next session
+     boundary, as any policy change does (S14). No session opens on it, and none opens on another engine in
+     its place (INV-2). Voice & meetings shows S03's layout with typing offered and, where the person may
+     choose, the engines the list allows.
+   - Speech processing always shows the engine in force as its selected option, offered or not, with the
+     reason when it cannot run ("Not allowed by <Org>", "No Soniox key is set up on this device", or no
+     verified local pack). A locked value renders as text with its lock line, as every lock does. It shows
+     no engine only while §9.1 marks the selection unknown.
+   - Each option carries its preconditions as predicate ids and, separately, what choosing it does while a
+     precondition fails (`inventory.json`): `visible_when` is `cloudflare allowed`, `local allowed` or
+     `soniox allowed`. Local speech `requires` a `verified local pack`, and otherwise opens Optional local
+     speech (`unavailable.opens`). Soniox `requires` a `soniox key in force` (`hasKeys.soniox`, which
+     `SONIOX_API_KEY` also sets: `src/main/store.ts:1280-1285, 1369-1378`), and otherwise shows as
+     unavailable with its reason (`unavailable.reason`).
+   - Main applies the rule as well as the renderer: it drops from a settings patch a `cloudSttProvider` that
+     selects an engine that is not allowed, as it drops a locked key, and `IPC.cloudSttStart` refuses an
+     engine in force that is not allowed (§12).
 
 ## 7. Saving, applying and failure
 
@@ -610,8 +647,12 @@ S-1 on the cases that matter (each at version 1 before the step):
 | Outside cloud-only after the organization removed cloud-only | `'soniox'` or `'cloudflare-nova3'`, chosen while cloud-only applied | local (`shouldUseCloudSttEngine` ignores it) | that cloud provider | `'unconfigured'`, replacing it; S16 says the earlier cloud choice belonged to the organization profile that no longer applies |
 | Outside cloud-only, organization default is a cloud id | absent | local | that provider | `'unconfigured'` |
 | Managed cloud-only, no provider stored | absent | Cloudflare | Cloudflare (§5 rule 3) | nothing: the routes agree, and a user-layer `'unconfigured'` would record a local choice the person never made, one that would take effect the day the organization lifts cloud-only |
-| Managed cloud-only with Soniox | `'soniox'` | Soniox | Soniox | nothing |
+| Managed cloud-only with Soniox | `'soniox'` | Soniox | Soniox | nothing: the routes agree, and Soniox stays allowed as the engine in force (§6), so S16 has no speech line |
 | Outside cloud-only, organization lock on a cloud id | stripped by the lock | local | that provider | nothing: see below |
+
+S-1 compares routes alone. Allowed engines play no part in it (§6): they never select or move a route, and
+at upgrade no organization sets `allowedSpeechEngines`, so every engine in force, Soniox included, stays
+allowed.
 
 Organization-locked keys are never written by a step, and managed defaults are never persisted into the user
 layer. A lock on a cloud id outside cloud-only was inert in 1.x, so it cannot start uploading audio merely
@@ -660,7 +701,8 @@ effective speech route instead of "nothing is uploaded". Owner: M2-0117 with the
   id left in the user layer after the organization removed cloud-only (rewritten to `'unconfigured'`, route
   stays local, S16 names the replaced choice instead of "Everything you chose is unchanged"); an organization
   default cloud id outside cloud-only; managed cloud-only with no provider stored (no user-layer write, route
-  Cloudflare); managed cloud-only with Soniox; an organization lock on a cloud id outside cloud-only (no
+  Cloudflare); managed cloud-only with Soniox (its assertions are under Allowed engines, below); an
+  organization lock on a cloud id outside cloud-only (no
   write, version stays 1, route local, policy sheet marks it not applied; S-1 completes with the local route
   kept after the lock is removed, and with the locked route after cloud-only is turned on); an S-1 save that
   fails (version stays 1, route local); an organization `'unconfigured'` default outside cloud-only (the
@@ -695,6 +737,25 @@ effective speech route instead of "nothing is uploaded". Owner: M2-0117 with the
   copy's route; afterwards an undecodable file sits byte for byte in a recovery folder, `settings.json`
   holds the copy, and the next session uses the copy's route (after S-1 for a legacy copy). Cancel changes
   nothing.
+- Allowed engines (§6), with no `allowedSpeechEngines` in any layer unless a fixture sets one:
+  - managed cloud-only with a stored `'soniox'`: at upgrade S-1 writes nothing and the profile reaches
+    version 2 with `cloudSttProvider` and the route unchanged; S16 has no speech line (no replaced choice,
+    no speech choice offered); Speech processing shows Soniox selected; the session opens on Soniox while a
+    key is in force, and without one fails for missing credentials with S03, and no other engine opens;
+  - an organization default of `'soniox'`, and separately a lock of it, each under managed cloud-only and
+    on a version-2 profile outside it: the route is Soniox and Speech processing shows it (the lock as a
+    locked value); with a key in force the session opens on Soniox, and without one it fails with S03, and
+    no other engine opens;
+  - a person on a stored Soniox route who chooses Cloudflare: the confirmation says Soniox cannot be chosen
+    again; afterwards Speech processing does not offer Soniox, and a renderer patch writing `'soniox'` is
+    dropped by main and the control keeps Cloudflare (INV-4). With an organization list naming Soniox, the
+    same person can choose it again while a key is in force; with an organization default of `'soniox'`
+    and no list, they cannot;
+  - an organization list that excludes the engine in force, once for a stored Soniox and once for an
+    organization lock of Soniox: a session under way keeps its route; from the next session boundary no
+    speech session opens, cloud or local, main refuses `IPC.cloudSttStart`, the stored value is unchanged,
+    Speech processing shows Soniox with "Not allowed by <Org>", and Voice & meetings shows S03 with typing
+    offered (and, for the stored selection, the listed engines to choose from).
 - `enterpriseLive`: a user-layer value is ignored on read, both a cloud-only one on a local-route profile
   (the route stays local, main refuses `IPC.cloudSttStart`, and summary-only stays off) and a legacy one
   under an unlocked managed cloud-only default (the managed cloud-only and summary-only values still
@@ -748,15 +809,20 @@ its full-motion twin is recorded against the twin's file. All 68 are, so the 136
 files. `manifest.json` labels them a superseded HTML mock and lists all 136 with file, sha256 and pixel
 size. Because the settled screens do not move, the reduced-motion screenshots add no evidence about motion;
 that evidence is the transition durations `audit.js` computes for every capture. The captures were
-rendered from the inputs whose hashes `manifest.json › inputs_sha256` records. Two inputs have changed since,
-neither in what was rendered. `inventory.json` has changed in `keys` (the basis, migration, notes or `write`
-of 22 entries, the dropped `assumed_decisions` arrays and the new `settingsVersion` entry) and in `legacy`
-(the `cloudSttProvider` rule and the two `enterpriseLive` rows), which the prototype does not read: it renders
-`controls` and `destinations` alone. In `controls` one field changed: the Soniox option of Speech processing
-gained its `requires` text (§6). The prototype hides that option in every state, because no state's policy
-allows Soniox (`prototype/prototype.js:65, 307`), so no capture shows it. `capture.js` has changed only in
-its header comment, which now records OD-12 instead of telling the reader how to run it; its hash differs
-for that reason alone. The S09 captures predate the deprecated-key rule of §6. The mock's example policy sets
+rendered from the inputs whose hashes `manifest.json › inputs_sha256` records. Three inputs have changed
+since, none in what was rendered. `inventory.json` has changed in `keys` (the basis, migration, notes,
+`write` or new `policy_sheet` of 26 entries, the dropped `assumed_decisions` arrays and the new
+`settingsVersion` entry) and in `legacy` (the `cloudSttProvider` rule and the two `enterpriseLive` rows),
+which the prototype does not read: it renders `controls` and `destinations` alone. In `controls`, six controls
+gained `handlers` and Organization sign-in setup gained `recovery_path`, fields the prototype does not read;
+that control's help text changed too, but it is hidden in every state and search skips hidden controls
+(`prototype/prototype.js:118`). Speech processing's options now carry the allowed-engines predicates, and
+Local speech and Soniox a `requires` predicate with its `unavailable` behaviour (§6). `prototype.js` changed
+with them, in its predicate table and in what choosing an option does (`prototype/prototype.js:54-72,
+168-176, 319`), and in nothing else: in every state Cloudflare and Local speech are shown, Soniox is hidden
+because no state has it in force, and choosing Local speech without a ready pack still opens Optional local
+speech. `capture.js` has changed only in its header comment, which now records OD-12 instead of telling the
+reader how to run it; its hash differs for that reason alone. The S09 captures predate the deprecated-key rule of §6. The mock's example policy sets
 no deprecated key, so they show no such row; the Electron-renderer capture of S09 is to show one.
 
 **Automated checks** (`prototype/audit.js`, run in page for every capture; results in `audit.json`):
@@ -819,8 +885,11 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
   `planned_by` only on keys the schema does not have yet, class rules, control and key bindings in both
   directions (a key's control lists that key, and every key a control lists is bound to that control), a
   labelled and anchored basis on every entry, required synonyms, Privacy never behind a disclosure, no
-  OPERATOR-ONLY or DEPRECATED settings entry written through a settings patch unless a conditional recovery
-  path writes it) and also rejects any decision id or kit reference, so the public copy cannot drift back.
+  OPERATOR-ONLY or DEPRECATED settings entry written through a settings patch unless its control is a
+  `recovery_path` with a `visible_when`, `handlers` on every control that changes a key in the constant,
+  `policy_sheet` text on every DEPRECATED settings entry, and an `unavailable` behaviour on every option
+  that `requires` a predicate) and also rejects any decision id or kit reference, so the public copy cannot
+  drift back.
   It also asserts that M2-0062's `SERVER_AUTHORITATIVE_SETTINGS_KEYS` equals the inventory's settings entries
   whose `write` is `main`, `server` or `managed` (§5), so the constant and the inventory cannot drift apart.
   It implements §9 with the §9.4 fixtures, including the store changes §9.1 names (the write refusal while a
@@ -840,11 +909,18 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
   because the version and the selection are unknown (§9.1). The check is sound only because
   `enterpriseLive` comes from managed layers alone (§5): today a renderer patch
   `{enterpriseLive: {managed: true, inferenceMode: 'cloud-only'}}` would pass it. M2-0112 adds the check,
-  and M2-0107 carries it into the speech-session broker.
+  and M2-0107 carries it into the speech-session broker. Once M2-0117 adds `allowedSpeechEngines`, the same
+  check also refuses an engine in force that is not allowed (§6).
 - **M2-0117.2** renders destinations, groups and controls from the registry (MASTER §5.7), implements
   §6–§8, adds the main handler that Reset position needs (the M2-0062 item below), and records
   LOCALLY_TESTED evidence with behaviour tests (search ranking and visibility, deep-link resolution, failure
-  and retry, lock rendering, next-session apply).
+  and retry, lock rendering, next-session apply). With today's Settings gone, it also strips the three
+  `azure*` keys from the general `settingsSet` path, after the SSO bootstrap branch
+  (`src/main/index.ts:4825-4836`), which leaves that branch, and so Organization sign-in setup, as their
+  only writer. Today the general path accepts them from a signed-in renderer, and from any renderer while no
+  sign-in configuration resolves (`src/main/auth.ts:721-726`), so a renderer patch can repoint a self-serve
+  tenant. The one renderer code that writes them there is the Calendar section of today's Settings
+  (`Settings.tsx:8570`), which is why the strip waits for M2-0117.2 instead of landing with M2-0062.
 - **M2-0117.3** implements the pack states of S04–S06 against M2-0115 and M2-0163.
 - **M2-0076** shows its unreadable-settings banner whenever §9.1 marks the version and the selection
   unknown, with Keep the saved copy among its recovery options while a copy stands in.
@@ -891,18 +967,21 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
   enough: excess-property checks apply only to object literals, so the `Partial<PublicSettings>` variables
   that CLI and Dust Disconnect pass to `patch` (`Settings.tsx:2783, 4431`) would still compile. With
   `?: never`, no value whose type can carry a constant key is a `SettingsPatch`, so M2-0062 also narrows
-  every signature that takes a patch as `Partial<PublicSettings>` today: `patch` itself
+  every signature and variable that types a patch as `Partial<PublicSettings>` today: `patch` itself
   (`src/renderer/src/state.ts:607`), 30 `patch` parameters (25 in `Settings.tsx`, the two echo cards at
-  `Settings.tsx:3104, 3397` among them, and five in the onboarding and overlay-placement code) and the
-  preload bridge, which also accepts `Partial<Settings>` (`src/preload/index.ts:95`). The compiler then
-  reports every renderer write of a constant key, so no control is left writing a key that main discards;
-  the runtime strip stays the boundary.
+  `Settings.tsx:3104, 3397` among them, and five in the onboarding and overlay-placement code), four local
+  patch variables (the two above, and the Dust link and custom-mode deletion patches at
+  `Settings.tsx:4481, 5842`) and the preload bridge, which also accepts `Partial<Settings>`
+  (`src/preload/index.ts:95`). The compiler then reports every renderer write of a constant key, so no
+  control is left writing a key that main discards; the runtime strip stays the boundary.
 
   Every 2.0 control bound to a key in the constant writes through a main handler, never a settings patch.
-  At the base that handler exists for Meetings folder (`IPC.pickFolder`, `src/main/index.ts:8496-8511`),
-  Team folders (`src/main/index.ts:8516-8538`), Task and CRM apps (`src/main/index.ts:5769, 5825, 5992`),
+  The inventory names each one in the control's `handlers`, and `check-inventory.py` fails a control that
+  changes a key in the constant and names none, so the rule cannot drift the way `cliConnected` did. At the
+  base that handler exists for Meetings folder (`IPC.pickFolder`, `src/main/index.ts:8496-8511`), Team
+  folders (`src/main/index.ts:8516-8538`), Task and CRM apps (`src/main/index.ts:5769, 5825, 5992, 6045`),
   Métis licence (`src/main/index.ts:5126`) and the CLI's Connect (`src/main/index.ts:5581`); Your plan and
-  Organization policy only show values. Two are missing: CLI Disconnect, which M2-0062 adds (above), and
+  Organization policy only show values. Two are missing, recorded with `planned_by`: CLI Disconnect, which M2-0062 adds (above), and
   Reset position (`overlayRightEdgeYByDisplay`). Main writes that key only when the sidecar is dragged, and
   not while the key is locked (`src/main/index.ts:3056-3079`), so M2-0117.2 adds a main handler that clears
   the stored heights under the same lock check and places the bar again.
@@ -924,11 +1003,13 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
   (`src/preload/index.ts:233-236`). From then until M2-0107 moves speech credentials to the server, no one
   can enter a Soniox key on the device: the key in force is `SONIOX_API_KEY` from deployment, which wins
   over a stored key (`src/main/store.ts:1369-1374`), or else a key seated before M2-0117.2. Speech
-  processing offers Soniox only where policy lists it, and a person can select it only while a key is in
-  force (§6). A Soniox route that no key serves, such as an organization default or lock, fails for missing
-  credentials (`src/main/cloud-stt/credentials.ts:100-104`) and Voice & meetings shows S03, so an
-  organization that allows Soniox deploys `SONIOX_API_KEY`. Whether a person keeps a way to remove a stored
-  key until M2-0107 is open (§13).
+  processing offers Soniox for a new choice only where the organization lists it, and a person can select it
+  only while a key is in force (§6). A Soniox route already in force, whether a stored cloud-only selection
+  or an organization default or lock, stays allowed while no organization sets `allowedSpeechEngines`
+  (§6). Where no key serves it, the session fails for missing credentials
+  (`src/main/cloud-stt/credentials.ts:100-104`), Voice & meetings shows S03 and no other engine opens, so an
+  organization that sets or lists Soniox deploys `SONIOX_API_KEY`. Whether a person keeps a way to remove a
+  stored key until M2-0107 is open (§13).
 - The comment at `src/shared/ipc.ts:1259-1263` is corrected with M2-0117.3.
 
 ## 13. Open questions
@@ -951,7 +1032,7 @@ proof (MASTER §5.9). Owner: M2-0117 with the release study.
 
 | Criterion | Status | Evidence |
 |---|---|---|
-| Every setting classified in the six classes | MET | `inventory.json`; `evidence/M2-0101/design/inventory-check.txt` (115 keys, 150 leaves, one planned key, every entry with a labelled and anchored basis, control and key bindings consistent both ways, no OPERATOR-ONLY or DEPRECATED settings entry written through a settings patch outside the sign-in recovery, 38 server-authoritative entries, PASS; each negative control fails: a control listing a key bound elsewhere, the planned key without `planned_by`, `planned_by` on a key the schema has, an inventoried leaf the schema lacks, and an OPERATOR-ONLY key a settings patch writes) |
+| Every setting classified in the six classes | MET | `inventory.json`; `evidence/M2-0101/design/inventory-check.txt` (115 keys, 150 leaves, one planned key, every entry with a labelled and anchored basis, control and key bindings consistent both ways, no OPERATOR-ONLY or DEPRECATED settings entry written through a settings patch outside the sign-in recovery, a main handler named for every control that changes a server-authoritative key, policy-sheet text for every DEPRECATED settings entry, an `unavailable` behaviour for every option precondition, 38 server-authoritative entries, PASS; each of nine negative controls fails on its defect alone: a control listing a key bound elsewhere, the planned key without `planned_by`, `planned_by` on a key the schema has, an inventoried leaf the schema lacks, an OPERATOR-ONLY key a settings patch writes, a control changing server-authoritative keys with no handler, a DEPRECATED key without sheet text, an option precondition without `unavailable`, and a recovery path without its condition) |
 | Four destinations plus search designed with task flows | MET | §4, §8, §11; prototype states S01–S17 |
 | Mapped to stable keys and actual policy semantics; migration table for legacy keys | MET | §5, §6, §9, §12 (including the managed `autoSaveTranscripts` that the admin guide documents and nothing reads, §2, §6); `inventory.json › keys, legacy, legacy_tabs, policy_keys` |
 | Design evidence: states × light/dark × 1x/2x × reduced motion, checked against the spec with automated WCAG AA contrast and clipping checks | PARTIAL | 136 captures in 68 files of the superseded HTML mock, all passing, checked against the kit sections (`evidence/M2-0101/design/manifest.json`, `audit.json`); under OD-12 they are design reference, and the Electron-renderer captures are not made yet (§10); the M2-0201 prototype it should also be checked against does not exist yet |
