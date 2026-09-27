@@ -195,9 +195,6 @@ def problems(inventory, fields):
             out.append(f"{key}: PLATFORM-SPECIFIC needs a platform restriction")
         if not (EVIDENCE_LABEL.search(k["basis"]) and SOURCE_ANCHOR.search(k["basis"])):
             out.append(f"{key}: basis needs an evidence label (OBSERVED, DERIVED or ASSUMED) and a file:line anchor")
-        for decision in k.get("assumed_decisions", []):
-            if not re.fullmatch(r"D-\d+", decision):
-                out.append(f"{key}: bad decision id {decision}")
 
     for ctl in inventory["controls"]:
         for key in ctl["keys"]:

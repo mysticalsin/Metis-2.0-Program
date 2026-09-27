@@ -1,6 +1,6 @@
 {
  "ticket": "M2-0101",
- "kind": "design evidence",
+ "kind": "superseded HTML mock (OD-12): design reference, not app evidence",
  "generated_at": "2026-09-27T01:39:36Z",
  "base_commit": "7dab8e8964e9b2814cd1477a9a7b724628a04d6a",
  "method": "Each state rendered by design/settings/prototype in its own Chromium context (Playwright) per theme, device scale and motion preference; audited in page by prototype/audit.js; captured by prototype/capture.js. A reduced-motion capture byte-identical to its full-motion twin points at the twin file.",

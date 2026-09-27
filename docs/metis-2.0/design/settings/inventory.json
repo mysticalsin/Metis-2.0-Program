@@ -4208,11 +4208,8 @@
     "anchor": "src/renderer/src/components/Settings.tsx:6793"
    },
    "migration": "versioned S-1 (settings version 2): compares the 1.x route with the 2.0 route over the same layers and, where they differ, writes 'unconfigured' to the user layer so the route in force is kept; a lock that would change the route holds the profile at version 1. The version and the stored value come only from a readable settings.json, and the version is written only by main (when it creates a profile, and when S-1 completes); DEFAULT_SETTINGS declares none and every managed layer's value or lock for it is ignored, so a managed settingsVersion never skips S-1. While settings.json is present but cannot be read or decoded, or a readable .recovered copy stands in for a missing one, the version and the stored value are unknown, whatever the copy records, for a legacy and a version-2 profile alike: a route applies only where organization locks fix it at both versions (a locked provider under managed cloud-only, or a locked 'unconfigured' with a locked asrEngine outside it); otherwise no speech session opens, cloud or local, and Voice & meetings shows speech unavailable with typing offered. No step runs and every write is refused until settings.json reads again or the person keeps the copy",
-   "basis": "OBSERVED 1.x: cloud speech only under a managed cloud-only profile, where 'unconfigured' resolves to Cloudflare; a stored cloud id is ignored everywhere else (src/shared/cloud-stt-provider.ts:35-54). DERIVED MASTER §9.6: the selected engine is one value, so from settings version 2 'unconfigured' means the local route and a cloud id that cloud route for every profile, managed cloud-only still winning. ASSUMED D-11 recommended answer: the fresh-install default becomes 'cloudflare-nova3' (src/shared/ipc.ts:1169, 1700).",
-   "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Soniox is offered only when organization policy allows it.",
-   "assumed_decisions": [
-    "D-11"
-   ]
+   "basis": "OBSERVED 1.x: cloud speech only under a managed cloud-only profile, where 'unconfigured' resolves to Cloudflare; a stored cloud id is ignored everywhere else (src/shared/cloud-stt-provider.ts:35-54). DERIVED MASTER §9.6: the selected engine is one value, so from settings version 2 'unconfigured' means the local route and a cloud id that cloud route for every profile, managed cloud-only still winning. DERIVED from D-11, answered 2026-09-27 (Cloudflare speech through the Operator broker): the fresh-install default becomes 'cloudflare-nova3' (src/shared/ipc.ts:1169, 1700).",
+   "notes": "The one key whose meaning changes, at settings version 2 (SETTINGS-2.0.md §5, §9.1). Soniox is offered only when organization policy allows it."
   },
   {
    "key": "cfAiGatewayId",
@@ -4783,10 +4780,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8385). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
   },
   {
    "key": "licenseKey",
@@ -4805,10 +4799,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
   },
   {
    "key": "licenseCompanyName",
@@ -4827,10 +4818,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
   },
   {
    "key": "licenseSeatCap",
@@ -4849,10 +4837,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
   },
   {
    "key": "licenseExpiresAt",
@@ -4871,10 +4856,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
   },
   {
    "key": "licenseValid",
@@ -4893,10 +4875,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
   },
   {
    "key": "licenseLastValidatedAt",
@@ -4915,10 +4894,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
   },
   {
    "key": "licenseGateEnabled",
@@ -4937,10 +4913,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED unlike the license state, renderer patches may still write it (src/main/index.ts:4841), and only the compiled-off license section does (Settings.tsx:8483). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
   },
   {
    "key": "licenseLease",
@@ -4959,10 +4932,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
   },
   {
    "key": "trialStartedAt",
@@ -4981,10 +4951,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:201"
    },
    "migration": "kept and read-only until the ADR-016 deprecation (M2-0146); no Settings control; removed in a later settings version",
-   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). ASSUMED D-4 recommended default: the Operator seat is the 2.0 entitlement authority.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED license UI and enforcement are compiled off (Settings.tsx:201, src/renderer/src/App.tsx:311, src/main/license.ts:5-14); OBSERVED server-authoritative fields stripped from patches (src/main/index.ts:4845-4856). DERIVED from D-4, answered 2026-09-27: the Operator seat is the 2.0 entitlement authority, and the legacy license server stays read-only for existing keys."
   },
   {
    "key": "operatorUrl",
@@ -5022,10 +4989,7 @@
     "anchor": "src/renderer/src/components/Settings.tsx:7156"
    },
    "migration": "kept and honoured while set; no entry field for new devices; removed with the legacy path after M2-0146",
-   "basis": "OBSERVED labelled legacy and 'not needed with a licence' (Settings.tsx:7146-7155). ASSUMED D-4 recommended default.",
-   "assumed_decisions": [
-    "D-4"
-   ]
+   "basis": "OBSERVED labelled legacy and 'not needed with a licence' (Settings.tsx:7146-7155). DERIVED from D-4, answered 2026-09-27: the Operator seat licence is the 2.0 entitlement path, so the legacy secret gets no entry field."
   },
   {
    "key": "sendAskText",
@@ -5211,7 +5175,7 @@
     "surface": "not stored: every read layers DEFAULT < managed < user with no version",
     "anchor": "src/main/store.ts:638-646"
    },
-   "migration": "new: main writes 2 in the save that creates a profile and in the save that completes S-1; it is read only from a readable settings.json, where its absence means version 1; while settings.json is present but unreadable or undecodable, or a readable .recovered copy stands in for a missing one, the version is unknown",
+   "migration": "new: main writes 2 in every save that creates settings.json for a new profile (the first is made at its first start, before any step, so S-1 never applies to it) and in the save that completes S-1; it is read only from a readable settings.json, where its absence means version 1; while settings.json is present but unreadable or undecodable, or a readable .recovered copy stands in for a missing one, the version is unknown",
    "basis": "DERIVED the Cloudflare default may move audio only for a profile whose readable settings.json records version 2 (SETTINGS-2.0.md §9.1): the snapshot served for an unreadable settings.json layers only DEFAULT and managed (src/main/store.ts:641-646), managed parsing keeps any schema key (src/main/store.ts:137-142), and a .recovered copy may be older than the file it stands in for (src/main/store.ts:402, 446-448), so none of them may supply it.",
    "notes": "No Métis default and no control. Server-authoritative (M2-0062), so a renderer patch carrying it is stripped; every managed layer's value and lock for it is ignored."
   },

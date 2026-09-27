@@ -1,11 +1,12 @@
-/* Capture harness for the Settings 2.0 design evidence (M2-0101). First open
-   about:blank#<absolute path of this checkout's docs/metis-2.0/design/settings/ folder, ending in a slash>
-   in the shared tab, then run this file with the Playwright MCP tool browser_run_code_unsafe
-   ({ filename: <this file> }). The harness takes its root from that fragment and never navigates the shared
-   page: every capture runs in its own browser context, and the prototype is served from disk through a
-   routed origin. Output: docs/metis-2.0/evidence/M2-0101/design/<state>/<theme>-<scale>x-<motion>.png. The
-   function returns every capture's audit, a negative control and the interaction checks, which the caller
-   writes to audit.json. */
+/* Record of how the superseded HTML-mock captures of Settings 2.0 (M2-0101) were made; not to be run.
+   OD-12 forbids opening the mock or running this harness on the owner's machine, and app evidence is
+   captured from the Electron renderer in CI (SETTINGS-2.0.md §10). It ran through the Playwright MCP tool
+   browser_run_code_unsafe once the shared tab showed about:blank#<absolute path of
+   docs/metis-2.0/design/settings/>. It took its root from that fragment and never navigated the shared page:
+   every capture ran in its own browser context, with the prototype served from disk through a routed origin.
+   Output: docs/metis-2.0/evidence/M2-0101/design/<state>/<theme>-<scale>x-<motion>.png. The function returned
+   every capture's audit, a negative control and the interaction checks, which the caller wrote to
+   audit.json. */
 async (page) => {
   const ROOT = decodeURIComponent(page.url().split('#')[1] ?? '')
   if (!ROOT.endsWith('/design/settings/')) {
