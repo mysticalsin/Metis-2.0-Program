@@ -358,9 +358,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/220",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
   },
   {
    "id": "M2-0005",
@@ -12936,7 +12941,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0224",
    "title": "Replace the renderer-ready source-text contract with a wiring behaviour test",
    "milestone": "m3",
@@ -12960,7 +12965,12 @@
    "risk": "low",
    "estimate_hours": 2,
    "claimed_by": "ticket runner batch 7",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/229",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
   }
  ]
 }
