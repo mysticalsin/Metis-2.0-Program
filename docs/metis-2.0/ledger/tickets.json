@@ -358,9 +358,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/220",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
   },
   {
    "id": "M2-0005",
@@ -1105,7 +1110,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither."
   },
   {
    "id": "M2-0017",
@@ -2978,7 +2984,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values."
   },
   {
    "id": "M2-0050",
@@ -3297,9 +3304,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/219",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0057",
@@ -3720,7 +3732,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the fresh default is Cloudflare-hosted speech through the Operator broker. The speech contract reports a selected engine that is not ready as not-ready and has no implicit cloud/local fallback path. Acceptance unchanged."
   },
   {
    "id": "M2-0065",
@@ -5424,7 +5437,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "C-08 (which chrome modes show the ARMED orb, and whether `hide` stays the fresh default) is still an open owner question with no D-row: D-4 was labelled C-03/C-08/C-16 but answers C-16 only (docs/metis-2.0/POLICY-2.0.md). Do not change the fresh default silently."
   },
   {
    "id": "M2-0094",
@@ -5965,7 +5979,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 and D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): qualify Cloudflare-hosted speech reached only through the Operator broker. The route record also states the gateway log mode per transport (the per-request payload header exists for HTTP; the Worker binding has only collectLog), whether the account uses Legacy Logs or Workers Logs, and the metadata retention bound. Acceptance unchanged."
   },
   {
    "id": "M2-0103",
@@ -6076,7 +6091,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "RE-VALIDATE acceptance 1 before starting: D-12 (answered as default on 2026-09-27, docs/metis-2.0/POLICY-2.0.md) keeps metadata-only gateway logs, so cf-aig-collect-log:false on every request no longer applies. Control set: gateway logging stays off (the landed ai-gateway.ts readback is unchanged); protected Operator requests send cf-aig-collect-log:true, cf-aig-collect-log-payload:false and cf-aig-skip-cache:true; a transport without a proven metadata-only result (including a Worker binding route) sends cf-aig-collect-log:false; a transport where neither is proven is BLOCKED."
   },
   {
    "id": "M2-0105",
@@ -6220,7 +6236,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-4 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the Operator seat is the entitlement authority. Metering and quota identity is the seat's principal and device; a legacy license-server key is never a metering identity. Acceptance unchanged."
   },
   {
    "id": "M2-0107",
@@ -6280,7 +6297,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the broker grant is the only credential for the default speech route. An organization token stored by an earlier version is removed on upgrade, because D-11 allows no organization token on the device. Acceptance unchanged."
   },
   {
    "id": "M2-0108",
@@ -6517,7 +6535,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): Cloudflare speech through the Operator broker is the fresh default on every profile. Until the route's privacy readiness is VERIFIED, speech shows unavailable with an explicit local-install choice; it never selects local by itself. Acceptance unchanged."
   },
   {
    "id": "M2-0113",
@@ -8605,7 +8624,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-4 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the Operator seat is authoritative; the license server stays read-only for existing keys until an ADR-016 deprecation decision. Precedence: a seat decides its profile even when a legacy key is present; a key-only profile is validated read-only; no new keys are issued. D-4 answers C-16 only (C-03 is D-25; C-08 is open). RE-VALIDATE external_blocker: the remaining unblock step is read-only Fly.io access."
   },
   {
    "id": "M2-0147",
@@ -8772,7 +8792,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the claim is the MASTER section 16.6.5 sentence tailored to the verified route, shown only while readiness is VERIFIED, and it keeps 'Authorized usage metadata is retained for administration'; never 'zero retention', 'no logs' or 'Cloudflare stores no data'. Sentinels prove the metadata-only control on HTTP and WebSocket. Record the log regime: Legacy Logs keep entries until deleted, so a finite metadata retention bound needs a deletion job."
   },
   {
    "id": "M2-0150",
@@ -9311,7 +9332,7 @@
     "M2-0103",
     "M2-0149",
     "M2-0106",
-    "M2-0226"
+    "M2-0228"
    ],
    "needs_decision": [
     "D-8"
@@ -9475,7 +9496,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged."
   },
   {
    "id": "M2-0161",
@@ -10445,7 +10467,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): any privacy line in the film is the M2-0149-verified sentence verbatim, or it is cut. Acceptance unchanged."
   },
   {
    "id": "M2-0179",
@@ -11017,10 +11040,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-02",
-   "status": "IN_PROGRESS",
-   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers.",
+   "status": "DONE",
+   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only.",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/11",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 6); rebuilt clean from #9"
+   }
   },
   {
    "id": "M2-0190",
@@ -11072,9 +11100,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/209",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0191",
@@ -11751,9 +11784,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/221",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 4)"
+   }
   },
   {
    "id": "M2-0204",
@@ -12401,9 +12439,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-09",
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 5)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/225",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 5); 4K spike rendered in CI"
+   }
   },
   {
    "id": "M2-0213",
@@ -12662,7 +12705,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0218",
    "title": "Make Cloudflare OAuth provisioning atomic (no half-written vault state)",
    "milestone": "m4",
@@ -12689,7 +12732,12 @@
    "risk": "medium",
    "estimate_hours": 3,
    "claimed_by": "claude-code ticket runner (batch 5)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/226",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 5)"
+   }
   },
   {
    "wave": "W2",
@@ -12701,7 +12749,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0219",
    "title": "Reduce the Cloudflare OAuth scopes to what the ask path needs",
    "milestone": "m4",
@@ -12727,7 +12775,12 @@
    "risk": "medium",
    "estimate_hours": 2,
    "claimed_by": "claude-code ticket runner (batch 5)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/223",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 5)"
+   }
   },
   {
    "id": "M2-0220",
@@ -12889,7 +12942,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0224",
    "title": "Replace the renderer-ready source-text contract with a wiring behaviour test",
    "milestone": "m3",
@@ -12913,7 +12966,92 @@
    "risk": "low",
    "estimate_hours": 2,
    "claimed_by": "ticket runner batch 7",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/229",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
+  },
+  {
+   "id": "M2-0225",
+   "title": "Decrypting saved bytes must never create secret-key.bin",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "RF-G5.5-R2"
+   ],
+   "scope_paths": [
+    "src/main/secrets.ts",
+    "src/main/transcripts.ts",
+    "src/main/secrets.test.ts"
+   ],
+   "summary": "Found by the Integrator in rocket-fuel G5.5 round 2 (2026-09-27): decryptSecret() loads its key through getOrCreateKey(), which generates and writes a new secret-key.bin when none exists. Every decode of an F:-wrapped envelope on an install without a key file (a synced index or transcript from another device, classifyIndexBytes at boot, a rebuild's re-check) therefore creates a key as a side effect of a read. Decrypt paths must load an existing key only (fail as undecryptable when absent); only an explicit write may create the key. An attempted fix inside the rebuild path (c9a5cb94) regressed 12 rebuild tests and was reverted — fix it at the key-loading root.",
+   "acceptance": [
+    "decryptSecret with no key file fails without creating secret-key.bin (behaviour test)",
+    "encryptSecret / prepareFileKeyForWrite still create the key on first write",
+    "Every existing secrets/transcripts/brain test stays green; the rebuild 'no key' test also asserts the key file stays absent"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 3,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0226",
+   "title": "Fresh-install speaker-ID default must not persist a voiceprint without explicit opt-in",
+   "wave": "W5",
+   "milestone": "m7",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "needs_decision": [
+    "D-31"
+   ],
+   "kit_refs": [
+    "SRC-13",
+    "F-13"
+   ],
+   "finding_refs": [
+    "M2-0013-SRC-13-DEFAULT-ON"
+   ],
+   "scope_paths": [
+    "src/shared/ipc.ts",
+    "src/main/speaker-id.ts",
+    "src/main/speaker-id.test.ts"
+   ],
+   "summary": "M2-0013's re-verification found `speakerId` defaults to `{ enabled: true }` (ipc.ts:1348-1350 schema default, :1725 DEFAULT_SETTINGS) — a fresh install auto-enrolls and persists voiceprints (userData/voiceprints.json) with no opt-in step, the opposite of SRC-13's required_change (\"disable unapproved persistent enrollment... keep default attribution session-local and uncertain\"). M2-0109's acceptance covers only that speaker labels never gate command authority; nothing in the ledger covers this default. D-31 asks the owner whether default-on retention is the intended posture (2026-08-21's MQA-235/Plaud-parity rationale, recorded in ipc.ts's own comment) or must change to opt-in.",
+   "acceptance": [
+    "A fresh install (no prior settings, no explicit speakerId opt-in) writes no persistent voiceprint file, including for the operator's own profile",
+    "Persistent enrollment (a file written to userData/voiceprints.json) happens only after an explicit, approved opt-in action — never from the schema default alone",
+    "An existing voiceprints.json from a prior default-on install migrates without a destructive surprise: no silent deletion of profiles enrolled under the old default, and the user is told the setting changed",
+    "A behaviour test exercises the fresh-default case end-to-end (no settings on disk, no explicit opt-in) and asserts nothing is written to voiceprints.json"
+   ],
+   "verification": [
+    "npx vitest run src/main/speaker-id.test.ts src/main/speaker-id-off-switch.test.ts src/shared/ipc.test.ts"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
+   "validation_hours": 0.5,
+   "slices": [],
+   "due": null,
+   "status": "TODO",
+   "notes": "Filed centrally by the lead on 2026-09-27 (proposed by M2-0013 as M2-0221, which collided with the audit-r3 ticket of the same id)."
   },
   {
    "wave": "W2",
@@ -12929,7 +13067,7 @@
    "external_blocker": null,
    "flag": null,
    "status": "TODO",
-   "id": "M2-0225",
+   "id": "M2-0227",
    "title": "Guard production Operator deploys against unreviewed refs",
    "milestone": "m4",
    "type": "ci",
@@ -12971,7 +13109,7 @@
    "external_blocker": null,
    "flag": null,
    "status": "TODO",
-   "id": "M2-0226",
+   "id": "M2-0228",
    "title": "Document Operator backup ownership, cadence, retention and recovery objectives before the restore drill",
    "milestone": "m7",
    "type": "docs",

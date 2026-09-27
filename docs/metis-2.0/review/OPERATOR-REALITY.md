@@ -108,9 +108,9 @@ Investigation deliverable for M2-0014. Labels: OBSERVED means directly read in t
 - OBSERVED (docs/metis-2.0/ledger/tickets.json:8721-8760): `M2-0149` scope and acceptance cover privacy sentinels, configuration readback, supplier assurance, finite metadata retention and Worker payload lifetime.
 - DERIVED (docs/metis-2.0/ledger/tickets.json:8721-8760; operator/schema.sql @origin/main): `M2-0149` does not explicitly mention `asks` schema cleanup for now-dead `prompt_cipher`/`prompt_iv` columns, so a follow-up may be needed if live ciphertext rows exist.
 - OBSERVED (operator/schema.sql @origin/main): the content-free owner check for that unknown is `SELECT COUNT(*) FROM asks WHERE prompt_cipher IS NOT NULL`.
-- DERIVED (docs/metis-2.0/ledger/tickets.json:12974-12995): backup ownership/cadence/retention are filed separately in `M2-0226`.
+- DERIVED (docs/metis-2.0/ledger/tickets.json:13098-13137): backup ownership/cadence/retention are filed separately in `M2-0228`.
 
 ## Follow-up tickets filed
 
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:12932-12955): `M2-0225` files the production deploy provenance guard for `operator/scripts/deploy.mjs`.
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:12974-12995): `M2-0226` files backup ownership, cadence, retention and recovery-objective documentation before the restore drill.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json:13056-13097): `M2-0227` files the production deploy provenance guard for `operator/scripts/deploy.mjs`.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json:13098-13137): `M2-0228` files backup ownership, cadence, retention and recovery-objective documentation before the restore drill.
