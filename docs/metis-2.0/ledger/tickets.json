@@ -415,7 +415,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0006",
@@ -1412,7 +1414,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0022",
@@ -3176,7 +3180,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0054",
@@ -5363,7 +5369,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0093",
@@ -5992,8 +6000,10 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
-   "notes": "D-11 and D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): qualify Cloudflare-hosted speech reached only through the Operator broker. The route record also states the gateway log mode per transport (the per-request payload header exists for HTTP; the Worker binding has only collectLog), whether the account uses Legacy Logs or Workers Logs, and the metadata retention bound. Acceptance unchanged."
+   "status": "IN_PROGRESS",
+   "notes": "D-11 and D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): qualify Cloudflare-hosted speech reached only through the Operator broker. The route record also states the gateway log mode per transport (the per-request payload header exists for HTTP; the Worker binding has only collectLog), whether the account uses Legacy Logs or Workers Logs, and the metadata retention bound. Acceptance unchanged.",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0103",
@@ -13084,8 +13094,10 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO",
-   "notes": "Filed centrally by the lead on 2026-09-27 (proposed by M2-0013 as M2-0221, which collided with the audit-r3 ticket of the same id)."
+   "status": "IN_PROGRESS",
+   "notes": "Filed centrally by the lead on 2026-09-27 (proposed by M2-0013 as M2-0221, which collided with the audit-r3 ticket of the same id).",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0227",
@@ -13121,7 +13133,9 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 2,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   }
  ]
 }
