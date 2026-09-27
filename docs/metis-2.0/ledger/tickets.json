@@ -358,7 +358,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0005",
@@ -1894,10 +1896,12 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "notes": [
     "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
-   ]
+   ],
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0031",
@@ -3215,7 +3219,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0056",
@@ -3265,7 +3271,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0057",
@@ -11696,7 +11704,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "claude-code ticket runner (batch 4)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0204",
