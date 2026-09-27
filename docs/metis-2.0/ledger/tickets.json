@@ -104,7 +104,7 @@
    "date": "2026-09-26",
    "version": 2,
    "by": "M2-0013 round-3 re-verification (Sonnet)",
-   "summary": "M2-0220 added: SRC-13's default-on persistent voiceprint retention (ipc.ts:1348-1350,1725) is not covered by M2-0109's acceptance (speaker-label-authority only); D-31 opened for the owner call on the default"
+   "summary": "M2-0221 added: SRC-13's default-on persistent voiceprint retention (ipc.ts:1348-1350,1725) is not covered by M2-0109's acceptance (speaker-label-authority only); D-31 opened for the owner call on the default"
   }
  ],
  "tickets": [
