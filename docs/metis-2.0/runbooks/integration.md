@@ -6,9 +6,9 @@ checker it specifies (§13) is slice M2-0188.2.
 
 **Two parts.** Part I (§1 to §13) holds the rules and their reasons. It changes only as §8 "Amending a
 recorded document" says. Part II (§14 to §16) is a dated audit: its findings, the decision rows it
-proposes and the corrections it asks for are true at the snapshot named in §14, or at the later commit a
-statement names, and it is not maintained after this document lands. The lead moves the decision rows
-into DECISIONS.md.
+proposes and the corrections it asks for are true at the snapshot named in §14, or at the later commit or
+read time a statement names, and it is not maintained after this document lands. The lead moves the
+decision rows into DECISIONS.md.
 
 Labels follow software-architecture-engineer v1.4.0. Facts carry OBSERVED, PROVIDED, DERIVED, ASSUMED or
 UNKNOWN with a source. Rules cite the decision they rest on. Anything this runbook introduces is PROPOSED
@@ -31,7 +31,7 @@ at 901ceaf.
 | INT-6 | Repository code runs only in GitHub Actions | D-28 (§12) |
 | INT-7 | Only the owner merges into the public repository's `main`, through milestone PRs | Owner decision of 2026-09-26 (OD-14, §15) |
 | INT-8 | A ticket's evidence lives in `docs/metis-2.0/evidence/records/<ticket>.jsonl`; the ledger holds status, not evidence | evidence/SCHEMA.md §6; the append-only step of `ledger.yml` once it is on `main` (F6) |
-| INT-9 | No session rewrites any branch but a runner's own ticket branch: no session pushes with `--mirror`, `--all`, `--prune` or `--delete` or deletes a remote branch, in either repository, and a session's only force-push is a runner's `--force-with-lease` to its own ticket branch. The one exception is a rewrite or deletion the owner orders, such as the history purge of 2026-09-26 (§9 step 3) | PROVIDED: lead notes and runner rules, 2026-09-27, after a mirror push reset the program repository's `main` (§2). Among the branches this runbook uses, GitHub refuses a rewrite or deletion only on the public `main` and `release/*`, and only while their rulesets are on (§2, F11). After each batch the lead checks both `main` branches and `m2/integration` for rewrites and both repositories for deleted branches (§9 step 3) |
+| INT-9 | No session rewrites any branch but a runner's own ticket branch: no session pushes with `--mirror`, `--all`, `--prune` or `--delete` or deletes a remote branch, in either repository, and a session's only force-push is a runner's `--force-with-lease` to its own ticket branch. The one exception is a rewrite or deletion the owner orders, such as the history purge of 2026-09-26 (F22) or the reset that undoes a rewrite which added commits (§9 step 3) | PROVIDED: lead notes and runner rules, 2026-09-27, after a mirror push reset the program repository's `main` (§2). Among the branches this runbook uses, GitHub refuses a rewrite or deletion only on the public `main` and `release/*`, and only while their rulesets are on (§2, F11). After each batch the lead checks both `main` branches and `m2/integration` for rewrites and both repositories for deleted branches (§9 step 3) |
 
 ## 2. Branches and flow
 
@@ -56,7 +56,7 @@ them on. All five, which also cover `cursor/*`, `fix/*` and `cursor/metis-bank-g
 23:51:36-38Z on 2026-09-26, 18 to 21 s after one push at 23:51:18Z force-pushed the public `main`,
 `release/1.1.0`, `release/1.8.3` and `release/1.9.1` (OBSERVED, `gh api …/rulesets`, `…/activity`). That
 push, of 49 branches that the rulesets all cover (OBSERVED), was the second push of the owner's history
-purge (§9 step 3): the rulesets were off for that push alone and were turned back on after it (PROVIDED:
+purge (F22): the rulesets were off for that push alone and were turned back on after it (PROVIDED:
 `_relay/archive/2026-09-26-213714-claude-code.md`, "PURGE STATUS").
 
 Two properties of `.github/workflows/build.yml` shape the queue (OBSERVED):
@@ -467,43 +467,48 @@ therefore waits for the L15 follow-up in §16.
    and in `mysticalsin/AskToto-Mantu`, to `ref=m2/integration&activity_type=force_push` in the second, and
    to `activity_type=branch_deletion` in both. Force-pushes are read for those three branches alone,
    because INT-9 lets runners force-push their own ticket branches. Deletions are read for every branch,
-   because INT-9 lets no session delete one and they are rare: from 2026-09-26 to 08:15Z on 2026-09-27
-   the two repositories recorded 11, ten of them by the 04:35:52Z push of §2 (OBSERVED,
-   `gh api …/activity`).
-   `<previous check>` is the UTC time of the previous check, written as the API writes its timestamps, in
-   ISO 8601 form `YYYY-MM-DDTHH:MM:SSZ`, because jq compares the two as strings. Every printed line is a
-   rewrite or a deletion.
+   because INT-9 lets no session delete one, and they are rare (F22). `<previous check>` is the UTC time of
+   the previous check, written as the API writes its timestamps, in ISO 8601 form `YYYY-MM-DDTHH:MM:SSZ`,
+   because jq compares the two as strings. The first check takes the time just after the last event that
+   F22 accounts for. Every printed line is a rewrite or a deletion.
 
    The lead's `~/AI-Brain-build/tools/repo-guard.sh <previous check>`, which lives in neither repository,
    takes the same argument and compares it the same way, but reads one unpaginated page per repository
-   (`activity?per_page=100`): the newest 100 events of every branch and type. It exits 1 when that page holds
-   a force-push or deletion of either `main` or of `m2/integration` since the given time, so it sees no
-   deleted ticket branch, and it is complete only when the oldest event on the page is older than the
-   previous check. At 07:56Z on 2026-09-27 the page reached back to 04:23:17Z in the public repository, of
-   1,745 events, and to 22:48:07Z the day before in the program repository, of 112 (OBSERVED,
-   `gh api …/activity`). With its default window, the last 24 hours, the script would therefore not have
-   seen three of the four force-pushes in that window that the complete read lists. Two were the owner's
-   history purge: `m2/integration` at 19:54:33Z, in one push of the 59 branches that no ruleset covers,
-   and the public `main` at 23:51:18Z, in the push of 49 that §2 describes (OBSERVED,
-   `gh api …/activity`). Together they are the "108 branches" of the purge (PROVIDED:
-   `_relay/archive/2026-09-26-213714-claude-code.md`, "PURGE STATUS"). The third, at 20:26:03Z, reset the
-   program `main` from 7f0527e to its parent 90ed28f, the commit the 04:35:52Z push also reset it to, and
-   a fast-forward push of 0fdfd17, a child of 7f0527e, brought 7f0527e back at 20:41:17Z (OBSERVED); no
-   baton records who made it (UNKNOWN). The fourth, the 04:35:52Z push (§2), was on the script's page.
-   Under the rule below, the purge's two lines would stop merging until the owner confirmed them, and
-   nothing they removed would come back.
+   (`activity?per_page=100`): the newest 100 events of every branch and type. It prints each force-push and
+   deletion on that page since the given time, and exits 1 only when one of them is of either `main` or of
+   `m2/integration`, so a deleted ticket branch leaves its exit code at 0. It is complete only when the
+   oldest event on its page is older than the previous check. A busy day fills the public repository's
+   page in hours: with its default window, the last 24 hours, the script would have missed three of the
+   four rewrites that the complete read listed on 2026-09-27 (F22).
 
    Both reads need the network, so they run outside the sandbox. GitHub cannot tell the owner's rewrite
    from an accident, because every push uses the owner's account (F11). So on a printed line or exit 1 the
-   lead merges nothing and asks the owner whether each event is the owner's, made or ordered by them:
+   lead merges nothing and asks the owner whether each event is the owner's, made or ordered by them
+   (PD-30):
    - **The owner's** is never undone. No commit it removed, and no branch that still contains one, is
-     pushed or merged (PROVIDED: the same "PURGE STATUS", "NEVER push from a clone/ref predating the
-     rewrite"): that would bring back what the owner removed, and after a purge of the public repository
-     publish it again. Merging resumes once the owner confirms the event.
-   - **Any other** is undone. The lost commits come back on the branch by a fast-forward push of the old
-     head or, when commits have landed since, by a merge as af39d16 did (§2); a deleted branch is pushed
-     again at its old head, the event's `before`, and a PR the deletion closed is reopened. Merging resumes
-     once all of it is back.
+     pushed or merged (PROVIDED: `_relay/archive/2026-09-26-213714-claude-code.md`, "PURGE STATUS": "NEVER
+     push from a clone/ref predating the rewrite"): that would bring back what the owner removed, and after
+     a purge of the public repository publish it again. Merging resumes once the owner confirms the event.
+   - **Any other that only removed commits** is undone from GitHub's own copy of them. Here `<before>` and
+     `<after>` are the event's full 40-character shas, `.before` and `.after`, of which the read prints the
+     first eight. A deletion only removes. A rewrite only removed commits when
+     `gh api repos/<repo>/compare/<before>...<after> --jq .status` prints `behind`, because `after` is then
+     an ancestor of `before`. The branch moves forward to `before` with
+     `gh api -X PATCH repos/<repo>/git/refs/heads/<branch> -f sha=<before>`, which GitHub refuses unless it
+     is a fast-forward; when commits have landed since, the lead merges `before` into the branch instead, as
+     af39d16 did (§2). A deleted branch is created again at `before` with
+     `gh api repos/<repo>/git/refs -f ref=refs/heads/<branch> -f sha=<before>`, and a PR the deletion
+     closed is reopened. Merging resumes once all of it is back.
+   - **Any other that added commits** is every other rewrite: the status is `diverged`, or GitHub answers
+     "No common ancestor" (HTTP 404). The commits it added never went through the queue, or they are
+     history the owner removed, and a merge would keep them on the branch. Only a reset to `before` undoes
+     it, and that is a force-push, which INT-9 allows only on the owner's order. So the lead asks the owner
+     to order the reset, which is pushed with `--force-with-lease` on the branch's head as the lead last
+     read it. The lead never merges `before` into the rewritten branch. Once the branch is back at
+     `before`, merging resumes, and whatever had landed on the branch since the event lands again first,
+     for example by a new PR, cut from the restored branch, that carries the landing's changes. A reset
+     takes the pushed commits off the branch, but GitHub still serves them by sha (F22), so after a push of
+     purged history the owner also decides whether to ask GitHub to remove them again.
 4. Update `_relay/HANDOFF.md`.
 
 ## 10. Milestone PRs to main
@@ -624,6 +629,7 @@ Snapshot: the program repository's `main` at 901ceaf (2026-09-27 04:19 UTC, whos
 | F19 | `gh pr view N --json files` returns at most 100 files: for #171 it lists 100, where the paginated Files API lists 622 | OBSERVED | both commands on #171 | §8 step 3; program-repository step 1 |
 | F20 | **L15 freezes every recorded document.** L15 checks the `output` of every valid record, not only the latest (SCHEMA.md:279; `check.mjs:370-391`), and records are append-only (SCHEMA.md §6). Once M2-0188.1's DESIGNED record lands, any edit to this runbook fails the ledger check for good, and the same holds for any other recorded document | OBSERVED (rules) / DERIVED | SCHEMA.md; `check.mjs` | §8 "Amending a recorded document"; §16 |
 | F21 | **A red trunk run that its merge did not cause.** #215 (docs only) landed as bc08a419, whose run 36288445138 failed one Windows test in `src/main/infra/storage/dataless.test.ts`; #218 landed on it 23 min later without a re-run, and the run on 56292fb6 (36289553574) is green | OBSERVED | `gh run view 36288445138 --log-failed` | §9 step 1 |
+| F22 | **Rewrites and deletions since the program repository was created.** §9 step 3's five reads, run at 08:37Z on 2026-09-27 from 2026-09-26T00:00:00Z, list four rewrites of guarded branches and eleven deletions. (a) The owner's history purge made two of the rewrites: `m2/integration` at 19:54:33Z (e323151c to 56677e7d), in one push of the 59 branches that no ruleset covers, and the public `main` at 23:51:18Z (2bf21f1c to 22d1fbad), in the push of 49 that §2 describes. Together they are the purge's "108 branches". GitHub finds no common ancestor for either pair, and it still serves e323151c by sha. (b) At 20:26:03Z the program `main` went from 7f0527e to its parent 90ed28f (`compare` status `behind`, by 1). A fast-forward push of 0fdfd17, a child of 7f0527e, brought 7f0527e back at 20:41:17Z; no baton records who made the reset. (c) At 04:35:52Z one push reset the program `main` from 901ceaf to 90ed28f (`behind`, by 24) and deleted ten branches (§2). The lead's merge af39d16 brought the commits back, and seven of the branches exist again, this PR's since 05:26:39Z. The other three are those of #4 and #8, which had merged, and of #9, which the deletion closed and #11 replaced ("Clean rebuild of the Opus-validated #9 on current main"). (d) The eleventh deletion, before INT-9 existed, is `m2/M2-0190-round3-red-check` in the public repository at 23:48:30Z. It was created at 23:40:02Z at a95b5e8d, M2-0190's red test commit, whose two runs failed (36280152596, 36280152727), and M2-0190's ticket branch still contains that commit. So the two rewrites that were not the purge only removed commits. `repo-guard.sh`'s page held only (c): at 07:56Z it reached back to 04:23:17Z in the public repository, of 1,745 events, and to 22:48:07Z on 2026-09-26 in the program repository, of 112. Nothing followed (c) up to 08:43Z, so the first check takes `<previous check>` 2026-09-27T04:35:53Z | OBSERVED / PROVIDED (the purge) / UNKNOWN (who made (b)) | `gh api --paginate …/activity` with §9 step 3's filters; `gh api …/compare/<before>...<after>`; `…/commits/e323151c`; `git merge-base --is-ancestor 901ceaf af39d16`; `_relay/archive/2026-09-26-213714-claude-code.md`, "PURGE STATUS"; #11's body | §9 step 3; INT-9; PD-30 |
 
 ## 15. Proposed rows for DECISIONS.md
 
@@ -643,7 +649,7 @@ Section B (program decisions):
 
 | # | Decision | Why | Alternatives rejected | Tickets |
 |---|---|---|---|---|
-| PD-30 | The hot-file queue has one holder per hot unit, the single IN_PROGRESS ticket that claims it, with claims taken all at once at dispatch. Declared orders are dispatch orders among ready tickets: a ticket that is not ready is overtaken, and one ticket at a time may reserve the units it still needs. A PR changes a hot unit only if its ticket holds it, and a hot-unit PR merges only when up to date and green on its head. While the trunk is red, from a landing's failed run until that commit or a later one is green, only the revert and the fix of a repeated failure merge, and the fix's ticket may suspend the tickets whose claims it needs. A ticket the owner asks to revert on a green trunk is reverted by a revert ticket of its own that claims the paths its landed commits change, after each landed dependant is reverted by its own. Its dependants in progress return to TODO when the revert tickets are filed, no dependant is dispatched until its revert lands, and the revert tickets go ahead of every declared order but not of a reservation. The `index` order gains observability slice 2 (M2-0215) after 0006 and M2-0214 after 0037 | Evidence binds to the PR head, so parallel work with serialized merges would re-sync, re-run and re-validate every open PR on a unit at each hot merge. A red trunk hides the failures of every later landing, and a fix that waited for claims held by tickets unable to merge would deadlock. Reverting a revert brings back everything it reverted, so each revert covers one ticket, and a dependant left in progress while the reverts wait could land on work about to leave the trunk, or hold a unit a revert needs | Parallel development with serialized merges only; GitHub's merge queue (not evaluated for this user-owned repository, and it cannot see ledger claims) | M2-0188, 0214, 0215 |
+| PD-30 | The hot-file queue has one holder per hot unit, the single IN_PROGRESS ticket that claims it, with claims taken all at once at dispatch. Declared orders are dispatch orders among ready tickets: a ticket that is not ready is overtaken, and one ticket at a time may reserve the units it still needs. A PR changes a hot unit only if its ticket holds it, and a hot-unit PR merges only when up to date and green on its head. While the trunk is red, from a landing's failed run until that commit or a later one is green, only the revert and the fix of a repeated failure merge, and the fix's ticket may suspend the tickets whose claims it needs. A ticket the owner asks to revert on a green trunk is reverted by a revert ticket of its own that claims the paths its landed commits change, after each landed dependant is reverted by its own. Its dependants in progress return to TODO when the revert tickets are filed, no dependant is dispatched until its revert lands, and the revert tickets go ahead of every declared order but not of a reservation. After each batch the lead reads every rewrite of either `main` or of `m2/integration` and every branch deletion; after one, nothing merges until the owner confirms it as the owner's or it is undone, and a rewrite that added commits is undone only by a reset the owner orders, never by a merge. The `index` order gains observability slice 2 (M2-0215) after 0006 and M2-0214 after 0037 | Evidence binds to the PR head, so parallel work with serialized merges would re-sync, re-run and re-validate every open PR on a unit at each hot merge. A red trunk hides the failures of every later landing, and a fix that waited for claims held by tickets unable to merge would deadlock. Reverting a revert brings back everything it reverted, so each revert covers one ticket, and a dependant left in progress while the reverts wait could land on work about to leave the trunk, or hold a unit a revert needs. Every push uses the owner's account, so only the owner can say whether a rewrite was the owner's; a merge onto a rewritten branch builds on what the rewrite removed, and a merge of the old head keeps what it added | Parallel development with serialized merges only; GitHub's merge queue (not evaluated for this user-owned repository, and it cannot see ledger claims); undoing every rewrite by a merge of the old head | M2-0188, 0214, 0215 |
 | PD-31 | Ticket PRs land by squash, with a hand-written subject `<summary> [slice or ticket] (#N)` and a body that names no private document | One commit per PR on the trunk, and public history whose text the lead writes (PROVIDED: `_relay/HANDOFF.md:29`; lead notes, 2026-09-27) | Merge commits, as #201 to #214 used: they keep each evidence head commit reachable from `main`, per-commit backports and `git revert -m 1`, but carry every runner commit message into the public history | M2-0188 |
 
 Section D (open register):
