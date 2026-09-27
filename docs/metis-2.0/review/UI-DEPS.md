@@ -25,7 +25,8 @@ glow. Under D-28 no repository code ran on a Mac: tarballs were downloaded and r
 | `voice-glow` | `0.2.1` | The sound-responsive glow at the bottom of the pill | Adopt for the Electron renderer, driven by `level` only (never `stream`, never `useMicrophone`), under section 6.3. The native Mac glow is built in-house (section 7) |
 
 All three are MIT, have no runtime dependencies, no install-time scripts and no known advisories (sections 4
-and 5). Their weak point is supply-chain provenance, not their code (section 5.3).
+and 5). Their weak point is supply-chain provenance, not their code (section 5.3). Whether to take the five-day-old
+border-beam and voice-glow releases now or after a minimum release age is a lead decision (section 9).
 
 ## 2. Registry facts (OBSERVED)
 
@@ -53,8 +54,8 @@ two versions. The step from border-beam 1.4.0 to 1.4.1, and from voice-glow 0.2.
 CommonJS entry name in `package.json`: the `src/` blobs at their `gitHead`s (`b7c588f1`, `90a10ad2`, `740b349c`)
 are identical. The same npm account published every version of all three packages.
 
-The only external modules the bundles import are `react` and `react/jsx-runtime`, using React 18 APIs (`forwardRef`, `useId`, hooks). The
-app has React 18.3.1 (`package.json:129`), so the peer ranges hold (DERIVED).
+The only external modules the bundles import are `react` and `react/jsx-runtime`, using React 18 APIs (`forwardRef`,
+`useId`, hooks). The app has React 18.3.1 (`package.json:129`), so the peer ranges hold (DERIVED).
 
 ## 3. Which source the kit reviewed
 
@@ -108,26 +109,48 @@ OBSERVED: libraries.dev also sells a "Pro" tier (site navigation). Nothing in th
   0.3.2, border-beam 1.4.1 and voice-glow 0.2.1.
 - OBSERVED: the Security job of baseline run
   [36267674617](https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36267674617) (head `56677e7d`, job
-  108475352877) ran `npm audit --audit-level=critical`: "found 0 vulnerabilities". Its next step,
-  `node scripts/check-audit.mjs`, printed "OK — no high/critical advisories outside the documented carve-out". That
-  tree includes thinking-orbs 0.3.1. On the current head `6aa8cb36`, run
-  [36303098291](https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36303098291) stopped its Security job
-  at the workflow-pin check, before the audit steps, for a reason unrelated to this ticket.
+  108475352877) ran `npm audit --audit-level=critical` over the full tree, thinking-orbs 0.3.1 included: "found 0
+  vulnerabilities". `--audit-level` sets only the exit threshold (npm/cli `v10.9.8`,
+  `workspaces/config/lib/definitions/definitions.js:213-221`) and the report still counts every severity (same tag,
+  `node_modules/npm-audit-report/lib/index.js:37-40`), so that tree had no advisory at any severity. The next step,
+  `node scripts/check-audit.mjs`, printed "OK — no high/critical advisories outside the documented carve-out", but
+  it audits `npm audit --omit=dev --json` (`scripts/check-audit.mjs:70`), a tree without these packages. On the
+  current head `6aa8cb36`, run [36303098291](https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36303098291)
+  stopped its Security job at the workflow-pin check, before the audit steps, for a reason unrelated to this ticket.
 - DERIVED: the ticket's verification command, `npm audit --omit=dev`, cannot see these packages. The repository keeps
   renderer dependencies in `devDependencies` (`package.json:89`; thinking-orbs at `:135`), and `npm audit` leaves
   omitted dependency types out of the report (npm/cli `v10.9.8`,
-  `docs/lib/content/commands/npm-audit.md:114-117` and `:145`; CI runs npm 10.9.8). The gate that covers them is
-  the full `npm audit` the Security job already runs (`.github/workflows/build.yml:141-147`). Because none of the
-  three has dependencies, adopting border-beam and voice-glow adds exactly two packages to that tree.
+  `docs/lib/content/commands/npm-audit.md:114-117` and `:145`; CI runs npm 10.9.8). The only CI gate that covers
+  them is the full `npm audit --audit-level=critical` (`.github/workflows/build.yml:141-142`), and it fails only on
+  a critical advisory. The high gate, `check-audit.mjs` (`build.yml:146-147`), omits `devDependencies`, and no step
+  fails on moderate or low. A high, moderate or low advisory against any of the three would therefore not fail CI.
+  Today's zero rests on the full audit output above for thinking-orbs and on the two direct queries for
+  border-beam and voice-glow, which are not yet in the tree. Because none of the three has dependencies, adopting
+  border-beam and voice-glow adds exactly two packages to that tree. Extending the high gate to renderer
+  dependencies is proposed in section 9.
 - UNKNOWN: the Sigstore certificate chain of the 0.3.1 attestation. Its subject digest was matched to the tarball,
   but the signature was not verified. `npm audit signatures` in the Security job would verify registry signatures
   and attestations across the installed tree (section 9).
 
 ### 5.2 Code surface
 
-A pattern scan of the four ESM bundles (not a line-by-line audit) finds none of: `fetch`, `XMLHttpRequest`,
-`WebSocket`, `eval`, `new Function`, dynamic `import()`, `innerHTML`, `dangerouslySetInnerHTML`, `localStorage`,
-`sessionStorage`, `postMessage`, `window.open`, `Worker` (OBSERVED). What is present:
+A pattern scan of the ESM files of the four tarballs (section 6.1 lists them; not a line-by-line audit) finds none
+of: `fetch`, `XMLHttpRequest`, `WebSocket`, `eval`, `new Function`, dynamic `import()`, `innerHTML`,
+`dangerouslySetInnerHTML`, `localStorage`, `sessionStorage`, `postMessage`, `window.open`, `Worker` (OBSERVED). A
+second scan, for obfuscation markers, finds no `globalThis`, `window[…]`, bare `Function(`, `atob`, `fromCharCode`,
+`\x` or `\u` escapes and no literal URL (OBSERVED). The remaining DOM and device calls are voice-glow's
+`navigator.mediaDevices.getUserMedia` (`useMicrophone`, `dist/index.es.js:1407`, `:1421`), two `navigator.userAgent`
+reads that detect non-Chromium WebKit (`:648`, `:993`), one `document.createElement("canvas")` run at import to probe
+2D-context `filter` support (`:994-997`), and the cursor elements of 0.3.2's `gravity` (section 3), which 0.3.1 does
+not have.
+
+Blast radius (DERIVED): the libraries run inside the overlay renderer, not in an isolated frame. That renderer has
+`sandbox` and `contextIsolation` on (`src/main/index.ts:2639-2640`), but any code in its bundle can call every method
+the preload exposes as `window.toto` (`src/preload/index.ts:561`) and connect to every origin the CSP `connect-src`
+allows (`src/renderer/index.html:27`). A malicious future release would hold the same powers as Métis's own renderer
+code. That is why section 8 pins exact versions with lockfile integrity and why any bump repeats this review.
+
+What is present:
 
 | Surface | Where (OBSERVED) | Consequence for Métis (DERIVED) |
 |---|---|---|
@@ -165,14 +188,18 @@ DERIVED: the exposure is a future bad release, not the reviewed bytes. Exact ver
 `npm ci` already fix the bytes. Any version bump repeats sections 2 to 5, and `npm audit signatures` guards the
 installed tree (section 9).
 
-### 5.4 Open upstream defects (OBSERVED, Libraries.dev issues)
+### 5.4 Open upstream defects (OBSERVED, Libraries.dev issue #9 and open PRs #12, #15)
 
-- #15: malformed `rgba(r, g, b,, a)` values in the forest, candy, ice and gold palettes, which browsers discard.
-  The 1.4.1 bundle holds 112 of them, 28 in each of those four palettes and none in `colorful` or `mono` (DERIVED
-  count over `dist/index.es.js`). Métis uses `colorful` and is unaffected.
-- #12: ThinkingOrbsKit draws the reduced-motion or paused frame at a different instant from the web build. This is
-  native only.
-- #9: the Swift packages cannot be added by URL (section 7).
+Both PRs are open and unmerged: each proposes a fix that no release contains.
+
+- PR #15, which changes only `packages/border-beam/src/styles.ts`: malformed `rgba(r, g, b,, a)` values in the
+  forest, candy, ice and gold palettes, which browsers discard. The 1.4.1 bundle holds 112 of them, 28 in each of
+  those four palettes and none in `colorful` or `mono` (DERIVED count over `dist/index.es.js`). Métis uses
+  `colorful` and is unaffected.
+- PR #12, a one-line change to ThinkingOrbsKit's `ThinkingOrb.swift` plus a parity test: the native kit draws the
+  reduced-motion or paused frame at a different instant from the web build, because it scales that frame's time by
+  the preset speed. This is native only.
+- Issue #9: the Swift packages cannot be added by URL (section 7).
 
 ## 6. Cost in the Electron renderer
 
@@ -190,9 +217,10 @@ Sizes of the published ESM files each package contributes (OBSERVED); `gzip -9` 
 DERIVED: adopting border-beam and voice-glow adds at most about 154 KB of JavaScript before Vite minifies it.
 `sideEffects: false` lets Vite drop voice-glow's `useMicrophone` when it is not imported, but border-beam's
 stylesheet generators for all five variants stay, because the variant is chosen at run time (`styles.ts:1407-1427`).
-Against the unchanged 1.9 GiB installer gate (`electron-builder.yml:92`) this is negligible. UNKNOWN: parse and
-compile time on the overlay's wake path. M2-0093 measures it against the wake-to-first-frame budget (MASTER
-section 7).
+Against the 1.9 GiB installer gate (`scripts/check-release.mjs:32`, run on the built artifacts by
+`.github/workflows/release.yml:184-186` and `:291-293` and `qa-candidate.yml:144-146` and `:208-210`) this is
+negligible. UNKNOWN: parse and compile time on the overlay's wake path. M2-0093 measures it against the
+wake-to-first-frame budget (MASTER section 7).
 
 ### 6.2 Per-frame work
 
@@ -202,7 +230,7 @@ DERIVED from the source at the reviewed commits. Nothing here was measured.
 |---|---|---|---|
 | Driver | One `requestAnimationFrame` loop per mounted orb, uncapped: it runs at the display rate, 60 or 120 Hz | CSS keyframes animate the registered custom property `--beam-angle` (1.96 s spin), which feeds conic-gradient masks on two pseudo-elements, plus a 12 s hue-rotate keyframe unless `staticColors`. No JS loop for `md` | One shared `requestAnimationFrame` loop for all instances, capped at about 60 fps, dropping to half rate on slow devices (`voiceDriver.ts:170-186`) |
 | Work per frame | Clear and redraw a 128 x 128 backing canvas. Solving at 64 draws 138 dots: `latRings` 9 (10 rows, pole to pole) at longitude density 24, from the preset (`count` 0.35 over the base 15 x 40) and `lattice.ts:143-150`. Each dot passes through up to 14 moves, then is projected, z-sorted and filled. Solving at 20 draws 30 dots | Style recalculation and repaint of the masked stroke, the inner glow and the blurred bloom every display frame. Animating a custom property is not a compositor-only animation; the author says so for the pulse variants (`pulseDriver.ts:5-14`), which moved to a 30 fps JS driver, but `md` did not | Custom properties for seven lobes, a per-frame `clip-path` on the warp layers, a redraw of the band canvas or canvases, an SVG `feDisplacementMap` filter on two mirror layers while `distortion` > 0 (default 0.62), and a blurred bloom |
-| Still running when nothing happens | Yes, until paused or unmounted | Yes, while `active` | Yes. The default `idle` of 0.23 keeps a breathing glow. `paused` holds the frame but the shared loop keeps ticking; only `active={false}` (after its fade) or unmounting stops it |
+| Still running when nothing happens | Yes, until paused or unmounted | Yes, while `active` | Yes. The default `idle` of 0.18 keeps a breathing glow: `VoiceBeam.tsx:212` resolves `idleProp ?? d.idle` from `resolveVoiceDefaults`, which yields 0.18 for every type and theme (`presets.ts:79`; `dist/index.es.js:868`). The typings' `@default 0.23` (`dist/index.d.ts:191`) does not match the code. `paused` holds the frame but the shared loop keeps ticking; only `active={false}` (after its fade) or unmounting stops it |
 | Stops itself when | Off-screen (`IntersectionObserver`); `visibilitychange` to hidden; `paused`; reduced motion draws one static frame | Off-screen, with a 256 px margin (`animation-play-state: paused`, `styles.ts:1231-1238`); `active={false}` | Off-screen; `active={false}`; `paused` |
 | Reduced motion | Stock `ThinkingOrb` draws a static frame. The app's `BrandThinkingOrb` ignores reduced motion on purpose (SRC-14, in M2-0093's scope) | Not handled for `sm`, `md` or `line`: only the pulse variants have a reduced-motion rule (`styles.ts:2055`, `:2242`) | Breathing, flow and hue drift stop; the reaction to the level continues, as a meter |
 
@@ -251,8 +279,9 @@ OBSERVED, consumption: SwiftPM uses a package by URL only when `Package.swift` s
 (`swiftlang/swift-package-manager` `Sources/PackageManagerDocs/Documentation.docc/ReleasingPublishingAPackage.md:7`
 at `24a8a7b0`). Libraries.dev has no root manifest; upstream issue #9 reports exactly this, and libraries.dev/orbs
 and libraries.dev/beam show `.package(path: …)`. DERIVED: the native app must vendor both kits at a pinned
-Libraries.dev commit as local packages, with their `LICENSE` and a provenance note (section 9). ThinkingOrbsKit
-comes with upstream issue #12.
+Libraries.dev commit as local packages, with their `LICENSE` and a provenance note (section 9). ThinkingOrbsKit's
+reduced-motion defect has a fix only in the open, unmerged PR #12 (section 5.4), so the vendored copy either takes
+that change or tracks the PR.
 
 Decision (DERIVED from `kit/r11/integration/NATIVE-PARITY.md:7` and MASTER section 6.2,
 `kit/r11/spec/MASTER.md:548-550`): the native voice glow is an in-house SwiftUI implementation, driven by the same
@@ -277,29 +306,70 @@ The lockfile must resolve them to exactly these integrity values:
 | voice-glow 0.2.1 | `sha512-Lpc+Ppd788kCDC88p9Hr8u3eFQh0X/hdISX76hqx1/x4BZiidrmCuQRLOE+jGOIkqB1BdaFBJ7F2rg1GsST6tw==` |
 
 Changing thinking-orbs to an exact version also rewrites the lockfile's root entry (`package-lock.json:50`, now
-`^0.3.1`). The lockfile is regenerated in CI, not on a Mac (D-28). M2-0093's `scope_paths` do not list
-`package.json` or `package-lock.json` today.
+`^0.3.1`).
 
-## 9. Follow-ups proposed to the lead
+No workflow regenerates the lockfile: at `6aa8cb36` all ten workflows in `.github/workflows/` only run `npm ci`. The
+route for M2-0093 is the lock-only command approved for M2-0047 (`docs/metis-2.0/designs/M2-0047-DESIGN.md`
+section 3.1), run in the ticket's worktree:
+
+```sh
+npm install --save-dev --save-exact --package-lock-only --ignore-scripts --no-audit --no-fund thinking-orbs@0.3.1 border-beam@1.4.1 voice-glow@0.2.1
+```
+
+It rewrites only `package.json` and `package-lock.json`, reifies nothing into `node_modules` and runs no lifecycle
+script. Using it for M2-0093 is an open lead decision (section 9); until it is taken, this section states the target,
+not a process.
+
+Review criteria for the resulting diff. If any fails, discard the result and find the cause before running it again:
+
+- `package.json` `devDependencies`: `thinking-orbs` changes from `^0.3.1` to `0.3.1` (`package.json:135`) and
+  exactly two lines are added, `"border-beam": "1.4.1"` and `"voice-glow": "0.2.1"`, in alphabetical order.
+  Nothing else in the file changes.
+- `package-lock.json`, root entry `""`: its `devDependencies` show the same three changes; `thinking-orbs` at
+  `package-lock.json:50` becomes `0.3.1`.
+- The lock gains exactly two entries, `node_modules/border-beam` and `node_modules/voice-glow`, each with its
+  registry `resolved` URL, the `integrity` value in the table above, `"dev": true`, `"license": "MIT"` and
+  `peerDependencies` `react` and `react-dom` at `>=18.0.0`.
+- No existing entry moves: no other entry is added or removed, and none changes its `version`, `resolved` or
+  `integrity`. `node_modules/thinking-orbs` (`package-lock.json:11927-11936`) keeps its values.
+
+CI's `npm ci` then enforces the result: it fails when `package.json` and the lock disagree, and it checks every
+downloaded tarball against the lock's `integrity`.
+
+## 9. Decisions and follow-ups for the lead
+
+Open decisions:
+
+- Release age (lead or owner). border-beam 1.4.1 and voice-glow 0.2.1 are five days old, come from a single
+  maintainer and have no provenance (section 5.3). Either adopt them now at the section 8 pins with lockfile
+  integrity, or wait until they reach a minimum release age the lead sets. Waiting does not change the reviewed
+  bytes, which the integrity values already fix; it gives others time to find and report a bad release first.
+- Lockfile route for M2-0093: whether section 8's lock-only command, approved for M2-0047, is approved for M2-0093.
+  It runs npm in the worktree but executes no repository code and installs nothing. If it is approved, amend
+  M2-0093: add `package.json` and `package-lock.json` to its `scope_paths` (neither is listed today), take section
+  8's pins and review criteria, and adopt section 6.3 as acceptance.
+
+Follow-ups:
 
 - Ship notices for bundled npm packages: generate `THIRD_PARTY_NOTICES.md` entries from the lockfile for every
   package whose code lands in the renderer or main bundle, including the Libraries.dev MIT notice, and fail CI when
   a bundled package has none (section 4).
 - Vendor ThinkingOrbsKit and BorderBeamKit into `native-app` at a pinned Libraries.dev commit, as local packages with
-  licence and provenance, build BorderBeamKit's Metal shader through Xcode in native CI (after M2-0050), and build
-  the in-house native voice glow (section 7).
+  licence and provenance, taking or tracking the fix in PR #12, build BorderBeamKit's Metal shader through Xcode in
+  native CI (after M2-0050), and build the in-house native voice glow (section 7).
 - Add `npm audit signatures` to the Security job (section 5.1).
-- Amend M2-0093: add `package.json` and `package-lock.json` to its scope, take section 8's pins, and adopt section
-  6.3 as acceptance.
+- Extend the high audit gate to renderer dependencies. `scripts/check-audit.mjs` audits with `--omit=dev`, yet Vite
+  bundles `devDependencies` into the shipped renderer, so a high advisory in shipped renderer code does not fail CI
+  today (section 5.1).
 
 ## 10. Acceptance of this ticket
 
 | Acceptance | Status | Evidence |
 |---|---|---|
-| Versions pinned in the lockfile | PARTIAL | thinking-orbs 0.3.1 is locked with its integrity (`package-lock.json:11927-11936`). border-beam 1.4.1 and voice-glow 0.2.1 are chosen, with integrity, in section 8, but the lead note bars installing them in this ticket, so their lock entries land with M2-0093 |
+| Versions pinned in the lockfile | PARTIAL | thinking-orbs 0.3.1 is locked with its integrity (`package-lock.json:11927-11936`). border-beam 1.4.1 and voice-glow 0.2.1 are chosen, with integrity, in section 8, but the lead note bars installing them in this ticket, so their lock entries land with M2-0093, by the section 8 route once the lead approves it (section 9) |
 | Licence and npm audit review recorded | MET | Sections 4 and 5.1 |
 | Native package minimum macOS versions reconciled, or an in-house implementation decided | MET | Section 7: both ports fit the macOS 14.0 target; the native voice glow is in-house |
-| Verification `npm audit --omit=dev` | Replaced | It cannot cover `devDependencies` (section 5.1). The full `npm audit` evidence and the advisory queries are cited instead |
+| Verification `npm audit --omit=dev` | Replaced | It cannot cover `devDependencies` (section 5.1). The full `npm audit` output of the CI critical gate and the direct advisory queries are cited instead |
 
 ## 11. Sources
 
@@ -309,9 +379,11 @@ npm registry (fetched 2026-09-27): `https://registry.npmjs.org/thinking-orbs`, `
 `POST /-/npm/v1/security/advisories/bulk`.
 
 GitHub: `Jakubantalik/Libraries.dev` at `f2011632`, `5e7afad5`, `740b349c`, `b7c588f1`, `90a10ad2`, plus tags,
-community profile and issues #9, #12 and #15; `Jakubantalik/thinking-orbs` at `bd204b73` and its tags;
+community profile, issue #9 and pull requests #12 and #15; `Jakubantalik/thinking-orbs` at `bd204b73` and its tags;
 `GET /advisories?ecosystem=npm&affects=…`; `electron/electron` at `v43.6.0` (`docs/breaking-changes.md`,
-`docs/api/browser-window.md`, `docs/api/structures/web-preferences.md:77-83`, `DEPS`); `npm/cli` at `v10.9.8`;
+`docs/api/browser-window.md`, `docs/api/structures/web-preferences.md:77-83`, `DEPS`); `npm/cli` at `v10.9.8`
+(`docs/lib/content/commands/npm-audit.md`, `workspaces/config/lib/definitions/definitions.js`,
+`node_modules/npm-audit-report/lib/index.js`);
 `npm/documentation` at `d1cbe2e2`; `swiftlang/swift-package-manager` at `24a8a7b0`.
 
 Documentation pages (fetched 2026-09-27, sha256): `https://libraries.dev/orbs` (`f635531f…`),
@@ -319,9 +391,13 @@ Documentation pages (fetched 2026-09-27, sha256): `https://libraries.dev/orbs` (
 and `voice.html` redirect to these.
 
 App at `6aa8cb36`: `package.json`, `package-lock.json`, `src/renderer/index.html`, `src/main/index.ts`,
-`src/renderer/src/components/BrandThinkingOrb.tsx`, `src/renderer/src/components/AgentStatus.tsx`,
-`electron-builder.yml`, `THIRD_PARTY_NOTICES.md`, `.github/workflows/build.yml`, `native-app/project.yml`,
-`native-app/MetisKit/Package.swift`. CI runs 36267674617 and 36303098291.
+`src/preload/index.ts`, `src/renderer/src/components/BrandThinkingOrb.tsx`,
+`src/renderer/src/components/AgentStatus.tsx`, `electron-builder.yml`, `THIRD_PARTY_NOTICES.md`,
+`scripts/check-audit.mjs`, `scripts/check-release.mjs`, every file in `.github/workflows/` (`build.yml`,
+`release.yml` and `qa-candidate.yml` cited), `native-app/project.yml`, `native-app/MetisKit/Package.swift`. CI runs
+36267674617 and 36303098291.
+
+Program: `docs/metis-2.0/designs/M2-0047-DESIGN.md` section 3.1 (the lock-only route).
 
 Kit (this repository): `kit/r11/integration/DEPENDENCIES.json`, `kit/r11/integration/NATIVE-PARITY.md`,
 `kit/r11/visual/vendor/PROVENANCE.json`, `kit/r11/spec/MASTER.md` (sections 5.1, 5.11, 6.1, 6.2 and references
