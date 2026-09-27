@@ -4,7 +4,8 @@
 quote any email address, account ID or file content. Do not treat anything here as
 already approved — see "What happens next".
 
-Source directory (read-only, untouched by this ticket): `/Users/tony/AI-Brain-build/metis-2.0-exec`.
+Source directory (read-only, untouched by this ticket): the sibling `metis-2.0-exec` checkout
+alongside this program repository's own checkout.
 Destination scope (this ticket's only allowed write path): `docs/metis-2.0/review/prior-exec/`.
 
 ## 1. Candidate files
@@ -47,7 +48,7 @@ here is copied yet.
 | `tasks/WINDOWS-SIGNING/build-workflow-result.json` | 98.5 KB | Raw CI-run artifact; no finding, ticket or TRACEABILITY row cites it as needed. Adds bulk with no reviewed narrative value. |
 | `receipts/` (28 files, 3.0 MB total — `baseline-desktop.json` alone is 2.5 MB) | 3.0 MB | Mostly raw CI/test-run logs and JSON, plus a release note, a reviewer-qualification report and a SHA256SUMS file; none of the 28 files are cited by K09-R23 or any downstream ticket dependency found in TRACEABILITY. **Some also contain email-pattern strings this ticket did not anticipate** (see §2, "found beyond the ticket's 3") — including any of them would need its own separate mask/count decision. |
 
-### Excluded, not a choice — named per the required-changes instruction
+### Excluded, not a choice — the `.wrangler` account-ID cache never enters this repository
 
 | Path | Status |
 |---|---|
@@ -76,8 +77,9 @@ so also means addressing the 2 gitleaks findings above (mask, or a gitleaks allo
 or this ticket's own `gitleaks detect` verification step fails on them. §3 question 1 covers this.
 
 **Not a match, flagged anyway for your awareness, not blocking:** every file in the source
-contains ordinary absolute paths under `/Users/tony/...` (build paths, tool paths, OneDrive
-paths). `docs/metis-2.0/review/REDACTIONS.md`'s own convention for this repository also scans
+contains ordinary absolute filesystem paths under the operator's home directory (build paths,
+tool paths, cloud-storage sync paths). `docs/metis-2.0/review/REDACTIONS.md`'s own convention
+for this repository also scans
 copied content for "absolute paths naming a non-generic username." The ticket's acceptance
 criteria (gitleaks + an email regex scan) do not cover this, and gitleaks's default ruleset does
 not flag a plain home-directory path, so it is **not** part of what this ticket needs to pass —
@@ -86,15 +88,16 @@ raising it only so the choice not to mask it is yours, not an unstated assumptio
 ## 3. Questions for you to answer (approve, amend, or answer no to any of these — either way, I do not copy anything until you have)
 
 1. **File list** — approve the "recommend include" list in §1 as-is, or tell me which files to
-   add or drop (including whether `build-workflow-result.json` and/or `receipts/` should be
-   in after all, and if so, which of the §2 "found beyond the ticket's 3" matches to mask and
-   how). Two things to weigh if you include `receipts/`: its `baseline-operator.json` trips
-   gitleaks' default `generic-api-key` rule twice (§2, on a placeholder value, not a real
-   credential) — those would need masking or a gitleaks allowlist entry, or this ticket's own
-   `gitleaks detect` verification step fails on them. And the "recommend include" files in §1
-   were screened only for emails, account IDs and secrets, not for client-confidential narrative
-   volume (roughly 1 MB combined across those files) — approving the list as-is also approves
-   that screening scope.
+   add or drop. Three things to weigh:
+   - Whether `build-workflow-result.json` and/or `receipts/` should be in after all, and if so,
+     which of the §2 "found beyond the ticket's 3" matches to mask and how.
+   - If you include `receipts/`: its `baseline-operator.json` trips gitleaks' default
+     `generic-api-key` rule twice (§2, on a placeholder value, not a real credential). Those
+     findings would need masking or a gitleaks allowlist entry, or this ticket's own
+     `gitleaks detect` verification step fails on them.
+   - The "recommend include" files in §1 were screened only for emails, account IDs and
+     secrets, not for client-confidential narrative volume (roughly 1 MB combined across those
+     files). Approving the list as-is also approves that screening scope.
 2. **Mask token** — this repository already has a convention for this exact situation
    (`docs/metis-2.0/review/REDACTIONS.md`, used when the K09 review lane and the kit copies were
    made): emails become the literal placeholder text `<redacted-email>`. Do you want the 3
@@ -132,5 +135,5 @@ whatever you're comfortable leaving as the approval trail), the next agent on th
    values are unchanged before and after.
 5. Pastes the exit codes and counts — never the matched text — into the PR as evidence.
 
-No copy, mask, or commit happens before that. This file is the only thing this round of the
-ticket adds under `docs/metis-2.0/review/prior-exec/`.
+No copy, mask, or commit happens before that. This file is the only thing this ticket has added
+under `docs/metis-2.0/review/prior-exec/` so far.
