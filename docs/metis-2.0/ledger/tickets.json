@@ -415,7 +415,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0006",
@@ -549,10 +551,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac.",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/235",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "id": "M2-0008",
@@ -1412,7 +1419,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0022",
@@ -1462,9 +1471,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/3",
+    "merged_into": "main (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "id": "M2-0023",
@@ -1689,9 +1703,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/236",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "id": "M2-0027",
@@ -1922,12 +1941,17 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "notes": [
     "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
    ],
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/227",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
   },
   {
    "id": "M2-0031",
@@ -1987,10 +2011,13 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
+   "status": "IN_PROGRESS",
    "notes": [
-    "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
-   ]
+    "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion).",
+    "Codex audit-r4 (2026-09-27, verified by Opus at 4ec75897) — MUST be covered by this ticket: (1) no production file imports createStorageGateway yet; (2) History/Recall: src/main/recall.ts:239 does an unbounded Promise.all over readMeeting and :170 reads with raw readFile, bypassing admission, dataless checks, cancellation and deadlines; (3) src/main/transcripts.ts:755 reads meeting-root files synchronously through readSavedFile (:324 decodeSaved(readFileSync)); (4) gateway root() must not be able to reject public methods: a throwing root()/settings resolution must resolve to an unavailable status within the deadline (gateway.ts:91, :318, :354); (5) add a product-level regression through the real History/Recall entry points (not only gateway unit calls) proving the main process stays responsive while meeting files hang or are cloud-only; (6) make the gateway module comment true (the only meetings-root reader)."
+   ],
+   "claimed_by": "ticket runner batch 9 (Codex implements)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0032",
@@ -3168,7 +3195,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0054",
@@ -3252,9 +3281,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 4)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/222",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
   },
   {
    "id": "M2-0056",
@@ -5350,7 +5384,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0093",
@@ -5979,8 +6015,10 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
-   "notes": "D-11 and D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): qualify Cloudflare-hosted speech reached only through the Operator broker. The route record also states the gateway log mode per transport (the per-request payload header exists for HTTP; the Worker binding has only collectLog), whether the account uses Legacy Logs or Workers Logs, and the metadata retention bound. Acceptance unchanged."
+   "status": "IN_PROGRESS",
+   "notes": "D-11 and D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): qualify Cloudflare-hosted speech reached only through the Operator broker. The route record also states the gateway log mode per transport (the per-request payload header exists for HTTP; the Worker binding has only collectLog), whether the account uses Legacy Logs or Workers Logs, and the metadata retention bound. Acceptance unchanged.",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0103",
@@ -8506,9 +8544,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/216",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "id": "M2-0145",
@@ -11211,9 +11254,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/237",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "id": "M2-0193",
@@ -12666,7 +12714,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0217",
    "title": "Require per-asset PASS evidence before promoting a QA candidate",
    "milestone": "m3",
@@ -12692,7 +12740,12 @@
    "risk": "high",
    "estimate_hours": 3,
    "claimed_by": "claude-code ticket runner (batch 5)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/224",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS"
+   }
   },
   {
    "wave": "W2",
@@ -12816,9 +12869,14 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 6)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/230",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 6)"
+   }
   },
   {
    "wave": "W2",
@@ -12830,7 +12888,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0221",
    "title": "Open the Windows CLI setup script without cmd re-parsing its path",
    "milestone": "m3",
@@ -12854,7 +12912,12 @@
    "risk": "high",
    "estimate_hours": 2,
    "claimed_by": "ticket runner batch 7",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/232",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 7)"
+   }
   },
   {
    "wave": "W2",
@@ -12866,7 +12929,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0222",
    "title": "Keep the MCP metadata/DNS-rebinding refusal on the system-proxy route",
    "milestone": "m3",
@@ -12892,7 +12955,12 @@
    "risk": "medium",
    "estimate_hours": 4,
    "claimed_by": "ticket runner batch 7",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/234",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 7)"
+   }
   },
   {
    "wave": "W2",
@@ -12904,7 +12972,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "id": "M2-0223",
    "title": "Pin GitHub Actions to full commit SHAs in build and release workflows",
    "milestone": "m4",
@@ -12929,7 +12997,12 @@
    "risk": "medium",
    "estimate_hours": 2,
    "claimed_by": "ticket runner batch 7",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/231",
+    "merged_into": "m2/integration (squash)",
+    "validation": "Opus PASS (batch 7)"
+   }
   },
   {
    "wave": "W2",
@@ -13004,7 +13077,9 @@
    "flag": null,
    "risk": "high",
    "estimate_hours": 3,
-   "status": "TODO"
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 9 (Codex implements)",
+   "claimed_at": "2026-09-27"
   },
   {
    "id": "M2-0226",
@@ -13049,8 +13124,48 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO",
-   "notes": "Filed centrally by the lead on 2026-09-27 (proposed by M2-0013 as M2-0221, which collided with the audit-r3 ticket of the same id)."
+   "status": "IN_PROGRESS",
+   "notes": "Filed centrally by the lead on 2026-09-27 (proposed by M2-0013 as M2-0221, which collided with the audit-r3 ticket of the same id).",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
+  },
+  {
+   "id": "M2-0227",
+   "title": "Refuse pinned MCP sessions behind an ALL_PROXY SOCKS route too",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0222"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "RF-AUDIT-R4-R1",
+    "RF-AUDIT-R4-R2"
+   ],
+   "scope_paths": [
+    "src/main/net/install-proxy.ts",
+    "src/main/net/install-proxy.test.ts",
+    "src/main/mcp/mcpClient.test.ts"
+   ],
+   "summary": "Codex audit-r4 (verified by Opus at 4ec75897): envProxyIsSocks() (src/main/net/install-proxy.ts:94-99) checks only HTTP(S)_PROXY, while detectProxyFromEnv (src/main/net/proxy-url.ts:12-18) also routes through ALL_PROXY/all_proxy, so ALL_PROXY=socks5://... bypasses M2-0222's refusal of unpinnable proxies for pinned MCP sessions. Tests cover only HTTPS_PROXY/HTTP_PROXY.",
+   "acceptance": [
+    "HTTP_PROXY, HTTPS_PROXY, ALL_PROXY and their lowercase forms with a socks/socks5 scheme all refuse pinned MCP sessions before any request or tunnel (behaviour tests per variable)",
+    "One source of truth for which env variables define the proxy route"
+   ],
+   "verification": [
+    "CI build.yml red/green runs",
+    "npx tsc --noEmit"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 2,
+   "status": "IN_PROGRESS",
+   "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
+   "claimed_at": "2026-09-27"
   }
  ]
 }
