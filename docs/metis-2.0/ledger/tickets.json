@@ -812,10 +812,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
    "claimed_at": "2026-09-26",
-   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket)."
+   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/17",
+    "merged_into": "main (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0012",
