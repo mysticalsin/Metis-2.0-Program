@@ -1,0 +1,25 @@
+name: Traceability
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  traceability:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Check generated traceability
+        run: node docs/metis-2.0/tools/trace/build-traceability.mjs --check
+
+      - name: Test traceability generator
+        run: node --test docs/metis-2.0/tools/trace/build-traceability.test.mjs

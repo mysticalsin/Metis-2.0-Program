@@ -130,6 +130,7 @@ Days waiting are counted from 2026-09-26. As of 2026-09-26: 0 days for every ope
 | D-28 | May agents run test commands on the owner's account, and under which sandbox policy? | **ANSWERED 2026-09-26 by the owner: CI only.** No repository test, script or app runs on any Mac, including the owner's account; tests run only in GitHub Actions. Static compilation (`tsc --noEmit`) is allowed because it executes no repository code | owner decision | 2026-09-28 | ANSWERED | 0190 |
 | D-29 | What ships on Windows if the signing identity is not provisioned in time? | Windows 2.0 ships as an explicitly BLOCKED unsigned candidate (no public Windows release); the Mac candidate and the film are unaffected | reversible | 2026-10-09 | OPEN | 0058, 0174, 0211 |
 | D-30 | Remove the Cahê edition? | **ANSWERED 2026-09-26 by the owner: remove the edition entirely** (code, embedded-key build path, config, workflow, docs). Published Cahê assets deleted the same day | owner decision | 2026-09-26 | ANSWERED | 0214 |
+| D-31 | Should fresh-install speaker identification persist voiceprints by default, or require explicit opt-in? | Default to no persistent enrollment: session-local attribution may run, but writing `voiceprints.json` requires explicit opt-in | reversible | 2026-10-19 | ANSWERED_AS_DEFAULT 2026-09-27 | 0226 |
 
 **Order of the first answers:** D-28 (09-28) → D-9 (09-29) → D-1 (09-30) → D-4, D-11, D-12 on the one-page policy (10-02) → D-13 (10-03) → D-15 (10-05) → D-3, D-14, D-29 (10-09) → D-5, D-6 (10-12).
 
