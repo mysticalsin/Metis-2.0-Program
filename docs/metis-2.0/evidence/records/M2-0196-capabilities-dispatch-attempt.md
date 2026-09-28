@@ -96,6 +96,36 @@ error connecting to api.github.com
 check your internet connection or https://githubstatus.com
 ```
 
+Fourth re-attempt command:
+
+```bash
+gh workflow run windows-qa.yml --ref main -f probe=capabilities
+```
+
+Fourth re-attempt exit code: 1
+
+Fourth re-attempt output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
+Fourth re-attempt read-only repo metadata command:
+
+```bash
+gh repo view --json nameWithOwner,url,defaultBranchRef
+```
+
+Fourth re-attempt read-only repo metadata exit code: 1
+
+Fourth re-attempt read-only repo metadata output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
 Local artifact search command:
 
 ```bash
