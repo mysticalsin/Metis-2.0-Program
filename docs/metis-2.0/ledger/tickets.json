@@ -141,6 +141,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Capability audit (HeyClicky v5, r11 Clicky study, r11 MASTER, v6 BRAG-Hindsight, code structure; 16 agents, 606 adversarially verified gaps) -> 175 tickets M2-0237..M2-0411 (10 P0). Decision-linked tickets held via external_blocker until the owner answers."
+  },
+  {
+   "date": "2026-09-28",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0412 filed (owner OD-18): Operator-managed fleet model policy enforced by every Métis app."
   }
  ],
  "tickets": [
@@ -21712,6 +21718,53 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2"
+  },
+  {
+   "id": "M2-0412",
+   "title": "Make model choice an Operator-managed fleet policy: the owner picks models per capability in the portal and every Métis app enforces it",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "feature",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0145"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OWNER-2026-09-28-MODEL-POLICY",
+    "OD-18"
+   ],
+   "scope_paths": [
+    "operator/src/routes/",
+    "operator/src/render/pages/",
+    "operator/src/spa/",
+    "operator/src/fleet.ts",
+    "src/main/",
+    "src/shared/",
+    "src/renderer/src/components/Settings.tsx",
+    "native/"
+   ],
+   "summary": "Owner requirement (2026-09-28, OD-18): 'I decide what model on the portal and every Métis app abides by that.' Today model choice is local: each app reads its own settings (src/shared/ipc.ts BaseSettingsSchema provider default 'cloudflare') plus an optional admin-managed config file (src/main/store.ts allowedProviders, readTrustedAdminManaged). The Operator portal brokers asks (operatorAskTransport in src/main/import-recap.ts) and has settings-store / seat routes, but there is no portal page that sets models and no fleet policy the apps fetch and obey. Build one owner-controlled model policy, served by the Operator, enforced by the Electron app on macOS and Windows and by the native Mac app.",
+   "acceptance": [
+    "Operator portal 'Models' page (owner role only): pick the provider + model per capability — ask/chat, command agent, meeting recap/extraction, STT, TTS, embeddings, local model — plus allowed fallbacks; every change is versioned and audited (who, when, old -> new).",
+    "The Operator serves the policy as a signed, versioned document on a device-authenticated endpoint (per-device binding, M2-0145); the signature is verified by every app before use; a tampered or unsigned policy is rejected with an audit event.",
+    "Electron app (macOS + Windows) and native Mac app fetch the policy at start and on change (push or poll <= 60 s), cache the last valid signed policy for offline use, and route every model call through it — the local settings cannot select a model outside the policy (Settings shows the policy's choice as managed/locked with the portal as the source).",
+    "Operator-brokered calls enforce the same policy server-side: a request naming a model the policy does not allow is refused (typed error), so an old or modified client cannot bypass it.",
+    "Precedence is defined and tested: owner portal policy > MDM admin-managed file allowedProviders (can only narrow) > user settings; no policy yet = today's defaults with a visible 'not managed' state.",
+    "Tests: Operator route + signature tests (vitest), desktop policy client tests (fetch, verify, cache, offline, change applied without restart), a contract test that every model call site resolves through the policy module, native Mac unit tests (Swift, CI), and a packaged-smoke row POLICY-01 on macOS + Windows: change the policy on a test Operator, the running app switches model within 60 s."
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "Operator Worker tests",
+    "per-PR packaged smoke (macOS + Windows) row POLICY-01"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 6,
+   "status": "TODO"
   }
  ]
 }
