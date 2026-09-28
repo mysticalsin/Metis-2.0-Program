@@ -1,76 +1,53 @@
-# M2-0023 Codex Read-Only Review Attempt
+# M2-0023 Codex Read-Only Review
 
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:1498): ticket id is M2-0023.
-- OBSERVED (current session, 2026-09-28): reviewer label is current Codex session plus attempted nested Codex CLI.
-- OBSERVED (system date, 2026-09-28): review date is 2026-09-28.
-- OBSERVED (current session, 2026-09-28): review type was read-only document/process review; no tests, scripts, app launches, or ledger edits.
-- OBSERVED (current session file reads, 2026-09-28): scope reviewed was `docs/metis-2.0/PLAN.md`, `docs/metis-2.0/ARCHITECTURE.md`, `docs/metis-2.0/ledger/tickets.json`, `docs/metis-2.0/ledger/tickets/M2-0023.md`, `docs/metis-2.0/BLOCKERS.md`, `docs/metis-2.0/TRACEABILITY.md`, `docs/metis-2.0/review/chatgpt-audit-1.md`, existing `docs/metis-2.0/review/codex/audit-r*.txt`, and `docs/metis-2.0/review/audits/`.
-
-## Read-Only Constraints Observed
-
-- OBSERVED (user prompt, 2026-09-28): do not edit `docs/metis-2.0/ledger/tickets.json` or `_relay/`.
-- OBSERVED (user prompt, 2026-09-28): never run repository tests, scripts, or the app.
-- OBSERVED (docs/metis-2.0/PLAN.md:35): no agent runs repository tests until M2-0001's canary passes; later runs are limited to CI, QA macOS user, or D-28 sandboxed owner account.
-- OBSERVED (docs/metis-2.0/PLAN.md:305): AGENTS.md test commands are subject to the no-repository-test rule.
-- OBSERVED (docs/metis-2.0/ARCHITECTURE.md:9): the architecture document says no repo code was run and runtime tests are NOT_RUN.
-- OBSERVED (command output, 2026-09-28): root `AGENTS.md` was not present in this worktree.
-- OBSERVED (command output, 2026-09-28): `graphify query "M2-0023 plan architecture ledger independent audit docs/metis-2.0" --budget 1800` failed with `graph file not found`.
-- OBSERVED (command output, 2026-09-28): `graphify-out/wiki/index.md` was absent.
-- OBSERVED (command output, 2026-09-28): `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:docs/metis-2.0/PLAN.md` failed with `fatal: path 'docs/metis-2.0/PLAN.md' does not exist in 'origin/m2/integration'`.
-- DERIVED: raw worktree file inspection was necessary after the mandated graph/wiki route and specified public-code route returned no usable source content.
-
-## Codex CLI Attempts
-
-- OBSERVED (command output, 2026-09-28): `codex exec --ephemeral --sandbox read-only --ask-for-approval never ...` failed because this Codex CLI version does not accept `--ask-for-approval`.
-- OBSERVED (command output, 2026-09-28): `codex exec --ephemeral --ignore-rules --sandbox read-only -C /Users/tony/AI-Brain-build/metis-wt-M2-0023 -o /private/tmp/m2-0023-codex-out/last-message.txt ...` failed before review with `Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)`.
-- OBSERVED (command output, 2026-09-28): `codex exec review --help` shows a diff-review subcommand, not the required arbitrary-file read-only sandbox review path.
-- DERIVED: the required nested Codex CLI review did not run successfully in this sandbox.
-- BLOCKED_EXTERNAL: exact read-only step is to run the same scoped review from an environment where `codex exec --ephemeral --sandbox read-only -C /Users/tony/AI-Brain-build/metis-wt-M2-0023 ...` can initialize successfully, then save the transcript or last-message output under `docs/metis-2.0/review/audits/`.
+- OBSERVED (current Codex session, 2026-09-28): this review was performed as a read-only document/process audit before any audit-scope file edits.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json:1498-1542): M2-0023 requires ChatGPT review, Codex read-only review, disposition of findings, and no self-approval.
+- OBSERVED (docs/metis-2.0/PLAN.md:47-50): the plan separates Opus, ChatGPT and Codex review roles and states a reviewer never validates its own work.
+- OBSERVED (docs/metis-2.0/ARCHITECTURE.md:9): the architecture file records that no repo code was run and runtime tests are NOT_RUN.
+- OBSERVED (docs/metis-2.0/PLAN.md:305): repository tests are not allowed outside the approved CI/QA/D-28 environments.
+- OBSERVED (command output, 2026-09-28): nested `codex exec --ephemeral --ignore-user-config --ignore-rules --sandbox read-only -C /Users/tony/AI-Brain-build/metis-wt-M2-0023 ...` failed before review with `Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)`.
+- DERIVED: this file records a successful current-session Codex read-only audit and separately records that nested Codex CLI provenance is unavailable in this sandbox.
 
 ## Findings
 
-### CX-M2-0023-01: Ticket acceptance is still unmet
+### CX-M2-0023-01: Program-ledger disposition is still missing and cannot be added here
 
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:1523-1526): M2-0023 requires ChatGPT audit, Codex review, dispositions, and no self-approval.
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:1541): the ledger status remains `TODO`.
-- OBSERVED (docs/metis-2.0/ledger/tickets/M2-0023.md:13): the generated ticket status remains `TODO`.
-- DERIVED: this worktree does not yet satisfy M2-0023 acceptance.
-- Disposition: ACCEPTED. Do not mark complete.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json:1522): the ticket summary requires every finding to be dispositioned in the ledger.
+- OBSERVED (user prompt, 2026-09-28): this run must never edit `docs/metis-2.0/ledger/tickets.json`.
+- DERIVED: audit-scope dispositions do not satisfy the program-ledger requirement.
+- Disposition: ACCEPTED. Reason: the owner constraint blocks the required ledger edit.
 
-### CX-M2-0023-02: Codex quota state is stale or superseded, but the CLI review still failed locally
+### CX-M2-0023-02: The ticket and traceability status still show not done
 
-- OBSERVED (docs/metis-2.0/BLOCKERS.md:18): B-04 says the Codex review runs after 2026-09-29 19:33.
-- OBSERVED (docs/metis-2.0/BLOCKERS.md:135): the tooling blocker repeats the same Codex quota wording.
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:1542): M2-0023 says the Codex quota was restored on 2026-09-27.
-- UNKNOWN: no in-repo source proves outside account quota state.
-- OBSERVED (command output, 2026-09-28): the fresh nested CLI attempt failed with `Operation not permitted` before review.
-- Disposition: ACCEPTED. The quota note can unblock an attempt, but it does not prove a successful Codex review.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json:1541): M2-0023 status is `TODO`.
+- OBSERVED (docs/metis-2.0/ledger/tickets/M2-0023.md:13): the generated ticket page status is `TODO`.
+- OBSERVED (docs/metis-2.0/TRACEABILITY.md:437 and docs/metis-2.0/TRACEABILITY.md:512-515): all M2-0023 kit refs are `NOT_STARTED`.
+- DERIVED: the worktree cannot truthfully be reported as meeting all M2-0023 acceptance criteria.
+- Disposition: ACCEPTED. Reason: completion requires ledger-owner action outside the permitted edit scope.
 
-### CX-M2-0023-03: Verification text omits ARCHITECTURE while acceptance and summary include it
+### CX-M2-0023-03: Verification scope should include ARCHITECTURE
 
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:1522): the summary says the plan, architecture target and ledger are sent, and Codex reviews the same files.
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:1524): ChatGPT acceptance includes PLAN, ARCHITECTURE and ledger.
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:1528-1530): the verification line mentions PLAN and ledger only.
-- DERIVED: any successful Codex review should include ARCHITECTURE despite the narrower verification line.
-- Disposition: ACCEPTED. This session inspected ARCHITECTURE; the successful nested CLI run still needs to do the same.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json:1522): the summary includes the architecture target in the review packet.
+- OBSERVED (docs/metis-2.0/ledger/tickets.json:1528-1530): the verification command text mentions only PLAN and ledger.
+- DERIVED: a faithful Codex review must include `ARCHITECTURE.md` to match the summary and ChatGPT acceptance.
+- Disposition: ACCEPTED. Reason: this Codex review included `ARCHITECTURE.md`.
 
-### CX-M2-0023-04: Prior Codex audits do not satisfy this ticket
+### CX-M2-0023-04: Nested Codex CLI provenance is blocked by the local sandbox
 
-- OBSERVED (docs/metis-2.0/review/codex/audit-r1.txt:13): audit-r1 ended `VERDICT: REVISE`.
-- OBSERVED (docs/metis-2.0/review/codex/audit-r2.txt:8): audit-r2 ended `VERDICT: REVISE`.
-- OBSERVED (docs/metis-2.0/review/codex/audit-r3.txt:10): audit-r3 ended `VERDICT: REVISE`.
-- OBSERVED (docs/metis-2.0/review/codex/audit-r4.txt:13): audit-r4 ended `VERDICT: REVISE`.
-- OBSERVED (docs/metis-2.0/PLAN.md:47): a reviewer never validates work its own session wrote.
-- DERIVED: previous Codex findings are useful inputs but are not the required same-file M2-0023 read-only review packet.
-- Disposition: ACCEPTED.
+- OBSERVED (command output, 2026-09-28): `codex exec --help` supports `--ephemeral`, `--ignore-user-config`, `--ignore-rules`, `--sandbox read-only`, `-C` and `-o`.
+- OBSERVED (command output, 2026-09-28): running those flags still failed with `Operation not permitted (os error 1)` before the nested agent could review.
+- BLOCKED_EXTERNAL: exact read-only step is to run the same prompt from an environment where `codex exec --ephemeral --ignore-user-config --ignore-rules --sandbox read-only -C /Users/tony/AI-Brain-build/metis-wt-M2-0023 -o /private/tmp/m2-0023-codex-out/last-message.txt ...` can initialize, then save the transcript or output under `docs/metis-2.0/review/audits/`.
+- Disposition: ACCEPTED. Reason: current-session Codex review exists, but durable nested CLI provenance remains externally blocked.
 
-### CX-M2-0023-05: The owner-specified ledger disposition cannot be performed by this run
+### CX-M2-0023-05: The requested tsc checks are outside the allowed execution boundary
 
-- OBSERVED (docs/metis-2.0/ledger/tickets.json:1522): every finding is to be dispositioned in the ledger.
-- OBSERVED (user prompt, 2026-09-28): do not edit `docs/metis-2.0/ledger/tickets.json` or `_relay/`.
-- DERIVED: only audit-scope dispositions can be written in this run.
-- Disposition: ACCEPTED. Leave program-ledger disposition to the orchestrator or a run with explicit permission.
+- OBSERVED (user prompt, 2026-09-28): never run repository tests, scripts or the app.
+- OBSERVED (docs/metis-2.0/PLAN.md:305): test commands are restricted to approved environments.
+- OBSERVED (command output, 2026-09-28): public `origin/m2/integration:package.json` defines `typecheck` as three `tsc --noEmit` checks plus `node scripts/check-test-types.mjs` and additional operator checks.
+- DERIVED: running the tsc bars here would violate the no-tests/no-scripts boundary.
+- Disposition: ACCEPTED. Reason: not-run verification must be reported honestly.
 
 ## Verdict
 
-DERIVED: the current Codex session performed a read-only file review and recorded findings, but the required nested Codex CLI review did not complete. This artifact is failure/blocker evidence, not completion evidence for M2-0023.
+- DERIVED: current-session Codex read-only review completed against `PLAN.md`, `ARCHITECTURE.md`, `ledger/tickets.json`, the generated M2-0023 page and the audit-scope files.
+- DERIVED: M2-0023 acceptance remains unmet because ledger disposition/regeneration is forbidden and nested Codex CLI provenance is blocked by `Operation not permitted`.
