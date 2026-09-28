@@ -153,6 +153,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0413 filed: brain test cleanup race class (intelligence-work ENOTEMPTY on integration)."
+  },
+  {
+   "date": "2026-09-28",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Unblock sweep: M2-0029 -> ENGINEERING_COMPLETE (no live evidence yet); M2-0213 deps/verification; M2-0119 stale D-5 blocker cleared (OD-17), P0; 5 SOFT dependency drops; M2-0414,M2-0415,M2-0416 filed (real 1.9.6 sources, Windows baseline harness, HK-W by sha256)."
   }
  ],
  "tickets": [
@@ -1992,7 +1998,7 @@
     "Registry/reaper start-time path (GetProcessTimes) verified on Windows"
    ],
    "verification": [
-    "gh workflow run windows-qa.yml -f suite=hk-w (owner-approved)"
+    "windows-qa.yml dispatched --ref main with candidate_run + sha256 inputs of a qa-candidate.yml build (M2-0416); hk-w-summary.json filed as LIVE_VERIFIED"
    ],
    "required_evidence": [
     "LIVE_VERIFIED"
@@ -2004,13 +2010,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/287",
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + CI green"
-   }
+   },
+   "notes": "2026-09-28 (lead, unblock analysis): merged #287 but LIVE_VERIFIED HK-W evidence is still missing — windows-qa.yml downloads tag v1.9.6 from AskToto-Mantu (no such release; 1.9.6 is v1.9.6-unsigned on mysticalsin/Metis-Releases) and no release contains the M2-0027 registry. Verification: dispatch windows-qa.yml --ref main with candidate_run + sha256 of a qa-candidate.yml candidate (M2-0416). DONE only after that run's hk-w-summary.json is filed."
   },
   {
    "id": "M2-0030",
@@ -4684,9 +4691,7 @@
    "milestone": "m10",
    "type": "design",
    "owner_model": "opus",
-   "depends_on": [
-    "M2-0071"
-   ],
+   "depends_on": [],
    "needs_decision": [],
    "kit_refs": [],
    "finding_refs": [
@@ -4717,7 +4722,8 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-28 (lead): dependency on M2-0071 dropped (SOFT: disjoint scope: Settings.tsx and TapCalibration.tsx hold no warning-colour literals); re-verify against M2-0071 once it lands."
   },
   {
    "id": "M2-0079",
@@ -7197,24 +7203,21 @@
     "Hosted Vectorize Cloud not used without a separate commercial decision"
    ],
    "verification": [
-    "docker compose -f services/compose.yml up --wait (local, synthetic data)"
+    "ubuntu-latest CI job brings up services/compose.yml and runs the health/contract checks (D-28: nothing on the Mac)"
    ],
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Approve the hosting platform, region and managed Postgres+vector choice for the knowledge/memory service (decision D-5) and name an operational owner",
-    "needed_by": "2026-10-12",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 8,
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-28 (lead): OD-17 answered D-5 — self-hosted private Hindsight on one approved container platform with managed Postgres. Platform/region/operational owner are PENDING and gate only the live deployment (M2-0138, M2-0381). Build and prove services/compose.yml (digest-pinned pgvector Postgres + pinned hindsight-api) with an ubuntu-latest CI compose job (D-28). LEAD_ACTION: private ADR-014 (PENDING + PROPOSED default).",
+   "priority": "P0"
   },
   {
    "id": "M2-0120",
@@ -11571,7 +11574,8 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0007",
-    "M2-0009"
+    "M2-0009",
+    "M2-0415"
    ],
    "needs_decision": [],
    "kit_refs": [],
@@ -12711,7 +12715,8 @@
    "owner_model": "opus",
    "depends_on": [
     "M2-0212",
-    "M2-0178"
+    "M2-0178",
+    "M2-0349"
    ],
    "needs_decision": [
     "D-27"
@@ -12720,7 +12725,8 @@
    "finding_refs": [],
    "scope_paths": [
     "film/storyboard/",
-    "film/scenes/"
+    "film/scenes/",
+    ".github/workflows/film-toolchain.yml"
    ],
    "summary": "Film production was fully serialized after the candidate freeze. Everything that does not need the final product (storyboard variants, non-product scenes, the capture shot list, the scratch edit skeleton) is done before the freeze.",
    "acceptance": [
@@ -12730,8 +12736,7 @@
     "Scratch-edit skeleton ready to receive rc1 captures; claim-approval request drafted for sending by 2026-11-20 (never auto-sent)"
    ],
    "verification": [
-    "ffprobe on each produced scene",
-    "node scripts/film/check-claims.mjs --storyboard"
+    "CI: node --test media/launch-film/check-claims.test.mjs and film/storyboard/*.test.mjs; ffprobe only inside a CI render job (film-toolchain.yml)"
    ],
    "required_evidence": [
     "DESIGNED",
@@ -12744,7 +12749,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": "2026-11-15",
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-28 (lead): depends on M2-0349 (re-keys CLAIMS.json LF-01..08). ASSUMED defaults until the owner answers D-27: cut/concept variants per D-27 proposal, bundled Inter/Geist fonts, ubuntu-24.04 runner as render machine. D-27 stays OPEN."
   },
   {
    "id": "M2-0214",
@@ -14935,8 +14941,7 @@
    "depends_on": [
     "M2-0015",
     "M2-0011",
-    "M2-0019",
-    "M2-0014"
+    "M2-0019"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -14975,7 +14980,8 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "notes": "2026-09-28 (lead): dependency on M2-0014 dropped (SOFT: redundant: keeps M2-0015 which depends on M2-0014); re-verify against M2-0014 once it lands."
   },
   {
    "id": "M2-0262",
@@ -15073,8 +15079,7 @@
    "type": "docs",
    "owner_model": "sonnet",
    "depends_on": [
-    "M2-0009",
-    "M2-0195"
+    "M2-0009"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -15102,7 +15107,8 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "notes": "2026-09-28 (lead): dependency on M2-0195 dropped (SOFT: baseline comes from M2-0009 census on hosted runners; the managed-laptop row stays BLOCKED_EXTERNAL); re-verify against M2-0195 once it lands."
   },
   {
    "id": "M2-0265",
@@ -15112,8 +15118,7 @@
    "type": "docs",
    "owner_model": "sonnet",
    "depends_on": [
-    "M2-0120",
-    "M2-0119"
+    "M2-0120"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -15140,7 +15145,8 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "notes": "2026-09-28 (lead): dependency on M2-0119 dropped (SOFT: docs-only; needs only the hosting decision, answered by OD-17); re-verify against M2-0119 once it lands."
   },
   {
    "id": "M2-0266",
@@ -20249,8 +20255,7 @@
    "type": "docs",
    "owner_model": "sonnet",
    "depends_on": [
-    "M2-0011",
-    "M2-0059"
+    "M2-0011"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -20287,7 +20292,8 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "notes": "2026-09-28 (lead): dependency on M2-0059 dropped (SOFT: private ADR evaluation needing only D-15 (answered 2026-09-26)); re-verify against M2-0059 once it lands."
   },
   {
    "id": "M2-0378",
@@ -21847,6 +21853,113 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + CI green"
    }
+  },
+  {
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "evidence_target": "LOCALLY_TESTED",
+   "priority": "P1",
+   "id": "M2-0414",
+   "title": "Point resource-census.yml and freeze-repro.yml at the real 1.9.6 release (Metis-Releases v1.9.6-unsigned) and verify SHA256SUMS before install",
+   "type": "ci",
+   "depends_on": [],
+   "finding_refs": [
+    "UNBLOCK-2026-09-28"
+   ],
+   "scope_paths": [
+    ".github/workflows/resource-census.yml",
+    ".github/workflows/freeze-repro.yml",
+    "scripts/qa/"
+   ],
+   "summary": "The QA lanes download tag v1.9.6 from AskToto-Mantu, which has no such release; the 1.9.6 artifacts are v1.9.6-unsigned on mysticalsin/Metis-Releases. Point both lanes there and verify the published SHA256SUMS before installing.",
+   "acceptance": [
+    "Both workflows download from mysticalsin/Metis-Releases v1.9.6-unsigned (input-overridable) and verify SHA256SUMS; a mismatch fails the job",
+    "No secrets; actions SHA-pinned; main-ref guard on dispatch",
+    "A dispatched run on main downloads, verifies and installs the macOS and Windows artifacts"
+   ],
+   "verification": [
+    "workflow_dispatch run on main"
+   ],
+   "risk": "low",
+   "estimate_hours": 2
+  },
+  {
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "evidence_target": "LOCALLY_TESTED",
+   "priority": "P1",
+   "id": "M2-0415",
+   "title": "Windows 1.9.6 baseline harness (scripts/qa/windows/baseline.ps1) with a workflow_dispatch windows-latest lane; managed-laptop rows reported BLOCKED_EXTERNAL",
+   "type": "feature",
+   "depends_on": [
+    "M2-0009",
+    "M2-0196",
+    "M2-0414"
+   ],
+   "finding_refs": [
+    "UNBLOCK-2026-09-28"
+   ],
+   "scope_paths": [
+    "scripts/qa/windows/",
+    ".github/workflows/"
+   ],
+   "summary": "The Windows 1.9.6 baseline (M2-0195) needs a harness that runs on hosted windows-latest now; only the managed-laptop rows need Mantu IT's physical machine.",
+   "acceptance": [
+    "baseline.ps1 measures the M2-0009 census states on the installed 1.9.6 app",
+    "workflow_dispatch windows-latest lane, main-ref guarded, no pull_request trigger",
+    "Rows needing the managed laptop are printed BLOCKED_EXTERNAL with the exact unblock step"
+   ],
+   "verification": [
+    "workflow_dispatch run on main"
+   ],
+   "risk": "medium",
+   "estimate_hours": 4
+  },
+  {
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "evidence_target": "LOCALLY_TESTED",
+   "priority": "P1",
+   "id": "M2-0416",
+   "title": "HK-W lane installs the qa-candidate.yml Windows candidate by sha256 (candidate_run + sha256 inputs, no v1.9.6 default)",
+   "type": "ci",
+   "depends_on": [
+    "M2-0029",
+    "M2-0187"
+   ],
+   "finding_refs": [
+    "UNBLOCK-2026-09-28"
+   ],
+   "scope_paths": [
+    ".github/workflows/windows-qa.yml",
+    "scripts/qa/"
+   ],
+   "summary": "windows-qa.yml's HK-W suite must test the exact candidate built by qa-candidate.yml, identified by run and sha256, not a missing v1.9.6 tag.",
+   "acceptance": [
+    "Inputs candidate_run and sha256 are required; the job downloads candidate-win from that run and verifies the sha256 before install",
+    "Any fallback reads mysticalsin/Metis-Releases; main-ref guard",
+    "A dispatched run on main produces hk-w-summary.json"
+   ],
+   "verification": [
+    "workflow_dispatch run on main"
+   ],
+   "risk": "medium",
+   "estimate_hours": 3
   }
  ]
 }
