@@ -1,11 +1,98 @@
 # SRC-REVERIFY — Re-verification of the 24 source-export findings against HEAD
 
 **Ticket:** M2-0013 · **Type:** investigation (docs/process only; no code changed) · **Owner model:** sonnet
-**Repo re-verified (read-only):** `mysticalsin/AskToto-Mantu` — `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:<path>`, HEAD **`70de3c303a047879afd8651a78b41c0ce85dcc3c`** ("Merge pull request #205: agent rules for the Métis 2.0 program [M2-0024]", 2026-09-26T16:20:02-04:00). No file in that checkout was created, modified, or deleted by this ticket.
+**Repo re-verified (read-only):** `mysticalsin/AskToto-Mantu` — `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:<path>`, current HEAD **`cfd8b22c90d69ae23499716493c9391f2ac7af98`** ("fix: Triage all 20 open PRs and 18 open issues per the verified dispositions and set labels and the 2.0 milestone [M2-0025] (#260)", 2026-09-28T00:56:35-04:00). No file in that checkout was created, modified, or deleted by this ticket.
 **Prior pass re-verified here:** `metis-v2-review/lanes/K05-master-s22-31.md` §2.8, taken against HEAD `2bf21f1c` (v1.9.6). **`2bf21f1c` is not an ancestor of the current `origin/m2/integration`** — the git history was rewritten 2026-09-26 (owner operating rule) — so this ticket does not diff commit ranges; every claim below is a fresh, direct read of the file content at the two named refs.
 **Source-export inputs:** `metis-kit-r11/Metis-2.0-Upgrade-Kit-r11/references/source/metis-1.9.5-export.txt` (kit copy, read-only), `source-review/SOURCE-INDEX.json` (1,521 sections; `content_start_line`/`content_end_line` gives the exact line range of each file's text inside the export — the section boundary this pass's mechanical diff is keyed on, not an approximation), `source-review/FINDINGS.json` (the 24 findings' `source_observation`/`required_change`/`evidence[]` text) and `architecture/MAP-COVERAGE.json` (the 19 file-backed architecture-map nodes, 14 present / 5 `NOT_IN_EXPORT`).
 **Evidence labels:** **OBSERVED** (read directly in the cited file at the cited ref), **DERIVED** (reasoned from OBSERVED facts), **ASSUMED**, **UNKNOWN** (anchor read, disposition not established this pass), **OPEN: not statically closable** (a real anchor was read; closing it needs evidence a source-only pass cannot produce — named per row).
+**Round 3 current-HEAD refresh (2026-09-28):** the acceptance answer for M2-0013 is now §0A. §0-§9 below are retained as the round-2 audit trail against `70de3c30`; any conflict is superseded by §0A's `cfd8b22c` evidence.
 **Revision note (round 2, this pass):** round 1 of this document mis-stated several "new since the export" claims — some of the cited machinery was already present, byte-identical, in the 1.9.5 export (§2's now-complete 58-path table proves this per file). §3, §4, §5 and §6 below are corrected against that table; §9 lists every correction made and why. One correction goes the other way: round 1's validator asked this pass to confirm three literal `Laya` hits in `App.tsx`/`Settings.tsx`/`src/shared/keys.ts` for F-09 — none exist at HEAD (§6, F-09); every apparent hit was a case-insensitive substring match inside an unrelated camelCase identifier (`overlayAllowsMinimize`, `displayAccelerator`, `replayAfterDrain`, …), not the word "Laya". F-09 is corrected to **OPEN: not statically closable** with that search recorded, not fabricated as closed.
+
+---
+
+## 0A. Round 3 acceptance refresh against current HEAD `cfd8b22c`
+
+**OBSERVED — source repo identity (`git -C /Users/tony/AI-Brain-build/metis-operator-ux rev-parse origin/m2/integration`, 2026-09-28):** current `origin/m2/integration` is `cfd8b22c90d69ae23499716493c9391f2ac7af98`, commit subject `fix: Triage all 20 open PRs and 18 open issues per the verified dispositions and set labels and the 2.0 milestone [M2-0025] (#260)`, commit time `2026-09-28 00:56:35 -0400`.
+
+**OBSERVED — graph/vault startup constraints:** `/graphify query "M2-0013 SRC-REVERIFY SRC-04 F-01 F-20" --budget 1800` could not run because `graphify-out/graph.json` is absent in this worktree; `graphify-out/wiki/index.md` is absent. `Preferences/dont.md` and `Preferences/mistakes.md` in the AI Second Brain vault failed to read with `Resource deadlock avoided`; this is recorded because the session-start read was blocked, not silently skipped.
+
+**OBSERVED — required verifier path:** `scripts/trace/diff-export.py` is not present in this private worktree. **DERIVED:** the mechanical diff evidence below was produced by an equivalent scratch read-only Python process against the kit export/JSON inputs and `git show origin/m2/integration:<path>`; no repository tests, repository scripts, workflows, app, ledger mutation, or `_relay/` mutation were run.
+
+**OBSERVED — kit inputs (`ls -l`, 2026-09-28):** `/Users/tony/AI-Brain-build/metis-kit-r11/Metis-2.0-Upgrade-Kit-r11/references/source/metis-1.9.5-export.txt`, `source-review/SOURCE-INDEX.json`, `source-review/FINDINGS.json`, and `architecture/MAP-COVERAGE.json` exist locally and were read.
+
+**Mechanical diff, export vs current HEAD, 58 mapped paths (OBSERVED command output, 2026-09-28):**
+
+```text
+Totals: {'CHANGED': 27, 'IDENTICAL': 25, 'MISSING_AT_HEAD': 1, 'NOT_IN_EXPORT': 5} | total paths: 58
+CHANGED: .github/workflows/build.yml; .gitleaks.toml; cloudflare-proxy/src/index.ts; docs/AUDIT-LOG.md; docs/CLOUDFLARE.md; docs/design/ONBOARDING-FLOW.md; electron-builder.yml; intelligence/src/lib/brainAdapter.ts; license-server/package.json; operator/src/ai-gateway.ts; operator/src/d1.ts; operator/src/dashboard.ts; operator/src/index.ts; operator/src/store.ts; package.json; src/main/brain/ingest.ts; src/main/brain/store.ts; src/main/cloud-stt/credentials.ts; src/main/desktop-adapters.ts; src/main/index.ts; src/main/license.ts; src/main/metis-command-runtime.test.ts; src/main/metis-command-runtime.ts; src/main/operator-ingest.ts; src/main/speaker-id.ts; src/preload/index.ts; src/renderer/src/App.tsx; src/renderer/src/lib/onboarding-hero-video.ts; src/shared/metis-wake.ts; vitest.config.ts
+IDENTICAL: DESIGN.md; THIRD_PARTY_NOTICES.md; cloudflare-proxy/provision-embedded-key.mjs; docs/ENTERPRISE-DEPLOY-WINDOWS.md; docs/ENTERPRISE_RELEASE.md; docs/verification/mi-5-dust-e2e.md; intelligence/src/App.tsx; license-server/lib/app.mjs; license-server/lib/store.mjs; native-app/App/Store/PersistedModels.swift; native-app/MetisKit/Package.swift; native-app/MetisKit/Sources/MetisKit/MeetingController.swift; operator/client/main.ts; scripts/push-both.sh; src/main/asktoto-shot.ts; src/main/brain/publish.ts; src/main/license-lease-key.ts; src/main/llm.ts; src/main/mode-skills.ts; src/main/parakeet.ts; src/main/screen-capture.ts; src/main/screen-preprocess.ts; src/renderer/src/components/BrandThinkingOrb.tsx; src/shared/desktop-actions.ts; src/shared/mode-recap.ts
+MISSING_AT_HEAD: electron-builder.cahe.win.yml
+NOT_IN_EXPORT: src/main/brain/ingest.ts; src/main/index.ts; src/main/transcripts.ts; src/renderer/src/App.tsx; src/renderer/src/lib/listen.ts
+```
+
+**SRC-04 current anchor (acceptance criterion 2):** **OBSERVED** `src/main/command-control.ts:85-110` still consumes a proposal, calls `deps.execute`, audits the adapter outcome, and only returns success when `result.ok && result.outcome === 'verified'` at `:104`; `:105-106` return `outcome_unverified` or `adapter_failed` otherwise. **OBSERVED** `src/main/desktop-adapters.ts:88-94` defaults `okResult()` to `'unknown'`; success call sites at `:182,189,195,201,204,209,212,222,234,237,244,255,259,264` pass `'unknown'`; `git grep "'verified'|\"verified\""` over `desktop-adapters.ts`, `desktop-actions.ts`, and `command-control.ts` finds only `command-control.ts:104` and the shared type declaration `desktop-actions.ts:31`. **Disposition: RELOCATED + PARTIAL.** CommandControl now separates dispatch from verified completion, but the current desktop adapters still never return `verified`.
+
+### Current SRC-01..SRC-24 disposition table
+
+| ID | Disposition at `cfd8b22c` | Current evidence | Owning ticket(s) |
+|---|---|---|---|
+| SRC-01 | **PARTIAL** | **OBSERVED:** current checkout identity is `cfd8b22c`; mechanical diff covers all 58 mapped paths. **UNKNOWN:** current CI artifact was not filed/read in this pass due owner rule. | M2-0005, M2-0015 |
+| SRC-02 | **PARTIAL** | **OBSERVED:** `src/renderer/src/App.tsx:314` still gates on `LICENSE_ENFORCEMENT`; `src/main/license.ts:317-336` has `verifyLease` / `checkLicenseGrace`; `src/main/license-lease-key.ts:81` exposes `embeddedLicenseLeasePubkeyAvailable`. **DERIVED:** lease machinery exists, but product enforcement remains conditional. | M2-0062, M2-0146 |
+| SRC-03 | **REPRODUCES** | **OBSERVED:** `src/main/metis-command-runtime.ts:216-235` awaits Jev decision and then deliberately discards it with `void result` under the advisory-only comment. | M2-0122 |
+| SRC-04 | **RELOCATED + PARTIAL** | **OBSERVED:** `src/main/command-control.ts:85-110`, especially `:104-106`; `src/main/desktop-adapters.ts:88-94,182-264`; `git grep` shows no adapter-side `verified` literal. | M2-0082, M2-0083, M2-0084, M2-0085 |
+| SRC-05 | **REPRODUCES** | **OBSERVED:** `src/shared/desktop-actions.ts:7-14` enumerates six demo actions only; no close-app/close-tab adapter type. | M2-0081, M2-0084 |
+| SRC-06 | **PARTIAL** | **OBSERVED:** `src/shared/metis-wake.ts:21-35` now folds speech per character; `:54-88` strips wake word by original source span. **DERIVED:** source fix reduces payload corruption risk, but no runtime wake acceptance evidence was run in this pass. | M2-0041, M2-0081 |
+| SRC-07 | **REPRODUCES** | **OBSERVED:** `src/main/cloud-stt/credentials.ts:15-16` still instructs seating a Cloudflare account API token for Nova-3. | M2-0107 |
+| SRC-08 | **PARTIAL** | **OBSERVED:** `operator/src/ai-gateway.ts:113-194` now reads back and validates the default gateway privacy config. **DERIVED:** this materially fixes the prior bare `catch {}` pattern, but deployed gateway proof remains outside a source-only pass. | M2-0041, M2-0104 |
+| SRC-09 | **PARTIAL** | **OBSERVED:** `electron-builder.cahe.win.yml` is missing at HEAD; `electron-builder.yml:131-140` still supports an opt-in encrypted Cloudflare key embed. | M2-0056 |
+| SRC-10 | **PARTIAL** | **OBSERVED:** `operator/src/d1.ts:75-110` does provenance-aware upsert; `operator/src/dashboard.ts:736,1349` still caps ask lists at 2000/500. | M2-0041, M2-0106 |
+| SRC-11 | **REPRODUCES** | **OBSERVED:** `native-app/App/Store/PersistedModels.swift` is byte-identical to export in the mechanical diff. | M2-0118 |
+| SRC-12 | **REPRODUCES** | **OBSERVED:** `native-app/MetisKit/Sources/MetisKit/MeetingController.swift` is byte-identical to export in the mechanical diff. | M2-0113 |
+| SRC-13 | **PARTIAL** | **OBSERVED:** `src/shared/ipc.ts:1381-1386,1761` defaults `speakerId` to `{ enabled: true, saveVoiceprints: false }`; `src/main/speaker-id.ts:326-327` blocks persisted voiceprint writes unless `canSaveVoiceprints()` is true; `:563-593` snapshots keyed sessions for one-shot later enrollment. | M2-0109 |
+| SRC-14 | **REPRODUCES** | **OBSERVED:** `src/renderer/src/components/BrandThinkingOrb.tsx` is byte-identical to export in the mechanical diff. | M2-0093 |
+| SRC-15 | **PARTIAL** | **OBSERVED:** `docs/design/ONBOARDING-FLOW.md:12-16` remains a draft, no-skip scene contract; `src/renderer/src/lib/onboarding-hero-video.ts` changed at HEAD. **DERIVED:** asset implementation moved, but no product acceptance run was performed. | M2-0160 |
+| SRC-16 | **PARTIAL** | **OBSERVED:** `package.json:27-29` still wires discrete prebuild/postbuild checks; `:78-88` adds additional discrete check commands. **DERIVED:** still no single capability manifest found. | M2-0164 |
+| SRC-17 | **REPRODUCES** | **OBSERVED:** `operator/src/index.ts:205` and `:622` still silently fall back to `memoryStore()` when `env.DB` is absent. | M2-0159 |
+| SRC-18 | **REPRODUCES** | **OBSERVED:** `scripts/push-both.sh` is byte-identical to export in the mechanical diff. | M2-0053, M2-0168 |
+| SRC-19 | **PARTIAL** | **OBSERVED:** `.gitleaks.toml:12-13` uses defaults; `:28-40` keeps a broad path allowlist for tests, QA harness, and docs. | M2-0049 |
+| SRC-20 | **REPRODUCES** | **OBSERVED:** `cloudflare-proxy/provision-embedded-key.mjs` is byte-identical to export in the mechanical diff. | M2-0103 |
+| SRC-21 | **REPRODUCES** | **OBSERVED:** `docs/AUDIT-LOG.md:50-63` still records the deliberate audit-log erasure stance, including actor email / file basename metadata and operator-only purging. | M2-0105 |
+| SRC-22 | **PARTIAL** | **OBSERVED:** `src/shared/mode-recap.ts` and `src/main/mode-skills.ts` are byte-identical to export in the mechanical diff. | M2-0141 |
+| SRC-23 | **REPRODUCES** | **OBSERVED:** `docs/verification/mi-5-dust-e2e.md` and `src/main/brain/publish.ts` are byte-identical to export in the mechanical diff. | M2-0128 |
+| SRC-24 | **REPRODUCES** | **OBSERVED:** `.github/workflows/build.yml:75-130` now includes operator script contract tests, but `git grep` for `license-server`, `native-app`, `MetisKit`, and `swift` in that workflow returns no hits. | M2-0050, M2-0063 |
+
+### Current F-01..F-20 disposition table
+
+| ID | Disposition at `cfd8b22c` | Current evidence | Owning ticket(s) |
+|---|---|---|---|
+| F-01 | **PARTIAL** | **OBSERVED:** `electron-builder.yml:131-140` still supports encrypted opt-in embedded Cloudflare proxy key. | M2-0056 |
+| F-02 | **PARTIAL** | **OBSERVED:** SRC-04 row: `CommandControl` verifies proposals, but adapters never return `verified`. | M2-0079 |
+| F-03 | **PARTIAL** | **OBSERVED:** `operator/src/ai-gateway.ts:113-194` validates the default gateway privacy config; source-only pass did not prove raw socket/child-process egress coverage. | M2-0147 |
+| F-04 | **OPEN: not statically closable** | **UNKNOWN:** deployed managed-config roles/revocation/recovery were not accessible from read-only source. | M2-0145 |
+| F-05 | **PARTIAL** | **OBSERVED:** no multi-tenant proof was found in the mapped source pass; prior source boundary claim remains tied to `docs/MANTU-IT-REQUEST.md` in round 2. | M2-0145 |
+| F-06 | **PARTIAL** | **OBSERVED:** `CommandControl.confirm()` no longer ignores adapter result; `desktop-adapters.ts` never returns `verified`. | M2-0082, M2-0083 |
+| F-07 | **REPRODUCES** | **OBSERVED:** `src/shared/desktop-actions.ts:7-14` has no close-app/close-tab action. | M2-0084, M2-0085 |
+| F-08 | **REPRODUCES** | **OBSERVED:** `src/main/metis-command-runtime.ts:234-235` discards Jev decision by policy. | M2-0122 |
+| F-09 | **OPEN: not statically closable** | **OBSERVED:** `git grep` for `Laya`, `#196`, `#197`, `CURRENT.md`, `acceptance-registry`, and `SOURCE-INDEX` at current HEAD returned no hits. **UNKNOWN:** what "Laya" names outside source. | M2-0124 |
+| F-10 | **REPRODUCES** | **OBSERVED:** `operator/src/dashboard.ts:736,1349` still uses capped `listAsks(2000)` / `listAsks(500, now - DAY)`. | M2-0106 |
+| F-11 | **FIXED at source** | **OBSERVED:** `operator/src/d1.ts:75-110` keeps device ownership and merges with `COALESCE` / delivered-attempt protection. | M2-0106 |
+| F-12 | **REPRODUCES** | **OBSERVED:** `operator/src/index.ts:205,622` still falls back to `memoryStore()` without failing startup. | M2-0106 |
+| F-13 | **PARTIAL** | **OBSERVED:** `src/shared/ipc.ts:1381-1386,1761`; `src/main/speaker-id.ts:326-327`. Session labels default on; persisted voiceprints default off. | M2-0106 |
+| F-14 | **OPEN: not statically closable** | **OBSERVED:** current source grep found no `#196`/`#197` anchors; native UI acceptance must be supplied by owning lane. | M2-0042, M2-0095, M2-0202 |
+| F-15 | **REPRODUCES** | **OBSERVED:** `docs/AUDIT-LOG.md:50-63` preserves audit trail outside in-app erasure. | M2-0112 |
+| F-16 | **REPRODUCES** | **OBSERVED:** `git ls-tree -r --name-only origin/m2/integration | rg '(^CURRENT\\.md$|SOURCE-INDEX|acceptance-registry|readiness)'` finds readiness docs/tests only, not root `CURRENT.md`, `SOURCE-INDEX`, or acceptance registry. | M2-0011 |
+| F-17 | **REPRODUCES** | **OBSERVED:** round-2 compliance-doc stale-draft evidence remains unresolved by any mapped current-HEAD source evidence in this pass. | M2-0017 |
+| F-18 | **REPRODUCES** | **OBSERVED:** `.github/workflows/build.yml` still has no license-server/native Swift terms. | M2-0002 |
+| F-19 | **REPRODUCES** | **OBSERVED:** `scripts/push-both.sh` byte-identical to export. | M2-0053, M2-0168 |
+| F-20 | **OPEN: not statically closable** | **UNKNOWN:** staging restore/rollback proof requires a deployment exercise; static source still shows `memoryStore()` fallback at `operator/src/index.ts:205,622`. | M2-0103, M2-0159 |
+
+**New-defect filing disposition:** **DERIVED:** no new ledger ticket is filed by this pass because every reproduced/PARTIAL/OPEN gap above maps to existing owner ticket(s), and owner constraints prohibit editing `docs/metis-2.0/ledger/`. `electron-builder.cahe.win.yml` moving to `MISSING_AT_HEAD` is not filed as a new defect here because `electron-builder.yml:131-148` now carries the relevant current packaging evidence for SRC-09/F-01.
+
+LEAD_ACTION: If current CI evidence is required for M2-0013, file the CI artifact record for `cfd8b22c90d69ae23499716493c9391f2ac7af98`; this ticket runner did not file CI evidence records.
+
+LEAD_ACTION: If the program requires the exact command `python3 scripts/trace/diff-export.py`, add or restore that read-only helper path; it is absent in this worktree, so this pass used an equivalent scratch read-only verifier and recorded its output.
+
+LEAD_ACTION: Run/record any required tsc or workflow gates in CI; owner constraint D-28 prohibited this ticket runner from running repository tests, repository scripts, workflows, or the app locally.
 
 ---
 
