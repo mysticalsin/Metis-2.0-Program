@@ -173,6 +173,70 @@ Local artifact search output:
 ./docs/metis-2.0/evidence/records/M2-0196-windows-qa-probe-design.md
 ```
 
+Sixth re-attempt timestamp: 2026-09-28T02:55:56Z.
+
+Sixth re-attempt command:
+
+```bash
+gh workflow run windows-qa.yml --ref main -f probe=capabilities
+```
+
+Sixth re-attempt exit code: 1
+
+Sixth re-attempt output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
+Sixth re-attempt read-only run-list command:
+
+```bash
+gh run list --workflow windows-qa.yml --branch main --limit 5 --json databaseId,displayTitle,status,conclusion,createdAt,headSha,url
+```
+
+Sixth re-attempt read-only run-list exit code: 1
+
+Sixth re-attempt read-only run-list output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
+Sixth re-attempt read-only repo metadata command:
+
+```bash
+gh repo view --json nameWithOwner,url,defaultBranchRef
+```
+
+Sixth re-attempt read-only repo metadata exit code: 1
+
+Sixth re-attempt read-only repo metadata output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
+Fresh local artifact search command:
+
+```bash
+find . -type f \( -iname '*capabilit*' -o -iname '*HOST_CONFIGURED*' -o -iname '*host-configured*' -o -iname '*windows-qa*' -o -iname '*SHA256SUMS*' \) | sort | sed -n '1,300p'
+```
+
+Fresh local artifact search exit code: 0
+
+Fresh local artifact search relevant output:
+
+```text
+./.github/workflows/windows-qa.yml
+./docs/metis-2.0/evidence/records/M2-0196-capabilities-dispatch-attempt.md
+./docs/metis-2.0/evidence/records/M2-0196-host-configured-blocker.md
+./docs/metis-2.0/evidence/records/M2-0196-windows-qa-probe-design.md
+```
+
 ## Read-only workflow presence checks
 
 Commands:
