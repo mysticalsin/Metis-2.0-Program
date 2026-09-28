@@ -13560,8 +13560,14 @@
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
-   "status": "TODO",
-   "notes": " 2026-09-28 (lead): the pull_request trigger acceptance item moved to M2-0234 (lands first); M2-0231 keeps the RV rows and Windows survivors."
+   "status": "DONE",
+   "notes": " 2026-09-28 (lead): the pull_request trigger acceptance item moved to M2-0234 (lands first); M2-0231 keeps the RV rows and Windows survivors.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/280",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + CI green"
+   }
   },
   {
    "wave": "W2",
