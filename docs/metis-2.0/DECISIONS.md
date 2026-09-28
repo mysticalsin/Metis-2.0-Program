@@ -32,6 +32,7 @@ Evidence labels follow software-architecture-engineer v1.4.0: OBSERVED, PROVIDED
 | OD-16 | 2026-09-28 | Capability-audit scope, owner answers: (1) remove the embedded Cloudflare credential from **all** installers (M2-0240); (2) **native Mac app parity is in 2.0** alongside the Electron app (M2-0345, M2-0378); (3) 2.0 languages are **French + English** only (M2-0322); (4) **developer opt-in skills are in 2.0** behind an explicit opt-in (M2-0353..M2-0356). Still open: spoken-yes tiers vs MASTER 4.3 (M2-0289), derived memory D-24 and memory hosting D-5 (M2-0379, M2-0381). |
 | OD-17 | 2026-09-28 | Owner answers: keep **MASTER §4.3** spoken-confirmation tiers (M2-0289); **D-24 facts-only** ships on, derived memory built + qualified but off by default (M2-0379); **D-5 self-hosted private Hindsight** on one approved container platform with managed Postgres (M2-0381). |
 | OD-18 | 2026-09-28 | Owner: **model choice is decided in the Operator portal and every Métis app abides by it** (Electron macOS/Windows and native Mac). The portal policy outranks local settings; an MDM admin file may only narrow it; Operator-brokered calls enforce it server-side. Ticket M2-0412. |
+| OD-19 | 2026-09-28 | Owner: **Claude does it all until Métis 2.0 is fully ready and the best** — supersedes the Oct-3 return to Codex in OD-14. Sonnet implements; **Opus is the independent reviewer** (read-only, separate session) for every ticket; all gates unchanged. |
 
 ## B. Program decisions (Opus, 2026-09-26)
 
