@@ -126,6 +126,36 @@ error connecting to api.github.com
 check your internet connection or https://githubstatus.com
 ```
 
+Fifth re-attempt command:
+
+```bash
+gh workflow run windows-qa.yml --ref main -f probe=capabilities
+```
+
+Fifth re-attempt exit code: 1
+
+Fifth re-attempt output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
+Fifth re-attempt read-only run-list command:
+
+```bash
+gh run list --workflow windows-qa.yml --branch main --limit 5 --json databaseId,displayTitle,status,conclusion,createdAt,headSha,url
+```
+
+Fifth re-attempt read-only run-list exit code: 1
+
+Fifth re-attempt read-only run-list output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
 Local artifact search command:
 
 ```bash
