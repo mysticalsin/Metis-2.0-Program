@@ -10628,8 +10628,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
-   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): any privacy line in the film is the M2-0149-verified sentence verbatim, or it is cut. Acceptance unchanged."
+   "status": "DONE",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): any privacy line in the film is the M2-0149-verified sentence verbatim, or it is cut. Acceptance unchanged.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/267",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0179",
