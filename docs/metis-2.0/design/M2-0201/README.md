@@ -15,9 +15,9 @@ Authoring session: Codex, 2026-09-27.
 - OBSERVED: A dev-only renderer prototype surface exists at `src/renderer/m2-design.html`, backed by `src/renderer/src/components/M2DesignPrototypes.tsx` and `src/renderer/src/components/M2DesignPrototypes.css`; source: `src/renderer/m2-design.html:1-15`, `src/renderer/src/components/M2DesignPrototypes.tsx:1-163`, and `src/renderer/src/components/M2DesignPrototypes.css:1-169`.
 - OBSERVED: The evidence checker exists at `scripts/evidence/check.mjs`; source: `scripts/evidence/check.mjs:1-155`.
 - OBSERVED: The CI capture harness exists at `scripts/evidence/capture-m2-design.mjs`; source: `scripts/evidence/capture-m2-design.mjs:1-103`.
-- OBSERVED: Each PNG artifact is a labeled renderer-spec rasterization with PNG text provenance for ticket, variant, renderer source and renderer source hash; source: `docs/metis-2.0/design/M2-0201/capture/provenance.json`.
-- LEAD_ACTION: Run the CI/Electron capture workflow with `M2_DESIGN_URL=<ci-served src/renderer/m2-design.html URL> node scripts/evidence/capture-m2-design.mjs`, then commit the resulting `docs/metis-2.0/design/M2-0201/*/screenshots/*.png` and updated `capture/provenance.json`.
-- LEAD_ACTION: An Opus validator session other than the author must review `manifest.json`, every `STATE-LIST.md`, the renderer source files, and the captured PNG or WEBM evidence, then append its ACCEPTED or REVISE entry to `VALIDATION.md`.
+- OBSERVED: Each committed PNG artifact is placeholder renderer-spec rasterization, not Electron renderer capture evidence; source: `docs/metis-2.0/design/M2-0201/capture/provenance.json`.
+- BLOCKED_EXTERNAL: Electron capture replacement is lead/CI-only in this run because D-28 forbids running repository scripts or the app on the owner's Mac. Exact read-only unblock step: in CI, serve `src/renderer/m2-design.html`, run `M2_DESIGN_URL=<ci-served renderer URL> node scripts/evidence/capture-m2-design.mjs`, then review the updated `docs/metis-2.0/design/M2-0201/*/screenshots/*.png` and `docs/metis-2.0/design/M2-0201/capture/provenance.json`.
+- BLOCKED_EXTERNAL: Independent Opus validation is outside this author session. Exact read-only unblock step: an Opus validator session other than this author reviews `manifest.json`, every `STATE-LIST.md`, the renderer source files, and the Electron-captured PNG or WEBM evidence, then appends its verdict entry to `VALIDATION.md`.
 
 ## Prototype index
 
@@ -43,4 +43,4 @@ The dev-only renderer source defines five capture variants for each prototype:
 4. Dark 2x.
 5. Reduced motion.
 
-The per-ticket state list names the states represented by the renderer panels and the keyboard path that implementation must preserve. The reduced-motion panel specifies the intended still or simplified state. The committed PNGs replace the previous abstract placeholders and carry renderer-source provenance; the lead-owned CI/Electron capture and independent Opus acceptance remain required before this package can be marked accepted.
+The per-ticket state list names the states represented by the renderer panels and the keyboard path that implementation must preserve. The reduced-motion panel specifies the intended still or simplified state. The committed PNGs are explicitly non-completion placeholders until CI replaces them with Electron renderer captures and an independent Opus validator appends an accepted verdict.

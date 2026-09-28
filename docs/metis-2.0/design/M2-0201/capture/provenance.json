@@ -2,7 +2,7 @@
   "schema": "metis.design.capture.provenance.v1",
   "ticket": "M2-0201",
   "created_at": "2026-09-28",
-  "mode": "committed renderer-spec rasterization for CI replacement",
+  "mode": "BLOCKED_EXTERNAL: committed renderer-spec rasterization placeholders; not completion evidence",
   "source_files": {
     "src/renderer/m2-design.html": "2249cdce4d9e9c7f92c11c234b4411090d0b18903dd624bd1d76e617387ff7ad",
     "src/renderer/src/m2-design-entry.tsx": "93ed9b2ab77f6123579e8412e5a98e77b2bfe97bb77ee7aa5f44daba2b4adbcd",
@@ -10,7 +10,18 @@
     "src/renderer/src/components/M2DesignPrototypes.css": "725fbcd6719e43ff5346136521c61ed59ea00b116b5d1e1cf9b5862d76397c80"
   },
   "generator": "local PIL renderer using data mirrored from src/renderer/src/components/M2DesignPrototypes.tsx; no app, repository script or test was run",
-  "ci_replacement": "LEAD_ACTION: Run the CI/Electron capture workflow against src/renderer/m2-design.html and replace these PNGs with browser/Electron node screenshots before marking DONE.",
+  "external_blockers": [
+    {
+      "status": "BLOCKED_EXTERNAL",
+      "reason": "D-28 forbids running repository scripts or the app on the owner's Mac in this author session.",
+      "exact_read_only_unblock_step": "In CI, serve src/renderer/m2-design.html, run M2_DESIGN_URL=<ci-served renderer URL> node scripts/evidence/capture-m2-design.mjs, then review the updated docs/metis-2.0/design/M2-0201/*/screenshots/*.png and docs/metis-2.0/design/M2-0201/capture/provenance.json."
+    },
+    {
+      "status": "BLOCKED_EXTERNAL",
+      "reason": "M2-0201 requires independent Opus validator acceptance by a session other than the author.",
+      "exact_read_only_unblock_step": "An Opus validator session other than this author reviews manifest.json, every STATE-LIST.md, the renderer source files, and the Electron-captured PNG or WEBM evidence, then appends its verdict entry to VALIDATION.md."
+    }
+  ],
   "artifacts": [
     {
       "ticket": "M2-0093",

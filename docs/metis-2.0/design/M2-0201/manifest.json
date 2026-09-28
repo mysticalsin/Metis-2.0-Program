@@ -14,7 +14,7 @@
     "entry": "src/renderer/src/m2-design-entry.tsx",
     "component": "src/renderer/src/components/M2DesignPrototypes.tsx",
     "styles": "src/renderer/src/components/M2DesignPrototypes.css",
-    "capture_status": "PROVENANCE_COMMITTED_PENDING_CI_ELECTRON",
+    "capture_status": "BLOCKED_EXTERNAL_PENDING_CI_ELECTRON",
     "capture_script": "scripts/evidence/capture-m2-design.mjs",
     "capture_provenance": "docs/metis-2.0/design/M2-0201/capture/provenance.json"
   },
@@ -32,8 +32,8 @@
   "validation": {
     "author_review": "VALIDATION.md",
     "independent_opus_validator": {
-      "status": "LEAD_ACTION_REQUIRED",
-      "required_step": "Opus validator session other than the author reviews manifest, state lists, renderer source and captured artifacts, then appends ACCEPTED or REVISE to VALIDATION.md."
+      "status": "BLOCKED_EXTERNAL",
+      "required_step": "Opus validator session other than the author reviews manifest, state lists, renderer source and Electron-captured artifacts, then appends a dated verdict entry to VALIDATION.md."
     }
   }
 }

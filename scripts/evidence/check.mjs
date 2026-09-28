@@ -37,8 +37,7 @@ function readPngText(path) {
   return text
 }
 
-function hasBlockedStatus(label, content, problems) {
-  if (content.includes('BLOCKED_EXTERNAL')) problems.push(`${label} must not contain BLOCKED_EXTERNAL for M2-0201 completion`)
+function hasLeadOnlyMarker(label, content, problems) {
   if (content.includes('LEAD_ACTION:')) problems.push(`${label} still contains lead-only completion steps`)
 }
 
@@ -58,15 +57,38 @@ function captureProblem(base, ticket, variant, provenanceByPath, componentSha) {
     return `${ticket}: ${variant}.png missing renderer source provenance`
   }
   if (text.get('metis.source_sha256') !== componentSha) return `${ticket}: ${variant}.png renderer source hash is stale`
-  if (!['renderer-spec-rasterization', 'electron-vite-renderer-capture'].includes(text.get('metis.capture_mode'))) {
-    return `${ticket}: ${variant}.png missing supported capture mode provenance`
+  if (text.get('metis.capture_mode') !== 'electron-vite-renderer-capture') {
+    return `${ticket}: ${variant}.png is not Electron renderer capture evidence`
   }
   const relativePath = `${ticket}/screenshots/${variant}.png`
   const provenance = provenanceByPath.get(relativePath)
   if (!provenance) return `${ticket}: ${variant}.png missing capture/provenance.json entry`
   if (provenance.sha256 == null) return `${ticket}: ${variant}.png provenance entry missing sha256`
   if (provenance.sha256 !== cryptoSha256(readFileSync(png))) return `${ticket}: ${variant}.png provenance sha256 is stale`
+  if (provenance.capture_mode !== 'electron-vite-renderer-capture') return `${ticket}: ${variant}.png provenance is not Electron renderer capture evidence`
   return null
+}
+
+function hasIndependentValidatorAcceptance(validation) {
+  const heading = '## Independent Opus validator acceptance'
+  const start = validation.indexOf(heading)
+  if (start < 0) return false
+  const body = validation.slice(start + heading.length)
+  const verdictEntry = body.match(/^###\s+.+[\s\S]*?\bfinal verdict:\s*ACCEPTED\b/im)
+  return verdictEntry != null && !/ACCEPTED\s+or\s+REVISE/i.test(verdictEntry[0])
+}
+
+function hasConsistentExternalBlocker({ manifest, provenance, readme, captureReadme, validation }) {
+  return (
+    manifest.renderer_surface?.capture_status === 'BLOCKED_EXTERNAL_PENDING_CI_ELECTRON' &&
+    manifest.validation?.independent_opus_validator?.status === 'BLOCKED_EXTERNAL' &&
+    String(provenance.mode ?? '').startsWith('BLOCKED_EXTERNAL') &&
+    Array.isArray(provenance.external_blockers) &&
+    provenance.external_blockers.length >= 2 &&
+    readme.includes('BLOCKED_EXTERNAL') &&
+    captureReadme.includes('BLOCKED_EXTERNAL') &&
+    validation.includes('BLOCKED_EXTERNAL')
+  )
 }
 
 function checkM20201(root) {
@@ -85,7 +107,7 @@ function checkM20201(root) {
   for (const path of [manifestPath, validationPath, readmePath, captureReadmePath, captureProvenancePath, captureScriptPath, rendererPath, rendererCssPath, rendererEntryPath]) {
     if (!existsSync(path)) problems.push(`missing required file: ${path}`)
   }
-  if (problems.length > 0) return problems
+  if (problems.length > 0) return { problems, blockedExternal: false }
 
   const manifest = JSON.parse(file(manifestPath))
   const provenance = JSON.parse(file(captureProvenancePath))
@@ -95,6 +117,7 @@ function checkM20201(root) {
   const renderer = file(rendererPath)
   const actualComponentSha = cryptoSha256(readFileSync(rendererPath))
   const provenanceByPath = new Map((provenance.artifacts ?? []).map((artifact) => [artifact.path, artifact]))
+  const blockedExternal = hasConsistentExternalBlocker({ manifest, provenance, readme, captureReadme, validation })
 
   if (manifest.ticket !== 'M2-0201') problems.push('manifest ticket must be M2-0201')
   if (manifest.evidence_level !== 'DESIGNED') problems.push('manifest evidence_level must be DESIGNED')
@@ -120,24 +143,37 @@ function checkM20201(root) {
         if (!state.includes(phrase)) problems.push(`${ticket}: STATE-LIST.md missing ${phrase}`)
       }
     }
-    for (const variant of REQUIRED_VARIANTS) {
-      const problem = captureProblem(base, ticket, variant, provenanceByPath, actualComponentSha)
-      if (problem) problems.push(problem)
+    if (blockedExternal) {
+      for (const variant of REQUIRED_VARIANTS) {
+        const relativePath = `${ticket}/screenshots/${variant}.png`
+        const artifact = provenanceByPath.get(relativePath)
+        if (!artifact) problems.push(`${ticket}: ${variant}.png missing capture/provenance.json entry`)
+        if (artifact && artifact.capture_mode !== 'renderer-spec-rasterization') {
+          problems.push(`${ticket}: ${variant}.png blocked provenance must identify the placeholder rasterization mode`)
+        }
+      }
+    } else {
+      for (const variant of REQUIRED_VARIANTS) {
+        const problem = captureProblem(base, ticket, variant, provenanceByPath, actualComponentSha)
+        if (problem) problems.push(problem)
+      }
     }
     if (!renderer.includes(ticket)) problems.push(`renderer component does not include ${ticket}`)
   }
 
-  if (!validation.includes('Independent Opus validator acceptance') || !validation.includes('ACCEPTED')) {
-    problems.push('VALIDATION.md must include an independent Opus validator ACCEPTED entry')
+  if (!blockedExternal) {
+    if (!hasIndependentValidatorAcceptance(validation)) {
+      problems.push('VALIDATION.md must include a real appended independent Opus validator final verdict: ACCEPTED entry')
+    }
+    if (validation.includes('BLOCKED_EXTERNAL')) {
+      problems.push('VALIDATION.md must not leave Opus validation as BLOCKED_EXTERNAL')
+    }
   }
-  if (validation.includes('BLOCKED_EXTERNAL')) {
-    problems.push('VALIDATION.md must not leave Opus validation as BLOCKED_EXTERNAL')
-  }
-  hasBlockedStatus('README.md', readme, problems)
-  hasBlockedStatus('capture/README.md', captureReadme, problems)
-  hasBlockedStatus('manifest.json', JSON.stringify(manifest), problems)
-  hasBlockedStatus('capture/provenance.json', JSON.stringify(provenance), problems)
-  return problems
+  hasLeadOnlyMarker('README.md', readme, problems)
+  hasLeadOnlyMarker('capture/README.md', captureReadme, problems)
+  hasLeadOnlyMarker('manifest.json', JSON.stringify(manifest), problems)
+  hasLeadOnlyMarker('capture/provenance.json', JSON.stringify(provenance), problems)
+  return { problems, blockedExternal }
 }
 
 function cryptoSha256(buffer) {
@@ -150,10 +186,10 @@ if (values.ticket !== 'M2-0201') {
   process.exit(2)
 }
 
-const problems = checkM20201(process.cwd())
+const { problems, blockedExternal } = checkM20201(process.cwd())
 if (problems.length > 0) {
   for (const problem of problems) console.error(problem)
   process.exit(1)
 }
 
-console.log('M2-0201 evidence check passed')
+console.log(blockedExternal ? 'M2-0201 external blocker evidence check passed' : 'M2-0201 evidence check passed')
