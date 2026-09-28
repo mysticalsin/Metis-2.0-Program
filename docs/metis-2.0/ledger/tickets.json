@@ -159,6 +159,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Unblock sweep: M2-0029 -> ENGINEERING_COMPLETE (no live evidence yet); M2-0213 deps/verification; M2-0119 stale D-5 blocker cleared (OD-17), P0; 5 SOFT dependency drops; M2-0414,M2-0415,M2-0416 filed (real 1.9.6 sources, Windows baseline harness, HK-W by sha256)."
+  },
+  {
+   "date": "2026-09-28",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "External-blocker sweep (owner-approved): 32 tickets engineering_first (engineering half builds now, closes ENGINEERING_COMPLETE, outside step narrowed in external_blocker); 3 signing tickets BLOCKED_EXTERNAL."
   }
  ],
  "tickets": [
@@ -937,7 +943,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Book the weekly 30-minute decision slot; answer the decisions due first (D-28 by 09-28, D-9 by 09-29, D-1 by 09-30, D-4/D-11/D-12 by 10-02 through M2-0189, D-13 by 10-03); name a person for each external role in BLOCKERS.md and send the drafted requests",
+    "unblock_step": "Book the weekly 30-minute decision slot (first slot held by 2026-10-02); name a person for each external owner role in BLOCKERS.md; send the drafted requests in docs/metis-2.0/owner-requests/.",
     "needed_by": "2026-09-28",
     "raised_on": "2026-09-26"
    },
@@ -947,7 +953,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: These are lead edits in the private repo (metis-prog-main). (1) Draft one send-ready request per external owner role in docs/metis-2.0/owner-requests/, addressed to the role and never to a guessed person. Cover Cloudflare account owner (B-14 for M2-0102, B-19 for M2-0103), Entra tenant administrator, Mantu IT (for example B-06, the Windows laptop) and any other non-signing role. Each draft carries the exact unblock step, needed_by and the tickets it gates. (2) Add the OneDrive File Provider hydration repair (6 of 59 files, ETIMEDOUT) to BLOCKERS.md as a Program owner action. (3) Refresh row B-02 and its §2 row: remove the answered D-28, D-9, D-4, D-11, D-12 and D-13, mark D-1 as defaulting on 09-30, and recompute the days-waiting column, which is still 0 from 2026-09-26. (4) Prove it with `node docs/metis-2.0/tools/trace/build-traceability.mjs --check` and its node --test run through the private traceability.yml workflow_dispatch. Caveat: that workflow's header says the private-repo Actions budget is exhausted, so until the owner raises it the proof falls back to the independent Opus review. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The program owner books the fixed weekly 30-minute decision slot (first slot held by 2026-10-02), names a person for each external owner role in BLOCKERS.md, and sends the drafted requests. None of this can be done by the autopilot, because it cannot use the owner's accounts or contact external roles."
   },
   {
    "id": "M2-0013",
@@ -1081,7 +1089,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Authorize read-only `wrangler deployments list` and one `wrangler d1 execute <db> --command \"SELECT name FROM sqlite_master\"` against production Operator (run by the owner or with a scoped read-only token); the merge-or-revert answer is decision D-8",
+    "unblock_step": "Program owner (or a scoped read-only token he grants): run `npx wrangler deployments list --name metis-operator` (or the credential-free `curl -s https://<operator-host>/health` for the version stamp) and one `npx wrangler d1 execute metis-operator --remote --command \"SELECT type, name FROM sqlite_master\"` against production Operator, and paste both outputs into the ticket.",
     "needed_by": "2026-10-09",
     "raised_on": "2026-09-26"
    },
@@ -1093,7 +1101,9 @@
    "due": null,
    "status": "IN_PROGRESS",
    "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Finish private PR #10 (OPERATOR-REALITY.md) per the open review in codex-queue/state/M2-0014.feedback: (1) Resolve tickets.json to origin/main and add no ledger rows. (2) Replace the M2-0227 citations with an unnumbered 'Proposed follow-up tickets' section: the production-deploy guard against unreviewed refs, and backup owner/cadence/RTO/RPO before the M2-0159 restore drill. (3) Restate 9f4bb1a5 as present-day main reality (cherry-pick fef0d203) and route the raw-credential-as-Bearer risk to M2-0122 or M2-0123. (4) Fix the operator_settings runtime-DDL claim and the store.audit askId misreading. (5) Repoint citations to the in-repo prior-exec copy. (6) Add one explicit merge-or-revert verdict sentence for D-8. Also put the expected source table list in §3 so reconciling the owner's readback is a mechanical diff: the 19 tables in operator/schema.sql plus operator_settings from schema-alter.sql, excluding D1-internal _cf_* and sqlite_sequence. The lead then files the proposed follow-ups on private main. The proof is the independent Opus review, plus traceability --check if the private Actions budget allows. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The program owner, or a scoped read-only token he grants, runs the read-only production readbacks: the deployed Worker version (`wrangler deployments list --name metis-operator`, or the credential-free `curl -s https://<operator-host>/health` stamp) and the one `wrangler d1 execute metis-operator --remote` sqlite_master query, then pastes the output into the ticket. PR #10 also lists optional read-only checks (the Access Bypass policy path scope; a content-free COUNT on asks.prompt_cipher) that can go in the same session. D-8 stays an owner/security decision under needs_decision."
   },
   {
    "id": "M2-0015",
@@ -3623,7 +3633,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "BLOCKED_EXTERNAL",
+   "notes": "2026-09-28 (lead): signing is out of the 2.0 autopilot scope (owner) — BLOCKED_EXTERNAL until the owner procures and wires the signing identity."
   },
   {
    "id": "M2-0059",
@@ -6196,7 +6207,7 @@
    ],
    "external_blocker": {
     "owner": "Cloudflare account owner (Mantu IT; person to be named by program owner)",
-    "unblock_step": "Confirm the Workers AI @cf/deepgram/nova-3 entitlement and data-use terms on the Mantu Cloudflare account and provide a read-only readback of the AI Gateway log/cache settings",
+    "unblock_step": "Cloudflare account owner (Mantu IT; person to be named by the program owner): confirm the Workers AI @cf/deepgram/nova-3 entitlement and which contract terms govern it on the Mantu account (self-serve, Enterprise order form or DPA, and any Deepgram/MIP pass-through), and give a read-only readback of the AI Gateway settings: Logs and Caching on/off, Legacy Logs vs Workers Logs (or the date the account's first gateway was created), and whether Data Localization Suite / Customer Metadata Boundary is entitled.",
     "needed_by": "2026-10-12",
     "raised_on": "2026-09-26"
    },
@@ -6207,9 +6218,10 @@
    "slices": [],
    "due": null,
    "status": "IN_PROGRESS",
-   "notes": "D-11 and D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): qualify Cloudflare-hosted speech reached only through the Operator broker. The route record also states the gateway log mode per transport (the per-request payload header exists for HTTP; the Worker binding has only collectLog), whether the account uses Legacy Logs or Workers Logs, and the metadata retention bound. Acceptance unchanged.",
+   "notes": "D-11 and D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): qualify Cloudflare-hosted speech reached only through the Operator broker. The route record also states the gateway log mode per transport (the per-request payload header exists for HTTP; the Worker binding has only collectLog), whether the account uses Legacy Logs or Workers Logs, and the metadata retention bound. Acceptance unchanged. 2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Finish PR #13 per codex-queue/state/M2-0102.feedback. Rewrite the realtime-WebSocket log-mode bullets (lines 135-137) as single-label DERIVED/UNKNOWN bullets. They must follow the POLICY-2.0.md D-12 control set: gateway Logs off for that transport, the metadata record kept in the Operator broker ledger, and the transport BLOCKED under MASTER §16.6.3 until the M2-0149 WebSocket sentinel proves it. Move the [AC] sentence into the HTTP bullet, fold the duplicated retention bound (lines 126-127) into one, and fix the footnote-15 wording and PR body. Keep the per-transport log mode, Legacy Logs vs Workers Logs, the metadata retention bound and the no-generic-ZDR stance, per the ticket notes. Code follow-ups (per-session gateway verification) stay with M2-0104 and M2-0149 as the record says. The proof is the independent Opus review (grep for mixed labels returns nothing), plus traceability --check if the private Actions budget allows. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Cloudflare account owner (Mantu IT; person to be named) confirms which terms govern the Workers AI @cf/deepgram/nova-3 entitlement on the Mantu account, and whether any Deepgram or MIP terms pass through. The same owner gives a read-only readback of AI Gateway settings: Logs and Caching state, the logging regime (Legacy Logs vs Workers Logs, or the first-gateway creation date), and the Data Localization Suite / Customer Metadata Boundary entitlement.",
    "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "engineering_first": true
   },
   {
    "id": "M2-0103",
@@ -6256,7 +6268,7 @@
    ],
    "external_blocker": {
     "owner": "Cloudflare account owner (Mantu IT; person to be named by program owner)",
-    "unblock_step": "Authorize creation of a staging Worker and D1 database on the Mantu Cloudflare account (or grant a scoped API token limited to them); the agent then fills operator/wrangler.jsonc",
+    "unblock_step": "Cloudflare account owner (Mantu IT; person to be named by the program owner): create the staging Worker `metis-operator-staging` and D1 database `metis-operator-staging` on the Mantu Cloudflare account (or grant an API token scoped to only those two resources), and supply the D1 database_id plus the staging AI binding or scoped server secret; the agent then replaces REPLACE_AFTER_D1_CREATE in operator/wrangler.jsonc and runs the first staging deploy.",
     "needed_by": "2026-10-18",
     "raised_on": "2026-09-26"
    },
@@ -6266,7 +6278,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: In the public repo, CI-provable on ubuntu in build.yml's Operator job: (1) Add an owner-only gate to deploy.mjs for production. --env production refuses unless there is an explicit owner confirmation and HEAD is reachable from a freshly fetched origin/main, refuses --allow-dirty outright, and never runs from CI or agent contexts. Staging stays the default. Contract tests go in operator/scripts/deploy.contract.test.ts; this folds in M2-0014's proposed 'guard production deploys against unreviewed refs' follow-up. (2) Add a local miniflare contract lane. `migrate.mjs --local` applies schema, then `wrangler dev --local --env staging` runs under hermeticWranglerEnv and deny-non-loopback with Cloudflare credentials unset and any AI binding faked or stubbed. Tests assert /health reports OPERATOR_ENV=staging, and that the HMAC routes (/v1/ingest, /v1/heartbeat, /v1/use, /v1/ask, /v1/integrations) return 401 JSON without credentials. (3) Add a CI step running `node operator/scripts/deploy.mjs --env staging --dry-run` and asserting the printed plan targets staging and the metis-operator-staging D1. (4) Write docs/metis-2.0/runbooks/staging.md (lead, private): the exact account-owner steps (`wrangler d1 create metis-operator-staging`, the minimal token scope limited to that Worker and D1, nothing on Access or zones), how the agent then fills database_id, and the read-only check `curl -s https://<staging>/health`. Correct the ticket's /v1/health verification path. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Cloudflare account owner (Mantu IT; person to be named) creates the staging Worker and D1 on the Mantu account, or grants an API token scoped to only those resources. The same owner supplies the D1 database_id and confirms the Workers AI binding, or the scoped server secret, for staging. After that the agent replaces REPLACE_AFTER_D1_CREATE and runs the first staging deploy and the read-only /health check. D-8 stays a decision under needs_decision."
   },
   {
    "id": "M2-0104",
@@ -7322,7 +7336,7 @@
    ],
    "external_blocker": {
     "owner": "Entra tenant administrator (role; person to be named by program owner)",
-    "unblock_step": "Register the Métis applications in the Mantu Entra tenant with the documented audiences and scopes, grant admin consent, and place tenant and client IDs in the Operator vault",
+    "unblock_step": "Entra tenant administrator (role; person to be named by program owner): register the Métis applications (desktop public client, Operator API, Teams app, service principal) in the Mantu Entra tenant with the audiences and scopes in the M2-0121 identity map, grant admin consent, and place tenant and client IDs in the Operator vault. Gates only live SSO/OBO against the real tenant.",
     "needed_by": "2026-10-12",
     "raised_on": "2026-09-26"
    },
@@ -7332,7 +7346,9 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: 1) Identity map doc covering the desktop (Electron, plus the native Mac app per OD-16), Teams, Dust personal identity and the bot/service principals. For each: audience, scopes, token type, PKCE/OBO flow and tenant restriction. The admin registers from this document. 2) A mock OIDC issuer test fixture: JWKS with key rotation, and configurable iss/aud/tid/scp/exp/nbf, used by vitest. 3) Token validation in operator/src/auth/ and services/identity/: signature, issuer, audience, tid allowlist, expiry and scope checks. Wrong-tenant, wrong-audience, expired and tampered tokens are rejected. 4) OBO exchange against the mock token endpoint. 5) Revocation: sign-out and session invalidation drop tokens and privileged surfaces. 6) Background revalidation re-checks tid, not the email domain (L05-F4). 7) Remove Calendars.Read from SIGN_IN_SCOPES and move calendar access to incremental consent. 8) Tenant and client IDs are read from the Operator vault, with an explicit 'not configured' state. Proof: `npx vitest run src/main/auth.test.ts operator/src/auth` green in CI on the PR head (D-28). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Entra tenant administrator registers the Métis applications with the audiences and scopes from the identity map, grants admin consent and places the tenant and client IDs in the Operator vault. After that, a live SSO/OBO smoke runs against the real tenant."
   },
   {
    "id": "M2-0122",
@@ -7475,7 +7491,7 @@
    ],
    "external_blocker": {
     "owner": "Jev account holder (role; person to be named by program owner)",
-    "unblock_step": "Provision the Jev API key into the staging Operator vault, confirm the jev-1.13.0 model pin on the vendor account, and supply the Metis-Jev-Integration-Plan (R73) if it exists",
+    "unblock_step": "Jev account holder (role; person to be named by program owner): provision the Jev API key into the staging Operator vault, confirm the jev-1.13.0 model pin on the vendor account, and supply the Metis-Jev-Integration-Plan (R73) if it exists. Gates only live Jev calls; the route, vault rotation and mock-vendor contract tests are proved in CI.",
     "needed_by": "2026-10-19",
     "raised_on": "2026-09-26"
    },
@@ -7485,7 +7501,9 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Build operator/src/routes/decide.ts with device HMAC or seat authentication and an entitlement check against the Operator seat (D-4). Requests are typed and candidate-bound (the M2-0122 decision contract), with content-privacy controls on transcript-derived requests. Add budgets, a circuit breaker and per-attempt reconciliation. A provider outage falls back deterministically and never to another vendor. Enforce the model policy server-side (OD-18). No unauthenticated path, so the ACCESS bypass is not reproduced. In operator/src/vault/, one central Jev key serves two installations (JVAC-01), a failed replacement keeps the old key, and rotation handles ambiguous commits. Add a mock Jev vendor (contract fake) that asserts the jev-1.13.0 pin. Build the desktop src/main/features/decision/operator-provider.ts, which holds no vendor key. Proof: `npx vitest run operator/src/routes/decide.test.ts` in CI, plus a CI miniflare run with the mock vendor in place of the staging call until M2-0103 exists. Nothing is deployed until D-8 is answered. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Jev account holder provisions the Jev API key into the staging Operator vault, confirms the jev-1.13.0 model pin on the vendor account and supplies R73 if it exists. Tracked elsewhere, not in this blocker: the staging Worker (M2-0103, Cloudflare account owner) and the D-8 security answer before any Operator deploy."
   },
   {
    "id": "M2-0124",
@@ -7538,7 +7556,7 @@
    ],
    "external_blocker": {
     "owner": "Laya vendor/hosting relationship owner (role; person to be named by program owner)",
-    "unblock_step": "Confirm the Laya source and checkpoint licence and approve the hosting environment (platform from D-5); until then Laya shows 'unavailable' and never routes to Jev",
+    "unblock_step": "Laya vendor/hosting relationship owner (role; person to be named by program owner): confirm the Laya source and checkpoint licence and approve Laya's hosting platform (OD-17 answered D-5 for Hindsight only; Laya hosting remains open). Gates only slice M2-0124.2 (container adapter with pinned checkpoint); until then Laya shows 'unavailable' and never routes to Jev.",
     "needed_by": "2026-10-26",
     "raised_on": "2026-09-26"
    },
@@ -7562,7 +7580,9 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Slice M2-0124.1 plus acceptance 4. Operator exposes Laya readiness and selection, and reports 'unavailable' while no hosted adapter is configured. The Laya-only isolation test in operator/src/routes/decide.test.ts: with Laya selected and unavailable, /v1/decide makes zero calls to the mock Jev vendor (spy asserted) and falls back automatically only when an approved fallback is explicitly configured. A CI check scans the packaged desktop artifacts (macOS and Windows) and fails on any Python or Torch payload. Proof: `npx vitest run operator/src/routes/decide.test.ts` and the package scan, both green in CI. Do not build the compose container or the checkpoint (M2-0124.2). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Laya vendor/hosting relationship owner confirms the Laya source and checkpoint licence and approves Laya's hosting platform. OD-17 answered D-5 for Hindsight only. Once that is done, slice M2-0124.2 can start: the container adapter with a pinned checkpoint in the compose profile, running `docker compose -f services/compose.yml run laya-tests` in CI."
   },
   {
    "id": "M2-0125",
@@ -7792,7 +7812,7 @@
    ],
    "external_blocker": {
     "owner": "Dust workspace administrator (role; person to be named by program owner)",
-    "unblock_step": "Approve the Dust workspace connection for the knowledge.* remote MCP server (personal OAuth or a scoped service identity), its region/callbacks and retention",
+    "unblock_step": "Dust workspace administrator (role; person to be named by program owner): approve the Dust workspace connection for the knowledge.* remote MCP server (personal OAuth or a scoped service identity), and confirm the workspace region, callbacks and retention (ADR-019 O-7). Gates only the live Dust connection; the tools are built and proved against a Dust contract fake in CI.",
     "needed_by": "2026-10-26",
     "raised_on": "2026-09-26"
    },
@@ -7802,7 +7822,9 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Build a remote MCP server in services/knowledge/mcp/ exposing knowledge.search/get/changes/explain over the M2-0127 evidence context builder. Each tool is bounded by result count, bytes, deadline and pagination cursor. Identity comes from the validated bearer token (M2-0121 validation module, mock issuer) and never from tool JSON. Invented email, tenant or bank fields are rejected (UC-086). Per ADR-024, memory is reached only through the M2-0135 recall path. Fill the admin side of operator/src/routes/mcp-gateway.ts. Add a Dust-side contract fake: an MCP client that calls the way Dust's remote MCP does, with a personal-OAuth token and with a scoped service-identity token. Document our side of the connection: callback URLs, token audience and metadata-only logging (D-12). In the same table, list Dust workspace region, retention and revocation as UNKNOWN pending the admin. Proof: `docker compose run knowledge-tests -- mcp` in an ubuntu-latest CI job. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Dust workspace administrator chooses personal OAuth or a scoped service identity, confirms the workspace region, callbacks and retention, and approves and registers the knowledge.* remote MCP server in the workspace. Before Dust can reach the server, it must also be deployed on the approved server-plane platform (M2-0119; D-5 platform pending) with real Entra registration (M2-0121). Both are tracked on those tickets."
   },
   {
    "id": "M2-0129",
@@ -8396,7 +8418,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Approve the hosting environment (decision D-5) and provide two synthetic test identities in the Entra tenant for the memory proof",
+    "unblock_step": "Program owner (Tony): name the approved container platform, region and operational owner for the self-hosted private Hindsight service (OD-17 already fixed self-hosted private Hindsight with managed Postgres; M2-0119 PENDING), and have the Entra tenant administrator provide two synthetic test identities for the memory proof. Gates only the live A–H run and canary migration in that environment.",
     "needed_by": "2026-11-05",
     "raised_on": "2026-09-26"
    },
@@ -8406,7 +8428,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: A scripted A–H proof runner against a configurable target. It drives: notes continuing through show/hide; approve and retain a decision; recall in a genuinely new session with a current source link; a correction wins; the second identity is denied before upstream inference and after a concurrent permission change; forget; and injected outage, restart and delayed completion, with checks for no resurrection or duplicates. It writes one evidence record per step with source, build and service identities (commit SHA, image digest, artifact hash). Also write the HMSTEP-14 scoped canary migration plan and rehearse it on the compose profile. Run both in an ubuntu-latest CI job against services/compose.yml with two mock-issuer identities (from M2-0121). The records are labelled rehearsal/LOCALLY_TESTED and explicitly not LIVE_VERIFIED (HS-18). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): Remaining outside steps: the owner names the approved container platform, region and operational owner for the self-hosted private Hindsight service (OD-17 fixed the model only); the service is deployed there (M2-0381); the Entra tenant administrator creates two synthetic test identities. After that, the same runner executes live in the approved environment for LIVE_VERIFIED evidence, including the canary migration."
   },
   {
    "id": "M2-0139",
@@ -8846,7 +8870,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Answer C-03, C-08 and C-16 (Operator seat vs license-server entitlement authority), state whether the Fly.io license server is kept or deprecated, and grant read-only Fly.io access if kept",
+    "unblock_step": "Program owner (Tony): grant read-only access to the Fly.io license-server app, or run a read-only readback yourself (app status, deployed version, config flags, count of active keys; no secrets). This is to observe its live state now that D-4 (answered 2026-09-27) keeps it read-only for existing keys. If you instead decide in ADR-016 to deprecate it now, no Fly.io access is needed. C-16 is answered by D-4. C-03 (D-25/M2-0161) and C-08 (M2-0093) are not part of this ticket.",
     "needed_by": "2026-10-26",
     "raised_on": "2026-09-26"
    },
@@ -8857,7 +8881,8 @@
    "slices": [],
    "due": null,
    "status": "TODO",
-   "notes": "D-4 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the Operator seat is authoritative; the license server stays read-only for existing keys until an ADR-016 deprecation decision. Precedence: a seat decides its profile even when a legacy key is present; a key-only profile is validated read-only; no new keys are issued. D-4 answers C-16 only (C-03 is D-25; C-08 is open). RE-VALIDATE external_blocker: the remaining unblock step is read-only Fly.io access."
+   "notes": "D-4 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the Operator seat is authoritative; the license server stays read-only for existing keys until an ADR-016 deprecation decision. Precedence: a seat decides its profile even when a legacy key is present; a key-only profile is validated read-only; no new keys are issued. D-4 answers C-16 only (C-03 is D-25; C-08 is open). RE-VALIDATE external_blocker: the remaining unblock step is read-only Fly.io access. 2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: On m2/integration, after or together with M2-0062: (1) Add a computed licensingMode in src/shared/operator-entitlements.ts / license-types.ts with one precedence rule from D-4. A seat decides its profile even when a legacy key is present. A key-only profile is validated read-only. No new keys are issued. Unit tests cover seat-only, key-only, seat+key and neither. (2) In the license-server, remove or disable the issuance paths, or guard them behind a refusal, so the server is read-only for existing keys. Tests prove that no new key can be issued. (3) Re-enable client enforcement (App.tsx LICENSE_ENFORCEMENT with Settings LICENSE_UI_ENABLED in lockstep), or record it as off in ADR-016. Replace the regex-over-source drift check with a behavioural test. (4) Write the EXP-08 negative tests, using fakes of the Operator seat API and a local license-server in CI. Each of these must fail at its capability boundary: wrong tenant, dev trust key, copied lease, concurrency race, revoked seat. Also assert there is no unbounded paid relay and no second licence authority. (5) Write docs/metis-2.0/adr/ADR-016.md covering issuance, seat and device ownership, offline lease, expiry, revocation and bootstrap. It also records the keep-read-only-until-deprecation path and marks the live-state observation BLOCKED. Proof: npx vitest run src/main/license*.test.ts src/shared/operator-*.test.ts, plus the license-server node tests, in GitHub Actions. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The license server stays live (read-only) per D-4, so its live state still has to be observed read-only on Fly.io. That needs the owner's Fly.io account, or an owner-run read-only readback. Alternatively, the owner can choose deprecation now in ADR-016, and then no live observation is needed.",
+   "engineering_first": true
   },
   {
    "id": "M2-0147",
@@ -9074,7 +9099,7 @@
    ],
    "external_blocker": {
     "owner": "Privacy/legal owner (DPO; person to be named by program owner)",
-    "unblock_step": "Review the second-track compliance draft (multi-seat and Teams attendance) and sign the DPIA and controller/processor determination",
+    "unblock_step": "Privacy/legal owner (DPO; person to be named by program owner): once the second-track compliance draft in docs/compliance/ is published (multi-seat, Teams attendance, works-council brief, held-records/supplier-limits register), review it and sign the DPIA and the controller/processor determination. Also trigger works-council consultation if you require it. Engineering (procedures, rights tests against fakes) proceeds without this. Only the governance sign-off and any release claim of compliance wait.",
     "needed_by": "2026-11-02",
     "raised_on": "2026-09-26"
    },
@@ -9084,7 +9109,9 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: (1) Now: add a second-track draft to docs/compliance/ (for example a multiseat-teams/ subfolder). It holds an LIA, a DPIA delta and an Art 30 entry for multi-seat processing and Teams attendance. It covers participant notice text (FR+EN per OD-16), rights and retention procedures, and a works-council (CSE) consultation brief. It marks every control as built or planned from the code, and leaves the legal determinations (controller/processor, legal basis) as explicit open questions for the DPO. (2) Now: a held-records and supplier-limits register (Dust, Microsoft 365/Teams, Cloudflare, Hindsight hosting per OD-17) with each supplier's documented deletion and export limits. (3) After M2-0132 lands: services/knowledge/rights/ procedures for access, correction and deletion that fan out to canonical source, wiki, graph, a Dust fake and a Teams-publication fake. Tests prove the exported set, corrected values and tombstones reach every projection and that nothing is resurrected. Proof: the rights tests in CI (the ticket's docker compose knowledge-tests -- rights job on a hosted runner), and an Opus review of the drafts. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The privacy/legal owner (DPO; the person still has to be named by the program owner) reviews the second-track draft and signs the DPIA and the controller/processor determination. Works-council consultation, if the DPO requires it, is also theirs."
   },
   {
    "id": "M2-0151",
@@ -9126,7 +9153,7 @@
    ],
    "external_blocker": {
     "owner": "Teams administrator + privacy reviewer (roles; persons to be named by program owner)",
-    "unblock_step": "Confirm the Teams app policy, Graph actual-start event eligibility, Azure subscription and calling-media SDK approval, and the recording-status/derived-data restriction for the Mantu tenant",
+    "unblock_step": "Teams administrator + privacy reviewer (roles; persons to be named by program owner): answer the tenant-check questionnaire in docs/metis-2.0/teams/QUALIFICATION.md for the Mantu tenant. It asks for the Teams app policy, Graph actual-start event eligibility, the Azure subscription and calling-media SDK approval, and the recording-status/derived-data restriction. The primary-source qualification itself is recorded without tenant access.",
     "needed_by": "2026-10-19",
     "raised_on": "2026-09-26"
    },
@@ -9136,7 +9163,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: The lead writes docs/metis-2.0/teams/QUALIFICATION.md in the program repo from read-dated primary sources (Microsoft Learn/Graph, Zoom developer docs, Google Meet API docs). It covers: (1) Teams app-package, personal-tab and meeting-side-panel rules; (2) Graph calendar and online-meeting change-notification resources, subscription lifetimes, validation and lifecycle rules, and whether an actual-start signal exists and under which permission; (3) bot join, lobby and application-hosted media rules, including the Azure/.NET receiver requirement and the recording-status obligation; (4) derived-data and transcript restrictions; (5) a per-capability matrix listing the required Graph permissions, admin consent and application access policy, the Teams admin setting and the Azure approval; (6) Zoom and Meet capability and notice/consent routes; (7) an exact tenant-check questionnaire for the Teams administrator and privacy reviewer, where each row says what to confirm and where in the admin center. The document also pins the resource shapes that M2-0153's mock Graph uses. Proof: Opus documentation review (DESIGNED), with every claim carrying a primary-source citation and a read date. No live calls are made. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): Teams administrator and privacy reviewer confirm for the Mantu tenant: the Teams app policy, Graph actual-start event eligibility, the Azure subscription plus calling-media SDK approval, and the recording-status/derived-data restriction."
   },
   {
    "id": "M2-0152",
@@ -9178,7 +9207,7 @@
    ],
    "external_blocker": {
     "owner": "Teams administrator (role; person to be named by program owner)",
-    "unblock_step": "Allow custom app upload of the Métis Teams package in the Mantu tenant (Teams admin center) for a pilot group",
+    "unblock_step": "Teams administrator (role; person to be named by program owner): in the Teams admin center, allow custom app upload of the CI-built Métis Teams package for a named pilot group in the Mantu tenant. The package, the tab and side panel, and mock-issuer SSO are built and tested behind the \"teams\" flag without this. Only the in-tenant pilot waits. Live SSO also depends on B-17 (Entra app registration, M2-0121).",
     "needed_by": "2026-11-02",
     "raised_on": "2026-09-26"
    },
@@ -9188,7 +9217,9 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: (1) teams-app/: a Teams app manifest with a personal tab and a meetingSidePanel context, the Entra app ID and domains injected at build time, and manifest schema validation in CI. (2) Tab and side-panel web UI using the Teams JS SDK behind the \"teams\" flag. It shows clear presence and capture state and controls, and outputs are private by default. (3) SSO: a Teams SSO token feeds an OBO exchange in services/teams/, validated against the M2-0121 mock issuer (audience, tenant ID, expiry, revocation). All service calls are authenticated. (4) A test asserts the bundle has no Electron IPC, preload or local-control surface. (5) Design evidence under docs/metis-2.0/evidence/M2-0152/design/: every state x light/dark x 1x/2x x reduced motion, captured in CI with a mocked Teams host, plus automated WCAG AA contrast and clipping checks and a validation by a separate Opus session. Proof: npm --prefix teams-app test and the capture job in GitHub Actions. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Teams administrator allows custom app upload of the Métis package for a pilot group in the Mantu tenant. In-Teams captures and the live pilot wait on this. Live SSO also needs the real Entra app registration, which is tracked separately as B-17 on M2-0121 and is not part of this ticket's blocker."
   },
   {
    "id": "M2-0153",
@@ -9230,7 +9261,7 @@
    ],
    "external_blocker": {
     "owner": "Entra tenant administrator (role; person to be named by program owner)",
-    "unblock_step": "Grant the Métis service principal Graph permissions for calendar and online-meeting change notifications in the pilot scope",
+    "unblock_step": "Entra tenant administrator (role; person to be named by program owner): grant admin consent to the Métis service principal for the Graph calendar and online-meeting change-notification permissions listed in docs/metis-2.0/teams/QUALIFICATION.md, restricted to the pilot group. Discovery, subscriptions, renewals, lifecycle handling and auto-attend controls are built and tested against a mock Graph without this. Only live notifications wait.",
     "needed_by": "2026-11-02",
     "raised_on": "2026-09-26"
    },
@@ -9240,7 +9271,9 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: services/teams/discovery/ with a fake Graph server in the test suite, covering: (1) enrolled-only discovery, so only enrolled users' calendars and meetings are subscribed; (2) subscription creation with the validation-token handshake, clientState verification and rejection of unverified callbacks; (3) a renewal scheduler before expiry, plus reauthorizationRequired, subscriptionRemoved and missed lifecycle handling with resync; (4) actual-start event handling, using the notification shape documented in M2-0151; (5) mapping of recurrence (series master, occurrence, exception), reschedule and cancellation (UC-105); (6) per-meeting auto-attend enable, skip, pause and exclusions (UC-100), with idempotent notification processing. Proof: npm --prefix services test -- teams/discovery against the mock Graph in GitHub Actions. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Entra tenant administrator grants admin consent for the Métis service principal's Graph calendar and online-meeting change-notification permissions, scoped to the pilot group. One more point for a live run, not covered by this ticket's blocker text: the notification endpoint must be reachable on a production host, and Cloudflare production is outside the autopilot."
   },
   {
    "id": "M2-0154",
@@ -9337,7 +9370,7 @@
    ],
    "external_blocker": {
     "owner": "Azure subscription owner + Microsoft calling-media approval (roles; persons to be named by program owner)",
-    "unblock_step": "Provide an Azure subscription and obtain Microsoft application-hosted media approval; until then live bot media stays BLOCKED and post-meeting transcript alternatives ship",
+    "unblock_step": "Provide an Azure subscription and obtain Microsoft application-hosted media approval so the receiver can be deployed and joined to a live Teams meeting. Only the live bot-media run waits on this. The receiver, the no-persistent-audio rule, the recording-status prerequisite (UC-108), participant-command refusal (UC-107) and desktop-offline handling (UC-110) are built and proven on synthetic frames in CI (dotnet test services/teams-media on windows-latest). Live bot media stays flag-off and BLOCKED (D-22 default) and post-meeting transcript alternatives ship.",
     "needed_by": "2026-10-19",
     "raised_on": "2026-09-26"
    },
@@ -9366,7 +9399,9 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Create services/teams-media/ as a .NET solution. Build the receiver on the public Microsoft Graph Communications calling/media SDK NuGet packages, with the SDK's audio-frame callback wrapped behind an interface so tests can inject synthetic PCM frames. ASSUMED: the packages restore and compile on hosted windows-latest; the real media platform is never initialized in CI. Deliver slices M2-0155.1-.3: (1) frames go to a bounded in-memory buffer and then to the speech-broker client (a fake M2-0107 broker in tests), with a test proving no payload is written to disk or logs and no audio persists; (2) a recording-status gate that drops frames until the recording status is set (UC-108), and refusal of participant voice commands aimed at the organizer's laptop (UC-107); (3) handling for the desktop going offline while the bot is active (UC-110), plus a capability flag that defaults off and a BLOCKED readiness state carrying the unblock step. Add a windows-latest GitHub Actions job that runs `dotnet test services/teams-media` on synthetic frames and produces the LOCALLY_TESTED CI run ID. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Azure subscription owner provides a subscription that can host the Windows media receiver, and Microsoft grants application-hosted media approval. After that, a live bot-media run in a permitted Teams meeting. The owner's D-22 spend answer is still needed, but it is a decision, not a blocker, for the engineering half."
   },
   {
    "id": "M2-0156",
@@ -9406,7 +9441,7 @@
    ],
    "external_blocker": {
     "owner": "Zoom and Google Workspace administrators (roles; persons to be named by program owner)",
-    "unblock_step": "Enroll in the Zoom RTMS and Google Meet Media API developer programs. Until then the adapters stay behind capability flags and the in-app capability matrix shows Zoom and Meet as BLOCKED (UC-111); declaring them out of scope would need an owner-approved change to GOAL.json out_of_scope, which today lists only Apple public signing",
+    "unblock_step": "Enroll in the Zoom RTMS and Google Meet Media API developer programs (Zoom and Google Workspace administrators). Only live qualification of the Zoom and Meet adapters waits on this. The adapter contract, the capability flags, the Microsoft post-meeting transcript adapter (fixture-tested) and flag-off Zoom and Meet adapters are built in CI, and the in-app capability matrix shows Zoom and Meet as BLOCKED (UC-111). Declaring them out of scope would still need an owner-approved change to GOAL.json out_of_scope, which today lists only Apple public signing.",
     "needed_by": "2026-10-19",
     "raised_on": "2026-09-26"
    },
@@ -9416,7 +9451,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Create services/meeting-adapters/ with: (a) one adapter contract plus capability flags for each source, carrying eligibility and a READY, BLOCKED or DEFERRED state with the exact unblock step; (b) a Microsoft post-meeting transcript adapter that wraps or relocates the existing graph-transcript.ts chain behind its flag, contract-tested against recorded or fake Graph responses with no tenant access; (c) Zoom RTMS and Google Meet Media API adapters as flag-off stubs that report BLOCKED with the enrollment step, plus an honest per-program eligibility write-up (DESIGNED evidence); (d) capability rows fed into M2-0347's capability registry so the app shows Zoom and Meet as BLOCKED (UC-111). Add the services package and a CI job so `npm --prefix services test -- meeting-adapters` runs; services/ has no package yet. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): Zoom and Google Workspace administrators enroll in the Zoom RTMS and Google Meet Media API developer programs, then the Zoom and Meet adapters are qualified live. Live Microsoft transcript access separately waits on the Entra/Teams tenant checks of M2-0151 (B-21), inherited through depends_on."
   },
   {
    "id": "M2-0157",
@@ -9600,7 +9637,7 @@
    ],
    "external_blocker": {
     "owner": "Cloudflare account owner (Mantu IT; person to be named by program owner)",
-    "unblock_step": "Authorize an isolated D1 restore drill on the staging database using D1 Time Travel and approve the capability kill-switch names",
+    "unblock_step": "Once the staging Worker and D1 exist (M2-0103), authorize an isolated D1 Time Travel restore drill and the credential-rotation exercise on the staging database, run by the owner or with a scoped staging-only token, and confirm the kill-switch names proposed in docs/metis-2.0/runbooks/operations.md. Only the staging drill, its recorded RTO/RPO and the staging rotation wait on this. The drill script, kill switches, drift alarms and runbooks are built and tested in CI against local D1 and miniflare.",
     "needed_by": "2026-11-02",
     "raised_on": "2026-09-26"
    },
@@ -9610,7 +9647,9 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: (1) Extend operator/scripts/backup.mjs with an isolated restore-drill mode. It captures a Time Travel bookmark or timestamp, restores into a separate scratch D1 and never the live binding, verifies the migration head and row counts, and writes an RTO/RPO record. Its pure plan builders are unit-tested in backup.contract.test.ts. The export, import-into-a-fresh-DB and verify cycle is rehearsed in CI on ubuntu against wrangler's local D1. ASSUMED: Time Travel has no local emulation, so that step stays for staging. (2) operator/src/ops/: named, fail-closed, server-side capability kill switches, plus drift alarms that read back configuration and migration head and compare them with expected values. Monitoring is metadata-only. Both are covered by vitest/miniflare tests. (3) docs/metis-2.0/runbooks/operations.md: RTO/RPO objectives, canary policy, proposed kill-switch names, and credential-rotation runbooks with dry-run command plans. (4) SRC-17 (development-store seams never used as production durability) lands through M2-0239. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Cloudflare account owner first provisions the staging Worker and D1 (M2-0103/B-19, inherited). Then the owner authorizes and runs the isolated D1 Time Travel restore drill and the credential-rotation exercise on staging, or grants a scoped staging-only token for them, and records the measured RTO/RPO. The owner also confirms the proposed kill-switch names."
   },
   {
    "id": "M2-0160",
@@ -9815,7 +9854,7 @@
    ],
    "external_blocker": {
     "owner": "Cloudflare account owner (Mantu IT; person to be named by program owner)",
-    "unblock_step": "Authorize an R2 bucket for immutable reviewed assets and place the manifest-signing trusted root in the Operator vault",
+    "unblock_step": "Authorize an R2 bucket for immutable reviewed assets on the Mantu Cloudflare account and place the production manifest-signing trusted root in the Operator vault (the owner generates and holds the private key; agents never see it). Only live R2 delivery and the production-root configuration wait on this. Manifest signing, root rotation, length/hash/signature checks, tamper rejection (UC-060), rollback protection and the asset route are built and tested in CI with a throwaway test root and local R2.",
     "needed_by": "2026-10-26",
     "raised_on": "2026-09-26"
    },
@@ -9825,7 +9864,9 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Define the resources/capability-manifest.json schema (build, install, readiness and the optional model catalog). Build scripts/manifest/sign.mjs and verify.mjs on Ed25519, reusing operator/src/crypto.ts, with a throwaway key generated in CI and fixture roots. Cover: trusted-root rotation (the old root cross-signs the new root); length, sha256 and signature checks; rollback protection through a monotonic version and expiry; safe extraction (path traversal and size caps); and the tamper fixture. Add operator/src/routes/assets.ts, which serves immutable reviewed assets from an R2 binding with immutable cache headers, kept separate from the no-store speech routes. Test it against miniflare's local R2 simulation. All of it runs as vitest in CI. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Cloudflare account owner authorizes and creates the R2 bucket and its binding for staging and production. The owner generates the production manifest-signing trusted root and places it in the Operator vault; agents never hold the private key. Then the HOST_CONFIGURED readback is recorded."
   },
   {
    "id": "M2-0163",
@@ -9965,7 +10006,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony) / Mantu IT",
-    "unblock_step": "Name representative eligible device classes (for example 8 GB and 16 GB Apple silicon Macs and one Windows x64 laptop with and without a GPU) and make them available to the QA runner",
+    "unblock_step": "Name the eligible device classes that the hosted GitHub macos-latest and windows-latest runners do not represent (for example a 16 GB Apple silicon Mac with its accelerator and a Windows x64 laptop with a GPU). Attach that hardware to the repository as dedicated self-hosted GitHub Actions runners, never the owner's Mac, after the owner confirms D-28 permits such a runner (D-28 today bars repository tests on any Mac), or fund equivalent GitHub larger or GPU runners. Only those classes wait on this. Qualification on the hosted runner classes (the D-9 QA host) is built and measured in CI, and classes that are not named are recorded BLOCKED.",
     "needed_by": "2026-11-02",
     "raised_on": "2026-09-26"
    },
@@ -9975,7 +10016,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Add a workflow_dispatch qualification workflow whose device-class matrix is the hosted runners (macos-latest arm64, windows-latest x64 without a GPU). It installs the packaged candidate and runs the M2-0113 harness (`node evals/transcript/run.mjs --local-pack <id>`) for each pack. It covers: post-install self-test; offline operation with the network cut; unload and remove; an unavailable accelerator (the natural state on hosted runners); memory pressure through a constrained-memory fixture; an unsupported language; and download contention during capture, using a throttled concurrent-download fixture that asserts capture is never starved. It writes content-free MEASURED records, with runner class and candidate sha256, under docs/metis-2.0/evidence/local-packs/. Add a device-class matrix that marks each class MEASURED or BLOCKED. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The program owner or Mantu IT names the eligible classes the hosted runners do not represent, for example a 16 GB Apple silicon Mac with its accelerator and a Windows x64 laptop with a GPU. They supply that hardware as dedicated self-hosted GitHub Actions runners, never the owner's Mac, after the owner confirms D-28 allows this; or they fund equivalent GitHub larger or GPU runners. Otherwise those classes stay BLOCKED."
   },
   {
    "id": "M2-0166",
@@ -10253,7 +10296,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony) / Mantu IT",
-    "unblock_step": "Staging backend (cf-staging), the Jev key (decide-route) and both QA lanes must be provisioned; steps depending on them stay BLOCKED with the engineering evidence recorded",
+    "unblock_step": "Owner: Cloudflare account owner and Jev account holder (roles; persons to be named by program owner). Unblock step: (1) authorize the Operator staging Worker and D1 on the Mantu Cloudflare account, or a token scoped to them (M2-0103, B-19); (2) provision the Jev API key into the staging Operator vault and confirm the jev-1.13.0 pin (M2-0123, B-20). The QA lanes are no longer a prerequisite: M2-0007 is DONE and D-9 made the GitHub macos-latest/windows-latest runners the QA lanes. Until (1) and (2) exist, the journey runner runs on both CI lanes to the first blocked hop and records every later step BLOCKED with these steps.",
     "needed_by": "2026-11-09",
     "raised_on": "2026-09-26"
    },
@@ -10263,7 +10306,9 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Build a scripted desktop journey runner (output to docs/metis-2.0/evidence/journeys-desktop/). It needs a per-step contract covering wake, caption, speech, decide, verified action with readback, session close, portal reconciliation, consented meeting, offline and local-only. Each step emits PASS, FAIL or BLOCKED{blocker id, unblock_step}, plus a sanitized per-operation receipt bound to the candidate sha256. Add a 'journey' suite to windows-qa.yml (workflow_dispatch, main-guarded) and a matching macOS job on the qa-candidate lane, so the Windows and Mac results are recorded separately. Run it against: a local Operator (wrangler dev --local / miniflare, the fallback M2-0103's acceptance already names); a mock Jev vendor behind /v1/decide (M2-0123 acceptance: 'route tested on staging with a mock vendor'); and the synthetic Cloudflare speech fixture path (M2-0111). Add a reconciliation checker that compares client receipts with the Operator D1 metadata. Prove the offline and local-only cases fully in CI. Record Laya as 'unavailable' (D-23 default). Every live hop is recorded BLOCKED with its B-number. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): (1) The Cloudflare account owner authorizes the staging Worker and D1, or grants a scoped token (M2-0103 / B-19). (2) The Jev account holder puts the Jev API key in the staging Operator vault and confirms the jev-1.13.0 pin (M2-0123 / B-20). Also inherited through dependencies but not this ticket's own step: the Workers AI nova-3 entitlement readback for real speech (M2-0102 / B-14, via M2-0160→0112→0107→0104→0102), and the D-8 security decision before /v1/decide is deployed to staging."
   },
   {
    "id": "M2-0171",
@@ -10455,7 +10500,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "BLOCKED_EXTERNAL",
+   "notes": "2026-09-28 (lead): signing is out of the 2.0 autopilot scope (owner) — BLOCKED_EXTERNAL until the owner procures and wires the signing identity."
   },
   {
    "id": "M2-0175",
@@ -10507,7 +10553,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony); Apple Developer account holder (role; person to be named by program owner)",
-    "unblock_step": "Apple public signing and notarization are excluded by owner decision (GOAL.json out_of_scope, 2026-09-26; see M2-0186), so the public DMG stays HELD. For PCC, the Apple Developer account holder confirms under Apple's current eligibility rules (R10) whether the development-signed QA candidate can hold the PCC managed entitlement and, if so, requests it; if PCC requires public or App Store distribution signing, record it as inheriting the M2-0186 exclusion",
+    "unblock_step": "Owner: Apple Developer account holder (role; person to be named by program owner). Unblock step: confirm under Apple's current PCC eligibility and distribution rules (R10) whether the development-signed QA candidate can hold the PCC managed entitlement, and if so request it. If PCC requires public or App Store distribution signing, record PCC as inheriting the M2-0186 exclusion. The public DMG is not an outstanding step: it stays HELD by owner decision OD-8 / M2-0186 (GOAL.json out_of_scope). Until the answer arrives, PCC is shown as unavailable and BLOCKED (UC-053).",
     "needed_by": "2026-11-15",
     "raised_on": "2026-09-26"
    },
@@ -10517,7 +10563,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Everything below runs in CI on macos-latest; no owner Mac (D-28). (1) Wire 'xcodebuild -scheme MetisApp test' into CI, which M2-0050 also covers. (2) Build a packaged native QA checklist and a parity-and-migration harness over the shared contract fixtures. It runs on the development-signed native build, using the stable QA identity through the QA_MAC_SIGNING import pattern in qa-candidate.yml, or ad-hoc signing when that secret is unset. The parity scope follows M2-0345 and M2-0378. (3) Make Apple on-device speech a separate, explicitly selected engine with its own qualification record. Cloudflare stays the default, with no silent fallback (D-11). (4) Add a PCC availability layer with honest states (available, unavailable, quota exhausted, entitlement missing) for UC-053, proved with a stubbed availability source. (5) Write the evidence record in docs/metis-2.0/evidence/mac-qa/: public DMG HELD (M2-0186); PCC UNKNOWN/BLOCKED with the unblock step. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Apple Developer account holder confirms under R10 whether a development-signed QA candidate can hold the PCC managed entitlement and, if so, requests it. If PCC requires public or App Store distribution signing, PCC is recorded as inheriting the M2-0186 exclusion."
   },
   {
    "id": "M2-0176",
@@ -10565,7 +10613,7 @@
    ],
    "external_blocker": {
     "owner": "Teams administrator, Dust administrator and Entra administrator (roles; persons to be named by program owner)",
-    "unblock_step": "Provide a permitted Teams test meeting, the Dust workspace connection and two test identities; otherwise the live chain stays BLOCKED with the synthetic-journey evidence recorded",
+    "unblock_step": "Owner: Teams administrator, Dust workspace administrator and Entra administrator (roles; persons to be named by program owner). Unblock step: provide (1) a permitted Teams test meeting in the pilot tenant, (2) the approved Dust workspace connection for the knowledge.* remote MCP server (same step as M2-0128 / B-27), and (3) two test identities in the Entra tenant. The live visible-join hop also inherits M2-0155's Azure subscription and calling-media approval (B-22, D-22). Until then, the synthetic journey, the import slice and the negative cases are recorded ENGINEERING_COMPLETE in CI, and the live chain stays BLOCKED.",
     "needed_by": "2026-11-16",
     "raised_on": "2026-09-26"
    },
@@ -10575,7 +10623,9 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Build a meeting-journey runner in CI (output to docs/metis-2.0/evidence/journeys-meeting/). It drives this chain: a synthetic meeting through desktop capture or the permitted import slice → transcript via the speech-broker fake → knowledge approval → Dust read and write against the Dust contract fake, with the compare-and-swap and idempotency from M2-0129 → the updated human view → a published skill version and run receipt (M2-0142) → a portal receipt on a local Operator (miniflare). Add multiple-principal negative cases using the Entra mock issuer with two synthetic principals: cross-user and cross-tenant reads and writes must be denied, and identity is never taken from tool JSON (UC-086). Add a scripted Settings task protocol with instrumented timings on the packaged app: the four everyday destinations, search, and admin-only controls. Every live hop is recorded BLOCKED with its B-number. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Teams administrator provides a permitted Teams test meeting. The Dust administrator approves the workspace connection (the same step as M2-0128 / B-27). The Entra administrator provides two test identities, building on the app registration in M2-0121 / B-17. The 'visible join' live hop also inherits, through the M2-0155 dependency, the Azure subscription and Microsoft calling-media approval (B-22; D-22 OPEN). If the Settings task study needs people, their participation is also outside."
   },
   {
    "id": "M2-0177",
@@ -10891,7 +10941,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Approve the release claims (release_claims_approved) and the final masters",
+    "unblock_step": "Owner: Program owner (Tony). Unblock step: answer D-27 by approving the release claims (release_claims_approved) and the final masters, once the frame-by-frame QA over LFAC-01..12 passes for all three renders. The approval request is drafted for the owner and never auto-sent. Until approval, unapproved claims are cut or labelled concept.",
     "needed_by": "2026-11-24",
     "raised_on": "2026-09-26"
    },
@@ -10901,7 +10951,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-11-27",
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Write media/launch-film/QA.md: a per-render, per-scene checklist mapped to LFAC-01..12. Add a frame-QA step to film-toolchain.yml on ubuntu. It checks: ffprobe duration, resolution and fps per deliverable (60 s hero at 3840x2160 with a 1080p fallback, 30 s 1080x1920 vertical, 20 s 1920x1080 teaser; LFAC-10, LFAC-11); frame-zero flash and A/V sync drift (LFAC-11); loudness and clipping (LFAC-09). It produces sampled-frame contact sheets per scene for the Opus frame-by-frame review (LFAC-08). It runs an OCR privacy scan for emails, tokens, names and real meeting text (LFAC-12 and acceptance 2), re-runs check-claims.mjs (LFAC-02, LFAC-05), and writes a sha256 manifest of the masters. Prove it now on the M2-0212 spike render, then run it on the three real renders when M2-0181 lands. Draft the approval request for the owner; it is never auto-sent. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The program owner answers D-27 by approving the release claims (setting release_claims_approved) and the final masters after the frame QA passes."
   },
   {
    "id": "M2-0183",
@@ -10990,7 +11042,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Install the frozen 2.0 candidate on the owner Mac, walk the acceptance checklist and record sign-off in docs/metis-2.0/SIGNOFF.md",
+    "unblock_step": "Program owner (Tony): install the frozen 2.0 candidate (sha256 from the lane provenance file) on the owner Mac, walk the acceptance checklist in docs/metis-2.0/SIGNOFF.md, and record written sign-off (ACCEPTED). The inherited-block list and the Opus final validation are prepared by the program, not by the owner.",
     "needed_by": "2026-11-30",
     "raised_on": "2026-09-26"
    },
@@ -11000,7 +11052,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-11-30",
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Build a sign-off generator with a completeness check. Put it as a pure module next to the public scripts/evidence/check.mjs, whose --ledger mode is already built to run from a private-repo workflow. Given tickets.json it writes the SIGNOFF.md skeleton with two parts. (1) The acceptance checklist, with slots for the frozen candidate sha256 from the lane provenance file, the M2-0183 Opus verdict and the owner's ACCEPTED record. (2) An inherited-blocks table: every ticket that is not DONE or CANCELLED and carries external_blocker (id, title, owner role, unblock_step, needed_by, raised_on), plus every DEFERRED ticket with its D-14 approval. A --check mode fails when SIGNOFF.md leaves out any such ticket or when its owner or unblock_step differs from the ledger. Prove it with fixture ledgers in public Build & Test CI. The draft SIGNOFF.md is produced from the private ledger through the private-repo workflow_dispatch pattern. That run depends on the private Actions budget: traceability.yml is manual-only because the budget ran out on 2026-09-28. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the frozen 2.0 candidate on his own Mac, walks the checklist and records his written sign-off (ACCEPTED). The Opus final validation is internal but can only happen after M2-0183."
   },
   {
    "id": "M2-0185",
@@ -11047,7 +11101,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Approve the pre-registered slice list and the competitor products to compare (candidates from the kit references R81..R85), and provide legitimate trial or paid accounts used under each vendor's terms; any product without one is recorded BLOCKED",
+    "unblock_step": "Program owner (Tony): answer D-26 by approving the pre-registered slice list in docs/metis-2.0/evidence/competitive/PROTOCOL.md and naming the competitor products to compare (candidates from R81..R85); provide legitimate trial or paid accounts used under each vendor's terms and name who runs the competitor side of the synthetic tasks under those accounts. Any product without a legitimate account is recorded BLOCKED and excluded from every comparative claim.",
     "needed_by": "2026-11-08",
     "raised_on": "2026-09-26"
    },
@@ -11057,7 +11111,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: (1) Draft docs/metis-2.0/evidence/competitive/PROTOCOL.md, labelled PROPOSED. It sets the slices; the consented synthetic tasks in FR and EN, built from scripts/qa/asr-fixtures en/fr/mixed; the hardware and network class; the privacy scope (synthetic meetings only); the rubric (task completion, critical factual errors, user editing burden, time-to-useful-result, accessibility, total work and cost, and resource footprint from the M2-0009 census); and separate evidence labels (vendor claim, source review, simulated UX, executed product). (2) Build scripts/qa/competitive/run.mjs. It pins the protocol sha256 at the first result and refuses to score if the protocol or denominator changes afterwards. It defines a per-product adapter contract: a product without a legitimate account yields a BLOCKED row that is left out of every comparative aggregate. Failures, abstentions and uncertainty stay in the denominator. It records raw timings per product and slice, in an output that M2-0178's claim gate reads, so no comparative claim passes without a recorded slice. (3) Prove it in CI with a fake competitor adapter and fixture results. Run the Métis side on synthetic meetings against the current qa-candidate on hosted macos-latest and windows-latest via workflow_dispatch. The final run on the frozen candidate waits for M2-0173 and M2-0113, both internal. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner answers D-26: he approves the slice list and names the competitor products (candidates R81..R85). He also provides legitimate trial or paid accounts used under each vendor's terms. The competitor-side runs must happen under those outside accounts, which the autopilot cannot hold, so they are done by the owner or someone he names. Any product without an account stays BLOCKED."
   },
   {
    "id": "M2-0186",
@@ -11602,7 +11658,7 @@
    ],
    "external_blocker": {
     "owner": "Mantu IT (role; person to be named by the program owner)",
-    "unblock_step": "Provide the managed Windows 11 x64 laptop named in M2-0007 (standard enterprise image with EDR and OneDrive Files On-Demand) and remote access for the QA runner",
+    "unblock_step": "Mantu IT (role; person to be named by the program owner, who first confirms the laptop request still stands after D-9 was answered 'CI runners'): provide one managed Windows 11 x64 laptop on the standard enterprise image (EDR as deployed, OneDrive Files On-Demand) with remote access for the QA runner, so the laptop-only rows of scripts/qa/windows/baseline.ps1 run on the 1.9.6 bytes: ST-1-W (OneDrive placeholders plus network off), HK-W (End task on main) under EDR, the representative resource census, and PowerShell foreground-watcher cost and EDR interaction. The windows-latest rows run without it (M2-0415).",
     "needed_by": "2026-10-01",
     "raised_on": "2026-09-26"
    },
@@ -11612,7 +11668,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Already filed, so no new ticket is needed. Land M2-0414 first: point resource-census.yml and freeze-repro.yml at mysticalsin/Metis-Releases v1.9.6-unsigned and verify SHA256SUMS before install. Then land M2-0415: scripts/qa/windows/baseline.ps1 measures the M2-0009 census states on the installed 1.9.6, runs in a main-ref-guarded workflow_dispatch windows-latest lane, and prints the laptop-only rows as BLOCKED_EXTERNAL with the exact unblock step. Several rows run on windows-latest: install/launch, the clean-quit survivor census, and working set, private bytes and CPU-time deltas, labelled non-representative of a managed host. File their findings as tickets or 1.9.7 residuals (acceptance line 3). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): A managed Windows 11 x64 laptop on the standard enterprise image (EDR as deployed, OneDrive Files On-Demand), with remote access for the runner. It is needed for ST-1-W (placeholders plus network off), HK-W (End task on main) under EDR, the representative resource census, and the PowerShell foreground-watcher cost and EDR interaction. The owner must also confirm the request still stands after D-9 and name the Mantu IT person."
   },
   {
    "id": "M2-0196",
@@ -11747,7 +11805,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Use 1.9.7 as the daily build for five days and paste the tray 'Copy diagnostics summary' output into the ticket on day five",
+    "unblock_step": "Program owner (Tony): once 1.9.7 is promoted (M2-0046), use it as the daily build on the owner Mac for five consecutive days and on day five paste the tray 'Copy diagnostics summary' JSON into the ticket; the PROCEED/HOLD counts are computed from that paste.",
     "needed_by": "2026-10-09",
     "raised_on": "2026-09-26"
    },
@@ -11757,7 +11815,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-09",
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: (1) Diagnostics summary schema 2 in src/main/infra/observability/diagnostics-summary.ts, with tests, landed before the 1.9.7 candidate is cut. It reads the rotated audit-<stamp>.log generations as well as the live audit.log. It scopes counts to records from the first app.started of the target version onward. It adds per-UTC-day activity buckets and >5 s stall buckets. It splits sidecar.reaped by reason and counts reaps in boots whose prevShutdown was unclean. It exposes named counts for reveal no-ops (with a pre-registered definition against REVEAL_OUTCOMES) and for brain.index.quarantined. (2) A soak evaluator, for example scripts/qa/owner-soak/verdict.mjs. It takes the pasted summary JSON; checks kind and schema, app.version 1.9.7 and at least five consecutive active days; computes the five acceptance counts; applies a pre-registered PROCEED/HOLD rule; and writes the MEASURED record for docs/metis-2.0/evidence/release-1.9.7/soak-5d.md. (3) An M2-0198 validator in scripts/evidence/check.mjs. Prove all three in public CI with fixture audit trails covering rotation mid-window, a version change mid-trail, a missing day, and an unclean boot followed by a reap. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): Once 1.9.7 is promoted, the owner uses it as his daily build on his own Mac for five consecutive days and pastes the tray summary on day five."
   },
   {
    "id": "M2-0199",
@@ -11797,7 +11857,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Keep the owner-channel build as the daily build for 10 working days, paste the diagnostics summary at the end, and accept or reject the closure in writing",
+    "unblock_step": "Program owner (Tony): after the five-day soak (M2-0198), keep 1.9.7 or a later owner-channel build as the daily build on the owner Mac for at least 10 working days; at the end paste the tray 'Copy diagnostics summary' JSON (and, if any stall over 5 s, orphan after an unclean exit or reveal no-op occurred, attach the exported diagnostics bundle), then accept or reject the computed closure in writing.",
     "needed_by": "2026-10-19",
     "raised_on": "2026-09-26"
    },
@@ -11807,7 +11867,9 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-19",
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: (1) A closure mode for the M2-0198 evaluator. It accepts 1.9.7 or a later owner-channel version (1.9.7.x, 1.9.9 and so on) and requires at least 10 working days (Monday to Friday with activity) in the summary window. It requires zero stalls over 5 s, zero reaps after unclean exits and zero reveal no-ops. On any violation it emits a REOPEN record naming the app.stall.sampled bundle file names, plus a release/1.9.x hotfix-ticket stub. (2) Add userData/diagnostics/stalls/*.txt to the Export diagnostics bundle handler, and extend src/main/diagnostics-export.contract.test.ts. These are the content-free, redacted M2-0192 bundles, at most 10. The owner can then attach the sampler bundle without devtools. (3) An M2-0199 validator in scripts/evidence/check.mjs that refuses 'fixed' for B1 or B2 without the MEASURED and ACCEPTED records. The lead also writes docs/metis-2.0/evidence/owner-bugs/closure.md now with the interim B1 and B2 wording. Prove it in public CI with fixtures. Windows has no sampler, which M2-0192 already states as a residual. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner keeps the owner-channel build as his daily build on his own Mac for at least 10 working days. He pastes the summary at the end, exports the diagnostics bundle if a violation occurred, and accepts or rejects the closure in writing."
   },
   {
    "id": "M2-0200",
@@ -12205,7 +12267,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Install the promoted bytes on the owner Mac and keep them as the daily build",
+    "unblock_step": "After the lead promotes the tested 1.9.9 bytes as an owner-channel prerelease (D-13), download the macOS installer from that prerelease on the feed, check it against SHA256SUMS, install it on the owner Mac and keep it as the daily build (the updater does not take prereleases). The install date starts M2-0167's 14-day journal and ledger clock.",
     "needed_by": "2026-10-19",
     "raised_on": "2026-09-26"
    },
@@ -12215,7 +12277,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": "2026-10-18",
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW, CI-provable: (1) Add a `--train <ticket>` mode to scripts/evidence/check.mjs, with node --test fixtures. It asserts: lane provenance.json sha256s for the train; PASS records for the HK, RV, ST and EX suites (plus JR once the journal exists) bound to those exact sha256s; a census-gate PASS (M2-0200 output); a windows-latest parity record with the physical-laptop rows present as residuals or blockers; a re-execution sample record that matches the reproducible draw from scripts/evidence/sample.mjs; no decision with needed_by on or before the train date still OPEN (unless escalated); and the m5 re-forecast present. Per-train extra criteria are pluggable, so T2 and T3 reuse the mode. (2) Add a feed version-order preflight: a pure semver-precedence function with unit tests, wired into the qa-candidate.yml guard job (before the build) and promote-candidate.yml. It refuses a package version that is not strictly above every tag on mysticalsin/Metis-Releases, including drafts such as the v1.9.8 draft. LATER, once depends_on land: set the version to 1.9.9, dispatch qa-candidate.yml once on main, and run the packaged suites, the census compare and the windows-latest parity on those bytes. Then file docs/metis-2.0/evidence/train-M2-0206/, draw the 10% sample, write the m5 re-forecast, and have the lead dispatch promote-candidate.yml publish=true per D-13 (the same lead step M2-0046's notes define). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner downloads the promoted 1.9.9 owner-channel prerelease, installs it by hand on the owner Mac (the updater ignores prereleases) and keeps it as the daily build. The install date starts M2-0167's 14-day journal and ledger clock. The physical Windows laptop parity rows depend on Mantu IT (B-06, M2-0195) and are recorded as residuals or blockers per the acceptance, not as this ticket's blocker."
   },
   {
    "id": "M2-0207",
@@ -12260,7 +12324,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Install the promoted bytes on the owner Mac and keep them as the daily build",
+    "unblock_step": "After the lead promotes the tested 2.0.0-beta.1 bytes as an owner-channel prerelease (D-13), download the macOS installer from that prerelease on the feed, check it against SHA256SUMS, install it on the owner Mac and keep it as the daily build (the updater does not take prereleases).",
     "needed_by": "2026-11-02",
     "raised_on": "2026-09-26"
    },
@@ -12270,7 +12334,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": "2026-11-01",
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW: reuse or finish the shared `check.mjs --train` mode and the feed version-order preflight from M2-0206, and add T2's own criteria with fixture tests. (a) The candidate version must be strictly above 1.9.9 (2.0.0-beta.1). (b) The wake-detection default (M2-0081) in the candidate must be off unless a census-gate (M2-0200) record for those sha256s measures it within budget. LATER, once depends_on land: one qa-candidate.yml build on main at 2.0.0-beta.1; packaged suites, census compare and windows-latest parity on those bytes; evidence in docs/metis-2.0/evidence/train-M2-0207/; the 10% sample via sample.mjs; the m6 re-forecast; then the lead promotes the bytes with promote-candidate.yml per D-13. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-beta.1 owner-channel prerelease by hand on the owner Mac and keeps it as the daily build. The physical-laptop parity rows stay with Mantu IT (B-06) and are recorded as residuals."
   },
   {
    "id": "M2-0208",
@@ -12357,7 +12423,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Install the promoted bytes on the owner Mac and keep them as the daily build",
+    "unblock_step": "After the lead promotes the tested 2.0.0-beta.2 bytes as an owner-channel prerelease (D-13), download the macOS installer from that prerelease on the feed, check it against SHA256SUMS, install it on the owner Mac and keep it as the daily build (the updater does not take prereleases).",
     "needed_by": "2026-11-09",
     "raised_on": "2026-09-26"
    },
@@ -12367,7 +12433,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": "2026-11-08",
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW: reuse the shared `check.mjs --train` mode and version-order preflight, and add T3's own criteria with fixture tests. (a) The version must be strictly above T2's (2.0.0-beta.2). (b) The golden-flows evidence must show at least three nightly runs on lane-build sha256s, with FLOW rows PASS, NOT_RUN or BLOCKED as M2-0208 defines them. LATER, once depends_on land: one qa-candidate.yml build on main at 2.0.0-beta.2; packaged suites, census compare and windows-latest parity on those bytes; evidence in docs/metis-2.0/evidence/train-M2-0209/; the 10% sample; the re-forecast; then the lead promotes with promote-candidate.yml per D-13. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-beta.2 owner-channel prerelease by hand on the owner Mac and keeps it as the daily build. The physical-laptop parity rows stay with Mantu IT (B-06) and are recorded as residuals."
   },
   {
    "id": "M2-0210",
@@ -12601,7 +12669,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Approve each DEFERRED item, install rc1 and use it for 72 h",
+    "unblock_step": "After the lead promotes the tested 2.0.0-rc.1 bytes as an owner-channel prerelease (D-13), install rc1 on the owner Mac from that prerelease (checked against SHA256SUMS), use it as the daily build for 72 h and report any P0/P1 defect. For each ticket the lead proposes as DEFERRED (flag-off) under the D-14 degrade order, if any, give a written approval that is filed as that ticket's ACCEPTED record.",
     "needed_by": "2026-11-15",
     "raised_on": "2026-09-26"
    },
@@ -12611,7 +12679,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": "2026-11-15",
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW, CI-provable with fixtures: (1) Add a `--freeze` mode to scripts/evidence/check.mjs with node --test cases. It fails if any M2-0210 depends_on is TODO or IN_PROGRESS. It requires every BLOCKED_EXTERNAL dependency to carry an external_blocker.unblock_step that is shown in the capability matrix. It reuses deferredProblems, so every DEFERRED dependency has a non-null flag and an ACCEPTED record. It requires M2-0160, 0161, 0163 and 0164 to be DONE or ENGINEERING_COMPLETE, and no decision due by 2026-11-15 to be still OPEN. (2) Add a date-gated post-freeze guard in the --pr-event path (evidence.yml), with fixture events: after 2026-11-15, a PR into main or m2/integration must carry a fix record with a verified red-before run, which the existing P-rules already check. That makes \"only defect fixes land, each with a failing test first\" mechanical. The lead widens M2-0210's scope_paths to scripts/evidence/check.mjs and its test. LATER, once depends_on land: build 2.0.0-rc.1 once via qa-candidate.yml; run all packaged suites, the census gate and the nightly golden flows on those bytes, plus the windows-latest parity; do the 10% re-execution via sample.mjs and `velocity.mjs --gate rc1` (M2-0197); file evidence in docs/metis-2.0/evidence/rc1/; the lead promotes rc1 per D-13, and any post-freeze fix produces rc.N with the affected gates re-run. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-rc.1 on the owner Mac, uses it for 72 h and reports any P0/P1 defect. The owner also gives a written approval (filed as an ACCEPTED record) for each ticket the lead proposes as DEFERRED under the D-14 order. That part vanishes if nothing is DEFERRED at the freeze."
   },
   {
    "id": "M2-0211",
@@ -12662,7 +12732,8 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "BLOCKED_EXTERNAL",
+   "notes": "2026-09-28 (lead): signing is out of the 2.0 autopilot scope (owner) — BLOCKED_EXTERNAL until the owner procures and wires the signing identity."
   },
   {
    "id": "M2-0212",
