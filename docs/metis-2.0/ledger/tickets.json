@@ -99,6 +99,12 @@
    "version": 2,
    "by": "Opus final validator (m2 gate)",
    "summary": "Schema unchanged. Milestone inversions fixed (M2-0002 m3, M2-0005 m4, M2-0078 m10); Opus-owned non-visual scripts split into Sonnet slices from an Opus spec (M2-0002, M2-0008, M2-0188, M2-0197); M2-0001 first test run pinned to CI, the 09-23 quarantine count labelled DERIVED and the MQA-348 prior art pointed at an in-repo copy; out-of-repo references replaced (M2-0006, M2-0008, M2-0011, M2-0023); CRITIC-CODE-4 and -9 added to M2-0018; rc1 acceptance cycles removed from M2-0166 and M2-0178; M2-0049 gains the pre-existing personal-email and account-ID cleanup; kit copies redacted (see review/REDACTIONS.md)"
+  },
+  {
+   "date": "2026-09-27",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0230 filed: public-repo identifier/private-reference/key-fixture cleanup split out of M2-0049; blocks the first m2/integration -> main milestone merge."
   }
  ],
  "tickets": [
@@ -636,7 +642,14 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "notes": " 2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/250",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0009",
@@ -698,7 +711,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "notes": " 2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/249",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0010",
@@ -804,10 +824,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
    "claimed_at": "2026-09-26",
-   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket)."
+   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/17",
+    "merged_into": "main (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0012",
@@ -939,9 +965,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner",
-   "claimed_at": "2026-09-26"
+   "claimed_at": "2026-09-26",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/21",
+    "merged_into": "main (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0014",
@@ -1105,20 +1137,21 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Approve prd-lock.md v1.0 (it gates no ticket; the policy answers already come from M2-0189)",
-    "needed_by": "2026-10-18",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 8,
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
-   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither."
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"full autopilot until everything is done for version 2.0 except signature\"): the lead approves prd-lock v1.0 from the answered policy (POLICY-2.0.md).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/263",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0017",
@@ -1250,7 +1283,13 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "ENGINEERING_COMPLETE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/261",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0019",
@@ -1303,7 +1342,13 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "ENGINEERING_COMPLETE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/22",
+    "merged_into": "main (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0020",
@@ -1424,9 +1469,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/24",
+    "merged_into": "main (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0022",
@@ -1522,19 +1573,21 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": {
-    "owner": "OpenAI Codex CLI quota (tool account holder: program owner)",
-    "unblock_step": "After 2026-09-29 19:33 run the read-only Codex review of docs/metis-2.0/PLAN.md and ledger/tickets.json; the ChatGPT audit proceeds now",
-    "needed_by": "2026-09-30",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "UNBLOCKED 2026-09-27: Codex is available (quota restored); run the independent Codex audit of PLAN.md and the ledger now.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/18",
+    "merged_into": "main (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0024",
@@ -1647,7 +1700,13 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/260",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0026",
@@ -2295,7 +2354,13 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/252",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0037",
@@ -2825,9 +2890,7 @@
     "CHATGPT-A8"
    ],
    "scope_paths": [
-    "package.json",
-    "docs/metis-2.0/evidence/release-1.9.7/",
-    "docs/metis-2.0/evidence/release-1.9.7/RELEASE-NOTES.md"
+    "docs/metis-2.0/releases/1.9.7.md"
    ],
    "summary": "The stabilization release closes the loop behind the owner's two bugs only if the bytes that were tested are the bytes promoted. Its scope is the P0 closure: hermetic tests, evidence chain, foreign-key guard, observability and stall sampler, one stopAll, registry and reaper, dataless detection, storage gateway with the .brain readers and History, degraded rows, one retry/exhaustion policy, the model-hash cache, one reveal(), a bounded reload loop and the build lane. Everything else moves to the T1 train. The release states residual risks; the bugs close only through the owner-machine gate M2-0199.",
    "acceptance": [
@@ -2850,19 +2913,15 @@
     "ACCEPTED",
     "MEASURED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Review the 1.9.7 evidence record, install the candidate bytes (sha256 in the lane provenance file) on the owner Mac, and approve promotion of those same bytes with the promote workflow (no rebuild; agents never push tags)",
-    "needed_by": "2026-10-04",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "high",
    "estimate_hours": 10,
    "validation_hours": 1.0,
    "slices": [],
    "due": "2026-10-04",
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases."
   },
   {
    "id": "M2-0047",
@@ -3034,7 +3093,7 @@
    "slices": [],
    "due": null,
    "status": "TODO",
-   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values."
+   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values. 2026-09-27 (lead): the personal-email/account-id cleanup item is delivered by M2-0230 (split so it is not blocked by M2-0048/M2-0053); M2-0049 only verifies the docs scan passes on main afterwards."
   },
   {
    "id": "M2-0050",
@@ -3217,9 +3276,15 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/247",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0054",
@@ -3260,7 +3325,13 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/262",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0055",
@@ -3516,12 +3587,7 @@
     "DESIGNED",
     "LOCALLY_TESTED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Name the promised refactoring skill and its location/version (MASTER section 2.5), or confirm in writing that software-architecture-engineer v1.4.0 plus Stark v9.3.0 substitute for it",
-    "needed_by": "2026-10-05",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "low",
    "estimate_hours": 6,
@@ -3541,7 +3607,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "UNBLOCKED 2026-09-27: Owner named the methods on 2026-09-26: software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER section 2.5 skill."
   },
   {
    "id": "M2-0060",
@@ -9528,12 +9595,7 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Supply the recorded welcome video with captions, or confirm the text-led welcome ships as final (OBU-02)",
-    "needed_by": "2026-11-08",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 24,
@@ -9572,7 +9634,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged."
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: the text-led welcome ships as final (no recorded video); ASSUMED per D-20 default."
   },
   {
    "id": "M2-0161",
@@ -11400,7 +11462,13 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "ENGINEERING_COMPLETE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/23",
+    "merged_into": "main (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0195",
@@ -11486,7 +11554,13 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/19",
+    "merged_into": "main (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0197",
@@ -11523,12 +11597,7 @@
     "LOCALLY_TESTED",
     "ACCEPTED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Approve or reorder the degrade order in DECISIONS.md D-14",
-    "needed_by": "2026-10-09",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
@@ -11548,7 +11617,8 @@
     }
    ],
    "due": "2026-10-09",
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default."
   },
   {
    "id": "M2-0198",
@@ -12753,7 +12823,13 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
-   "status": "TODO"
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/254",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "wave": "W2",
@@ -13268,7 +13344,118 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
-   "status": "TODO"
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/258",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
+  },
+  {
+   "id": "M2-0229",
+   "title": "Run the packaged-app smoke lane on every push to m2/integration",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0007"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OWNER-2026-09-27-TEST-THE-APP"
+   ],
+   "scope_paths": [
+    ".github/workflows/packaged-smoke.yml"
+   ],
+   "summary": "Owner request (2026-09-27): the real app must be tested continuously on the way to 2.0. packaged-smoke.yml (M2-0007) builds the unsigned Electron app on macos-latest and windows-latest and checks start, renderer-ready, clean quit and no orphaned children — but it only runs when its own files change. Make it run on every push to m2/integration (and keep workflow_dispatch), without tags, secrets or release triggers.",
+   "acceptance": [
+    "packaged-smoke.yml runs on every push to m2/integration (branch filter), still never on tags",
+    "The first integration run after merge is green on both OSes, or its failure is filed as a ticket",
+    "No change to release.yml or build.yml"
+   ],
+   "verification": [
+    "CI packaged-smoke run on m2/integration"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 1,
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/255",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
+  },
+  {
+   "id": "M2-0230",
+   "title": "Remove owner identifiers, private-program references and key-shaped fixtures from the public repo",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "security",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "MILESTONE-2026-09-27-HYGIENE",
+    "M2-0049"
+   ],
+   "scope_paths": [
+    "operator/src/access.ts",
+    "operator/src/index.ts",
+    "operator/src/render/fixture.ts",
+    "operator/src/render/pages/settings.ts",
+    "operator/src/spa/",
+    "operator/scripts/dev-session.mjs",
+    "operator/scripts/dev-session.contract.test.ts",
+    "operator/scripts/seed-dev.mjs",
+    "operator/README.md",
+    "operator/wrangler.jsonc",
+    "operator/src/",
+    "docs/design/",
+    "docs/operator/",
+    "package.json",
+    "src/renderer/src/components/Settings.tsx",
+    "src/renderer/src/components/Settings.contract.test.ts",
+    "src/shared/operator-seat.test.ts",
+    "scripts/evidence/record.mjs",
+    "src/main/onboarding-recovery.contract.test.ts",
+    "electron.vite.config.ts",
+    ".github/workflows/release.yml"
+   ],
+   "summary": "The m2/integration -> main milestone merge is blocked by the public-hygiene gate, and the root cause is pre-existing: the owner's personal and work email addresses appear in 45 tracked files (runtime admin allowlist in operator/src/access.ts, the Settings feedback mailto in the desktop app, package.json author, operator docs/runbooks/design docs, the generated Operator SPA text, and 133 test fixture occurrences), a real Cloudflare account id sits in operator/src/cloudflare.test.ts, scripts/evidence/record.mjs names the private program's docs path, and src/main/onboarding-recovery.contract.test.ts carries a literal sk-ant-shaped key. Split out of M2-0049 so it is not blocked by the workflow-pinning chain (M2-0048/M2-0053). Git history is not rewritten (force-push is forbidden); this cleans the tree.",
+   "acceptance": [
+    "git grep -nE 'tony\\.walteur|twalteur|@amaris\\.com' on the branch returns nothing (source, tests, docs, generated SPA, package.json)",
+    "operator/src/access.ts reads the admin allowlist from a Worker binding (ADMIN_EMAILS, comma-separated, set with wrangler secret put) and fails closed (every admin check denied, clear log line) when it is missing or empty; tests cover set, empty and missing",
+    "Operator docs/runbooks/README and the settings page describe the allowlist as 'the owner's two Access emails, configured as the ADMIN_EMAILS secret' without naming them; the runbook adds the one-time wrangler secret put step before the next deploy",
+    "Desktop Settings feedback link reads its address from a build-time constant (METIS_FEEDBACK_EMAIL, injected by electron-vite define from the environment; release.yml passes it from a repository variable); when unset the link is hidden, and a contract test covers both states",
+    "package.json author keeps the name without an email address; electron-builder output unchanged otherwise",
+    "Every test fixture uses synthetic identities (e.g. owner@example.test, admin@example.test) and a synthetic 32-hex account id; no assertion is weakened, only the literals change",
+    "scripts/evidence/record.mjs names no private-program path; key-shaped test fixtures are built at runtime (e.g. 'sk-ant-' + 'x'.repeat(40)) so no tracked line matches sk-(ant|or|kimi)-[A-Za-z0-9]{20,}",
+    "operator/src/spa/client.generated.ts is regenerated from its source by the repo's generator, not hand-edited",
+    "Build & Test green on the PR; the milestone hygiene diff origin/main...origin/m2/integration is empty after merge"
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "git grep checks above on the PR branch",
+    "queue hygiene_scan on origin/main...origin/m2/integration"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/256",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   }
  ]
 }

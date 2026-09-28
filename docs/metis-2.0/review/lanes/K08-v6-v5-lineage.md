@@ -3,7 +3,7 @@
 **Lane:** K08-v6-v5-lineage
 **Scope:** Extract every requirement and acceptance item from the v6 kit (`Metis-Upgrade-v6-BRAG-Hindsight`) and the v5 kit (`Metis-Behavior-Upgrade-v5-Hindsight`, including its nested baselines), mark delta vs r11 MASTER, with exact source refs.
 **Method:** software-architecture-engineer requirements/quality checklist + stark product-and-planning checklist (skimmed; no direct quotes reproduced — paraphrased per copyright rule).
-**Repo:** read-only, no edits made. All paths below are under `/Users/tony/AI-Brain-build/metis-v2-inputs/` unless noted.
+**Repo:** read-only, no edits made. All paths below are under `/Users/<redacted-user>/AI-Brain-build/metis-v2-inputs/` unless noted.
 **Evidence labels:** OBSERVED = read directly in a cited file. DERIVED = reasoned from two or more OBSERVED facts, reasoning stated. ASSUMED = plausible but unverified. UNKNOWN = genuinely undetermined from inputs available to this lane.
 
 ---
@@ -36,7 +36,7 @@ r11 MASTER (rev 4.5, "kit r11")                — spec/MASTER.md, 5363 lines, s
 
 Key delta finding: **r11 MASTER already has JEV and Hindsight as concepts**, and already references HeyClicky as a design study. What v2→v6 add on top are (1) a fully worked *executable candidate* implementation contract for JEV and for the HeyClicky interaction model (CXSTEP/CXAC), (2) the v4 "keyboard-first" correction that did **not** exist in r11 as a first-class global show/hide + separate command-voice toggle spec (r11's nearest equivalent is the ARMED wake-word orb state and a generic "configurable global stop chord", not a visibility toggle — OBSERVED spec/MASTER.md:315-346), (3) a third-party Hindsight *skill package* wrapper and its v6 upstream-binding tightening, and (4) an entirely new, explicitly non-runtime deliverable: the BRAG launch film.
 
-Nothing in v5/v6 is installed in `/Users/tony/AI-Brain-build/metis-2.0` (the checkout this lane was told is read-only); every kit document says so explicitly (e.g. OBSERVED README.md:3 v5 "the installed app is not updated"; v6 evidence/PACKAGE-CHECKS.json: `"application_code_modified": false`). This lane did not open metis-2.0 source; that is other lanes' job. Cross-references to Tony's runtime evidence (E1–E9) below are DERIVED comparisons only.
+Nothing in v5/v6 is installed in `/Users/<redacted-user>/AI-Brain-build/metis-2.0` (the checkout this lane was told is read-only); every kit document says so explicitly (e.g. OBSERVED README.md:3 v5 "the installed app is not updated"; v6 evidence/PACKAGE-CHECKS.json: `"application_code_modified": false`). This lane did not open metis-2.0 source; that is other lanes' job. Cross-references to Tony's runtime evidence (E1–E9) below are DERIVED comparisons only.
 
 ---
 

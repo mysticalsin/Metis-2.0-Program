@@ -1,6 +1,6 @@
 # L07 — Renderer Components — Audit Report
 
-**Repo**: `/Users/tony/AI-Brain-build/metis-2.0` (read-only checkout, origin/main `2bf21f1c`, v1.9.6)
+**Repo**: `/Users/<redacted-user>/AI-Brain-build/metis-2.0` (read-only checkout, origin/main `2bf21f1c`, v1.9.6)
 **Lane files**: `src/renderer/src/components/**` (115 files, 19,837 lines incl. tests) + `src/renderer/src/styles.css` (3,265 lines, the app's only stylesheet)
 **Method**: brownfield-discovery (AUDIT mode) + domain-boundaries skim, Stark/Addy five-axis review. No graphify index existed for this repo; all claims below are from direct source reading (`grep`/`sed`/`wc` over the checked-out tree) plus the runtime evidence (E1–E9) supplied by the lead. No meeting/transcript *content* was read — only structure, counts and code.
 **Stack fact relevant to every perf finding below**: `package.json` declares `react@^18.3.1`, `react-dom@^18.3.1`, `lucide-react`. There is **no** list-virtualization dependency anywhere in the tree (`react-window`, `react-virtualized`, `@tanstack/react-virtual` all absent) — confirmed by grep across `package.json` and the whole lane. Any "cap this list" fix below therefore has to either (a) keep the current ad-hoc slice/cap pattern, or (b) add a virtualization dependency; there is no existing in-house primitive to reuse.

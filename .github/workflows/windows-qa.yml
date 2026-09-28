@@ -1,0 +1,269 @@
+name: Windows QA
+
+# Probe-only Windows lane for M2-0196. The capabilities probe records what the
+# GitHub-hosted windows-latest runner exposes before any packaged gate relies on
+# it. It does not build installers, run repository scripts, launch the app, or
+# use secrets.
+on:
+  workflow_dispatch:
+    inputs:
+      probe:
+        description: Capability probe to run
+        required: true
+        default: capabilities
+        type: choice
+        options:
+          - capabilities
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-qa-${{ github.ref }}-${{ inputs.probe }}
+  cancel-in-progress: false
+
+jobs:
+  capabilities:
+    name: Probe windows-latest capabilities
+    if: inputs.probe == 'capabilities'
+    runs-on: windows-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Record runner capabilities
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $outDir = Join-Path $env:RUNNER_TEMP 'windows-qa-capabilities'
+          New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+          $out = Join-Path $outDir 'capabilities.txt'
+
+          function Write-Probe {
+            param([string] $Name, [object] $Value)
+            "$Name=$Value" | Tee-Object -FilePath $out -Append
+          }
+
+          Set-Content -Path $out -Value "probe=capabilities"
+          Write-Probe 'source' 'M2-0196 windows-qa.yml'
+          Write-Probe 'github.repository' $env:GITHUB_REPOSITORY
+          Write-Probe 'github.ref' $env:GITHUB_REF
+          Write-Probe 'github.sha' $env:GITHUB_SHA
+          Write-Probe 'runner.os' $env:RUNNER_OS
+          Write-Probe 'runner.arch' $env:RUNNER_ARCH
+          Write-Probe 'image.os' $env:ImageOS
+          Write-Probe 'image.version' $env:ImageVersion
+          Write-Probe 'computer.name' $env:COMPUTERNAME
+          Write-Probe 'user.interactive' ([Environment]::UserInteractive)
+          Write-Probe 'session.id' ([System.Diagnostics.Process]::GetCurrentProcess().SessionId)
+
+          $os = Get-CimInstance Win32_OperatingSystem
+          Write-Probe 'os.caption' $os.Caption
+          Write-Probe 'os.version' $os.Version
+          Write-Probe 'os.build' $os.BuildNumber
+          Write-Probe 'os.last_boot_utc' $os.LastBootUpTime.ToUniversalTime().ToString('o')
+
+          $system = Get-CimInstance Win32_ComputerSystem
+          Write-Probe 'system.manufacturer' $system.Manufacturer
+          Write-Probe 'system.model' $system.Model
+          Write-Probe 'system.total_physical_memory' $system.TotalPhysicalMemory
+
+          $cpu = Get-CimInstance Win32_Processor | Select-Object -First 1
+          Write-Probe 'cpu.name' $cpu.Name
+          Write-Probe 'cpu.logical_processors' $cpu.NumberOfLogicalProcessors
+
+          $video = @(Get-CimInstance Win32_VideoController | ForEach-Object {
+            "$($_.Name)|driver=$($_.DriverVersion)|processor=$($_.VideoProcessor)"
+          })
+          Write-Probe 'gpu.controllers' (($video -join '; ') -replace "`r|`n", ' ')
+
+          $audio = @(Get-CimInstance Win32_SoundDevice -ErrorAction SilentlyContinue | ForEach-Object {
+            "$($_.Name)|status=$($_.Status)"
+          })
+          Write-Probe 'audio.devices' (($audio -join '; ') -replace "`r|`n", ' ')
+
+          $explorer = @(Get-Process explorer -ErrorAction SilentlyContinue).Count
+          Write-Probe 'desktop.explorer_process_count' $explorer
+
+          try {
+            Add-Type -AssemblyName UIAutomationClient
+            Add-Type -AssemblyName System.Windows.Forms
+            Add-Type -AssemblyName System.Drawing
+            $uiaAvailable = [type]::GetType('System.Windows.Automation.AutomationElement, UIAutomationClient') -ne $null
+          } catch {
+            $uiaAvailable = "ERROR: $($_.Exception.GetType().FullName): $($_.Exception.Message)"
+          }
+          Write-Probe 'uia.automation_element_available' $uiaAvailable
+
+          try {
+            $form = New-Object System.Windows.Forms.Form
+            $form.Text = 'M2-0196 UIA Probe'
+            $form.Width = 360
+            $form.Height = 160
+            $button = New-Object System.Windows.Forms.Button
+            $button.Name = 'probeButton'
+            $button.Text = 'Before'
+            $button.Width = 120
+            $button.Height = 32
+            $button.Left = 24
+            $button.Top = 24
+            $button.Add_Click({ $button.Text = 'After' })
+            $form.Controls.Add($button)
+            $form.Show()
+            [System.Windows.Forms.Application]::DoEvents()
+            $root = [System.Windows.Automation.AutomationElement]::FromHandle($form.Handle)
+            $condition = New-Object System.Windows.Automation.PropertyCondition(
+              [System.Windows.Automation.AutomationElement]::AutomationIdProperty,
+              'probeButton'
+            )
+            $element = $root.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $condition)
+            if ($null -eq $element) { throw 'UIA button element not found.' }
+            $invoke = $element.GetCurrentPattern([System.Windows.Automation.InvokePattern]::Pattern)
+            $invoke.Invoke()
+            [System.Windows.Forms.Application]::DoEvents()
+            Write-Probe 'uia.invoke_action' "OK: button_text=$($button.Text)"
+          } catch {
+            Write-Probe 'uia.invoke_action' "ERROR: $($_.Exception.GetType().FullName): $($_.Exception.Message)"
+          } finally {
+            if ($form) { $form.Close(); $form.Dispose() }
+          }
+
+          try {
+            $nativeInputSource = @(
+              'using System;'
+              'using System.Runtime.InteropServices;'
+              'public static class NativeInputProbe {'
+              '  [StructLayout(LayoutKind.Sequential)]'
+              '  public struct INPUT { public uint type; public InputUnion U; }'
+              '  [StructLayout(LayoutKind.Explicit)]'
+              '  public struct InputUnion { [FieldOffset(0)] public KEYBDINPUT ki; }'
+              '  [StructLayout(LayoutKind.Sequential)]'
+              '  public struct KEYBDINPUT { public ushort wVk; public ushort wScan; public uint dwFlags; public uint time; public IntPtr dwExtraInfo; }'
+              '  [DllImport("user32.dll", SetLastError=true)] public static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);'
+              '  public const uint INPUT_KEYBOARD = 1;'
+              '  public const uint KEYEVENTF_KEYUP = 0x0002;'
+              '  public static INPUT Key(ushort vk, uint flags) { var i = new INPUT(); i.type = INPUT_KEYBOARD; i.U.ki.wVk = vk; i.U.ki.dwFlags = flags; return i; }'
+              '}'
+            ) -join [Environment]::NewLine
+            Add-Type -TypeDefinition $nativeInputSource
+            $sendInputPresent = [NativeInputProbe].GetMethod('SendInput') -ne $null
+          } catch {
+            $sendInputPresent = "ERROR: $($_.Exception.GetType().FullName): $($_.Exception.Message)"
+          }
+          Write-Probe 'sendinput.symbol_available' $sendInputPresent
+
+          try {
+            $form = New-Object System.Windows.Forms.Form
+            $form.Text = 'M2-0196 SendInput Probe'
+            $form.Width = 360
+            $form.Height = 160
+            $textBox = New-Object System.Windows.Forms.TextBox
+            $textBox.Width = 240
+            $textBox.Left = 24
+            $textBox.Top = 24
+            $form.Controls.Add($textBox)
+            $form.Show()
+            [System.Windows.Forms.Application]::DoEvents()
+            $textBox.Focus() | Out-Null
+            [System.Windows.Forms.Application]::DoEvents()
+            $inputs = [NativeInputProbe+INPUT[]]@(
+              [NativeInputProbe]::Key(0x41, 0),
+              [NativeInputProbe]::Key(0x41, [NativeInputProbe]::KEYEVENTF_KEYUP)
+            )
+            $inputSize = [Runtime.InteropServices.Marshal]::SizeOf([NativeInputProbe+INPUT])
+            $sent = [NativeInputProbe]::SendInput([uint32]$inputs.Length, $inputs, $inputSize)
+            Start-Sleep -Milliseconds 200
+            [System.Windows.Forms.Application]::DoEvents()
+            Write-Probe 'sendinput.key_action' "sent=$sent textbox='$($textBox.Text)'"
+          } catch {
+            Write-Probe 'sendinput.key_action' "ERROR: $($_.Exception.GetType().FullName): $($_.Exception.Message)"
+          } finally {
+            if ($form) { $form.Close(); $form.Dispose() }
+          }
+
+          try {
+            $tray = New-Object System.Windows.Forms.NotifyIcon
+            $tray.Text = 'M2-0196 tray probe'
+            $tray.Icon = [System.Drawing.SystemIcons]::Application
+            $tray.Visible = $true
+            Start-Sleep -Milliseconds 250
+            Write-Probe 'tray.notify_icon_action' "OK: visible=$($tray.Visible)"
+          } catch {
+            Write-Probe 'tray.notify_icon_action' "ERROR: $($_.Exception.GetType().FullName): $($_.Exception.Message)"
+          } finally {
+            if ($tray) { $tray.Visible = $false; $tray.Dispose() }
+          }
+
+          try {
+            $hotkeySource = @(
+              'using System;'
+              'using System.Runtime.InteropServices;'
+              'public static class HotkeyProbe {'
+              '  [DllImport("user32.dll", SetLastError=true)] public static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);'
+              '  [DllImport("user32.dll", SetLastError=true)] public static extern bool UnregisterHotKey(IntPtr hWnd, int id);'
+              '}'
+            ) -join [Environment]::NewLine
+            Add-Type -TypeDefinition $hotkeySource
+            $registered = [HotkeyProbe]::RegisterHotKey([IntPtr]::Zero, 196, 0x0002 -bor 0x0004, 0x87)
+            $hotkeyErr = [Runtime.InteropServices.Marshal]::GetLastWin32Error()
+            Write-Probe 'global_hotkey.register_action' "registered=$registered last_error=$hotkeyErr key=CTRL+ALT+F24"
+          } catch {
+            Write-Probe 'global_hotkey.register_action' "ERROR: $($_.Exception.GetType().FullName): $($_.Exception.Message)"
+          } finally {
+            try { [HotkeyProbe]::UnregisterHotKey([IntPtr]::Zero, 196) | Out-Null } catch {}
+          }
+
+          try {
+            $audioProbeSource = @(
+              'using System;'
+              'using System.Runtime.InteropServices;'
+              'public static class AudioProbe {'
+              '  public enum EDataFlow { eRender, eCapture, eAll }'
+              '  public enum ERole { eConsole, eMultimedia, eCommunications }'
+              '  [Flags] public enum DeviceState : uint { Active = 1, Disabled = 2, NotPresent = 4, Unplugged = 8 }'
+              '  [ComImport, Guid("BCDE0395-E52F-467C-8E3D-C4579291692E")] public class MMDeviceEnumerator {}'
+              '  [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("A95664D2-9614-4F35-A746-DE8DB63617E6")]'
+              '  public interface IMMDeviceEnumerator { int NotImpl1(); int GetDefaultAudioEndpoint(EDataFlow dataFlow, ERole role, out IMMDevice endpoint); }'
+              '  [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("D666063F-1587-4E43-81F1-B948E807363F")]'
+              '  public interface IMMDevice { int Activate(ref Guid iid, uint clsCtx, IntPtr activationParams, out IntPtr instance); int OpenPropertyStore(uint access, out IntPtr properties); int GetId(out IntPtr id); int GetState(out DeviceState state); }'
+              '  public static string DefaultCaptureState() {'
+              '    var enumerator = (IMMDeviceEnumerator)(new MMDeviceEnumerator());'
+              '    IMMDevice endpoint; int hr = enumerator.GetDefaultAudioEndpoint(EDataFlow.eCapture, ERole.eConsole, out endpoint);'
+              '    if (hr != 0) return "NO_DEFAULT_CAPTURE_ENDPOINT hr=0x" + hr.ToString("x8");'
+              '    DeviceState state; endpoint.GetState(out state); return state.ToString();'
+              '  }'
+              '}'
+            ) -join [Environment]::NewLine
+            Add-Type -TypeDefinition $audioProbeSource
+            Write-Probe 'audio.default_capture_endpoint_action' ([AudioProbe]::DefaultCaptureState())
+          } catch {
+            Write-Probe 'audio.default_capture_endpoint_action' "ERROR: $($_.Exception.GetType().FullName): $($_.Exception.Message)"
+          }
+
+          try {
+            $dxOut = Join-Path $outDir 'dxdiag.txt'
+            $dx = Start-Process -FilePath dxdiag.exe -ArgumentList '/whql:off', '/t', $dxOut -Wait -PassThru -WindowStyle Hidden
+            $deadline = (Get-Date).AddSeconds(15)
+            while (!(Test-Path $dxOut) -and (Get-Date) -lt $deadline) { Start-Sleep -Milliseconds 250 }
+            if (!(Test-Path $dxOut)) { throw 'dxdiag did not create output.' }
+            $dxText = Get-Content $dxOut -Raw
+            $card = [regex]::Match($dxText, 'Card name:\s*(.+)').Groups[1].Value.Trim()
+            $featureLevels = [regex]::Match($dxText, 'Feature Levels:\s*(.+)').Groups[1].Value.Trim()
+            Write-Probe 'gpu.dxdiag_action' "exit=$($dx.ExitCode) card='$card' feature_levels='$featureLevels'"
+          } catch {
+            Write-Probe 'gpu.dxdiag_action' "ERROR: $($_.Exception.GetType().FullName): $($_.Exception.Message)"
+          }
+
+          Write-Probe 'onedrive.env_present' ([bool]($env:OneDrive -or $env:OneDriveCommercial -or $env:OneDriveConsumer))
+          Write-Probe 'edr.assumed' 'UNKNOWN_FROM_CI_PROBE'
+
+          $hash = Get-FileHash -Algorithm SHA256 -Path $out
+          "$($hash.Hash.ToLowerInvariant())  capabilities.txt" | Tee-Object -FilePath (Join-Path $outDir 'SHA256SUMS.txt')
+          Get-Content $out
+          Get-Content (Join-Path $outDir 'SHA256SUMS.txt')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: windows-qa-capabilities
+          path: ${{ runner.temp }}/windows-qa-capabilities/
+          if-no-files-found: error
+          retention-days: 14

@@ -1,6 +1,6 @@
 # FREEZE-HYPOTHESES — History freeze / "app won't reopen" (P7-freeze-hypotheses)
 
-Scope: read-only trace of `/Users/tony/AI-Brain-build/metis-2.0` at `origin/main 2bf21f1c` (v1.9.6),
+Scope: read-only trace of `/Users/<redacted-user>/AI-Brain-build/metis-2.0` at `origin/main 2bf21f1c` (v1.9.6),
 correlated against `~/Library/Logs/asktoto/main.log` and `~/Library/Application Support/asktoto/logs/audit.log`
 for 2026-09-25 08:00–14:15 local (UTC-4) / 12:00–18:15 UTC. No app code was executed, no tests were run, and
 the OneDrive meetings/`.brain` folders were not touched directly — placeholder-file counts and spindump
@@ -91,7 +91,7 @@ not respond — indistinguishable from "the app is running but frozen."
 
 A second, corroborating instance from the same day (cited in `plan-inputs/BUG-ROOT-CAUSES.json`'s
 verifications, PROVIDED not re-derived here): a macOS spindump
-(`/Library/Logs/DiagnosticReports/Metis_2026-09-25-135445_Totos-Mac.spin`) for the *main* process (not a
+(`/Library/Logs/DiagnosticReports/Metis_2026-09-25-135445_Toto…-Mac.spin`) for the *main* process (not a
 Helper), 85.55s, reason "Slow response to HID event," with the stack
 `… -> uv__run_timers -> JS -> uv_fs_read -> read -> apfs_materialize_dataless_file_ext -> lck_mtx_sleep`,
 i.e. the main thread blocked inside the exact "materialize a cloud-only file" syscall a synchronous
