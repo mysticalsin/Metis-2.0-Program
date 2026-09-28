@@ -15008,8 +15008,14 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
-   "status": "TODO",
-   "priority": "P1"
+   "status": "ENGINEERING_COMPLETE",
+   "priority": "P1",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/26",
+    "merged_into": "main (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + CI green"
+   }
   },
   {
    "id": "M2-0263",
