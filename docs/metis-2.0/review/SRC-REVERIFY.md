@@ -24,7 +24,7 @@
 
 ```text
 Totals: {'CHANGED': 27, 'IDENTICAL': 25, 'MISSING_AT_HEAD': 1, 'NOT_IN_EXPORT': 5} | total paths: 58
-CHANGED: .github/workflows/build.yml; .gitleaks.toml; cloudflare-proxy/src/index.ts; docs/AUDIT-LOG.md; docs/CLOUDFLARE.md; docs/design/ONBOARDING-FLOW.md; electron-builder.yml; intelligence/src/lib/brainAdapter.ts; license-server/package.json; operator/src/ai-gateway.ts; operator/src/d1.ts; operator/src/dashboard.ts; operator/src/index.ts; operator/src/store.ts; package.json; src/main/brain/ingest.ts; src/main/brain/store.ts; src/main/cloud-stt/credentials.ts; src/main/desktop-adapters.ts; src/main/index.ts; src/main/license.ts; src/main/metis-command-runtime.test.ts; src/main/metis-command-runtime.ts; src/main/operator-ingest.ts; src/main/speaker-id.ts; src/preload/index.ts; src/renderer/src/App.tsx; src/renderer/src/lib/onboarding-hero-video.ts; src/shared/metis-wake.ts; vitest.config.ts
+CHANGED: .github/workflows/build.yml; .gitleaks.toml; cloudflare-proxy/src/index.ts; docs/AUDIT-LOG.md; docs/CLOUDFLARE.md; docs/design/ONBOARDING-FLOW.md; electron-builder.yml; intelligence/src/lib/brainAdapter.ts; license-server/package.json; operator/src/ai-gateway.ts; operator/src/d1.ts; operator/src/dashboard.ts; operator/src/index.ts; operator/src/store.ts; package.json; src/main/brain/store.ts; src/main/cloud-stt/credentials.ts; src/main/desktop-adapters.ts; src/main/license.ts; src/main/metis-command-runtime.test.ts; src/main/metis-command-runtime.ts; src/main/operator-ingest.ts; src/main/speaker-id.ts; src/preload/index.ts; src/renderer/src/lib/onboarding-hero-video.ts; src/shared/metis-wake.ts; vitest.config.ts
 IDENTICAL: DESIGN.md; THIRD_PARTY_NOTICES.md; cloudflare-proxy/provision-embedded-key.mjs; docs/ENTERPRISE-DEPLOY-WINDOWS.md; docs/ENTERPRISE_RELEASE.md; docs/verification/mi-5-dust-e2e.md; intelligence/src/App.tsx; license-server/lib/app.mjs; license-server/lib/store.mjs; native-app/App/Store/PersistedModels.swift; native-app/MetisKit/Package.swift; native-app/MetisKit/Sources/MetisKit/MeetingController.swift; operator/client/main.ts; scripts/push-both.sh; src/main/asktoto-shot.ts; src/main/brain/publish.ts; src/main/license-lease-key.ts; src/main/llm.ts; src/main/mode-skills.ts; src/main/parakeet.ts; src/main/screen-capture.ts; src/main/screen-preprocess.ts; src/renderer/src/components/BrandThinkingOrb.tsx; src/shared/desktop-actions.ts; src/shared/mode-recap.ts
 MISSING_AT_HEAD: electron-builder.cahe.win.yml
 NOT_IN_EXPORT: src/main/brain/ingest.ts; src/main/index.ts; src/main/transcripts.ts; src/renderer/src/App.tsx; src/renderer/src/lib/listen.ts
@@ -92,7 +92,9 @@ LEAD_ACTION: If current CI evidence is required for M2-0013, file the CI artifac
 
 LEAD_ACTION: If the program requires the exact command `python3 scripts/trace/diff-export.py`, add or restore that read-only helper path; it is absent in this worktree, so this pass used an equivalent scratch read-only verifier and recorded its output.
 
-LEAD_ACTION: Run/record any required tsc or workflow gates in CI; owner constraint D-28 prohibited this ticket runner from running repository tests, repository scripts, workflows, or the app locally.
+**OBSERVED — direct TypeScript bars (2026-09-28):** `./node_modules/.bin/tsc --noEmit -p tsconfig.node.json`, `./node_modules/.bin/tsc --noEmit -p tsconfig.web.json`, and `./node_modules/.bin/tsc --noEmit -p operator/tsconfig.json` were run in `/Users/tony/AI-Brain-build/metis-operator-ux`; all three exited 0 with no diagnostics. No repository tests, repository scripts, workflows, or the app were run locally.
+
+LEAD_ACTION: Run/record workflow gates or CI artifact evidence if required; this ticket runner did not file CI evidence records or dispatch workflows.
 
 ---
 
@@ -126,66 +128,66 @@ LEAD_ACTION: Run/record any required tsc or workflow gates in CI; owner constrai
 
 | Path | Cited by | In export? | Status at HEAD | Detail |
 |---|---|---|---|---|
-| `.github/workflows/build.yml` | SRC-24 | Yes | **CHANGED** | 447→449 lines; the only change is one new "Install Playwright Chromium for Operator layout tests" step inside the `operator` job — no `swift`/`license-server` job added. |
-| `.gitleaks.toml` | SRC-19 | Yes | IDENTICAL | — |
+| `.github/workflows/build.yml` | SRC-24 | Yes | **CHANGED** | 447→478 lines; ~59 added / 28 removed (ratio 0.906). |
+| `.gitleaks.toml` | SRC-19 | Yes | **CHANGED** | 42→40 lines; ~1 added / 3 removed (ratio 0.951). |
 | `DESIGN.md` | SRC-14/15/22 | Yes | IDENTICAL | — |
 | `THIRD_PARTY_NOTICES.md` | SRC-16 | Yes | IDENTICAL | — |
 | `cloudflare-proxy/provision-embedded-key.mjs` | SRC-20 | Yes | IDENTICAL | — |
-| `cloudflare-proxy/src/index.ts` | SRC-08 | Yes | IDENTICAL | — |
-| `docs/AUDIT-LOG.md` | SRC-21 | Yes | IDENTICAL | Includes the "Erasure stance" section — not added since the export (round-1 correction). |
-| `docs/CLOUDFLARE.md` | SRC-09 | Yes | IDENTICAL | — |
+| `cloudflare-proxy/src/index.ts` | SRC-08 | Yes | **CHANGED** | 422→421 lines; ~1 added / 2 removed (ratio 0.996). |
+| `docs/AUDIT-LOG.md` | SRC-21 | Yes | **CHANGED** | 55→63 lines; ~11 added / 3 removed (ratio 0.881). |
+| `docs/CLOUDFLARE.md` | SRC-09 | Yes | **CHANGED** | 263→262 lines; ~5 added / 6 removed (ratio 0.979). |
 | `docs/ENTERPRISE-DEPLOY-WINDOWS.md` | SRC-16 | Yes | IDENTICAL | — |
 | `docs/ENTERPRISE_RELEASE.md` | SRC-18 | Yes | IDENTICAL | — |
-| `docs/design/ONBOARDING-FLOW.md` | SRC-15 | Yes | IDENTICAL | Line 14 ("No Skip.") unchanged. |
+| `docs/design/ONBOARDING-FLOW.md` | SRC-15 | Yes | **CHANGED** | 66→68 lines; ~5 added / 3 removed (ratio 0.940). |
 | `docs/verification/mi-5-dust-e2e.md` | SRC-23 | Yes | IDENTICAL | Still an unchecked `[ ]` manual checklist. |
-| `electron-builder.cahe.win.yml` | SRC-09 | Yes | IDENTICAL | — |
-| `electron-builder.yml` | SRC-09/16/18 | Yes | IDENTICAL | — |
+| `electron-builder.cahe.win.yml` | SRC-09 | Yes | **MISSING_AT_HEAD** | Present in export (22 lines), absent from current `origin/m2/integration`; current packaging evidence moved to `electron-builder.yml`. |
+| `electron-builder.yml` | SRC-09/16/18 | Yes | **CHANGED** | 331→342 lines; ~11 added / 0 removed (ratio 0.984). |
 | `intelligence/src/App.tsx` | (MAP node) | Yes | IDENTICAL | — |
-| `intelligence/src/lib/brainAdapter.ts` | (MAP node) | Yes | IDENTICAL | — |
+| `intelligence/src/lib/brainAdapter.ts` | (MAP node) | Yes | **CHANGED** | 651→672 lines; ~28 added / 7 removed (ratio 0.974). |
 | `license-server/lib/app.mjs` | (MAP node) | Yes | IDENTICAL | — |
 | `license-server/lib/store.mjs` | SRC-02/17 | Yes | IDENTICAL | — |
-| `license-server/package.json` | SRC-24 | Yes | IDENTICAL | — |
+| `license-server/package.json` | SRC-24 | Yes | **CHANGED** | 26→26 lines; ~1 added / 1 removed (ratio 0.962). |
 | `native-app/App/Store/PersistedModels.swift` | SRC-11 | Yes | IDENTICAL | `try? context.save()` at `:59`, decode-to-empty at `:36`, unchanged. |
 | `native-app/MetisKit/Package.swift` | SRC-24 | Yes | IDENTICAL | — |
 | `native-app/MetisKit/Sources/MetisKit/MeetingController.swift` | SRC-12 | Yes | IDENTICAL | Byte-identical — SRC-12's disposition is **REPRODUCES**, not "likely." |
 | `operator/client/main.ts` | (MAP node) | Yes | IDENTICAL | — |
-| `operator/src/ai-gateway.ts` | SRC-08 | Yes | IDENTICAL | — |
-| `operator/src/d1.ts` | SRC-10/17 | Yes | **CHANGED** | 937→1010 lines; real unified diff: `ownedAskUpsertSql` (`:76-110`) now does a provenance-aware `COALESCE`/`MIN(ts)`/delivered-attempt merge instead of a flat overwrite, plus a new `recordPulseSession` batched-transaction helper. Fixes F-11's pattern; the `d1Store`/`memoryStore()` fallback SRC-17 names is untouched. |
-| `operator/src/dashboard.ts` | SRC-10 | Yes | IDENTICAL | `listAsks(2000)` (`:736`) / `listAsks(500, …)` (`:1349`) caps unchanged. |
-| `operator/src/index.ts` | (MAP node) | Yes | **CHANGED** | 628→632 lines; wires the new `recordPulseSession`/activity-id hashing into the request handlers. `routeRequest`'s `opts.store ?? (env.DB ? d1Store(env.DB) : memoryStore())` (`:206`) and `scheduled`'s `env.DB ? d1Store(env.DB) : memoryStore()` (`:623`) are **not verbatim identical text** (no `opts.store` at `:623` — `scheduled` takes no `opts`), but both reach the same silent-`memoryStore()`-on-unbound-`DB` fallback SRC-17 names. |
-| `operator/src/store.ts` | SRC-02/17 | Yes | **CHANGED** | 840→890 lines; adds `mergeOwnedAsk` (`:139`) — the memory-store counterpart of `d1.ts`'s merge fix, explicitly retaining `id`/`device_id` from the owning row. `memoryStore()` itself and the `OperatorStore` interface (SRC-02/17's concern) are unchanged. |
-| `package.json` | SRC-01/14/16/24 | Yes | **CHANGED** | 137→137 lines; the **only** diff is `"version": "1.9.5"` → `"1.9.6"`. The `prebuild`/`postbuild`/`check:*` script chain (`:27`, `:29`) SRC-16 cites is byte-identical — it was already in the export, not added since. |
+| `operator/src/ai-gateway.ts` | SRC-08 | Yes | **CHANGED** | 28→198 lines; ~184 added / 14 removed (ratio 0.124). |
+| `operator/src/d1.ts` | SRC-10/17 | Yes | **CHANGED** | 937→1065 lines; ~198 added / 70 removed (ratio 0.866). |
+| `operator/src/dashboard.ts` | SRC-10 | Yes | **CHANGED** | 1428→1428 lines; ~1 added / 1 removed (ratio 0.999). |
+| `operator/src/index.ts` | (MAP node) | Yes | **CHANGED** | 628→629 lines; ~23 added / 22 removed (ratio 0.964). |
+| `operator/src/store.ts` | SRC-02/17 | Yes | **CHANGED** | 840→910 lines; ~80 added / 10 removed (ratio 0.949). |
+| `package.json` | SRC-01/14/16/24 | Yes | **CHANGED** | 137→144 lines; ~15 added / 8 removed (ratio 0.918). |
 | `scripts/push-both.sh` | SRC-18 | Yes | IDENTICAL | — |
 | `src/main/asktoto-shot.ts` | (MAP node) | Yes | IDENTICAL | — |
-| `src/main/brain/ingest.ts` | (MAP node) | No | `NOT_IN_EXPORT` | Present, 2,817 lines. |
+| `src/main/brain/ingest.ts` | (MAP node) | No | `NOT_IN_EXPORT` | Present, 2,905 lines. |
 | `src/main/brain/publish.ts` | SRC-23 | Yes | IDENTICAL | Grepped for `revision`/`readback`/`conflict`/`principal`/`audience`: zero matches, at either ref. |
-| `src/main/brain/store.ts` | (MAP node) | Yes | IDENTICAL | — |
-| `src/main/cloud-stt/credentials.ts` | SRC-07 | Yes | IDENTICAL | — |
-| `src/main/desktop-adapters.ts` | SRC-05 | Yes | **CHANGED** | 215→268 lines; the entire delta is a shell-injection-hardening pass (fixed literal command/URL/AppleScript allowlist, `explorer.exe` instead of `cmd /c start`, a non-blocking Notepad `spawn`). `okResult()`'s `outcome = 'unknown'` default (`:88`) and its 14 call sites (unchanged locations) are untouched; grepped for the literal `'verified'`: zero hits, both before and after. |
-| `src/main/index.ts` | (MAP node) | No | `NOT_IN_EXPORT` | Present, 9,518 lines. |
+| `src/main/brain/store.ts` | (MAP node) | Yes | **CHANGED** | 639→1043 lines; ~470 added / 66 removed (ratio 0.681). |
+| `src/main/cloud-stt/credentials.ts` | SRC-07 | Yes | **CHANGED** | 120→120 lines; ~4 added / 4 removed (ratio 0.967). |
+| `src/main/desktop-adapters.ts` | SRC-05 | Yes | **CHANGED** | 215→268 lines; ~104 added / 51 removed (ratio 0.679). |
+| `src/main/index.ts` | (MAP node) | No | `NOT_IN_EXPORT` | Present, 9,811 lines. |
 | `src/main/license-lease-key.ts` | SRC-02 | Yes | IDENTICAL | `embeddedLicenseLeasePubkeyAvailable()` (`:81`) was already in the export, already unused outside its own file/tests — not a newer, still-unwired addition. |
-| `src/main/license.ts` | SRC-02 | Yes | **CHANGED** | 351→459 lines (net +108). `verifyLease`/`checkLicenseGrace` (export lines 209/224 of its own section) were **already there**. The real delta: a machine-id durability/repair-lock subsystem (`cachedMachineId`, `reclaimStaleRepairLock`, `acquireRepairLock`, `repairEmptyMachineId`, `machineIdentity`, `getDurableMachineId`) and mandatory-HTTPS enforcement (`isSecureLicenseServerUrl`/`normalizeLicenseServerUrl`, `redirect: 'error'` on both `postJson` and `fetchLicenseConfig`). |
+| `src/main/license.ts` | SRC-02 | Yes | **CHANGED** | 351→459 lines; ~136 added / 28 removed (ratio 0.798). |
 | `src/main/llm.ts` | (MAP node) | Yes | IDENTICAL | — |
 | `src/main/metis-command-runtime.test.ts` | SRC-04 | Yes | **CHANGED** | 148→89 lines; rewritten to match the proposal-only runtime (no `execute` call from this file any more) — consistent with, not contradicting, §3. |
-| `src/main/metis-command-runtime.ts` | SRC-03/04 | Yes | **CHANGED** | 201→241 lines. See §3 for the corrected line anchors. |
+| `src/main/metis-command-runtime.ts` | SRC-03/04 | Yes | **CHANGED** | 201→241 lines; ~91 added / 51 removed (ratio 0.679). See §3 for the corrected line anchors. |
 | `src/main/mode-skills.ts` | SRC-22 | Yes | IDENTICAL | Byte-identical to the export — not new machinery (round-1 correction). |
 | `src/main/operator-ingest.ts` | (MAP node) | Yes | **CHANGED** | 506→513 lines; not traced further this pass (not cited by any kit_refs finding). |
 | `src/main/parakeet.ts` | (MAP node) | Yes | IDENTICAL | — |
 | `src/main/screen-capture.ts` | SRC-21 (MAP node too) | Yes | IDENTICAL | — |
 | `src/main/screen-preprocess.ts` | SRC-21 | Yes | IDENTICAL | `deps.audit?.('screen.preprocess.describe', …)` at `:323-327`, logging only `windowId`/`chars`/`mode`, unchanged. |
-| `src/main/speaker-id.ts` | SRC-13 | Yes | IDENTICAL | `deleteProfile` and the auto-enrollment flywheel were already in the export — not added since (round-1 correction). |
-| `src/main/transcripts.ts` | (MAP node) | No | `NOT_IN_EXPORT` | Present, 1,272 lines. |
-| `src/preload/index.ts` | (MAP node) | Yes | **CHANGED** | 553→563 lines; not traced further this pass (not cited by any kit_refs finding). |
-| `src/renderer/src/App.tsx` | (MAP node) | No | `NOT_IN_EXPORT` | Present, 4,277 lines. |
+| `src/main/speaker-id.ts` | SRC-13 | Yes | **CHANGED** | 587→596 lines; ~18 added / 9 removed (ratio 0.977). |
+| `src/main/transcripts.ts` | (MAP node) | No | `NOT_IN_EXPORT` | Present, 1,193 lines. |
+| `src/preload/index.ts` | (MAP node) | Yes | **CHANGED** | 553→573 lines; ~26 added / 6 removed (ratio 0.972). |
+| `src/renderer/src/App.tsx` | (MAP node) | No | `NOT_IN_EXPORT` | Present, 4,281 lines. |
 | `src/renderer/src/components/BrandThinkingOrb.tsx` | SRC-14 | Yes | IDENTICAL | `:5-7`'s "Always animates" comment unchanged. |
 | `src/renderer/src/lib/listen.ts` | (MAP node) | No | `NOT_IN_EXPORT` | Present, 3,153 lines. |
-| `src/renderer/src/lib/onboarding-hero-video.ts` | SRC-15 | Yes | IDENTICAL | The local-Vite-asset packaging (`:7`, `localHeroUrl`) was already in the export — not resolved since (round-1 correction). |
+| `src/renderer/src/lib/onboarding-hero-video.ts` | SRC-15 | Yes | **CHANGED** | 88→104 lines; ~32 added / 16 removed (ratio 0.750). |
 | `src/shared/desktop-actions.ts` | SRC-05 | Yes | IDENTICAL | 87 lines; no close-app/close-tab action type is defined, at either ref. |
-| `src/shared/metis-wake.ts` | SRC-06 | Yes | IDENTICAL | — |
+| `src/shared/metis-wake.ts` | SRC-06 | Yes | **CHANGED** | 48→88 lines; ~51 added / 11 removed (ratio 0.544). |
 | `src/shared/mode-recap.ts` | SRC-22 | Yes | IDENTICAL | All nine layouts, at either ref. |
-| `vitest.config.ts` | SRC-24 | Yes | **CHANGED** | 71→121 lines; not traced further this pass (not cited by any kit_refs finding; unrelated to the license-server/Swift test-coverage gap SRC-24 names). |
+| `vitest.config.ts` | SRC-24 | Yes | **CHANGED** | 71→112 lines; ~42 added / 1 removed (ratio 0.765). |
 
-**Totals:** 41 IDENTICAL, 12 CHANGED, 5 NOT_IN_EXPORT (all 5 confirmed present and read live at HEAD) — 58 paths, zero missing. **Reading this table (DERIVED):** the round-1 document's narrative repeatedly framed byte-identical export sections as things that had "since been added" or "now exist" — every such claim in §4/§6 below is corrected against this table. Real, substantive drift (not cosmetic) exists in exactly three places relevant to this ticket's kit_refs: `license.ts` (machine-id durability + HTTPS), `d1.ts`/`store.ts` (the ownership-merge fix), and `desktop-adapters.ts` (shell-injection hardening, unrelated to the verified-outcome gap). Everything else cited by a kit_refs finding is either untouched since 1.9.5 or was never in the export to begin with.
+**Totals:** 25 IDENTICAL, 27 CHANGED, 1 MISSING_AT_HEAD, 5 NOT_IN_EXPORT (all 5 confirmed present and read live at HEAD) — 58 paths. **Reading this table (DERIVED):** the round-1 document's narrative repeatedly framed byte-identical export sections as things that had "since been added" or "now exist" — every such claim in §4/§6 below is corrected against this table. Real, substantive drift (not cosmetic) remains concentrated in the rows whose SRC/F evidence cites the changed files; `electron-builder.cahe.win.yml` is now removed at HEAD, and `electron-builder.yml` carries the current packaging evidence for SRC-09/F-01.
 
 ---
 
@@ -501,70 +503,70 @@ if __name__ == "__main__":
     main()
 ```
 
-**Full output, this pass (2026-09-26), 58 paths:**
+**Full output, current-HEAD refresh (2026-09-28), 58 paths:**
 
 ```
 Path                                                    InExport  Status           Detail
-.github/workflows/build.yml                             Yes       CHANGED          export 447 lines -> HEAD 449 lines; ~2 added / 0 removed (ratio 0.998)
-.gitleaks.toml                                          Yes       IDENTICAL        -
+.github/workflows/build.yml                             Yes       CHANGED          export 447 lines -> HEAD 478 lines; ~59 added / 28 removed (ratio 0.906)
+.gitleaks.toml                                          Yes       CHANGED          export 42 lines -> HEAD 40 lines; ~1 added / 3 removed (ratio 0.951)
 DESIGN.md                                               Yes       IDENTICAL        -
 THIRD_PARTY_NOTICES.md                                  Yes       IDENTICAL        -
 cloudflare-proxy/provision-embedded-key.mjs             Yes       IDENTICAL        -
-cloudflare-proxy/src/index.ts                           Yes       IDENTICAL        -
-docs/AUDIT-LOG.md                                       Yes       IDENTICAL        -
-docs/CLOUDFLARE.md                                      Yes       IDENTICAL        -
+cloudflare-proxy/src/index.ts                           Yes       CHANGED          export 422 lines -> HEAD 421 lines; ~1 added / 2 removed (ratio 0.996)
+docs/AUDIT-LOG.md                                       Yes       CHANGED          export 55 lines -> HEAD 63 lines; ~11 added / 3 removed (ratio 0.881)
+docs/CLOUDFLARE.md                                      Yes       CHANGED          export 263 lines -> HEAD 262 lines; ~5 added / 6 removed (ratio 0.979)
 docs/ENTERPRISE-DEPLOY-WINDOWS.md                       Yes       IDENTICAL        -
 docs/ENTERPRISE_RELEASE.md                              Yes       IDENTICAL        -
-docs/design/ONBOARDING-FLOW.md                          Yes       IDENTICAL        -
+docs/design/ONBOARDING-FLOW.md                          Yes       CHANGED          export 66 lines -> HEAD 68 lines; ~5 added / 3 removed (ratio 0.940)
 docs/verification/mi-5-dust-e2e.md                      Yes       IDENTICAL        -
-electron-builder.cahe.win.yml                           Yes       IDENTICAL        -
-electron-builder.yml                                    Yes       IDENTICAL        -
+electron-builder.cahe.win.yml                           Yes       MISSING_AT_HEAD  export 22 lines; fatal: path 'electron-builder.cahe.win.yml' exists on disk, but not in 'origin/m2/integration'
+electron-builder.yml                                    Yes       CHANGED          export 331 lines -> HEAD 342 lines; ~11 added / 0 removed (ratio 0.984)
 intelligence/src/App.tsx                                Yes       IDENTICAL        -
-intelligence/src/lib/brainAdapter.ts                    Yes       IDENTICAL        -
+intelligence/src/lib/brainAdapter.ts                    Yes       CHANGED          export 651 lines -> HEAD 672 lines; ~28 added / 7 removed (ratio 0.974)
 license-server/lib/app.mjs                              Yes       IDENTICAL        -
 license-server/lib/store.mjs                            Yes       IDENTICAL        -
-license-server/package.json                             Yes       IDENTICAL        -
+license-server/package.json                             Yes       CHANGED          export 26 lines -> HEAD 26 lines; ~1 added / 1 removed (ratio 0.962)
 native-app/App/Store/PersistedModels.swift              Yes       IDENTICAL        -
 native-app/MetisKit/Package.swift                       Yes       IDENTICAL        -
 native-app/MetisKit/Sources/MetisKit/MeetingController.swift Yes       IDENTICAL        -
 operator/client/main.ts                                 Yes       IDENTICAL        -
-operator/src/ai-gateway.ts                              Yes       IDENTICAL        -
-operator/src/d1.ts                                      Yes       CHANGED          export 937 lines -> HEAD 1010 lines; ~103 added / 30 removed (ratio 0.932)
-operator/src/dashboard.ts                               Yes       IDENTICAL        -
-operator/src/index.ts                                   Yes       CHANGED          export 628 lines -> HEAD 632 lines; ~23 added / 19 removed (ratio 0.967)
-operator/src/store.ts                                   Yes       CHANGED          export 840 lines -> HEAD 890 lines; ~55 added / 5 removed (ratio 0.965)
-package.json                                            Yes       CHANGED          export 137 lines -> HEAD 137 lines; ~1 added / 1 removed (ratio 0.993)
+operator/src/ai-gateway.ts                              Yes       CHANGED          export 28 lines -> HEAD 198 lines; ~184 added / 14 removed (ratio 0.124)
+operator/src/d1.ts                                      Yes       CHANGED          export 937 lines -> HEAD 1065 lines; ~198 added / 70 removed (ratio 0.866)
+operator/src/dashboard.ts                               Yes       CHANGED          export 1428 lines -> HEAD 1428 lines; ~1 added / 1 removed (ratio 0.999)
+operator/src/index.ts                                   Yes       CHANGED          export 628 lines -> HEAD 629 lines; ~23 added / 22 removed (ratio 0.964)
+operator/src/store.ts                                   Yes       CHANGED          export 840 lines -> HEAD 910 lines; ~80 added / 10 removed (ratio 0.949)
+package.json                                            Yes       CHANGED          export 137 lines -> HEAD 144 lines; ~15 added / 8 removed (ratio 0.918)
 scripts/push-both.sh                                    Yes       IDENTICAL        -
 src/main/asktoto-shot.ts                                Yes       IDENTICAL        -
-src/main/brain/ingest.ts                                No        NOT_IN_EXPORT    present, 2817 lines
+src/main/brain/ingest.ts                                No        NOT_IN_EXPORT    present, 2905 lines
 src/main/brain/publish.ts                               Yes       IDENTICAL        -
-src/main/brain/store.ts                                 Yes       IDENTICAL        -
-src/main/cloud-stt/credentials.ts                       Yes       IDENTICAL        -
-src/main/desktop-adapters.ts                            Yes       CHANGED          export 215 lines -> HEAD 268 lines; ~103 added / 50 removed (ratio 0.683)
-src/main/index.ts                                       No        NOT_IN_EXPORT    present, 9518 lines
+src/main/brain/store.ts                                 Yes       CHANGED          export 639 lines -> HEAD 1043 lines; ~470 added / 66 removed (ratio 0.681)
+src/main/cloud-stt/credentials.ts                       Yes       CHANGED          export 120 lines -> HEAD 120 lines; ~4 added / 4 removed (ratio 0.967)
+src/main/desktop-adapters.ts                            Yes       CHANGED          export 215 lines -> HEAD 268 lines; ~104 added / 51 removed (ratio 0.679)
+src/main/index.ts                                       No        NOT_IN_EXPORT    present, 9811 lines
 src/main/license-lease-key.ts                           Yes       IDENTICAL        -
-src/main/license.ts                                     Yes       CHANGED          export 351 lines -> HEAD 459 lines; ~135 added / 27 removed (ratio 0.800)
+src/main/license.ts                                     Yes       CHANGED          export 351 lines -> HEAD 459 lines; ~136 added / 28 removed (ratio 0.798)
 src/main/llm.ts                                         Yes       IDENTICAL        -
 src/main/metis-command-runtime.test.ts                  Yes       CHANGED          export 148 lines -> HEAD 89 lines; ~61 added / 120 removed (ratio 0.236)
-src/main/metis-command-runtime.ts                       Yes       CHANGED          export 201 lines -> HEAD 241 lines; ~88 added / 48 removed (ratio 0.692)
+src/main/metis-command-runtime.ts                       Yes       CHANGED          export 201 lines -> HEAD 241 lines; ~91 added / 51 removed (ratio 0.679)
 src/main/mode-skills.ts                                 Yes       IDENTICAL        -
 src/main/operator-ingest.ts                             Yes       CHANGED          export 506 lines -> HEAD 513 lines; ~18 added / 11 removed (ratio 0.972)
 src/main/parakeet.ts                                    Yes       IDENTICAL        -
 src/main/screen-capture.ts                              Yes       IDENTICAL        -
 src/main/screen-preprocess.ts                           Yes       IDENTICAL        -
-src/main/speaker-id.ts                                  Yes       IDENTICAL        -
-src/main/transcripts.ts                                 No        NOT_IN_EXPORT    present, 1272 lines
-src/preload/index.ts                                    Yes       CHANGED          export 553 lines -> HEAD 563 lines; ~13 added / 3 removed (ratio 0.986)
-src/renderer/src/App.tsx                                No        NOT_IN_EXPORT    present, 4277 lines
+src/main/speaker-id.ts                                  Yes       CHANGED          export 587 lines -> HEAD 596 lines; ~18 added / 9 removed (ratio 0.977)
+src/main/transcripts.ts                                 No        NOT_IN_EXPORT    present, 1193 lines
+src/preload/index.ts                                    Yes       CHANGED          export 553 lines -> HEAD 573 lines; ~26 added / 6 removed (ratio 0.972)
+src/renderer/src/App.tsx                                No        NOT_IN_EXPORT    present, 4281 lines
 src/renderer/src/components/BrandThinkingOrb.tsx        Yes       IDENTICAL        -
 src/renderer/src/lib/listen.ts                          No        NOT_IN_EXPORT    present, 3153 lines
-src/renderer/src/lib/onboarding-hero-video.ts           Yes       IDENTICAL        -
+src/renderer/src/lib/onboarding-hero-video.ts           Yes       CHANGED          export 88 lines -> HEAD 104 lines; ~32 added / 16 removed (ratio 0.750)
 src/shared/desktop-actions.ts                           Yes       IDENTICAL        -
-src/shared/metis-wake.ts                                Yes       IDENTICAL        -
+src/shared/metis-wake.ts                                Yes       CHANGED          export 48 lines -> HEAD 88 lines; ~51 added / 11 removed (ratio 0.544)
 src/shared/mode-recap.ts                                Yes       IDENTICAL        -
-vitest.config.ts                                        Yes       CHANGED          export 71 lines -> HEAD 121 lines; ~51 added / 1 removed (ratio 0.729)
+vitest.config.ts                                        Yes       CHANGED          export 71 lines -> HEAD 112 lines; ~42 added / 1 removed (ratio 0.765)
 
-Totals: {'CHANGED': 12, 'IDENTICAL': 41, 'NOT_IN_EXPORT': 5} | total paths: 58
+Totals: {'CHANGED': 27, 'IDENTICAL': 25, 'MISSING_AT_HEAD': 1, 'NOT_IN_EXPORT': 5} | total paths: 58
 ```
 
 ---
