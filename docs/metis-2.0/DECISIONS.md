@@ -33,6 +33,7 @@ Evidence labels follow software-architecture-engineer v1.4.0: OBSERVED, PROVIDED
 | OD-17 | 2026-09-28 | Owner answers: keep **MASTER §4.3** spoken-confirmation tiers (M2-0289); **D-24 facts-only** ships on, derived memory built + qualified but off by default (M2-0379); **D-5 self-hosted private Hindsight** on one approved container platform with managed Postgres (M2-0381). |
 | OD-18 | 2026-09-28 | Owner: **model choice is decided in the Operator portal and every Métis app abides by it** (Electron macOS/Windows and native Mac). The portal policy outranks local settings; an MDM admin file may only narrow it; Operator-brokered calls enforce it server-side. Ticket M2-0412. |
 | OD-19 | 2026-09-28 | Owner: **Claude does it all until Métis 2.0 is fully ready and the best** — supersedes the Oct-3 return to Codex in OD-14. Sonnet implements; **Opus is the independent reviewer** (read-only, separate session) for every ticket; all gates unchanged. |
+| OD-20 | 2026-09-28 | Owner approved the external-blocker sweep: **32 tickets engineering_first** — the queue builds their CI-provable engineering half now and closes them ENGINEERING_COMPLETE (dependents unblock); the outside step stays in external_blocker, never faked. M2-0012 released (drafts the outside requests). Signing (M2-0058, M2-0174, M2-0211) BLOCKED_EXTERNAL; final program sign-off M2-0184 stays held. |
 
 ## B. Program decisions (Opus, 2026-09-26)
 
