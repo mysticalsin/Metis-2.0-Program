@@ -13596,7 +13596,7 @@
    "kit_refs": [],
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "evidence_target": "LOCALLY_TESTED",
    "id": "M2-0232",
    "type": "fix",
@@ -13626,12 +13626,12 @@
     "CI packaged-smoke on the PR and on m2/integration"
    ],
    "evidence": {
-    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/271",
-    "merged_into": "m2/integration (squash)",
-    "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/279",
+    "merged_into": "m2/integration (merged by the owner tool, OD-15)",
+    "implementer": "claude + owner tool",
+    "validation": "packaged smoke green on m2/integration 0db09571 (all HIST rows pass, macOS + Windows); milestone #281 into main"
    },
-   "notes": " 2026-09-28 (lead): reopened — reverted by #273: after #271 the Windows packaged-smoke job aborted mid-run (all HIST rows PENDING, no process report, run 36405574721); it merged before its own PR smoke ran. Must merge only with its PR packaged smoke run (M2-0234 gate)."
+   "notes": "2026-09-28 (lead): reopened — reverted by #273: after #271 the Windows packaged-smoke job aborted mid-run (all HIST rows PENDING, no process report, run 36405574721); it merged before its own PR smoke ran. Must merge only with its PR packaged smoke run (M2-0234 gate). 2026-09-28 (lead): merged outside the queue (#279) by the owner's tool; verified by the green packaged smoke on 0db09571 and the main milestone #281."
   },
   {
    "wave": "W2",
