@@ -1,12 +1,14 @@
 # M2-0201 renderer capture evidence
 
-Source label: OBSERVED from files in this worktree on 2026-09-27.
+Source label: OBSERVED from files in this worktree on 2026-09-28.
 
 - OBSERVED: The dev-only renderer entry is `src/renderer/m2-design.html`.
 - OBSERVED: The React prototype component is `src/renderer/src/components/M2DesignPrototypes.tsx`.
 - OBSERVED: The prototype styling is `src/renderer/src/components/M2DesignPrototypes.css`.
-- BLOCKED_EXTERNAL: Electron screenshot capture was not executed in this session because D-28 forbids running repository scripts or the app on the owner's Mac. Exact read-only unblock step: in CI, open `src/renderer/m2-design.html` with the Electron/Vite renderer, capture each `[data-ticket] [data-variant]` node, and write PNG files to each ticket's `screenshots/` directory.
-- BLOCKED_EXTERNAL: Independent Opus validator acceptance was not produced by this Codex authoring session. Exact read-only unblock step: an Opus validator session other than the author reviews `manifest.json`, every `STATE-LIST.md`, the renderer source files above, and the captured PNG/recording evidence, then appends its ACCEPTED/REVISE entry to `VALIDATION.md`.
+- OBSERVED: The committed PNG artifacts carry ticket, variant, renderer source and renderer source hash metadata; source: `capture/provenance.json`.
+- OBSERVED: The CI capture harness is `scripts/evidence/capture-m2-design.mjs`; source: `scripts/evidence/capture-m2-design.mjs:1-103`.
+- LEAD_ACTION: Run `M2_DESIGN_URL=<ci-served src/renderer/m2-design.html URL> node scripts/evidence/capture-m2-design.mjs` in CI, then commit the updated PNG artifacts and `capture/provenance.json`.
+- LEAD_ACTION: An independent Opus validator session must review the manifest, state lists, renderer source and captured artifacts, then append ACCEPTED or REVISE to `VALIDATION.md`.
 
 ## Intended CI capture map
 
