@@ -8,6 +8,9 @@ const REQUIRED_TICKETS = ['M2-0093', 'M2-0094', 'M2-0100', 'M2-0114', 'M2-0117',
 const REQUIRED_VARIANTS = ['light-1x', 'dark-1x', 'light-2x', 'dark-2x', 'reduced-motion']
 const MIN_PNG_BYTES = 12_000
 const PNG_SIGNATURE = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])
+const ELECTRON_CAPTURE_MODE = 'electron-vite-renderer-capture'
+const ELECTRON_CAPTURE_TOOL = 'playwright-electron'
+const ELECTRON_RUNTIME = 'electron'
 
 function file(path) {
   return readFileSync(path, 'utf8')
@@ -41,12 +44,31 @@ function hasLeadOnlyMarker(label, content, problems) {
   if (content.includes('LEAD_ACTION:')) problems.push(`${label} still contains lead-only completion steps`)
 }
 
+function electronProvenanceProblem(label, provenance) {
+  if (provenance.capture_mode !== ELECTRON_CAPTURE_MODE) return `${label} provenance is not Electron renderer capture evidence`
+  if (provenance.capture_tool !== ELECTRON_CAPTURE_TOOL) return `${label} provenance did not come from Playwright Electron`
+  if (provenance.runtime !== ELECTRON_RUNTIME) return `${label} provenance runtime is not Electron`
+  if (typeof provenance.electron_version !== 'string' || provenance.electron_version.trim() === '') {
+    return `${label} provenance is missing Electron version`
+  }
+  if (typeof provenance.user_agent !== 'string' || !provenance.user_agent.includes('Electron/')) {
+    return `${label} provenance is missing an Electron renderer user agent`
+  }
+  return null
+}
+
 function captureProblem(base, ticket, variant, provenanceByPath, componentSha) {
   const ticketDir = join(base, ticket)
   const png = join(ticketDir, 'screenshots', `${variant}.png`)
   const webm = join(ticketDir, 'recordings', `${variant}.webm`)
   if (!existsSync(png) && !existsSync(webm)) return `${ticket}: missing renderer-captured PNG or WEBM for ${variant}`
-  if (existsSync(webm)) return null
+  if (existsSync(webm)) {
+    const relativePath = `${ticket}/recordings/${variant}.webm`
+    const provenance = provenanceByPath.get(relativePath)
+    if (!provenance) return `${ticket}: ${variant}.webm missing capture/provenance.json entry`
+    if (provenance.sha256 !== cryptoSha256(readFileSync(webm))) return `${ticket}: ${variant}.webm provenance sha256 is stale`
+    return electronProvenanceProblem(`${ticket}: ${variant}.webm`, provenance)
+  }
   const stat = statSync(png)
   if (stat.size < MIN_PNG_BYTES) return `${ticket}: ${variant}.png is too small to be a labeled renderer capture`
   const text = readPngText(png)
@@ -57,16 +79,21 @@ function captureProblem(base, ticket, variant, provenanceByPath, componentSha) {
     return `${ticket}: ${variant}.png missing renderer source provenance`
   }
   if (text.get('metis.source_sha256') !== componentSha) return `${ticket}: ${variant}.png renderer source hash is stale`
-  if (text.get('metis.capture_mode') !== 'electron-vite-renderer-capture') {
+  if (text.get('metis.capture_mode') !== ELECTRON_CAPTURE_MODE) {
     return `${ticket}: ${variant}.png is not Electron renderer capture evidence`
+  }
+  if (text.get('metis.capture_tool') !== ELECTRON_CAPTURE_TOOL) return `${ticket}: ${variant}.png missing Playwright Electron capture tool provenance`
+  if (text.get('metis.runtime') !== ELECTRON_RUNTIME) return `${ticket}: ${variant}.png missing Electron runtime provenance`
+  if (!text.get('metis.electron_version')) return `${ticket}: ${variant}.png missing Electron version provenance`
+  if (!String(text.get('metis.user_agent') ?? '').includes('Electron/')) {
+    return `${ticket}: ${variant}.png missing Electron renderer user agent provenance`
   }
   const relativePath = `${ticket}/screenshots/${variant}.png`
   const provenance = provenanceByPath.get(relativePath)
   if (!provenance) return `${ticket}: ${variant}.png missing capture/provenance.json entry`
   if (provenance.sha256 == null) return `${ticket}: ${variant}.png provenance entry missing sha256`
   if (provenance.sha256 !== cryptoSha256(readFileSync(png))) return `${ticket}: ${variant}.png provenance sha256 is stale`
-  if (provenance.capture_mode !== 'electron-vite-renderer-capture') return `${ticket}: ${variant}.png provenance is not Electron renderer capture evidence`
-  return null
+  return electronProvenanceProblem(`${ticket}: ${variant}.png`, provenance)
 }
 
 function hasIndependentValidatorAcceptance(validation) {
@@ -114,6 +141,7 @@ function checkM20201(root) {
   const validation = file(validationPath)
   const readme = file(readmePath)
   const captureReadme = file(captureReadmePath)
+  const captureScript = file(captureScriptPath)
   const renderer = file(rendererPath)
   const actualComponentSha = cryptoSha256(readFileSync(rendererPath))
   const provenanceByPath = new Map((provenance.artifacts ?? []).map((artifact) => [artifact.path, artifact]))
@@ -122,6 +150,13 @@ function checkM20201(root) {
   if (manifest.ticket !== 'M2-0201') problems.push('manifest ticket must be M2-0201')
   if (manifest.evidence_level !== 'DESIGNED') problems.push('manifest evidence_level must be DESIGNED')
   if (provenance.ticket !== 'M2-0201') problems.push('capture/provenance.json ticket must be M2-0201')
+  if (captureScript.includes('chromium')) problems.push('capture script must not use Playwright Chromium for M2-0201 Electron evidence')
+  if (!captureScript.includes('_electron')) problems.push('capture script must launch through Playwright Electron')
+  if (!blockedExternal) {
+    if (provenance.mode !== ELECTRON_CAPTURE_MODE) problems.push('capture/provenance.json mode must be Electron renderer capture')
+    const provenanceProblem = electronProvenanceProblem('capture/provenance.json', provenance)
+    if (provenanceProblem) problems.push(provenanceProblem)
+  }
   if (provenance.source_files?.['src/renderer/src/components/M2DesignPrototypes.tsx'] !== actualComponentSha) {
     problems.push('capture/provenance.json source hash for M2DesignPrototypes.tsx is stale')
   }
