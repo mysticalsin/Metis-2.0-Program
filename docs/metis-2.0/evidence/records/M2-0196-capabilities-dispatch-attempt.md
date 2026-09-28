@@ -1,6 +1,6 @@
 # M2-0196 capabilities dispatch attempt
 
-Recorded: 2026-09-27. Re-attempted: 2026-09-27.
+Recorded: 2026-09-27. Re-attempted: 2026-09-27 and 2026-09-28.
 
 This artifact captures the owner-approved capabilities-dispatch command requested by M2-0196. It did not dispatch a workflow from this environment because GitHub was unreachable here; therefore it is blocker evidence only, not the required capability-probe output.
 
@@ -30,6 +30,36 @@ gh workflow run windows-qa.yml --ref main -f probe=capabilities
 Re-attempt exit code: 1
 
 Re-attempt output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
+Second re-attempt command:
+
+```bash
+gh workflow run windows-qa.yml --ref main -f probe=capabilities
+```
+
+Second re-attempt exit code: 1
+
+Second re-attempt output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
+Read-only repo metadata command:
+
+```bash
+gh repo view --json nameWithOwner,url
+```
+
+Read-only repo metadata exit code: 1
+
+Read-only repo metadata output:
 
 ```text
 error connecting to api.github.com
