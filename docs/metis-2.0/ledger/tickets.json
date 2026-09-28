@@ -147,6 +147,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0412 filed (owner OD-18): Operator-managed fleet model policy enforced by every Métis app."
+  },
+  {
+   "date": "2026-09-28",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0413 filed: brain test cleanup race class (intelligence-work ENOTEMPTY on integration)."
   }
  ],
  "tickets": [
@@ -21764,6 +21770,40 @@
    "estimate_hours": 6,
    "status": "TODO",
    "notes": "2026-09-28 (lead): no hard dependency on M2-0145/M2-0103 — build and prove in CI (Operator Worker tests + desktop + packaged smoke against a test Operator); production deploy of the Operator stays an owner action."
+  },
+  {
+   "id": "M2-0413",
+   "title": "Remove the .brain cleanup race from every brain test suite (ENOTEMPTY on rmdir while background work still writes)",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "CI-FLAKE-2026-09-28",
+    "M2-0235"
+   ],
+   "scope_paths": [
+    "src/main/brain/",
+    "src/main/test-helpers/"
+   ],
+   "summary": "Build & Test on m2/integration 0db09571 (run 36456834864, windows-latest) failed in src/main/brain/intelligence-work.test.ts 'complete Intelligence work > an automatic pass generates recaps only through the maintenance gate' with ENOTEMPTY rmdir '<tmp>/documents/Métis Meetings/.brain' — the same race M2-0235 fixed for intelligence-index.test.ts: test cleanup deletes the folder while a background brain write (catch-up, drain, recap) is still in flight. Fix the class, not one file.",
+   "acceptance": [
+    "A shared test helper awaits every brain background task (catch-up, drain, recap, finalization) before a suite's cleanup; all src/main/brain/*.test.ts suites use it",
+    "No retries, sleeps or force-rm to hide the race; no assertion weakened",
+    "Build & Test green on windows-latest and ubuntu in 3 consecutive CI runs of the PR"
+   ],
+   "verification": [
+    "CI Build & Test on the PR (3 runs)"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
+   "status": "TODO"
   }
  ]
 }
