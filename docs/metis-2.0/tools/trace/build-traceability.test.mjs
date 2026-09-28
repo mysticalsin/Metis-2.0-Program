@@ -270,3 +270,25 @@ test("renders deterministic markdown without dates", () => {
   assert.match(markdown, /Generated deterministically/);
   assert.doesNotMatch(markdown, /2026-\d{2}-\d{2}/);
 });
+
+test("required acceptance ids must exist and be named in a mapped ticket acceptance", () => {
+  const flowInventory = { rows: [{ ...inventory.rows[0], id: "HM-FLOW-01", family: "HMFLOW" }] };
+  const run = (inv, ticket) =>
+    computeTraceability({
+      inventory: inv,
+      ledger: { tickets: [ticket] },
+      decisionsText: "",
+      blockersText: "",
+      requiredAcceptanceIds: ["HM-FLOW-01"],
+    }).errors.join("\n");
+
+  assert.match(run(inventory, baseTicket()), /required inventory id HM-FLOW-01 is missing/);
+  assert.match(
+    run(flowInventory, baseTicket({ kit_refs: ["HM-FLOW-01"], acceptance: ["unrelated"] })),
+    /HM-FLOW-01 is not named in the acceptance/,
+  );
+  assert.equal(
+    run(flowInventory, baseTicket({ kit_refs: ["HM-FLOW-01"], acceptance: ["HM-FLOW-01 journey passes"] })),
+    "",
+  );
+});

@@ -115,7 +115,17 @@ export async function loadEvidenceRecords(recordsDir) {
   return records;
 }
 
-export function computeTraceability({ inventory, ledger, evidenceRecords = [], decisionsText = "", blockersText = "" }) {
+// IDs that must exist in the inventory and be named in the acceptance of a mapped ticket.
+export const REQUIRED_ACCEPTANCE_IDS = Array.from({ length: 6 }, (_, index) => `HM-FLOW-${String(index + 1).padStart(2, "0")}`);
+
+export function computeTraceability({
+  inventory,
+  ledger,
+  evidenceRecords = [],
+  decisionsText = "",
+  blockersText = "",
+  requiredAcceptanceIds = [],
+}) {
   const errors = [];
   const warnings = [];
   const rows = inventory.rows ?? inventory;
@@ -159,6 +169,18 @@ export function computeTraceability({ inventory, ledger, evidenceRecords = [], d
       status,
     };
   });
+
+  for (const id of requiredAcceptanceIds) {
+    const idRows = outputRows.filter((row) => row.id === id);
+    if (idRows.length === 0) {
+      errors.push(`required inventory id ${id} is missing`);
+      continue;
+    }
+    const named = idRows.some((row) =>
+      row.tickets.some((summary) => (ticketsById.get(summary.id).acceptance ?? []).some((line) => line.includes(id))),
+    );
+    if (!named) errors.push(`required inventory id ${id} is not named in the acceptance of any mapped ticket`);
+  }
 
   const duplicateRefs = findDuplicateRefRows(outputRows);
   const duplicatedRefIds = new Set(duplicateRefs.map((row) => row.id));
@@ -504,7 +526,14 @@ export async function build(paths = defaultPaths()) {
     readFile(paths.decisions, "utf8"),
     readFile(paths.blockers, "utf8"),
   ]);
-  return computeTraceability({ inventory, ledger, evidenceRecords: records, decisionsText, blockersText });
+  return computeTraceability({
+    inventory,
+    ledger,
+    evidenceRecords: records,
+    decisionsText,
+    blockersText,
+    requiredAcceptanceIds: REQUIRED_ACCEPTANCE_IDS,
+  });
 }
 
 export async function writeOutputs(paths, matrix) {
