@@ -1544,8 +1544,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Codex is available (quota restored); run the independent Codex audit of PLAN.md and the ledger now."
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "UNBLOCKED 2026-09-27: Codex is available (quota restored); run the independent Codex audit of PLAN.md and the ledger now.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/18",
+    "merged_into": "main (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0024",
