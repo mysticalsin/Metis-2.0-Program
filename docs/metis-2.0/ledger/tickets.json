@@ -21727,9 +21727,7 @@
    "type": "feature",
    "owner_model": "sonnet",
    "priority": "P0",
-   "depends_on": [
-    "M2-0145"
-   ],
+   "depends_on": [],
    "kit_refs": [],
    "finding_refs": [
     "OWNER-2026-09-28-MODEL-POLICY",
@@ -21748,7 +21746,7 @@
    "summary": "Owner requirement (2026-09-28, OD-18): 'I decide what model on the portal and every Métis app abides by that.' Today model choice is local: each app reads its own settings (src/shared/ipc.ts BaseSettingsSchema provider default 'cloudflare') plus an optional admin-managed config file (src/main/store.ts allowedProviders, readTrustedAdminManaged). The Operator portal brokers asks (operatorAskTransport in src/main/import-recap.ts) and has settings-store / seat routes, but there is no portal page that sets models and no fleet policy the apps fetch and obey. Build one owner-controlled model policy, served by the Operator, enforced by the Electron app on macOS and Windows and by the native Mac app.",
    "acceptance": [
     "Operator portal 'Models' page (owner role only): pick the provider + model per capability — ask/chat, command agent, meeting recap/extraction, STT, TTS, embeddings, local model — plus allowed fallbacks; every change is versioned and audited (who, when, old -> new).",
-    "The Operator serves the policy as a signed, versioned document on a device-authenticated endpoint (per-device binding, M2-0145); the signature is verified by every app before use; a tampered or unsigned policy is rejected with an audit event.",
+    "The Operator serves the policy as a signed, versioned document on a device-authenticated endpoint (use the existing seat / desktop-license device authentication now; switch to M2-0145's per-device HMAC binding when it lands). Every app verifies the signature before use; a tampered or unsigned policy is rejected with an audit event.",
     "Electron app (macOS + Windows) and native Mac app fetch the policy at start and on change (push or poll <= 60 s), cache the last valid signed policy for offline use, and route every model call through it — the local settings cannot select a model outside the policy (Settings shows the policy's choice as managed/locked with the portal as the source).",
     "Operator-brokered calls enforce the same policy server-side: a request naming a model the policy does not allow is refused (typed error), so an old or modified client cannot bypass it.",
     "Precedence is defined and tested: owner portal policy > MDM admin-managed file allowedProviders (can only narrow) > user settings; no policy yet = today's defaults with a visible 'not managed' state.",
@@ -21764,7 +21762,8 @@
    "flag": null,
    "risk": "high",
    "estimate_hours": 6,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-28 (lead): no hard dependency on M2-0145/M2-0103 — build and prove in CI (Operator Worker tests + desktop + packaged smoke against a test Operator); production deploy of the Operator stays an owner action."
   }
  ]
 }
