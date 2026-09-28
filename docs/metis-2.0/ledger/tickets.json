@@ -15215,9 +15215,15 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "priority": "P1",
-   "notes": "2026-09-28 (lead): dependency on M2-0119 dropped (SOFT: docs-only; needs only the hosting decision, answered by OD-17); re-verify against M2-0119 once it lands."
+   "notes": "2026-09-28 (lead): dependency on M2-0119 dropped (SOFT: docs-only; needs only the hosting decision, answered by OD-17); re-verify against M2-0119 once it lands.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/28",
+    "merged_into": "main (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + CI green"
+   }
   },
   {
    "id": "M2-0266",
