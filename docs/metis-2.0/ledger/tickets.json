@@ -3031,7 +3031,7 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
    "claimed_at": "2026-09-27",
    "evidence": {
@@ -3039,7 +3039,8 @@
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS",
     "implementer": "codex"
-   }
+   },
+   "notes": "2026-09-28 (lead, capability audit): status corrected DONE -> ENGINEERING_COMPLETE — the 'report-only for 3 days, then ratchet' clause was never delivered (build.yml 'Architecture ratchet' still continue-on-error: true at m2/integration). Carried by M2-0237."
   },
   {
    "id": "M2-0048",
@@ -8704,14 +8705,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner (batch 3)",
    "claimed_at": "2026-09-26",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/216",
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS (batch 6)"
-   }
+   },
+   "notes": "2026-09-28 (lead, capability audit): status corrected DONE -> ENGINEERING_COMPLETE — AGX-11 'connector writes use exact typed schemas with readback' is not in the code (write tools picked by name regex in src/main/mcp/write-tools.ts; any non-isError MCP result counts as success). Carried by M2-0301."
   },
   {
    "id": "M2-0145",
