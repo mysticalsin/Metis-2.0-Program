@@ -1144,8 +1144,14 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
-   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"full autopilot until everything is done for version 2.0 except signature\"): the lead approves prd-lock v1.0 from the answered policy (POLICY-2.0.md)."
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"full autopilot until everything is done for version 2.0 except signature\"): the lead approves prd-lock v1.0 from the answered policy (POLICY-2.0.md).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/263",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0017",
