@@ -5005,6 +5005,120 @@
       "title": "Real cross-platform integrated proof"
     },
     {
+      "family": "HMFLOW",
+      "id": "HM-FLOW-01",
+      "kit": "r11",
+      "parent_task": "TASK-055, TASK-056, TASK-063, TASK-065",
+      "source_file": "memory/INTEGRATION-CONTRACT.md",
+      "source_ref": "35.15 HM-FLOW-01",
+      "sources": [
+        {
+          "source_file": "memory/INTEGRATION-CONTRACT.md",
+          "source_ref": "35.15 HM-FLOW-01"
+        },
+        {
+          "source_file": "spec/MASTER.md",
+          "source_ref": "35.15 HM-FLOW-01"
+        }
+      ],
+      "title": "Remember and reuse"
+    },
+    {
+      "family": "HMFLOW",
+      "id": "HM-FLOW-02",
+      "kit": "r11",
+      "parent_task": "TASK-055, TASK-056, TASK-063, TASK-065",
+      "source_file": "memory/INTEGRATION-CONTRACT.md",
+      "source_ref": "35.15 HM-FLOW-02",
+      "sources": [
+        {
+          "source_file": "memory/INTEGRATION-CONTRACT.md",
+          "source_ref": "35.15 HM-FLOW-02"
+        },
+        {
+          "source_file": "spec/MASTER.md",
+          "source_ref": "35.15 HM-FLOW-02"
+        }
+      ],
+      "title": "Meeting to team knowledge"
+    },
+    {
+      "family": "HMFLOW",
+      "id": "HM-FLOW-03",
+      "kit": "r11",
+      "parent_task": "TASK-055, TASK-056, TASK-063, TASK-065",
+      "source_file": "memory/INTEGRATION-CONTRACT.md",
+      "source_ref": "35.15 HM-FLOW-03",
+      "sources": [
+        {
+          "source_file": "memory/INTEGRATION-CONTRACT.md",
+          "source_ref": "35.15 HM-FLOW-03"
+        },
+        {
+          "source_file": "spec/MASTER.md",
+          "source_ref": "35.15 HM-FLOW-03"
+        }
+      ],
+      "title": "Forget under concurrency"
+    },
+    {
+      "family": "HMFLOW",
+      "id": "HM-FLOW-04",
+      "kit": "r11",
+      "parent_task": "TASK-055, TASK-056, TASK-063, TASK-065",
+      "source_file": "memory/INTEGRATION-CONTRACT.md",
+      "source_ref": "35.15 HM-FLOW-04",
+      "sources": [
+        {
+          "source_file": "memory/INTEGRATION-CONTRACT.md",
+          "source_ref": "35.15 HM-FLOW-04"
+        },
+        {
+          "source_file": "spec/MASTER.md",
+          "source_ref": "35.15 HM-FLOW-04"
+        }
+      ],
+      "title": "Honest outage and limits"
+    },
+    {
+      "family": "HMFLOW",
+      "id": "HM-FLOW-05",
+      "kit": "r11",
+      "parent_task": "TASK-055, TASK-056, TASK-063, TASK-065",
+      "source_file": "memory/INTEGRATION-CONTRACT.md",
+      "source_ref": "35.15 HM-FLOW-05",
+      "sources": [
+        {
+          "source_file": "memory/INTEGRATION-CONTRACT.md",
+          "source_ref": "35.15 HM-FLOW-05"
+        },
+        {
+          "source_file": "spec/MASTER.md",
+          "source_ref": "35.15 HM-FLOW-05"
+        }
+      ],
+      "title": "Security and privacy"
+    },
+    {
+      "family": "HMFLOW",
+      "id": "HM-FLOW-06",
+      "kit": "r11",
+      "parent_task": "TASK-055, TASK-056, TASK-063, TASK-065",
+      "source_file": "memory/INTEGRATION-CONTRACT.md",
+      "source_ref": "35.15 HM-FLOW-06",
+      "sources": [
+        {
+          "source_file": "memory/INTEGRATION-CONTRACT.md",
+          "source_ref": "35.15 HM-FLOW-06"
+        },
+        {
+          "source_file": "spec/MASTER.md",
+          "source_ref": "35.15 HM-FLOW-06"
+        }
+      ],
+      "title": "Release"
+    },
+    {
       "family": "HMS",
       "id": "HMS-INTEGRATION",
       "kit": "v5",
