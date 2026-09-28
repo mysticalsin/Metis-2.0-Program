@@ -1664,7 +1664,13 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/260",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "id": "M2-0026",
