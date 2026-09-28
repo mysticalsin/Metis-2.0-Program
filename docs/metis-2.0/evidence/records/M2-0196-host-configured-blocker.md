@@ -15,7 +15,7 @@ Source: `docs/metis-2.0/evidence/SCHEMA.md:115-118`.
 
 ## Current Worktree Result
 
-- OBSERVED: this session is running in `/Users/tony/AI-Brain-build/metis-wt-M2-0196`, not on the physical Windows laptop lane.
+- OBSERVED: this session is running in a macOS worktree, not on the physical Windows laptop lane.
 - OBSERVED: the owner constraint says no repository tests, scripts, or app execution may run here.
 - DERIVED: manufacturing a `HOST_CONFIGURED` record from this macOS worktree or from CI would violate the required non-CI environment field and the owner constraint.
 - BLOCKED_EXTERNAL: the physical Windows laptop host-configuration probe has not been run in this worktree, so there is no non-CI command output file and no output sha256 to cite.

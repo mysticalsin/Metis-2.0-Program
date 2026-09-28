@@ -66,6 +66,53 @@ error connecting to api.github.com
 check your internet connection or https://githubstatus.com
 ```
 
+Third re-attempt command:
+
+```bash
+gh workflow run windows-qa.yml --ref main -f probe=capabilities
+```
+
+Third re-attempt exit code: 1
+
+Third re-attempt output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
+Third re-attempt read-only repo metadata command:
+
+```bash
+gh repo view --json nameWithOwner,url,defaultBranchRef
+```
+
+Third re-attempt read-only repo metadata exit code: 1
+
+Third re-attempt read-only repo metadata output:
+
+```text
+error connecting to api.github.com
+check your internet connection or https://githubstatus.com
+```
+
+Local artifact search command:
+
+```bash
+find . -type f \( -name '*capabilities*' -o -name '*HOST_CONFIGURED*' -o -name '*host-configured*' -o -name '*windows-qa*' \) 2>/dev/null | sort | sed -n '1,240p'
+```
+
+Local artifact search exit code: 0
+
+Local artifact search output:
+
+```text
+./.github/workflows/windows-qa.yml
+./docs/metis-2.0/evidence/records/M2-0196-capabilities-dispatch-attempt.md
+./docs/metis-2.0/evidence/records/M2-0196-host-configured-blocker.md
+./docs/metis-2.0/evidence/records/M2-0196-windows-qa-probe-design.md
+```
+
 ## Read-only workflow presence checks
 
 Commands:
