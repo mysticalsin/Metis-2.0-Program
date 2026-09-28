@@ -10,9 +10,11 @@ Scope reviewed: `docs/metis-2.0/PLAN.md`, `docs/metis-2.0/ARCHITECTURE.md`, `doc
 - OBSERVED (user instruction, current prompt): do not edit `docs/metis-2.0/ledger/tickets.json` or `_relay/`.
 - OBSERVED (docs/metis-2.0/PLAN.md:305): no repository test should run until M2-0001's canary has passed in CI; after that tests run only in CI, QA macOS user, or owner account under D-28 sandbox.
 - OBSERVED (docs/metis-2.0/ARCHITECTURE.md:9): the architecture document itself says no repo code was run and runtime tests are NOT_RUN.
-- OBSERVED (command output): `graphify query "M2-0023 independent audits PLAN ARCHITECTURE ledger docs/metis-2.0" --budget 1500` failed with `graph file not found: /Users/tony/AI-Brain-build/metis-wt-M2-0023/graphify-out/graph.json`.
-- OBSERVED (command output): `test -f graphify-out/wiki/index.md ...` returned `NO_WIKI_INDEX`.
+- OBSERVED (command output): `graphify query "M2-0023 independent audits plan architecture ledger acceptance" --budget 2000` failed with `graph file not found: /Users/tony/AI-Brain-build/metis-wt-M2-0023/graphify-out/graph.json`.
+- OBSERVED (command output): `test -f graphify-out/wiki/index.md ...` returned `graphify-out/wiki/index.md not found`.
+- OBSERVED (command output): `codex exec --ephemeral --sandbox read-only -C /Users/tony/AI-Brain-build/metis-wt-M2-0023 -` failed before review with `Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)`.
 - DERIVED: raw file inspection was necessary because the graph and wiki entrypoints were unavailable in this worktree.
+- DERIVED: a separate Codex CLI review was attempted but not completed in this sandbox; this current artifact is a Codex-session evidence review, not a successful nested Codex CLI review.
 
 ## Findings
 
@@ -30,7 +32,7 @@ Scope reviewed: `docs/metis-2.0/PLAN.md`, `docs/metis-2.0/ARCHITECTURE.md`, `doc
 - OBSERVED (docs/metis-2.0/ledger/tickets.json:1542): M2-0023 notes that Codex is available and quota restored on 2026-09-27.
 - UNKNOWN: no read-only in-repo source proves the outside account quota state.
 - BLOCKED_EXTERNAL: if account proof is required, the exact read-only step is for the tool account holder to show the Codex CLI quota/availability state or rerun this review after 2026-09-29 19:33.
-- Disposition: ACCEPTED. The current user instruction and ticket note unblock the process audit; account proof remains external.
+- Disposition: ACCEPTED. The current user instruction and ticket note unblock the process audit in principle, but the attempted nested Codex CLI review failed in this sandbox. Account proof and/or a successful CLI transcript remains external.
 
 ### CX-M2-0023-03: Verification scope omits ARCHITECTURE while acceptance and summary require it
 
@@ -61,4 +63,4 @@ Scope reviewed: `docs/metis-2.0/PLAN.md`, `docs/metis-2.0/ARCHITECTURE.md`, `doc
 
 ## Verdict
 
-DERIVED: the read-only Codex review required by M2-0023 has now been run against PLAN, ARCHITECTURE, and the ledger, with findings dispositioned in `M2-0023-dispositions.md`. This is DESIGNED evidence only.
+DERIVED: the current Codex session reviewed PLAN, ARCHITECTURE, and the ledger read-only, but the requested separate Codex CLI review did not complete because the CLI failed to initialize in this sandbox. This is DESIGNED evidence of a blocked review attempt, not completion evidence for M2-0023.

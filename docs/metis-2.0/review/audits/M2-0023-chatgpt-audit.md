@@ -1,4 +1,4 @@
-# M2-0023 ChatGPT Audit Provenance Check
+# M2-0023 ChatGPT Audit Requirement Review
 
 Ticket: M2-0023
 Artifact type: provenance and acceptance check for the required ChatGPT audit
@@ -14,7 +14,9 @@ Scope reviewed: `docs/metis-2.0/PLAN.md`, `docs/metis-2.0/ARCHITECTURE.md`, `doc
 - OBSERVED (docs/metis-2.0/PLAN.md:49): the plan assigns ChatGPT to independent audits of the plan, ledger, and gate evidence, with findings dispositioned in the ledger.
 - OBSERVED (docs/metis-2.0/PLAN.md:47): a validator never validates work its own session wrote.
 - OBSERVED (user instruction, current prompt): `Never edit docs/metis-2.0/ledger/tickets.json or _relay/.`
+- OBSERVED (docs/metis-2.0/review/chatgpt-audit-1.md:1-7): the only in-repo artifact that says "ChatGPT said" reviews "the brief, B1, and B2"; it does not state that it reviewed `PLAN.md`, `ARCHITECTURE.md`, or the ledger for M2-0023.
 - DERIVED: this artifact cannot be represented as the required ChatGPT audit because it was produced by the current Codex session and no verifiable ChatGPT run transcript, export, URL, model run ID, or owner-attested provenance was provided in-repo.
+- DERIVED: replacing this file with a Codex-written "ChatGPT audit" would violate the no-invented-facts rule and the "No reviewer approves work it produced" acceptance criterion.
 
 ## Findings
 
@@ -25,6 +27,11 @@ Scope reviewed: `docs/metis-2.0/PLAN.md`, `docs/metis-2.0/ARCHITECTURE.md`, `doc
 - UNKNOWN: no in-repo source proves that ChatGPT reviewed `docs/metis-2.0/PLAN.md`, `docs/metis-2.0/ARCHITECTURE.md`, and `docs/metis-2.0/ledger/tickets.json` for M2-0023.
 - BLOCKED_EXTERNAL: exact read-only step is for the owner/orchestrator to provide a ChatGPT export, conversation URL, model run ID, or signed provenance note showing that ChatGPT reviewed those three files and produced findings for M2-0023.
 - Disposition: ACCEPTED. The previous scoped file's unsupported ChatGPT claim is rejected; acceptance criterion 1 remains unmet until verifiable ChatGPT provenance is added.
+
+Required evidence to clear:
+
+- BLOCKED_EXTERNAL: exact read-only step is for the owner/orchestrator to provide one of: a ChatGPT export, conversation URL, model run ID, or signed provenance note showing ChatGPT reviewed `docs/metis-2.0/PLAN.md`, `docs/metis-2.0/ARCHITECTURE.md`, and `docs/metis-2.0/ledger/tickets.json` for M2-0023.
+- UNKNOWN: no such evidence exists in this worktree at the time of this review.
 
 ### CGPT-M2-0023-02: The required disposition location conflicts with this run's write constraint
 
