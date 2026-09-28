@@ -105,6 +105,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0230 filed: public-repo identifier/private-reference/key-fixture cleanup split out of M2-0049; blocks the first m2/integration -> main milestone merge."
+  },
+  {
+   "date": "2026-09-28",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0231 filed: packaged-app smoke red on m2/integration since #252 (reopen routes, Windows survivors); app smoke on ticket PRs."
   }
  ],
  "tickets": [
@@ -13468,6 +13474,43 @@
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
    }
+  },
+  {
+   "id": "M2-0231",
+   "title": "Make the packaged-app smoke green again: every reopen route reveals the window and quit leaves no process (macOS + Windows)",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "INTEGRATION-SMOKE-RED-2026-09-28",
+    "M2-0036"
+   ],
+   "scope_paths": [
+    "scripts/qa/packaged-smoke.mjs",
+    "scripts/qa/owned-processes.mjs",
+    ".github/workflows/packaged-smoke.yml",
+    "src/main/"
+   ],
+   "summary": "packaged-smoke.yml on m2/integration has failed on every completed run since e3326099 (M2-0036, #252, 2026-09-28 04:13Z; last green ee962c88). On both hosted runners the installed app reaches renderer-ready (macOS 4095 ms, Windows 1274 ms) but every RV reopen row fails with no reveal event: RV-1 macOS open/activate and Finder/Spotlight/Launchpad, RV-2 macOS open -n, RV-3 Windows exe and shortcut relaunch, RV-4 global hotkey and tray show; on Windows one of each Metis.exe process (main, crashpad, gpu, renderer, 3 utility) survives quit. This is the 'app won't reopen' P0 surface, so the failure must be root-caused: either the reveal path does not run or does not record its audit event in the packaged app, or the harness looks in the wrong place. The queue also never ran the app smoke on ticket PRs, which is how M2-0036 merged red.",
+   "acceptance": [
+    "Root cause stated in the PR with evidence from the packaged-smoke report and app audit log: app bug vs harness bug, per failing row",
+    "Every RV row that hosted runners can drive (activate, open -n, exe/shortcut relaunch, tray show, global hotkey) PASSes on macOS-latest and windows-latest with evidence; a row a hosted runner cannot drive at all (e.g. Finder/Spotlight UI) is reported BLOCKED_EXTERNAL with the exact reason, never faked or removed",
+    "After quit no Metis process survives on either OS (a second instance exits through the single-instance lock; the first quits through its own Quit path)",
+    "packaged-smoke.yml also runs on pull_request (types: ready_for_review) into m2/integration, keeps push on m2/integration and workflow_dispatch, never tags, no secrets; actions stay SHA-pinned",
+    "packaged-smoke green on the PR and on m2/integration after merge"
+   ],
+   "verification": [
+    "CI packaged-smoke on the PR (ready_for_review) and on m2/integration"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 4,
+   "status": "TODO"
   }
  ]
 }
