@@ -1,0 +1,10 @@
+blocker: .rocket-fuel/PLAN.md:3 says audit-r1 found “two blockers”, but .rocket-fuel/codex/audit-r1.last.txt:1-3 has three blocker lines; missing_evidence for the stated scope.
+blocker: .rocket-fuel/PLAN.md:11 claims “evidence added” to M2-0030/M2-0031, but /Users/<redacted-user>/AI-Brain-build/Metis-2.0-Program/docs/metis-2.0/ledger/tickets/M2-0030.md and M2-0031.md are TODO with empty Log/Validation sections; missing_evidence.
+blocker: .rocket-fuel/PLAN.md:14 changes the M2-0003/audit-r1 invariant from unreadable index bytes “must never be renamed, replaced or re-ingested” to allowing a move into .brain-preserved before purge; missing_evidence that this invariant weakening is accepted.
+blocker: .rocket-fuel/PLAN.md:14 specifies `.brain-preserved/index.unreadable-<ISO>.json`; standard ISO timestamps contain `:`, which is invalid in Windows filenames, so the preservation path can fail cross-platform.
+blocker: .rocket-fuel/PLAN.md:20 claims preserve failure aborts with `brain-index-preserve-failed` and “nothing deleted”, but .rocket-fuel/PLAN.md:25 only requires a success-path log pattern; missing_evidence for EACCES/ENOSPC/EXDEV failure behavior and byte preservation.
+blocker: .rocket-fuel/PLAN.md:21 claims writeIndex throws `brain-index-unsupported-version` and leaves bytes unchanged, but .rocket-fuel/PLAN.md:27 only requires a classification test log pattern; missing_evidence for writeIndex rejection and byte equality.
+risk: .rocket-fuel/PLAN.md:14 says preserved unreadable indexes are never auto-deleted and not subject to the corrupt-auto cap; this can accumulate encrypted/private historical index snapshots with no retention, erase, or UI ownership plan.
+question: .rocket-fuel/PLAN.md:14 says explicit rebuild remains the repair path for a permanently lost key, but the preserved prior index is then outside the purged tree; what user-visible restore/delete path owns `.brain-preserved`?
+nit: .rocket-fuel/PLAN.md:31 says EXDEV is handled even though `.brain-preserved` is in the same parent directory; clarify the actual cross-device scenario or remove the EXDEV claim.
+VERDICT: REVISE

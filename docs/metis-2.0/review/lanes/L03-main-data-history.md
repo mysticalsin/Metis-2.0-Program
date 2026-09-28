@@ -1,6 +1,6 @@
 # L03 — Main/Data/History Lane Review (Métis → v2.0 audit)
 
-Repo: `/Users/tony/AI-Brain-build/metis-2.0` @ `2bf21f1ceefe117838325342574b57852e5cadcb` (v1.9.6, read-only checkout of `origin/main`)
+Repo: `/Users/<redacted-user>/AI-Brain-build/metis-2.0` @ `2bf21f1ceefe117838325342574b57852e5cadcb` (v1.9.6, read-only checkout of `origin/main`)
 Lane files: `src/main/brain/**`, `recall.ts`, `transcripts.ts`, `store.ts`, `import-jobs.ts`, `import-job-store.ts`, `graph-transcript.ts`, `graphify.ts`, `meeting-path.ts`, `time-saved-log.ts`, `intelligence.ts` (≈22.2k LOC excluding tests)
 Evidence labels used below: **OBSERVED** (seen directly in code or on Tony's real disk), **DERIVED** (reasoned from OBSERVED facts), **ASSUMED**, **UNKNOWN**.
 

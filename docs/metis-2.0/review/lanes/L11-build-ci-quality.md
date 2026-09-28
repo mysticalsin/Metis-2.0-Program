@@ -1,7 +1,7 @@
 # L11 — Build / CI / Quality Audit — Métis (asktoto) v1.9.6
 
 Reviewer: senior staff engineer (AUDIT mode, read-only)
-Repo: `/Users/tony/AI-Brain-build/metis-2.0` @ `2bf21f1ceefe117838325342574b57852e5cadcb` (origin/main, v1.9.6) — confirmed HEAD matches the assigned baseline SHA exactly.
+Repo: `/Users/<redacted-user>/AI-Brain-build/metis-2.0` @ `2bf21f1ceefe117838325342574b57852e5cadcb` (origin/main, v1.9.6) — confirmed HEAD matches the assigned baseline SHA exactly.
 Scope: `package.json` scripts, `scripts/` (129 files), `.github/workflows/*`, `electron-builder*.yml`, `electron.vite.config.ts`, `tsconfig*.json`, vitest configs, `__mocks__/`, `docs/`, `.gitignore`, `.gitleaks.toml`, `README.md`, `DESIGN.md`, `.cursor/`.
 
 Evidence labels used throughout: **OBSERVED** (seen directly in code/logs/commands run in this session), **DERIVED** (reasoned from OBSERVED facts), **ASSUMED**, **UNKNOWN**.
@@ -66,7 +66,7 @@ on:
 `scripts/check-skipped-tests.mjs` is a carefully designed gate (its own header explains exactly why "3,305 passed, 0 failed" can hide an untested path, citing a real past incident where a skipped test let a `-c undefined` regression reach a tagged release). It hard-codes `const BASELINE = { win32: 12, darwin: 1, linux: 18 }` (`scripts/check-skipped-tests.mjs:79`) and is exposed as `npm run check:skips` (`package.json:80`).
 
 - **OBSERVED:** `grep -n "check:skips\|check-skipped" .github/workflows/*.yml` → zero matches. No workflow, no job, no step invokes it. There is also no husky/pre-commit/lint-staged config anywhere in the repo (`find . -iname .husky` → none; no `husky`/`pre-commit`/`lint-staged` in `package.json`), so nothing forces a developer to run it locally either. It exists solely as a command a person can choose to type.
-- **OBSERVED:** the project's own clean-machine baseline receipt (`/Users/tony/AI-Brain-build/metis-2.0-exec/receipts/BASELINE-EXITS.txt`, macOS host, 2026-09-24, same commit) reports `skipped: 25` for the desktop suite. The script's own `darwin` baseline is `1`. **25 > 1** — meaning if `check:skips` had been run against that exact clean baseline run, it would already have failed, independent of anything in my own sandbox.
+- **OBSERVED:** the project's own clean-machine baseline receipt (`/Users/<redacted-user>/AI-Brain-build/metis-2.0-exec/receipts/BASELINE-EXITS.txt`, macOS host, 2026-09-24, same commit) reports `skipped: 25` for the desktop suite. The script's own `darwin` baseline is `1`. **25 > 1** — meaning if `check:skips` had been run against that exact clean baseline run, it would already have failed, independent of anything in my own sandbox.
 - **Failure scenario:** a developer (or CI, if someone ever wires this in) adds a tenth silently-skipped test on macOS; nothing catches it, because (a) nobody runs the check in CI and (b) the check's own accepted number is off by roughly 25x from reality, so even a manual run produces so much noise ("59 problems", "no declared reason for: ...") that a real new regression is indistinguishable from stale baseline drift.
 - **Fix direction:** add a `check:skips` step to the `quality` job (only needs to run once, e.g. on the `ubuntu-latest` leg, or once per OS if the per-platform baselines matter) generating the JSON report `npm test` already produces; update `BASELINE.darwin`/`win32`/`linux` to the current real counts as a one-time reconciliation, then let the ratchet (already coded correctly — see `check-test-types.mjs`'s sibling pattern) do its job going forward.
 

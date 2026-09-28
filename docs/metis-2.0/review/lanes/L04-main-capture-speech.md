@@ -5,7 +5,7 @@
 **Method:** brownfield discovery (read-only, vertical-slice tracing, git-history corroboration) + five-axis review (correctness, readability, architecture, security, performance/reliability/testability). Evidence labels: **OBSERVED** (seen directly in code/git history), **DERIVED** (reasoned from observed facts), **ASSUMED**, **UNKNOWN**.
 **Cross-lane note:** this repo already has sibling audits `B1-history-freeze.md` and `B2-resource-heavy.md` in this same directory. Where my lane's files overlap theirs (mainly `foreground-watcher.ts` and `screen-preprocess.ts`'s E5 loop) I cross-reference rather than duplicate their findings, and focus on what they did not already cover.
 
-No file in `/Users/tony/AI-Brain-build/metis-2.0` or any kit directory was modified. All file:line references were read directly from the checkout.
+No file in `/Users/<redacted-user>/AI-Brain-build/metis-2.0` or any kit directory was modified. All file:line references were read directly from the checkout.
 
 ---
 

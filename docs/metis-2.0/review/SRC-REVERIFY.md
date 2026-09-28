@@ -1,7 +1,8 @@
 # SRC-REVERIFY — Re-verification of the 24 source-export findings against HEAD
 
 **Ticket:** M2-0013 · **Type:** investigation (docs/process only; no code changed) · **Owner model:** sonnet · **Required evidence:** DESIGNED
-**Repo re-verified (read-only):** `mysticalsin/AskToto-Mantu` — `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:<path>`, current HEAD **`c343e3825a97e1b8127a26608a630a9352ce1135`** ("docs: Complete the targeted review of the code areas no lane covered and file every finding as a ticket [M2-0018] (#261)", 2026-09-28T01:33:07-04:00). No file in that checkout was created, modified, or deleted by this ticket.
+**Repo re-verified (read-only):** `mysticalsin/AskToto-Mantu` — `git -C /Users/<redacted-user>/AI-Brain-build/metis-operator-ux show origin/m2/integration:<path>`, current HEAD **`c343e3825a97e1b8127a26608a630a9352ce1135`** ("docs: Complete the targeted review of the code areas no lane covered and file every finding as a ticket [M2-0018] (#261)", 2026-09-28T01:33:07-04:00). No file in that checkout was created, modified, or deleted by this ticket.
+**Prior round-2 refresh:** the same read-only method previously checked HEAD **`70de3c303a047879afd8651a78b41c0ce85dcc3c`** ("Merge pull request #205: agent rules for the Métis 2.0 program [M2-0024]", 2026-09-26T16:20:02-04:00); that record is retained below as historical audit trail and is superseded by §0A where the two differ.
 **Prior pass re-verified here:** `metis-v2-review/lanes/K05-master-s22-31.md` §2.8, taken against HEAD `2bf21f1c` (v1.9.6). **`2bf21f1c` is not an ancestor of the current `origin/m2/integration`** — the git history was rewritten 2026-09-26 (owner operating rule) — so this ticket does not diff commit ranges; every claim below is a fresh, direct read of the file content at the two named refs.
 **Source-export inputs:** `metis-kit-r11/Metis-2.0-Upgrade-Kit-r11/references/source/metis-1.9.5-export.txt` (kit copy, read-only), `source-review/SOURCE-INDEX.json` (1,521 sections; `content_start_line`/`content_end_line` gives the exact line range of each file's text inside the export — the section boundary this pass's mechanical diff is keyed on, not an approximation), `source-review/FINDINGS.json` (the 24 findings' `source_observation`/`required_change`/`evidence[]` text) and `architecture/MAP-COVERAGE.json` (the 19 file-backed architecture-map nodes, 14 present / 5 `NOT_IN_EXPORT`).
 **Evidence labels:** **OBSERVED** (read directly in the cited file at the cited ref), **DERIVED** (reasoned from OBSERVED facts), **ASSUMED**, **UNKNOWN** (anchor read, disposition not established this pass), **OPEN: not statically closable** (a real anchor was read; closing it needs evidence a source-only pass cannot produce — named per row).
@@ -12,13 +13,13 @@
 
 ## 0A. Round 3 acceptance refresh against current HEAD `c343e382`
 
-**OBSERVED — source repo identity (`git -C /Users/tony/AI-Brain-build/metis-operator-ux rev-parse origin/m2/integration`, 2026-09-28):** current `origin/m2/integration` is `c343e3825a97e1b8127a26608a630a9352ce1135`, commit subject `docs: Complete the targeted review of the code areas no lane covered and file every finding as a ticket [M2-0018] (#261)`, commit time `2026-09-28 01:33:07 -0400`.
+**OBSERVED — source repo identity (`git -C /Users/<redacted-user>/AI-Brain-build/metis-operator-ux rev-parse origin/m2/integration`, 2026-09-28):** current `origin/m2/integration` is `c343e3825a97e1b8127a26608a630a9352ce1135`, commit subject `docs: Complete the targeted review of the code areas no lane covered and file every finding as a ticket [M2-0018] (#261)`, commit time `2026-09-28 01:33:07 -0400`.
 
 **OBSERVED — graph/vault startup constraints:** `graphify query "M2-0013 SRC-REVERIFY SRC-04 F-01 F-20 Metis 2.0" --budget 2000` could not run because `graphify-out/graph.json` is absent in this worktree; `graphify-out/wiki/index.md` is absent. `Preferences/mistakes.md` and `_agent_state/codex/memory.json` in the AI Second Brain vault failed to read with `Resource deadlock avoided`; `Preferences/dont.md` and `99_Meta/agent-behavior-standard.md` returned no visible content through `sed`.
 
 **OBSERVED — required verifier path:** `scripts/trace/diff-export.py` is not present in this private worktree. **DERIVED:** the mechanical diff evidence below was produced by an equivalent scratch read-only Python process against the kit export/JSON inputs and `git show origin/m2/integration:<path>`; no repository tests, repository scripts, workflows, app, ledger mutation, or `_relay/` mutation were run.
 
-**OBSERVED — kit inputs (`ls -l`, 2026-09-28):** `/Users/tony/AI-Brain-build/metis-kit-r11/Metis-2.0-Upgrade-Kit-r11/references/source/metis-1.9.5-export.txt`, `source-review/SOURCE-INDEX.json`, `source-review/FINDINGS.json`, and `architecture/MAP-COVERAGE.json` exist locally and were read.
+**OBSERVED — kit inputs (`ls -l`, 2026-09-28):** `/Users/<redacted-user>/AI-Brain-build/metis-kit-r11/Metis-2.0-Upgrade-Kit-r11/references/source/metis-1.9.5-export.txt`, `source-review/SOURCE-INDEX.json`, `source-review/FINDINGS.json`, and `architecture/MAP-COVERAGE.json` exist locally and were read.
 
 **Mechanical diff, export vs current HEAD, 58 mapped paths (OBSERVED command output, 2026-09-28):**
 
@@ -92,7 +93,7 @@ LEAD_ACTION: If current CI evidence is required for M2-0013, file the CI artifac
 
 LEAD_ACTION: If the program requires the exact command `python3 scripts/trace/diff-export.py`, add or restore that read-only helper path; it is absent in this worktree, so this pass used an equivalent scratch read-only verifier and recorded its output.
 
-**OBSERVED — direct TypeScript bars (2026-09-28):** `./node_modules/.bin/tsc --noEmit -p tsconfig.node.json`, `./node_modules/.bin/tsc --noEmit -p tsconfig.web.json`, and `./node_modules/.bin/tsc --noEmit -p operator/tsconfig.json` were run in `/Users/tony/AI-Brain-build/metis-operator-ux`; all three exited 0 with no diagnostics. No repository tests, repository scripts, workflows, or the app were run locally.
+**OBSERVED — direct TypeScript bars (2026-09-28):** `./node_modules/.bin/tsc --noEmit -p tsconfig.node.json`, `./node_modules/.bin/tsc --noEmit -p tsconfig.web.json`, and `./node_modules/.bin/tsc --noEmit -p operator/tsconfig.json` were run in `/Users/<redacted-user>/AI-Brain-build/metis-operator-ux`; all three exited 0 with no diagnostics. No repository tests, repository scripts, workflows, or the app were run locally.
 
 LEAD_ACTION: Run/record workflow gates or CI artifact evidence if required; this ticket runner did not file CI evidence records or dispatch workflows.
 
@@ -419,7 +420,7 @@ Inputs (adjust paths for your checkout):
 """
 import json, difflib, os, sys
 
-BASE = "/Users/tony/AI-Brain-build/metis-kit-r11/Metis-2.0-Upgrade-Kit-r11"
+BASE = "/Users/<redacted-user>/AI-Brain-build/metis-kit-r11/Metis-2.0-Upgrade-Kit-r11"
 EXPORT = f"{BASE}/references/source/metis-1.9.5-export.txt"
 INDEX = f"{BASE}/source-review/SOURCE-INDEX.json"
 FINDINGS = f"{BASE}/source-review/FINDINGS.json"
@@ -571,4 +572,4 @@ Totals: {'CHANGED': 28, 'IDENTICAL': 24, 'MISSING_AT_HEAD': 1, 'NOT_IN_EXPORT': 
 
 ---
 
-*End of SRC-REVERIFY (round 3 refresh). Written for ticket M2-0013. No file under `/Users/tony/AI-Brain-build/metis-operator-ux` (the public repo worktree) was created, modified, or deleted while producing this report — every code citation above is a `git show <ref>:<path>` read. This file itself lives only in the private program repo; this pass updated the worktree deliverable and did not make a commit.*
+*End of SRC-REVERIFY (round 3 refresh). Written for ticket M2-0013. No file under `/Users/<redacted-user>/AI-Brain-build/metis-operator-ux` (the public repo worktree) was created, modified, or deleted while producing this report — every code citation above is a `git show <ref>:<path>` read. This file itself lives only in the private program repo; this pass updated the worktree deliverable and did not make a commit. Round 1 was committed in the private program repo as `d57850c`; the round-2 record is retained above as superseded audit trail.*
