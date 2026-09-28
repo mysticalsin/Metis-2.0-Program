@@ -13952,12 +13952,13 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: may an embedded Cloudflare key stay in owner-channel builds?",
+   "external_blocker": null,
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
    "status": "TODO",
-   "priority": "P0"
+   "priority": "P0",
+   "notes": "OD-16 (owner, 2026-09-28): remove the embedded Cloudflare credential from ALL installers, owner channel included; owner builds get the key through the Operator seat / device setup; the CI artifact scan allows no exception."
   },
   {
    "id": "M2-0241",
@@ -17736,12 +17737,13 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: 2.0 languages (Spanish, Brazilian Portuguese in or out)",
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "notes": "OD-16 (owner, 2026-09-28): 2.0 languages are French and English only; Spanish and Brazilian Portuguese move after 2.0. Scope the acceptance to FR + EN."
   },
   {
    "id": "M2-0323",
@@ -18841,12 +18843,13 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: native Mac app scope vs OD-12 (Electron is the product)",
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron)."
   },
   {
    "id": "M2-0346",
@@ -19155,7 +19158,7 @@
    "id": "M2-0353",
    "title": "Decide the scope of developer skills for 2.0 and define the development grant",
    "wave": "W4",
-   "milestone": "m8",
+   "milestone": "m6",
    "type": "design",
    "owner_model": "sonnet",
    "depends_on": [
@@ -19186,18 +19189,19 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: developer opt-in skills in 2.0 or later",
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in."
   },
   {
    "id": "M2-0354",
    "title": "Build the developer opt-in Repository Guide over authorized Git, GitHub and coding-CLI connectors",
    "wave": "W4",
-   "milestone": "m8",
+   "milestone": "m6",
    "type": "feature",
    "owner_model": "sonnet",
    "depends_on": [
@@ -19250,18 +19254,19 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: developer opt-in skills in 2.0 or later",
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in."
   },
   {
    "id": "M2-0355",
    "title": "Add the developer opt-in Build Studio, Setup Doctor and Deployment Guide with isolated runners",
    "wave": "W4",
-   "milestone": "m8",
+   "milestone": "m6",
    "type": "feature",
    "owner_model": "sonnet",
    "depends_on": [
@@ -19300,18 +19305,19 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: developer opt-in skills in 2.0 or later",
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in."
   },
   {
    "id": "M2-0356",
    "title": "Add the developer and design opt-in Design Studio with rendered-output checks and editable diagram output",
    "wave": "W4",
-   "milestone": "m8",
+   "milestone": "m6",
    "type": "feature",
    "owner_model": "sonnet",
    "depends_on": [
@@ -19348,12 +19354,13 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: developer opt-in skills in 2.0 or later",
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in."
   },
   {
    "id": "M2-0357",
@@ -20234,7 +20241,7 @@
    "id": "M2-0378",
    "title": "Bring the native Mac app to Settings, knowledge and memory journey parity",
    "wave": "W4",
-   "milestone": "m8",
+   "milestone": "m6",
    "type": "feature",
    "owner_model": "sonnet",
    "depends_on": [
@@ -20275,12 +20282,13 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: native Mac app scope vs OD-12 (Electron is the product)",
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron)."
   },
   {
    "id": "M2-0379",
