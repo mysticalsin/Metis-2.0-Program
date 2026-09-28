@@ -5019,6 +5019,10 @@
         {
           "source_file": "spec/MASTER.md",
           "source_ref": "35.15 HM-FLOW-01"
+        },
+        {
+          "source_file": "plan/registry.json",
+          "source_ref": "memory_expansion.steps HMSTEP-15 (names the HM-FLOW sequences)"
         }
       ],
       "title": "Remember and reuse"
@@ -5038,6 +5042,10 @@
         {
           "source_file": "spec/MASTER.md",
           "source_ref": "35.15 HM-FLOW-02"
+        },
+        {
+          "source_file": "plan/registry.json",
+          "source_ref": "memory_expansion.steps HMSTEP-15 (names the HM-FLOW sequences)"
         }
       ],
       "title": "Meeting to team knowledge"
@@ -5057,6 +5065,10 @@
         {
           "source_file": "spec/MASTER.md",
           "source_ref": "35.15 HM-FLOW-03"
+        },
+        {
+          "source_file": "plan/registry.json",
+          "source_ref": "memory_expansion.steps HMSTEP-15 (names the HM-FLOW sequences)"
         }
       ],
       "title": "Forget under concurrency"
@@ -5076,6 +5088,10 @@
         {
           "source_file": "spec/MASTER.md",
           "source_ref": "35.15 HM-FLOW-04"
+        },
+        {
+          "source_file": "plan/registry.json",
+          "source_ref": "memory_expansion.steps HMSTEP-15 (names the HM-FLOW sequences)"
         }
       ],
       "title": "Honest outage and limits"
@@ -5095,6 +5111,10 @@
         {
           "source_file": "spec/MASTER.md",
           "source_ref": "35.15 HM-FLOW-05"
+        },
+        {
+          "source_file": "plan/registry.json",
+          "source_ref": "memory_expansion.steps HMSTEP-15 (names the HM-FLOW sequences)"
         }
       ],
       "title": "Security and privacy"
@@ -5114,6 +5134,10 @@
         {
           "source_file": "spec/MASTER.md",
           "source_ref": "35.15 HM-FLOW-06"
+        },
+        {
+          "source_file": "plan/registry.json",
+          "source_ref": "memory_expansion.steps HMSTEP-15 (names the HM-FLOW sequences)"
         }
       ],
       "title": "Release"
