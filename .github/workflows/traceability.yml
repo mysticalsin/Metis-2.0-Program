@@ -1,12 +1,11 @@
 name: Traceability
 
+# Manual only (2026-09-28): the account's private-repository Actions budget is exhausted, so push and
+# pull_request runs could not start and each one sent a failure email. Run on demand with
+#   gh workflow run traceability.yml -R mysticalsin/Metis-2.0-Program
+# Restore push/pull_request triggers once the owner raises the Actions budget (ledger M2-0011 note).
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 permissions:
   contents: read
