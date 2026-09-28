@@ -16212,12 +16212,13 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: spoken 'yes' confirmation tiers vs MASTER 4.3",
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "notes": "OD-17 (owner, 2026-09-28): keep MASTER §4.3 — a spoken 'yes' confirms only low-impact tiers; high-impact actions need click/keyboard on the Confirm card."
   },
   {
    "id": "M2-0290",
@@ -20339,12 +20340,13 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: derived memory (D-24) and memory hosting (D-5)",
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "notes": "OD-17 (owner, 2026-09-28): D-24 facts-only ships ON; derived memory (observations, mental models, pages) is built and qualified behind lineage, scope and erasure gates but ships OFF by default."
   },
   {
    "id": "M2-0380",
@@ -20444,12 +20446,13 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": "owner decision: derived memory (D-24) and memory hosting (D-5)",
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "notes": "OD-17 (owner, 2026-09-28): D-5 self-hosted private Hindsight on one approved container platform with managed Postgres (not a hosted memory cloud); engineering targets the compose profile until the platform is provisioned."
   },
   {
    "id": "M2-0382",
