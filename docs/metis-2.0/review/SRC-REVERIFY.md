@@ -1,20 +1,20 @@
 # SRC-REVERIFY — Re-verification of the 24 source-export findings against HEAD
 
-**Ticket:** M2-0013 · **Type:** investigation (docs/process only; no code changed) · **Owner model:** sonnet
-**Repo re-verified (read-only):** `mysticalsin/AskToto-Mantu` — `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:<path>`, current HEAD **`cfd8b22c90d69ae23499716493c9391f2ac7af98`** ("fix: Triage all 20 open PRs and 18 open issues per the verified dispositions and set labels and the 2.0 milestone [M2-0025] (#260)", 2026-09-28T00:56:35-04:00). No file in that checkout was created, modified, or deleted by this ticket.
+**Ticket:** M2-0013 · **Type:** investigation (docs/process only; no code changed) · **Owner model:** sonnet · **Required evidence:** DESIGNED
+**Repo re-verified (read-only):** `mysticalsin/AskToto-Mantu` — `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:<path>`, current HEAD **`c343e3825a97e1b8127a26608a630a9352ce1135`** ("docs: Complete the targeted review of the code areas no lane covered and file every finding as a ticket [M2-0018] (#261)", 2026-09-28T01:33:07-04:00). No file in that checkout was created, modified, or deleted by this ticket.
 **Prior pass re-verified here:** `metis-v2-review/lanes/K05-master-s22-31.md` §2.8, taken against HEAD `2bf21f1c` (v1.9.6). **`2bf21f1c` is not an ancestor of the current `origin/m2/integration`** — the git history was rewritten 2026-09-26 (owner operating rule) — so this ticket does not diff commit ranges; every claim below is a fresh, direct read of the file content at the two named refs.
 **Source-export inputs:** `metis-kit-r11/Metis-2.0-Upgrade-Kit-r11/references/source/metis-1.9.5-export.txt` (kit copy, read-only), `source-review/SOURCE-INDEX.json` (1,521 sections; `content_start_line`/`content_end_line` gives the exact line range of each file's text inside the export — the section boundary this pass's mechanical diff is keyed on, not an approximation), `source-review/FINDINGS.json` (the 24 findings' `source_observation`/`required_change`/`evidence[]` text) and `architecture/MAP-COVERAGE.json` (the 19 file-backed architecture-map nodes, 14 present / 5 `NOT_IN_EXPORT`).
 **Evidence labels:** **OBSERVED** (read directly in the cited file at the cited ref), **DERIVED** (reasoned from OBSERVED facts), **ASSUMED**, **UNKNOWN** (anchor read, disposition not established this pass), **OPEN: not statically closable** (a real anchor was read; closing it needs evidence a source-only pass cannot produce — named per row).
-**Round 3 current-HEAD refresh (2026-09-28):** the acceptance answer for M2-0013 is now §0A. §0-§9 below are retained as the round-2 audit trail against `70de3c30`; any conflict is superseded by §0A's `cfd8b22c` evidence.
+**Round 3 current-HEAD refresh (2026-09-28):** the acceptance answer for M2-0013 is now §0A. §0-§9 below are retained as the round-2 audit trail against `70de3c30`; any conflict is superseded by §0A's `c343e382` evidence.
 **Revision note (round 2, this pass):** round 1 of this document mis-stated several "new since the export" claims — some of the cited machinery was already present, byte-identical, in the 1.9.5 export (§2's now-complete 58-path table proves this per file). §3, §4, §5 and §6 below are corrected against that table; §9 lists every correction made and why. One correction goes the other way: round 1's validator asked this pass to confirm three literal `Laya` hits in `App.tsx`/`Settings.tsx`/`src/shared/keys.ts` for F-09 — none exist at HEAD (§6, F-09); every apparent hit was a case-insensitive substring match inside an unrelated camelCase identifier (`overlayAllowsMinimize`, `displayAccelerator`, `replayAfterDrain`, …), not the word "Laya". F-09 is corrected to **OPEN: not statically closable** with that search recorded, not fabricated as closed.
 
 ---
 
-## 0A. Round 3 acceptance refresh against current HEAD `cfd8b22c`
+## 0A. Round 3 acceptance refresh against current HEAD `c343e382`
 
-**OBSERVED — source repo identity (`git -C /Users/tony/AI-Brain-build/metis-operator-ux rev-parse origin/m2/integration`, 2026-09-28):** current `origin/m2/integration` is `cfd8b22c90d69ae23499716493c9391f2ac7af98`, commit subject `fix: Triage all 20 open PRs and 18 open issues per the verified dispositions and set labels and the 2.0 milestone [M2-0025] (#260)`, commit time `2026-09-28 00:56:35 -0400`.
+**OBSERVED — source repo identity (`git -C /Users/tony/AI-Brain-build/metis-operator-ux rev-parse origin/m2/integration`, 2026-09-28):** current `origin/m2/integration` is `c343e3825a97e1b8127a26608a630a9352ce1135`, commit subject `docs: Complete the targeted review of the code areas no lane covered and file every finding as a ticket [M2-0018] (#261)`, commit time `2026-09-28 01:33:07 -0400`.
 
-**OBSERVED — graph/vault startup constraints:** `/graphify query "M2-0013 SRC-REVERIFY SRC-04 F-01 F-20" --budget 1800` could not run because `graphify-out/graph.json` is absent in this worktree; `graphify-out/wiki/index.md` is absent. `Preferences/dont.md` and `Preferences/mistakes.md` in the AI Second Brain vault failed to read with `Resource deadlock avoided`; this is recorded because the session-start read was blocked, not silently skipped.
+**OBSERVED — graph/vault startup constraints:** `graphify query "M2-0013 SRC-REVERIFY SRC-04 F-01 F-20 Metis 2.0" --budget 2000` could not run because `graphify-out/graph.json` is absent in this worktree; `graphify-out/wiki/index.md` is absent. `Preferences/mistakes.md` and `_agent_state/codex/memory.json` in the AI Second Brain vault failed to read with `Resource deadlock avoided`; `Preferences/dont.md` and `99_Meta/agent-behavior-standard.md` returned no visible content through `sed`.
 
 **OBSERVED — required verifier path:** `scripts/trace/diff-export.py` is not present in this private worktree. **DERIVED:** the mechanical diff evidence below was produced by an equivalent scratch read-only Python process against the kit export/JSON inputs and `git show origin/m2/integration:<path>`; no repository tests, repository scripts, workflows, app, ledger mutation, or `_relay/` mutation were run.
 
@@ -23,9 +23,9 @@
 **Mechanical diff, export vs current HEAD, 58 mapped paths (OBSERVED command output, 2026-09-28):**
 
 ```text
-Totals: {'CHANGED': 27, 'IDENTICAL': 25, 'MISSING_AT_HEAD': 1, 'NOT_IN_EXPORT': 5} | total paths: 58
-CHANGED: .github/workflows/build.yml; .gitleaks.toml; cloudflare-proxy/src/index.ts; docs/AUDIT-LOG.md; docs/CLOUDFLARE.md; docs/design/ONBOARDING-FLOW.md; electron-builder.yml; intelligence/src/lib/brainAdapter.ts; license-server/package.json; operator/src/ai-gateway.ts; operator/src/d1.ts; operator/src/dashboard.ts; operator/src/index.ts; operator/src/store.ts; package.json; src/main/brain/store.ts; src/main/cloud-stt/credentials.ts; src/main/desktop-adapters.ts; src/main/license.ts; src/main/metis-command-runtime.test.ts; src/main/metis-command-runtime.ts; src/main/operator-ingest.ts; src/main/speaker-id.ts; src/preload/index.ts; src/renderer/src/lib/onboarding-hero-video.ts; src/shared/metis-wake.ts; vitest.config.ts
-IDENTICAL: DESIGN.md; THIRD_PARTY_NOTICES.md; cloudflare-proxy/provision-embedded-key.mjs; docs/ENTERPRISE-DEPLOY-WINDOWS.md; docs/ENTERPRISE_RELEASE.md; docs/verification/mi-5-dust-e2e.md; intelligence/src/App.tsx; license-server/lib/app.mjs; license-server/lib/store.mjs; native-app/App/Store/PersistedModels.swift; native-app/MetisKit/Package.swift; native-app/MetisKit/Sources/MetisKit/MeetingController.swift; operator/client/main.ts; scripts/push-both.sh; src/main/asktoto-shot.ts; src/main/brain/publish.ts; src/main/license-lease-key.ts; src/main/llm.ts; src/main/mode-skills.ts; src/main/parakeet.ts; src/main/screen-capture.ts; src/main/screen-preprocess.ts; src/renderer/src/components/BrandThinkingOrb.tsx; src/shared/desktop-actions.ts; src/shared/mode-recap.ts
+Totals: {'CHANGED': 28, 'IDENTICAL': 24, 'MISSING_AT_HEAD': 1, 'NOT_IN_EXPORT': 5} | total paths: 58
+CHANGED: .github/workflows/build.yml; .gitleaks.toml; cloudflare-proxy/src/index.ts; docs/AUDIT-LOG.md; docs/CLOUDFLARE.md; docs/ENTERPRISE_RELEASE.md; docs/design/ONBOARDING-FLOW.md; electron-builder.yml; intelligence/src/lib/brainAdapter.ts; license-server/package.json; operator/src/ai-gateway.ts; operator/src/d1.ts; operator/src/dashboard.ts; operator/src/index.ts; operator/src/store.ts; package.json; src/main/brain/store.ts; src/main/cloud-stt/credentials.ts; src/main/desktop-adapters.ts; src/main/license.ts; src/main/metis-command-runtime.test.ts; src/main/metis-command-runtime.ts; src/main/operator-ingest.ts; src/main/speaker-id.ts; src/preload/index.ts; src/renderer/src/lib/onboarding-hero-video.ts; src/shared/metis-wake.ts; vitest.config.ts
+IDENTICAL: DESIGN.md; THIRD_PARTY_NOTICES.md; cloudflare-proxy/provision-embedded-key.mjs; docs/ENTERPRISE-DEPLOY-WINDOWS.md; docs/verification/mi-5-dust-e2e.md; intelligence/src/App.tsx; license-server/lib/app.mjs; license-server/lib/store.mjs; native-app/App/Store/PersistedModels.swift; native-app/MetisKit/Package.swift; native-app/MetisKit/Sources/MetisKit/MeetingController.swift; operator/client/main.ts; scripts/push-both.sh; src/main/asktoto-shot.ts; src/main/brain/publish.ts; src/main/license-lease-key.ts; src/main/llm.ts; src/main/mode-skills.ts; src/main/parakeet.ts; src/main/screen-capture.ts; src/main/screen-preprocess.ts; src/renderer/src/components/BrandThinkingOrb.tsx; src/shared/desktop-actions.ts; src/shared/mode-recap.ts
 MISSING_AT_HEAD: electron-builder.cahe.win.yml
 NOT_IN_EXPORT: src/main/brain/ingest.ts; src/main/index.ts; src/main/transcripts.ts; src/renderer/src/App.tsx; src/renderer/src/lib/listen.ts
 ```
@@ -34,9 +34,9 @@ NOT_IN_EXPORT: src/main/brain/ingest.ts; src/main/index.ts; src/main/transcripts
 
 ### Current SRC-01..SRC-24 disposition table
 
-| ID | Disposition at `cfd8b22c` | Current evidence | Owning ticket(s) |
+| ID | Disposition at `c343e382` | Current evidence | Owning ticket(s) |
 |---|---|---|---|
-| SRC-01 | **PARTIAL** | **OBSERVED:** current checkout identity is `cfd8b22c`; mechanical diff covers all 58 mapped paths. **UNKNOWN:** current CI artifact was not filed/read in this pass due owner rule. | M2-0005, M2-0015 |
+| SRC-01 | **PARTIAL** | **OBSERVED:** current checkout identity is `c343e382`; mechanical diff covers all 58 mapped paths. **UNKNOWN:** current CI artifact was not filed/read in this pass due owner rule. | M2-0005, M2-0015 |
 | SRC-02 | **PARTIAL** | **OBSERVED:** `src/renderer/src/App.tsx:314` still gates on `LICENSE_ENFORCEMENT`; `src/main/license.ts:317-336` has `verifyLease` / `checkLicenseGrace`; `src/main/license-lease-key.ts:81` exposes `embeddedLicenseLeasePubkeyAvailable`. **DERIVED:** lease machinery exists, but product enforcement remains conditional. | M2-0062, M2-0146 |
 | SRC-03 | **REPRODUCES** | **OBSERVED:** `src/main/metis-command-runtime.ts:216-235` awaits Jev decision and then deliberately discards it with `void result` under the advisory-only comment. | M2-0122 |
 | SRC-04 | **RELOCATED + PARTIAL** | **OBSERVED:** `src/main/command-control.ts:85-110`, especially `:104-106`; `src/main/desktop-adapters.ts:88-94,182-264`; `git grep` shows no adapter-side `verified` literal. | M2-0082, M2-0083, M2-0084, M2-0085 |
@@ -63,7 +63,7 @@ NOT_IN_EXPORT: src/main/brain/ingest.ts; src/main/index.ts; src/main/transcripts
 
 ### Current F-01..F-20 disposition table
 
-| ID | Disposition at `cfd8b22c` | Current evidence | Owning ticket(s) |
+| ID | Disposition at `c343e382` | Current evidence | Owning ticket(s) |
 |---|---|---|---|
 | F-01 | **PARTIAL** | **OBSERVED:** `electron-builder.yml:131-140` still supports encrypted opt-in embedded Cloudflare proxy key. | M2-0056 |
 | F-02 | **PARTIAL** | **OBSERVED:** SRC-04 row: `CommandControl` verifies proposals, but adapters never return `verified`. | M2-0079 |
@@ -88,7 +88,7 @@ NOT_IN_EXPORT: src/main/brain/ingest.ts; src/main/index.ts; src/main/transcripts
 
 **New-defect filing disposition:** **DERIVED:** no new ledger ticket is filed by this pass because every reproduced/PARTIAL/OPEN gap above maps to existing owner ticket(s), and owner constraints prohibit editing `docs/metis-2.0/ledger/`. `electron-builder.cahe.win.yml` moving to `MISSING_AT_HEAD` is not filed as a new defect here because `electron-builder.yml:131-148` now carries the relevant current packaging evidence for SRC-09/F-01.
 
-LEAD_ACTION: If current CI evidence is required for M2-0013, file the CI artifact record for `cfd8b22c90d69ae23499716493c9391f2ac7af98`; this ticket runner did not file CI evidence records.
+LEAD_ACTION: If current CI evidence is required for M2-0013, file the CI artifact record for `c343e3825a97e1b8127a26608a630a9352ce1135`; this ticket runner did not file CI evidence records.
 
 LEAD_ACTION: If the program requires the exact command `python3 scripts/trace/diff-export.py`, add or restore that read-only helper path; it is absent in this worktree, so this pass used an equivalent scratch read-only verifier and recorded its output.
 
@@ -137,7 +137,7 @@ LEAD_ACTION: Run/record workflow gates or CI artifact evidence if required; this
 | `docs/AUDIT-LOG.md` | SRC-21 | Yes | **CHANGED** | 55→63 lines; ~11 added / 3 removed (ratio 0.881). |
 | `docs/CLOUDFLARE.md` | SRC-09 | Yes | **CHANGED** | 263→262 lines; ~5 added / 6 removed (ratio 0.979). |
 | `docs/ENTERPRISE-DEPLOY-WINDOWS.md` | SRC-16 | Yes | IDENTICAL | — |
-| `docs/ENTERPRISE_RELEASE.md` | SRC-18 | Yes | IDENTICAL | — |
+| `docs/ENTERPRISE_RELEASE.md` | SRC-18 | Yes | **CHANGED** | 131→131 lines; ~1 added / 1 removed (ratio 0.992). |
 | `docs/design/ONBOARDING-FLOW.md` | SRC-15 | Yes | **CHANGED** | 66→68 lines; ~5 added / 3 removed (ratio 0.940). |
 | `docs/verification/mi-5-dust-e2e.md` | SRC-23 | Yes | IDENTICAL | Still an unchecked `[ ]` manual checklist. |
 | `electron-builder.cahe.win.yml` | SRC-09 | Yes | **MISSING_AT_HEAD** | Present in export (22 lines), absent from current `origin/m2/integration`; current packaging evidence moved to `electron-builder.yml`. |
@@ -187,7 +187,7 @@ LEAD_ACTION: Run/record workflow gates or CI artifact evidence if required; this
 | `src/shared/mode-recap.ts` | SRC-22 | Yes | IDENTICAL | All nine layouts, at either ref. |
 | `vitest.config.ts` | SRC-24 | Yes | **CHANGED** | 71→112 lines; ~42 added / 1 removed (ratio 0.765). |
 
-**Totals:** 25 IDENTICAL, 27 CHANGED, 1 MISSING_AT_HEAD, 5 NOT_IN_EXPORT (all 5 confirmed present and read live at HEAD) — 58 paths. **Reading this table (DERIVED):** the round-1 document's narrative repeatedly framed byte-identical export sections as things that had "since been added" or "now exist" — every such claim in §4/§6 below is corrected against this table. Real, substantive drift (not cosmetic) remains concentrated in the rows whose SRC/F evidence cites the changed files; `electron-builder.cahe.win.yml` is now removed at HEAD, and `electron-builder.yml` carries the current packaging evidence for SRC-09/F-01.
+**Totals:** 24 IDENTICAL, 28 CHANGED, 1 MISSING_AT_HEAD, 5 NOT_IN_EXPORT (all 5 confirmed present and read live at HEAD) — 58 paths. **Reading this table (DERIVED):** the round-1 document's narrative repeatedly framed byte-identical export sections as things that had "since been added" or "now exist" — every such claim in §4/§6 below is corrected against this table. Real, substantive drift (not cosmetic) remains concentrated in the rows whose SRC/F evidence cites the changed files; `electron-builder.cahe.win.yml` is now removed at HEAD, and `electron-builder.yml` carries the current packaging evidence for SRC-09/F-01.
 
 ---
 
@@ -388,7 +388,7 @@ Round 1 of `SRC-REVERIFY.md` was reviewed by the Opus validator and found to con
 6. **Anchors were wrong or inconsistent in three places.** SRC-03/F-08's discarded decision is `void result` at `metis-command-runtime.ts:235`, under the "Advisory only" comment at `:234` — not line `:82`, which is only the fire-and-forget call. §5's SRC-04 row cited `command-control.ts:88-99`; it now matches §3's `:85-110`/`:104-106`. SRC-17's `:623` is confirmed not verbatim-identical to `:206` (no `opts.store` at `:623`), though both reach the same fallback.
 7. **F-01…F-20 all now carry a real disposition.** `UNKNOWN` (F-03, F-09, F-14, F-17), `partly UNKNOWN` (F-04, F-05) and "Bears on SRC-x" (F-15, F-18, F-19, F-20) are gone. F-03, F-05 and F-17 are closed with fresh HEAD evidence (`docs/NETWORK-EGRESS.md`; `docs/MANTU-IT-REQUEST.md:119`; the compliance docs' stale draft dates). F-09's specific claim — three confirmed `Laya` hits — was checked and found false; it is `OPEN: not statically closable` with the actual (negative) search recorded. F-04, F-14, F-20, genuinely runtime-only, are `OPEN: not statically closable` with the missing evidence named.
 8. **The verification is now reproducible in-line.** The Appendix below carries the exact script, keyed on `SOURCE-INDEX.json`, and its full 58-row output — `scripts/trace/diff-export.py` was never committed (out of this ticket's `scope_paths`, which names only this document) and does not exist in the repo; a reader re-runs the Appendix script against the kit copy, not a path this ticket cannot touch.
-9. **The footer's "was not committed by this pass" is removed** — the lead committed round 1 of this file in `d57850c`; that sentence was a claim about a prior repo state, not this one.
+9. **The footer now states the current worktree truth** — round 1 was committed by the lead in `d57850c`; this pass updated the deliverable and did not make a commit.
 
 ---
 
@@ -516,7 +516,7 @@ cloudflare-proxy/src/index.ts                           Yes       CHANGED       
 docs/AUDIT-LOG.md                                       Yes       CHANGED          export 55 lines -> HEAD 63 lines; ~11 added / 3 removed (ratio 0.881)
 docs/CLOUDFLARE.md                                      Yes       CHANGED          export 263 lines -> HEAD 262 lines; ~5 added / 6 removed (ratio 0.979)
 docs/ENTERPRISE-DEPLOY-WINDOWS.md                       Yes       IDENTICAL        -
-docs/ENTERPRISE_RELEASE.md                              Yes       IDENTICAL        -
+docs/ENTERPRISE_RELEASE.md                              Yes       CHANGED          export 131 lines -> HEAD 131 lines; ~1 added / 1 removed (ratio 0.992)
 docs/design/ONBOARDING-FLOW.md                          Yes       CHANGED          export 66 lines -> HEAD 68 lines; ~5 added / 3 removed (ratio 0.940)
 docs/verification/mi-5-dust-e2e.md                      Yes       IDENTICAL        -
 electron-builder.cahe.win.yml                           Yes       MISSING_AT_HEAD  export 22 lines; fatal: path 'electron-builder.cahe.win.yml' exists on disk, but not in 'origin/m2/integration'
@@ -566,9 +566,9 @@ src/shared/metis-wake.ts                                Yes       CHANGED       
 src/shared/mode-recap.ts                                Yes       IDENTICAL        -
 vitest.config.ts                                        Yes       CHANGED          export 71 lines -> HEAD 112 lines; ~42 added / 1 removed (ratio 0.765)
 
-Totals: {'CHANGED': 27, 'IDENTICAL': 25, 'MISSING_AT_HEAD': 1, 'NOT_IN_EXPORT': 5} | total paths: 58
+Totals: {'CHANGED': 28, 'IDENTICAL': 24, 'MISSING_AT_HEAD': 1, 'NOT_IN_EXPORT': 5} | total paths: 58
 ```
 
 ---
 
-*End of SRC-REVERIFY (round 2). Written for ticket M2-0013. No file under `/Users/tony/AI-Brain-build/metis-operator-ux` (the public repo worktree) was created, modified, or deleted while producing this report — every code citation above is a `git show <ref>:<path>` read. This file itself lives only in the private `metis-2.0-program` repo; round 1 was committed there in `d57850c`, and this round's revision is committed by this pass.*
+*End of SRC-REVERIFY (round 3 refresh). Written for ticket M2-0013. No file under `/Users/tony/AI-Brain-build/metis-operator-ux` (the public repo worktree) was created, modified, or deleted while producing this report — every code citation above is a `git show <ref>:<path>` read. This file itself lives only in the private program repo; this pass updated the worktree deliverable and did not make a commit.*
