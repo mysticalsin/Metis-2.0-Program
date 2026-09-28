@@ -129,6 +129,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0235 filed: intelligence-index catch-up test cleanup race (ENOTEMPTY) seen on PR #273."
+  },
+  {
+   "date": "2026-09-28",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0236 filed: dataless.test.ts win32 PowerShell flake hitting many tickets."
   }
  ],
  "tickets": [
@@ -13706,6 +13712,39 @@
    ],
    "verification": [
     "CI Build & Test on the PR"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 1,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0236",
+   "title": "Make dataless.test.ts win32 PowerShell attribute query deterministic on hosted Windows runners",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "CI-FLAKE-2026-09-28"
+   ],
+   "scope_paths": [
+    "src/main/infra/storage/dataless.test.ts",
+    "src/main/infra/storage/dataless.ts"
+   ],
+   "summary": "'win32: one PowerShell query reports FILE_ATTRIBUTE_OFFLINE, keeps input order, decodes a non-ASCII path and answers unknown for a missing path' (dataless.test.ts:404) fails intermittently on windows-latest with expected 'unknown' to be 'local' after ~10.5 s: the test spawns the real PowerShell and the cold-runner start exceeds the query budget, so the classifier answers 'unknown'. Seen on M2-0008, M2-0016, M2-0027, M2-0028 and M2-0031 CI runs (2026-09-27/28); every hit costs a Codex round and a failure email.",
+   "acceptance": [
+    "Root cause shown with timings from CI: PowerShell cold start vs the classifier's budget",
+    "The unit test drives the classifier through an injected PowerShell runner (deterministic, no real process); one real-PowerShell test remains, tagged and given a budget that covers a cold hosted runner, or runs once per job after a warm-up — never a retry loop",
+    "Production budget unchanged unless the PR shows the production budget itself is wrong for real machines (then justify with numbers)",
+    "No assertion weakened; Build & Test green on windows-latest in 3 consecutive CI runs of the PR"
+   ],
+   "verification": [
+    "CI Build & Test on the PR (3 runs)"
    ],
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
