@@ -111,6 +111,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0231 filed: packaged-app smoke red on m2/integration since #252 (reopen routes, Windows survivors); app smoke on ticket PRs."
+  },
+  {
+   "date": "2026-09-28",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0232 (HIST navigation-guard smoke rows, from M2-0040) and M2-0233 (reaper smoke step BLOCKED_EXTERNAL fails the lane, from M2-0027) filed; both were masked by the known-red smoke before the failset gate."
   }
  ],
  "tickets": [
@@ -13535,6 +13541,75 @@
    "risk": "high",
    "estimate_hours": 4,
    "status": "TODO"
+  },
+  {
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "evidence_target": "LOCALLY_TESTED",
+   "id": "M2-0232",
+   "type": "fix",
+   "depends_on": [],
+   "risk": "high",
+   "estimate_hours": 4,
+   "title": "Make the packaged-smoke History navigation-guard rows (HIST-*) pass on macOS and Windows",
+   "finding_refs": [
+    "INTEGRATION-SMOKE-RED-2026-09-28",
+    "M2-0040"
+   ],
+   "scope_paths": [
+    "scripts/qa/packaged-smoke.mjs",
+    "src/renderer/",
+    "src/main/"
+   ],
+   "summary": "M2-0040 (#264, 92cabf3a) added 18 HIST-* rows per OS to the packaged smoke (clean / dirty-cancel / dirty-discard / dirty-save x back, bar, bottom, recent-meeting, row double-click, settings). Every row fails on both hosted runners: locator.click times out after 15 s waiting for getByRole('button', { name: /Back... }) in the packaged app. It merged before the post-merge smoke gate existed. The History view is the P0 freeze surface (M2-0031), so first establish whether the packaged app actually hangs in History (a real P0 reproduction) or the harness never reaches the review screen, for example a fresh profile with no meeting to open.",
+   "acceptance": [
+    "Root cause per HIST row stated in the PR with evidence from the packaged-smoke report: app hang vs harness state vs locator",
+    "If it is the History freeze, the rows reproduce it deterministically and the PR says which M2-0031 change fixes it (coordinate; do not duplicate M2-0031's gateway work); otherwise the harness seeds the state each row needs (a synthetic meeting in the smoke profile) and every HIST row PASSes on macOS-latest and windows-latest",
+    "No HIST row removed, skipped or loosened; timeouts are not raised to hide a hang",
+    "PR packaged smoke adds no failing row versus m2/integration, and removes the HIST rows it fixes"
+   ],
+   "verification": [
+    "CI packaged-smoke on the PR and on m2/integration"
+   ]
+  },
+  {
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "evidence_target": "LOCALLY_TESTED",
+   "id": "M2-0233",
+   "type": "fix",
+   "depends_on": [],
+   "risk": "medium",
+   "estimate_hours": 2,
+   "title": "Prove the sidecar boot reaper on hosted runners without a real model, and never fail the smoke lane on a BLOCKED_EXTERNAL row",
+   "finding_refs": [
+    "INTEGRATION-SMOKE-RED-2026-09-28",
+    "M2-0027"
+   ],
+   "scope_paths": [
+    "scripts/qa/packaged-smoke.mjs",
+    ".github/workflows/packaged-smoke.yml",
+    "scripts/qa/"
+   ],
+   "summary": "M2-0027 (#251, 6fd68427) added the macOS packaged-smoke step 'Prove sidecar boot reaper after SIGKILL'. On the hosted runner it reports result BLOCKED_EXTERNAL ('real llama-server did not start; seed the packaged local model assets') and exits 2, which fails the whole macOS job before the RV and HIST rows run. A proof that cannot run must be visible, not red and not silently green.",
+   "acceptance": [
+    "The boot-reaper proof runs on macOS-latest and windows-latest with a stand-in sidecar registered exactly like llama-server (same registry identity, pid and start-time checks), is SIGKILLed with the app, and the next launch reaps it — PASS with evidence",
+    "The real-llama-server variant stays in the report as BLOCKED_EXTERNAL with the exact unblock step (model assets) and does not fail the job: exit 0 plus a ::warning annotation and a job-summary line",
+    "Every later smoke step still runs on macOS (no early abort); PR packaged smoke adds no failing row versus m2/integration"
+   ],
+   "verification": [
+    "CI packaged-smoke on the PR and on m2/integration"
+   ]
   }
  ]
 }
