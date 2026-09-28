@@ -123,6 +123,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0234 filed (PR packaged smoke on ready_for_review; gate first). M2-0232 (reverted by #273) and M2-0233 (stand-in proof fails) reopened; M2-0231/0232/0233 depend on M2-0234."
+  },
+  {
+   "date": "2026-09-28",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0235 filed: intelligence-index catch-up test cleanup race (ENOTEMPTY) seen on PR #273."
   }
  ],
  "tickets": [
@@ -13662,6 +13668,38 @@
    ],
    "verification": [
     "CI packaged-smoke on this PR"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 1,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0235",
+   "title": "Make intelligence-index 'catch-up waits for the maintenance window' deterministic (cleanup ENOTEMPTY race)",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "CI-FLAKE-2026-09-28"
+   ],
+   "scope_paths": [
+    "src/main/brain/intelligence-index.test.ts",
+    "src/main/brain/intelligence-index.ts"
+   ],
+   "summary": "Build & Test run 36408225803 (ubuntu, PR #273, a change that touched only scripts/qa) failed in src/main/brain/intelligence-index.test.ts 'runIntelligenceIndex coalesce and catch-up > catch-up waits for the maintenance window, then re-checks' with ENOTEMPTY: directory not empty, rmdir '<tmp>/documents/Métis Meetings/.brain' — cleanup ran while the catch-up still wrote under .brain.",
+   "acceptance": [
+    "Root cause named: which write is still in flight when the test's cleanup runs, and why the test does not await it",
+    "The test awaits the work it starts (or the code exposes a settle/drain the test awaits) so cleanup can never race a write; no retries, sleeps or force-rm to hide it",
+    "No assertion weakened; Build & Test green on ubuntu, windows"
+   ],
+   "verification": [
+    "CI Build & Test on the PR"
    ],
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
