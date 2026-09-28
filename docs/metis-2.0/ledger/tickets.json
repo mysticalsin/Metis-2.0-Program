@@ -117,6 +117,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0232 (HIST navigation-guard smoke rows, from M2-0040) and M2-0233 (reaper smoke step BLOCKED_EXTERNAL fails the lane, from M2-0027) filed; both were masked by the known-red smoke before the failset gate."
+  },
+  {
+   "date": "2026-09-28",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0234 filed (PR packaged smoke on ready_for_review; gate first). M2-0232 (reverted by #273) and M2-0233 (stand-in proof fails) reopened; M2-0231/0232/0233 depend on M2-0234."
   }
  ],
  "tickets": [
@@ -13512,7 +13518,9 @@
    "milestone": "m3",
    "type": "fix",
    "owner_model": "sonnet",
-   "depends_on": [],
+   "depends_on": [
+    "M2-0234"
+   ],
    "kit_refs": [],
    "finding_refs": [
     "INTEGRATION-SMOKE-RED-2026-09-28",
@@ -13540,7 +13548,8 @@
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": " 2026-09-28 (lead): the pull_request trigger acceptance item moved to M2-0234 (lands first); M2-0231 keeps the RV rows and Windows survivors."
   },
   {
    "wave": "W2",
@@ -13549,11 +13558,13 @@
    "kit_refs": [],
    "external_blocker": null,
    "flag": null,
-   "status": "DONE",
+   "status": "TODO",
    "evidence_target": "LOCALLY_TESTED",
    "id": "M2-0232",
    "type": "fix",
-   "depends_on": [],
+   "depends_on": [
+    "M2-0234"
+   ],
    "risk": "high",
    "estimate_hours": 4,
    "title": "Make the packaged-smoke History navigation-guard rows (HIST-*) pass on macOS and Windows",
@@ -13581,7 +13592,8 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "notes": " 2026-09-28 (lead): reopened — reverted by #273: after #271 the Windows packaged-smoke job aborted mid-run (all HIST rows PENDING, no process report, run 36405574721); it merged before its own PR smoke ran. Must merge only with its PR packaged smoke run (M2-0234 gate)."
   },
   {
    "wave": "W2",
@@ -13590,11 +13602,13 @@
    "kit_refs": [],
    "external_blocker": null,
    "flag": null,
-   "status": "DONE",
+   "status": "TODO",
    "evidence_target": "LOCALLY_TESTED",
    "id": "M2-0233",
    "type": "fix",
-   "depends_on": [],
+   "depends_on": [
+    "M2-0234"
+   ],
    "risk": "medium",
    "estimate_hours": 2,
    "title": "Prove the sidecar boot reaper on hosted runners without a real model, and never fail the smoke lane on a BLOCKED_EXTERNAL row",
@@ -13621,7 +13635,40 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "notes": " 2026-09-28 (lead): reopened — the stand-in boot-reaper proof exits 1 on macOS after #270 (run 36405574721), so acceptance 1 is not met; it merged before its own PR smoke ran. Must merge only with its PR packaged smoke run (M2-0234 gate)."
+  },
+  {
+   "id": "M2-0234",
+   "title": "Run the packaged-app smoke on every PR into m2/integration when it is marked ready for review",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "INTEGRATION-SMOKE-RED-2026-09-28",
+    "M2-0231"
+   ],
+   "scope_paths": [
+    ".github/workflows/packaged-smoke.yml"
+   ],
+   "summary": "PRs into m2/integration never run packaged-smoke.yml (push on m2/integration and workflow_dispatch only; dispatch cannot run before the file is on the default branch), so M2-0232 and M2-0233 merged with their own smoke unrun and broke the lane (2026-09-28). Split out of M2-0231 so the gate lands first.",
+   "acceptance": [
+    "packaged-smoke.yml also runs on pull_request with types [ready_for_review] and branches [m2/integration]; push on m2/integration and workflow_dispatch stay; never on tags; no secrets; actions stay SHA-pinned with version comments; permissions contents: read",
+    "The concurrency group keeps PR runs and m2/integration runs separate (a PR run never cancels the integration run)",
+    "This PR's own packaged smoke runs (marked ready) and fails no row that m2/integration does not already fail"
+   ],
+   "verification": [
+    "CI packaged-smoke on this PR"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 1,
+   "status": "TODO"
   }
  ]
 }
