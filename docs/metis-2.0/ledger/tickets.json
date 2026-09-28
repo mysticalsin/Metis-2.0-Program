@@ -13614,7 +13614,7 @@
    "kit_refs": [],
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "evidence_target": "LOCALLY_TESTED",
    "id": "M2-0233",
    "type": "fix",
@@ -13643,10 +13643,10 @@
     "CI packaged-smoke on the PR and on m2/integration"
    ],
    "evidence": {
-    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/270",
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/278",
     "merged_into": "m2/integration (squash)",
-    "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + CI green"
    },
    "notes": " 2026-09-28 (lead): reopened — the stand-in boot-reaper proof exits 1 on macOS after #270 (run 36405574721), so acceptance 1 is not met; it merged before its own PR smoke ran. Must merge only with its PR packaged smoke run (M2-0234 gate)."
   },
