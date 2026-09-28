@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Ticket | M2-0120 (TASK-007). Kit refs: M2-KNOW-02, M2-KNOW-04, M2-GOV-02, EXP-11, R58. Finding: K03-DEC-knowledge-model |
-| Status | **PROPOSED.** The engineering decisions (§3 to §9) include the Opus round-1 validation changes and are ready for re-validation. The store selection and the plaintext-mirror boundary (§2, §9.2) wait for owner decision **D-6** (class: escalate, irreversible data placement; needed by 2026-10-12). Until D-6 is answered, the recommended default is ASSUMED, nothing is migrated, and no content leaves the device. |
+| Status | **ACCEPTED for the store (D-6 answered 2026-09-27); the mirror audience is still PROPOSED.** Owner decision **D-6** was answered as the recommended default, "M365 via Entra API" (OBSERVED: `docs/metis-2.0/DECISIONS.md:114`, status column). So the canonical store is option B and the always-on service path in §2.2 is the approved path. The engineering decisions (§3 to §9) are unchanged. The register records no separate answer for the mirror audience, so M1 (§9.2) stays the recommended default and is ASSUMED until the owner confirms it (O-1). Nothing is migrated yet, and no content leaves the device until M2-0125 and M2-0126 land. Reviewed matrix: `DATA-AUTHORITY-MATRIX.md` (M2-0265). |
 | Contract | `src/shared/contracts/knowledge/` in the public repository, PR #217 (`m2/M2-0120-knowledge-contracts`, base `m2/integration`) |
 | Baseline | `m2/integration` at `7dab8e89`, read with `git show`. D-28 applies: nothing was run on a Mac except `tsc --noEmit`. |
 | Companions | ARCHITECTURE.md §2.7 C11 (component admission register), §2.5 (Mantu Intelligence row), §5 ADR-019 row; `designs/M2-0003-DESIGN.md` (decryption as ownership proof); kit MASTER §17 and §35 |
@@ -61,10 +61,14 @@
 | **B. Approved M365 location behind the knowledge API** (recommended) | Canonical records are items in a team-owned SharePoint site approved for knowledge. The Entra-protected knowledge API (C11) reaches them with a Sites.Selected grant (R57). | **Yes**, state (a) | **Yes** for list items: a stale `If-Match` is refused as a conflict (R58, PROVIDED). The exact response (412 Precondition Failed) is ASSUMED until M2-0125 qualifies it (O-2). Other Graph content APIs stay UNKNOWN until qualified. | Content stays inside the tenant's existing M365 boundary. No device key leaves the device. Migration is an explicit per-space action by the owning device. | **Recommended** |
 | **C. Service database** (the managed Postgres of D-5) | Canonical records live in the service database | Yes | Yes, with transactions and an atomic outbox (MASTER §17.12) | Adds a new processor and location for knowledge content (DPIA scope, M2-0150) and duplicates M365 as a second content home | Rejected unless the owner approves that data location explicitly. §17.1, §17.3 and ARCHITECTURE.md:403 forbid a second canonical database created only for convenience. |
 
-### 2.2 Recommended answer (PROPOSED; ASSUMED until D-6 is answered)
+### 2.2 Answer (D-6 answered 2026-09-27: option B)
 
-- **Canonical store: B.** Engineering proceeds behind the contract. M2-0125 builds the knowledge API with a store port and two adapters: a local adapter for the compose profile (tests and CI only), and the Graph list-item adapter, which stays BLOCKED on Entra admin consent plus approval of the site and the Sites.Selected grant. The contract is store-agnostic, so answer C would change the adapter only.
-- **Approved always-on service path (PROPOSED):**
+**D-6 record (OBSERVED, `docs/metis-2.0/DECISIONS.md:114`).** Question: the canonical knowledge store (TASK-007) and the plaintext-mirror sharing boundary. Recommended default: an Entra-protected knowledge API over an approved M365 location (MASTER section 17.3 state (a)). Status: `ANSWERED_AS_DEFAULT 2026-09-27 (owner: "M365 via Entra API")`. The register row is the only source; the owner's original message is not in this repository (UNKNOWN). D-5 was answered separately on 2026-09-28 (OD-17, `DECISIONS.md:33`): self-hosted private Hindsight on one approved container platform with managed Postgres. The container platform choice still follows (`DECISIONS.md:113`), so the knowledge API host is not yet named (UNKNOWN).
+
+**Consequences of the answer (DERIVED).** Canonical records are list items in an approved M365 site, and the service database is not canonical (option C stays rejected). The always-on service path below is the approved path for M2-KNOW-04. The plaintext-mirror audience is not part of the recorded answer: the register text names only the store, so M1 remains ASSUMED (O-1). The Graph adapter is still BLOCKED_EXTERNAL on Entra admin consent and on approval of the site and the Sites.Selected grant (M2-0125).
+
+- **Canonical store: B (answered).** Engineering proceeds behind the contract. M2-0125 builds the knowledge API with a store port and two adapters: a local adapter for the compose profile (tests and CI only), and the Graph list-item adapter, which stays BLOCKED on Entra admin consent plus approval of the site and the Sites.Selected grant. The contract is store-agnostic, so answer C would change the adapter only.
+- **Approved always-on service path (approved by D-6; the diagram detail is PROPOSED design):**
 
 ```text
 Dust (remote MCP, personal OAuth) ─┐
@@ -84,9 +88,9 @@ Desktop knowledge client (Entra)   ─┘      (no knowledge content in logs, D1
 
 - **What stays on the device:** transcripts and recordings (source evidence), the ingest ledger, the meetings index and the journal (C3, C5). In device-only mode the `.brain` stays there too.
 - **Migration (PROPOSED):** per space, started by the user, and never automatic (HM-15). Only the device that can decrypt the space's `.brain` may export it; decryption is the ownership proof (F15, M2-0003 INV-1/INV-2). The device maps legacy data with §11 and uploads records over TLS under the user's Entra token. No key material leaves. Once the service confirms the import, that space's authority moves to the service, and the device's `.brain` for that space becomes a read cache. One logical owner holds at every moment (§0.1).
-- **If D-6 answers A:** knowledge is device-only. Dust reads only the personal mirror (§9), Teams has no knowledge, and M2-KNOW-04 is recorded BLOCKED_EXTERNAL or DEFERRED under D-14. The contract still governs the device-side export shape.
-- **If D-6 answers C:** the approval must name the data location, retention and processors (DPIA, M2-0150). The contract does not change.
-- **Unblock step (ledger):** the program owner selects the canonical knowledge store (current `.brain` on OneDrive, an approved M365 location, or the service database) and the plaintext-mirror sharing boundary (decision D-6), by 2026-10-12.
+- **Not chosen (kept for the record). Had D-6 answered A:** knowledge is device-only. Dust reads only the personal mirror (§9), Teams has no knowledge, and M2-KNOW-04 is recorded BLOCKED_EXTERNAL or DEFERRED under D-14. The contract still governs the device-side export shape.
+- **Not chosen. Had D-6 answered C:** the approval must name the data location, retention and processors (DPIA, M2-0150). The contract does not change.
+- **Remaining external steps (BLOCKED_EXTERNAL, M2-0125):** Entra admin consent, approval of the knowledge site, and the Sites.Selected grant. Read-only check for the owner: in the Entra admin centre, confirm whether the knowledge API app registration has admin consent for `Sites.Selected`, and which site the grant names. Also confirm the mirror audience (M1, M2 or M3, §9.2), because D-6's recorded answer names only the store.
 
 ---
 
@@ -248,6 +252,8 @@ This is only the part of the laundering guard (MASTER:1584) that one record can 
 
 ## 10. Data and authority matrix (TASK-007 verification)
 
+The per-data-class matrix, with Dust access, Cloudflare metadata and device-only limits in separate columns, is published in `DATA-AUTHORITY-MATRIX.md` (M2-0265) and governs where the two differ. The table below is the design-time summary.
+
 | Data | Authority | Home (target; today) | Protection | Who writes | Who reads |
 |---|---|---|---|---|---|
 | Canonical knowledge records (meetings, summaries, decisions, actions, accounts, people, deals, skill outputs, proposals) | **Canonical** (one owner per space) | Approved M365 site via the knowledge API [D-6]; today `.brain/entities`, `.brain/corrections.json` | M365 tenant controls plus record ACLs; today device-key envelope | Knowledge service only | Principals in `readers`, through the API or tools |
@@ -305,7 +311,7 @@ The mapping is total and single-valued: every legacy value has exactly one canon
 - **Contract (PR #217).** `identity.ts` (GUID identities, UTC instants, actors, source allowlist), `provenance.ts` (the ten states, evidence, claims, fields), `record.ts` (records, ACLs, tombstones), `mutation.ts` (typed patch, expected revision, the eight outcomes) and `issue.ts`. The contract imports only zod. Every object in a request is strict, including the evidence it cites and the source inside that evidence, so an injected key is refused; only a `set` value is free-form JSON. Records, tombstones and outcomes drop unknown keys, so an older client keeps reading a record that a newer service extends with new keys. That is the whole compatibility promise. A new enum value (record type, provenance state, outcome status or rejection code), or a new key inside a strict address, record key or principal, fails an older parser. It is therefore a breaking contract change, and the service emits it only once every client in use parses it. Public code comments cite only `ADR-019, M2-0120`, following the `ADR-017, M2-0002` precedent in `scripts/evidence/`, and never kit sections.
 - **Fixtures.** Under `__fixtures__/`: 17 golden fixtures, which together hold all ten states, all eight outcomes and a record from a newer service, and 48 negative fixtures. `knowledge.contract.test.ts` requires each negative to fail with **exactly one** issue, at the path of the rule it breaks, so a negative cannot pass by failing for an unrelated reason. Together the negatives cover every refinement branch in the contract (each side of a two-sided rule separately) and every strict object, so deleting any of those checks fails CI.
 - **Evidence.** LOCALLY_TESTED (OBSERVED in the job logs). Red: `Build & Test` run 36285223679 on `950a0eac`, which adds the negatives before the fix, fails in Quality checks on both ubuntu and windows with exactly four failures: the three injected-evidence negatives and the duplicate-editor negative, the behaviour the contract lacked. The other fourteen new negatives already passed there. Green: run 36285532733 on PR head `57c74b12` passes all four jobs, and `knowledge.contract.test.ts` passes 69 of 69 on both OSes, matching the `m2/integration` baseline run 36267674617 job for job. DESIGNED is this document.
-- **Not claimed.** No store, service, migration, mirror change or Swift mirror exists, and the contract has no record-deletion, proposal-approval or sharing request yet (O-8 to O-10). No live M365, Entra or Dust behaviour was exercised, and those are BLOCKED on D-6, D-5 and the Entra consent.
+- **Not claimed.** No store, service, migration, mirror change or Swift mirror exists, and the contract has no record-deletion, proposal-approval or sharing request yet (O-8 to O-10). No live M365, Entra or Dust behaviour was exercised, and those are BLOCKED on the Entra consent and the site and grant approval. D-6 (2026-09-27) and D-5 (2026-09-28) are answered, but the container platform is not yet named.
 
 ---
 
@@ -328,7 +334,7 @@ The mapping is total and single-valued: every legacy value has exactly one canon
 
 | # | Item | Label | Owner | Next step |
 |---|---|---|---|---|
-| O-1 | D-6: the store and the mirror boundary | BLOCKED (owner) | Program owner | Answer by 2026-10-12. Recommended: B + M1. |
+| O-1 | D-6 store: ANSWERED 2026-09-27, option B (§2.2). The mirror boundary has no separate recorded answer | Store: closed (OBSERVED, `DECISIONS.md:114`). Mirror: ASSUMED M1 | Program owner | Confirm M1, M2 or M3 (§9.2) by 2026-10-12, or record that D-6's answer covers M1. |
 | O-2 | Which Graph primitive (list item or drive item), with its size limits, throttling and `If-Match` semantics, including the exact precondition-failure response (ASSUMED 412) | UNKNOWN | M2-0125 | Qualify against a test site before choosing. R58 covers list items only. |
 | O-3 | The producer ingest request (extraction on the device or in the service) | PROPOSED later | M2-0125 | Decide after D-3, D-5 and D-12, and add it to this contract |
 | O-4 | The retention policy catalog | UNKNOWN | Owner (D-3, D-12) | Until then `retention.policy` is opaque |
