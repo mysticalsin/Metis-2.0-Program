@@ -13549,7 +13549,7 @@
    "kit_refs": [],
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "evidence_target": "LOCALLY_TESTED",
    "id": "M2-0232",
    "type": "fix",
@@ -13575,7 +13575,13 @@
    ],
    "verification": [
     "CI packaged-smoke on the PR and on m2/integration"
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/271",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "validation": "independent Codex review PASS + CI green"
+   }
   },
   {
    "wave": "W2",
