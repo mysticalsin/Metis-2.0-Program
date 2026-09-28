@@ -19,6 +19,7 @@ const OUTPUT_RANK = new Map(OUTPUT_STATUSES.map((status, index) => [status, inde
 const EVIDENCE_STATUS_TO_OUTPUT = {
   MET: "DONE",
   PARTIAL: "ENGINEERING_COMPLETE",
+  DEFERRED: "ENGINEERING_COMPLETE",
   BLOCKED: "BLOCKED_EXTERNAL",
   NOT_MET: "NOT_STARTED",
 };
@@ -125,7 +126,8 @@ export function computeTraceability({ inventory, ledger, evidenceRecords = [], d
   const ticketIds = new Set(ticketsById.keys());
   const decisionIds = extractDecisionIds(decisionsText);
   const blockerTicketIds = extractBlockerTicketIds(blockersText);
-  const byRef = buildReferenceIndex(ledger.tickets, errors);
+  const inventoryIndex = buildInventoryIndex(rows, errors);
+  const byRef = buildReferenceIndex(ledger.tickets, inventoryIndex, errors);
   const evidenceByTicket = groupEvidence(evidenceRecords, errors);
 
   for (const ticket of ledger.tickets) {
@@ -136,7 +138,7 @@ export function computeTraceability({ inventory, ledger, evidenceRecords = [], d
   const outputRows = rows.map((row, index) => {
     validateInventoryRow(row, index, errors);
     const key = rowKey(row);
-    const mappedTickets = byRef.get(key) ?? byRef.get(row.id) ?? [];
+    const mappedTickets = byRef.get(key) ?? [];
     if (mappedTickets.length === 0) {
       errors.push(`unmapped inventory row ${key}`);
     }
@@ -211,7 +213,21 @@ function validateInventoryRow(row, index, errors) {
   }
 }
 
-function buildReferenceIndex(tickets, errors) {
+function buildInventoryIndex(rows, errors) {
+  const keys = new Set();
+  const rowsById = new Map();
+  for (const [index, row] of rows.entries()) {
+    validateInventoryRow(row, index, errors);
+    const key = rowKey(row);
+    if (keys.has(key)) errors.push(`duplicate inventory key ${key}`);
+    keys.add(key);
+    if (!rowsById.has(row.id)) rowsById.set(row.id, []);
+    rowsById.get(row.id).push(row);
+  }
+  return { keys, rowsById };
+}
+
+function buildReferenceIndex(tickets, inventoryIndex, errors) {
   const byRef = new Map();
   for (const ticket of tickets) {
     if (!PROGRAM_TICKET_RE.test(ticket.id)) errors.push(`ticket id ${ticket.id} does not match M2-\\d{4}`);
@@ -219,10 +235,91 @@ function buildReferenceIndex(tickets, errors) {
       if (ref === "M2-" || ref.startsWith("M2-") && !KIT_REQUIREMENT_RE.test(ref)) {
         errors.push(`ticket ${ticket.id} has invalid M2 kit ref ${ref}`);
       }
-      addReference(byRef, ref, ticket);
+      for (const key of resolveReferenceKeys(ticket, ref, inventoryIndex, errors)) {
+        addReference(byRef, key, ticket);
+      }
     }
   }
   return byRef;
+}
+
+function resolveReferenceKeys(ticket, ref, inventoryIndex, errors) {
+  if (inventoryIndex.keys.has(ref)) return [ref];
+
+  const rows = inventoryIndex.rowsById.get(ref) ?? [];
+  if (rows.length === 0) {
+    errors.push(`ticket ${ticket.id} has dangling kit_ref ${ref}`);
+    return [];
+  }
+  if (rows.length === 1) return [rowKey(rows[0])];
+
+  const directKitTags = inferReferenceKitTags(ticket, ref);
+  const kitTags = directKitTags.size > 0 ? directKitTags : inferTicketKitTags(ticket, inventoryIndex);
+  const matches = rows.filter((row) => kitTags.has(row.kit));
+  if (matches.length === 1) return [rowKey(matches[0])];
+
+  errors.push(`ticket ${ticket.id} has ambiguous kit_ref ${ref}; use kit:id with one of ${rows.map(rowKey).sort().join(", ")}`);
+  return [];
+}
+
+function inferReferenceKitTags(ticket, ref) {
+  const kitTags = new Set();
+  for (const segment of ticketText(ticket).split(/[;\n]/)) {
+    for (const context of matchingRefContexts(segment, ref)) {
+      const normalized = context.toLowerCase();
+      if (!normalized.includes("here") && !normalized.includes("on this ticket")) continue;
+      if (normalized.includes("heyclicky")) kitTags.add("Metis-HeyClicky-Interaction-Upgrade");
+      if (/\bv6\b/.test(normalized) || normalized.includes("brag") || normalized.includes("launch-film")) {
+        kitTags.add("v6");
+      }
+    }
+  }
+  return kitTags;
+}
+
+function inferTicketKitTags(ticket, inventoryIndex) {
+  const kitTags = new Set();
+  const text = ticketText(ticket).toLowerCase();
+
+  if (text.includes("heyclicky")) kitTags.add("Metis-HeyClicky-Interaction-Upgrade");
+  if (/\bv6\b/.test(text) || text.includes("brag") || text.includes("launch-film")) kitTags.add("v6");
+
+  for (const ref of ticket.kit_refs ?? []) {
+    if (inventoryIndex.keys.has(ref)) {
+      kitTags.add(ref.slice(0, ref.lastIndexOf(":")));
+      continue;
+    }
+    const rows = inventoryIndex.rowsById.get(ref) ?? [];
+    if (rows.length === 1) kitTags.add(rows[0].kit);
+  }
+  return kitTags;
+}
+
+function ticketText(ticket) {
+  return [
+    ticket.title,
+    ticket.summary,
+    ticket.notes,
+    ...(ticket.scope_paths ?? []),
+    ...(ticket.acceptance ?? []),
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+function matchingRefContexts(segment, ref) {
+  const contexts = [];
+  const exactIndex = segment.indexOf(ref);
+  if (exactIndex >= 0) contexts.push(segment.slice(exactIndex, exactIndex + 200));
+  const refNumber = ref.match(/^REF-(\d{2})$/)?.[1];
+  if (!refNumber) return contexts;
+  const target = Number(refNumber);
+  for (const match of segment.matchAll(/REF-(\d{2})(?:\.\.(\d{2}))?/g)) {
+    const start = Number(match[1]);
+    const end = Number(match[2] ?? match[1]);
+    if (target >= start && target <= end) contexts.push(segment.slice(match.index, match.index + 200));
+  }
+  return contexts;
 }
 
 function addReference(byRef, ref, ticket) {

@@ -259,19 +259,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": "2026-11-26",
-          "evidence_status": null,
-          "id": "M2-0180",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
         }
       ],
       "title": "HeyClicky product page"
@@ -319,19 +306,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": "2026-11-26",
-          "evidence_status": null,
-          "id": "M2-0180",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
         }
       ],
       "title": "HeyClicky changelog"
@@ -379,19 +353,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": "2026-11-26",
-          "evidence_status": null,
-          "id": "M2-0180",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
         }
       ],
       "title": "HeyClicky trust and privacy"
@@ -439,19 +400,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": "2026-11-26",
-          "evidence_status": null,
-          "id": "M2-0180",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
         }
       ],
       "title": "HeyClicky privacy policy"
@@ -499,19 +447,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": "2026-11-26",
-          "evidence_status": null,
-          "id": "M2-0180",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
         }
       ],
       "title": "Cua Driver upstream"
@@ -557,19 +492,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": "2026-11-26",
-          "evidence_status": null,
-          "id": "M2-0180",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
         }
       ],
       "title": "Cloudflare Nova-3"
@@ -615,19 +537,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": "2026-11-26",
-          "evidence_status": null,
-          "id": "M2-0180",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
         }
       ],
       "title": "Cloudflare experimental voice pipeline"
@@ -673,19 +582,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": "2026-11-26",
-          "evidence_status": null,
-          "id": "M2-0180",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
         }
       ],
       "title": "OpenAI Realtime conversations"
@@ -713,22 +609,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0178",
-          "needs_decision": [
-            "D-12",
-            "D-27"
-          ],
-          "required_evidence": [
-            "DESIGNED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
         }
       ],
       "title": "Apple accessibility application element"
@@ -756,22 +636,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0178",
-          "needs_decision": [
-            "D-12",
-            "D-27"
-          ],
-          "required_evidence": [
-            "DESIGNED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
         }
       ],
       "title": "Apple ScreenCaptureKit content filters"
@@ -793,21 +657,6 @@
           "needs_decision": [],
           "required_evidence": [
             "LIVE_VERIFIED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0133",
-          "needs_decision": [
-            "D-5"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
           ],
           "slices": [],
           "status": "NOT_STARTED",
@@ -839,21 +688,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.5
-        },
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0133",
-          "needs_decision": [
-            "D-5"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
         }
       ],
       "title": "Microsoft UI Automation control patterns"
@@ -875,19 +709,6 @@
           "needs_decision": [
             "D-8"
           ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0134",
-          "needs_decision": [],
           "required_evidence": [
             "LOCALLY_TESTED"
           ],
@@ -938,21 +759,6 @@
           "status": "NOT_STARTED",
           "ticket_status": "TODO",
           "validation_hours": 1.0
-        },
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0135",
-          "needs_decision": [
-            "D-24"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
         }
       ],
       "title": "Laya source"
@@ -965,7 +771,7 @@
       "source_file": "baseline/Metis-HeyClicky-Interaction-Upgrade.x/Metis-HeyClicky-Interaction-Upgrade/evidence/sources.json",
       "source_ref": "sources[14]",
       "sources": [],
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "tickets": [
         {
           "due": null,
@@ -979,21 +785,6 @@
           "status": "DONE",
           "ticket_status": "DONE",
           "validation_hours": 0.5
-        },
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0135",
-          "needs_decision": [
-            "D-24"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
         }
       ],
       "title": "Hindsight overview"
@@ -1006,7 +797,7 @@
       "source_file": "baseline/Metis-HeyClicky-Interaction-Upgrade.x/Metis-HeyClicky-Interaction-Upgrade/evidence/sources.json",
       "source_ref": "sources[15]",
       "sources": [],
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "tickets": [
         {
           "due": null,
@@ -1020,19 +811,6 @@
           "status": "DONE",
           "ticket_status": "DONE",
           "validation_hours": 0.5
-        },
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0136",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
         }
       ],
       "title": "Hindsight memory banks"
@@ -38121,40 +37899,6 @@
       "status": "NOT_STARTED",
       "tickets": [
         {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0082",
-          "needs_decision": [
-            "D-19"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [
-            {
-              "estimate_hours": 6,
-              "id": "M2-0082.1",
-              "owner_model": "sonnet",
-              "title": "Capability registry filtered by platform and permission, and typed action results"
-            },
-            {
-              "estimate_hours": 6,
-              "id": "M2-0082.2",
-              "owner_model": "sonnet",
-              "title": "Independent postcondition verifier, content-free receipts and refusal rules"
-            },
-            {
-              "estimate_hours": 4,
-              "id": "M2-0082.3",
-              "owner_model": "sonnet",
-              "title": "Evaluate the licensed Cua computer-use driver against the adapters and record adopt/adapt/reject (HC-04)"
-            }
-          ],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
-        {
           "due": "2026-11-26",
           "evidence_status": null,
           "id": "M2-0180",
@@ -38180,40 +37924,6 @@
       "sources": [],
       "status": "NOT_STARTED",
       "tickets": [
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0082",
-          "needs_decision": [
-            "D-19"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [
-            {
-              "estimate_hours": 6,
-              "id": "M2-0082.1",
-              "owner_model": "sonnet",
-              "title": "Capability registry filtered by platform and permission, and typed action results"
-            },
-            {
-              "estimate_hours": 6,
-              "id": "M2-0082.2",
-              "owner_model": "sonnet",
-              "title": "Independent postcondition verifier, content-free receipts and refusal rules"
-            },
-            {
-              "estimate_hours": 4,
-              "id": "M2-0082.3",
-              "owner_model": "sonnet",
-              "title": "Evaluate the licensed Cua computer-use driver against the adapters and record adopt/adapt/reject (HC-04)"
-            }
-          ],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
         {
           "due": "2026-11-26",
           "evidence_status": null,
@@ -38241,40 +37951,6 @@
       "status": "NOT_STARTED",
       "tickets": [
         {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0082",
-          "needs_decision": [
-            "D-19"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [
-            {
-              "estimate_hours": 6,
-              "id": "M2-0082.1",
-              "owner_model": "sonnet",
-              "title": "Capability registry filtered by platform and permission, and typed action results"
-            },
-            {
-              "estimate_hours": 6,
-              "id": "M2-0082.2",
-              "owner_model": "sonnet",
-              "title": "Independent postcondition verifier, content-free receipts and refusal rules"
-            },
-            {
-              "estimate_hours": 4,
-              "id": "M2-0082.3",
-              "owner_model": "sonnet",
-              "title": "Evaluate the licensed Cua computer-use driver against the adapters and record adopt/adapt/reject (HC-04)"
-            }
-          ],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
-        {
           "due": "2026-11-26",
           "evidence_status": null,
           "id": "M2-0180",
@@ -38300,40 +37976,6 @@
       "sources": [],
       "status": "NOT_STARTED",
       "tickets": [
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0082",
-          "needs_decision": [
-            "D-19"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [
-            {
-              "estimate_hours": 6,
-              "id": "M2-0082.1",
-              "owner_model": "sonnet",
-              "title": "Capability registry filtered by platform and permission, and typed action results"
-            },
-            {
-              "estimate_hours": 6,
-              "id": "M2-0082.2",
-              "owner_model": "sonnet",
-              "title": "Independent postcondition verifier, content-free receipts and refusal rules"
-            },
-            {
-              "estimate_hours": 4,
-              "id": "M2-0082.3",
-              "owner_model": "sonnet",
-              "title": "Evaluate the licensed Cua computer-use driver against the adapters and record adopt/adapt/reject (HC-04)"
-            }
-          ],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
         {
           "due": "2026-11-26",
           "evidence_status": null,
@@ -38361,40 +38003,6 @@
       "status": "NOT_STARTED",
       "tickets": [
         {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0082",
-          "needs_decision": [
-            "D-19"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [
-            {
-              "estimate_hours": 6,
-              "id": "M2-0082.1",
-              "owner_model": "sonnet",
-              "title": "Capability registry filtered by platform and permission, and typed action results"
-            },
-            {
-              "estimate_hours": 6,
-              "id": "M2-0082.2",
-              "owner_model": "sonnet",
-              "title": "Independent postcondition verifier, content-free receipts and refusal rules"
-            },
-            {
-              "estimate_hours": 4,
-              "id": "M2-0082.3",
-              "owner_model": "sonnet",
-              "title": "Evaluate the licensed Cua computer-use driver against the adapters and record adopt/adapt/reject (HC-04)"
-            }
-          ],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
-        {
           "due": "2026-11-26",
           "evidence_status": null,
           "id": "M2-0180",
@@ -38420,38 +38028,6 @@
       "sources": [],
       "status": "NOT_STARTED",
       "tickets": [
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0087",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [
-            {
-              "estimate_hours": 6,
-              "id": "M2-0087.1",
-              "owner_model": "sonnet",
-              "title": "Client-owned playback, truncation at the audible position and stale-audio fences"
-            },
-            {
-              "estimate_hours": 5,
-              "id": "M2-0087.2",
-              "owner_model": "sonnet",
-              "title": "Interruption semantics, heard vs generated text, headphone removal"
-            },
-            {
-              "estimate_hours": 3,
-              "id": "M2-0087.3",
-              "owner_model": "opus",
-              "title": "Click-to-talk and voice UI states (Opus visual slice)"
-            }
-          ],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
         {
           "due": "2026-11-26",
           "evidence_status": null,
@@ -38479,38 +38055,6 @@
       "status": "NOT_STARTED",
       "tickets": [
         {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0087",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [
-            {
-              "estimate_hours": 6,
-              "id": "M2-0087.1",
-              "owner_model": "sonnet",
-              "title": "Client-owned playback, truncation at the audible position and stale-audio fences"
-            },
-            {
-              "estimate_hours": 5,
-              "id": "M2-0087.2",
-              "owner_model": "sonnet",
-              "title": "Interruption semantics, heard vs generated text, headphone removal"
-            },
-            {
-              "estimate_hours": 3,
-              "id": "M2-0087.3",
-              "owner_model": "opus",
-              "title": "Click-to-talk and voice UI states (Opus visual slice)"
-            }
-          ],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
-        {
           "due": "2026-11-26",
           "evidence_status": null,
           "id": "M2-0180",
@@ -38537,38 +38081,6 @@
       "status": "NOT_STARTED",
       "tickets": [
         {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0087",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [
-            {
-              "estimate_hours": 6,
-              "id": "M2-0087.1",
-              "owner_model": "sonnet",
-              "title": "Client-owned playback, truncation at the audible position and stale-audio fences"
-            },
-            {
-              "estimate_hours": 5,
-              "id": "M2-0087.2",
-              "owner_model": "sonnet",
-              "title": "Interruption semantics, heard vs generated text, headphone removal"
-            },
-            {
-              "estimate_hours": 3,
-              "id": "M2-0087.3",
-              "owner_model": "opus",
-              "title": "Click-to-talk and voice UI states (Opus visual slice)"
-            }
-          ],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
-        {
           "due": "2026-11-26",
           "evidence_status": null,
           "id": "M2-0180",
@@ -38594,20 +38106,6 @@
       "sources": [],
       "status": "NOT_STARTED",
       "tickets": [
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0084",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED",
-            "LIVE_VERIFIED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
         {
           "due": null,
           "evidence_status": null,
@@ -38640,20 +38138,6 @@
         {
           "due": null,
           "evidence_status": null,
-          "id": "M2-0084",
-          "needs_decision": [],
-          "required_evidence": [
-            "LOCALLY_TESTED",
-            "LIVE_VERIFIED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
-        {
-          "due": null,
-          "evidence_status": null,
           "id": "M2-0178",
           "needs_decision": [
             "D-12",
@@ -38680,19 +38164,6 @@
       "sources": [],
       "status": "NOT_STARTED",
       "tickets": [
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0085",
-          "needs_decision": [],
-          "required_evidence": [
-            "LIVE_VERIFIED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
         {
           "due": null,
           "evidence_status": null,
@@ -38724,19 +38195,6 @@
         {
           "due": null,
           "evidence_status": null,
-          "id": "M2-0085",
-          "needs_decision": [],
-          "required_evidence": [
-            "LIVE_VERIFIED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
-        {
-          "due": null,
-          "evidence_status": null,
           "id": "M2-0133",
           "needs_decision": [
             "D-5"
@@ -38762,21 +38220,6 @@
       "sources": [],
       "status": "NOT_STARTED",
       "tickets": [
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0123",
-          "needs_decision": [
-            "D-8"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.5
-        },
         {
           "due": null,
           "evidence_status": null,
@@ -38806,36 +38249,6 @@
         {
           "due": null,
           "evidence_status": null,
-          "id": "M2-0124",
-          "needs_decision": [
-            "D-5",
-            "D-23"
-          ],
-          "required_evidence": [
-            "LOCALLY_TESTED"
-          ],
-          "slices": [
-            {
-              "estimate_hours": 3,
-              "id": "M2-0124.1",
-              "owner_model": "sonnet",
-              "title": "'unavailable' readiness state in Operator and the Laya-only isolation test (no Jev call)"
-            },
-            {
-              "estimate_hours": 10,
-              "id": "M2-0124.2",
-              "note": "Conditional: starts only after the licence and hosting unblock step is done",
-              "owner_model": "sonnet",
-              "title": "Container adapter with pinned checkpoint in the compose profile"
-            }
-          ],
-          "status": "NOT_STARTED",
-          "ticket_status": "TODO",
-          "validation_hours": 1.0
-        },
-        {
-          "due": null,
-          "evidence_status": null,
           "id": "M2-0135",
           "needs_decision": [
             "D-24"
@@ -38859,21 +38272,8 @@
       "source_file": "evidence/SOURCE-REGISTER.json",
       "source_ref": "records[14]",
       "sources": [],
-      "status": "IN_PROGRESS",
+      "status": "NOT_STARTED",
       "tickets": [
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0020",
-          "needs_decision": [],
-          "required_evidence": [
-            "DESIGNED"
-          ],
-          "slices": [],
-          "status": "DONE",
-          "ticket_status": "DONE",
-          "validation_hours": 0.5
-        },
         {
           "due": null,
           "evidence_status": null,
@@ -38900,21 +38300,8 @@
       "source_file": "evidence/SOURCE-REGISTER.json",
       "source_ref": "records[15]",
       "sources": [],
-      "status": "IN_PROGRESS",
+      "status": "NOT_STARTED",
       "tickets": [
-        {
-          "due": null,
-          "evidence_status": null,
-          "id": "M2-0020",
-          "needs_decision": [],
-          "required_evidence": [
-            "DESIGNED"
-          ],
-          "slices": [],
-          "status": "DONE",
-          "ticket_status": "DONE",
-          "validation_hours": 0.5
-        },
         {
           "due": null,
           "evidence_status": null,

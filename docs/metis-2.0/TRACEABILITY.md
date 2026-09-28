@@ -61,22 +61,22 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 
 | Key | ID | Family | Title | Kit | Tickets | Status | Evidence |
 |---|---|---|---|---|---|---|---|
-| Metis-HeyClicky-Interaction-Upgrade:REF-01 | REF-01 | REF | HeyClicky product page | Metis-HeyClicky-Interaction-Upgrade | [M2-0082](ledger/tickets/M2-0082.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0082:ledger, M2-0180:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-02 | REF-02 | REF | HeyClicky changelog | Metis-HeyClicky-Interaction-Upgrade | [M2-0082](ledger/tickets/M2-0082.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0082:ledger, M2-0180:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-03 | REF-03 | REF | HeyClicky trust and privacy | Metis-HeyClicky-Interaction-Upgrade | [M2-0082](ledger/tickets/M2-0082.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0082:ledger, M2-0180:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-04 | REF-04 | REF | HeyClicky privacy policy | Metis-HeyClicky-Interaction-Upgrade | [M2-0082](ledger/tickets/M2-0082.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0082:ledger, M2-0180:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-05 | REF-05 | REF | Cua Driver upstream | Metis-HeyClicky-Interaction-Upgrade | [M2-0082](ledger/tickets/M2-0082.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0082:ledger, M2-0180:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-06 | REF-06 | REF | Cloudflare Nova-3 | Metis-HeyClicky-Interaction-Upgrade | [M2-0087](ledger/tickets/M2-0087.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0087:ledger, M2-0180:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-07 | REF-07 | REF | Cloudflare experimental voice pipeline | Metis-HeyClicky-Interaction-Upgrade | [M2-0087](ledger/tickets/M2-0087.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0087:ledger, M2-0180:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-08 | REF-08 | REF | OpenAI Realtime conversations | Metis-HeyClicky-Interaction-Upgrade | [M2-0087](ledger/tickets/M2-0087.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0087:ledger, M2-0180:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-09 | REF-09 | REF | Apple accessibility application element | Metis-HeyClicky-Interaction-Upgrade | [M2-0084](ledger/tickets/M2-0084.md), [M2-0178](ledger/tickets/M2-0178.md) | NOT_STARTED | M2-0084:ledger, M2-0178:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-10 | REF-10 | REF | Apple ScreenCaptureKit content filters | Metis-HeyClicky-Interaction-Upgrade | [M2-0084](ledger/tickets/M2-0084.md), [M2-0178](ledger/tickets/M2-0178.md) | NOT_STARTED | M2-0084:ledger, M2-0178:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-11 | REF-11 | REF | Microsoft SendInput | Metis-HeyClicky-Interaction-Upgrade | [M2-0085](ledger/tickets/M2-0085.md), [M2-0133](ledger/tickets/M2-0133.md) | NOT_STARTED | M2-0085:ledger, M2-0133:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-12 | REF-12 | REF | Microsoft UI Automation control patterns | Metis-HeyClicky-Interaction-Upgrade | [M2-0085](ledger/tickets/M2-0085.md), [M2-0133](ledger/tickets/M2-0133.md) | NOT_STARTED | M2-0085:ledger, M2-0133:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-13 | REF-13 | REF | TypeSafe / Jev introduction | Metis-HeyClicky-Interaction-Upgrade | [M2-0123](ledger/tickets/M2-0123.md), [M2-0134](ledger/tickets/M2-0134.md) | NOT_STARTED | M2-0123:ledger, M2-0134:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-14 | REF-14 | REF | Laya source | Metis-HeyClicky-Interaction-Upgrade | [M2-0124](ledger/tickets/M2-0124.md), [M2-0135](ledger/tickets/M2-0135.md) | NOT_STARTED | M2-0124:ledger, M2-0135:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-15 | REF-15 | REF | Hindsight overview | Metis-HeyClicky-Interaction-Upgrade | [M2-0020](ledger/tickets/M2-0020.md), [M2-0135](ledger/tickets/M2-0135.md) | IN_PROGRESS | M2-0020:ledger, M2-0135:ledger |
-| Metis-HeyClicky-Interaction-Upgrade:REF-16 | REF-16 | REF | Hindsight memory banks | Metis-HeyClicky-Interaction-Upgrade | [M2-0020](ledger/tickets/M2-0020.md), [M2-0136](ledger/tickets/M2-0136.md) | IN_PROGRESS | M2-0020:ledger, M2-0136:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-01 | REF-01 | REF | HeyClicky product page | Metis-HeyClicky-Interaction-Upgrade | [M2-0082](ledger/tickets/M2-0082.md) | NOT_STARTED | M2-0082:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-02 | REF-02 | REF | HeyClicky changelog | Metis-HeyClicky-Interaction-Upgrade | [M2-0082](ledger/tickets/M2-0082.md) | NOT_STARTED | M2-0082:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-03 | REF-03 | REF | HeyClicky trust and privacy | Metis-HeyClicky-Interaction-Upgrade | [M2-0082](ledger/tickets/M2-0082.md) | NOT_STARTED | M2-0082:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-04 | REF-04 | REF | HeyClicky privacy policy | Metis-HeyClicky-Interaction-Upgrade | [M2-0082](ledger/tickets/M2-0082.md) | NOT_STARTED | M2-0082:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-05 | REF-05 | REF | Cua Driver upstream | Metis-HeyClicky-Interaction-Upgrade | [M2-0082](ledger/tickets/M2-0082.md) | NOT_STARTED | M2-0082:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-06 | REF-06 | REF | Cloudflare Nova-3 | Metis-HeyClicky-Interaction-Upgrade | [M2-0087](ledger/tickets/M2-0087.md) | NOT_STARTED | M2-0087:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-07 | REF-07 | REF | Cloudflare experimental voice pipeline | Metis-HeyClicky-Interaction-Upgrade | [M2-0087](ledger/tickets/M2-0087.md) | NOT_STARTED | M2-0087:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-08 | REF-08 | REF | OpenAI Realtime conversations | Metis-HeyClicky-Interaction-Upgrade | [M2-0087](ledger/tickets/M2-0087.md) | NOT_STARTED | M2-0087:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-09 | REF-09 | REF | Apple accessibility application element | Metis-HeyClicky-Interaction-Upgrade | [M2-0084](ledger/tickets/M2-0084.md) | NOT_STARTED | M2-0084:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-10 | REF-10 | REF | Apple ScreenCaptureKit content filters | Metis-HeyClicky-Interaction-Upgrade | [M2-0084](ledger/tickets/M2-0084.md) | NOT_STARTED | M2-0084:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-11 | REF-11 | REF | Microsoft SendInput | Metis-HeyClicky-Interaction-Upgrade | [M2-0085](ledger/tickets/M2-0085.md) | NOT_STARTED | M2-0085:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-12 | REF-12 | REF | Microsoft UI Automation control patterns | Metis-HeyClicky-Interaction-Upgrade | [M2-0085](ledger/tickets/M2-0085.md) | NOT_STARTED | M2-0085:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-13 | REF-13 | REF | TypeSafe / Jev introduction | Metis-HeyClicky-Interaction-Upgrade | [M2-0123](ledger/tickets/M2-0123.md) | NOT_STARTED | M2-0123:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-14 | REF-14 | REF | Laya source | Metis-HeyClicky-Interaction-Upgrade | [M2-0124](ledger/tickets/M2-0124.md) | NOT_STARTED | M2-0124:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-15 | REF-15 | REF | Hindsight overview | Metis-HeyClicky-Interaction-Upgrade | [M2-0020](ledger/tickets/M2-0020.md) | DONE | M2-0020:ledger |
+| Metis-HeyClicky-Interaction-Upgrade:REF-16 | REF-16 | REF | Hindsight memory banks | Metis-HeyClicky-Interaction-Upgrade | [M2-0020](ledger/tickets/M2-0020.md) | DONE | M2-0020:ledger |
 | Metis-HeyClicky-Interaction-Upgrade:REF-17 | REF-17 | REF | Hindsight retain | Metis-HeyClicky-Interaction-Upgrade | [M2-0020](ledger/tickets/M2-0020.md) | DONE | M2-0020:ledger |
 | r11:AGSTEP-01 | AGSTEP-01 | AGSTEP | Reconcile the actual reference and source baseline | r11 | [M2-0015](ledger/tickets/M2-0015.md) | NOT_STARTED | M2-0015:ledger |
 | r11:AGSTEP-02 | AGSTEP-02 | AGSTEP | Freeze agent/context/authority contracts | r11 | [M2-0064](ledger/tickets/M2-0064.md) | NOT_STARTED | M2-0064:ledger |
@@ -982,20 +982,20 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | v6:LFAC-10 | LFAC-10 | LFAC | Render | v6 | [M2-0180](ledger/tickets/M2-0180.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0180:ledger, M2-0182:ledger |
 | v6:LFAC-11 | LFAC-11 | LFAC | Formats and opening | v6 | [M2-0181](ledger/tickets/M2-0181.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0181:ledger, M2-0182:ledger |
 | v6:LFAC-12 | LFAC-12 | LFAC | Handoff/privacy | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0178:ledger, M2-0182:ledger |
-| v6:REF-01 | REF-01 | REF | BRAG repository | v6 | [M2-0082](ledger/tickets/M2-0082.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0082:ledger, M2-0180:ledger |
-| v6:REF-02 | REF-02 | REF | Full BRAG skill | v6 | [M2-0082](ledger/tickets/M2-0082.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0082:ledger, M2-0180:ledger |
-| v6:REF-03 | REF-03 | REF | BRAG slim | v6 | [M2-0082](ledger/tickets/M2-0082.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0082:ledger, M2-0180:ledger |
-| v6:REF-04 | REF-04 | REF | BRAG inspection | v6 | [M2-0082](ledger/tickets/M2-0082.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0082:ledger, M2-0180:ledger |
-| v6:REF-05 | REF-05 | REF | BRAG story planning | v6 | [M2-0082](ledger/tickets/M2-0082.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0082:ledger, M2-0180:ledger |
-| v6:REF-06 | REF-06 | REF | BRAG composition | v6 | [M2-0087](ledger/tickets/M2-0087.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0087:ledger, M2-0180:ledger |
-| v6:REF-07 | REF-07 | REF | BRAG delivery | v6 | [M2-0087](ledger/tickets/M2-0087.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0087:ledger, M2-0180:ledger |
-| v6:REF-08 | REF-08 | REF | BRAG audio | v6 | [M2-0087](ledger/tickets/M2-0087.md), [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0087:ledger, M2-0180:ledger |
-| v6:REF-09 | REF-09 | REF | Notchview | v6 | [M2-0084](ledger/tickets/M2-0084.md), [M2-0178](ledger/tickets/M2-0178.md) | NOT_STARTED | M2-0084:ledger, M2-0178:ledger |
-| v6:REF-10 | REF-10 | REF | Exact X video | v6 | [M2-0084](ledger/tickets/M2-0084.md), [M2-0178](ledger/tickets/M2-0178.md) | NOT_STARTED | M2-0084:ledger, M2-0178:ledger |
-| v6:REF-11 | REF-11 | REF | Hindsight repository | v6 | [M2-0085](ledger/tickets/M2-0085.md), [M2-0133](ledger/tickets/M2-0133.md) | NOT_STARTED | M2-0085:ledger, M2-0133:ledger |
-| v6:REF-12 | REF-12 | REF | Hindsight README | v6 | [M2-0085](ledger/tickets/M2-0085.md), [M2-0133](ledger/tickets/M2-0133.md) | NOT_STARTED | M2-0085:ledger, M2-0133:ledger |
-| v6:REF-13 | REF-13 | REF | Hindsight retain | v6 | [M2-0123](ledger/tickets/M2-0123.md), [M2-0134](ledger/tickets/M2-0134.md) | NOT_STARTED | M2-0123:ledger, M2-0134:ledger |
-| v6:REF-14 | REF-14 | REF | Hindsight recall | v6 | [M2-0124](ledger/tickets/M2-0124.md), [M2-0135](ledger/tickets/M2-0135.md) | NOT_STARTED | M2-0124:ledger, M2-0135:ledger |
-| v6:REF-15 | REF-15 | REF | Hindsight reflect | v6 | [M2-0020](ledger/tickets/M2-0020.md), [M2-0135](ledger/tickets/M2-0135.md) | IN_PROGRESS | M2-0020:ledger, M2-0135:ledger |
-| v6:REF-16 | REF-16 | REF | Hindsight documents | v6 | [M2-0020](ledger/tickets/M2-0020.md), [M2-0136](ledger/tickets/M2-0136.md) | IN_PROGRESS | M2-0020:ledger, M2-0136:ledger |
+| v6:REF-01 | REF-01 | REF | BRAG repository | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
+| v6:REF-02 | REF-02 | REF | Full BRAG skill | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
+| v6:REF-03 | REF-03 | REF | BRAG slim | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
+| v6:REF-04 | REF-04 | REF | BRAG inspection | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
+| v6:REF-05 | REF-05 | REF | BRAG story planning | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
+| v6:REF-06 | REF-06 | REF | BRAG composition | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
+| v6:REF-07 | REF-07 | REF | BRAG delivery | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
+| v6:REF-08 | REF-08 | REF | BRAG audio | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
+| v6:REF-09 | REF-09 | REF | Notchview | v6 | [M2-0178](ledger/tickets/M2-0178.md) | NOT_STARTED | M2-0178:ledger |
+| v6:REF-10 | REF-10 | REF | Exact X video | v6 | [M2-0178](ledger/tickets/M2-0178.md) | NOT_STARTED | M2-0178:ledger |
+| v6:REF-11 | REF-11 | REF | Hindsight repository | v6 | [M2-0133](ledger/tickets/M2-0133.md) | NOT_STARTED | M2-0133:ledger |
+| v6:REF-12 | REF-12 | REF | Hindsight README | v6 | [M2-0133](ledger/tickets/M2-0133.md) | NOT_STARTED | M2-0133:ledger |
+| v6:REF-13 | REF-13 | REF | Hindsight retain | v6 | [M2-0134](ledger/tickets/M2-0134.md) | NOT_STARTED | M2-0134:ledger |
+| v6:REF-14 | REF-14 | REF | Hindsight recall | v6 | [M2-0135](ledger/tickets/M2-0135.md) | NOT_STARTED | M2-0135:ledger |
+| v6:REF-15 | REF-15 | REF | Hindsight reflect | v6 | [M2-0135](ledger/tickets/M2-0135.md) | NOT_STARTED | M2-0135:ledger |
+| v6:REF-16 | REF-16 | REF | Hindsight documents | v6 | [M2-0136](ledger/tickets/M2-0136.md) | NOT_STARTED | M2-0136:ledger |
 

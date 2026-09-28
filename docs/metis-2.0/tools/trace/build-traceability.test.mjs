@@ -100,6 +100,17 @@ test("fails unmapped inventory rows", () => {
   assert.match(result.errors.join("\n"), /unmapped inventory row r11:TASK-001/);
 });
 
+test("fails dangling ticket kit_refs", () => {
+  const result = computeTraceability({
+    inventory,
+    ledger: { tickets: [baseTicket({ kit_refs: ["TASK-001", "NO-SUCH-ID"] })] },
+    decisionsText: "",
+    blockersText: "",
+  });
+
+  assert.match(result.errors.join("\n"), /ticket M2-0001 has dangling kit_ref NO-SUCH-ID/);
+});
+
 test("validates M2 names without accepting a bare prefix", () => {
   const invalidPrefix = computeTraceability({
     inventory,
@@ -125,20 +136,85 @@ test("disambiguates duplicated REF namespaces by kit tag", () => {
     rows: [
       { ...inventory.rows[0], id: "REF-01", family: "REF", kit: "Metis-HeyClicky-Interaction-Upgrade" },
       { ...inventory.rows[0], id: "REF-01", family: "REF", kit: "v6" },
+      { ...inventory.rows[0], id: "LF-01", family: "LF", kit: "v6" },
     ],
   };
   const result = computeTraceability({
     inventory: duplicatedInventory,
-    ledger: { tickets: [baseTicket({ kit_refs: ["REF-01"] })] },
+    ledger: {
+      tickets: [
+        baseTicket({ id: "M2-0001", title: "HeyClicky ticket", kit_refs: ["REF-01"] }),
+        baseTicket({ id: "M2-0002", title: "v6 ticket", kit_refs: ["LF-01", "REF-01"] }),
+      ],
+    },
     decisionsText: "",
     blockersText: "",
   });
 
-  assert.equal(result.matrix.rows.length, 2);
-  assert.deepEqual(result.matrix.rows.map((row) => `${row.kit}:${row.id}`).sort(), [
-    "Metis-HeyClicky-Interaction-Upgrade:REF-01",
-    "v6:REF-01",
+  assert.deepEqual(result.errors, []);
+  const byKey = new Map(result.matrix.rows.map((row) => [`${row.kit}:${row.id}`, row]));
+  assert.deepEqual(byKey.get("Metis-HeyClicky-Interaction-Upgrade:REF-01").tickets.map((ticket) => ticket.id), [
+    "M2-0001",
   ]);
+  assert.deepEqual(byKey.get("v6:REF-01").tickets.map((ticket) => ticket.id), ["M2-0002"]);
+  assert.deepEqual(byKey.get("v6:LF-01").tickets.map((ticket) => ticket.id), ["M2-0002"]);
+});
+
+test("uses local REF range notes before broader ticket namespace hints", () => {
+  const duplicatedInventory = {
+    rows: [
+      { ...inventory.rows[0], id: "REF-15", family: "REF", kit: "Metis-HeyClicky-Interaction-Upgrade" },
+      { ...inventory.rows[0], id: "REF-15", family: "REF", kit: "v6" },
+    ],
+  };
+  const result = computeTraceability({
+    inventory: duplicatedInventory,
+    ledger: {
+      tickets: [
+        baseTicket({
+          id: "M2-0001",
+          summary: "v6 is mentioned earlier. REF-15..17 on this ticket are the HeyClicky interaction kit records; the v6 records sit elsewhere.",
+          kit_refs: ["REF-15"],
+        }),
+        baseTicket({
+          id: "M2-0002",
+          summary: "REF-15 here is the v6 Hindsight record.",
+          kit_refs: ["REF-15"],
+        }),
+      ],
+    },
+    decisionsText: "",
+    blockersText: "",
+  });
+
+  assert.deepEqual(result.errors, []);
+  const byKey = new Map(result.matrix.rows.map((row) => [`${row.kit}:${row.id}`, row]));
+  assert.deepEqual(byKey.get("Metis-HeyClicky-Interaction-Upgrade:REF-15").tickets.map((ticket) => ticket.id), [
+    "M2-0001",
+  ]);
+  assert.deepEqual(byKey.get("v6:REF-15").tickets.map((ticket) => ticket.id), ["M2-0002"]);
+});
+
+test("accepts DEFERRED evidence kit_ref status", () => {
+  const result = computeTraceability({
+    inventory,
+    ledger: { tickets: [baseTicket({ status: "IN_PROGRESS" })] },
+    evidenceRecords: [
+      {
+        ticket: "M2-0001",
+        evidence_level: "LOCALLY_TESTED",
+        kit_refs: { "TASK-001": "DEFERRED" },
+        _record_file: "fixture.jsonl",
+        _record_line: 1,
+      },
+    ],
+    decisionsText: "",
+    blockersText: "",
+  });
+
+  assert.deepEqual(result.errors, []);
+  assert.equal(result.matrix.rows[0].status, "ENGINEERING_COMPLETE");
+  assert.equal(result.matrix.rows[0].tickets[0].evidence_status, "DEFERRED");
 });
 
 test("checks dangling decisions and blocker ticket citations", () => {
