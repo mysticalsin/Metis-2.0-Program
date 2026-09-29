@@ -207,6 +207,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0031 owner_model -> opus (P0; v6 root-cause plan)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0421 (native App build blocking; M2-0050 follow-up)."
   }
  ],
  "tickets": [
@@ -22388,6 +22394,40 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
    }
+  },
+  {
+   "id": "M2-0421",
+   "title": "Make the native App build blocking in CI: remove continue-on-error from build.yml's native job",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P2",
+   "depends_on": [
+    "M2-0050"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "M2-0050"
+   ],
+   "scope_paths": [
+    ".github/workflows/build.yml"
+   ],
+   "summary": "M2-0050 added the native job with 'Build the native App (macOS)' as report-only (continue-on-error) for a week, because the SwiftUI shell had never been built in CI. It built green on its first runs (PR #314 run 36520183959 and m2/integration after the merge), so a broken App build must now block merges like every other check.",
+   "acceptance": [
+    "The 'Build the native App (macOS)' step in build.yml no longer has continue-on-error, and its comment states that the step is blocking",
+    "No other step, trigger or job changes",
+    "LEAD_ACTION (after merge, not the implementer's): the lead confirms the step is green on the next m2/integration run"
+   ],
+   "verification": [
+    "CI Build & Test on the PR (native job green)"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 0.5,
+   "status": "TODO"
   }
  ]
 }
