@@ -213,6 +213,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0421 (native App build blocking; M2-0050 follow-up)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0422 (boot main-thread block 1.3 s from the ST-1 CPU profiles; not the History P0)."
   }
  ],
  "tickets": [
@@ -22433,6 +22439,42 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 0.5,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0422",
+   "title": "Cut the 1.3 s boot main-thread block: async process listing, tray after first paint, and yield between boot steps",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "ST-1-RUN-36527480638",
+    "M2-0031"
+   ],
+   "scope_paths": [
+    "src/main/"
+   ],
+   "summary": "The M2-0031 ST-1 CPU profiles (QA run 36527480638, with and without fixtures) show one uninterrupted main-thread stretch of 1.27-1.42 s during boot, in the continuation after installProxyAwareFetch. About 60% of it is createWindow (native View construction), about 20% createTray, and about 15% a synchronous `ps` listing (execFileSync via listPosixProcesses/parsePosixPsLine, reached from the boot sidecar reaper / stall sampler). The app is unresponsive for that whole time at every launch.",
+   "acceptance": [
+    "The process listing used at boot (listPosixProcesses and its callers) runs asynchronously (execFile/spawn with a timeout), never execFileSync, on the main thread. The existing sidecar-reaper and stall-sampler behaviour and tests keep passing",
+    "Tray creation runs after the main window's first paint (ready-to-show or did-finish-load), in its own task. Boot steps that do not depend on each other are split with a yield (setImmediate), so no single boot task holds the main thread for window creation plus tray plus process listing",
+    "A contract test fails if execFileSync/spawnSync appears in the boot path files named above",
+    "No behaviour change visible to the user beyond a faster first paint; no test body weakened",
+    "LEAD_ACTION (after merge, not the implementer's): the lead records the boot-phase longest main-thread stretch from the next ST-1 CPU profile (baseline 1273-1417 ms)"
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "ST-1 CPU profile (lead)"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
    "status": "TODO"
   }
  ]
