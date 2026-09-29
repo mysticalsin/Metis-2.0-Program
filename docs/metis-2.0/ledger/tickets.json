@@ -6235,11 +6235,17 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "ENGINEERING_COMPLETE",
    "notes": "D-11 and D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): qualify Cloudflare-hosted speech reached only through the Operator broker. The route record also states the gateway log mode per transport (the per-request payload header exists for HTTP; the Worker binding has only collectLog), whether the account uses Legacy Logs or Workers Logs, and the metadata retention bound. Acceptance unchanged. 2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Finish PR #13 per codex-queue/state/M2-0102.feedback. Rewrite the realtime-WebSocket log-mode bullets (lines 135-137) as single-label DERIVED/UNKNOWN bullets. They must follow the POLICY-2.0.md D-12 control set: gateway Logs off for that transport, the metadata record kept in the Operator broker ledger, and the transport BLOCKED under MASTER §16.6.3 until the M2-0149 WebSocket sentinel proves it. Move the [AC] sentence into the HTTP bullet, fold the duplicated retention bound (lines 126-127) into one, and fix the footnote-15 wording and PR body. Keep the per-transport log mode, Legacy Logs vs Workers Logs, the metadata retention bound and the no-generic-ZDR stance, per the ticket notes. Code follow-ups (per-session gateway verification) stay with M2-0104 and M2-0149 as the record says. The proof is the independent Opus review (grep for mixed labels returns nothing), plus traceability --check if the private Actions budget allows. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Cloudflare account owner (Mantu IT; person to be named) confirms which terms govern the Workers AI @cf/deepgram/nova-3 entitlement on the Mantu account, and whether any Deepgram or MIP terms pass through. The same owner gives a read-only readback of AI Gateway settings: Logs and Caching state, the logging regime (Legacy Logs vs Workers Logs, or the first-gateway creation date), and the Data Localization Suite / Customer Metadata Boundary entitlement.",
    "claimed_by": "ticket runner batch 10 (Codex implements; Opus for M2-0092)",
    "claimed_at": "2026-09-27",
-   "engineering_first": true
+   "engineering_first": true,
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/30",
+    "merged_into": "main (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + CI green"
+   }
   },
   {
    "id": "M2-0103",
