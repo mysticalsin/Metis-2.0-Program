@@ -4,7 +4,7 @@
 |---|---|
 | Owner | Program owner (Tony); Opus records and validates |
 | Date | 2026-09-26 |
-| Contents | A. Owner decisions already made · B. Program decisions (Opus) · C. Engineering ADR index · D. Open decision register D-1..D-30 · E. D-7 follow-through: dock-lineage disposition (PROPOSED) |
+| Contents | A. Owner decisions already made · B. Program decisions (Opus) · C. Engineering ADR index · D. Open decision register D-1..D-30 · E. D-7 follow-through: dock-lineage disposition (PROPOSED) · F. Weekly decision slot |
 | How to answer | One line per decision in the weekly 30-minute decision slot (first slot by 2026-10-02), or in the ticket. Answers are copied into the affected tickets and `_relay/HANDOFF.md` |
 | Rule | A **reversible** decision takes its recorded default at its needed-by date if unanswered, and stays labelled ASSUMED in the affected tickets until confirmed. An **escalated** decision (spend, legal-privacy, security, owner configuration, irreversible) never auto-applies: engineering proceeds on the default labelled ASSUMED, and the release claim waits for the answer. Decision dependencies (`needs_decision`) never cap a ticket's evidence; artifact dependencies (`depends_on`) do |
 
@@ -103,7 +103,7 @@ Full bodies are in [ARCHITECTURE.md §5](ARCHITECTURE.md). Status for all is PRO
 
 ## D. Open decision register
 
-Days waiting are counted from 2026-09-26. As of 2026-09-26: 0 days for every open row.
+Days waiting are counted from 2026-09-26. As of 2026-09-28: 2 days for every row still OPEN (DERIVED).
 
 | ID | Question | Recommended default | Class | Needed by | Status | Affected tickets |
 |---|---|---|---|---|---|---|
@@ -264,3 +264,17 @@ Before step 1, re-check E.2 rows 1, 3 and 4 against the current m2/integration t
 3. Comment on #192 to #194: `gh pr comment <n> --repo mysticalsin/AskToto-Mantu --body "<text>"`.
 4. Verify: `gh pr list --repo mysticalsin/AskToto-Mantu --state open --limit 100 --json number --jq '[.[].number]'` lists none of 187 to 194, and `gh pr view <n> --repo mysticalsin/AskToto-Mantu --json comments` shows each text.
 5. Leave the branches (E.5) and the v1.9.8 draft (E.6) as they are.
+
+## F. Weekly owner decision slot and day-one packet (M2-0012)
+
+| Item | Value | Label |
+|---|---|---|
+| Cadence | One fixed 30-minute owner decision slot every week; the owner picks the weekday and time | PROPOSED |
+| First slot | Held by 2026-10-02 (the day the one-page policy M2-0189 is due) | PROVIDED (ticket M2-0012) |
+| Booking | BLOCKED_EXTERNAL: needs the owner's calendar; the autopilot cannot book it | BLOCKED_EXTERNAL |
+| Agenda | Open rows of §D by needed-by date, then the D-x whose defaults land before the next slot; one line per answer | PROPOSED |
+| After the slot | LEAD_ACTION: copy each answer into the affected tickets and `_relay/HANDOFF.md`, and update the Status column of §D | LEAD_ACTION |
+| Later slots | Checked at each train gate (T1 m5, T2 m6, T3 m7, rc1); a missed slot means reversible defaults apply at needed-by and escalated rows stay open | DERIVED from the Rule above |
+| Register scope | §D holds D-1..D-29 as required, plus D-30 and D-31 added later; every row carries question, recommended default, class, needed-by and affected tickets | OBSERVED (§D) |
+| Requests to external roles | Drafted in [owner-requests/](owner-requests/), one per role, NOT SENT; the owner sends them and names the person (BLOCKERS.md) | OBSERVED |
+| Answered at 2026-09-28 | D-4, D-6, D-9, D-11, D-12, D-13, D-24, D-28, D-31 (see §D Status); D-1 defaults on 2026-09-30 if unanswered | OBSERVED (§D) |
