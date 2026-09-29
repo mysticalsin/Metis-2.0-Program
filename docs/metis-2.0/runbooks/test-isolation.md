@@ -15,7 +15,7 @@ Labels: OBSERVED (read, source given), DERIVED, ASSUMED, UNKNOWN.
 
 1. OBSERVED (docs/metis-2.0/ledger/tickets/M2-0001.md:61, M2-0190.md:49): the first run of any suite is in CI on macOS and Ubuntu runners with the honeypot directory `~/Library/CloudStorage/OneDrive-Honeypot`; a touch fails the job.
 2. OBSERVED (OD-26 above): hosted runners (macos-latest, windows-latest) are the live host for packaged-app and host evidence, installing the candidate by run id and sha256 on a fresh profile.
-3. OBSERVED (D-28): no owner-Mac runs. The QA-account step is superseded by D-9 and OD-26. Note the mismatch: M2-0190's acceptance text (docs/metis-2.0/ledger/tickets.json:11898) still reads "CI (macOS and Ubuntu with the honeypot), then the QA account, then the owner's account under the sandbox profile"; this runbook's order governs.
+3. OBSERVED (D-28): no owner-Mac runs. The QA-account step is superseded by D-9 and OD-26. Note the mismatch: M2-0190's acceptance text (ticket M2-0190, field `acceptance` in docs/metis-2.0/ledger/tickets.json) still reads "CI (macOS and Ubuntu with the honeypot), then the QA account, then the owner's account under the sandbox profile"; this runbook's order governs.
 4. The sandbox profile below applies only if the owner later lifts D-28. Until then it is a design, not a procedure.
 
 ## Sandbox profile (design from the ticket, not from the file)
@@ -32,7 +32,7 @@ OBSERVED (M2-0190.md:46): swift test, license-server node --test and scripts/qa 
 
 ## Canary job recorded in the repo
 
-OBSERVED (docs/metis-2.0/ledger/tickets.json:11927-11932): the one `isolation-canary` job name recorded here is "owner-account.sb denies real user state (hermetic)", green on macos-latest, run 36634756903, commit 761276bc (HOST_CONFIGURED under OD-26, recorded 2026-09-29 by the lead). DERIVED: it exercises `scripts/hermetic/owner-account.sb`.
+OBSERVED (ticket M2-0190, evidence field in docs/metis-2.0/ledger/tickets.json): the one `isolation-canary` job name recorded here is "owner-account.sb denies real user state (hermetic)", green on macos-latest, run 36634756903, commit 761276bc (HOST_CONFIGURED under OD-26, recorded 2026-09-29 by the lead). DERIVED: it exercises `scripts/hermetic/owner-account.sb`.
 
 ## Unread sources (BLOCKING: acceptance 1 unmet)
 
@@ -41,6 +41,6 @@ The brief requires citing `scripts/hermetic/owner-account.sb`, `scripts/hermetic
 - UNKNOWN: the exact rules, variable names and flags in `owner-account.sb` and `run-under-owner-sandbox.sh`.
 - UNKNOWN: the job names and checks in `isolation-canary.yml`. Only its existence is OBSERVED (docs/metis-2.0/runbooks/integration.md:239).
 
-LEAD_ACTION: amend the acceptance text of M2-0190 in docs/metis-2.0/ledger/tickets.json (line 11898 at time of writing) to drop the QA-account and owner-account steps, so it matches D-9, D-28, OD-26 and this runbook's run order.
+LEAD_ACTION: amend the acceptance text of M2-0190 in docs/metis-2.0/ledger/tickets.json (field `acceptance`) to drop the QA-account and owner-account steps, so it matches D-9, D-28, OD-26 and this runbook's run order.
 
 LEAD_ACTION: in a clone of the public repo (metis-operator-ux), run `git show origin/m2/integration:scripts/hermetic/owner-account.sb`, the same for `scripts/hermetic/run-under-owner-sandbox.sh` and `.github/workflows/isolation-canary.yml`, then add sections "Profile as merged", "Wrapper" and "Canary jobs" here with file:line citations, or re-dispatch M2-0481 with that permission granted.
