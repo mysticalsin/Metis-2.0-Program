@@ -219,6 +219,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0422 (boot main-thread block 1.3 s from the ST-1 CPU profiles; not the History P0)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Owner-approved ledger batch from the LEAD_ACTION triage: M2-0128 depends_on += M2-0135; M2-0129 depends_on += M2-0134; M2-0141 depends_on += M2-0135; M2-0141 depends_on += M2-0137; M2-0129 -> M2-0136 omitted (would cycle via M2-0132); M2-0344 kit_refs += HM-FLOW-01; M2-0344 kit_refs += HM-FLOW-02; M2-0344 kit_refs += HM-FLOW-03; M2-0344 kit_refs += HM-FLOW-04; M2-0334 kit_refs += HM-FLOW-05; M2-0343 kit_refs += HM-FLOW-06; M2-0183 HB acceptance; M2-0093 design note; M2-0094 design note; M2-0100 design note; M2-0114 design note; M2-0117 design note; M2-0130 design note; M2-0137 design note; M2-0158 design note; M2-0160 design note; M2-0120 re-validated; blocker narrowed to mirror audience; M2-0031 finding_refs += RF-AUDIT-R1-R2; M2-0191 finding_refs += RF-AUDIT-R1-R2; M2-0191 finding_refs += RF-AUDIT-R1-R3; NEW M2-0423 P0 Refuse a destructive rebuild of an unavailable brain index, and reject; NEW M2-0424 P1 Let freeze-repro take a QA candidate by run id and sha256, and emit an; NEW M2-0425 P1 Add a dispatchable baseline workflow that runs every M2-0005 gate on 2; NEW M2-0426 P2 Prove developer-efficiency metrics never reach Operator usage: operato; NEW M2-0427 P2 Fail the packaged build if the installer ships graphify, code-review-g"
   }
  ],
  "tickets": [
@@ -543,7 +549,8 @@
     "merged_into": "main (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): the CI baseline run is carried by M2-0425 (a new public workflow); this ticket's status is unchanged"
   },
   {
    "id": "M2-0006",
@@ -2225,7 +2232,8 @@
     "P7-RANK1",
     "L03-05",
     "L03-06",
-    "B1-RC3"
+    "B1-RC3",
+    "RF-AUDIT-R1-R2"
    ],
    "scope_paths": [
     "src/main/brain/store.ts",
@@ -5823,7 +5831,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "C-08 (which chrome modes show the ARMED orb, and whether `hide` stays the fresh default) is still an open owner question with no D-row: D-4 was labelled C-03/C-08/C-16 but answers C-16 only (docs/metis-2.0/POLICY-2.0.md). Do not change the fresh default silently."
+   "notes": "C-08 (which chrome modes show the ARMED orb, and whether `hide` stays the fresh default) is still an open owner question with no D-row: D-4 was labelled C-03/C-08/C-16 but answers C-16 only (docs/metis-2.0/POLICY-2.0.md). Do not change the fresh default silently. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0093/ (placeholders until M2-0418 Electron capture + Opus acceptance)"
   },
   {
    "id": "M2-0094",
@@ -5876,7 +5884,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0094/ (placeholders until M2-0418 Electron capture + Opus acceptance)"
   },
   {
    "id": "M2-0095",
@@ -6261,7 +6270,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0100/ (placeholders until M2-0418 Electron capture + Opus acceptance)"
   },
   {
    "id": "M2-0101",
@@ -7105,7 +7115,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0114/ (placeholders until M2-0418 Electron capture + Opus acceptance)"
   },
   {
    "id": "M2-0115",
@@ -7274,7 +7285,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0117/ (placeholders until M2-0418 Electron capture + Opus acceptance)"
   },
   {
    "id": "M2-0118",
@@ -7443,8 +7455,8 @@
     "LOCALLY_TESTED"
    ],
    "external_blocker": {
-    "owner": "Tony (owner decision D-6)",
-    "unblock": "Answer D-6 (canonical store); then update ADR-019 status row and section 2.2",
+    "owner": "Tony (owner decision D-6, second half)",
+    "unblock": "Confirm the plaintext-mirror audience (M1/M2/M3; assumed M1); then update ADR-019 O-1 and section 9.2",
     "needed_by": "2026-10-12",
     "raised_on": "2026-09-27"
    },
@@ -7463,7 +7475,8 @@
     "red_run": "36285223679",
     "green_run": "36286531924",
     "validation": "Opus PASS round 2 (batch 3); acceptance 1 blocked on D-6"
-   }
+   },
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): acceptance 1 re-validated 2026-09-28 by the independent Opus review of M2-0265 (codex-queue/logs/codex/M2-0265-review-1.last.txt, PASS against the D-6 row). D-6 canonical store answered (ANSWERED_AS_DEFAULT 2026-09-27: M365 via Entra API); the plaintext-mirror audience (M1/M2/M3) is still ASSUMED M1 and stays an owner question."
   },
   {
    "id": "M2-0121",
@@ -7946,7 +7959,8 @@
     "M2-0127",
     "M2-0121",
     "M2-0042",
-    "M2-0202"
+    "M2-0202",
+    "M2-0135"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -8002,7 +8016,8 @@
    "type": "feature",
    "owner_model": "sonnet",
    "depends_on": [
-    "M2-0128"
+    "M2-0128",
+    "M2-0134"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -8045,7 +8060,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): ADR-024's proposed dependency on M2-0136 is omitted: M2-0136 already depends on this ticket via M2-0132, so the edge would form a cycle; the existing chain already orders them."
   },
   {
    "id": "M2-0130",
@@ -8125,7 +8141,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0130/ (placeholders until M2-0418 Electron capture + Opus acceptance)"
   },
   {
    "id": "M2-0131",
@@ -8538,7 +8555,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0137/ (placeholders until M2-0418 Electron capture + Opus acceptance)"
   },
   {
    "id": "M2-0138",
@@ -8714,7 +8732,9 @@
    "depends_on": [
     "M2-0140",
     "M2-0127",
-    "M2-0106"
+    "M2-0106",
+    "M2-0135",
+    "M2-0137"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -9756,7 +9776,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0158/ (placeholders until M2-0418 Electron capture + Opus acceptance)"
   },
   {
    "id": "M2-0159",
@@ -9930,7 +9951,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: the text-led welcome ships as final (no recorded video); ASSUMED per D-20 default."
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: the text-led welcome ships as final (no recorded video); ASSUMED per D-20 default. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0160/ (placeholders until M2-0418 Electron capture + Opus acceptance)"
   },
   {
    "id": "M2-0161",
@@ -11154,14 +11175,16 @@
    "scope_paths": [
     "docs/metis-2.0/FINAL-AUDIT.md",
     "_relay/HANDOFF.md",
-    "docs/metis-2.0/CURRENT.md"
+    "docs/metis-2.0/CURRENT.md",
+    "docs/metis-2.0/HOST-BINDINGS.md"
    ],
    "summary": "Close or explicitly disposition every requirement, use case, owner commitment, golden flow and historical finding; run the section 27 linter and list missing or stale receipts; commission independent Codex and ChatGPT audits of the final state; and leave a resumable handoff. One green run never promotes every row to verified.",
    "acceptance": [
     "Every canonical ID dispositioned in the traceability matrix",
     "Section 27 linter output attached; stale receipts listed",
     "Independent Codex and ChatGPT audits run and their findings dispositioned",
-    "Resumable handoff and CURRENT.md complete"
+    "Resumable handoff and CURRENT.md complete",
+    "FINAL-AUDIT.md lists every UNBOUND host-binding row (HB-04, HB-05, HB-06, HB-07, HB-09, HB-10b) with its owning ticket, or records it BOUND with its production symbol; check-bindings.mjs passes against FINAL-AUDIT.md"
    ],
    "verification": [
     "node scripts/trace/build-traceability.mjs --check",
@@ -11602,7 +11625,9 @@
    ],
    "finding_refs": [
     "B1-RC4",
-    "CHATGPT-A7"
+    "CHATGPT-A7",
+    "RF-AUDIT-R1-R2",
+    "RF-AUDIT-R1-R3"
    ],
    "scope_paths": [
     "native/mac-helper/main.swift",
@@ -18596,7 +18621,9 @@
     "M2-0133",
     "M2-0121"
    ],
-   "kit_refs": [],
+   "kit_refs": [
+    "HM-FLOW-05"
+   ],
    "finding_refs": [
     "AUDIT-2026-09-28",
     "HSAC-06",
@@ -18620,7 +18647,8 @@
     "A matrix generated from the pinned OpenAPI document marks every route gateway-only, blocked or allowed-with-scope; CI fails when the schema has an unlisted route",
     "For each route a principal from another team and a service principal try a foreign bank id, a tampered tag set and an empty tag set; every attempt is denied before data returns",
     "The Hindsight API, database and control plane are unreachable from outside the compose network except through the gateway (network test)",
-    "A stale lease (assertFresh after revocation) and a revoked membership are denied on recall, list and export; memory cache keys include principal, bank generation and epoch so two principals get no cross-principal hit"
+    "A stale lease (assertFresh after revocation) and a revoked membership are denied on recall, list and export; memory cache keys include principal, bank generation and epoch so two principals get no cross-principal hit",
+    "HM-FLOW-05 (security and privacy): foreign bank ids, empty or fuzzy scopes and tampered tags are rejected on every route before data returns"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -19049,7 +19077,9 @@
     "M2-0133",
     "M2-0332"
    ],
-   "kit_refs": [],
+   "kit_refs": [
+    "HM-FLOW-06"
+   ],
    "finding_refs": [
     "AUDIT-2026-09-28",
     "v6-brag-hindsight-113",
@@ -19067,7 +19097,8 @@
     "ACTIVATION-CHECKLIST.md lists version, OpenAPI hash, config readback, model configuration, region, retention owner and days, customer-data and privacy approval; the service stays disabled until every item is recorded",
     "Real-data retain, live smoke, Docker deployment and billable provider calls each require a dated approval record; tests show refusal without it",
     "The release decision (M2-0171) fails when release notes claim memory on a platform without a LIVE_VERIFIED memory proof for that platform",
-    "Release qualification records the memory service version, image digest and DB version"
+    "Release qualification records the memory service version, image digest and DB version",
+    "HM-FLOW-06 (release): qualification records the memory service version, image digest and DB version for the exact signed candidate"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -19096,7 +19127,12 @@
     "M2-0340",
     "M2-0341"
    ],
-   "kit_refs": [],
+   "kit_refs": [
+    "HM-FLOW-01",
+    "HM-FLOW-02",
+    "HM-FLOW-03",
+    "HM-FLOW-04"
+   ],
    "finding_refs": [
     "AUDIT-2026-09-28",
     "HSAC-20",
@@ -19117,7 +19153,11 @@
     "notes, global toggle, approved remember, new-session recall, correction, authorized Dust/agent readback and forget run on identified packaged Windows and Mac artifacts and a second device with artifact hashes; the native-Mac row is BLOCKED until the native memory client lands",
     "Portal usage for the journey reconciles with the service ledger",
     "Fault matrix injected separately: DB down, provider down, telemetry sink down, malformed provider response, poisoned entity name, key rotation mid-run, budget exhaustion and two replicas racing one document; no note loss, resurrection or duplicate, and each shows honest status",
-    "The M2-0176 meeting-to-knowledge journey includes the scoped team-memory step (approve, project to team scope, teammate recall); each step maps to its HM-FLOW id in the evidence record"
+    "The M2-0176 meeting-to-knowledge journey includes the scoped team-memory step (approve, project to team scope, teammate recall); each step maps to its HM-FLOW id in the evidence record",
+    "HM-FLOW-01 (remember and reuse): the approved-remember, new-session recall and correction steps map to HM-FLOW-01 in the evidence record",
+    "HM-FLOW-02 (meeting to team knowledge): the scoped team-memory step and authorized Dust readback map to HM-FLOW-02",
+    "HM-FLOW-03 (forget under concurrency): delete or revoke a source while recall, reflect and retain are in flight; leases invalidate, no late answer or publication, and no resurrection from backup or cache even when the Hindsight stale flag stays false",
+    "HM-FLOW-04 (honest outage and limits): the separately injected fault matrix shows the correct state, local stop keeps working, and there is no silent third-party fallback"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -22509,6 +22549,195 @@
      "LEAD_ACTION acceptance item (lead, after merge)"
     ]
    }
+  },
+  {
+   "id": "M2-0423",
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "title": "Refuse a destructive rebuild of an unavailable brain index, and reject a compatible future-schema index before accepting it",
+   "type": "fix",
+   "priority": "P0",
+   "finding_refs": [
+    "RF-AUDIT-R1-B1",
+    "RF-AUDIT-R1-B2",
+    "RF-AUDIT-R1-B3",
+    "RF-AUDIT-R1-R1"
+   ],
+   "scope_paths": [
+    "src/main/brain/ingest.ts",
+    "src/main/brain/store.ts",
+    "src/main/brain/ingest-index-unavailable.test.ts",
+    "src/main/brain/store.test.ts",
+    "src/main/mqa-175-brain-index-poison.test.ts",
+    "src/shared/brain.ts"
+   ],
+   "summary": "Codex audit r1 (docs review audit-r1): (B1) an explicit rebuild purges .brain after readIndex() returned the empty stand-in for an UNAVAILABLE index. purgeBrain() does rmSync(root), so an undecryptable or temporarily unreadable existing index is destroyed. (B2) ingest-index-unavailable.test.ts blesses startRebuild as the repair path and asserts a readable replacement, so CI protects the data-loss behaviour. (B3) store.ts validates BrainIndexSchema before checking schema_version > BRAIN_SCHEMA_VERSION, so a compatible future-schema index is accepted and later downgraded. (R1) no test covers a compatible future schema. First re-verify the cited lines at HEAD.",
+   "acceptance": [
+    "When the index is unavailable (undecryptable, unreadable, dataless or future-schema), startRebuild returns an 'unavailable' error and leaves .brain byte-identical (index sha256 unchanged; asserted in a test); purgeBrain is never reached from that state",
+    "The tests that encode destroy-and-replace as the repair path are replaced with tests that assert the refusal; no other test is weakened",
+    "schema_version is checked before schema validation: an index with {schema_version: 99} and an otherwise compatible shape is classified unsupported, and writeIndex refuses to overwrite it (new test); the invalid-shape future-schema test stays",
+    "User-facing copy for the refusal says the index is kept and how to recover (no data loss), in the existing error surface"
+   ],
+   "verification": [
+    "CI Build & Test on the PR"
+   ],
+   "risk": "medium",
+   "estimate_hours": 4
+  },
+  {
+   "id": "M2-0424",
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "depends_on": [
+    "M2-0414"
+   ],
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "title": "Let freeze-repro take a QA candidate by run id and sha256, and emit an M2-0194 attribution bundle",
+   "type": "test",
+   "priority": "P1",
+   "finding_refs": [
+    "LEAD-ACTION-TRIAGE-2026-09-29-L30",
+    "M2-0194"
+   ],
+   "scope_paths": [
+    ".github/workflows/freeze-repro.yml",
+    "scripts/qa/",
+    "scripts/evidence/check.mjs"
+   ],
+   "summary": "The M2-0194 head-observability record needs the freeze-repro matrix run against an exact QA candidate. Today freeze-repro.yml and run-matrix.sh are M2-0008-only, and check.mjs validates only the M2-0008 shape (check.mjs ~589, ~611).",
+   "acceptance": [
+    "freeze-repro.yml accepts candidate_run and sha256 inputs (workflow_dispatch), downloads that qa-candidate.yml artifact, and verifies the hash before install; a mismatch fails the job",
+    "The run emits an M2-0194 bundle: matrix.jsonl, interrupt-results.jsonl, stall/reveal/sidecar/sampler excerpts, and stall-bundle names only (no content)",
+    "scripts/evidence/check.mjs --ticket M2-0194 validates that bundle shape with fixture tests; M2-0008 behaviour and tests are unchanged",
+    "Runs only from main (ref guard), actions pinned by SHA, no secrets",
+    "LEAD_ACTION (after merge, not the implementer's): the lead dispatches it with a qa-candidate build and files the M2-0194 LIVE_VERIFIED record"
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "lead dispatch"
+   ],
+   "risk": "low",
+   "estimate_hours": 4
+  },
+  {
+   "id": "M2-0425",
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "title": "Add a dispatchable baseline workflow that runs every M2-0005 gate on 2bf21f1c under the hermetic harness",
+   "type": "ci",
+   "priority": "P1",
+   "finding_refs": [
+    "LEAD-ACTION-TRIAGE-2026-09-29-L22",
+    "M2-0005"
+   ],
+   "scope_paths": [
+    ".github/workflows/"
+   ],
+   "summary": "M2-0005 recorded the verification baseline design, but no CI run of 2bf21f1c under the M2-0001/M2-0190 hermetic harness exists, so its baseline numbers are UNKNOWN. Amending the private docs ticket would switch it to code mode, so this is a separate public ticket.",
+   "acceptance": [
+    "A workflow_dispatch workflow on main checks out 2bf21f1c, overlays only the M2-0001/M2-0190 hermetic harness files, and runs every M2-0005 gate: typecheck, root/proxy/operator tests, check:skips, check:bugs, license-server node --test, and MetisKit swift test via the hermetic wrappers with the honeypot",
+    "Each gate's exit code is captured without stopping the others, and per-OS Vitest JSON is uploaded as an artifact",
+    "Actions pinned by SHA; no secrets; the overlay step fails loudly if a harness file does not apply to 2bf21f1c",
+    "LEAD_ACTION (after merge, not the implementer's): the lead dispatches it and fills M2-0005's baseline document from the artifact"
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "lead dispatch"
+   ],
+   "risk": "low",
+   "estimate_hours": 3
+  },
+  {
+   "id": "M2-0426",
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "title": "Prove developer-efficiency metrics never reach Operator usage: operator.test.ts regression",
+   "type": "test",
+   "priority": "P2",
+   "finding_refs": [
+    "LEAD-ACTION-TRIAGE-2026-09-29-L78",
+    "ADR-025"
+   ],
+   "scope_paths": [
+    "src/shared/operator.test.ts",
+    "src/shared/operator.ts"
+   ],
+   "summary": "ADR-025 keeps engineering-graph and developer metrics out of product telemetry. No test locks that the Operator usage payload drops them.",
+   "acceptance": [
+    "Tests assert that graphTokens, compactionTokens, indexCommit, searchCount and devTokens are dropped from every Operator usage payload",
+    "graph/compaction events map to null (not sent)",
+    "The ask key set is frozen by a test, so a new key needs an explicit test change"
+   ],
+   "verification": [
+    "CI Build & Test on the PR"
+   ],
+   "risk": "low",
+   "estimate_hours": 1
+  },
+  {
+   "id": "M2-0427",
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "depends_on": [],
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "title": "Fail the packaged build if the installer ships graphify, code-review-graph or a bundled Python",
+   "type": "ci",
+   "priority": "P2",
+   "finding_refs": [
+    "LEAD-ACTION-TRIAGE-2026-09-29-L79",
+    "ADR-025",
+    "M2-0074",
+    "M2-0169"
+   ],
+   "scope_paths": [
+    "scripts/",
+    "package.json",
+    ".github/workflows/"
+   ],
+   "summary": "ADR-025: developer graph tooling must never ship in the product. Nothing checks the packaged app for it.",
+   "acceptance": [
+    "After the macOS and Windows packaged builds, a check fails if the package contains graphify, code-review-graph or a bundled Python interpreter",
+    "The allowlist holds only resources/graphify_runner.py, with a comment citing M2-0074/M2-0169",
+    "The path matcher is unit-tested with fixture file lists (hit, allowlisted, clean)",
+    "LEAD_ACTION (after merge, not the implementer's): the lead records the first packaged run's result"
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "packaged smoke"
+   ],
+   "risk": "low",
+   "estimate_hours": 2
   }
  ]
 }
