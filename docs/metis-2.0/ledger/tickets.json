@@ -357,6 +357,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0011 and M2-0442 DONE (every required level proven; no open caps)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0262 DONE (traceability green with HM-FLOW rows); M2-0386 LOCALLY_TESTED recorded (capped); M2-0190 HOST_CONFIGURED recorded from isolation-canary run 36634756903 under OD-26; M2-0481 filed for the missing test-isolation runbook."
   }
  ],
  "tickets": [
@@ -11864,7 +11870,8 @@
    "type": "safety",
    "owner_model": "sonnet",
    "depends_on": [
-    "M2-0001"
+    "M2-0001",
+    "M2-0481"
    ],
    "needs_decision": [
     "D-28"
@@ -11914,8 +11921,16 @@
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS (batch 4)",
     "pending": [
-     "HOST_CONFIGURED"
-    ]
+     "runbooks/test-isolation.md (acceptance 3) — M2-0481"
+    ],
+    "host_configured": {
+     "kind": "hosted-runner (OD-26)",
+     "host": "macos-latest",
+     "run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36634756903",
+     "commit": "761276bc",
+     "job": "owner-account.sb denies real user state (hermetic) = success",
+     "recorded": "2026-09-29 by the lead"
+    }
    },
    "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 OD-26: owner ruled that GitHub-hosted runners count as the live host for LIVE_VERIFIED and HOST_CONFIGURED evidence."
   },
@@ -13430,7 +13445,8 @@
     "M2-0474",
     "M2-0475",
     "M2-0476",
-    "M2-0477"
+    "M2-0477",
+    "M2-0481"
    ],
    "needs_decision": [
     "D-13",
@@ -16071,13 +16087,19 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
-   "status": "ENGINEERING_COMPLETE",
+   "status": "DONE",
    "priority": "P1",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/26",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)",
+    "locally_tested": {
+     "run": "https://github.com/mysticalsin/Metis-2.0-Program/actions/runs/36639031304",
+     "commit": "252d5232",
+     "result": "build-traceability --check green with HM-FLOW-01..06 rows present in the regenerated traceability.json"
+    },
+    "pending": []
    },
    "required_evidence": [
     "LOCALLY_TESTED"
@@ -22210,7 +22232,16 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/33",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)",
+    "locally_tested": {
+     "run": "https://github.com/mysticalsin/Metis-2.0-Program/actions/runs/36639031304",
+     "step": "Check host bindings against m2/integration = success",
+     "command": "node docs/metis-2.0/tools/trace/check-bindings.mjs --code-root <public checkout>",
+     "pr": 33
+    },
+    "pending": [
+     "DONE capped by M2-0019 and M2-0190 (both ENGINEERING_COMPLETE)"
+    ]
    },
    "required_evidence": [
     "LOCALLY_TESTED"
@@ -26608,6 +26639,46 @@
    },
    "flag": null,
    "notes": "2026-09-29 (lead): held by its external_blocker so the queue never launches it."
+  },
+  {
+   "id": "M2-0481",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "docs",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "EC-TRIAGE-2026-09-29-M2-0190",
+    "OD-26",
+    "D-28"
+   ],
+   "scope_paths": [
+    "docs/metis-2.0/runbooks/test-isolation.md"
+   ],
+   "estimate_hours": 2,
+   "risk": "low",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Write docs/metis-2.0/runbooks/test-isolation.md: the OS sandbox profile and run order for test isolation (M2-0190 acceptance 3)",
+   "summary": "M2-0190 acceptance 3 requires this runbook; it was never written. Describe, from the public repo's scripts/hermetic/owner-account.sb and run-under-owner-sandbox.sh (read them on origin/m2/integration) and the isolation-canary.yml jobs, the sandbox profile (deny read/write on ~/Library/CloudStorage, the Métis userData directory, ~/Library/Keychains and ~/.wrangler), the wrangler --local rule, the canary checks, and the run order. State D-28 (no test runs on the owner's Mac) and OD-26 (hosted runners are the live host) as the current policy.",
+   "acceptance": [
+    "runbooks/test-isolation.md exists and matches owner-account.sb and run-under-owner-sandbox.sh as merged (cite the files and the isolation-canary job names)",
+    "It states D-28 and OD-26 and the run order (CI macOS/Ubuntu with honeypot; hosted runners per OD-26; no owner-Mac runs)",
+    "No secrets, no personal paths beyond ~/-relative ones"
+   ],
+   "verification": [
+    "Opus review"
+   ],
+   "required_evidence": [
+    "DESIGNED"
+   ],
+   "evidence_target": "DESIGNED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-09-29 (lead): filed from the EC triage; closes M2-0190's last acceptance gap."
   }
  ]
 }
