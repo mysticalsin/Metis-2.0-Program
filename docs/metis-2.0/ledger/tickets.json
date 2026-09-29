@@ -15170,9 +15170,15 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
-   "status": "TODO",
+   "status": "DONE",
    "priority": "P1",
-   "notes": "2026-09-28 (lead): dependency on M2-0014 dropped (SOFT: redundant: keeps M2-0015 which depends on M2-0014); re-verify against M2-0014 once it lands."
+   "notes": "2026-09-28 (lead): dependency on M2-0014 dropped (SOFT: redundant: keeps M2-0015 which depends on M2-0014); re-verify against M2-0014 once it lands.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/35",
+    "merged_into": "main (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)"
+   }
   },
   {
    "id": "M2-0262",
