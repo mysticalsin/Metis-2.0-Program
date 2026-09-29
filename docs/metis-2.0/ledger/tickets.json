@@ -674,7 +674,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony) / Mantu IT",
-    "unblock_step": "(1) By 2026-09-29 create a standard macOS user (for example 'metis-qa') on the owner's Mac or another Mac or VM, with no Métis install and no owner cloud sign-in; sign it into a dedicated test OneDrive or iCloud Drive account (a personal test Microsoft account or test Apple ID is enough); give the agent runner shell access to that user only. (2) Name a managed Windows 11 x64 laptop with the standard enterprise image (EDR, OneDrive Files On-Demand), available by 2026-10-01. (3) Export the allowlisted non-content settings keys listed in docs/metis-2.0/runbooks/qa-host.md for the representative profile",
+    "unblock_step": "Step (1), the macOS QA user on the owner's Mac, is SUPERSEDED by D-9 ANSWERED_CHANGED 2026-09-27 (packaged-app QA runs on GitHub macos-latest/windows-latest; no QA user on the owner's Mac). Remaining: (2) name a managed Windows 11 x64 laptop with the standard enterprise image (EDR, OneDrive Files On-Demand) for the HOST_CONFIGURED/ST-1-W lane; (3) export the allowlisted non-content settings keys listed in docs/metis-2.0/runbooks/qa-host.md for the representative profile.",
     "needed_by": "2026-09-29",
     "raised_on": "2026-09-26"
    },
@@ -685,7 +685,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED.",
+   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead): external_blocker updated after D-9 was changed to CI runners (BLOCKERS §3a LEAD_ACTION); HOST_CONFIGURED still pending on the laptop lane.",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
@@ -11524,7 +11524,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "Read docs/metis-2.0/POLICY-2.0.md (one page) and answer D-4, D-11 and D-12 in your own words",
+    "unblock_step": "D-4, D-11 and D-12 were answered on 2026-09-27 (DECISIONS.md). Remaining: confirm in one line (decision slot) that docs/metis-2.0/POLICY-2.0.md as written reflects those answers. The lead then files the ACCEPTED record.",
     "needed_by": "2026-10-02",
     "raised_on": "2026-09-26"
    },
@@ -11535,7 +11535,7 @@
    "slices": [],
    "due": "2026-10-02",
    "status": "ENGINEERING_COMPLETE",
-   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: ACCEPTED.",
+   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: ACCEPTED. 2026-09-29 (lead): external_blocker text updated to what remains after D-4/D-11/D-12 were answered (BLOCKERS §3a LEAD_ACTION).",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
