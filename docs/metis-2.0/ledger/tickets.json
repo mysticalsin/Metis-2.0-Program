@@ -22223,7 +22223,7 @@
    "kit_refs": [],
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "evidence_target": "LOCALLY_TESTED",
    "priority": "P1",
    "id": "M2-0414",
@@ -22248,7 +22248,13 @@
     "workflow_dispatch run on main"
    ],
    "risk": "low",
-   "estimate_hours": 2
+   "estimate_hours": 2,
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/299",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "wave": "W2",
