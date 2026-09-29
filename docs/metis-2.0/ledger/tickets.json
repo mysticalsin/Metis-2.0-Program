@@ -351,6 +351,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Private CI (now public, OD-37): traceability.yml green (run 36639031304) after regenerating stale outputs and fixing test 18 — M2-0011 LOCALLY_TESTED and M2-0442 confirmation recorded."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0011 and M2-0442 DONE (every required level proven; no open caps)."
   }
  ],
  "tickets": [
@@ -1087,7 +1093,7 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "ENGINEERING_COMPLETE",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner",
    "claimed_at": "2026-09-26",
    "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed).",
@@ -24665,7 +24671,7 @@
    "evidence_target": "DESIGNED",
    "external_blocker": null,
    "flag": null,
-   "status": "ENGINEERING_COMPLETE",
+   "status": "DONE",
    "risk": "medium",
    "estimate_hours": 6,
    "title": "Re-point the HeyClicky capability register (CAPABILITY-DISPOSITIONS.json) to the tickets that prove each capability, and validate the mapping",
