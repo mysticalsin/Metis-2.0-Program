@@ -146,7 +146,7 @@ function ticketCitesCapability(ticket, row) {
 // cannot claim MET while a ticket that cites it is still open.
 function validateCapabilityOwnership(row, { tickets, errors, warnings }) {
   const id = row.id;
-  const citing = tickets.filter((ticket) => (ticket.finding_refs ?? []).includes(capadoptId(row)));
+  const citing = tickets.filter((ticket) => ticketCitesCapability(ticket, row));
   if (row.owner === "NOT_TESTED" && citing.length > 0) {
     errors.push(`capability row ${id} is NOT_TESTED but ${citing.map((ticket) => ticket.id).join(", ")} cites ${capadoptId(row)}`);
   }
@@ -155,7 +155,8 @@ function validateCapabilityOwnership(row, { tickets, errors, warnings }) {
     const ticket = tickets.find((candidate) => candidate.id === owner);
     if (!ticket || ticketCitesCapability(ticket, row)) continue;
     const message = `capability row ${id} owner ${owner} does not cite ${capadoptId(row)} in finding_refs or acceptance`;
-    if (typeof row.citation_gap === "string" && row.citation_gap.trim() !== "") warnings.push(`${message} (${row.citation_gap})`);
+    // A citation_gap is only an escape hatch when it names the LEAD_ACTION that closes it.
+    if (typeof row.citation_gap === "string" && row.citation_gap.includes("LEAD_ACTION")) warnings.push(`${message} (${row.citation_gap})`);
     else errors.push(message);
   }
   if (row.status !== undefined && !CAPABILITY_ROW_STATUSES.includes(row.status)) {

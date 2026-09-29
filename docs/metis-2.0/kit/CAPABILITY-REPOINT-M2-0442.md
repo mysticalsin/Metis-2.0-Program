@@ -13,6 +13,7 @@ Nothing here was executed (D-28). Every claim is labelled with its source. Ledge
 | CAP-07 | M2-0302 | CAPADOPT-clicky-email-assistant (17747) | cited |
 | CAP-08, 24 | M2-0359 | CAPADOPT-clicky-google-workspace, -airtable (20593-20594) | cited |
 | CAP-38 | M2-0359 | only `clicky-google-workspace`; no `CAPADOPT-google-workspace`. Acceptance (20605) proves the Google family per service | **citation gap** (see LEAD_ACTION) |
+| CAP-13 | M2-0082 | neither finding_refs nor acceptance cites `CAPADOPT-cua-driver` (grep of ledger/tickets/M2-0082.md: 0 matches for cua-driver) | **citation gap** (see LEAD_ACTION) |
 | CAP-10, 41, 48 | M2-0300 | CAPADOPT-clicky-research-report, -maps, -youtube-content (17634-17637) | cited |
 | CAP-16, 19, 20 | M2-0298 | CAPADOPT-doc, -pdf, -spreadsheet (17536-17538); acceptance 17550-17553 covers DOCX, PDF, spreadsheet | cited |
 | CAP-18, 42, 43 | M2-0361 | CAPADOPT-obsidian, -notion (20690-20691) | cited |
@@ -42,5 +43,6 @@ Fixture tests are in `build-traceability.test.mjs` (four new tests). They run in
 Tests and the validator were not run (D-28). Evidence level: DESIGNED. The first workflow run is the check that the real register passes.
 
 LEAD_ACTION: in docs/metis-2.0/ledger/tickets.json add "CAPADOPT-google-workspace" to M2-0359 finding_refs, regenerate ledger/tickets/M2-0359.md, then delete `citation_gap` from CAP-38 in kit/CAPABILITY-DISPOSITIONS.json.
+LEAD_ACTION: in docs/metis-2.0/ledger/tickets.json add "CAPADOPT-cua-driver" to M2-0082 finding_refs, regenerate ledger/tickets/M2-0082.md, then delete `citation_gap` from CAP-13 in kit/CAPABILITY-DISPOSITIONS.json.
 LEAD_ACTION: dispatch `gh workflow run traceability.yml -R mysticalsin/Metis-2.0-Program` on the merged branch and confirm both the `--check` step and the `node --test` step are green.
 LEAD_ACTION: commit the regenerated traceability outputs (TRACEABILITY.md, ledger/traceability.json) from the workflow artifact `traceability-outputs`, if the run changes them.

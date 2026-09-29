@@ -371,6 +371,19 @@ test("checks every also_owners ticket and turns a declared citation_gap into a w
   assert.match(result.warnings.join("\n"), /CAP-01 owner M2-0002 does not cite .*LEAD_ACTION add the ref/);
 });
 
+test("rejects a citation_gap without a LEAD_ACTION and counts acceptance citations as citing", () => {
+  const map = capabilityFixture();
+  const second = baseTicket({ id: "M2-0002", finding_refs: [] });
+  map.capabilities[0].also_owners = ["M2-0002"];
+  map.capabilities[0].citation_gap = "free text only";
+  assert.match(capabilityErrors(map, [], [second]), /CAP-01 owner M2-0002 does not cite CAPADOPT-resource-1/);
+
+  const notTested = capabilityFixture();
+  notTested.capabilities[4].owner = "NOT_TESTED";
+  const byAcceptance = { finding_refs: [], acceptance: ["Proves CAPADOPT-resource-5 end to end"] };
+  assert.match(capabilityErrors(notTested, [], [], byAcceptance), /CAP-05 is NOT_TESTED but M2-0001 cites CAPADOPT-resource-5/);
+});
+
 test("fails a NOT_TESTED row while a ticket citing its CAPADOPT id exists", () => {
   const map = capabilityFixture();
   map.capabilities[4].owner = "NOT_TESTED";
