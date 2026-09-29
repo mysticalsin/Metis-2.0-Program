@@ -171,6 +171,18 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0417 (P0 CI capacity: concurrency groups cancel superseded ticket-branch runs; macOS runner backlog 2026-09-29)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Evidence audit: 21 tickets DONE -> ENGINEERING_COMPLETE (required LIVE/MEASURED/HOST_CONFIGURED/ACCEPTED evidence, private LOCALLY_TESTED without CI, or open external_blocker; pending levels recorded in evidence.pending); private-PR validation strings no longer claim CI green."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0418 (M2-0201 Electron capture lane; placeholders replaced by real captures + Opus acceptance)."
   }
  ],
  "tickets": [
@@ -494,7 +506,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/20",
     "merged_into": "main (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -629,14 +641,17 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "DONE",
-   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac.",
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED.",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/235",
     "merged_into": "m2/integration (squash)",
-    "validation": "Opus PASS (batch 6)"
+    "validation": "Opus PASS (batch 6)",
+    "pending": [
+     "HOST_CONFIGURED"
+    ]
    }
   },
   {
@@ -714,13 +729,16 @@
     }
    ],
    "due": null,
-   "status": "DONE",
-   "notes": " 2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac).",
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/250",
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS + CI green",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
    }
   },
   {
@@ -783,13 +801,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
-   "notes": " 2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac).",
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: MEASURED.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/249",
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS + CI green",
+    "pending": [
+     "MEASURED"
+    ]
    }
   },
   {
@@ -834,7 +855,7 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner (batch 3)",
    "claimed_at": "2026-09-26",
    "evidence": {
@@ -842,7 +863,8 @@
     "merge_commit": "ec47478",
     "merged_into": "main",
     "validation": "Opus PASS round 2 (batch 3)"
-   }
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — external_blocker open."
   },
   {
    "id": "M2-0011",
@@ -896,15 +918,18 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner",
    "claimed_at": "2026-09-26",
-   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket).",
+   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/17",
     "merged_into": "main (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)",
+    "pending": [
+     "LOCALLY_TESTED"
+    ]
    }
   },
   {
@@ -966,7 +991,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/29",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -1052,7 +1077,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/21",
     "merged_into": "main (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -1120,7 +1145,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/31",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -1185,7 +1210,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/34",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -1441,7 +1466,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/22",
     "merged_into": "main (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -1570,7 +1595,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/24",
     "merged_into": "main (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -1680,7 +1705,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/18",
     "merged_into": "main (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -1861,14 +1886,18 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/236",
     "merged_into": "m2/integration (squash)",
-    "validation": "Opus PASS (batch 6)"
-   }
+    "validation": "Opus PASS (batch 6)",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
   },
   {
    "id": "M2-0027",
@@ -1921,13 +1950,17 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/251",
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
-   }
+    "validation": "independent Codex review PASS + CI green",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
   },
   {
    "id": "M2-0028",
@@ -2112,16 +2145,20 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "notes": [
-    "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion)."
+    "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion).",
+    "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
    ],
    "claimed_by": "claude-code ticket runner (batch 4)",
    "claimed_at": "2026-09-27",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/227",
     "merged_into": "m2/integration (squash)",
-    "validation": "Opus PASS"
+    "validation": "Opus PASS",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
    }
   },
   {
@@ -2297,15 +2334,19 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "ticket runner batch 8 (Codex implements, Claude drives/validates)",
    "claimed_at": "2026-09-27",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/239",
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS",
-    "implementer": "codex"
-   }
+    "implementer": "codex",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
   },
   {
    "id": "M2-0034",
@@ -2461,13 +2502,17 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/252",
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
-   }
+    "validation": "independent Codex review PASS + CI green",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
   },
   {
    "id": "M2-0037",
@@ -2515,14 +2560,18 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/228",
     "merged_into": "m2/integration (squash)",
-    "validation": "Opus PASS (batch 11)"
-   }
+    "validation": "Opus PASS (batch 11)",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
   },
   {
    "id": "M2-0038",
@@ -2672,13 +2721,17 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/264",
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
-   }
+    "validation": "independent Codex review PASS + CI green",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
   },
   {
    "id": "M2-0041",
@@ -6250,7 +6303,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/30",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -11239,15 +11292,19 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner",
    "claimed_at": "2026-09-26",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/213",
     "merge_commit": "179b65f3",
     "merged_into": "m2/integration",
-    "validation": "Opus PASS round 3 (batch 2)"
-   }
+    "validation": "Opus PASS round 3 (batch 2)",
+    "pending": [
+     "HOST_CONFIGURED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED."
   },
   {
    "id": "M2-0188",
@@ -11304,15 +11361,19 @@
     }
    ],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner (batch 3)",
    "claimed_at": "2026-09-26",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/5",
     "merged_into": "main (squash)",
     "validation": "Opus PASS",
-    "implementer": "opus"
-   }
+    "implementer": "opus",
+    "pending": [
+     "LOCALLY_TESTED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED."
   },
   {
    "id": "M2-0189",
@@ -11364,14 +11425,17 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": "2026-10-02",
-   "status": "DONE",
-   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only.",
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: ACCEPTED.",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/11",
     "merged_into": "main (squash)",
-    "validation": "Opus PASS (batch 6); rebuilt clean from #9"
+    "validation": "Opus PASS (batch 6); rebuilt clean from #9",
+    "pending": [
+     "ACCEPTED"
+    ]
    }
   },
   {
@@ -11424,14 +11488,18 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner",
    "claimed_at": "2026-09-26",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/209",
     "merged_into": "m2/integration (squash)",
-    "validation": "Opus PASS (batch 4)"
-   }
+    "validation": "Opus PASS (batch 4)",
+    "pending": [
+     "HOST_CONFIGURED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED."
   },
   {
    "id": "M2-0191",
@@ -11481,15 +11549,19 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner",
    "claimed_at": "2026-09-26",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/210",
     "merge_commit": "f75383e7",
     "merged_into": "m2/integration",
-    "validation": "Opus PASS (batch 2)"
-   }
+    "validation": "Opus PASS (batch 2)",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
   },
   {
    "id": "M2-0192",
@@ -11536,14 +11608,18 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/237",
     "merged_into": "m2/integration (squash)",
-    "validation": "Opus PASS (batch 6)"
-   }
+    "validation": "Opus PASS (batch 6)",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
   },
   {
    "id": "M2-0193",
@@ -11648,7 +11724,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/23",
     "merged_into": "main (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -11738,13 +11814,17 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/19",
     "merged_into": "main (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
-   }
+    "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)",
+    "pending": [
+     "HOST_CONFIGURED"
+    ]
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED."
   },
   {
    "id": "M2-0197",
@@ -12034,13 +12114,16 @@
     }
    ],
    "due": null,
-   "status": "DONE",
-   "notes": "OD-12 (2026-09-27): DESIGNED prototypes are built as real renderer components (src/renderer, the app's own React/CSS) behind a dev-only surface and captured in CI through Electron, not as a standalone HTML site; no visible browser on the owner's Mac.",
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "OD-12 (2026-09-27): DESIGNED prototypes are built as real renderer components (src/renderer, the app's own React/CSS) behind a dev-only surface and captured in CI through Electron, not as a standalone HTML site; no visible browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: DESIGNED captures (placeholders committed) + Opus acceptance — M2-0418. Lead ruling: dependents may build from the committed design spec (manifests, state lists); the captures are evidence, not inputs.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/25",
     "merged_into": "main (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)",
+    "pending": [
+     "DESIGNED captures (placeholders committed) + Opus acceptance — M2-0418"
+    ]
    }
   },
   {
@@ -12927,7 +13010,7 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
@@ -12935,7 +13018,8 @@
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS",
     "implementer": "codex"
-   }
+   },
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — external_blocker open."
   },
   {
    "id": "M2-0215",
@@ -15133,7 +15217,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/26",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -15258,7 +15342,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/28",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -18299,7 +18383,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/27",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -20411,7 +20495,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/32",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -20842,7 +20926,7 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/33",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
+    "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    }
   },
   {
@@ -22119,6 +22203,43 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 1,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0418",
+   "title": "Capture the M2-0201 design prototypes in the real Electron renderer on CI and replace the placeholder screenshots",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "design",
+   "owner_model": "opus",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "LEAD-ACTION-TRIAGE-2026-09-29",
+    "M2-0201"
+   ],
+   "scope_paths": [
+    "src/renderer/",
+    "scripts/design/",
+    ".github/workflows/"
+   ],
+   "summary": "M2-0201 merged prototype manifests and state lists in the private program repo, but its committed PNGs are placeholders (provenance.json) and no Opus acceptance exists: the prototype surface and the capture script live only in the private repo, where no CI can run. Port the prototype surface into the public app as a dev-only renderer route that production builds exclude, add a dispatchable capture job that renders every state (light/dark, 1x/2x, reduced motion) in Electron on CI, and upload the screenshots as an artifact.",
+   "acceptance": [
+    "The prototype surface renders from the public app behind a dev/QA-only entry that production builds exclude (asserted by a test on the packaged file list)",
+    "A workflow_dispatch job captures every manifest state in light/dark, 1x/2x and reduced motion in Electron on CI and uploads them with a manifest (state id, sha256, commit)",
+    "No private program paths, program docs or kit text land in the public repo; the prototype carries only UI code and neutral sample data",
+    "LEAD_ACTION (after merge, not the implementer's): the lead dispatches the capture job, commits the images under the private docs/metis-2.0/design/M2-0201/, and an Opus validator session other than the author records acceptance in VALIDATION.md"
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "capture job run artifact (lead)"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 6,
    "status": "TODO"
   }
  ]
