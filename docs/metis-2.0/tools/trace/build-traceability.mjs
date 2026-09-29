@@ -127,7 +127,51 @@ export const PARITY_REFRESH_POINTS = ["T1", "T2", "T3", "rc1"];
 const CAPABILITY_ID_RE = /^CAP-\d{2}$/;
 const SHA256_RE = /^[0-9a-f]{64}$/;
 
-export function validateCapabilityDispositions(dispositions, { ticketIds, rows, errors }) {
+const CLOSED_TICKET_STATUSES = ["DONE", "CANCELLED"];
+const CAPABILITY_ROW_STATUSES = ["NOT_MET", "PARTIAL", "MET"];
+
+const capadoptId = (row) => `CAPADOPT-${row.name}`;
+
+// A ticket cites a capability when finding_refs names its CAPADOPT id (or the bare resource name)
+// or an acceptance line names the CAPADOPT id or the CAP-NN row id.
+function ticketCitesCapability(ticket, row) {
+  const refs = ticket.finding_refs ?? [];
+  if (refs.includes(capadoptId(row)) || refs.includes(row.name)) return true;
+  const rowIdRe = new RegExp(`\\b${row.id}\\b`);
+  return (ticket.acceptance ?? []).some((line) => line.includes(capadoptId(row)) || rowIdRe.test(line));
+}
+
+// Register rows must be owned by the ticket that proves them (M2-0442): the owner (and any also_owners)
+// must cite the capability, no row stays NOT_TESTED while a ticket cites its CAPADOPT id, and a row
+// cannot claim MET while a ticket that cites it is still open.
+function validateCapabilityOwnership(row, { tickets, errors, warnings }) {
+  const id = row.id;
+  const citing = tickets.filter((ticket) => (ticket.finding_refs ?? []).includes(capadoptId(row)));
+  if (row.owner === "NOT_TESTED" && citing.length > 0) {
+    errors.push(`capability row ${id} is NOT_TESTED but ${citing.map((ticket) => ticket.id).join(", ")} cites ${capadoptId(row)}`);
+  }
+  const owners = [row.owner, ...(Array.isArray(row.also_owners) ? row.also_owners : [])];
+  for (const owner of owners) {
+    const ticket = tickets.find((candidate) => candidate.id === owner);
+    if (!ticket || ticketCitesCapability(ticket, row)) continue;
+    const message = `capability row ${id} owner ${owner} does not cite ${capadoptId(row)} in finding_refs or acceptance`;
+    if (typeof row.citation_gap === "string" && row.citation_gap.trim() !== "") warnings.push(`${message} (${row.citation_gap})`);
+    else errors.push(message);
+  }
+  if (row.status !== undefined && !CAPABILITY_ROW_STATUSES.includes(row.status)) {
+    errors.push(`capability row ${id} has invalid status ${row.status}`);
+  }
+  if (row.status === "MET") {
+    const open = new Set([...citing, ...owners.map((owner) => tickets.find((ticket) => ticket.id === owner)).filter(Boolean)]);
+    for (const ticket of open) {
+      if (!CLOSED_TICKET_STATUSES.includes(ticket.status)) {
+        errors.push(`capability row ${id} is MET while ticket ${ticket.id} (${ticket.status}) is still open`);
+      }
+    }
+  }
+}
+
+export function validateCapabilityDispositions(dispositions, { ticketIds, rows, errors, tickets = [], warnings = [] }) {
   const artifact = dispositions.artifact ?? {};
   for (const field of ["version", "build", "sha256", "evidence_level", "evidence_limits"]) {
     if (typeof artifact[field] !== "string" || artifact[field].trim() === "") {
@@ -165,6 +209,12 @@ export function validateCapabilityDispositions(dispositions, { ticketIds, rows, 
           errors.push(`capability row ${id} owner ${owner} is a missing ticket`);
         }
       }
+      for (const extra of Array.isArray(row.also_owners) ? row.also_owners : []) {
+        if (!PROGRAM_TICKET_RE.test(extra) || !ticketIds.has(extra)) {
+          errors.push(`capability row ${id} also_owners entry ${extra} is not an existing M2 ticket`);
+        }
+      }
+      validateCapabilityOwnership(row, { tickets, errors, warnings });
     }
   }
 
@@ -252,7 +302,7 @@ export function computeTraceability({
   }
 
   if (capabilityDispositions) {
-    validateCapabilityDispositions(capabilityDispositions, { ticketIds, rows, errors });
+    validateCapabilityDispositions(capabilityDispositions, { ticketIds, rows, errors, tickets: ledger.tickets, warnings });
   }
 
   const duplicateRefs = findDuplicateRefRows(outputRows);

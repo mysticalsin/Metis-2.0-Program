@@ -294,18 +294,28 @@ const capabilityFixture = (overrides = {}) => ({
   ...overrides,
 });
 
-const capabilityErrors = (capabilityDispositions, rows = []) =>
+// The default M2-0001 ticket cites every fixture capability, so the owner-citation rule passes.
+const citingTicket = (overrides = {}) =>
+  baseTicket({
+    finding_refs: Array.from({ length: 48 }, (_, index) => `CAPADOPT-resource-${index + 1}`),
+    ...overrides,
+  });
+
+const capabilityResult = (capabilityDispositions, rows = [], extraTickets = [], ticketOverrides = {}) =>
   computeTraceability({
     inventory: { rows: [...inventory.rows, ...rows] },
     ledger: {
       tickets: [
-        baseTicket({ kit_refs: ["TASK-001", ...rows.map((row) => row.id)] }),
+        citingTicket({ kit_refs: ["TASK-001", ...rows.map((row) => row.id)], ...ticketOverrides }),
+        ...extraTickets,
       ],
     },
     decisionsText: "",
     blockersText: "",
     capabilityDispositions,
-  }).errors.join("\n");
+  });
+
+const capabilityErrors = (...args) => capabilityResult(...args).errors.join("\n");
 
 const cxcapRow = { ...inventory.rows[0], id: "CXCAP-01", family: "CXCAP", kit: "v5" };
 
@@ -325,6 +335,60 @@ test("fails a capability row with no owner or an owner that is not a ticket", ()
   const marker = capabilityFixture();
   marker.capabilities[2].owner = "EXCLUDED";
   assert.equal(capabilityErrors(marker), "");
+});
+
+test("fails when an owner ticket does not cite the capability in finding_refs or acceptance", () => {
+  const map = capabilityFixture();
+  assert.match(
+    capabilityErrors(map, [], [], { finding_refs: [] }),
+    /capability row CAP-01 owner M2-0001 does not cite CAPADOPT-resource-1 in finding_refs or acceptance/,
+  );
+  assert.equal(
+    capabilityErrors(map, [], [], {
+      finding_refs: [],
+      acceptance: Array.from({ length: 48 }, (_, index) => `CAP-${String(index + 1).padStart(2, "0")} is proved`),
+    }),
+    "",
+  );
+  assert.equal(
+    capabilityErrors(map, [], [], {
+      finding_refs: Array.from({ length: 48 }, (_, index) => `resource-${index + 1}`),
+    }),
+    "",
+  );
+});
+
+test("checks every also_owners ticket and turns a declared citation_gap into a warning", () => {
+  const map = capabilityFixture();
+  map.capabilities[0].also_owners = ["M2-0002"];
+  assert.match(capabilityErrors(map), /CAP-01 also_owners entry M2-0002 is not an existing M2 ticket/);
+  const second = baseTicket({ id: "M2-0002", finding_refs: [] });
+  assert.match(capabilityErrors(map, [], [second]), /CAP-01 owner M2-0002 does not cite CAPADOPT-resource-1/);
+
+  map.capabilities[0].citation_gap = "LEAD_ACTION add the ref";
+  const result = capabilityResult(map, [], [second]);
+  assert.equal(result.errors.join("\n"), "");
+  assert.match(result.warnings.join("\n"), /CAP-01 owner M2-0002 does not cite .*LEAD_ACTION add the ref/);
+});
+
+test("fails a NOT_TESTED row while a ticket citing its CAPADOPT id exists", () => {
+  const map = capabilityFixture();
+  map.capabilities[4].owner = "NOT_TESTED";
+  assert.match(capabilityErrors(map), /capability row CAP-05 is NOT_TESTED but M2-0001 cites CAPADOPT-resource-5/);
+  assert.equal(capabilityErrors(map, [], [], { finding_refs: [] }), "");
+});
+
+test("fails a MET capability row while an owner or citing ticket is open", () => {
+  const map = capabilityFixture();
+  map.capabilities[0].status = "MET";
+  assert.match(capabilityErrors(map), /capability row CAP-01 is MET while ticket M2-0001 \(TODO\) is still open/);
+  assert.equal(capabilityErrors(map, [], [], { status: "DONE" }), "");
+
+  const citing = baseTicket({ id: "M2-0003", finding_refs: ["CAPADOPT-resource-1"], status: "IN_PROGRESS" });
+  assert.match(capabilityErrors(map, [], [citing], { status: "DONE" }), /CAP-01 is MET while ticket M2-0003 \(IN_PROGRESS\)/);
+
+  map.capabilities[0].status = "DONE";
+  assert.match(capabilityErrors(map), /CAP-01 has invalid status DONE/);
 });
 
 test("fails when the capability map does not have exactly 48 rows", () => {
