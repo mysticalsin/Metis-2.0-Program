@@ -2,7 +2,7 @@
 project: Métis (AskToto-Mantu) — 2.0 program
 shift: 10
 agent: claude-code
-updated: 2026-09-29 02:25 EDT
+updated: 2026-09-29 05:50 EDT
 status: in-progress (full autopilot; signing excluded)
 branch: public main = 858a6a22 (milestone #281); m2/integration 83fd757c (ahead of main; proof pending); private main (metis-prog-main)
 ---
@@ -21,15 +21,14 @@ Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level, HeyCli
 - Gates: per-PR packaged smoke (ready_for_review), failset baseline (state/.smoke-failset) + owned rows (state/<ID>.owns), post-merge smoke STOP on growth, revert guard, hygiene (paths too), READY pins reviewed SHA, WAIT_OWNER for the owner's tool (OD-15), known-flakes.txt, red run off (RED-RUN file re-enables).
 
 ## Next steps (in order)
-- P0 M2-0031 (History freeze) is PARKED (STUCK) awaiting the OWNER's decision on the ST-1 measurement window. Attribution is in
-  codex-queue/logs/st1-36527480638/ANALYSIS.md:
-  - The fifo run and the no-fixture control both fail. The cause is a VERIFIED 1.3 s boot block (createWindow/createTray/sync ps),
-    filed as M2-0422, plus runner noise.
-  - History with FIFOs: the first call takes 2.0 s, then 2 ms; it never hangs, so the v6 fixes work.
-  Recommended: measure from window-ready + 10 s; loop-max/async-write < 500 ms; add a History criterion (every call < 3 s, none hung).
-  After the owner answers, write lead v8 and unpark M2-0031 (rm state/M2-0031.status).
+- P0 M2-0031: OWNER chose B (OD-21): ST-1 stays strict (whole run incl. boot < 250 ms). ROUND FOCUS v8 is in state/M2-0031.lead:
+  split the BrowserWindow constructor (591-706 ms native, show:true) from its first show, split/defer the remaining boot tasks and boot I/O.
+  If only an unsplittable native call or idle-profile runner noise remains, report the numbers to the owner and never relax the criteria.
+- 2026-09-29 done: owner-approved ledger batch c12ae4b (M2-0423 P0 brain-index no-destroy, M2-0424..0427, HM-FLOW refs, deps: the M2-0129->0136 edge was
+  omitted because it would cycle), M2-0417 check (integration never cancelled; superseded cancellation not yet observed), M2-0013 verification fix,
+  M2-0028 merged (HK-M 3/5 bounded pass; the lead verified the reaper never kills by name), M2-0422 boot fix merged, stale public branch deleted.
 - Merge order: codex-queue/state/.merge-first (root blockers by impact: M2-0050 235, M2-0028 160, M2-0103 120, M2-0119 110).
-0. Tony to answer: apply the blocked ledger batch (codex-queue/logs/ledger-batch-draft-2026-09-29.md; classifier denied the subagent — do not apply without his OK). Owner decisions from the LEAD_ACTION triage: private Actions budget (unblocks ~12 evidence rows), D-5 platform/region/owner, plaintext-mirror audience, M2-0014 prod readbacks, Dust admin, Windows laptop, D-8, branch protection, delete stale public branch m2/M2-0014-audit-operator-production-reality.
+0. Owner decisions still open from the LEAD_ACTION triage: private Actions budget (unblocks ~12 evidence rows), D-5 platform/region/owner, plaintext-mirror audience, M2-0014 prod readbacks, Dust admin, Windows laptop, D-8, branch protection, delete stale public branch m2/M2-0014-audit-operator-production-reality.
 1. M2-0031 (History freeze P0) must pass the QA-candidate job "ST-1 fifo stall row (macOS)"; plan v4 in codex-queue/state/M2-0031.lead. Then cut 1.9.7 per D-13 (M2-0046: notes in docs/metis-2.0/releases/1.9.7.md; dispatch promote-candidate.yml from main; prerelease, not Latest, no latest*.yml, SHA256SUMS).
 2. Queue flows the whole ledger by priority (FOCUS lifted; PARALLEL=4). New P0s first: M2-0237.., M2-0412 (portal model policy, OD-18), M2-0413 (brain test cleanup race).
 3. Lead actions now that main has the workflows: evidence dispatches in codex-queue/LEAD-ACTIONS.txt.
