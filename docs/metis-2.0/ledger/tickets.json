@@ -195,6 +195,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0417: DONE -> ENGINEERING_COMPLETE while a LEAD_ACTION acceptance item is open (ledger.py done now applies this rule)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0420 (P1 launch-check title race: 'asktoto' default window title failed Windows packaged smoke on unrelated PRs)."
   }
  ],
  "tickets": [
@@ -22312,6 +22318,41 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 1,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0420",
+   "title": "Title the main window Métis from creation and make the packaged launch check wait for it instead of judging the first window title",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "CI-FLAKE-2026-09-29-launch-title-race"
+   ],
+   "scope_paths": [
+    "scripts/check-packaged-launch.mjs",
+    "src/main/"
+   ],
+   "summary": "Packaged smoke (Windows) failed check:launch on M2-0197 and M2-0419 (run 36517111378), neither of which touches the app. Both times the window titles were [\"asktoto\"]: Electron titles a new BrowserWindow with the package name until the renderer sets <title>Métis</title>. scripts/check-packaged-launch.mjs polls titles and stops at the FIRST non-empty list, so a sample taken before the renderer loads fails the /M.tis/ health test. It then reads the main window's own text ('Métis') as an 'error dialog'. The app log shows a normal boot. Users also briefly see 'asktoto' in the taskbar.",
+   "acceptance": [
+    "The main (and any user-visible) BrowserWindow gets title 'Métis' in its constructor options, so no window is ever titled with the package name; a contract test asserts this over every new BrowserWindow in src/main (like content-protection.contract.test.ts)",
+    "check-packaged-launch.mjs keeps polling until a window matching /M.tis/ appears, an 'Error' dialog appears, the process exits, or the deadline passes; it no longer judges on the first non-empty title list. A healthy slow start is never reported as an error dialog",
+    "The error-dialog branch still fails on a real showErrorBox dialog; covered by a unit test of the decision logic with fixture title sequences (['asktoto'] then ['Métis'] = healthy; ['Error'] = fail; [] until the deadline = fail)",
+    "No timeout is raised and no check is skipped"
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "Packaged smoke (Windows + macOS) on the PR"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
    "status": "TODO"
   }
  ]
