@@ -333,6 +333,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Planning fix: M2-0478 (P0, diagnostics summary schema 2 — M2-0046 depends on it) and M2-0479 (soak evaluator/validator — M2-0198 depends on it) split from M2-0198's engineering half."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-31..OD-36 recorded (1.9.7 full qualification, ad-hoc mac, promote dry run, supervision waits for 20/20, two hosted soak legs, dataless ST-1 in the owner soak); M2-0046 acceptance amended."
   }
  ],
  "tickets": [
@@ -3275,7 +3281,11 @@
     "Release notes state residual risks and that B1/B2 close only through M2-0199, not through this release",
     "A random 10% of the tickets closed for 1.9.7 are re-executed by a different model; the m3 velocity re-forecast (M2-0197) is written",
     "Deferred to T1 (M2-0206): M2-0029, 0034, 0038, 0039, 0040, 0041, 0042, 0043, 0044 and 0045; if M2-0009 measures parked idle over the section 7 budget, Opus may pull M2-0039 in by a recorded decision",
-    "The owner approves promotion of those exact bytes (ACCEPTED); release/1.9.x is cut at the 1.9.7 tag (M2-0188)"
+    "The owner approves promotion of those exact bytes (ACCEPTED); release/1.9.x is cut at the 1.9.7 tag (M2-0188)",
+    "OD-35 (owner): the 8 h idle soak is two hosted legs (macOS, Windows) of at most 5.5 h each on the candidate bytes, judged by a growth rule pre-registered before the run and extrapolated to 8 h",
+    "OD-36 (owner): ST-1 real-dataless rows are proven in the owner's 5-day soak (M2-0198) from the schema-2 diagnostics; the candidate carries ST-1 with the synthetic dataless fixtures and states the real-cloud case as measured in the soak",
+    "OD-34 (owner): supervision ships default-on only after HK-M passes 20/20 on this candidate; 1.9.7 waits for it (the ship-OFF branch is not used)",
+    "OD-32 (owner): the Mac candidate is ad-hoc signed; 1.9.7.md tells the owner to re-grant Screen Recording and Microphone once after installing"
    ],
    "verification": [
     "node scripts/evidence/check.mjs --release 1.9.7",
@@ -3294,7 +3304,7 @@
    "slices": [],
    "due": "2026-10-04",
    "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases."
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies."
   },
   {
    "id": "M2-0047",
