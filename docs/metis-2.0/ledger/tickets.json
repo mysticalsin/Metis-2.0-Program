@@ -231,6 +231,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0428 (P0 owner-reported right-edge Hide fix, Opus; root cause confirmed by adversarial re-trace); M2-0046 (1.9.7) and M2-0202 depend on it."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0429 (P0 meeting audio / Screen Recording grant not in effect / false crash logs) and M2-0430 (P0 slow post-meeting write-up: CPU-only local model via os.freemem gate, no recap pre-emption, save gated on recap); both root causes confirmed by adversarial re-trace; 1.9.7 depends on both."
   }
  ],
  "tickets": [
@@ -3103,7 +3109,9 @@
     "M2-0192",
     "M2-0193",
     "M2-0194",
-    "M2-0428"
+    "M2-0428",
+    "M2-0429",
+    "M2-0430"
    ],
    "needs_decision": [
     "D-13"
@@ -22831,6 +22839,98 @@
    "risk": "medium",
    "estimate_hours": 8,
    "status": "TODO"
+  },
+  {
+   "id": "M2-0429",
+   "wave": "W1",
+   "milestone": "m3",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "title": "Make meeting (system) audio capture work: detect a Screen Recording grant that is not in effect for this build, one-click repair, ask up front with a real self-test, and never crash-log or storm on a denied capture",
+   "type": "fix",
+   "finding_refs": [
+    "OWNER-REPORT-2026-09-29-meeting-audio",
+    "M2-0283",
+    "M2-0044"
+   ],
+   "estimate_hours": 10,
+   "scope_paths": [
+    "src/main/capture-permissions/",
+    "src/main/permission-repair.ts",
+    "src/main/capture-backoff.ts",
+    "src/main/platform-perms.ts",
+    "src/main/screen-capture.ts",
+    "src/main/screen-preprocess.ts",
+    "native/mac-helper/",
+    "src/main/mac-helper.ts",
+    "src/renderer/src/components/OnboardingExperience.tsx",
+    "src/renderer/src/components/Settings.tsx",
+    "src/renderer/src/lib/listen.ts",
+    "src/shared/ipc.ts"
+   ],
+   "summary": "Owner report (1.9.6, macOS): meeting audio is not captured (mic only), and enabling Métis in Screen & System Audio Recording 'is not activating' even after relaunch. CONFIRMED by an adversarial re-trace: macOS meeting audio depends only on getDisplayMedia + desktopCapturer.getSources loopback, which needs Screen Recording. The grant is not in effect for the running ad-hoc build, because every unsigned build has a new cdhash and the owner's Mac had 12 bundles with id com.mantu.asktoto (the lead removed the 4 old installs on 2026-09-29). The app checks only getMediaAccessStatus('screen'). It has no state for 'on in Settings but not effective', so it keeps sending the user to a Settings switch that already shows on. Each denied attempt logs a false app.crash (unhandledRejection 'Failed to get sources.'). bg-screen has no failure backoff. Analysis: codex-queue/logs/meeting-audio-2026-09-29/cap.md.",
+   "acceptance": [
+    "A pure diagnose module returns granted | not-asked | denied | needs-relaunch | not-effective | restricted with reasons (identity-changed, duplicate-bundles, attested-then-relaunched, translocated) and an action; unit tests cover every state (including 'restricted' kept distinct, not mapped to unknown)",
+    "Read-only mac-helper modes 'code-identity' (cdhash, teamId, adhoc) and 'bundle-copies <id>' (paths, versions); a persisted screenGrantedFor {version, cdhash} detects identity change after an update",
+    "One-click Repair (IPC permissionsRepairScreen) runs /usr/bin/tccutil reset ScreenCapture for the app's own bundle id only (allowlisted, execFile, no shell), audits permission.repair {ok, exitCode}, relaunches, re-probes once, then deep-links to the pane. If tccutil fails (a system-db entry needs admin), the copy guides remove-with-minus then add-with-plus. Duplicate copies are listed with Show in Finder",
+    "Onboarding asks for 'Meeting audio & screen' up front as a primary step. After the grant and relaunch it resumes and runs a real loopback self-test (a live system-audio track, then stop); the row turns green only on that result",
+    "The display-media handler denies immediately when the status is denied or restricted (capture.failed reason screen_permission_denied). No getSources call and no app.crash entry for a denied capture; a darwin getSources rejection is handled, never an unhandled rejection",
+    "bg-screen backoff: exponential 6 s -> 10 min, latching after 5 consecutive permission failures, reset on success/settings change/relaunch; one screen.preprocess.suspended audit per streak",
+    "The Listen mic-only note and the Bar chip use the diagnosis (they say which copy/build holds the grant and offer Repair)",
+    "LEAD_ACTION (after merge, not the implementer's): verify tccutil-reset-without-sudo behaviour on a hosted macOS runner and record it; Developer ID signing (owner action, OD-8) is noted as the permanent cure for identity churn"
+   ]
+  },
+  {
+   "id": "M2-0430",
+   "wave": "W1",
+   "milestone": "m3",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "title": "Make the post-meeting write-up fast: Metal (GPU) local model on Apple silicon, recap pre-empts background extraction, transcript saved before the recap, extraction fits the context and stops retrying",
+   "type": "fix",
+   "finding_refs": [
+    "OWNER-REPORT-2026-09-29-slow-writeup",
+    "M2-0033",
+    "M2-0035"
+   ],
+   "estimate_hours": 10,
+   "scope_paths": [
+    "src/main/llm/",
+    "src/main/brain/ingest.ts",
+    "src/main/infra/scheduler/",
+    "src/renderer/src/App.tsx",
+    "src/renderer/src/lib/listen.ts"
+   ],
+   "summary": "Owner report: 'the writing after the meeting takes so much time'. CONFIRMED by an adversarial re-trace. A 2m45s meeting took 2m08s to write up (TTFT 102 s, about 10 tok/s decode) on an M5 with 32 GB. (1) The local-model memory gate uses os.freemem(), which on macOS counts only free pages (about 0.45 GB); cache is excluded. So the CPU profile is forced: llama-server runs with -ngl 0 (no Metal), 3 threads, and 4,096 tokens per slot. (2) The recap shares id_slot:1 with background brain extraction and has no pre-emption. Extraction fails every time ('exceeds the available context size (4096 tokens)', 58 errors), retries in 1 ms bursts and keeps the slot busy. (3) transcript.saved is gated on the recap finishing. (4) Two orphaned llama-servers from 2026-09-25 were still running (leaked sidecars; the lead stopped them). Apple Foundation Models is unused because its CLI licence was never accepted. Analysis: codex-queue/logs/meeting-audio-2026-09-29/fin.md.",
+   "acceptance": [
+    "On macOS the memory gate uses available memory (free + inactive + purgeable/speculative per vm_stat or host_statistics64), not os.freemem(). On Apple silicon with Metal the runtime offloads layers to the GPU (-ngl > 0) with a context that fits the recap and extraction; a unit test pins the profile choice for fixture memory readings (32 GB M-series with 0.45 GB 'free' -> Metal profile)",
+    "The user-facing recap pre-empts background brain work: a dedicated interactive slot, or background extraction paused or cancelled while a recap runs. A test with a stub model proves the recap is admitted immediately while an extraction is in flight",
+    "The transcript is saved and shown as soon as the drain finishes, never gated on the recap; the recap streams into the saved meeting when ready (test asserts ordering)",
+    "Background extraction chunks a meeting to fit the slot context, or skips it with an exhaustion record; the same meeting is never retried in a tight loop (a test with a 4,096-token fixture proves no repeated ok:false burst)",
+    "The summary slot stays warm after Stop (the prewarm path is kept); content-free audit spans record stop->transcript saved, stop->first recap token and stop->recap done, so the latency is measurable on real use",
+    "Budgets (warm, M-series, 60-min meeting): transcript visible <= 5 s after the drain completes; first recap token <= 10 s; recap done <= 60 s. CI proves ordering and pre-emption with stub models; LEAD_ACTION: the lead verifies the budgets from the audit spans on the owner's next real meetings",
+    "If Apple Foundation Models is available but unlicensed, the Settings model panel says so and how to enable it (owner action); the FM path is preferred when licensed and qualified"
+   ]
   }
  ]
 }
