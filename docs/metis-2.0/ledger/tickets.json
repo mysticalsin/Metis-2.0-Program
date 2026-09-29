@@ -309,6 +309,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed 26 evidence-gap tickets M2-0447..M2-0472 from the EC triage (OD-26 hosted-runner kind, shared candidate-scenarios lane + scenarios, HK-M model-start fix, freeze-matrix hosted live mode, design-capture states, windows capabilities suite, private kit checks, M2-0018 findings F04-F12); promotion-path gates wait for M2-0046; F09/F15-F18 folded into existing tickets; notes on 30+ existing tickets."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0473 added (P1): resource-census.yml Windows path + TTFT proof no longer gates the macOS census (M2-0009 MEASURED)."
   }
  ],
  "tickets": [
@@ -929,7 +935,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: MEASURED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): record MEASURED from the hosted resource-census run under kind hosted-runner (host macos-latest and windows-latest) with ci_run_id once M2-0466 is on main, not kind ci with an unregistered host.",
+   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: MEASURED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): record MEASURED from the hosted resource-census run under kind hosted-runner (host macos-latest and windows-latest) with ci_run_id once M2-0466 is on main, not kind ci with an unregistered host. 2026-09-29 (lead): first resource-census dispatch (run 36620887469) failed on both legs; fix ticket M2-0473, then re-dispatch and record MEASURED.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/249",
     "merged_into": "m2/integration (squash)",
@@ -13300,7 +13306,8 @@
     "M2-0469",
     "M2-0470",
     "M2-0471",
-    "M2-0472"
+    "M2-0472",
+    "M2-0473"
    ],
    "needs_decision": [
     "D-13",
@@ -26101,6 +26108,51 @@
    "needs_decision": [],
    "slices": [],
    "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0472, audited); unblocks M2-0429."
+  },
+  {
+   "id": "M2-0473",
+   "wave": "W2",
+   "milestone": "m4",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "low",
+   "estimate_hours": 3,
+   "title": "Fix resource-census.yml so the M2-0009 census runs on hosted runners: Windows profile path, and the macOS census no longer skipped when the local TTFT proof times out",
+   "type": "fix",
+   "priority": "P1",
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "finding_refs": [
+    "EC-TRIAGE-2026-09-29-M2-0009",
+    "OD-26"
+   ],
+   "scope_paths": [
+    ".github/workflows/resource-census.yml",
+    "scripts/qa/census/profile.mjs",
+    "scripts/qa/census/",
+    "scripts/prove-local-ttft.mjs"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "resource-census.yml dispatch on main (LEAD_ACTION)"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "summary": "First dispatch of resource-census.yml on main (run 36620887469, v1.9.6-unsigned, 2026-09-29) failed on both legs, so M2-0009's MEASURED baseline still cannot be recorded. Windows: step 'Build representative synthetic profile' ran node scripts/qa/census/profile.mjs \"$RUNNER_TEMP/metis-census-profile\" and the next cp could not find D:\\a\\_temp/metis-census-profile/resource-census-profile.json (a Windows path mismatch between where profile.mjs writes and where the workflow reads). macOS: 'Record local TTFT proof' (prove-local-ttft.mjs) exits 1 — llama-server became healthy after 23.9 s but the prewarm request hit undici's timeout (prove-local-ttft.mjs:421/534) on the hosted runner; the step has no continue-on-error, so the census steps never ran and only the TTFT log uploaded. Hosted runners are the live host (OD-26) but are slow for local inference, so the TTFT proof must not gate the resource census.",
+   "acceptance": [
+    "Windows: profile.mjs writes, and the workflow reads, the same resource-census-profile.json path on windows-latest (use a path the script prints or returns; a unit test covers a Windows-style RUNNER_TEMP)",
+    "macOS: the TTFT proof runs in its own step with continue-on-error and its outcome recorded in the artifact (PASS/FAIL/timeout with the measured times); the cold-start and settled-idle census steps run regardless and upload darwin-cold-start.json and darwin-settled-idle.json",
+    "The prewarm timeout in prove-local-ttft.mjs is an explicit, logged value suited to CPU-only hosted runners, and a timeout is reported as a measured FAIL, not an exception",
+    "Build & Test green; no other workflow changed",
+    "LEAD_ACTION: after merge and a main push, dispatch gh workflow run resource-census.yml --ref main -f release_repo=mysticalsin/Metis-Releases -f release_tag=v1.9.6-unsigned; commit docs/metis-2.0/evidence/resource-baseline.md plus raw JSON under evidence/raw/M2-0009/ and record M2-0009 MEASURED (hosted-runner kind, OD-26)"
+   ],
+   "notes": "2026-09-29 (lead): filed from the failed first dispatch of resource-census.yml (run 36620887469); logs in codex-queue/logs/M2-0009-census/."
   }
  ]
 }
