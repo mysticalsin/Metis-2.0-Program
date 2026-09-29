@@ -7,7 +7,7 @@ Retrieval date: 2026-09-28.
 - OBSERVED `docs/metis-2.0/ledger/tickets.json:1504-1548`: M2-0023 requires saved ChatGPT and Codex audits, dispositioned findings, no reviewer approving work it produced, and DESIGNED evidence.
 - OBSERVED `docs/metis-2.0/review/audits/M2-0023-chatgpt-audit.md:3-9`: the M2-0023 ChatGPT audit artifact covers the plan, architecture, ledger, prior ChatGPT artifact boundary, and graph/wiki fallback.
 - OBSERVED `docs/metis-2.0/review/audits/M2-0023-codex-readonly-review.md:3-9`: the M2-0023 Codex artifact records a current-session document/process review claim, but also records that nested `codex exec --sandbox read-only` failed before review with `Operation not permitted`.
-- OBSERVED `docs/metis-2.0/review/codex/audit-r1.txt:1-13`, `audit-r2.txt:1-8`, `audit-r3.txt:1-10`, `audit-r4.txt:1-13`: the earlier lead-provided Codex artifacts exist and each records findings plus `VERDICT: REVISE`; DERIVED they remain useful finding sources but do not prove the M2-0023-specific nested read-only CLI review completed.
+- OBSERVED `docs/metis-2.0/review/codex/audit-r1.txt:1-13`, `audit-r2.txt:1-8`, `audit-r3.txt:1-10`, `audit-r4.txt:1-13`: the earlier lead-provided Codex artifacts exist and each records findings plus `VERDICT: REVISE`. PROVIDED (lead ruling 2026-09-28, `codex-queue/state/M2-0023.lead`): these four are the Codex read-only review artifacts for M2-0023, run by the lead outside any sandbox on 2026-09-26/27; the nested `codex exec` attempt is not the artifact.
 - OBSERVED `docs/metis-2.0/review/chatgpt-audit-1.md:3-7`: the earlier ChatGPT artifact is an independent engineering audit with an explicit boundary; DERIVED it remains a finding source but is not the M2-0023-specific PLAN/ARCHITECTURE/ledger audit artifact.
 - OBSERVED `docs/metis-2.0/PLAN.md:42-50`: Opus, ChatGPT and Codex have separate roles; ChatGPT audits, Codex reviews after quota reset, and a reviewer never approves its own work.
 - OBSERVED `docs/metis-2.0/ledger/tickets.json:213-217`: the evidence model requires records before DONE and requires `implementer_session` to differ from `validator_session`.
@@ -19,10 +19,10 @@ Retrieval date: 2026-09-28.
 | Criterion | Disposition |
 |---|---|
 | ChatGPT audit of PLAN, ARCHITECTURE and ledger saved; each finding dispositioned | ACCEPTED. OBSERVED the M2-0023-specific artifact is `docs/metis-2.0/review/audits/M2-0023-chatgpt-audit.md` (`M2-0023-chatgpt-audit.md:3-9`); OBSERVED its findings `CGPT-M2-0023-01` through `CGPT-M2-0023-05` are dispositioned below with file:line sources. |
-| Codex read-only review run after quota resets; findings dispositioned | BLOCKED_EXTERNAL. OBSERVED `docs/metis-2.0/review/audits/M2-0023-codex-readonly-review.md:8` says the nested Codex command failed before review; DERIVED the earlier `review/codex/audit-r1.txt` through `audit-r4.txt` findings are dispositioned below but are not accepted as the missing M2-0023-specific read-only CLI run. |
+| Codex read-only review run after quota resets; findings dispositioned | ACCEPTED (amended 2026-09-29 by lead ruling). PROVIDED `codex-queue/state/M2-0023.lead` (2026-09-28): the Codex read-only reviews are `review/codex/audit-r1.txt` through `audit-r4.txt`, run by the lead outside any sandbox on 2026-09-26/27, and nested Codex is not run. OBSERVED every r1-r4 finding is dispositioned below (R1-01 to R4-05). The failed nested `codex exec` at `M2-0023-codex-readonly-review.md:8` is kept only as a record of that attempt, not as the artifact. |
 | No reviewer approves work it produced | ACCEPTED for the artifacts present here. OBSERVED `docs/metis-2.0/PLAN.md:47-50` separates validator/ChatGPT/Codex roles and forbids self-approval; OBSERVED the audit artifacts record findings/revise/blocker states rather than approval. |
 
-LEAD_ACTION: Run the M2-0023-specific Codex read-only review from an environment where `codex exec --ephemeral --ignore-user-config --ignore-rules --sandbox read-only -C /Users/tony/AI-Brain-build/metis-wt-M2-0023 -o /private/tmp/m2-0023-codex-out/last-message.txt ...` can initialize, covering `docs/metis-2.0/PLAN.md`, `docs/metis-2.0/ARCHITECTURE.md`, and `docs/metis-2.0/ledger/tickets.json`, then save the transcript or output under `docs/metis-2.0/review/audits/`.
+Resolved 2026-09-29 (lead): nested Codex is not run (lead ruling, `codex-queue/state/M2-0023.lead`); `review/codex/audit-r1.txt` through `audit-r4.txt` are the Codex review artifacts, and the acceptance row above is amended.
 
 ## M2-0023 ChatGPT Findings
 
@@ -36,7 +36,7 @@ LEAD_ACTION: Run the M2-0023-specific Codex read-only review from an environment
 
 LEAD_ACTION: Update `docs/metis-2.0/ledger/tickets.json` with M2-0023 finding dispositions and status/evidence if the lead accepts this disposition record.
 LEAD_ACTION: Regenerate `docs/metis-2.0/ledger/tickets/M2-0023.md` and traceability for R15/R90/R91/R92/R93 after the ledger update.
-LEAD_ACTION: Run the allowed tsc verification bars in the approved CI/QA/D-28 environment and file the resulting evidence record instead of running repository checks in this session.
+Resolved 2026-09-29 (lead): typecheck evidence is the public Build & Test run 36501359360 on `m2/integration` at `83fd757cc0200b2ac76d158a05bb3fbf5bcf5a91` (push, 2026-09-29T00:05:35Z, conclusion success): `npm run typecheck` passed in Quality checks on ubuntu-latest and windows-latest, and the Operator Worker job's typecheck steps (Worker, client) passed (read-only `gh run view 36501359360 -R mysticalsin/AskToto-Mantu --json conclusion,headSha,jobs`).
 
 ## M2-0023 Codex Findings
 
@@ -45,7 +45,7 @@ LEAD_ACTION: Run the allowed tsc verification bars in the approved CI/QA/D-28 en
 | CX-M2-0023-01 | `M2-0023-codex-readonly-review.md:13-18` | ACCEPTED -> LEAD_ACTION above | OBSERVED the Codex artifact says program-ledger disposition is missing and cannot be added here. OBSERVED only the lead can edit `docs/metis-2.0/ledger/` under the owner constraint. |
 | CX-M2-0023-02 | `M2-0023-codex-readonly-review.md:20-26` | ACCEPTED -> LEAD_ACTION above | OBSERVED the Codex artifact says the ticket and traceability still show not done. OBSERVED M2-0023 status is `TODO` (`tickets.json:1547`). DERIVED generated status/traceability refresh remains lead-owned. |
 | CX-M2-0023-03 | `M2-0023-codex-readonly-review.md:28-33` | ACCEPTED -> this disposition record | OBSERVED the Codex artifact says architecture belongs in scope. DERIVED this is correct because M2-0023 summary includes the architecture target (`tickets.json:1528`). |
-| CX-M2-0023-04 | `M2-0023-codex-readonly-review.md:35-40` | BLOCKED_EXTERNAL -> LEAD_ACTION above | OBSERVED nested `codex exec --sandbox read-only` failed before review (`M2-0023-codex-readonly-review.md:8`). DERIVED this cannot satisfy the acceptance criterion until the lead runs Codex from an environment where the read-only CLI review initializes and saves evidence. |
+| CX-M2-0023-04 | `M2-0023-codex-readonly-review.md:35-40` | RESOLVED by lead ruling (2026-09-29) | OBSERVED nested `codex exec --sandbox read-only` failed before review (`M2-0023-codex-readonly-review.md:8`). PROVIDED `codex-queue/state/M2-0023.lead`: nested Codex is not run; the Codex review artifacts are `review/codex/audit-r1.txt` through `audit-r4.txt`, whose findings are dispositioned below, so the acceptance criterion rests on them. |
 | CX-M2-0023-05 | `M2-0023-codex-readonly-review.md:42-48` | ACCEPTED -> LEAD_ACTION above | OBSERVED repository tests/scripts/apps are forbidden and `typecheck` includes repository scripts. DERIVED tsc evidence must come from the allowed lead/CI lane. |
 
 ## Prior ChatGPT Findings From `review/chatgpt-audit-1.md`
@@ -108,7 +108,7 @@ LEAD_ACTION: Attach `RF-AUDIT-R1-B1`, `RF-AUDIT-R1-B2`, `RF-AUDIT-R1-B3`, `RF-AU
 ## Lead-Only Ledger Actions
 
 LEAD_ACTION: Update `docs/metis-2.0/ledger/tickets.json` for M2-0023 status/evidence after review, if the lead accepts this disposition record as the DESIGNED evidence.
-LEAD_ACTION: Regenerate `docs/metis-2.0/ledger/tickets/M2-0023.md` from the ledger after the status/evidence update.
+Resolved 2026-09-29 (lead): not regenerated. `ledger/tickets/*.md` are frozen snapshots of the original ticket text (no generator exists; see `docs/metis-2.0/README.md`); `ledger/tickets.json` is the only source of M2-0023's status.
 LEAD_ACTION: Attach the r1 finding refs named above to the chosen carrier tickets or create new tickets if the lead will not reopen M2-0003.
 LEAD_ACTION: If this ticket is closed, refresh traceability for R15/R90/R91/R92/R93 from M2-0023 so the generated trace no longer shows stale not-started state.
 

@@ -14,8 +14,8 @@ Ticket M2-0386, depends on M2-0019. Machine-checked by `docs/metis-2.0/tools/tra
 - OBSERVED: the ten responsibilities and the owning tickets M2-0079/0082/0087/0089/0091/0093/0106/0114/0121/0134 come from the M2-0386 ticket summary (`docs/metis-2.0/ledger/tickets.json`, entry `M2-0386`).
 - OBSERVED: M2-0019 decided PORT_TESTS for command authority and rejected a second authority system (`docs/metis-2.0/kit/PORT-DECISIONS.md:66-68`, `:82`). It read `command-control.ts` on `origin/m2/integration` (`PORT-DECISIONS.md:55`).
 - OBSERVED: scope paths and verification commands per owning ticket are in `docs/metis-2.0/ledger/tickets/M2-0079.md` `M2-0082.md` `M2-0087.md` `M2-0089.md` `M2-0091.md` `M2-0093.md` `M2-0106.md` `M2-0114.md` `M2-0121.md` `M2-0134.md`.
-- OBSERVED (read from the local checkout `/Users/tony/AI-Brain-build/metis-operator-ux`, whose branch this session could not print, so not proof of `origin/m2/integration`): exports `requireAuth` (`src/main/auth.ts:721`), `class CommandControl` (`src/main/command-control.ts:42`), `executeDesktopAction` (`src/main/desktop-adapters.ts:167`), `resolveBarOrbState` (`src/renderer/src/lib/bar-pill-orb.ts:108`), `persistProxyAsk` (`operator/src/ask-meter.ts:22`). Each test file imports or references the symbol: `auth.test.ts` (26 hits for `requireAuth`), `command-control.test.ts:2`, `desktop-adapters.test.ts:11`, `bar-pill-orb.test.ts` (12 hits for `resolveBarOrbState`), `ask-meter.test.ts:2`.
-- OBSERVED: `git -C .../metis-operator-ux show origin/m2/integration:<path>` was refused by this session's permission layer, so no BOUND row is confirmed against `origin/m2/integration` yet. The checker is the confirmation step (see LEAD_ACTION).
+- OBSERVED, re-verified 2026-09-29 by the lead at `origin/m2/integration` = `83fd757cc0200b2ac76d158a05bb3fbf5bcf5a91` (read-only, `git cat-file -p origin/m2/integration:<path>` after `git fetch`): exports `requireAuth` (`src/main/auth.ts:724`), `class CommandControl` (`src/main/command-control.ts:42`), `executeDesktopAction` (`src/main/desktop-adapters.ts:167`), `resolveBarOrbState` (`src/renderer/src/lib/bar-pill-orb.ts:108`), `persistProxyAsk` (`operator/src/ask-meter.ts:32`), each matching the checker's export-declaration pattern. Each test file references the symbol as a whole word: `auth.test.ts` (27 lines, first at `:7`), `command-control.test.ts:2`, `desktop-adapters.test.ts:11`, `bar-pill-orb.test.ts` (12 lines, first at `:24`), `ask-meter.test.ts:2`. The six UNBOUND modules (HB-04, HB-05, HB-06, HB-07, HB-09, HB-10b) are absent at that commit, all ten owner tickets exist in `ledger/tickets.json`, and `FINAL-AUDIT.md` does not exist yet.
+- OBSERVED: the 2026-09-28 session that wrote this table could not run `git show` on `origin/m2/integration` and read the local working tree instead; the lead's read-only re-verification above replaces that. The checker script itself has not run (D-28); it is staged in private CI (see the lead-only steps).
 
 ## Table
 
@@ -55,11 +55,11 @@ node docs/metis-2.0/tools/trace/check-bindings.mjs --code-root <public repo chec
 
 It exits 1 when a BOUND row's module, symbol or test file is missing (or the test does not mention the symbol), when an owner ticket is not in the ledger, when an UNBOUND row's module already exists, or when the final audit omits an UNBOUND row.
 
-- UNKNOWN: this ticket's scope holds only the table and the checker. No workflow file wires the checker into CI, and this session ran nothing (owner decision D-28).
+- This ticket's scope held only the table and the checker, and its session ran nothing (owner decision D-28). Since 2026-09-29 `.github/workflows/traceability.yml` (workflow_dispatch only) checks out `mysticalsin/AskToto-Mantu` at `m2/integration` and runs the checker with `--code-root`; it has not run yet (private Actions budget, owner action).
 
 ## Lead-only steps
 
-LEAD_ACTION: Run `node docs/metis-2.0/tools/trace/check-bindings.mjs --code-repo /Users/tony/AI-Brain-build/metis-operator-ux --ref origin/m2/integration` and fix any FAIL line by correcting the row, not by weakening the checker.
-LEAD_ACTION: Add a CI step that runs the checker against the `m2/integration` checkout (workflow files are outside this ticket's scope).
+Resolved 2026-09-29 (lead): read-only re-verification at `83fd757c` (see Sources): the five BOUND rows' modules, exported symbols and test references exist (line numbers updated), and the six UNBOUND modules are still absent, so no row needed correcting. The checker script was not run on this Mac (D-28); the script run is staged in private CI (next line), not done.
+Resolved 2026-09-29 (lead): staged in `.github/workflows/traceability.yml` — runs when private CI minutes are available (owner action). Not run yet.
 LEAD_ACTION: Add HB-04, HB-05, HB-06, HB-07, HB-09 and HB-10b to the scope and acceptance of M2-0183 in `docs/metis-2.0/ledger/tickets.json` and regenerate `ledger/tickets/M2-0183.md`.
 LEAD_ACTION: Update the M2-0386 ledger status and file CI evidence after the PR's Build & Test passes.

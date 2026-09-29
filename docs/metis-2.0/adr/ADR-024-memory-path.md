@@ -9,7 +9,7 @@
 
 **Labels.** OBSERVED = read in code or a file, source given as `path:line`. DERIVED = reasoned from OBSERVED facts. PROPOSED = a design choice made here. ASSUMED = believed, verification step named. UNKNOWN = evidence missing.
 
-**Source of OBSERVED code lines.** `<pub>` = `/Users/tony/AI-Brain-build/metis-operator-ux/`, read with the Grep and Read tools on its checked-out working tree. UNKNOWN: whether that checkout equals `origin/m2/integration`. `git -C … show origin/m2/integration:<path>` was refused by the sandbox in this session, so the exact commit was not confirmed. The lead re-verifies the line numbers (see LEAD_ACTION at the end) before this ADR leaves PROPOSED.
+**Source of OBSERVED code lines.** `<pub>` = the public repository `mysticalsin/AskToto-Mantu` at `origin/m2/integration` = `83fd757cc0200b2ac76d158a05bb3fbf5bcf5a91`. The author read a local working tree whose commit was not confirmed; on 2026-09-29 the lead re-verified every `<pub>` line number in §1 read-only at that commit (`git fetch`, then `git cat-file -p origin/m2/integration:<path>`) and updated the ones that had moved (B1, B2, B3, B4, B5, B9, R1, A1, A3, A4, D1, D2). The §1.6 search was repeated over all 1,041 files under `src/` at that commit and still finds no `Hindsight` or `MemoryClient`.
 
 ---
 
@@ -31,21 +31,21 @@ Every current place that reads or writes remembered context. "Store" means the `
 
 | # | Kind | Call site | What it does |
 |---|---|---|---|
-| B1 | write | `<pub>src/main/brain/store.ts:34` (`brainDir`), `:452` (`readFileSync`) | Owns the on-disk `.brain` location and low-level reads. `readJson`/`writeJson` are imported from it at `intelligence-index.ts:10`, `consolidate.ts:15`. |
-| B2 | write | `<pub>src/main/brain/ingest.ts:1667-1668` | Reads the alias map and applies human corrections to a meeting extraction before it is stored. |
-| B3 | write | `<pub>src/main/brain/ingest.ts:2185` | Publishes the wiki mirror after an ingest (`trackedPublication(() => publishAll(s))`). |
-| B4 | write | `<pub>src/main/brain/ingest.ts:2315` (`exciseDeletedMeeting`) | Removes a deleted meeting's derived memory. |
-| B5 | write | `<pub>src/main/brain/corrections.ts:161` (read), `:379` (write), `:688` (`readAliasMap`), `:701` (`applyCorrections`) | Human correction journal `.brain/corrections.json`. |
+| B1 | write | `<pub>src/main/brain/store.ts:52` (`brainDir`), `:615` (`readFileSync` in `loadIndex`) | Owns the on-disk `.brain` location and low-level reads. `readJson`/`writeJson` are imported from it at `intelligence-index.ts:11`, `consolidate.ts:15`. |
+| B2 | write | `<pub>src/main/brain/ingest.ts:1701-1702` | Reads the alias map and applies human corrections to a meeting extraction before it is stored. |
+| B3 | write | `<pub>src/main/brain/ingest.ts:2240` | Publishes the wiki mirror after an ingest (`trackedPublication(() => publishAll(s))`). |
+| B4 | write | `<pub>src/main/brain/ingest.ts:2395` (`exciseDeletedMeeting`) | Removes a deleted meeting's derived memory. |
+| B5 | write | `<pub>src/main/brain/corrections.ts:161` (read), `:431`, `:455` (write), `:688` (`readAliasMap`), `:701` (`applyCorrections`) | Human correction journal `.brain/corrections.json`. |
 | B6 | write | `<pub>src/main/brain/publish.ts:49` (`wikiDir`), `:238` (`readConfidentialMeetings`), `:520` (`publishEntity`), `:556` (`removeFromWiki`), `:947` (`publishAll`) | Markdown wiki mirror. Confidential meetings are excluded. |
 | B7 | read | `<pub>src/main/brain/context.ts:5`, `:194` (`buildBrainContext`) | Builds the per-turn context block from the store. |
 | B8 | read | `<pub>src/main/brain/attention.ts:4` | Reads entities and the index for the attention list. |
-| B9 | write | `<pub>src/main/brain/consolidate.ts:15,42`; `<pub>src/main/brain/intelligence-index.ts:10-11`; `<pub>src/main/brain/intelligence-pass.ts:7` | Batched passes that write `.brain/consolidate-state.json` and the index run record, and start backfill. |
+| B9 | write | `<pub>src/main/brain/consolidate.ts:15,42`; `<pub>src/main/brain/intelligence-index.ts:11-12`; `<pub>src/main/brain/intelligence-pass.ts:7` | Batched passes that write `.brain/consolidate-state.json` and the index run record, and start backfill. |
 
 ### 1.2 `src/main/recall.ts`
 
 | # | Kind | Call site | What it does |
 |---|---|---|---|
-| R1 | read | `<pub>src/main/recall.ts:237` (`listMeetings`), `:251` (`recallRead`), `:949` (`searchMeetings`) | Reads saved meetings. Exposed to the renderer at `<pub>src/main/index.ts:6163`, `:8540`, `:8544` (`requireAuth()` gate at `:8540`). |
+| R1 | read | `<pub>src/main/recall.ts:237` (`listMeetings`), `:251` (`recallRead`), `:949` (`searchMeetings`) | Reads saved meetings. Exposed to the renderer at `<pub>src/main/index.ts:6426`, `:8867`, `:8871` (`requireAuth()` gates at `:6425`, `:8867`, `:8871`). |
 | R2 | write | `<pub>src/main/recall.ts:387-394`, `:484-499` (index rewrite), `:537` (`updateMeetingRecap`), `:632` (`updateMeetingTranscript`), `:694` (`setMeetingCrmPushed`), `:746` (`setMeetingConfidential`) | Edits saved meeting text and index. |
 | R3 | write | `<pub>src/main/recall.ts:370` (`deleteMeeting`), `:870` (`deleteAllMeetings`), `:923` (`sweepExpiredMeetings`), `:940` (calls `exciseDeletedMeeting`) | Deletion and retention, which cascades into the brain (B4). |
 
@@ -53,24 +53,24 @@ Every current place that reads or writes remembered context. "Store" means the `
 
 | # | Kind | Call site | What it does |
 |---|---|---|---|
-| A1 | read | `<pub>src/main/index.ts:6912-6919` | For `mode === 'answer'` and not fact-check, calls `buildBrainContext` and sets `req.brainContext`. Best effort: failure is logged and the answer proceeds. |
+| A1 | read | `<pub>src/main/index.ts:7183-7190` | For `mode === 'answer'` and not fact-check, calls `buildBrainContext` and sets `req.brainContext`. Best effort: failure is logged and the answer proceeds. |
 | A2 | read | `<pub>src/main/llm/shared.ts:186`, `:212` (`brainContextBlock`) | Puts that block into the prompt for every provider. |
-| A3 | write | `<pub>src/main/index.ts:5054`, `:6368`, `:8109`, `:8147-8148`, `:8168-8169`, `:8183`, `:8228` | IPC handlers that mutate entities, then re-publish the wiki (`publishAll`, `publishEntity`, `removeFromWiki`). |
-| A4 | write | `<pub>src/main/index.ts:6298`, `:6440`, `:8081` | Meeting excise, commitment settlement and deal outcome, each resolved through the alias map (`readAliasMap`). |
+| A3 | write | `<pub>src/main/index.ts:5312`, `:6631`, `:8435`, `:8473-8474`, `:8494-8495`, `:8509`, `:8554` | IPC handlers that mutate entities, then re-publish the wiki (`publishAll`, `publishEntity`, `removeFromWiki`). |
+| A4 | write | `<pub>src/main/index.ts:6561`, `:6703`, `:8407` | Meeting excise (`:6561`, `exciseDeletedMeeting`, no alias lookup), commitment settlement (`:6703`) and deal outcome (`:8407`); the last two resolve the deal through the alias map (`readAliasMap`). |
 
 ### 1.4 Operator routes
 
 | # | Kind | Call site | What it does |
 |---|---|---|---|
 | O1 | write (metadata) | `<pub>src/main/operator-ingest.ts:166` (`projectOperatorIngestMetadata`), `:229` (`/v1/ingest`), `:285`, `:334` (`/v1/heartbeat`) | Desktop posts projected event metadata to the Operator. The projection drops unsupported legacy records without a network call (`:169`). DERIVED: this path carries usage events, not a memory store. |
-| O2 | none found | `<pub>src/main/operator-*.ts` | UNKNOWN whether any operator route outside the files searched reads or writes remembered context. The operator service source (`operator/src/routes/`) was not inspected in this session. |
+| O2 | none | `<pub>operator/src/routes/` (17 modules at `83fd757c`) | Closed 2026-09-29 (lead, read-only). OBSERVED: the modules register admin-console routes (`/v1/admin/*`) and seat integration delivery; none reads or writes remembered context. Asks reach the admin only as telemetry: `/v1/admin/asks` strips `prompt_cipher`/`prompt_iv` (`admin-core.ts:315`), `/v1/admin/asks/:id` answers 410 (`:325`), skill drafts use metadata only (`:334`, `:345`) and session detail omits prompt text (`sessions.ts:174`). `insights.ts`, `mcp-gateway.ts` and `seat-timeline.ts` are empty placeholders. The seat-facing routes (`/v1/ingest`, `/v1/heartbeat`, `/v1/use`, `/v1/ask`, `/v1/skills/manifest`, `/v1/integrations`) are dispatched from `operator/src/index.ts:262-293`. A search of every file under `operator/src` except tests for `brain`, `hindsight`, `knowledge`, `MemoryClient`, `corrections` and `wiki` found no memory store (only an Atlassian wiki probe URL, `connectors/catalog.ts:623`, and a Notion label in `render/fixture.ts:514`). |
 
 ### 1.5 Dust and MCP
 
 | # | Kind | Call site | What it does |
 |---|---|---|---|
-| D1 | read (indirect) | `<pub>src/main/store.ts:704-708` | Comment states the published wiki mirror is "Dust-readable". Dust agents read remembered context by reading the OneDrive wiki files, not through a tool. |
-| D2 | none | `<pub>src/main/store.ts:1095-1133` (`fetchDustAgentList`, `listDustAgents`) | Lists Dust agents only. No memory read or write. |
+| D1 | read (indirect) | `<pub>src/main/store.ts:693-697` | Comment states the published wiki mirror is "Dust-readable". Dust agents read remembered context by reading the OneDrive wiki files, not through a tool. |
+| D2 | none | `<pub>src/main/store.ts:1083-1123` (`fetchDustAgentList`, `listDustAgents`) | Lists Dust agents only. No memory read or write. |
 | D3 | none | `<pub>src/main/mcp/write-tools.ts:2-10`; `mcpClient.ts`, `pushQueue.ts` | MCP client for CRM / task write intents (BidStack/Polo, Plane, ClickUp). Not a memory path. |
 | D4 | absent | no `knowledge.*` tool, no MCP memory server | UNKNOWN for the public tree beyond the files searched; M2-0128 creates the first one in `services/knowledge/mcp/`. |
 
@@ -155,7 +155,7 @@ DERIVED cycle check: M2-0133..0137 do not depend on M2-0128, M2-0129 or M2-0141 
 ## 6. Consequences
 
 - `PORT-DECISIONS.md:77` is amended (same PR) to this decision.
-- `HINDSIGHT-PIN.md:255` says HMSTEP-01's first sentence, "inspect the current `.brain/context/wiki/recall`, Operator, Dust and agent call sites", was not performed. §1 performs it for the public checkout listed above. Remaining gaps: O2 (operator service source) and D4 (Dust-side configuration); both UNKNOWN and named for the lead.
+- `HINDSIGHT-PIN.md:255` says HMSTEP-01's first sentence, "inspect the current `.brain/context/wiki/recall`, Operator, Dust and agent call sites", was not performed. §1 performs it for the public repository at the commit listed above. O2 (operator service source) was closed on 2026-09-29 (§1.4). D4 (Dust-side configuration) remains UNKNOWN and needs the Dust workspace administrator.
 - Nothing here is a claim that any Hindsight code exists in the product.
 
 ---
@@ -164,7 +164,8 @@ DERIVED cycle check: M2-0133..0137 do not depend on M2-0128, M2-0129 or M2-0141 
 
 LEAD_ACTION: Edit `docs/metis-2.0/ledger/tickets.json` and regenerate `ledger/tickets/*.md` so `depends_on` gains M2-0135 on M2-0128; M2-0134 and M2-0136 on M2-0129; M2-0135 and M2-0137 on M2-0141 (table in §5); then run the ledger check and record its output.
 LEAD_ACTION: Dispatch an Opus validator session other than the author to review this ADR and `PORT-DECISIONS.md:77`, and record PASS or REVISE. Acceptance 4 is not met until then.
-LEAD_ACTION: Re-verify every `<pub>` line number in §1 with `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:<path> | nl -ba` and record the commit SHA of `origin/m2/integration` (this session could not run `git show`).
-LEAD_ACTION: Read `operator/src/routes/` in the operator service repository (read-only) to close O2, and confirm the Dust workspace configuration for D4 (BLOCKED_EXTERNAL: needs the Dust workspace administrator).
-LEAD_ACTION: Confirm owner decisions D-5 (hosting/region, needed by M2-0133) and D-24 (needed by M2-0135) before the flag `memory.hindsight` is planned.
+Resolved 2026-09-29 (lead): every `<pub>` line number in §1 re-verified read-only at `origin/m2/integration` = `83fd757cc0200b2ac76d158a05bb3fbf5bcf5a91`; moved anchors updated and the SHA recorded in the source note at the top.
+Resolved 2026-09-29 (lead): read `operator/src/routes/` at `83fd757c` (read-only) and closed O2 in §1.4: no Operator route reads or writes remembered context.
+BLOCKED_EXTERNAL (owner action, still open): the Dust workspace administrator confirms the Dust workspace configuration for D4.
+Resolved 2026-09-29 (lead): D-24 answered by OD-17; D-5 platform/region/operational owner still OPEN (needed by M2-0133 before the flag `memory.hindsight` is planned).
 LEAD_ACTION: Run the r11 memory client tests in CI against the pinned Hindsight image and file the artifact as evidence.

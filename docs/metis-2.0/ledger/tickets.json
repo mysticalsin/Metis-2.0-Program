@@ -3781,8 +3781,14 @@
     }
    ],
    "due": null,
-   "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner named the methods on 2026-09-26: software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER section 2.5 skill."
+   "status": "DONE",
+   "notes": "UNBLOCKED 2026-09-27: Owner named the methods on 2026-09-26: software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER section 2.5 skill.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/265",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0060",
