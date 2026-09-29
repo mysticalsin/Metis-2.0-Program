@@ -32,6 +32,26 @@ build record consumed only by the `provenance` job).
 
 ## 3. Build a candidate
 
+**Pre-dispatch check (M2-0502).** Run it before dispatching `qa-candidate.yml` for 1.9.7, and again
+before each post-cut lane dispatch. First confirm that `main`'s head has passed
+`runbooks/integration.md` §10 step 5, with green main CI and the registration check recorded. Then each
+lane workflow must resolve:
+
+```
+for f in hk-m-candidate.yml windows-qa.yml resource-census.yml freeze-repro.yml \
+         promote-candidate.yml candidate-scenarios.yml; do
+  printf '%s ' "$f"
+  gh api "repos/mysticalsin/AskToto-Mantu/actions/workflows/$f" --jq .state || true
+done
+```
+
+Every line must print `active`, which means the GET returned 200. `gh` prints `Not Found (HTTP 404)` for a
+file GitHub never registered, as `hk-m-candidate.yml` did on 2026-09-29 (OBSERVED by the lead:
+`ledger/tickets.json:25720`, `:27835`). `candidate-scenarios.yml` is checked once it is on `main`
+(M2-0467); before that, its 404 is expected. On a 404, do not dispatch: `runbooks/integration.md` §10
+step 5c names the remedy (M2-0501). Any state other than `active`, such as `disabled_manually`, goes to the
+owner.
+
 ```
 gh workflow run qa-candidate.yml --repo mysticalsin/AskToto-Mantu --ref main \
   -f commit=$(gh api repos/mysticalsin/AskToto-Mantu/commits/main --jq .sha)
