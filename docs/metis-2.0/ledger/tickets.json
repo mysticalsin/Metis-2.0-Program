@@ -189,6 +189,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0419 (P1 Windows timeout in check-ffmpeg-sidecar.test.ts; recurring CI flake across 5 tickets)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0417: DONE -> ENGINEERING_COMPLETE while a LEAD_ACTION acceptance item is open (ledger.py done now applies this rule)."
   }
  ],
  "tickets": [
@@ -22227,13 +22233,17 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 1,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/307",
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
-   }
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   },
+   "notes": "2026-09-29 (lead): DONE -> ENGINEERING_COMPLETE until the lead records its LEAD_ACTION acceptance item."
   },
   {
    "id": "M2-0418",
