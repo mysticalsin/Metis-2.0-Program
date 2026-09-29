@@ -35,7 +35,8 @@ Resolved 2026-09-29 (lead): nested Codex is not run (lead ruling, `codex-queue/s
 | CGPT-M2-0023-05 | `M2-0023-chatgpt-audit.md:44-49` | ACCEPTED -> LEAD_ACTION below | OBSERVED traceability remains not-started until ledger update. DERIVED generated trace refresh is lead-owned because ledger edits/generated ledger pages are forbidden here. |
 
 LEAD_ACTION: Update `docs/metis-2.0/ledger/tickets.json` with M2-0023 finding dispositions and status/evidence if the lead accepts this disposition record.
-LEAD_ACTION: Regenerate `docs/metis-2.0/ledger/tickets/M2-0023.md` and traceability for R15/R90/R91/R92/R93 after the ledger update.
+Resolved 2026-09-29 (lead): ticket md files are frozen snapshots (README.md); tickets.json carries the status. `docs/metis-2.0/ledger/tickets/M2-0023.md` is not regenerated (`docs/metis-2.0/README.md:20`). This line used to ask for that regeneration and for the traceability refresh. Only the regeneration part is resolved.
+LEAD_ACTION: after the ledger update, refresh traceability for R15/R90/R91/R92/R93 from M2-0023 (staged in the private traceability workflow; runs when private CI minutes are available).
 Resolved 2026-09-29 (lead): typecheck evidence is the public Build & Test run 36501359360 on `m2/integration` at `83fd757cc0200b2ac76d158a05bb3fbf5bcf5a91` (push, 2026-09-29T00:05:35Z, conclusion success): `npm run typecheck` passed in Quality checks on ubuntu-latest and windows-latest, and the Operator Worker job's typecheck steps (Worker, client) passed (read-only `gh run view 36501359360 -R mysticalsin/AskToto-Mantu --json conclusion,headSha,jobs`).
 
 ## M2-0023 Codex Findings

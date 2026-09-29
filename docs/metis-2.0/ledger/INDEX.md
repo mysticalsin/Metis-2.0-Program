@@ -1,5 +1,7 @@
 # Ledger index
 
+> **Frozen snapshot.** This index was written in commit `5391490` on 2026-09-26, together with the ticket files in [`tickets/`](tickets/). It is never regenerated, so its `Status` and `External blocker` columns are stale. For example, 212 rows still read `TODO`, and M2-0059 reads `TODO` although the ledger has it `DONE` (`tickets.json` M2-0059 status). [`tickets.json`](tickets.json) is the only source of ticket status and evidence, and the only record of the tickets after M2-0213 (427 tickets as of 2026-09-29). This matches the frozen-snapshot note in [`../README.md`](../README.md) (line 20). Note added 2026-09-29 (lead); the table below is unchanged.
+
 213 tickets (212 active, 1 cancelled), grouped by wave (`W0`..`W9`, see `PLAN.md` for wave definitions). Full ticket fields, acceptance and verification checklists live in `ledger/tickets/<id>.md`. Schema: `ledger/tickets.json`.
 
 ## W0 (23 tickets)

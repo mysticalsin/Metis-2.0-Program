@@ -5,7 +5,7 @@
 | Ticket | M2-0377. Finding refs: AUDIT-2026-09-28, M2-ENG-01, COV-42, D10, F-16, TASK-003, master-r11:TASK-061, R35, v6-brag-hindsight-255 |
 | Status | **PROPOSED.** Decision: **do not adopt either tool now** (DEFER). Adoption is reopened only by the gate in §5. |
 | Depends on | M2-0011 (ID matrix only; it built no graph) |
-| Scope | Documentation only. No code, test, script or app run (D-28). No network access in this session. |
+| Scope | Documentation only. No code, test, script or app run (D-28). No network access in this session. The §2.1 commit pins were added on 2026-09-29 (lead) from read-only GitHub API calls; nothing was cloned, installed or run. |
 
 **Labels.** OBSERVED = read in a file or code, source `path:line`. DERIVED = reasoned from OBSERVED facts. ASSUMED = believed, verification step named. UNKNOWN = evidence missing. BLOCKED_EXTERNAL = needs network or an outside account; the exact read-only step is given.
 
@@ -24,10 +24,23 @@
 
 | Question | code-review-graph (R35) | Graphify (R36) |
 |---|---|---|
-| Pinned commit reviewed | **BLOCKED_EXTERNAL.** Read-only step: `git ls-remote https://github.com/mysticalsin/code-review-graph HEAD`, then record the full SHA and a read of its README, parser list and index schema. Not done: no network. | **BLOCKED_EXTERNAL.** Same step for `https://github.com/mysticalsin/graphify`. |
+| Pinned commit reviewed | **Pinned 2026-09-29, not reviewed.** The default-branch HEAD (`main`) is pinned at `5a1a2a2bc9d6f98886b0fba670bb5f36c05b03ac` (§2.1). The read of its README, parser list and index schema at that SHA is not done (LEAD_ACTION 2). Original step: `git ls-remote https://github.com/mysticalsin/code-review-graph HEAD`, then record the full SHA and that read. | **Pinned 2026-09-29, not reviewed.** The default-branch HEAD (`v8`) is pinned at `33362d969292b57eda82f3fbd9eb5f3f5bc9bbc2` (§2.1). The source read at that SHA is not done (LEAD_ACTION 2). Original step: the same one for `https://github.com/mysticalsin/graphify`. |
 | Runs on the engineering machine only | ASSUMED (MASTER `:1688`); verify in the pinned source. | Public app already spawns a Python Graphify runner (see below). |
 | Has index identity (worktree, commit, dirty hashes, config version) | UNKNOWN. Required by §4 before adoption. | UNKNOWN. |
 | Measured token/search benefit | UNKNOWN. `evidence/eng-efficiency.md` defines the run; no run exists. | UNKNOWN. |
+
+### 2.1 Pinned commits (OBSERVED, read-only GitHub API, lookup date 2026-09-29; re-verified by the lead the same day)
+
+This ADR names no tag or release, only each fork's `HEAD` (the §2 step). Neither fork has a tag or a release (OBSERVED: `/tags`, `/git/matching-refs/tags` and `/releases` each return an empty list). `/branches` lists one branch per fork. So the pin is the default-branch HEAD commit on the lookup date. The API lookup stands in for `git ls-remote ... HEAD`, which resolves to that same default-branch head (DERIVED).
+
+| Fork (MASTER ref) | Fork of (API `parent`) | Default branch (the only branch) | Pinned commit | Committer date | Head commit subject | Source URLs |
+|---|---|---|---|---|---|---|
+| `mysticalsin/code-review-graph` (R35) | an upstream personal repository (see the fork page) | `main` | `5a1a2a2bc9d6f98886b0fba670bb5f36c05b03ac` | 2026-07-27T10:05:26Z | fix(incremental): purge renamed source paths (#729) | https://api.github.com/repos/mysticalsin/code-review-graph/git/ref/heads/main, https://github.com/mysticalsin/code-review-graph/commit/5a1a2a2bc9d6f98886b0fba670bb5f36c05b03ac |
+| `mysticalsin/graphify` (R36, R53) | `Graphify-Labs/graphify` | `v8` | `33362d969292b57eda82f3fbd9eb5f3f5bc9bbc2` | 2026-08-30T15:01:33Z | chore: bump to 0.9.53 | https://api.github.com/repos/mysticalsin/graphify/git/ref/heads/v8, https://github.com/mysticalsin/graphify/commit/33362d969292b57eda82f3fbd9eb5f3f5bc9bbc2 |
+
+- The `v8` that R53 cites ("`README.md` at v8", `baseline/REFERENCE-REGISTER.md:87`) is the graphify fork's default branch, not a tag (OBSERVED: API `default_branch`, https://api.github.com/repos/mysticalsin/graphify). At the pinned commit, `README.md` is blob `d83ea76c0c2d6b9331a41735f763da2fffe217fd`, which is the blob R53 records (https://api.github.com/repos/mysticalsin/graphify/contents/README.md?ref=33362d969292b57eda82f3fbd9eb5f3f5bc9bbc2).
+- UNKNOWN: which commit the earlier "prior source/README review" of R35/R36 read. No blob or commit was recorded for it (`baseline/REFERENCE-REGISTER.md:69-70`). The pins above are the lookup-date heads. They are not proof of what that review saw, and a branch head can move after the lookup.
+- UNKNOWN: the source review at these SHAs (README, parser list, index schema). It stays LEAD_ACTION 2, and §5 gate (a) needs it.
 
 **Graphify in the product today (OBSERVED, and the reason for the installer rule).** `<pub>src/main/graphify.ts:14-22` documents a bridge that spawns `resources/graphify_runner.py` with a Python interpreter, and `:60` looks for a `graphifyy` uv tool. It builds a graph of the user's meeting notes for the "Open graph" and "Related notes" features. DERIVED: this is a user-data feature owned by knowledge/privacy tickets (M2-0074, M2-0169), a different domain from an engineering index. This ADR does not change it and must not be read as approving Python in the installer; ADR-019 already keeps Graphify confidence tags separate from provenance (`design/knowledge/ADR-019-canonical-knowledge.md:39`).
 
@@ -68,7 +81,8 @@ DERIVED: a developer graph or compaction metric has no serialization path to Ope
 ## 7. Actions only the lead can take
 
 LEAD_ACTION 1: confirm `<pub>` equals `origin/m2/integration` and re-verify the line numbers cited in §2 and §6.
-LEAD_ACTION 2: run the two read-only steps in the §2 table (network) and record pinned SHAs plus a source review in this ADR.
+Resolved 2026-09-29 (lead), SHA half of LEAD_ACTION 2: both forks are pinned in §2.1 by full commit SHA, from read-only GitHub API calls on 2026-09-29, with the source URLs listed there.
+LEAD_ACTION 2 (remaining): read the README, parser list and index schema of each fork at its §2.1 SHA, and record that source review here. Until then §5 gate (a) is unmet.
 LEAD_ACTION 3: run the before and after task sets in `evidence/eng-efficiency.md` in a real engineering session and file the counts.
 LEAD_ACTION 4: land the §6 regression test in the public repo through a ticket (Codex queue) and file the CI run as evidence.
 LEAD_ACTION 5: assign an independent validator; none has run, so status stays PROPOSED.
