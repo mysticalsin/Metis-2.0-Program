@@ -22359,7 +22359,7 @@
      "LEAD_ACTION acceptance item (lead, after merge)"
     ]
    },
-   "notes": "2026-09-29 (lead): DONE -> ENGINEERING_COMPLETE until the lead records its LEAD_ACTION acceptance item."
+   "notes": "2026-09-29 (lead): DONE -> ENGINEERING_COMPLETE until the lead records its LEAD_ACTION acceptance item. 2026-09-29 (lead, post-merge check): VERIFIED: 0 cancelled m2/integration runs among 65 build.yml / 65 isolation-canary.yml runs after the merge (03:08Z-09:40Z). NOT YET OBSERVED: a superseded ticket-branch run cancelled by the next push. 0 overlapping runs on 21 branches, because the single-slot merge queue and the serialized ticket flow no longer push while a branch's run is in progress. The concurrency config is correct by lead review of #307. The LEAD_ACTION stays open until an overlap occurs."
   },
   {
    "id": "M2-0418",
