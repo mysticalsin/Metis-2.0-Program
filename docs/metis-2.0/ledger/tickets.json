@@ -285,6 +285,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0442 LEAD_ACTIONs applied (capability citations for M2-0359/M2-0082, citation_gap removed from CAP-13/CAP-38); confirmation run waits on the private Actions budget (external_blocker)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0210 freeze closure: removed ['M2-0435', 'M2-0439'] again — they depend on the freeze (post-freeze tickets); adding them made a dependency cycle."
   }
  ],
  "tickets": [
@@ -13211,8 +13217,6 @@
     "M2-0442",
     "M2-0443",
     "M2-0444",
-    "M2-0435",
-    "M2-0439",
     "M2-0445",
     "M2-0446"
    ],
