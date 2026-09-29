@@ -1,7 +1,7 @@
 # K01 — Métis 2.0 Master Contract Extraction (MASTER.md §0–§7, lines 1–585)
 
-**Lane:** K01-master-s0-7 · **Repo (read-only):** `/Users/tony/AI-Brain-build/metis-2.0` @ `2bf21f1c` (v1.9.6)
-**Spec source (read-only):** `/Users/tony/AI-Brain-build/metis-v2-inputs/r11/Metis-2.0-Upgrade-Kit-r11/spec/MASTER.md`, lines 1–585 (Navigation §0 through end of §7), revision 4.5 / package r11.
+**Lane:** K01-master-s0-7 · **Repo (read-only):** `/Users/<redacted-user>/AI-Brain-build/metis-2.0` @ `2bf21f1c` (v1.9.6)
+**Spec source (read-only):** `/Users/<redacted-user>/AI-Brain-build/metis-v2-inputs/r11/Metis-2.0-Upgrade-Kit-r11/spec/MASTER.md`, lines 1–585 (Navigation §0 through end of §7), revision 4.5 / package r11.
 **Method:** SAE `02-requirements-and-quality.md` (Given/when/then quality scenarios, requirement IDs + traceability, non-goals, SLO discipline) and Stark `product-and-planning.md` (every requirement cites a source; assumptions/unknowns first-class; falsifiable acceptance). Evidence labels: **OBSERVED** (seen directly in spec text or repo), **DERIVED** (reasoned from OBSERVED facts), **ASSUMED**, **UNKNOWN**.
 **Role of this lane:** this is the spec-fidelity/requirements lane, not a code-defect audit. No existing lane (`B1–B3`, `L01–L05`) covers the renderer (`src/renderer/`) or the native SwiftUI app's UI layer (`native-app/App/UI`, `native-app/App/Settings`) — those are exactly what MASTER §5–§6 govern. Where cheap, read-only checks could confirm or contradict a spec claim against repo HEAD without duplicating the deep-dive lanes' work, I ran them and label the result OBSERVED; deeper code correctness is left to a dedicated renderer/native-UI lane (flagged below as a blocker/gap).
 

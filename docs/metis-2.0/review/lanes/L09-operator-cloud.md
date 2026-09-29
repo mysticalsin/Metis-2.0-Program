@@ -1,6 +1,6 @@
 # Lane L09 — operator-cloud
 
-Repo: `/Users/tony/AI-Brain-build/metis-2.0` (read-only checkout, origin/main `2bf21f1c`, v1.9.6)
+Repo: `/Users/<redacted-user>/AI-Brain-build/metis-2.0` (read-only checkout, origin/main `2bf21f1c`, v1.9.6)
 Reviewer: staff-engineer audit pass, AUDIT mode (brownfield discovery + domain-boundary method skimmed; five-axis review: correctness, readability, architecture, security, performance/reliability/testability).
 Scope: `operator/` (`src`, `client`, `scripts`, `wrangler.jsonc`, `schema.sql`, `schema-alter.sql`), `cloudflare-proxy/`, `license-server/`.
 

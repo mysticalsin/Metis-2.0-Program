@@ -1,6 +1,6 @@
 # Lane B3 — Crash & Stability Root-Cause Report
 
-**Repo**: `/Users/tony/AI-Brain-build/metis-2.0` (read-only checkout, `origin/main` @ `2bf21f1c`, v1.9.6)
+**Repo**: `/Users/<redacted-user>/AI-Brain-build/metis-2.0` (read-only checkout, `origin/main` @ `2bf21f1c`, v1.9.6)
 **Installed app on Tony's Mac**: `/Applications/Metis.app` = 1.9.6 (same as HEAD)
 **Scope**: E6/E7 — crashes and false crash detection. Boot-sentinel, unhandled-rejection path, render-process-gone, app.unresponsive, safe_start, createWindow_retry, minidumps, DiagnosticReports, global error handling, crash-recovery UX.
 **Method**: reproduce → root cause → regression test → surgical fix (per `14-reliability-and-recovery.md`, `27-operational-playbooks.md`, `software-delivery.md`).

@@ -1,0 +1,512 @@
+{
+ "blockers": [
+  "Tony has not approved prd-lock.md (TASK-002 still 0.1.0-draft) — blocks 12 direct task dependents including TASK-005's 24 dependents indirectly (BLOCKERS.md #1/#3).",
+  "No isolated macOS QA host and no Windows x64 test machine exist — TASK-004 startup/process-tree/capture-latency measurements and TASK-027/028 packaged-app proofs cannot run (BLOCKERS.md #13/#14).",
+  "Windows code-signing entity/route undecided and 0 local signing identities exist — every public Windows installer stays unsigned (BLOCKERS.md #16/#21, DECISION-BRIEF.md).",
+  "Shipping line undecided: main carries 1.9.6 RightEdgeSidecar while the customer feed also has a v1.9.8 DockPanel draft from PR #194 — blocks TASK-027.A/028.A scope and creates an update-continuity risk (BLOCKERS.md #11, reconcile.md 'Version-line hazard').",
+  "metis-r11-work contains a fully-green, unmerged 13-file fix set (incl. a critical MQA-348 defect) that is undocumented in metis-2.0-exec and has not been triaged, reviewed, or merged.",
+  "Operator staging Worker/D1 does not exist (wrangler.jsonc:51 placeholder) and the production Operator runs an off-main build with an undecided ACCESS-bypass route (BLOCKERS.md #9/#10)."
+ ],
+ "conflicts_or_contradictions": [
+  "v1.9.6-unsigned is already public on the release feed while docs/SIGNING.md:29 and docs/ENTERPRISE_RELEASE.md still forbid unsigned public releases; only a lead-recorded quote of Tony's decision exists, not a written policy amendment (BLOCKERS.md #12).",
+  "release.yml:313 still gates ALL publication on `needs: [release-macos, release-windows]` even though TASK-002's own C-11 finding already flagged this coupling as wrong (BLOCKERS.md #17) — re-verified unchanged at current HEAD.",
+  "docs/qa/BUG-LEDGER.md still marks MQA-338/MQA-339 OPEN even though the underlying source fix (fca1e6b5, PR #199) is already on main — a verification/paperwork gap, not a code gap (reconcile.md:58,111).",
+  "TASK-003's source-map.md says a Hindsight call-site/pin record exists in outline; TASK-001's register independently says HMSTEP-01 is NOT_MET with zero pinned artifacts — both are consistent once read closely, but a shallow read of either alone would misstate the other's finding.",
+  "metis-r11-work's onboarding-hero-video.ts fix addresses the same defect class (C2, synchronous media throw) that reconcile.md documents as already fixed on main for a *different* file (OnboardingExperience.tsx via fca1e6b5) — main is fixed in one call site and still broken in the sibling module, which no single document currently states.",
+  "Codex integrator route is reported usage-limited until 2026-09-29 (BLOCKERS.md #24), yet this very workflow run is already substituting Sonnet execution + ChatGPT audits per the user's own instruction — the blocker may already be functionally worked around, which the planner should confirm rather than re-flag as open."
+ ],
+ "lane": "K09-prior-execution",
+ "open_decisions": [
+  "Name Entra tenant admin, Teams admin, Dust workspace admin, Jev/Laya account holders, and the privacy/legal owner.",
+  "Answer C-03, C-08, C-16 (entitlement authority: Operator vs license-server) and C-18 (Cloudflare AI-Gateway log-retention policy) in your own words, then approve prd-lock.md.",
+  "State whether the Forgejo mirror is live/authoritative and give its URL.",
+  "Approve Hindsight's hosting boundary, region, and managed-Postgres choice.",
+  "Decide merge vs. revert for the off-main Operator build's 3 commits (ACCESS bypass at /v1/decide).",
+  "Decide which line ships: main 1.9.6 RightEdgeSidecar vs. PR #194 1.9.8 DockPanel (also fixes TASK-028.A scope).",
+  "Confirm in writing that v1.9.6-unsigned may stay public despite current SIGNING.md/ENTERPRISE_RELEASE.md wording.",
+  "Authorize the one read-only `wrangler d1 execute ... SELECT name FROM sqlite_master` against the live Operator D1.",
+  "Supply the path/copy of Metis-Jev-Integration-Plan.md (R73).",
+  "Name the promised refactoring skill and its location/version.",
+  "Supply the Tony Walteur welcome recording, or confirm the text-only fallback ships as final.",
+  "Confirm the two OneDrive-hosted worktrees (Apps Source/Metis Portal, asktoto-cahe-build) hold no work worth preserving, or get OneDrive sync repaired.",
+  "Choose the Windows code-signing entity, route (A-F in DECISION-BRIEF.md) and budget.",
+  "Authorize provisioning: Operator staging Worker+D1, a macOS QA host, a Windows x64 machine/runner, Fly.io access for license-server status, and Apple Developer Program enrollment."
+ ],
+ "report_path": "/Users/<redacted-user>/AI-Brain-build/metis-v2-review/lanes/K09-prior-execution.md",
+ "requirements": [
+  {
+   "id": "K09-R01",
+   "source_ref": "metis-2.0-exec/tasks/TASK-002/prd-lock.md:9,258-262; BLOCKERS.md:11",
+   "title": "Close TASK-002: generate §25 coverage map, §27 evidence registry, threat-model update, route-evidence record; Tony approves prd-lock.md",
+   "priority": "MUST",
+   "acceptance": "prd-lock.md reaches an owner-approved version with §25/§27 populated (every ID NOT_TESTED where unrun, OBU-01..05 explicit) and C-03/C-08/C-16/C-18 answered by Tony in his own words.",
+   "category": "process-governance",
+   "code_areas": [
+    "metis-2.0-exec/tasks/TASK-002/prd-lock.md"
+   ],
+   "depends_on": [],
+   "external_dependency": "Tony's approval and policy answers",
+   "new_vs_r11": false,
+   "status_hint": "PARTIAL (0.1.0-draft)"
+  },
+  {
+   "id": "K09-R02",
+   "source_ref": "metis-2.0-exec/tasks/TASK-005/contracts.md:4-5; PHASE1-STATUS.md:131-136",
+   "title": "Implement src/shared/contracts/* (selected/allowed/ready, speech/generation split, golden fixtures, Swift mirror) from the already-verified TASK-005 design",
+   "priority": "MUST",
+   "acceptance": "Contracts land in the repository with the four golden fixtures and Swift mirror; src/shared/asr-engine.contract.test.ts:38 inversion becomes visible; tsc/self-check/Swift parity reproduce the 0/366-0/124-0 results already achieved in design.",
+   "category": "architecture",
+   "code_areas": [
+    "src/shared/contracts"
+   ],
+   "depends_on": [
+    "K09-R01"
+   ],
+   "external_dependency": "",
+   "new_vs_r11": false,
+   "status_hint": "PARTIAL (design only, nothing in repo)"
+  },
+  {
+   "id": "K09-R03",
+   "source_ref": "metis-2.0-exec/BLOCKERS.md:12 (row 4); re-verified 0 CI matches at current HEAD",
+   "title": "Add CI jobs for MetisKit `swift test` and license-server `node --test`",
+   "priority": "MUST",
+   "acceptance": "A reviewed PR adds a macOS CI job running swift test in native-app/MetisKit and a job running npm test in license-server/; grep over .github/workflows/*.yml for swift/xcodebuild/license-server/native-app returns >0 lines.",
+   "category": "test-coverage",
+   "code_areas": [
+    ".github/workflows",
+    "native-app/MetisKit",
+    "license-server"
+   ],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R04",
+   "source_ref": "metis-r11-work/repo operator/src/ai-gateway.ts (diff, uncommitted); metis-2.0-exec/BLOCKERS.md:13 (row 5)",
+   "title": "Enforce Cloudflare AI-Gateway privacy config server-side (fail closed) before any vault write",
+   "priority": "MUST",
+   "acceptance": "writeVaultKey/rotateVaultKey refuse to proceed unless a live readback shows collect_logs=false, cache_ttl=0, logpush=false; unit tests (ai-gateway.privacy.test.ts, keys.privacy.test.ts) pass; a real production readback is separately authorized and run.",
+   "category": "security-privacy",
+   "code_areas": [
+    "operator/src/ai-gateway.ts",
+    "operator/src/keys.ts"
+   ],
+   "depends_on": [],
+   "external_dependency": "Tony's C-18 policy sign-off before production readback",
+   "new_vs_r11": true,
+   "status_hint": "DONE in metis-r11-work, unmerged"
+  },
+  {
+   "id": "K09-R05",
+   "source_ref": "src/renderer/src/App.tsx:311 (re-verified at HEAD); BLOCKERS.md:14 (row 6)",
+   "title": "Decide 2.0 entitlement authority (Operator vs license-server) and re-enable client license enforcement accordingly",
+   "priority": "MUST",
+   "acceptance": "LICENSE_ENFORCEMENT reflects a named, owner-approved authority; C-16 closed in prd-lock.md.",
+   "category": "licensing",
+   "code_areas": [
+    "src/renderer/src/App.tsx"
+   ],
+   "depends_on": [],
+   "external_dependency": "Tony's single decision",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED (compiled off)"
+  },
+  {
+   "id": "K09-R06",
+   "source_ref": "metis-2.0-exec/tasks/TASK-001/source-register.md:405-416; BLOCKERS.md:15 (row 7)",
+   "title": "Determine Forgejo mirror authority and push v1.9.6-unsigned there if live",
+   "priority": "SHOULD",
+   "acceptance": "Tony states live/authoritative status and gives base URL; if live, the tag is pushed before the next 8h sync.",
+   "category": "release-infra",
+   "code_areas": [],
+   "depends_on": [],
+   "external_dependency": "Tony's knowledge of the mirror + repo settings access",
+   "new_vs_r11": false,
+   "status_hint": "UNKNOWN"
+  },
+  {
+   "id": "K09-R07",
+   "source_ref": "metis-2.0-exec/BLOCKERS.md:16 (row 8); PHASE1-STATUS.md:61",
+   "title": "Pin Hindsight upstream release/SDK/OpenAPI/dependencies (read-only research)",
+   "priority": "SHOULD",
+   "acceptance": "A pinned release image, SDK/OpenAPI reference and dependency license notes exist in the repo/kit; 0 becomes >0 for tracked Hindsight files.",
+   "category": "dependency-management",
+   "code_areas": [],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R08",
+   "source_ref": "metis-2.0-exec/BLOCKERS.md:17 (row 9); service-register.md (off-main build 9568d21)",
+   "title": "Resolve production Operator running off-main build 9568d21 (ACCESS bypass /v1/decide): merge or revert via reviewed PR + security review",
+   "priority": "MUST",
+   "acceptance": "A reviewed PR either merges the 3 off-main commits with a completed security review of the Access bypass, or reverts them before any Operator deploy from main.",
+   "category": "security",
+   "code_areas": [
+    "operator/src"
+   ],
+   "depends_on": [],
+   "external_dependency": "Tony's decision + security reviewer",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R09",
+   "source_ref": "operator/wrangler.jsonc:51 (re-verified at HEAD); BLOCKERS.md:18 (row 10)",
+   "title": "Provision Operator staging Worker + D1 and remove the REPLACE_AFTER_D1_CREATE placeholder",
+   "priority": "MUST",
+   "acceptance": "operator/wrangler.jsonc:51 contains a real database_id; deploy.mjs's staging default resolves to a real Worker.",
+   "category": "infra",
+   "code_areas": [
+    "operator/wrangler.jsonc",
+    "operator/scripts/deploy.mjs"
+   ],
+   "depends_on": [],
+   "external_dependency": "Cloudflare account provisioning, Tony authorization",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R10",
+   "source_ref": "metis-2.0-exec/tasks/TASK-027/reconcile.md:40,208-213 (B3/B5); BLOCKERS.md:19 (row 11)",
+   "title": "Decide shipping line/version: main 1.9.6 RightEdgeSidecar vs. PR #194 1.9.8 DockPanel",
+   "priority": "MUST",
+   "acceptance": "One written decision naming the line and version that ships 027.A/028.A; TASK-028.A scope confirmed against RightEdgeSidecar.",
+   "category": "release-planning",
+   "code_areas": [
+    "src/renderer/src/components/RightEdgeSidecar.tsx"
+   ],
+   "depends_on": [],
+   "external_dependency": "Tony's decision",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R11",
+   "source_ref": "docs/SIGNING.md:29; docs/ENTERPRISE_RELEASE.md:3,161; BLOCKERS.md:20 (row 12)",
+   "title": "Amend SIGNING.md/ENTERPRISE_RELEASE.md to name the unsigned QA-prerelease lane and its conditions",
+   "priority": "SHOULD",
+   "acceptance": "A reviewed PR updates both docs consistent with prd-lock.md §16.6's conditions; Tony's written confirmation of the exception is recorded.",
+   "category": "documentation-policy",
+   "code_areas": [
+    "docs/SIGNING.md",
+    "docs/ENTERPRISE_RELEASE.md"
+   ],
+   "depends_on": [],
+   "external_dependency": "Tony's written confirmation",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R12",
+   "source_ref": "metis-2.0-exec/tasks/TASK-004/baselines.md:206-213; BLOCKERS.md:21 (row 13)",
+   "title": "Provision an isolated macOS QA account/VM (no existing com.mantu.asktoto install) and run startup/process-tree/capture-latency baselines",
+   "priority": "MUST",
+   "acceptance": "baselines.md:215-227 and :246-251 produce real (not NOT_RUN) startup memory/CPU and capture-latency numbers tied to the exact packaged artifact.",
+   "category": "performance-testing",
+   "code_areas": [],
+   "depends_on": [
+    "K09-R19"
+   ],
+   "external_dependency": "a clean macOS host/VM",
+   "new_vs_r11": false,
+   "status_hint": "NOT_RUN"
+  },
+  {
+   "id": "K09-R13",
+   "source_ref": "metis-2.0-exec/tasks/TASK-004/baselines.md:270; BLOCKERS.md:22 (row 14)",
+   "title": "Provision a Windows x64 test machine/runner and run Setup/Portable 1.9.6 size, process-tree and GPU/driver baselines",
+   "priority": "MUST",
+   "acceptance": "Windows baselines recorded with ASKTOTO_USERDATA set to a temp dir, including size, temp peak, process tree, GPU/driver.",
+   "category": "performance-testing",
+   "code_areas": [],
+   "depends_on": [],
+   "external_dependency": "a Windows x64 machine or CI runner",
+   "new_vs_r11": false,
+   "status_hint": "NOT_AVAILABLE"
+  },
+  {
+   "id": "K09-R14",
+   "source_ref": "metis-2.0-exec/tasks/PHASE1-STATUS.md:62,222 (MASTER §33.5)",
+   "title": "Run an independent review (Fable/Claude/Codex/ChatGPT) of prd-lock.md and contracts.md first, then the TASK-001/003/004 registers",
+   "priority": "SHOULD",
+   "acceptance": "A review packet and verdict exist for prd-lock.md and contracts.md before either closes; findings folded back into the registers.",
+   "category": "process-governance",
+   "code_areas": [],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R15",
+   "source_ref": "metis-2.0-exec/tasks/WINDOWS-SIGNING/DECISION-BRIEF.md:10-18,47-51; BLOCKERS.md:24 (row 16)",
+   "title": "Choose Windows code-signing entity + route (A-F) and provision a publicly trusted signing identity",
+   "priority": "MUST",
+   "acceptance": "An entity and route are chosen; the preflight identity-check (previously CHAIN_UNTRUSTED) passes on a reviewed main SHA.",
+   "category": "release-infra",
+   "code_areas": [
+    "electron-builder.yml",
+    "electron-builder.win.yml"
+   ],
+   "depends_on": [],
+   "external_dependency": "Azure subscription or CA purchase + validation (1-20 business days)",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R16",
+   "source_ref": ".github/workflows/release.yml:313 (re-verified at HEAD); BLOCKERS.md:25 (row 17)",
+   "title": "Split release publication per platform so Windows is not gated on macOS notarization and vice versa",
+   "priority": "SHOULD",
+   "acceptance": "release.yml no longer has needs:[release-macos, release-windows] coupling publication; current-main tag rule preserved; latest-mac.yml never advances to missing/unnotarized bytes.",
+   "category": "release-infra",
+   "code_areas": [
+    ".github/workflows/release.yml"
+   ],
+   "depends_on": [],
+   "external_dependency": "Tony's approval of the PR",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R17",
+   "source_ref": "metis-2.0-exec/tasks/TASK-001/service-register.md:128; BLOCKERS.md:26 (row 18)",
+   "title": "Observe license-server (Fly.io) live state",
+   "priority": "COULD",
+   "acceptance": "fly status -a asktoto-license (or Tony-supplied URL/state) recorded in the TASK-001 register.",
+   "category": "observability",
+   "code_areas": [
+    "license-server"
+   ],
+   "depends_on": [],
+   "external_dependency": "Fly.io account access",
+   "new_vs_r11": false,
+   "status_hint": "NOT_AVAILABLE"
+  },
+  {
+   "id": "K09-R18",
+   "source_ref": "metis-2.0-exec/tasks/TASK-001/service-register.md:113; BLOCKERS.md:27 (row 19)",
+   "title": "Reconcile live Operator D1 schema (28 tables) against source schema.sql (19 tables)",
+   "priority": "SHOULD",
+   "acceptance": "One authorized read-only wrangler d1 execute lists live table names; differences reconciled or explained in the register.",
+   "category": "data-integrity",
+   "code_areas": [
+    "operator/schema.sql"
+   ],
+   "depends_on": [],
+   "external_dependency": "Tony's authorization to run the query",
+   "new_vs_r11": false,
+   "status_hint": "NOT_RUN"
+  },
+  {
+   "id": "K09-R19",
+   "source_ref": "scripts/bench-asr-ttfc.mjs (stub); metis-2.0-exec/tasks/PHASE1-STATUS.md:118; BLOCKERS.md:28 (row 20)",
+   "title": "Write a real timestamped capture-to-caption latency harness (replacing the 400ms stub)",
+   "priority": "SHOULD",
+   "acceptance": "A harness runs against a pinned reference clip and produces real first-caption-latency numbers; can be authored before hardware exists, run once #13/#14 land.",
+   "category": "performance-testing",
+   "code_areas": [
+    "scripts/bench-asr-ttfc.mjs"
+   ],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED (stub only)"
+  },
+  {
+   "id": "K09-R20",
+   "source_ref": "metis-2.0-exec/BLOCKERS.md:29 (row 21); release-secrets check run 35537817481",
+   "title": "Enroll Apple Developer account and provision CSC_LINK/APPLE_ID/APPLE_TEAM_ID secrets; remove darwin updater guards in the same commit",
+   "priority": "MUST",
+   "acceptance": "security find-identity -v -p codesigning shows a valid identity; macOS notarized release pipeline passes; must not gate Windows once K09-R16 lands.",
+   "category": "release-infra",
+   "code_areas": [
+    "docs/ENTERPRISE_RELEASE.md"
+   ],
+   "depends_on": [
+    "K09-R16"
+   ],
+   "external_dependency": "Apple Developer Program enrollment (Mantu IT)",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R21",
+   "source_ref": "metis-2.0-exec/tasks/PHASE1-STATUS.md:130 (S26); BLOCKERS.md:30 (row 22)",
+   "title": "Build a native SwiftUI app artifact via XcodeGen + Xcode in an isolated worktree for measurement",
+   "priority": "COULD",
+   "acceptance": "A built native-app artifact exists and installed com.mantu.metis.native can be measured; swiftc confirmed workable in-sandbox with -module-cache-path in scratchpad.",
+   "category": "build-tooling",
+   "code_areas": [
+    "native-app"
+   ],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": false,
+   "status_hint": "NOT_AVAILABLE"
+  },
+  {
+   "id": "K09-R22",
+   "source_ref": "metis-2.0-exec/receipts/BASELINE-EXITS.txt; PHASE1-STATUS.md:205 (section 5.1); metis-r11-work/verification-20260924-s3-hermetic/*.json",
+   "title": "Fold baseline receipts into the TASK-001 register, explain all skipped tests, and run MetisKit `swift test`",
+   "priority": "SHOULD",
+   "acceptance": "TASK-001 register cites the full-suite pass (6734 total/6703 passed/0 failed/31 pending per metis-r11-work's hermetic run) and explains each skip class; swift test result (pass or exact error) is recorded.",
+   "category": "test-coverage",
+   "code_areas": [
+    "native-app/MetisKit"
+   ],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": true,
+   "status_hint": "PENDING_LEAD, largely superseded by metis-r11-work"
+  },
+  {
+   "id": "K09-R23",
+   "source_ref": "metis-2.0-exec/tasks/TASK-001/service-register.md:29,30,53 (re-verified, values masked by this lane); BLOCKERS.md:34 (row 26)",
+   "title": "Finish sanitizing the exec-dir handoff: mask the remaining personal-email occurrences (the .wrangler cache item is already resolved)",
+   "priority": "MUST",
+   "acceptance": "service-register.md:29,30,53 contain no email-address-pattern text; a rerun of a full-account/email regex scan over metis-2.0-exec returns 0 matches.",
+   "category": "privacy",
+   "code_areas": [
+    "metis-2.0-exec/tasks/TASK-001/service-register.md"
+   ],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": true,
+   "status_hint": "PARTIAL (.wrangler cache already deleted; email still present)"
+  },
+  {
+   "id": "K09-R24",
+   "source_ref": "metis-r11-work/session.json:1-5; git diff --stat HEAD (13 files, +425/-71)",
+   "title": "Triage and merge metis-r11-work's unmerged, fully-green fix set into a reviewed branch off current main",
+   "priority": "MUST",
+   "acceptance": "The 13-file diff (AI-Gateway privacy enforcement, ask-meter integer hardening, onboarding-hero-video resilience, metis-wake Unicode fix, hermetic vitest home) passes review and lands on main; metis-2.0-exec's tracking is updated to reference it so this gap does not recur.",
+   "category": "reuse-integration",
+   "code_areas": [
+    "operator/src/ai-gateway.ts",
+    "operator/src/keys.ts",
+    "operator/src/ask-meter.ts",
+    "operator/src/use.ts",
+    "src/renderer/src/lib/onboarding-hero-video.ts",
+    "src/shared/metis-wake.ts",
+    "vitest.config.ts"
+   ],
+   "depends_on": [
+    "K09-R04",
+    "K09-R25",
+    "K09-R26"
+   ],
+   "external_dependency": "",
+   "new_vs_r11": true,
+   "status_hint": "DONE in metis-r11-work, unmerged and undocumented"
+  },
+  {
+   "id": "K09-R25",
+   "source_ref": "metis-r11-work docs/qa/BUG-LEDGER.md diff (new MQA-348 row); vitest.config.ts diff; src/main/test-hermetic-home.test.ts",
+   "title": "Fix MQA-348: unit tests must never resolve or write into a developer's real OneDrive meetings folder",
+   "priority": "MUST",
+   "acceptance": "vitest.config.ts gives every test worker a fresh temp HOME/USERPROFILE and blanks OneDrive* env vars; src/main/test-hermetic-home.test.ts fails on the old config and passes on the new one (already demonstrated in metis-r11-work).",
+   "category": "correctness",
+   "code_areas": [
+    "vitest.config.ts",
+    "src/main/transcripts.ts"
+   ],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": true,
+   "status_hint": "DONE in metis-r11-work, unmerged; not tracked in any blocker or task register"
+  },
+  {
+   "id": "K09-R26",
+   "source_ref": "src/renderer/src/lib/onboarding-hero-video.ts (re-verified unfixed at HEAD); metis-2.0-exec/tasks/TASK-027/reconcile.md:101 (C2 defect class)",
+   "title": "Wrap synchronous HTMLMediaElement.play() calls in onboarding-hero-video.ts so one media element's throw cannot block the other's attempt",
+   "priority": "MUST",
+   "acceptance": "Both audio and video play attempts are independently try/catch-guarded (not just their promises); a synthetic throw from one element does not prevent the other from playing; test matches metis-r11-work's already-passing onboarding-hero-video.test.ts extension.",
+   "category": "correctness",
+   "code_areas": [
+    "src/renderer/src/lib/onboarding-hero-video.ts"
+   ],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": true,
+   "status_hint": "NOT fixed on main; fix exists unmerged in metis-r11-work"
+  },
+  {
+   "id": "K09-R27",
+   "source_ref": "metis-2.0-exec/tasks/TASK-027/reconcile.md:143-156 (defects D1-D11)",
+   "title": "Implement TASK-028.A right-edge dock repairs (composer focus/disable, pointer-departure pinning, multiline input, rAF focus delay, drag-region, small-height clipping, action-rail clipping, split geometry authority, oversized hit-region, IME guards)",
+   "priority": "MUST",
+   "acceptance": "Each of D1-D11's proving tests (per reconcile.md's own table) passes; a component/e2e proof runs on both the Windows and Mac QA candidates.",
+   "category": "correctness",
+   "code_areas": [
+    "src/renderer/src/components/RightEdgeSidecar.tsx",
+    "src/main/island/geometry.ts",
+    "src/main/window-drag.ts"
+   ],
+   "depends_on": [
+    "K09-R10",
+    "K09-R12",
+    "K09-R13"
+   ],
+   "external_dependency": "",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED (fully specified)"
+  },
+  {
+   "id": "K09-R28",
+   "source_ref": "metis-2.0-exec/tasks/TASK-027/reconcile.md:61,115 (gaps G197-1, G196-1)",
+   "title": "Close TASK-027.A regression-test gaps: widen the ELECTRON_RENDERER_URL guard regex to catch the dotted-property form, and make the Act-2 browser regression suite mandatory in CI",
+   "priority": "MUST",
+   "acceptance": "A synthetic dotted-form mutant of the regression fails the new guard; build.yml's npm test step runs with ASKTOTO_BROWSER_QA=1 (or explicitly explains a genuine Chromium absence) so the suite is no longer skip-only in CI.",
+   "category": "test-coverage",
+   "code_areas": [
+    "src/main/onboarding-boot.test.ts",
+    ".github/workflows/build.yml"
+   ],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED"
+  },
+  {
+   "id": "K09-R29",
+   "source_ref": "metis-v2-inputs/r11/Metis-2.0-Upgrade-Kit-r11/clicky-study/ARTIFACT.json (exists, OBSERVED); PHASE1-STATUS.md:59",
+   "title": "Add the HeyClicky reference-artifact row (AGX-01/HC) to the TASK-001 register from the kit's own clicky-study/ARTIFACT.json",
+   "priority": "COULD",
+   "acceptance": "TASK-001 register cites HeyClicky 1.0.51 build 61 identity, executed:false, study-only rights per HC-27.",
+   "category": "documentation",
+   "code_areas": [
+    "metis-2.0-exec/tasks/TASK-001/source-register.md"
+   ],
+   "depends_on": [],
+   "external_dependency": "",
+   "new_vs_r11": false,
+   "status_hint": "NOT_STARTED (trivial, artifact already exists in kit)"
+  },
+  {
+   "id": "K09-R30",
+   "source_ref": "Lead-supplied runtime evidence E2/E3/E8 (orphaned llama-server/chrome_crashpad sidecars; 8 starts with no clean shutdown; runtime.start x62 vs stop x108)",
+   "title": "Add an explicit sidecar-lifecycle requirement: reap local-LLM/ASR sidecars and crash-handler processes on app exit, crash, or force-quit",
+   "priority": "MUST",
+   "acceptance": "After a force-quit or crash, no orphaned llama-server/chrome_crashpad_handler process (ppid=1) survives; a process-tree check after N kill/relaunch cycles shows 0 leaked sidecars.",
+   "category": "reliability",
+   "code_areas": [
+    "src/main"
+   ],
+   "depends_on": [
+    "K09-R12"
+   ],
+   "external_dependency": "",
+   "new_vs_r11": true,
+   "status_hint": "NOT_STARTED; not currently named as its own requirement in any tracked task or blocker"
+  }
+ ],
+ "summary": "Reviewed all prior Métis 2.0 execution artifacts: metis-2.0-exec (CURRENT.md, 29-row BLOCKERS.md, OWNER-DECISIONS.md, TASK-001..005, TASK-027 reconcile.md, WINDOWS-SIGNING research) and the previously-unreferenced metis-r11-work worktree. Verdict: TASK-001 through TASK-005 are all PARTIAL — never NOT_STARTED, never fully DONE — with designs/registers that are almost always implementation-ready while the actual gate is an owner decision or an external account/hardware dependency, not missing engineering effort. TASK-027/028.A (the next scheduled work) has zero code changes but a fully-specified, file:line-cited, test-ID-mapped defect backlog (11 right-edge-dock defects) ready to execute once the shipping-line decision lands. Windows signing is decision-ready (6 priced/timed routes) but blocked on entity choice + procurement. Of the 29 blockers, 10 are pure OWNER-ONLY, 6 are ACCOUNT/EXTERNAL, 7 are pure ENGINEERING-SOLVABLE-NOW, and 6 are compound (owner decision gates otherwise-ready engineering) — 13 of 29 have an engineering-doable component that can proceed in parallel with the ask to Tony. The single most important new finding: metis-r11-work is a separate, undocumented, uncommitted worktree containing a fully-green (typecheck/check:bugs/6734-test-suite/proxy/operator all PASS), 13-file, tested-and-reviewed-quality fix set — including one CRITICAL, previously-untracked defect (MQA-348: unit tests were writing into and hanging on the developer's real OneDrive meeting-notes folder), a partial code-level answer to blocker #5 (Cloudflare AI-Gateway privacy enforcement, fail-closed), and a fix for the same synchronous-media-throw defect class (C2) that reconcile.md documents as already fixed on main in a sibling file but is still unfixed in onboarding-hero-video.ts. This fix set is not referenced anywhere in metis-2.0-exec's own tracking and should be triaged/merged rather than re-derived. Sanitization blocker #26 is now half-resolved (the .wrangler account-ID cache is gone) but the personal-email masking at service-register.md:29,30,53 is still outstanding (confirmed via masked regex scan, no PII reproduced here). Full evidence, file:line citations, and the 30-item requirements list are in the linked report.",
+ "kind": "kit"
+}

@@ -4,7 +4,7 @@
 |---|---|
 | Owner | Program owner (Tony); Opus records and validates |
 | Date | 2026-09-26 |
-| Contents | A. Owner decisions already made · B. Program decisions (Opus) · C. Engineering ADR index · D. Open decision register D-1..D-30 · E. D-7 follow-through: dock-lineage disposition (PROPOSED) |
+| Contents | A. Owner decisions already made · B. Program decisions (Opus) · C. Engineering ADR index · D. Open decision register D-1..D-30 · E. D-7 follow-through: dock-lineage disposition (PROPOSED) · F. Weekly decision slot |
 | How to answer | One line per decision in the weekly 30-minute decision slot (first slot by 2026-10-02), or in the ticket. Answers are copied into the affected tickets and `_relay/HANDOFF.md` |
 | Rule | A **reversible** decision takes its recorded default at its needed-by date if unanswered, and stays labelled ASSUMED in the affected tickets until confirmed. An **escalated** decision (spend, legal-privacy, security, owner configuration, irreversible) never auto-applies: engineering proceeds on the default labelled ASSUMED, and the release claim waits for the answer. Decision dependencies (`needs_decision`) never cap a ticket's evidence; artifact dependencies (`depends_on`) do |
 
@@ -27,6 +27,13 @@ Evidence labels follow software-architecture-engineer v1.4.0: OBSERVED, PROVIDED
 | OD-11 | 2026-09-26 | Audits: ChatGPT now; Codex CLI when its quota resets (2026-09-29 19:33) | PROVIDED | — | M2-0023 |
 | OD-12 | 2026-09-27 | Métis is an installed **desktop application** (Electron) on macOS and Windows. The web platform (Operator) is its mission control and admin console, never a replacement for the app. Standalone HTML design prototypes are internal review artifacts only: they are never shipped or presented as the product, UI evidence is captured from the real app renderer (in CI, per D-28), and no agent drives a visible browser on the owner's machine for program work | PROVIDED (owner message 2026-09-27, after an agent's Playwright capture of the Settings HTML mock appeared on his screen) | A web-first client; separate HTML prototype sites as design evidence | M2-0101, M2-0201, M2-0007, every UI ticket |
 | OD-13 | 2026-09-27 | Operating model revised: **Codex implements**, Claude plans (design briefs) and challenges (Opus validation, Level 10 review of every Codex diff). Claude drivers write briefs, run Codex in a workspace-write sandbox per ticket worktree, reject weak diffs back to Codex, then commit/push/CI. Claude implements only when Codex is unavailable (recorded as a fallback) and for Opus-owned design/animation work (OD-9) | PROVIDED (owner message 2026-09-27: "Have Codex execute more than Claude") | Sonnet subagents as implementers (OD-9 original) | ticket runner, rocket-fuel |
+| OD-14 | 2026-09-28 | Temporary, owner-chosen: **Claude implements until the Codex quota resets** (Codex usage limit: "try again at Oct 3rd, 2026 3:21 PM"). The queue swaps only the implementer and the independent reviewer to headless Claude Code (Sonnet, separate read-only review session; `codex-queue/IMPLEMENTER`=claude, `tools/claude-build.sh`); every gate is unchanged (CI, per-PR packaged smoke, revert guard, hygiene, lead rulings). Reverts to OD-13 when the quota resets: delete `codex-queue/IMPLEMENTER`.  | | |
+| OD-15 | 2026-09-28 | Owner confirmed the outside commits on Métis PR branches (amend/rebase/force-push under the owner account, e.g. PR #279, old M2-0231 branch) come from **his own tool: "use its work"**. The queue adopts a rewritten remote head (ticket.sh) and sends any head that moved after review back through every gate (CI, per-PR packaged smoke, owned smoke rows, independent review) — nothing merges unreviewed; main / m2/integration rewinds are still healed by guard.sh. |
+| OD-16 | 2026-09-28 | Capability-audit scope, owner answers: (1) remove the embedded Cloudflare credential from **all** installers (M2-0240); (2) **native Mac app parity is in 2.0** alongside the Electron app (M2-0345, M2-0378); (3) 2.0 languages are **French + English** only (M2-0322); (4) **developer opt-in skills are in 2.0** behind an explicit opt-in (M2-0353..M2-0356). Still open: spoken-yes tiers vs MASTER 4.3 (M2-0289), derived memory D-24 and memory hosting D-5 (M2-0379, M2-0381). |
+| OD-17 | 2026-09-28 | Owner answers: keep **MASTER §4.3** spoken-confirmation tiers (M2-0289); **D-24 facts-only** ships on, derived memory built + qualified but off by default (M2-0379); **D-5 self-hosted private Hindsight** on one approved container platform with managed Postgres (M2-0381). |
+| OD-18 | 2026-09-28 | Owner: **model choice is decided in the Operator portal and every Métis app abides by it** (Electron macOS/Windows and native Mac). The portal policy outranks local settings; an MDM admin file may only narrow it; Operator-brokered calls enforce it server-side. Ticket M2-0412. |
+| OD-19 | 2026-09-28 | Owner: **Claude does it all until Métis 2.0 is fully ready and the best** — supersedes the Oct-3 return to Codex in OD-14. Sonnet implements; **Opus is the independent reviewer** (read-only, separate session) for every ticket; all gates unchanged. |
+| OD-20 | 2026-09-28 | Owner approved the external-blocker sweep: **32 tickets engineering_first** — the queue builds their CI-provable engineering half now and closes them ENGINEERING_COMPLETE (dependents unblock); the outside step stays in external_blocker, never faked. M2-0012 released (drafts the outside requests). Signing (M2-0058, M2-0174, M2-0211) BLOCKED_EXTERNAL; final program sign-off M2-0184 stays held. |
 
 ## B. Program decisions (Opus, 2026-09-26)
 
@@ -96,7 +103,7 @@ Full bodies are in [ARCHITECTURE.md §5](ARCHITECTURE.md). Status for all is PRO
 
 ## D. Open decision register
 
-Days waiting are counted from 2026-09-26. As of 2026-09-26: 0 days for every open row.
+Days waiting are counted from 2026-09-26. As of 2026-09-28: 2 days for every row still OPEN (DERIVED).
 
 | ID | Question | Recommended default | Class | Needed by | Status | Affected tickets |
 |---|---|---|---|---|---|---|
@@ -104,7 +111,7 @@ Days waiting are counted from 2026-09-26. As of 2026-09-26: 0 days for every ope
 | D-2 | After an automatic renderer recovery during capture, does capture resume on its own? | No: show an explicit capture discontinuity and let the user resume with one click | reversible | 2026-10-19 | OPEN | 0098 |
 | D-3 | How does the local crash-recovery journal behave under managed or enterprise retention profiles? | The journal follows the active retention profile; where local content retention is disallowed it is off and recovery asks instead of restoring (Engineering proceeds on the default labelled ASSUMED; the release claim waits for the answer) | escalate: legal-privacy | 2026-10-09 | OPEN | 0066, 0097, 0098 |
 | D-4 | Which system is the 2.0 entitlement authority, and what is the licensing precedence (C-03, C-08, C-16)? | PROPOSED: the Operator seat is authoritative for 2.0; the legacy license server stays read-only for existing keys until an ADR-016 deprecation decision (Answered on the one-page policy approval (M2-0189)) | escalate: spend (commercial) | 2026-10-02 | ANSWERED_AS_DEFAULT 2026-09-27 (owner: "Operator seat") | 0106, 0146, 0189 |
-| D-5 | Where does the server intelligence plane run: container platform, region, managed Postgres with vector, the pinned Hindsight release, and Laya hosting? | No silent default. PROPOSED: self-hosted private Hindsight (not hosted Vectorize Cloud) on one approved container platform with managed Postgres; engineering proceeds against the local compose profile | escalate: spend | 2026-10-12 | OPEN | 0119, 0124, 0125, 0133, 0138 |
+| D-5 | Where does the server intelligence plane run: container platform, region, managed Postgres with vector, the pinned Hindsight release, and Laya hosting? | No silent default. PROPOSED: self-hosted private Hindsight (not hosted Vectorize Cloud) on one approved container platform with managed Postgres; engineering proceeds against the local compose profile | escalate: spend | 2026-10-12 | OPEN | 0119, 0124, 0125, 0133, 0138 ANSWERED 2026-09-28 (OD-17: self-hosted private Hindsight, managed Postgres; platform choice follows) |
 | D-6 | What is the canonical knowledge store (TASK-007) and the plaintext-mirror sharing boundary? | No silent default. Recommended: an Entra-protected knowledge API over an approved M365 location (MASTER section 17.3 state (a)); engineering proceeds behind the API contract | escalate: irreversible (data placement) | 2026-10-12 | ANSWERED_AS_DEFAULT 2026-09-27 (owner: "M365 via Entra API") | 0120, 0125 |
 | D-7 | Which right-edge line ships: main 1.9.6 RightEdgeSidecar or the PR #194 1.9.8 DockPanel? | Decided: main 1.9.6 RightEdgeSidecar; the PR #194 dock lane is ported deliberately, not merged wholesale (Source: prior execution OWNER-DECISIONS.md:8, AskUserQuestion "Ship line"; version 1.9.8 is never reused; disposition of the dock-lineage PRs and branches in §E) | decided | 2026-09-24 | DECIDED 2026-09-24 | 0022, 0025, 0095, 0168, 0202 |
 | D-8 | The production Operator runs an off-main build (three commits including an ACCESS bypass at /v1/decide): merge through a reviewed PR with a security review, or revert? | No silent default. Recommended: security review of the bypass first; no Operator deploy from main until decided | escalate: security | 2026-10-19 | OPEN | 0014, 0103, 0123, 0145, 0159 |
@@ -123,13 +130,14 @@ Days waiting are counted from 2026-09-26. As of 2026-09-26: 0 days for every ope
 | D-21 | Do the two OneDrive-hosted worktrees (Metis Portal, asktoto-cahe-build) hold work to preserve? | Treated as holding nothing to preserve; agents never delete them; the owner may repair OneDrive sync | reversible | 2026-10-18 | OPEN | 0015 |
 | D-22 | Does 2.0 commit to live Teams raw-media capture? | Post-meeting transcript and desktop capture ship; live bot media stays flag-off and BLOCKED until the Azure subscription and calling-media approval exist | escalate: spend | 2026-10-19 | OPEN | 0155 |
 | D-23 | Is Laya in 2.0? | Readiness state 'unavailable' and the Laya-only isolation test now; the container only after the source and checkpoint licence are confirmed | reversible | 2026-10-19 | OPEN | 0124 |
-| D-24 | Which Hindsight memory profile ships? | Facts-only initial profile; mental models and observations (HMSTEP-10) stay off until qualified | reversible | 2026-11-01 | OPEN | 0135 |
+| D-24 | Which Hindsight memory profile ships? | Facts-only initial profile; mental models and observations (HMSTEP-10) stay off until qualified | reversible | 2026-11-01 | ANSWERED (OD-17: facts-only on; derived built, off by default) | 0135 |
 | D-25 | Native Mac onboarding: converge with Electron or intentionally diverge? | Set by M2-0161's design proposal; the owner confirms | reversible | 2026-11-08 | OPEN | 0161 |
 | D-26 | Which competitor products are compared, with which legitimate accounts? | No default; products without a legitimate account are recorded BLOCKED | escalate: spend | 2026-11-08 | OPEN | 0185 |
 | D-27 | Which launch-film claims are approved (release_claims_approved)? | No default; unapproved claims are cut or labelled concept (The request is sent by 2026-11-20) | escalate: legal-privacy | 2026-11-24 | OPEN | 0178, 0182, 0213 |
 | D-28 | May agents run test commands on the owner's account, and under which sandbox policy? | **ANSWERED 2026-09-26 by the owner: CI only.** No repository test, script or app runs on any Mac, including the owner's account; tests run only in GitHub Actions. Static compilation (`tsc --noEmit`) is allowed because it executes no repository code | owner decision | 2026-09-28 | ANSWERED | 0190 |
 | D-29 | What ships on Windows if the signing identity is not provisioned in time? | Windows 2.0 ships as an explicitly BLOCKED unsigned candidate (no public Windows release); the Mac candidate and the film are unaffected | reversible | 2026-10-09 | OPEN | 0058, 0174, 0211 |
 | D-30 | Remove the Cahê edition? | **ANSWERED 2026-09-26 by the owner: remove the edition entirely** (code, embedded-key build path, config, workflow, docs). Published Cahê assets deleted the same day | owner decision | 2026-09-26 | ANSWERED | 0214 |
+| D-31 | Should fresh-install speaker identification persist voiceprints by default, or require explicit opt-in? | Default to no persistent enrollment: session-local attribution may run, but writing `voiceprints.json` requires explicit opt-in | reversible | 2026-10-19 | ANSWERED_AS_DEFAULT 2026-09-27 | 0226 |
 
 **Order of the first answers:** D-28 (09-28) → D-9 (09-29) → D-1 (09-30) → D-4, D-11, D-12 on the one-page policy (10-02) → D-13 (10-03) → D-15 (10-05) → D-3, D-14, D-29 (10-09) → D-5, D-6 (10-12).
 
@@ -256,3 +264,17 @@ Before step 1, re-check E.2 rows 1, 3 and 4 against the current m2/integration t
 3. Comment on #192 to #194: `gh pr comment <n> --repo mysticalsin/AskToto-Mantu --body "<text>"`.
 4. Verify: `gh pr list --repo mysticalsin/AskToto-Mantu --state open --limit 100 --json number --jq '[.[].number]'` lists none of 187 to 194, and `gh pr view <n> --repo mysticalsin/AskToto-Mantu --json comments` shows each text.
 5. Leave the branches (E.5) and the v1.9.8 draft (E.6) as they are.
+
+## F. Weekly owner decision slot and day-one packet (M2-0012)
+
+| Item | Value | Label |
+|---|---|---|
+| Cadence | One fixed 30-minute owner decision slot every week; the owner picks the weekday and time | PROPOSED |
+| First slot | Held by 2026-10-02 (the day the one-page policy M2-0189 is due) | PROVIDED (ticket M2-0012) |
+| Booking | BLOCKED_EXTERNAL: needs the owner's calendar; the autopilot cannot book it | BLOCKED_EXTERNAL |
+| Agenda | Open rows of §D by needed-by date, then the D-x whose defaults land before the next slot; one line per answer | PROPOSED |
+| After the slot | LEAD_ACTION: copy each answer into the affected tickets and `_relay/HANDOFF.md`, and update the Status column of §D | LEAD_ACTION |
+| Later slots | Checked at each train gate (T1 m5, T2 m6, T3 m7, rc1); a missed slot means reversible defaults apply at needed-by and escalated rows stay open | DERIVED from the Rule above |
+| Register scope | §D holds D-1..D-29 as required, plus D-30 and D-31 added later; every row carries question, recommended default, class, needed-by and affected tickets | OBSERVED (§D) |
+| Requests to external roles | Drafted in [owner-requests/](owner-requests/), one per role, NOT SENT; the owner sends them and names the person (BLOCKERS.md) | OBSERVED |
+| Answered at 2026-09-28 | D-4, D-6, D-9, D-11, D-12, D-13, D-24, D-28, D-31 (see §D Status); D-1 defaults on 2026-09-30 if unanswered | OBSERVED (§D) |

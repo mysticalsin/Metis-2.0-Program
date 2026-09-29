@@ -1,0 +1,612 @@
+{
+  "schema": "metis.design.capture.provenance.v1",
+  "ticket": "M2-0201",
+  "created_at": "2026-09-28",
+  "mode": "BLOCKED_EXTERNAL: committed renderer-spec rasterization placeholders; not completion evidence",
+  "source_files": {
+    "src/renderer/m2-design.html": "2249cdce4d9e9c7f92c11c234b4411090d0b18903dd624bd1d76e617387ff7ad",
+    "src/renderer/src/m2-design-entry.tsx": "93ed9b2ab77f6123579e8412e5a98e77b2bfe97bb77ee7aa5f44daba2b4adbcd",
+    "src/renderer/src/components/M2DesignPrototypes.tsx": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+    "src/renderer/src/components/M2DesignPrototypes.css": "725fbcd6719e43ff5346136521c61ed59ea00b116b5d1e1cf9b5862d76397c80"
+  },
+  "generator": "local PIL renderer using data mirrored from src/renderer/src/components/M2DesignPrototypes.tsx; no app, repository script or test was run",
+  "external_blockers": [
+    {
+      "status": "BLOCKED_EXTERNAL",
+      "reason": "D-28 forbids running repository scripts or the app on the owner's Mac in this author session.",
+      "exact_read_only_unblock_step": "In CI, serve src/renderer/m2-design.html, run M2_DESIGN_URL=<ci-served renderer URL> node scripts/evidence/capture-m2-design.mjs, then review the updated docs/metis-2.0/design/M2-0201/*/screenshots/*.png and docs/metis-2.0/design/M2-0201/capture/provenance.json."
+    },
+    {
+      "status": "BLOCKED_EXTERNAL",
+      "reason": "M2-0201 requires independent Opus validator acceptance by a session other than the author.",
+      "exact_read_only_unblock_step": "An Opus validator session other than this author reviews manifest.json, every STATE-LIST.md, the renderer source files, and the Electron-captured PNG or WEBM evidence, then appends its verdict entry to VALIDATION.md."
+    }
+  ],
+  "artifacts": [
+    {
+      "ticket": "M2-0093",
+      "variant": "light-1x",
+      "path": "M2-0093/screenshots/light-1x.png",
+      "sha256": "690f09915b82ca076327ec01a668ce6df1fbcd544db005f26f19f765110d0cdc",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0093",
+      "variant": "dark-1x",
+      "path": "M2-0093/screenshots/dark-1x.png",
+      "sha256": "bf3e38941a9aba82a7dfefe50f12b5c73172fb5412ce07fde45d89d8525da26e",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0093",
+      "variant": "light-2x",
+      "path": "M2-0093/screenshots/light-2x.png",
+      "sha256": "b593bf6849a6fdb14dd24e65b7c0140faaf4e04dcc0a3e0d699152791d509433",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0093",
+      "variant": "dark-2x",
+      "path": "M2-0093/screenshots/dark-2x.png",
+      "sha256": "0e5c23b25a5cab38ca66e232072fa2c05cd22945edeb979f3164f95b3b8cbe83",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0093",
+      "variant": "reduced-motion",
+      "path": "M2-0093/screenshots/reduced-motion.png",
+      "sha256": "f12c137b1f8fad33d82d35ec062846b1c91e1ac3331ae17c1de2b929379b243b",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0094",
+      "variant": "light-1x",
+      "path": "M2-0094/screenshots/light-1x.png",
+      "sha256": "529b5743230e47c8c174181daffb7494c29321c1bb95488e763bbd9b29974861",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0094",
+      "variant": "dark-1x",
+      "path": "M2-0094/screenshots/dark-1x.png",
+      "sha256": "9731a6d9374d2dcecbed2304808dfbb17552908d36348de3dcd1402801222ecd",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0094",
+      "variant": "light-2x",
+      "path": "M2-0094/screenshots/light-2x.png",
+      "sha256": "ae6475391b06d73072a0ac9aadc2d4e4efc832a4c0d1f21d188803304177cd96",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0094",
+      "variant": "dark-2x",
+      "path": "M2-0094/screenshots/dark-2x.png",
+      "sha256": "a4667cd89f7753c7260c8fe1d43390f6eb83007d8c0544295032c83e4851b743",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0094",
+      "variant": "reduced-motion",
+      "path": "M2-0094/screenshots/reduced-motion.png",
+      "sha256": "f33a61ab03945df0bd0375903fcbd114b3be648ff4ea3004e2fb7a4929ef31f9",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0100",
+      "variant": "light-1x",
+      "path": "M2-0100/screenshots/light-1x.png",
+      "sha256": "5840f2dbede0a818d04a1f5c445d5ca2a06696f5552406534d4ea9f04a26da50",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0100",
+      "variant": "dark-1x",
+      "path": "M2-0100/screenshots/dark-1x.png",
+      "sha256": "6f52c4c35326f427fa5272418db7f541b00fd49e8b65246df8fea5e7b59d3eb7",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0100",
+      "variant": "light-2x",
+      "path": "M2-0100/screenshots/light-2x.png",
+      "sha256": "1cbb359d750198ec095bff5b1390daf38150d34b3bb3f9e63aa1bd921635be3b",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0100",
+      "variant": "dark-2x",
+      "path": "M2-0100/screenshots/dark-2x.png",
+      "sha256": "73041e5dfb404f823f31f342f4c35275d821ad1086e59a09bc3973dba90a007d",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0100",
+      "variant": "reduced-motion",
+      "path": "M2-0100/screenshots/reduced-motion.png",
+      "sha256": "560a504b19c9e329490a8d6887d596a21e1d93e4814a6933c8c3ab3f1260e2d6",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0114",
+      "variant": "light-1x",
+      "path": "M2-0114/screenshots/light-1x.png",
+      "sha256": "1e64b88b00557c219e348caebd87d3a55295026dd4b024c16d89740298c6aeba",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0114",
+      "variant": "dark-1x",
+      "path": "M2-0114/screenshots/dark-1x.png",
+      "sha256": "4d4205a4426097ebcb4bfef7a970f6c338f224cd3ce5ddf99bbe08c6172509d1",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0114",
+      "variant": "light-2x",
+      "path": "M2-0114/screenshots/light-2x.png",
+      "sha256": "068c2c92a7e311f8170e1c8386cec1261da711c20ac9e08ea8cdaba163c5a872",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0114",
+      "variant": "dark-2x",
+      "path": "M2-0114/screenshots/dark-2x.png",
+      "sha256": "686823d523bf0d36fc40e192fbef00034ac35ace006572d3f47446afc2137568",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0114",
+      "variant": "reduced-motion",
+      "path": "M2-0114/screenshots/reduced-motion.png",
+      "sha256": "79b93542fe5dfebb8d8e3cb614e675b518b5cae9e49011feb8104bf44a4319f8",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0117",
+      "variant": "light-1x",
+      "path": "M2-0117/screenshots/light-1x.png",
+      "sha256": "a8057126fb6ce06bd9b25d385985851b2ac56af918021b8450d182197fd280f4",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0117",
+      "variant": "dark-1x",
+      "path": "M2-0117/screenshots/dark-1x.png",
+      "sha256": "aa77f347062a429f25d55cda2d109f053b4d0f19706a185c46f646bd14ce31ba",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0117",
+      "variant": "light-2x",
+      "path": "M2-0117/screenshots/light-2x.png",
+      "sha256": "60e8cdb674bddf20addd494322c04fbfa46766703b80ef58cb9db0e0de7714d6",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0117",
+      "variant": "dark-2x",
+      "path": "M2-0117/screenshots/dark-2x.png",
+      "sha256": "cfbc3a791e9d239db9a86a61e12f07eb620536d173fae1a4a252349d6f9d2b1c",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0117",
+      "variant": "reduced-motion",
+      "path": "M2-0117/screenshots/reduced-motion.png",
+      "sha256": "b53ebca94839560be1c493fc4799c610e514973c8033a90cacd487f4a2176562",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0130",
+      "variant": "light-1x",
+      "path": "M2-0130/screenshots/light-1x.png",
+      "sha256": "f5a0442f0b6cfe160267194c7d07af1ba3f903f1913696c5a8316960cbad80dc",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0130",
+      "variant": "dark-1x",
+      "path": "M2-0130/screenshots/dark-1x.png",
+      "sha256": "bf2c88ed871ca31af9ab0f4e0988bf3276787dabf3c40eb298d59a1682a64eb0",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0130",
+      "variant": "light-2x",
+      "path": "M2-0130/screenshots/light-2x.png",
+      "sha256": "1b7614e42f98997112159e26ae60ab8766803e9c89fbc71e3f4c94c2a4d7d3f7",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0130",
+      "variant": "dark-2x",
+      "path": "M2-0130/screenshots/dark-2x.png",
+      "sha256": "9b1526f77fdd6940b3636d22165f4d6fc0d584968013ff0cb1bd2585d4ecd121",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0130",
+      "variant": "reduced-motion",
+      "path": "M2-0130/screenshots/reduced-motion.png",
+      "sha256": "881b6c68d03b94c1ba1d498ea3d40225070b2edcf944b7eae5fc3c7d7093b278",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0137",
+      "variant": "light-1x",
+      "path": "M2-0137/screenshots/light-1x.png",
+      "sha256": "14dddd4b36848573f719f29f2f04e7254298cf007039a3cc5cc4875c796d4a26",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0137",
+      "variant": "dark-1x",
+      "path": "M2-0137/screenshots/dark-1x.png",
+      "sha256": "f96eef7af75c4cac9fba302314d5c03ff3716554858221de316b6d792380f1d8",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0137",
+      "variant": "light-2x",
+      "path": "M2-0137/screenshots/light-2x.png",
+      "sha256": "dd4de3bad2f4d78068aa177ba92154a9730e4103a17c203566ab63045863a4ae",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0137",
+      "variant": "dark-2x",
+      "path": "M2-0137/screenshots/dark-2x.png",
+      "sha256": "f0fc87af0e7c4c7425c107502cc609db0fbc651e6c6d5c8dd9909ee9527590ea",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0137",
+      "variant": "reduced-motion",
+      "path": "M2-0137/screenshots/reduced-motion.png",
+      "sha256": "c5e21e0647bc6ae4caed1f0675ca9b219609e2051f607ea81f79612e38958bb0",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0158",
+      "variant": "light-1x",
+      "path": "M2-0158/screenshots/light-1x.png",
+      "sha256": "03e32c57ef827e82ff4a73dc9f76d1789b7f4658ff71383d4251a687d5b5ddbd",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0158",
+      "variant": "dark-1x",
+      "path": "M2-0158/screenshots/dark-1x.png",
+      "sha256": "8dc4b068257dce1f541af5d3dee4e9fbbd7f66f1b3363564891105d180529fec",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0158",
+      "variant": "light-2x",
+      "path": "M2-0158/screenshots/light-2x.png",
+      "sha256": "b536d0cdf97915e100e622def60de53f759924e6287c13b6babb79811524c791",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0158",
+      "variant": "dark-2x",
+      "path": "M2-0158/screenshots/dark-2x.png",
+      "sha256": "b8511cd49e87685e3832da3fa9f09bd9f5a4ed40baf251cbc9842ee7f5671929",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0158",
+      "variant": "reduced-motion",
+      "path": "M2-0158/screenshots/reduced-motion.png",
+      "sha256": "fc566a53cee48487322c495d91ccf9c0bf857df4c1e1ca10d7eba3357782e6f2",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0160",
+      "variant": "light-1x",
+      "path": "M2-0160/screenshots/light-1x.png",
+      "sha256": "0c7725604ab1c1212ec7cac214c767da63e61489cf885121265e25ee799a0c77",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0160",
+      "variant": "dark-1x",
+      "path": "M2-0160/screenshots/dark-1x.png",
+      "sha256": "606e6acfb6588bb2afb08907fb0eef5a426b5ea5bae65ff27da15db0d9093d52",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0160",
+      "variant": "light-2x",
+      "path": "M2-0160/screenshots/light-2x.png",
+      "sha256": "b19caf687f0db2c06f62e3845f3c5f5ed20c5513065915da58d1826d6c443982",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0160",
+      "variant": "dark-2x",
+      "path": "M2-0160/screenshots/dark-2x.png",
+      "sha256": "8b100b58a608eeac5578e06afa890f8a72068cf5394d1e6bc1a52248e0b52da4",
+      "size": {
+        "width": 960,
+        "height": 520
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    },
+    {
+      "ticket": "M2-0160",
+      "variant": "reduced-motion",
+      "path": "M2-0160/screenshots/reduced-motion.png",
+      "sha256": "eaf80718f7840f72832323f49fe338442ec85745049891f4d571bfe31f2a9ef8",
+      "size": {
+        "width": 720,
+        "height": 390
+      },
+      "source": "src/renderer/src/components/M2DesignPrototypes.tsx",
+      "source_sha256": "3d7acf6160869616bc6991b45b91b6c411a7f00d7caeb9874bcf16024b1dd047",
+      "capture_mode": "renderer-spec-rasterization"
+    }
+  ]
+}

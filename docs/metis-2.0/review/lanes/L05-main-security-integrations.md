@@ -1,6 +1,6 @@
 # Lane L05 — main-security-integrations
 
-Repo: `/Users/tony/AI-Brain-build/metis-2.0` (read-only checkout, origin/main `2bf21f1c`, v1.9.6)
+Repo: `/Users/<redacted-user>/AI-Brain-build/metis-2.0` (read-only checkout, origin/main `2bf21f1c`, v1.9.6)
 Reviewer: staff-engineer audit pass, AUDIT mode (brownfield discovery + domain-boundary method skimmed; five-axis review: correctness, readability, architecture, security, performance/reliability/testability).
 Scope: `src/main/auth.ts`, `license.ts`/`license-*.ts`/`license/`, `secrets.ts`, `security-limits.ts`, `win-security.ts`, `dust-*.ts`, `dustcli.ts`, `cli.ts`, `cli-installer.ts`, `operator-*.ts`, `mcp/`, `net/`, `cloudflare-connect.ts`, `embedded-cloudflare-*.ts`, `cahe-*.ts`, `outlook-write.ts`, `desktop-adapters.ts`, `dev-env.ts`, `app-user-agent.ts`.
 

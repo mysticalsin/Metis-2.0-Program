@@ -1,35 +1,34 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 6
+shift: 9
 agent: claude-code
-updated: 2026-09-27 03:40 EDT
-status: in-progress
-branch: private main (~/AI-Brain-build/metis-prog-main); public m2/integration = 202c0d90 (CI run 36305283772 green)
+updated: 2026-09-28 14:05 EDT
+status: in-progress (full autopilot; signing excluded)
+branch: public main = 858a6a22 (milestone #281, 142 commits, packaged smoke green on 0db09571); m2/integration == main; private main (metis-prog-main)
 ---
 
 # Handoff — Métis 2.0 program
 
 ## Objective & acceptance criteria
-Deliver Métis 2.0 by 2026-11-30: every ledger ticket (227) at its evidence level with Opus validation; external items BLOCKED-visible; launch film; owner signs off milestone PRs into main.
+Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level, HeyClicky-parity + owner asks (r11 MASTER, v6), well-structured code; merges incl. m2/integration -> main after CI + packaged smoke are green (owner directive); signing excluded.
 
 ## Current state
-- Ledger: {'DONE': 36, 'IN_PROGRESS': 21, 'TODO': 168, 'ENGINEERING_COMPLETE': 1, 'CANCELLED': 1}
-- P0 "heavy on PC": FIXED in integration (M2-0026 stopAll, #236). P0 History freeze: gateway core merged (M2-0030 #227); wiring into History/Recall = M2-0031 (batch 9, carries Codex audit-r4's six requirements).
-- Operating model OD-13: Codex implements (tools/codex-build.sh), Claude plans/challenges, Opus validates; OD-12 desktop app only.
-- Rocket-fuel engagement 1: Rocks 1+2 DONE (97/96), branch rf/rock-1-preserve-unreadable-index e9c7ceed; G6 PENDING — owner said "Fix M2-0225 first" (decrypt path must not create secret-key.bin; batch 9).
-- Running workflows: batch 9 wf_74d92306-897 (M2-0225, 0031, 0011 carry, 0013 carry), batch 10 wf_78a905a0-511 (0227, 0226, 0053, 0005, 0021, 0102, 0092), batch 11 wf_c84cc805-0d5 (carries 0037, 0214, 0057, 0101, 0188, 0020), batch 8 wf_62e09923-d63 (0033, 0215, 0047, 0014).
+- Ledger: M2-0001..M2-0411 (175 new from the 2026-09-28 capability audit, review/audits/2026-09-28-capability-gap-audit.json). Decisions OD-13..OD-17 in DECISIONS.md.
+- Worker: launchd com.tony.metis-codex-queue -> service.sh -> queue.sh 3 (guard.sh, merge.sh + milestone.sh in background, launches). OD-14: codex-queue/IMPLEMENTER=claude (headless Sonnet via tools/claude-build.sh, --permission-mode default + allowlist; audited) until the Codex quota resets Oct 3 3:21 PM (CODEX-DOWN auto-expires) — then rm IMPLEMENTER and restart the queue loop.
+- FOCUS mode (codex-queue/FOCUS): only the landing path launches — M2-0031 (History freeze; ST-1 fifo repro still FAILS: loop stalls with 6 FIFOs; plan in state/M2-0031.lead v4), M2-0232 (HIST rows; owner tool also pushes -> WAIT_OWNER), M2-0231 + M2-0233 merged. When integration smoke is green: milestone.sh merges main; then rm FOCUS.
+- Gates: per-PR packaged smoke (ready_for_review), failset baseline (state/.smoke-failset) + owned rows (state/<ID>.owns), post-merge smoke STOP on growth, revert guard, hygiene (paths too), READY pins reviewed SHA, WAIT_OWNER for the owner's tool (OD-15), known-flakes.txt, red run off (RED-RUN file re-enables).
 
 ## Next steps (in order)
-1. On each batch completion: merge READY PRs one at a time with hygiene check, then run ci-proof on m2/integration; mark DONE; run tools/repo-guard.sh.
-2. When M2-0225 merges: merge m2/integration into rf/rock-1 (ordinary merge), re-run both rock proofs (ROCKS.md), present G6 again to the owner.
-3. After M2-0031 merges: Codex audit of the freeze fix path; then plan the 1.9.7 cut (D-13 publishing rules).
-4. Held tickets: M2-0216 (after rocks), M2-0201 (after M2-0007 capture lane — merged; needs Electron capture design), M2-0025 (outward GitHub triage; needs owner OK).
+1. M2-0031 (History freeze P0) must pass the QA-candidate job "ST-1 fifo stall row (macOS)"; plan v4 in codex-queue/state/M2-0031.lead. Then cut 1.9.7 per D-13 (M2-0046: notes in docs/metis-2.0/releases/1.9.7.md; dispatch promote-candidate.yml from main; prerelease, not Latest, no latest*.yml, SHA256SUMS).
+2. Queue flows the whole ledger by priority (FOCUS lifted; PARALLEL=4). New P0s first: M2-0237.., M2-0412 (portal model policy, OD-18), M2-0413 (brain test cleanup race).
+3. Lead actions now that main has the workflows: evidence dispatches in codex-queue/LEAD-ACTIONS.txt.
+4. OD-19: Claude implements (Sonnet) and reviews (Opus) until 2.0 is fully ready — do NOT switch back to Codex on Oct 3.
 
 ## Decisions made (don't relitigate)
-- D-28 CI only; OD-12; OD-13; D-4/6/9/11/12/13 answered; M2-0011: accept history, squash-merge (no force-push); private-repo rulesets unavailable (GitHub Pro) → repo-guard.sh.
+- D-28 CI only; OD-12 Electron app is the product (OD-16 adds native Mac parity in 2.0); OD-14/OD-19 Claude implements (Sonnet) + reviews (Opus) until 2.0 is ready; OD-15 owner's tool may push to ticket branches (adopt + full gates); OD-16 CF key out of all installers, FR+EN, developer skills in 2.0; OD-17 MASTER 4.3 voice tiers, D-24 facts-only (derived built, off), D-5 self-hosted Hindsight.
 
 ## Watch out
-- Merging several PRs back-to-back can break integration even when each passed (M2-0223 x M2-0007 → fixed #245). Always ci-proof integration after merges.
-- ci-proof test-name patterns don't work for fast tests (vitest prints only slow ones); use test-proof.sh or run success.
-- 2026-09-27T04:35Z external mirror push reset private main; restored (af39d16). Never trust a stale clone.
-- Agents never add ledger tickets (lead files them); SendMessage to a workflow agent spawns a copy.
+- Private main was force-reset to 90ed28f twice (09-27 04:35Z, 09-28 05:05Z); guard.sh heals rewinds. Owner has not said whether that is his tool.
+- Sandboxed vs unsandboxed $TMPDIR differ; keep lead scripts under codex-queue/.
+- RTK hook rewrites `git show ref:path`; use git cat-file -p in a script.
+- Edit running queue scripts only via .new + mv; restart queue.sh (kill it + the service sleep) to pick up queue.sh changes.
