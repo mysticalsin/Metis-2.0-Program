@@ -369,6 +369,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0187: promote-candidate dry run passed (OD-33); first-run risks of the publish path cleared."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "1.9.7 full qualification (OD-31): 30 producer tickets M2-0482..M2-0511 filed; 16 existing tickets raised to P0 W1/m3 and made M2-0046 dependencies; version bump M2-0498 depends on every before-cut ticket."
   }
  ],
  "tickets": [
@@ -844,7 +850,7 @@
   {
    "id": "M2-0008",
    "title": "Reproduce the History freeze and the no-reopen failure on the unmodified packaged 1.9.6 with OS-level slow-file fixtures, and capture main and renderer samples (part a)",
-   "wave": "W0",
+   "wave": "W1",
    "milestone": "m3",
    "type": "investigation",
    "owner_model": "opus",
@@ -926,12 +932,13 @@
     "pending": [
      "LIVE_VERIFIED"
     ]
-   }
+   },
+   "priority": "P0"
   },
   {
    "id": "M2-0009",
    "title": "Measure the per-process resource baseline on 1.9.6 against MASTER section 7 budgets and ship the census tool every release gate reuses",
-   "wave": "W0",
+   "wave": "W1",
    "milestone": "m3",
    "type": "investigation",
    "owner_model": "sonnet",
@@ -998,7 +1005,8 @@
     "pending": [
      "MEASURED"
     ]
-   }
+   },
+   "priority": "P0"
   },
   {
    "id": "M2-0010",
@@ -2258,7 +2266,8 @@
      "LIVE_VERIFIED"
     ]
    },
-   "notes": "2026-09-29 (lead, EC triage): 2026-09-29 hosted evidence: in 7 of the last 9 m2/integration macOS smokes the HK-M model rows end BLOCKED_EXTERNAL scenario_not_triggered, with no registry intent and no local.runtime.start. They pass only in 36551144543 and 36572749687, on the same runner image and with the same verified bundled model, and the smoke stays green. The root cause and a deterministic trigger are M2-0460; the smoke flagging a PASS->BLOCKED fall is M2-0461. LIVE_VERIFIED order after M2-0460 reaches main: hk-m-candidate.yml must be registered first (404 on 2026-09-29 although it is on main at df205007), then qa-candidate.yml, then hk-m-candidate.yml, and the record goes under the OD-26 hosted-runner environment kind. Per D-9/OD-26 the verification line 'QA account, packaged build' now means hosted macos-latest. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): M2-0466 supplies the host label, so record under kind hosted-runner, host macos-latest (not a 'qa-mac' label). M2-0467 leaves hk-m-candidate.yml unchanged, so the dispatch command in this ticket's LEAD_ACTION stays valid; note that the file has no main-ref guard. The M2-0028 model-start gap ticket should land early: the M2-0467 fault-fatal-relaunch scenario, M2-0468's real-llama row and M2-0470's census control all need llama-server to start on macos-latest."
+   "notes": "2026-09-29 (lead, EC triage): 2026-09-29 hosted evidence: in 7 of the last 9 m2/integration macOS smokes the HK-M model rows end BLOCKED_EXTERNAL scenario_not_triggered, with no registry intent and no local.runtime.start. They pass only in 36551144543 and 36572749687, on the same runner image and with the same verified bundled model, and the smoke stays green. The root cause and a deterministic trigger are M2-0460; the smoke flagging a PASS->BLOCKED fall is M2-0461. LIVE_VERIFIED order after M2-0460 reaches main: hk-m-candidate.yml must be registered first (404 on 2026-09-29 although it is on main at df205007), then qa-candidate.yml, then hk-m-candidate.yml, and the record goes under the OD-26 hosted-runner environment kind. Per D-9/OD-26 the verification line 'QA account, packaged build' now means hosted macos-latest. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): M2-0466 supplies the host label, so record under kind hosted-runner, host macos-latest (not a 'qa-mac' label). M2-0467 leaves hk-m-candidate.yml unchanged, so the dispatch command in this ticket's LEAD_ACTION stays valid; note that the file has no main-ref guard. The M2-0028 model-start gap ticket should land early: the M2-0467 fault-fatal-relaunch scenario, M2-0468's real-llama row and M2-0470's census control all need llama-server to start on macos-latest.",
+   "priority": "P0"
   },
   {
    "id": "M2-0029",
@@ -3288,7 +3297,48 @@
     "M2-0430",
     "M2-0431",
     "M2-0433",
-    "M2-0478"
+    "M2-0478",
+    "M2-0028",
+    "M2-0460",
+    "M2-0466",
+    "M2-0473",
+    "M2-0467",
+    "M2-0416",
+    "M2-0468",
+    "M2-0238",
+    "M2-0424",
+    "M2-0462",
+    "M2-0463",
+    "M2-0470",
+    "M2-0471",
+    "M2-0474",
+    "M2-0197",
+    "M2-0482",
+    "M2-0483",
+    "M2-0485",
+    "M2-0486",
+    "M2-0487",
+    "M2-0488",
+    "M2-0489",
+    "M2-0490",
+    "M2-0491",
+    "M2-0492",
+    "M2-0493",
+    "M2-0494",
+    "M2-0495",
+    "M2-0496",
+    "M2-0497",
+    "M2-0498",
+    "M2-0499",
+    "M2-0501",
+    "M2-0502",
+    "M2-0504",
+    "M2-0505",
+    "M2-0506",
+    "M2-0507",
+    "M2-0509",
+    "M2-0510",
+    "M2-0511"
    ],
    "needs_decision": [
     "D-13"
@@ -3338,7 +3388,7 @@
    "slices": [],
    "due": "2026-10-04",
    "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies."
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed."
   },
   {
    "id": "M2-0047",
@@ -11743,7 +11793,8 @@
      "recorded": "2026-09-29 by the lead"
     }
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead, EC triage): Evidence caveat for A3 ('Packaged gates (install/launch smoke, HK, ST-1, RV, EX, census) consume assets by sha256'). On origin/main and m2/integration, only check-packaged-launch.mjs (smoke-mac, smoke-win), the report-only ST-1 rows and hk-m-candidate.yml consume candidate bytes. The packaged ASR decode runs on release/win-unpacked during the build (scripts/build-installers.mjs:170), and packaged-smoke.mjs (RV and lifecycle), e2e-smoke.mjs and the x64 macOS slice never touch candidate bytes. M2-0452, M2-0453, M2-0454, M2-0455 and M2-0456 (M2-0018-F04..F08) close this gap; cite them before claiming A3 in full. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): the 'F14 environment-kind ticket' in the triage's waits_on is M2-0466. Record HOST_CONFIGURED under kind hosted-runner once it is on main. The qa-candidate.yml dispatch on main is also the first step of every Theme A LEAD_ACTION (M2-0467..A6). 2026-09-29 OD-33: promote dry run PASSED (runs 36636273967 + 36643160857) — feed token, digest API and cross-run artifact download proven before the real 1.9.7 publish."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead, EC triage): Evidence caveat for A3 ('Packaged gates (install/launch smoke, HK, ST-1, RV, EX, census) consume assets by sha256'). On origin/main and m2/integration, only check-packaged-launch.mjs (smoke-mac, smoke-win), the report-only ST-1 rows and hk-m-candidate.yml consume candidate bytes. The packaged ASR decode runs on release/win-unpacked during the build (scripts/build-installers.mjs:170), and packaged-smoke.mjs (RV and lifecycle), e2e-smoke.mjs and the x64 macOS slice never touch candidate bytes. M2-0452, M2-0453, M2-0454, M2-0455 and M2-0456 (M2-0018-F04..F08) close this gap; cite them before claiming A3 in full. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): the 'F14 environment-kind ticket' in the triage's waits_on is M2-0466. Record HOST_CONFIGURED under kind hosted-runner once it is on main. The qa-candidate.yml dispatch on main is also the first step of every Theme A LEAD_ACTION (M2-0467..A6). 2026-09-29 OD-33: promote dry run PASSED (runs 36636273967 + 36643160857) — feed token, digest API and cross-run artifact download proven before the real 1.9.7 publish.",
+   "priority": "P0"
   },
   {
    "id": "M2-0188",
@@ -12177,7 +12228,8 @@
     "merged_into": "main (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "priority": "P0"
   },
   {
    "id": "M2-0195",
@@ -12281,7 +12333,7 @@
   {
    "id": "M2-0197",
    "title": "Measure delivery velocity, re-forecast at each gate and record the owner-approved degrade order",
-   "wave": "W0",
+   "wave": "W1",
    "milestone": "m3",
    "type": "process",
    "owner_model": "opus",
@@ -12343,7 +12395,8 @@
     "pending": [
      "ACCEPTED"
     ]
-   }
+   },
+   "priority": "P0"
   },
   {
    "id": "M2-0198",
@@ -14830,7 +14883,7 @@
   {
    "id": "M2-0238",
    "title": "Back-fill evidence records for closed tickets and run the ledger check in the private repo's CI",
-   "wave": "W2",
+   "wave": "W1",
    "milestone": "m3",
    "type": "process",
    "owner_model": "sonnet",
@@ -14854,7 +14907,11 @@
     "Each DONE or ENGINEERING_COMPLETE ticket has a records/<id>.jsonl line per required level, copied from its PR's verified evidence block with real implementer and validator session IDs; a ticket without one is reverted to IN_PROGRESS or ENGINEERING_COMPLETE",
     "ledger.yml runs scripts/evidence/check.mjs over the ledger and records on every push and fails on any L1-L15 problem",
     "The 10% re-execution sample (sample.mjs) is drawn for the back-filled set and its results are recorded",
-    "M2-0047 and M2-0144 are re-verified against their own acceptance; any unmet line is recorded as NOT_MET with the new owning ticket"
+    "M2-0047 and M2-0144 are re-verified against their own acceptance; any unmet line is recorded as NOT_MET with the new owning ticket",
+    "After the cut, program-audit sample mode is dispatched from the program repo with population_of=M2-0046 and seed=<candidate commit>. Its JSON output and run id are committed under docs/metis-2.0/evidence/raw/M2-0046/",
+    "Each sampled ticket's implementer model is taken from its back-filled record or from its PR (commit trailers, evidence block). The re-executor is a fresh session of a different model, and not the validator's session",
+    "Re-execution re-derives every acceptance line's verdict from the code at the candidate commit, its CI runs and its evidence records, without relying on the original implementer's or reviewer's conclusions. Any command re-run happens in CI (dispatch or PR), never on the Mac (D-28)",
+    "One record per sampled ticket is appended to docs/metis-2.0/evidence/records/<id>.jsonl, with reexecuted_by {model, id}, the result, and the CI run id where one was used. record.mjs recordProblems reports no problems for it"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -14881,7 +14938,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: closure not evidence-backed 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed)."
+   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: closure not evidence-backed 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed). 2026-09-29 (lead): the M2-0046 acc-7 10% re-execution (draft NEW-E11) is folded into this ticket."
   },
   {
    "id": "M2-0239",
@@ -23568,7 +23625,7 @@
    ]
   },
   {
-   "wave": "W2",
+   "wave": "W1",
    "milestone": "m3",
    "owner_model": "sonnet",
    "kit_refs": [],
@@ -23576,7 +23633,7 @@
    "flag": null,
    "status": "TODO",
    "evidence_target": "LOCALLY_TESTED",
-   "priority": "P1",
+   "priority": "P0",
    "id": "M2-0416",
    "title": "HK-W lane installs the qa-candidate.yml Windows candidate by sha256 (candidate_run + sha256 inputs, no v1.9.6 default)",
    "type": "ci",
@@ -23917,7 +23974,7 @@
   },
   {
    "id": "M2-0424",
-   "wave": "W2",
+   "wave": "W1",
    "milestone": "m3",
    "owner_model": "sonnet",
    "depends_on": [
@@ -23930,7 +23987,7 @@
    "status": "TODO",
    "title": "Let freeze-repro take a QA candidate by run id and sha256, and emit an M2-0194 attribution bundle",
    "type": "test",
-   "priority": "P1",
+   "priority": "P0",
    "finding_refs": [
     "LEAD-ACTION-TRIAGE-2026-09-29-L30",
     "M2-0194"
@@ -25624,11 +25681,11 @@
   {
    "id": "M2-0460",
    "title": "Find and fix why the packaged app on hosted macOS usually never starts its bundled model for the HK-M model rows, and report the start failure at once instead of a silent 240 s BLOCKED",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "type": "fix",
    "owner_model": "opus",
-   "priority": "P1",
+   "priority": "P0",
    "depends_on": [
     "M2-0430"
    ],
@@ -25731,11 +25788,11 @@
   {
    "id": "M2-0462",
    "title": "Add a non-interactive hosted-live mode to run-matrix.sh that launches the verified 1.9.6 app, drives rows 1-4 itself and samples main and renderer on macOS",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "type": "test",
    "owner_model": "opus",
-   "priority": "P1",
+   "priority": "P0",
    "depends_on": [
     "M2-0466"
    ],
@@ -25783,11 +25840,11 @@
   {
    "id": "M2-0463",
    "title": "Add a main-guarded hosted-live mode input to freeze-repro.yml for macos-latest and windows-latest, with the Windows branch of run-matrix.sh --hosted-live",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "type": "ci",
    "owner_model": "sonnet",
-   "priority": "P1",
+   "priority": "P0",
    "depends_on": [
     "M2-0462"
    ],
@@ -25926,8 +25983,8 @@
   {
    "id": "M2-0466",
    "title": "Add a hosted-runner evidence environment kind (hosts macos-latest, windows-latest) that HOST_CONFIGURED and LIVE_VERIFIED records accept, per OD-26",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "type": "feature",
    "owner_model": "sonnet",
    "priority": "P0",
@@ -25986,8 +26043,8 @@
   {
    "id": "M2-0467",
    "title": "Add a shared main-only candidate-scenarios lane that installs a qa-candidate run's exact bytes by sha256 on a fresh hosted profile, with fault-fatal-relaunch (M2-0026) as its first scenario",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "type": "ci",
    "owner_model": "opus",
    "priority": "P0",
@@ -26044,11 +26101,11 @@
   {
    "id": "M2-0468",
    "title": "Run the sidecar boot-reaper proof on qa-candidate bytes in the candidate lane (macOS and Windows): require the real llama-server row on macOS and add a harness-seeded legacy-orphan row",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "type": "test",
    "owner_model": "opus",
-   "priority": "P1",
+   "priority": "P0",
    "depends_on": [
     "M2-0467"
    ],
@@ -26152,11 +26209,11 @@
   {
    "id": "M2-0470",
    "title": "Write scripts/qa/ex-suite.mjs --packaged and run it as the candidate lane's ex-suite scenario: seeded ingest ledgers survive repeated relaunches and no llama-server starts in the first 120 s",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "type": "test",
    "owner_model": "opus",
-   "priority": "P1",
+   "priority": "P0",
    "depends_on": [
     "M2-0467"
    ],
@@ -26207,11 +26264,11 @@
   {
    "id": "M2-0471",
    "title": "Run the stall-sampler check on qa-candidate bytes as the candidate lane's stall-sampler scenario (15 s SIGSTOP on a fresh hosted profile), reporting the idle and sleep/wake row as BLOCKED_EXTERNAL",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "type": "test",
    "owner_model": "sonnet",
-   "priority": "P1",
+   "priority": "P0",
    "depends_on": [
     "M2-0467"
    ],
@@ -26308,8 +26365,8 @@
   },
   {
    "id": "M2-0473",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "owner_model": "sonnet",
    "kit_refs": [],
    "evidence_target": "LOCALLY_TESTED",
@@ -26320,7 +26377,7 @@
    "estimate_hours": 3,
    "title": "Fix resource-census.yml so the M2-0009 census runs on hosted runners: Windows profile path, and the macOS census no longer skipped when the local TTFT proof times out",
    "type": "fix",
-   "priority": "P1",
+   "priority": "P0",
    "depends_on": [],
    "needs_decision": [],
    "slices": [],
@@ -26353,8 +26410,8 @@
   },
   {
    "id": "M2-0474",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "owner_model": "opus",
    "kit_refs": [],
    "evidence_target": "LOCALLY_TESTED",
@@ -26365,7 +26422,7 @@
    "estimate_hours": 5,
    "title": "Make the Windows RV-3 shortcut-relaunch smoke row deterministic: the second-instance reveal event is intermittently missing from the audit log",
    "type": "fix",
-   "priority": "P1",
+   "priority": "P0",
    "depends_on": [],
    "needs_decision": [],
    "slices": [],
@@ -26706,6 +26763,1608 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)"
    }
+  },
+  {
+   "id": "M2-0482",
+   "title": "Start the bundled model for the hosted candidate-lane model rows: evidence per start path and host, then one packaged, isolated-profile, explicit-env RAM-floor override shared with M2-0460 (user-facing floors unchanged)",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0460"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-31",
+    "OD-26",
+    "D-28",
+    "EC-TRIAGE-2026-09-29-M2-0028",
+    "READINESS-197-ACC2E",
+    "READINESS-197-ACC2G",
+    "READINESS-197-ACC4A",
+    "READINESS-197-2026-09-29-2e",
+    "READINESS-197-2026-09-29-2g",
+    "M2-0461",
+    "merged: NEW-E5",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "src/main/qa-hk-m.ts",
+    "src/main/qa-hk-m.test.ts",
+    "src/main/llm/local-routing.ts",
+    "src/main/llm/local-routing.test.ts",
+    "src/main/llm/local-models.ts",
+    "src/main/llm/local-models.test.ts",
+    "src/main/index.ts",
+    "src/main/logger.ts",
+    "src/main/audit-event-coverage.contract.test.ts",
+    "scripts/qa/sidecar-boot-reaper.mjs",
+    "scripts/qa/sidecar-boot-reaper.test.ts"
+   ],
+   "summary": "This is the 'prewarm-floor follow-up' that M2-0460's PR has to name, merged with M2-0482. HK-M does not need it: M2-0460 overrides assertRamOk inside the HK-M hook. Every other proof that needs a running llama-server starts it through window.toto.localPrewarm or an explicit local request, and those paths can meet two floors. The first is localPrewarmEligible's PREWARM_MIN_FREE_RAM_GB (4). Since M2-0430 (8916f5cf) it reads availableMemoryGB, not os.freemem, so it may no longer refuse on hosted runners. The second is assertRamOk's advertised-RAM floor (ceil(totalmem/GiB) >= 8 for qwen3.5-0.8b, local-models.ts:248-266), which a 7 GiB macos-latest VM fails (DERIVED). The rows on those paths are: sidecar-boot-reaper realLlama (M2-0468, on the promotable DMG, acc 2g); fault-fatal-relaunch (M2-0467); the EX positive control (M2-0470, on the promotable DMG, acc 2e); the OD-35 soak legs; and the post-meeting summary in M2-0496. Because several of these run on promotable bytes, the override follows M2-0460's pattern (packaged, isolated profile, explicit env) rather than a QA-identity-only gate. User-facing floors never change. Model choice and the GPU/CPU profile still follow the real host, so a 7 GiB runner is never asked to load a larger model. Census legs do not set the override, to keep parity with the 1.9.6 baseline. It changes app code, so it must land before the cut, in the src/main hot-file order. [Lands BEFORE the 1.9.7 candidate cut.]",
+   "acceptance": [
+    "Evidence first. Before the fix, the PR records, for each hosted OS and each start path (localPrewarm IPC, an explicit local request, the HK-M hook), whether the bundled model starts on the current m2/integration tree. If it does not, the PR names the gate that refused it (prewarm available-memory floor, advertised-RAM floor, missing runtime), with hw.memsize, os.totalmem and available memory. Sources are M2-0460's hk-m.json host facts and sidecar-boot-reaper.json from a packaged smoke of this branch on macOS and Windows. The PR fixes only the floors that the evidence shows refusing; if none refuse, it says so and ships only the audit and reaper-launch changes",
+    "One gate: a single function qaHostFloorOverride(env, packaged, userDataPath) decides every RAM-floor override. It returns true only when the app is packaged, ASKTOTO_USERDATA names a directory other than the default userData path, and either METIS_QA_HOST_FLOOR_OVERRIDE=1 is set exactly or METIS_HK_M_SCENARIO names a known HK-M row. M2-0460's HK-M override becomes a caller of this function; its unit test is updated, not deleted. A unit test proves that there is no second override path",
+    "With the gate on, localPrewarmEligible skips only the PREWARM_MIN_FREE_RAM_GB check and assertRamOk skips only the advertised-RAM check. localLlm.enabled, the org allowlist, speculativeLocalWorkAllowed, the providerReady logic, model selection by advertisedRamGB and spawnProfileFor are unchanged. With the gate off, unit tests pin today's behaviour: 3.9 GiB available refuses prewarm and 4 GiB allows it; a 7 GiB advertised host refuses and an 8 GiB-class host allows. Values and existing tests are unchanged",
+    "The first time the override changes a decision in a process, the app emits one content-free audit event per floor: local.host-floor-override {floor: 'prewarm-available-ram'|'advertised-ram', hostTotalBytes, hostAvailableBytes}, with no paths or model data. The logger.ts AuditEvent union and audit-event-coverage.contract.test.ts are updated",
+    "sidecar-boot-reaper.mjs sets METIS_QA_HOST_FLOOR_OVERRIDE=1 for its realLlama launch and records hostFloorOverride and the host memory figures. Packaged smoke (macOS) shows realLlama PASS instead of BLOCKED_EXTERNAL on the PR and on 3 dispatched branch runs. LEAD_ACTION: run gh workflow run packaged-smoke.yml --ref <branch> three times and record the run ids",
+    "Red-before (L11): the unit test that pins the gated bypass is pushed before the fix, so a failed Build & Test run on an ancestor commit is the LOCALLY_TESTED repro",
+    "Public hygiene: the code, tests and PR body contain no private program path, owner identifier or program-document citation",
+    "LEAD_ACTION: amend M2-0467 (fault-fatal-relaunch), M2-0468 (realLlama), M2-0470 (control), M2-0492 and M2-0493 (soak legs) and M2-0496 (meeting run) so their launch env sets METIS_QA_HOST_FLOOR_OVERRIDE=1 and their reports record hostFloorOverride. The census legs (M2-0473, M2-0490, M2-0491) do not set it. 1.9.7.md discloses which hosted rows ran with the RAM floors overridden on a 7 GiB host",
+    "Optional LEAD_ACTION (no code): record whether a hosted macOS label with at least 8 GiB, running the x86_64 slice of the universal DMG, starts the model without the override. If the lead pins a lane to such a label, amend that registry entry in M2-0467 and state the arm64-slice residual in 1.9.7.md"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 7,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0483",
+   "title": "Flip the macOS sidecar supervision default to on for the 1.9.7 candidate, and make HK-M test the shipped default instead of forcing METIS_SUPERVISION=on",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0460"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-34",
+    "OD-31",
+    "OD-32",
+    "B2-F1",
+    "READINESS-197-ACC3",
+    "READINESS-197-ACC4D",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "src/main/infra/process/supervisor.ts",
+    "src/main/infra/process/supervisor.test.ts",
+    "src/main/llm/local-runtime.test.ts",
+    "scripts/qa/hk-m.mjs",
+    "scripts/qa/hk-m.test.ts",
+    "scripts/qa/sidecar-boot-reaper.mjs",
+    "scripts/qa/sidecar-boot-reaper.test.ts",
+    ".github/workflows/packaged-smoke.yml"
+   ],
+   "summary": "Under OD-34, supervision ships default-on in 1.9.7 only after HK-M passes 20/20 on the candidate, and there is no ship-off fallback. Today supervisor.ts defaults to 'off', and hk-m.mjs:441 forces METIS_SUPERVISION=on, so a 20/20 pass on a default-off candidate says nothing about the shipped setting, and shipping default-on would need new bytes. This ticket lands before the cut, so the candidate is built with supervision on and HK-M (hk-m-candidate.yml) runs on those exact bytes. The 20/20 condition is enforced by the release gate (M2-0046 acc 3 and 4d on that sha256), not by code: any failed or NOT_RUN row means a fix and a new cut. HK-M's model rows already require a supervised cold start, so once HK-M stops forcing the env, the verdict also proves the shipped default is on. One side effect: sidecar-boot-reaper.mjs realLlama (reused by M2-0468 on candidate bytes) needs llama-server to become a launchd orphan after SIGKILL. With the default on, the helper kills it within about 2 s, so the reaper proof asks for supervision off explicitly. It proves the reaper net and emulates a legacy 1.9.6 orphan. Windows is unaffected because supervision is darwin-only. Closing this ticket needs a post-cut dispatch that depends on M2-0501, M2-0485 and M2-0466. Those are LEAD_ACTION preconditions, not depends_on, so the before-cut landing is not held. [Lands BEFORE the 1.9.7 candidate cut.]",
+   "acceptance": [
+    "supervisor.ts: with no --supervision argv and no METIS_SUPERVISION or METIS_SIDECAR_SUPERVISION env, sidecarSupervisionEnabled() is true on darwin and false on win32 and linux. --supervision=off or METIS_SUPERVISION=off still restores the plain direct spawn exactly, and argv still beats env. METIS_SIDECAR_SUPERVISION=1 means on and =0 means off, so the older spelling stays a kill switch. The wrapper-missing or wrapper-failing fallback (sidecar.unsupervised) is unchanged",
+    "supervisor.test.ts replaces 'is opt-in and mac-only' with pins for: default on for darwin with empty env and argv; the off overrides; legacy 0/1; win32 and linux never. Unit tests that relied on the implicit default (for example local-runtime.test.ts in 'real' supervisor mode) pass the flag explicitly. Build & Test is green on every OS job",
+    "hk-m.mjs gains --supervision shipped|forced-on, defaulting to shipped. In shipped mode the launch and relaunch env deletes METIS_SUPERVISION and METIS_SIDECAR_SUPERVISION, and no supervision argv is passed; forced-on keeps today's behaviour. hk-m.json records supervisionMode. scenarioEvidence, the 5 s survivor bound, the unrelated same-name check and supervisedColdStartVerdict are unchanged. hk-m.test.ts covers the env stripping, and a fixture where a default-off build in shipped mode fails with runtime_not_supervised",
+    "sidecar-boot-reaper.mjs launches its realLlama proof with METIS_SUPERVISION=off and records supervision: 'off' in the report. The stand-in proof is unchanged. A unit test pins the env",
+    "packaged-smoke.yml: the HK-M blocked warning no longer says that supervision stays off by default. hk-m-candidate.yml is not edited by this PR",
+    "On the PR, packaged smoke (macOS) reports HK-M result=pass in shipped mode, with both model rows PASS and the supervised cold start ok; mac-helper-supervise and the sidecar-boot-reaper stand-in also PASS. Packaged smoke (Windows) is unchanged and green",
+    "Landing order: merge before M2-0433's final ST-1 self-test round, so the blocking ST-1 jobs measure a supervision-on boot. Otherwise the PR notes that the 1.9.7 cut dispatch is the first ST-1 run with supervision on",
+    "Public hygiene: the supervisor.ts comment describes the default without citing any private program document, and the PR body has no private path or owner identifier",
+    "LEAD_ACTION (pre-cut, optional if M2-0484 slips): once M2-0484 is on m2/integration, dispatch packaged-smoke.yml on the m2/integration head that contains this ticket with -f hk_m_cycles=20. Require 100/100 PASS before asking the owner for the 1.9.7 milestone merge, and record the run id. This is a rehearsal on self-built bytes, not evidence",
+    "LEAD_ACTION (post-cut, once M2-0501 has registered hk-m-candidate.yml and M2-0485 and M2-0466 are on main): make one dispatch of gh workflow run hk-m-candidate.yml --ref main -f candidate_run=<1.9.7 qa-candidate run id> -f dmg_sha256=<DMG sha256 from its SHA256SUMS.txt>, preferably before the OD-35 soak legs start. It yields both the fresh-profile (acc 3) and shared-profile (acc 4d) reports. Require result=pass, 100/100 PASS rows, supervisionMode=shipped and a passing codesign --verify --deep --strict. Record M2-0028 LIVE_VERIFIED {kind hosted-runner, host macos-latest, ci_run_id, build_run_id = candidate run, artifact_sha256 = DMG} before the owner is asked for ACCEPTED. Any FAIL or NOT_RUN row: per OD-34, fix, cut a new candidate and re-run every candidate gate",
+    "LEAD_ACTION: amend M2-0468 so its macOS realLlama row states that it runs with supervision off to emulate a legacy orphan. Amend M2-0028 acceptance line 6 per OD-34 (drop the ship-off branch and '(this ticket does not block M2-0046)')",
+    "LEAD_ACTION: 1.9.7.md states 'supervision default-on, HK-M 20/20 run <id> on <sha256>' and two residuals. First, fm-serve (Apple FM) under supervision is not exercised on hosted runners, because HK-M sets METIS_DISABLE_APPLE_FM=1. Second, Windows has no supervision (HK-W per acc 5b). Replace PLAN.md:146's 'supervision off if HK-M < 20/20' residual"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 4,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0484",
+   "title": "packaged-smoke.yml: add a workflow_dispatch input hk_m_cycles (1 or 20) so the lead can rehearse HK-M 20/20 on the m2/integration head before the 1.9.7 cut",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-34",
+    "READINESS-197-ACC3",
+    "OD-31"
+   ],
+   "scope_paths": [
+    ".github/workflows/packaged-smoke.yml",
+    "scripts/ci/packaged-smoke-workflow.contract.test.ts"
+   ],
+   "summary": "Under OD-34, an HK-M failure on the candidate means a new cut and a re-run of every candidate gate (about 2-3 h for the cut and 8-12 h for the full lane set). Per-PR packaged smoke runs one cycle (packaged-smoke.yml:116, --cycles 1), so rare supervision failures that 100 kills would expose surface only after the cut. hk-m-candidate.yml cannot rehearse, because it needs a qa-candidate run and qa-candidate.yml refuses any ref but main. A dispatch-only input on the already-registered packaged-smoke.yml lets the lead run 20 cycles on self-built bytes of the integration head, in parallel with the P0 chain and days before the cut. It does not gate the release. It changes no installer bytes and does not touch qa-candidate.yml, so it CAN LAND AFTER THE CUT and is not a depends_on of M2-0498 or M2-0485. Its value comes only before the cut, so schedule it early. It touches no hot file and can ride a train. M2-0483 and M2-0485 also edit packaged-smoke.yml, so land them one at a time. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "workflow_dispatch gains the input hk_m_cycles (type choice: '1', '20'; default '1'). Push and pull_request runs behave exactly as today: --cycles 1, --budget-ms 1200000, step timeout 25",
+    "With hk_m_cycles=20, the HK-M step runs --cycles 20 --budget-ms 8100000 with step timeout 140, the same budget as hk-m-candidate.yml. The macOS job timeout is raised only on that path, to no more than 180 minutes",
+    "With hk_m_cycles=20, the job fails on result=fail, on result=blocked and on any NOT_RUN row, because a rehearsal must be 100/100. The job summary names the cycle count",
+    "packaged-smoke-workflow.contract.test.ts pins that the default path is unchanged, the 20-cycle path's arguments, the SHA-pinned actions and the absence of secrets",
+    "Packaged smoke is green on the PR (default path)",
+    "LEAD_ACTION: once M2-0460 and M2-0483 are on m2/integration, run gh workflow run packaged-smoke.yml --ref m2/integration -f hk_m_cycles=20 and record the run id and the 100/100 result in M2-0483"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 1.5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0485",
+   "title": "HK-M on one persistent profile for acc 4d (20 kill/relaunch cycles on the shipped setting with no orphan or registry growth), plus a main and candidate-run guard in hk-m-candidate.yml",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0483",
+    "M2-0501",
+    "M2-0466"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-34",
+    "OD-26",
+    "B2-F1",
+    "READINESS-197-ACC4D",
+    "READINESS-197-ACC3",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/hk-m.mjs",
+    "scripts/qa/hk-m.test.ts",
+    ".github/workflows/hk-m-candidate.yml",
+    "scripts/ci/hk-m-candidate-workflow.contract.test.ts",
+    ".github/workflows/packaged-smoke.yml"
+   ],
+   "summary": "Acc 4d asks for no orphaned sidecars after 20 kill/relaunch cycles. Every HK-M row creates a fresh mkdtemp profile (hk-m.mjs:437) and removes it afterwards, so the 100 kills never accumulate on one profile, and the boot reaper never meets earlier cycles' registry entries next to a supervised sidecar. That interplay is exactly the owner's situation: one profile, many launches, and B2's 3.1 GB of accumulated orphans. This ticket adds a shared-profile mode that reuses the existing row logic unchanged, and runs it as a second, parallel job in the same hk-m-candidate.yml dispatch, so one ci_run_id covers acc 3 (the fresh-profile job) and acc 4d (the shared-profile job), both in M2-0483's shipped mode. hk-m-candidate.yml has no repository or ref guard today, so evidence could come from a modified harness on another ref. This ticket adds the repository, ref and candidate-run guard that qa-candidate.yml and M2-0467 use. It lands after M2-0501 on hk-m-candidate.yml, and every job carries M2-0501's dispatch-only condition. It is a harness and workflow change with no installer bytes, so it CAN LAND AFTER THE CUT on the same sha256. It must reach main before M2-0483's single post-cut HK-M dispatch; landing it before the 1.9.7 milestone merge avoids a second milestone merge. M2-0484 is not a dependency: if both are open, the second to land rebases packaged-smoke.yml. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "hk-m.mjs gains --profile fresh|shared, defaulting to fresh, whose behaviour is unchanged. In shared mode one profile is created before the first row and reused by every row of the run. Each row's launch is the relaunch that follows the previous row's kill. The profile is removed only after the final check",
+    "After every relaunch in shared mode, the row also records and checks: 0 owned processes with ppid 1 (orphans); at most one llama-server/fm runtime; and a per-row count of sidecar registry entries that name a dead pid and have not been reaped, which must not rise from cycle to cycle. Any breach fails the row with a named failure. After the last row, one more launch followed by SIGTERM leaves 0 owned processes alive at 5 s",
+    "hk-m.test.ts covers, with fixtures: the profile reused across rows and removed only at the end; an orphan (ppid 1) after relaunch fails; an unreaped dead-pid registry count rising across cycles fails; and the final SIGTERM check",
+    "hk-m-candidate.yml: a guard job on ubuntu-latest refuses any repository other than mysticalsin/AskToto-Mantu, any ref other than refs/heads/main, and any candidate_run that is not a completed, successful workflow_dispatch run of .github/workflows/qa-candidate.yml on main (checked via gh api actions/runs/<id>). The existing fresh-profile job needs the guard and is otherwise unchanged. A new parallel job runs hk-m.mjs --cycles 20 --profile shared on the same verified DMG and uploads hk-m-candidate-shared. Every job, including the guard and the new job, carries the github.event_name == 'workflow_dispatch' condition that M2-0501's contract requires. The final error text says that, per OD-34, a failure needs a fix and a new candidate. Permissions stay contents: read and actions: read, with no secrets and SHA-pinned actions",
+    "packaged-smoke.yml workflow_dispatch gains hk_m_profile (fresh|shared, default fresh). It sits next to M2-0484's hk_m_cycles if M2-0484 has landed; otherwise it is added alone and M2-0484 rebases. Push and PR runs are unchanged. A new scripts/ci/hk-m-candidate-workflow.contract.test.ts pins the guard, both jobs, the job conditions and the inputs",
+    "CI Build & Test is green, packaged smoke is green on the PR, and M2-0501's workflow-registration contract test stays green",
+    "LEAD_ACTION (pre-cut rehearsal, if M2-0484 is on m2/integration): run gh workflow run packaged-smoke.yml --ref m2/integration -f hk_m_cycles=20 -f hk_m_profile=shared on a head that contains M2-0483. It must pass 100/100; record the run id",
+    "LEAD_ACTION (post-cut): M2-0483's single hk-m-candidate.yml dispatch yields both reports. File acc 4d as M2-0028 and M2-0046 evidence from hk-m-candidate-shared (LIVE_VERIFIED, hosted-runner, macos-latest, ci_run_id, build_run_id = candidate run, artifact_sha256 = DMG), with an output path that distinguishes it from the fresh-profile record (M2-0511 row match)"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0486",
+   "title": "Census: count the mac-helper supervise wrapper as its own process kind, so a supervision-on candidate is not double-counted as llama-server",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-34",
+    "OD-35",
+    "READINESS-197-ACC4A",
+    "READINESS-197-ACC4B",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/census/lib.mjs",
+    "scripts/qa/census/lib.test.ts"
+   ],
+   "summary": "The census gets each sampled process's full argv (lib.mjs:411, darwinCommandLine) and classifies anything whose command line contains 'llama-server' as llama-server (classifyProcess, lib.mjs:94). With supervision on (M2-0483), the wrapper's argv is 'metis-mac-helper supervise --parent <pid> -- <bundle>/.../llama-server ...' (supervisor.ts wrapperArgs). Every census or soak sample with a model running would therefore report two llama-server processes and add the wrapper's footprint to that role. The 1.9.7-versus-1.9.6 comparison (acc 4a after) would show a spurious doubling of the llama-server count, and the OD-35 by-role growth rule would be keyed on a wrong population (DERIVED from the code). HK-M and the reaper harness classify by executable basename (owned-processes.mjs), so they are unaffected. fault-fatal-relaunch.mjs classify has the same path match, but it only tests presence and strays, so the error there is harmless and is left to M2-0467. This is harness-only, so it can land after the cut, but it must land before the census and soak runs on the candidate. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "classifyProcess returns 'sidecar-supervisor' for a process whose executable basename is metis-mac-helper and whose first argument is 'supervise'. That check runs before the llama-server and fm-serve matches. Other metis-mac-helper processes keep today's classification",
+    "'sidecar-supervisor' is added to ATTRIBUTABLE_PROCESS_KINDS and reported as its own kind. On a supervised sample, the llama-server count equals the real runtime count",
+    "lib.test.ts fixtures pin these cases: a wrapper around llama-server gives sidecar-supervisor; a wrapper around fm serve gives sidecar-supervisor; a bare bundled llama-server gives llama-server; Windows rows are unchanged; a non-supervise metis-mac-helper process is unchanged",
+    "Reports stay content-free: sanitizeReport is unchanged, and no command line or path enters the report",
+    "CI Build & Test is green",
+    "LEAD_ACTION: the census-after and OD-35 soak or growth-analyzer tickets key their by-role rule on the classified kinds, with sidecar-supervisor counted separately. 1.9.7.md explains that the extra kind comes from supervision and is not a leak"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H6 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0487",
+   "title": "Census long-run mode: stream samples to NDJSON as they are taken, count job and sidecar audit events from the profile's audit trail, and sample Windows private bytes",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "infra",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4B",
+    "READINESS-197-2026-09-29-ACC4C",
+    "OD-35",
+    "OD-31",
+    "OD-26",
+    "D-28",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/census/lib.mjs",
+    "scripts/qa/census/run.mjs",
+    "scripts/qa/census/lib.test.ts",
+    "scripts/qa/census/audit-counts.mjs",
+    "scripts/qa/census/audit-counts.test.ts"
+   ],
+   "summary": "The M2-0009 census tool keeps every sample in memory and writes one JSON only when the run ends (collectCensus, scripts/qa/census/lib.mjs:595-651; identical on origin/main df205007 and origin/m2/integration 761276bc). If a 5.5 h hosted leg hits the job limit or the app dies, that leaves nothing. The tool also counts no jobs. M2-0046 acc 4 requires 'no unbounded growth in processes or jobs'. Without a product change, the only job signal a hosted run can read is the isolated profile's audit trail: userData/logs/audit.log plus the audit-<stamp>.log generations (logger.ts:53, AUDIT_ARCHIVE_PATTERN :408). Each line is {ts, seq, prev, event, ...}, with scheduler.job, brain.ingest, brain.backfill.start, sidecar.spawn/exit, local.runtime.* and mcp.push.* events. On Windows the tool samples only Win32_Process.WorkingSetSize (WIN32_RESOURCE_QUERY). The OS trims the working set, so a heap leak can hide in it; PrivatePageCount does not. This ticket adds an opt-in long-run mode for the OD-35 idle soak (M2-0492/S7) and the meeting run (M2-0496). The default 300 s report (schemaVersion 1) stays unchanged, so M2-0200 can still reuse the tool as-is. CUT TIMING: scripts only (no installer bytes, no qa-candidate.yml), so it can land AFTER the cut. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "run.mjs --ndjson <path> first writes a header line: schema 'census-stream/1', state, platform, productVersion, mainPid, intervalMs, startedAt and profileKind. It then appends one line per sample and flushes it immediately: tMs; per process pid, startedMs, kind, rssBytes, physFootprintBytes, workingSetBytes, privateBytes and cpuSeconds; mainAlive; sampleDurationMs. A trailer line is written only on a normal end. A unit test stops a fake collector after N samples, then parses the file with no trailer.",
+    "When the main pid is gone, the sample records mainAlive:false. The run then ends with trailer outcome 'main-exited' and does not keep sampling an empty population. A unit test covers this.",
+    "--interval-ms is a period: each sample is scheduled from the previous sample's start. Every line records sampleDurationMs, so slow vmmap or CIM calls are visible. A fake-clock unit test covers the schedule.",
+    "Windows samples add privateBytes from Win32_Process.PrivatePageCount, taken in the same CIM query; on macOS privateBytes is null. sanitizeProcessSample gains the field as an additive change, and lib.test.ts expectations are updated. schemaVersion 1 is otherwise unchanged.",
+    "scripts/qa/census/audit-counts.mjs <userData> --from <iso> --bucket-minutes <n> --out <json> reads the rotated audit-<stamp>.log generations in order, then audit.log, and tolerates a torn last line. Per bucket it counts only this allowlist: scheduler.job by its outcome enum, brain.ingest, brain.backfill.start, brain.consolidation, brain.intelligencePass.start, brain.intelligence_index, mcp.push.queued, mcp.push.retried, local.runtime.start/stop/crash/restart, sidecar.spawn, sidecar.exit, sidecar.reaped, app.stall, history.request, plus a single 'other' count.",
+    "audit-counts never copies actor, detail fields, file names or text into its output. A fixture trail that carries detail and actor fields proves that only event names, enum outcomes and counts leave.",
+    "run.mjs --audit-counts <out.json> (used together with --ndjson) refreshes the counts every --checkpoint-minutes (default 10) and at the end. A run that is killed still leaves counts up to its last checkpoint.",
+    "Without the new flags, the output of `run.mjs --state settled-idle --seconds 300` keeps today's key set. A unit test compares the sanitized report keys before and after.",
+    "resource-census.yml is not changed in this PR. Build & Test is green. CI only (D-28)."
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S1 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0488",
+   "title": "Growth analyzer with pre-registered rules IDLE-GROWTH-1 (idle leg, extrapolated to 8 h) and MEETING-GROWTH-1 (1 h meeting), frozen by a pinned hash before any data exists",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "infra",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0487",
+    "M2-0486"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4B",
+    "READINESS-197-2026-09-29-ACC4C",
+    "OD-35",
+    "OD-31",
+    "OD-34",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/soak/growth-rule.mjs",
+    "scripts/qa/soak/growth.mjs",
+    "scripts/qa/soak/growth.test.ts",
+    "scripts/qa/soak/growth-rule.contract.test.ts"
+   ],
+   "summary": "OD-35 judges each hosted idle leg (macOS and Windows, at most 5.5 h each) by a growth rule pre-registered before the run and extrapolated to 8 h. M2-0046 acc 4c needs the same kind of judgement for the meeting hour. No analyzer exists. The rule is written into the file before any real data arrives, following the M2-0479 pattern, and a contract test pins its hash, so any later edit is a visible, reviewed change. The analyzer reads M2-0487's NDJSON and audit counts and judges process count by kind, respawns, memory slope and step, CPU drift and job-event rate. It reports INCOMPLETE rather than PASS on short or gappy data. Kinds are the census kinds, including 'sidecar-supervisor' (M2-0486): with supervision default-on (M2-0483), every supervised runtime brings one wrapper, and the rules allow the wrapper wherever they allow its runtime. The defaults below are the pre-registration draft, and the lead may amend them (including the validity margin inside a 330-min leg) only before the LEAD_ACTION registration. CUT TIMING: scripts only, so it CAN LAND AFTER THE CUT, but it must be merged and registered before the first idle-soak or meeting-history dispatch. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "growth-rule.mjs exports frozen RULES.IDLE_GROWTH_1 and RULES.MEETING_GROWTH_1. Its header states every clause in prose. Default constants: 30 s sampling; 20 min idle settle (meeting: the first 5 min of capture); 10-min buckets, each valued at the median of the per-sample totals. Kinds are the census kinds, including sidecar-supervisor",
+    "IDLE-GROWTH-1 P1: for every process kind, no bucket median is above that kind's count in the last settle bucket. P2: distinct process identities (pid + start time) per kind are at most the settle count + 2, and audit sidecar.spawn in the window is at most 2. A sidecar-supervisor wrapper counts with, and is allowed alongside, the runtime it supervises",
+    "IDLE-GROWTH-1 M1: take the Theil-Sen slope of the bucket medians of total memory (macOS phys_footprint sum, Windows private-bytes sum) and project it to 8 h after launch. Projected growth from the end of settle must be at most max(64 MiB, 10% of the settle-end total); per kind the limit is max(32 MiB, 15%). M2: the last bucket minus the first window bucket stays within the same bounds",
+    "IDLE-GROWTH-1 C1: mean one-core CPU% over the last 60 min is at most the first 60 min after settle + 0.5 points. J1: allowlisted job events in the last 60 min are at most the first 60 min + 3, and no bucket has more than 20. Validity: at least 300 min measured after settle, at least 95% of planned samples, and main alive at every sample. A main exit is FAIL, not INCOMPLETE",
+    "MEETING-GROWTH-1 applies P1/P2 over capture minutes 5-60. ASR, speaker, llama-server and one sidecar-supervisor wrapper per supervised runtime may appear before minute 5. Post-meeting per-kind counts are at most the capture counts, with +1 llama-server and +1 sidecar-supervisor allowed for the summary. M1 over the capture hour: renderer at most max(96 MiB, 25%), because the live transcript lives in renderer state until the m5 journal; total at most max(160 MiB, 20%); other kinds (including sidecar-supervisor) at most max(32 MiB, 15%). The post-meeting end total is at most the minute-5 total plus the total bound. J1: no capture bucket has more than 20 job events. Validity: at least 55 min of capture and at least 95% of samples",
+    "growth.mjs --samples <ndjson> --audit-counts <json> --rule <id> --out <verdict.json> writes: outcome PASS|FAIL|INCOMPLETE; each check's measured value, bound and pass flag; the projected-to-8 h values (idle rule); the rule id and the sha256 of growth-rule.mjs; the sha256 of each input file; and the residual 'linear extrapolation cannot see a leak that starts after the leg ends'. It never reports PASS with a failed or missing check. Exit codes: 0 PASS, 1 FAIL, 2 INCOMPLETE",
+    "growth.test.ts fixtures: a flat idle leg (PASS); a flat idle leg with llama-server and its wrapper present from settle (PASS); a linear leak within bounds at 5.5 h but over them at 8 h (FAIL by projection); step growth (FAIL M2); a respawn loop (FAIL P2); rising CPU (FAIL C1); a job storm (FAIL J1); a 4 h leg (INCOMPLETE); a main exit (FAIL); a meeting with renderer transcript growth within bounds (PASS); a supervised summary start after Stop, llama-server plus wrapper (PASS); an ASR utility leaked after Stop (FAIL)",
+    "growth-rule.contract.test.ts pins the sha256 of the serialized RULES. Any change fails CI until a reviewed PR updates the pin and states why",
+    "Output is content-free (numbers, kinds, event names). Build & Test is green. CI only (D-28)",
+    "LEAD_ACTION, before the first idle-soak or meeting-history dispatch: record both rule ids, the pinned sha256 and the merged commit in the private release-1.9.7 evidence folder (a growth-rule registration note) and in M2-0046's notes. A verdict whose rule sha256 differs from the registered one is not valid evidence"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 6,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0489",
+   "title": "Scale the census representative profile to the M2-0007 shape a hosted runner can reproduce: about 59 synthetic meetings with a covering .brain index, brain and local LLM on, plus a Hide-layout option",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "infra",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0473"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4A-BEFORE",
+    "M2-0007-ACC3",
+    "OD-36",
+    "OD-31",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/census/profile.mjs",
+    "scripts/qa/census/profile.test.ts"
+   ],
+   "summary": "M2-0009 requires the census to run 'on the representative synthetic profile from M2-0007': about 59 synthetic meetings (about 6 dataless), a mostly-dataless .brain, the Hide layout, local LLM on and brain on. scripts/qa/seed-profile.mjs never reached the public repo (it is absent on origin/main and origin/m2/integration). The substitute that resource-census.yml uses, scripts/qa/census/profile.mjs, seeds 2 meetings with overlayLayout 'bar'. With 2 meetings, History, recall and backfill do almost no work, so the census, the soak and the History-during-capture run all under-measure the owner's app. Real dataless files need a cloud provider that hosted runners lack. OD-36 moves the real-dataless case to the owner soak, so the manifest states that part as not reproduced. The profile must be final before the 1.9.6 baseline is dispatched, so that before and after share one profile. CUT TIMING: scripts only, so it can land AFTER the cut. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "profile.mjs writes 59 deterministic synthetic meetings and a .brain index that covers all of them, so a fresh launch finds nothing to ingest or backfill. A fixed seed drives dates spread over the 90 days before a fixed synthetic epoch, durations of 5-90 min, and mode 'meeting'. Text comes from sentence templates with no real names, emails or paths.",
+    "Settings keep today's keys: local LLM on with the bundled qwen3.5-0.8b, brain on, speaker ID on, whisper. A new --layout bar|hide flag defaults to bar, which keeps today's cold-start and settled-idle behaviour. hide is the owner's M2-0007 layout, used by the parked-idle census state and the soak.",
+    "The resource-census-profile.json manifest is content-free. It states: meeting count, total transcript words, layout, localLlm enabled, datalessMeetings 0 with the reason 'real dataless files need a cloud provider; measured in the owner soak (OD-36)', a profile schema version, and a sha256 over the generated settings and index. Two census runs can then prove they used the same profile.",
+    "The output-path contract fixed by M2-0473 is kept: the printed or returned path works on windows-latest.",
+    "profile.test.ts covers: determinism (two runs give the same sha256), the meeting count, index coverage, the layout flag and the manifest field allowlist. Build & Test is green. CI only (D-28).",
+    "LEAD_ACTION: none on its own. The 1.9.6 baseline is dispatched under M2-0490's LEAD_ACTION, after this ticket is on main."
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 3,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0490",
+   "title": "Parked-idle census state: park the window through the user path (Hide layout, pointer moved off the top edge), prove the park without a product hook, and run the state on both resource-census.yml legs",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "infra",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0489",
+    "M2-0473"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4A-BEFORE",
+    "READINESS-197-2026-09-29-ACC8B",
+    "OD-31",
+    "OD-26",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/census/lib.mjs",
+    "scripts/qa/census/run.mjs",
+    "scripts/qa/census/park.mjs",
+    "scripts/qa/census/park.test.ts",
+    "scripts/qa/census/lib.test.ts",
+    ".github/workflows/resource-census.yml"
+   ],
+   "summary": "The census's only non-attach states are cold-start and settled-idle (the other four STATES entries at lib.mjs:9-16 need attach mode), plus a parked-bar-orb trace, and nothing ever parks the window. So M2-0039's own verification (--state parked-idle) is rejected, and M2-0046 acc 8's pull-in rule ('if M2-0009 measures parked idle over the section 7 budget') has no input. Parking must follow the user path. Hide and Island launch parked (src/shared/overlay-chrome.ts:180: a fresh userdata boots at 8x2), but hosted macOS leaves the pointer in the top-edge strip, so cursor-watch restores the bar. The smoke hook --metis-smoke-reopen=park-window (index.ts:3792, env ASKTOTO_SMOKE_REOPEN_PROBE) is not usable here: it calls stopOverlayCursorWatch (index.ts:3220), which removes the roughly 42 Hz cursor polling that M2-0039 exists to measure, so parked idle would read low. Census legs do not set M2-0482's floor override, for parity with the 1.9.6 baseline. CUT TIMING: scripts and workflow only, so it CAN LAND AFTER THE CUT. Schedule it and the 1.9.6 baseline dispatch before the cut anyway: a pull-in of M2-0039 decided after the cut would force a re-cut (about 8-12 h). [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "STATES gains 'parked-idle' with no attach precondition, and stateCoverageForRun lists it. All other states and the default report are unchanged. The state name in M2-0039's verification command `node scripts/qa/census/run.mjs --state parked-idle --seconds 300` is accepted (no usage error)",
+    "For parked-idle, run.mjs refuses any profile whose manifest layout is not 'hide' (PRECONDITION, exit 2, naming the layout). Before launch it moves the pointer off the top-edge strip (macOS: CGWarpMouseCursorPosition through a swift or python ctypes one-liner; Windows: user32 SetCursorPos through PowerShell) and records the position it set. It never sets ASKTOTO_SMOKE_REOPEN_PROBE, METIS_QA_HOST_FLOOR_OVERRIDE or --metis-smoke-reopen",
+    "park.mjs proves the park from content-free observations over the renderer debugging endpoint, using a signal that works on both 1.9.6 and the candidate: the overlay window bounds at the parked size, from Browser.getWindowForTarget/getWindowBounds. It checks at the start of the state, every 60 s and at the end, and the report records every check",
+    "If the first park check fails, the state ends as PRECONDITION (exit 2) and records the observed bounds. If the window un-parks later, the samples after that point are marked not parked, and the summary reports parked coverage",
+    "The parked-idle report adds informational fields: one-core CPU% over 300 s, budgetOneCorePercent 1 (MASTER section 7, M2-0039) and overBudget true/false. They never fail the census",
+    "resource-census.yml runs parked-idle after settled-idle on both legs, with --seconds 300, on a second profile built with --layout hide. It uploads darwin-parked-idle.json and win32-parked-idle.json and raises job timeouts only by what the extra state needs",
+    "park.test.ts covers: the bounds verdict, PRECONDITION on a failed first check, coverage accounting, and that the launch command and env never carry the smoke-reopen flag or the floor override. lib.test.ts covers the new state. Build & Test is green",
+    "LEAD_ACTION: once M2-0489, M2-0490 and M2-0473 are on main, dispatch resource-census.yml for v1.9.6-unsigned with M2-0473's command. File M2-0009 MEASURED: kind hosted-runner, hosts macos-latest and windows-latest, with ci_run_id (needs M2-0466). Keep this run id as the baseline_run for M2-0491",
+    "LEAD_ACTION: if 1.9.6 parked-idle exceeds 1% of one core over 300 s on either leg, Opus records in DECISIONS and M2-0046's notes, before the cut, whether M2-0039 is pulled into 1.9.7 (acc 8). A pull-in also removes M2-0198 from M2-0039.depends_on (M2-0198 depends on M2-0046, so keeping it would be a cycle), moves M2-0039 to m3 and adds it to M2-0498's depends_on, since it changes app bytes. If M2-0039 is not pulled in, 1.9.7.md states the measured values as a residual"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0491",
+   "title": "resource-census.yml measures a qa-candidate run's exact bytes: candidate_run + mac_sha256/win_sha256 inputs, plus a report-only per-state delta against the 1.9.6 baseline run that refuses model-confounded comparisons",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0467",
+    "M2-0473",
+    "M2-0490",
+    "M2-0486"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4A-AFTER",
+    "READINESS-197-2026-09-29-ACC1B",
+    "OD-26",
+    "OD-31",
+    "OD-31"
+   ],
+   "scope_paths": [
+    ".github/workflows/resource-census.yml",
+    "scripts/qa/census/delta.mjs",
+    "scripts/qa/census/delta.test.ts",
+    "scripts/ci/resource-census-workflow.contract.test.ts"
+   ],
+   "summary": "resource-census.yml accepts only release_repo and release_tag, so no census can bind to the candidate sha256 before promotion. Under OD-31 the before/after comparison must be in front of the owner when he records ACCEPTED, so measuring the promoted tag afterwards is not enough. This ticket adds a candidate source to the same workflow, so every measurement step (install, footprint, profile, TTFT, states) stays identical and baseline and candidate share one method. For installing candidate bytes it reuses M2-0467's run guard (scripts/qa/candidate-scenarios.mjs) and the sha256 selector (scripts/qa/candidate-installer.mjs, M2-0416/M2-0467). Candidate legs launch exactly like the release legs, without M2-0482's floor override, because the 1.9.6 baseline cannot set it. The model may still start on one side only (1.9.6's freemem prewarm floor against the candidate's available-memory floor), so the delta records llama-server presence and marks a state NOT_COMPARABLE where it differs. The per-kind delta uses M2-0486's classification, so the supervised candidate's wrapper appears as the new sidecar-supervisor kind rather than doubling llama-server. M2-0200's gating compare.mjs depends on M2-0046 and comes later; this ticket adds only a report-only delta. CUT TIMING: workflow and scripts only, so it CAN LAND AFTER THE CUT. The run takes about 80 min after the cut and must finish before ACCEPTED. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "New optional inputs: candidate_run, mac_sha256, win_sha256 and baseline_run. On each leg a resolver step accepts exactly one source. 'release' (release_tag) is today's behaviour and the default. 'candidate' needs candidate_run plus that leg's sha256. Any other combination fails before any download, and run-name shows the source",
+    "Candidate source: the pure guard from scripts/qa/candidate-scenarios.mjs refuses any run that is not a completed, successful workflow_dispatch of qa-candidate.yml on main. The leg downloads candidate-provenance and candidate-mac (DMG) or candidate-win (Setup), runs provenance.mjs verify, and asserts provenance.run.id == candidate_run. It selects the installer whose sha256 equals the input through candidate-installer.mjs; a mismatch fails with no fallback",
+    "The selected installer is staged where today's install step reads it. Install, footprint, both profiles, TTFT and every census state then run unchanged. Candidate legs never set METIS_QA_HOST_FLOOR_OVERRIDE, and run-identity.json records hostFloorOverride false and the host memory",
+    "Permissions are contents: read and actions: read. No secrets are used. Every uses: stays SHA-pinned (check:workflow-pins green), and the main-ref guard stays",
+    "run-identity.json gains source, build_run_id, commit (from the provenance), artifact file name and artifact_sha256. Artifacts keep today's os tokens: resource-census-macos|windows-<release_tag | candidate-<run>>",
+    "With baseline_run, each leg downloads that run's census artifact for its OS and runs scripts/qa/census/delta.mjs for each state present in both runs (cold-start, settled-idle, parked-idle). It reports deltas of CPU-seconds per 300 s, the phys_footprint sum (macOS) or the working-set and private-bytes sums (Windows), and process count by kind",
+    "delta.mjs marks a pair NOT_COMPARABLE when the profile-manifest sha256, state list, seconds or interval differ. It also reports llama-server presence for both runs per state and marks the memory and CPU comparison of a state NOT_COMPARABLE where that presence differs. A kind present only on the candidate (sidecar-supervisor) is listed as a new kind, not as a regression. It never fails the job on a regression; thresholds belong to M2-0200. The delta JSON and a job-summary table are uploaded",
+    "delta.test.ts covers the per-state math, a missing state, NOT_COMPARABLE on a profile-hash mismatch, NOT_COMPARABLE on a llama-server presence mismatch, the new-kind listing and content-free output",
+    "scripts/ci/resource-census-workflow.contract.test.ts asserts: a dispatch-only trigger (on M2-0501's legacy list), the main guard, mutual exclusion of sources, both sources running the same state list (cold-start, settled-idle, parked-idle) with the same seconds, no floor-override env, permissions, no secrets, pinned actions, and upload with if: always(). Build & Test is green",
+    "LEAD_ACTION, after the cut and before the owner's ACCEPTED: dispatch resource-census.yml --ref main with candidate_run=<1.9.7 qa-candidate run>, mac_sha256=<DMG>, win_sha256=<Setup> and baseline_run=<the M2-0490 1.9.6 baseline run>. File one MEASURED record per leg for M2-0046 acc 4a (after): hosted-runner, with ci_run_id, build_run_id and artifact_sha256 (M2-0466). Copy the delta table, including any NOT_COMPARABLE states and why, into 1.9.7.md"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0492",
+   "title": "Idle-soak scenario, macOS leg (OD-35): install the promotable DMG by sha256, park it on the representative Hide profile and sample for up to 5.5 h, judged by IDLE-GROWTH-1 extrapolated to 8 h",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0467",
+    "M2-0487",
+    "M2-0488",
+    "M2-0490",
+    "M2-0466"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4B",
+    "OD-35",
+    "OD-26",
+    "D-9",
+    "D-28",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/soak/idle-soak.mjs",
+    "scripts/qa/soak/idle-soak.test.ts",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts"
+   ],
+   "summary": "OD-35 replaces the continuous 8 h idle soak with two hosted legs of at most 5.5 h on the candidate bytes, and nothing produces them yet. The leg runs in M2-0467's candidate-scenarios lane, which already provides the main and run guards, sha256 install, fresh profile, content-free scan and an evidence-shaped lane.json. It uses the promotable DMG, which needs no QA hook, so the record binds to promotable bytes. The leg soaks the owner's idle state: Hide layout, parked, after a 20-min settle. The on-screen Bar idle state is covered by the 300 s settled-idle census. The profile has the local LLM on. Once M2-0482 is in the candidate, the launch env sets its floor override so the model can prewarm on a 7 GiB runner, and lane.json records whether llama-server (and its supervise wrapper) ran, because B2's growth was llama-server orphans. GitHub stops a hosted job at 6 h, so the lane needs per-scenario job timeouts: 330 min of app runtime plus about 15 min of setup fits under a 355-min job, and a deadline guarantees the upload. CUT TIMING: scripts and workflow only, so it CAN LAND AFTER THE CUT. The run is the long pole after the cut (about 6 h) and runs in parallel with the Windows leg, the census and the meeting run. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "idle-soak.mjs --app <installed> --profile <dir> --hours <at most 5.5> --out <dir> [--deadline-epoch-ms] runs in this order: keep the display awake (caffeinate -d, recorded); move the pointer off the top edge and prove the park with M2-0490's park.mjs; run the M2-0487 long-run census (--state parked-idle, 30 s interval per IDLE-GROWTH-1, --ndjson, --audit-counts with 10-min checkpoints); re-check the park every 10 min; stop at --hours or at the deadline, whichever comes first; then run growth.mjs --rule IDLE-GROWTH-1",
+    "Once M2-0482 is in the candidate, the app launch env sets METIS_QA_HOST_FLOOR_OVERRIDE=1. lane.json records hostFloorOverride, host memory, and whether llama-server and its sidecar-supervisor wrapper ran during the leg (M2-0486 kinds). A leg in which llama-server never ran is still judged, and the report says so",
+    "Exit mapping: 0 PASS; 1 FAIL or INCOMPLETE (never 0); 2 PRECONDITION (the app did not launch, or the park could not be proven at start). Parked coverage below 95% makes the leg INCOMPLETE",
+    "Registry entry idle-soak: platform mac, variant mac (the promotable DMG), profile from profile.mjs --layout hide, timeoutMinutes 355. The mac job reads timeout-minutes from the resolver output, so every other scenario keeps its own timeout",
+    "The soak step sets a deadline that leaves at least 10 min for growth.mjs and the upload. The upload runs with if: always() and carries the NDJSON, audit counts, verdict and lane.json",
+    "lane.json carries the M2-0467 fields plus rule id, rule sha256, hours measured, parked coverage, display-awake state, hostFloorOverride, model state and outcome. The content-free scan covers every new file",
+    "idle-soak.test.ts covers: the deadline arithmetic (a 355-min job never loses the upload), the exit mapping, INCOMPLETE on a short leg and on low parked coverage, and the launch env with and without the override",
+    "The contract test asserts the registry key, the per-scenario timeout wiring, and that other scenarios keep their timeouts. Build & Test is green. hk-m-candidate.yml and qa-candidate.yml are unchanged",
+    "LEAD_ACTION, after the cut and once M2-0488's rule is registered: dispatch candidate-scenarios.yml --ref main with scenario=idle-soak, candidate_run=<1.9.7 run> and mac_sha256=<DMG sha256>. Add win_sha256 once M2-0493 lands; one dispatch then runs both legs",
+    "LEAD_ACTION, recording the result: on PASS, file MEASURED for M2-0046 acc 4b (hosted-runner, macos-latest, with ci_run_id, build_run_id and artifact_sha256), citing the registered rule sha256. On FAIL, the candidate does not qualify until a fix and a new cut re-run every gate. On INCOMPLETE or PRECONDITION, re-dispatch once and record both runs"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S6 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0493",
+   "title": "Idle-soak scenario, Windows leg (OD-35): the same parked soak of up to 5.5 h on the promotable Setup on windows-latest, with IDLE-GROWTH-1 judged on private bytes",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0492",
+    "M2-0468"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4B",
+    "OD-35",
+    "OD-26",
+    "D-28",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/soak/idle-soak.mjs",
+    "scripts/qa/soak/idle-soak.test.ts",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts"
+   ],
+   "summary": "OD-35's second leg. The candidate-scenarios lane gets its windows-latest install job (silent Setup install by win_sha256 into a fresh directory, with the same candidate-installer selector) from M2-0468, so this ticket reuses that job rather than adding a second one. Windows working set is trimmed by the OS and can hide a leak, so the Windows leg judges memory on the private-bytes sum that M2-0487 samples. CUT TIMING: scripts and workflow only, so it can land AFTER the cut. The leg runs in parallel with the macOS leg. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "The idle-soak registry entry gains platform win: variant win (the Setup selected by win_sha256), installed silently into a fresh directory by the windows-latest job that M2-0468 adds. The job's timeout comes from the registry (355).",
+    "On Windows the pointer is moved with user32 SetCursorPos, the display is kept awake (SetThreadExecutionState or powercfg, recorded), and the park is proven with the same park.mjs check.",
+    "IDLE-GROWTH-1 memory on Windows is the private-bytes sum. Working set is reported but not judged.",
+    "Audit counts are read from the logs directory of the Windows census profile. The content-free scan includes Windows user-home paths (C:\\Users\\<x>).",
+    "A dispatch carrying both sha256 values runs the two legs in parallel as separate jobs, each with its own lane artifact (candidate-scenario-idle-soak-mac and -win) and its own outcome. One leg's failure never hides the other's result.",
+    "Tests cover: Windows command construction, selection of the private-bytes metric, and the contract for the win platform and its timeout. Build & Test is green.",
+    "LEAD_ACTION: dispatch as in M2-0492, adding win_sha256=<Setup sha256>. File the Windows MEASURED record (hosted-runner, windows-latest, with ci_run_id, build_run_id and artifact_sha256).",
+    "LEAD_ACTION: 1.9.7.md states both legs, the extrapolation to 8 h, and its residual: a leak that starts after 5.5 h is not seen."
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 3,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S7 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0494",
+   "title": "QA-identity-only file-fed capture source: a packaged QA build on an isolated profile feeds a WAV from that profile as the microphone through Chromium's fake audio capture; inert and compiled out of shipping bytes",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "feature",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4C",
+    "M2-0428-REVIEW-RE-HIDE-3-4",
+    "OD-31",
+    "OD-26",
+    "D-28",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "src/main/qa-capture-source.ts",
+    "src/main/qa-capture-source.test.ts",
+    "src/main/index.ts",
+    "src/main/logger.ts",
+    "src/main/audit-event-coverage.contract.test.ts",
+    "scripts/lib/qa-fault-hook.mjs",
+    "scripts/lib/qa-fault-hook.test.ts"
+   ],
+   "summary": "Hosted runners have no microphone, no fixture meeting and no Screen Recording grant. The M2-0428 review left RE-HIDE-3/4 BLOCKED_EXTERNAL, and M2-0472 only probes. So M2-0046 acc 4c (1 h of meeting activity) cannot run anywhere today. Capture lives in the renderer. The 'you' channel is getUserMedia (listen.ts:669). The 'them' channel is getDisplayMedia bound to a ScreenCaptureKit source, which main grants only with Screen Recording (index.ts:9324-9420); without that grant, listen.ts falls back to the microphone. Design: in the QA-identity build only (QA_IDENTITY_BUILD, src/main/qa-identity.ts, a literal the shipping build drops), before app ready, main appends Chromium's use-fake-device-for-media-stream and use-file-for-fake-audio-capture=<file> switches (the file loops), next to index.ts:996. It does so only when the app is packaged, ASKTOTO_USERDATA names an isolated profile, and METIS_QA_CAPTURE_FILE resolves to a .wav inside that profile. The real getUserMedia, worklet, VAD, ASR, speaker and save paths then run unchanged on a known input. The hook touches no TCC or permission API and fakes no grant (MASTER OBU-03). qa-candidate.yml builds a QA identity for macOS only, so Windows meeting activity stays a stated residual. ASSUMED: in Electron, Chromium's fake capture needs no macOS microphone grant; M2-0495 proves this on QA bytes before the cut. CUT TIMING: changes installer bytes (an index.ts call site and a logger.ts event), so it must land BEFORE the cut, in the M2-0188 hot-file order. [Lands BEFORE the 1.9.7 candidate cut.]",
+   "acceptance": [
+    "src/main/qa-capture-source.ts exports a pure qaCaptureSwitches({ qaIdentity, packaged, env, realpath, exists }). It returns the two switches only when all of these hold: QA identity, packaged, ASKTOTO_USERDATA set, METIS_QA_CAPTURE_FILE set with a realpath inside the realpath of ASKTOTO_USERDATA, a .wav extension, and the file exists. Otherwise it returns null with a reason code.",
+    "qa-capture-source.test.ts rejects each of: shipping identity, unpackaged, no ASKTOTO_USERDATA, a relative path, '..' traversal, a symlink that escapes the profile, a wrong extension and a missing file.",
+    "index.ts gains one module-scope call beside appendSwitch('disable-renderer-backgrounding'), before app ready, and no other change. The branch is guarded by QA_IDENTITY_BUILD, so the env name and switch strings are compiled out of shipping bytes.",
+    "When active, main writes one content-free audit event 'qa.capture.file_source' {active: true} after ready, with no path or file name. logger.ts adds it to the AuditEvent union, and audit-event-coverage.contract.test.ts is updated.",
+    "The module imports no systemPreferences, TCC or permission API, does not change getPlatformPermissions or any permission the UI shows, and leaves the display-media handler untouched. A test asserts these imports are absent.",
+    "scripts/lib/qa-fault-hook.mjs extends the identity check with a second marker for the capture hook. A shipping package that carries it fails check:packaged-runtime, and a QA-identity package that lacks it fails. qa-fault-hook.test.ts covers both directions.",
+    "Build & Test and packaged smoke are green on the PR. A shipping build does no new work at boot, so the M2-0433 ST-1 budget is unaffected.",
+    "LEAD_ACTION: land it in the M2-0188 hot-file order, before the 1.9.6->1.9.7 version bump and the milestone merge that precede the cut. Do not cut until M2-0495's QA-candidate self-test shows the hook working on QA bytes."
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 6,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S8 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0495",
+   "title": "Prove the file-fed capture source on the candidate's own QA-identity bytes: a blocking 3-minute capture smoke job in qa-candidate.yml",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0494"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4C",
+    "OD-31",
+    "OD-26",
+    "OD-31"
+   ],
+   "scope_paths": [
+    ".github/workflows/qa-candidate.yml",
+    "scripts/qa/meeting/capture-wav.mjs",
+    "scripts/qa/meeting/file-capture.mjs",
+    "scripts/qa/meeting/file-capture-smoke.mjs",
+    "scripts/qa/meeting/file-capture.test.ts",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+   ],
+   "summary": "Without a hosted proof, M2-0494's hook would first run in the 1 h meeting scenario after the cut. If it did not engage there (for example because macOS still gates the fake device on a microphone grant), the candidate could not produce acc 4c and would need a re-cut and a full re-run (about 8-12 h). qa-candidate.yml is the only workflow that builds QA-identity bytes (the build-mac matrix variant mac-qa-identity; there is no Windows QA identity). Its pull-request self-test builds them from the PR merge commit, so a job there proves the hook on real QA bytes before the cut and again on every candidate. The smoke seeds its fresh profile with scripts/qa/census/profile.mjs (onboarding done, asrEngine whisper), so Listen is reachable and ASR is local and offline. The shared launch, Listen and Stop helpers in scripts/qa/meeting/ are reused by the meeting-history driver (M2-0496). CUT TIMING: changes qa-candidate.yml, so it MUST LAND BEFORE THE CUT. It is one of five before-cut PRs on qa-candidate.yml (M2-0433, M2-0499, M2-0505, M2-0508) and lands one at a time with them. [Lands BEFORE the 1.9.7 candidate cut.]",
+   "acceptance": [
+    "capture-wav.mjs writes a WAV into a given profile directory on macOS, built from the synthetic English sentences in scripts/qa/asr-fixtures/manifest.json with /usr/bin/say and /usr/bin/afconvert. The WAV is 16-bit PCM mono at the rate M2-0494 documents, 60-180 s long, with pauses. The script prints only the WAV's sha256 and duration",
+    "file-capture.mjs installs the QA zip into a fresh directory and seeds a fresh profile with scripts/qa/census/profile.mjs (onboardingDone true, asrEngine whisper, local LLM off). It launches the app with ASKTOTO_USERDATA=<that profile>, METIS_QA_CAPTURE_FILE=<wav> and --remote-debugging-port. Over CDP it starts Listen through the real Bar control, reads the live transcript line count (the count only), stops Listen, and waits for the saved meeting (the file count in the meetings folder and the file's byte size, never its content). The report records the ASR engine used",
+    "file-capture-smoke.mjs PASS requires, within 180 s: the 'qa.capture.file_source' audit event; at least 2 live transcript lines within 120 s of Listen start; a saved meeting file after Stop; and at least 3 of the fixture sentences' distinctive tokens found in the saved transcript (checked in-process; only the count leaves)",
+    "Otherwise the verdict is FAIL. If the app never becomes ready, it is PRECONDITION (exit 2). The report is content-free",
+    "New job capture-file-smoke-mac in qa-candidate.yml: it needs provenance, downloads candidate-mac-qa-identity, verifies it against the provenance, runs the smoke and uploads the report with if: always()",
+    "The job is blocking (no continue-on-error): under OD-31, a candidate whose QA capture source does not work cannot satisfy M2-0046 acc 4c",
+    "scripts/qa/meeting/** and src/main/qa-capture-source.ts join qa-candidate.yml's pull_request paths, so changes to them trigger the self-test",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts is created if absent, or extended, to pin the new job's needs, variant, blocking status and upload",
+    "file-capture.test.ts covers WAV command construction, profile seeding, the PASS/FAIL/PRECONDITION verdicts and the content-free report. Build & Test is green. The PR links its own QA-candidate self-test run showing the job PASS on the PR's QA bytes",
+    "LEAD_ACTION: the 1.9.7 cut (the qa-candidate.yml dispatch on main) needs this job green, like every other job. Cite its artifact in 1.9.7.md"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S9 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0496",
+   "title": "Meeting-plus-History driver: 60 min of file-fed capture on the QA-identity app with repeated History open/search/open-row over CDP, main-loop p99 and max under the strict ST-1 thresholds, a transcript-saved check, and census sampling judged by MEETING-GROWTH-1",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "infra",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0495",
+    "M2-0487",
+    "M2-0488",
+    "M2-0489"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4C",
+    "OD-21",
+    "OD-31",
+    "OD-26",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/meeting/meeting-history.mjs",
+    "scripts/qa/meeting/meeting-history.test.ts",
+    "scripts/qa/meeting/file-capture.mjs",
+    "scripts/qa/lib/main-inspector.mjs"
+   ],
+   "summary": "Acc 4c's safety part: opening History while a meeting records must not freeze main or lose the live transcript. Until the m5 journal lands, the live transcript exists only in renderer state. Existing coverage misses this case: the packaged-smoke HIST-* rows run only on per-PR bytes, ST-1's History probe runs with FIFO fixtures and no capture, and M2-0321's 2 h soak is scoped to T3. This driver runs a real capture from M2-0494's file source on the representative 59-meeting profile (M2-0489, bar layout, where History is reachable), with a History loop running throughout. The main loop is measured inside main through Node's inspector, as ST-1 does; the QA zip has the inspector fuse on. It reuses scripts/qa/lib/st-1-core.mjs (pinnedExpression, withTimeout). The inspector launch helpers go into a new scripts/qa/lib/main-inspector.mjs, and st-1.mjs is not edited, because M2-0433 owns it until the cut. Thresholds are OD-21's strict ones (< 250 ms). The launch env sets M2-0482's floor override (once it is in the candidate) so the post-meeting summary can start llama-server. On hosted runners the 'them' channel falls back to microphone-only (no Screen Recording grant); that is reported, not failed. CUT TIMING: scripts only, so it CAN LAND AFTER THE CUT. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "meeting-history.mjs --zip <QA zip> --sha256 <sha> --profile <representative bar profile> --minutes 60 --post-minutes 10 --out <dir> verifies the zip sha256, generates the WAV with capture-wav.mjs, and launches through file-capture.mjs with --inspect=127.0.0.1:0 and --remote-debugging-port. Once M2-0482 is in the candidate, the launch env sets METIS_QA_HOST_FLOOR_OVERRIDE=1, and the report records hostFloorOverride and host memory. After Listen starts, it requires the file-source audit event and live transcript lines within 120 s; otherwise it exits 2 (PRECONDITION)",
+    "The main loop is measured inside main through lib/main-inspector.mjs, which reuses st-1-core.mjs pinnedExpression and withTimeout. It records a whole-capture monitorEventLoopDelay (p99 and max), and every 5 s a sample with the loop max since the last sample plus the settings-write and dns.lookup timings, taken the way ST-1 takes them",
+    "The History loop runs for the whole 60 min, every 30 s ± 5 s with seeded jitter: open History from the Bar, search a synthetic term present in the profile, open a result row, go back to History, then return to the live meeting",
+    "For each History action the driver records duration, outcome and the loop max over its window. It reads the live transcript line count before and after each cycle",
+    "The census runs in attach mode with M2-0487's long-run options for the capture hour: --state active-transcription --main-pid --precondition-evidence 'file-fed capture active, N lines' --ndjson, plus audit counts. After Stop it runs --state post-meeting for --post-minutes",
+    "PASS requires all of: whole-capture main p99 < 50 ms and loop max < 250 ms (OD-21 ST-1 thresholds); loop max < 250 ms in every History action window; settings write and dns.lookup < 250 ms at every sample; at least 95% of History cycles completed with the list and search results rendered; a live transcript line count that never drops across a History cycle; after Stop, one new non-empty meetings file and one more History row; and MEETING-GROWTH-1 PASS from growth.mjs",
+    "A FAIL names every failed clause. Exit codes: 0 PASS, 1 FAIL, 2 PRECONDITION",
+    "The report is content-free (counts, timings, kinds, event names; no transcript text, titles, search results or paths). It records which kinds were active (ASR utility, speaker utility, llama-server, sidecar-supervisor). A missing llama-server or 'them' channel is reported with its cause (floor refused despite the override, or no Screen Recording grant), not failed",
+    "meeting-history.test.ts covers the cycle scheduler and the verdict clauses with fixture series: a 250 ms loop sample inside a History window gives FAIL (strict bound); a transcript count drop gives FAIL; an unsaved meeting gives FAIL; a clean run gives PASS. It also covers the content-free report. Build & Test is green, and st-1.mjs is unchanged"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 7,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S10 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0497",
+   "title": "Register the meeting-history scenario in the candidate lane: install the candidate's Metis-QA zip by sha256 on a fresh QA profile and run the 60-min meeting-plus-History driver",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0496",
+    "M2-0467"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-ACC4C",
+    "OD-26",
+    "OD-31",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts"
+   ],
+   "summary": "This ticket puts M2-0496 on the candidate's exact bytes through M2-0467's lane. The scenario needs a QA hook (M2-0494), so it installs the Metis-QA zip (variant mac-qa-identity) from the same qa-candidate run, not the promotable DMG. The record discloses this, as the ST-1 records do for QA-identity bytes. Windows has no QA-identity variant, and hosted runners have no Screen Recording grant, so Windows meeting activity and the loopback ('them') channel stay stated residuals in 1.9.7.md. CUT TIMING: workflow and scripts only, so it can land AFTER the cut. The run takes about 90-110 min after the cut, in parallel with the soak legs. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "Registry entry meeting-history: platform mac, variant mac-qa-identity (the Metis-QA zip), profile from profile.mjs --layout bar, timeoutMinutes 110. The resolver requires mac_sha256 and rejects win_sha256.",
+    "The job asserts, per M2-0467's fresh-profile rule, that the QA userData directory does not exist before the run. It runs meeting-history.mjs and uploads the report, NDJSON, audit counts, verdict and lane.json with if: always().",
+    "lane.json records variant 'mac-qa-identity' and a disclosure field 'qa-identity bytes of the same candidate run' beside artifact_sha256, plus the rule id, rule sha256 and outcome. The content-free scan covers every uploaded file.",
+    "The registry test and the workflow contract test are updated. Build & Test is green, and hk-m-candidate.yml and qa-candidate.yml are unchanged.",
+    "LEAD_ACTION, after the cut and once M2-0488's rule is registered: dispatch candidate-scenarios.yml --ref main with scenario=meeting-history, candidate_run=<1.9.7 run> and mac_sha256=<Metis-QA zip sha256 from SHA256SUMS.txt>.",
+    "LEAD_ACTION, recording the result: on PASS, file for M2-0046 acc 4c a LIVE_VERIFIED record (History during capture) and a MEASURED record (growth), under hosted-runner / macos-latest with ci_run_id, build_run_id and the QA zip sha256, disclosed as QA-identity bytes. 1.9.7.md states Windows meeting activity and the loopback channel as unverified residuals. On FAIL the candidate does not qualify."
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 3,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S11 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0498",
+   "title": "Bump the app version 1.9.6 -> 1.9.7 in package.json and package-lock.json as the last installer-content landing before the m3 milestone merge",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "process",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0428",
+    "M2-0430",
+    "M2-0431",
+    "M2-0433",
+    "M2-0193",
+    "M2-0032",
+    "M2-0478",
+    "M2-0460",
+    "M2-0474",
+    "M2-0499",
+    "M2-0482",
+    "M2-0483",
+    "M2-0494",
+    "M2-0495",
+    "M2-0505",
+    "M2-0502",
+    "M2-0508"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "release-197-readiness:missing_tickets[0]",
+    "release-197-readiness:risks[3]",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "package.json",
+    "package-lock.json"
+   ],
+   "summary": "main (df205007) and m2/integration (8916f5cf) both still say 1.9.6: package.json line 3, and package-lock.json lines 3 and 9. Without this bump the cut would build Metis-*-1.9.6, promote would try v1.9.6, and the soak evaluator's app.version check would fail. package.json and the lockfile are hot files (M2-0188), so this is one merge-queue landing, and it must be the last change to installer content before the snapshot. MUST LAND BEFORE THE CUT: it changes the installer bytes and their names. depends_on lists every before-cut ticket that changes installer bytes or qa-candidate.yml: the P0 fixes; M2-0474 (RV-3, if its cause is in the product); the floor override (M2-0482); the supervision default (M2-0483); the QA capture source and its smoke job (M2-0494, M2-0495); and the synthetic-dataless ST-1 job (M2-0505). native-app/project.yml keeps 1.9.6 because qa-candidate.yml does not build the native app. Two owner answers are still open from the readiness message. One is whether M2-0202 is in 1.9.7 (OD-22 says 'before 1.9.7', its title says 'where ready', it is m5 and outside the D-32 window, and it is 10 h). The other is whether Portable still ships (M2-0458 depends on M2-0046). If M2-0202 is in, it moves to m3 and joins depends_on. [Lands BEFORE the 1.9.7 candidate cut.]",
+   "acceptance": [
+    "package.json \"version\", package-lock.json's top-level \"version\" and packages[\"\"].version all read 1.9.7. The PR diff is exactly those 3 lines in 2 files, with no dependency or lockfileVersion change",
+    "Unchanged on purpose: native-app/project.yml MARKETING_VERSION (the native app is not in the 1.9.7 installers), and the v1.9.6 / v1.9.6-unsigned baseline defaults in freeze-repro.yml, resource-census.yml and windows-qa.yml (they name the 1.9.6 baseline)",
+    "Build & Test and Packaged smoke are green on the PR head and on m2/integration after the merge, and the packaged build logs name Metis-1.9.7 artifacts",
+    "Merged only after the PR of every depends_on ticket has merged into m2/integration. Process tickets (M2-0502) do not count. A P1 before-cut ticket that has not merged by then (M2-0508) waits until after ACCEPTED. When this merges, no open PR of a 1.9.7 ticket touches src/**, native/**, package.json or the builder configs. If any src/** ticket merged after M2-0433, the PR states that the cut dispatch is the first blocking ST-1 run on the final tree",
+    "v1.9.7 is unused on mysticalsin/Metis-Releases and in the source repo (true on 2026-09-29). No version guard on m2/integration refuses 1.9.7 because of the feed's retired v1.9.8 draft (PD-08). If M2-0206's version-order preflight has landed, a unit test shows that it accepts 1.9.7 on main",
+    "LEAD_ACTION: keep the installer hold (D-32 window) on m2/integration until the owner records ACCEPTED, not only until the cut. Any failed candidate evidence means a re-cut from main's head, so main must still hold only 1.9.7 content. PRs that change only tests, docs or workflows keep landing",
+    "LEAD_ACTION: cut m2/milestone-m3 at the bump's merge commit and merge it to main per integration.md §10, then run M2-0502's post-merge check (a push-event run on the merge commit, or a dispatched Build & Test, plus workflow registration). Then dispatch qa-candidate.yml on main with commit=<main head> (run_attempt 1). Its provenance.json has version 1.9.7, and SHA256SUMS.txt lists Metis-1.9.7.dmg, Metis-1.9.7.zip, Metis-Setup-1.9.7.exe, Metis-Portable-1.9.7.exe and Metis-QA-1.9.7.zip. Record the run id in docs/metis-2.0/releases/1.9.7.md",
+    "LEAD_ACTION before filing: get the owner's explicit in/out answer on M2-0202 for 1.9.7 (OD-22 against the D-32 window), and confirm that Portable still ships in 1.9.7 (M2-0458). If M2-0202 is in, move it to m3 and add it to depends_on"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 1,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R1 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0499",
+   "title": "Hotfix build lane: qa-candidate.yml builds the head of release/1.9.x under a version rule that makes 1.9.7 hotfixes 1.9.7-hotfix.N and never uses 1.9.8",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "release-197-readiness:missing_tickets[1]",
+    "release-197-readiness:risks[9]",
+    "runbooks/integration.md §11 (F9, D-34 proposed)",
+    "OD-31"
+   ],
+   "scope_paths": [
+    ".github/workflows/qa-candidate.yml",
+    "scripts/qa/release-line.mjs",
+    "scripts/qa/release-line.test.mjs",
+    "scripts/qa/provenance.test.mjs",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+   ],
+   "summary": "qa-candidate.yml's guard accepts only refs/heads/main (line 41), so an M2-0198 HOLD has nowhere to build a 1.9.7 hotfix. integration.md §11 already says 'the lane cannot build from release/1.9.x and no hotfix version number is defined'. '1.9.7.x' is not valid semver. The only versions between 1.9.7 and 1.9.9 are 1.9.8 or its prereleases, and PD-08 retires 1.9.8. D-34's recorded default, the next unused patch number, would make the hotfix 1.9.9 and move T1. The scheme therefore has to be recorded, and 1.9.7-hotfix.N is the recommended one: it is unique, electron-builder names artifacts from it, and it never contains 1.9.8. It sorts below 1.9.7 under semver. That is harmless on the owner channel, because those builds are hand-installed prereleases that the updater never offers. MUST LAND BEFORE THE CUT: it changes qa-candidate.yml. release/1.9.x is cut at provenance.commit, and a dispatch on release/1.9.x runs that branch's copy of the workflow, so the branch only inherits the lane if the lane is in the cut commit. Otherwise it must be backported at HOLD time. It touches no hot file. It is one of five before-cut PRs on qa-candidate.yml (with M2-0433, M2-0505, M2-0495 and M2-0508), so they land one at a time. [Lands BEFORE the 1.9.7 candidate cut.]",
+   "acceptance": [
+    "The guard accepts workflow_dispatch on refs/heads/main and refs/heads/release/1.9.x only, and refuses any other ref with an error naming both. The 'named commit is the ref's head' check (commit == GITHUB_SHA) still holds, and its message names the dispatched ref",
+    "scripts/qa/release-line.mjs exports a pure versionForRefProblems({ref, version, feedTags, publishedReleases}) that returns string[]. On main it accepts semver X.Y.Z or X.Y.Z-(beta|rc).N (the PD-08 sequence), never 1.9.8, and never an existing feed tag. On release/1.9.x it requires the D-34 hotfix scheme (default 1.9.7-hotfix.N, N >= 1), requires v1.9.7 to exist as a published feed release, and requires v<version> to be unused. The retired v1.9.8 draft never blocks 1.9.7 or a hotfix",
+    "Unit tests (node --test, CI only). Accepted: 1.9.7 on main with the v1.9.8 draft present, and 1.9.7-hotfix.1 on release/1.9.x with v1.9.7 published. Refused: 1.9.8 on any ref; 1.9.7 on release/1.9.x ('already promoted'); 1.9.7-hotfix.1 on main; a hotfix before v1.9.7 is published; and reuse of an existing tag",
+    "On a dispatch, before any build job starts, the guard reads package.json at the named commit and the feed's public tags and releases, using only the workflow token (no secret). It fails when versionForRefProblems returns problems. If the feed API call itself fails, the guard fails closed with an error that names the call",
+    "On pull_request self-tests the guard runs the same check in report-only mode (a ::warning, never a failure) against the PR's package.json and the live feed, so the glue has run before the 1.9.7 cut dispatch first depends on it. The self-test's build and smoke jobs are otherwise unchanged",
+    "On release/1.9.x the guard also requires the branch to contain the promoted base: the provenance.commit from the feed's v1.9.7 provenance.json asset is an ancestor of GITHUB_SHA",
+    "The build-once, provenance, SHA256SUMS, install/launch and ST-1 jobs run unchanged on either ref. A provenance.test.mjs case shows the staged asset names for a hotfix version (Metis-1.9.7-hotfix.1.dmg and the others)",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts is created by this PR if it is still absent (it is absent on m2/integration 8916f5cf). It asserts the two allowed refs, that only the guard job carries a ref condition, that the version check runs before the build jobs, and that the check is report-only on pull_request. Build & Test and the PR's QA candidate self-test are green",
+    "LEAD_ACTION before merge: record D-34. It covers the hotfix numbering (1.9.7-hotfix.N, or another scheme; ask the owner only if the choice would move M2-0206's 1.9.9), cutting release/1.9.x at provenance.commit, and this lane as the M2-0187 follow-up. Amend M2-0187 acc 5, M2-0188 acc 6 and M2-0046 acc 9 from 'the 1.9.7 tag' to 'the provenance commit', since promote tags only the feed repository. Amend M2-0479 and M2-0199 so their app.version parser accepts D-34 hotfix versions. Amend M2-0206's version-order preflight to reuse versionForRefProblems",
+    "LEAD_ACTION after release/1.9.x is cut: dispatch qa-candidate.yml --ref release/1.9.x with commit=<its head>. The guard must refuse with 'already promoted' before any build starts (about 1 runner-minute). This proves the ref and version rule on the real branch. Record the run id"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0500",
+   "title": "Promote a release/1.9.x hotfix candidate: promote-candidate.yml and the candidate-run guards accept a release/1.9.x qa-candidate run under the M2-0499 version rule",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0499"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "release-197-readiness:missing_tickets[1]",
+    "release-197-readiness:risks[9]",
+    "OD-31"
+   ],
+   "scope_paths": [
+    ".github/workflows/promote-candidate.yml",
+    "scripts/qa/release-line.mjs",
+    "scripts/qa/release-line.test.mjs",
+    "scripts/qa/provenance.mjs",
+    "scripts/qa/provenance.test.mjs",
+    "scripts/ci/promote-candidate-workflow.contract.test.ts",
+    "scripts/qa/candidate-scenarios.mjs"
+   ],
+   "summary": "promote-candidate.yml requires the candidate run's head_branch to be main (the jq check in 'Require a fully successful qa-candidate run on main'), so a hotfix built by M2-0499 could not be published. hk-m-candidate.yml, windows-qa.yml, freeze-repro.yml and resource-census.yml do not check the candidate's branch, so they need no change. candidate-scenarios.yml (M2-0467) does refuse non-main candidates. CAN LAND AFTER THE CUT: it changes no installer bytes and not qa-candidate.yml, and promote always runs from main's copy. It gates the M2-0198 HOLD path, not 1.9.7, and must be on main before the earliest possible HOLD (about 5 days after promotion). [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "The candidate check accepts a completed workflow_dispatch qa-candidate.yml run whose jobs all succeeded, with head_branch main or release/1.9.x. For release/1.9.x, the provenance version must pass versionForRefProblems for that ref, and confirm_version must equal it exactly, as today",
+    "The promote job still runs only when dispatched from refs/heads/main: a release/1.9.x candidate is promoted by a dispatch on main. There is still no rebuild, digests are verified, the release is a prerelease that is never Latest, no latest*.yml or blockmap is published, and the tag is v<version> in the feed",
+    "When the candidate branch is release/1.9.x, releaseNotes() adds one line naming it a hotfix of 1.9.7 built from release/1.9.x at <commit>. There is a unit test for both branches",
+    "If candidate-scenarios.yml is on main when this lands, its pure guard function accepts release/1.9.x candidate runs by the same rule and its tests are updated. Otherwise the lead amends M2-0467's guard line. The PR shows, with file:line references, that hk-m-candidate.yml, windows-qa.yml, freeze-repro.yml and resource-census.yml need no change",
+    "Unit and contract tests: main is accepted; release/1.9.x with 1.9.7-hotfix.1 is accepted; release/1.9.x with 1.9.7 is refused; any other branch is refused; the dispatch-ref guard is unchanged. Build & Test green (CI only, D-28)",
+    "LEAD_ACTION: on the first real hotfix candidate, run promote with publish=false before publish=true, and record both run ids"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0501",
+   "title": "Fix the workflow registration 404 on main: the dispatch-only files that first reached main in df205007 were never registered because GitHub did not process that push; make them self-register from their own PR run",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "release-197-readiness:missing_tickets[2]",
+    "release-197-readiness:risks[6]",
+    "READINESS-197-2026-09-29-2-common",
+    "OBS 2026-09-29: df205007 has 0 push-event runs",
+    "merged: NEW-E6, NEW-H1 (registration half)",
+    "OD-31"
+   ],
+   "scope_paths": [
+    ".github/workflows/hk-m-candidate.yml",
+    ".github/workflows/windows-qa.yml",
+    ".github/workflows/m2-0238-backfill.yml",
+    "scripts/ci/workflow-registration.contract.test.ts"
+   ],
+   "summary": "Root cause (OBSERVED from the Actions API at about 22:00Z on 2026-09-29). The registered-workflow list has 21 entries. It lacks hk-m-candidate.yml, windows-qa.yml, m2-0238-backfill.yml and ledger.yml, which are the four workflow files whose first commit on main is df205007 (#337, merged 17:55Z) and which have no push or pull_request trigger. df205007 has no push-event run: its 3 check suites all come from later dispatches (PRD lock, resource census, QA candidate). 858a6a22 (#281) got push runs (Build & Test and isolation-canary), and its dispatch-only files (freeze-repro, promote-candidate, resource-census and others) registered at the merge minute. docs-verify.yml, which also first reached main in df205007, registered at 12:33:16Z from its first pull_request run. A dispatch-only file therefore registers only when a push to the default branch is processed or when a run of it exists (DERIVED). This ticket makes registration independent of main push processing. Each of the three files gets a pull_request trigger on its own path with every job skipped, so the PR's first CI round registers it. ledger.yml needs nothing, because callers resolve it by path. This ticket absorbs M2-0501 (its scheduled detector would itself need registration) and the registration half of M2-0501 (the fallback). CAN LAND AFTER THE CUT: workflows only, no installer bytes, not qa-candidate.yml. It is P0 because HK-M 20/20 on the candidate (OD-34) cannot be dispatched until hk-m-candidate.yml resolves, and registration happens at the PR's first CI round, before the merge. windows-qa.yml is also edited by M2-0416 (#300) and hk-m-candidate.yml by M2-0485, so land one PR at a time on each file. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "The PR body records the root cause, labelled OBSERVED or DERIVED, with content-free evidence: the Actions workflow list set against git ls-tree origin/main .github/workflows; push-event run counts by head_sha for df205007 (0) and 858a6a22 (2); the source of df205007's check suites (dispatches only); the registration times of #281's dispatch-only files and of docs-verify.yml; and the events-feed result",
+    "Red-before (L11): scripts/ci/workflow-registration.contract.test.ts is pushed first and fails on hk-m-candidate.yml, windows-qa.yml and m2-0238-backfill.yml, so a failed Build & Test run on an ancestor commit is the LOCALLY_TESTED repro",
+    "Each of the three files gains pull_request: paths: [its own workflow file]. Every job's condition requires github.event_name == 'workflow_dispatch' and keeps any existing condition (windows-qa.yml's hk-w job becomes github.event_name == 'workflow_dispatch' && inputs.suite == 'hk-w'). A pull_request run therefore exists, skips every job, uses no runner minutes and never references a secret (m2-0238-backfill's LEDGER_REPO_TOKEN is not reached). run-name shows a fixed '(registration)' title on pull_request",
+    "The contract test parses every .github/workflows/*.yml. A workflow whose only trigger is workflow_dispatch fails unless it is on the frozen legacy list: freeze-repro, m2-0016-prd-lock, m2-0018-traceability, m2-0025-triage, promote-candidate, resource-census, windows-signing-identity-preflight, and baseline-gates (its M2-0263 contract forbids pull_request). Workflows with workflow_call, such as ledger.yml, are exempt. Tests cover a compliant file, an unguarded job, a missing trigger, and a job whose existing if lacks the event clause",
+    "Existing contract tests stay green, including the census lib.test 'runs only on workflow_dispatch' for resource-census.yml and the baseline-gates contract",
+    "If M2-0467's candidate-scenarios.yml or M2-0485's new hk-m-candidate.yml jobs are on m2/integration first, this PR brings them into compliance (trigger and per-job condition) and updates their contract assertions. Otherwise LEAD_ACTION: amend M2-0467 acceptance 1 and its contract test's 'dispatch-only trigger' assertion to require the self-registration trigger, and M2-0485 carries the job condition",
+    "LEAD_ACTION: after the PR's first CI round, GET repos/mysticalsin/AskToto-Mantu/actions/workflows/{hk-m-candidate.yml,windows-qa.yml,m2-0238-backfill.yml} each returns 200 with state active. Record the three workflow ids and the full set difference between git ls-tree origin/main .github/workflows and the API list in the ledger note (expected: only ledger.yml, plus baseline-gates.yml until it reaches main)",
+    "LEAD_ACTION fallback: if any of the three still returns 404 after that round, re-run the PR's checks once. If it still returns 404, the next milestone merge carries the files and M2-0502's post-merge check verifies them. If that push is also unprocessed, draft a GitHub Support request with the commit shas and push-run counts for the owner to review and send, and set external_blocker {owner: GitHub Support, unblock_step, needed_by: the 1.9.7 cut date}",
+    "LEAD_ACTION: once the files are on main, record each workflow's first real dispatch on main: hk-m-candidate.yml on the 1.9.7 candidate (OD-34), windows-qa.yml per M2-0416, and m2-0238-backfill.yml per M2-0238 unless M2-0510's caller has superseded it"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 4,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0502",
+   "title": "Main CI proof and a post-merge registration check for every milestone merge: dispatch Build & Test when GitHub drops the push event, and add the post-merge and pre-dispatch checks to the runbooks",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "process",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "release-197-readiness:risks[7]",
+    "codex-queue logs/queue.log:2271 (19:58:01Z)",
+    "codex-queue logs/milestone.main.txt",
+    "merged: NEW-H1 (evidence and runbook half)",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "docs/metis-2.0/runbooks/integration.md",
+    "docs/metis-2.0/runbooks/qa-candidate.md"
+   ],
+   "summary": "The queue's 'milestone: main CI NOT green' at 19:58:01Z is not a failing test. milestone.sh ran ci-proof.sh main, which waits for a build.yml run on main's head. No such run exists for df205007, because GitHub never processed that push (0 push-event runs; its 3 check suites come from later dispatches), so the script ended with 'PROOF FAIL: run for df205007… not completed in time'. main's tree at df205007 is byte-identical to m2/integration 51132486, whose Build & Test runs are green, so the code is green and only the proof is missing. The same unprocessed push left four workflow files unregistered (the fix is M2-0501). This private process ticket also absorbs M2-0501's evidence and runbook work. Timing: the runbook, the tooling and today's main proof are done before the cut. The green-main check on the 1.9.7 merge commit happens after M2-0498's milestone merge and before the qa-candidate.yml dispatch. It is not installer content, so M2-0498 does not depend on it. Every later milestone merge, including post-cut harness merges, repeats the check. [Lands BEFORE the 1.9.7 candidate cut.]",
+   "acceptance": [
+    "LEAD_ACTION now: gh workflow run build.yml --repo mysticalsin/AskToto-Mantu --ref main. The run's head_sha is main's head (df205007 unless main moved), its conclusion is success, and ci-proof.sh main prints PROOF OK (ci-proof.sh matches by branch and head sha, so a dispatched run counts). Record the run id in this ticket's evidence note",
+    "Content-free evidence note in the ticket, for df205007 and 858a6a22: the push-event run count; the check-suite count and its source (df205007's suites come only from dispatches); how each PR was merged and the merging actor type; any GitHub status incident covering 2026-09-29 17:45-18:30Z; and the set difference between git ls-tree origin/main .github/workflows and the Actions workflow list. The root cause is stated as OBSERVED, or as UNKNOWN with this evidence",
+    "integration.md §10 gains a post-merge step to run within 10 min of every milestone merge. (a) gh api 'repos/mysticalsin/AskToto-Mantu/actions/runs?head_sha=<sha>&event=push' --jq .total_count is at least 1; the check-suite count is not used, because dispatched runs also create suites. (b) A build.yml run exists for main's head; if (a) is 0, dispatch build.yml on main once and use that run as main CI. (c) Compare git ls-tree origin/main .github/workflows with the workflow list and name any unregistered file (remedy: M2-0501). A milestone merge is not done until (b) is green and every lane the next step dispatches resolves",
+    "qa-candidate.md §3 gains a pre-dispatch check. Before dispatching qa-candidate.yml for 1.9.7, and before each post-cut lane dispatch, GET actions/workflows/<file> returns 200 and active for hk-m-candidate.yml, windows-qa.yml, resource-census.yml, freeze-repro.yml, promote-candidate.yml, and candidate-scenarios.yml once present",
+    "The queue's milestone step (lead tooling, outside both repos) logs distinct outcomes instead of one 'NOT green': green (run id); red (run id and failing jobs); no push run for head (with the id of the dispatched build.yml run); plus the registration diff. LEAD_ACTION: show the new log lines on the next merge",
+    "The 1.9.7 milestone merge after M2-0498 follows §10 (snapshot at the bump commit, merge commit), not the queue's 24-hour timer. Green main CI on the merge commit and a clean registration check are recorded before the lead dispatches qa-candidate.yml",
+    "Every later milestone merge (interim pre-cut merges for M2-0504 or M2-0467, and post-cut harness merges) runs the §10 check before its lanes are dispatched. The post-merge LEAD_ACTIONs of M2-0467 and M2-0460 cite this ticket and M2-0501 as the remedy",
+    "Optional LEAD_ACTION: draft a GitHub Support request with df205007's evidence (0 push runs, no PushEvent, no incident) for the owner to review and send"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2.5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0503",
+   "title": "Residual risks in the published release body: promote-candidate.yml gains a residuals input that provenance.mjs releaseNotes() renders, plus the OD-32 re-grant instruction for ad-hoc Mac builds",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "release-197-readiness:missing_tickets[13]",
+    "M2-0046 acc 6",
+    "OD-32",
+    "OD-31"
+   ],
+   "scope_paths": [
+    ".github/workflows/promote-candidate.yml",
+    "scripts/qa/provenance.mjs",
+    "scripts/qa/provenance.test.mjs",
+    "scripts/ci/promote-candidate-workflow.contract.test.ts"
+   ],
+   "summary": "Today releaseNotes() (provenance.mjs:387) writes only the version, commit, runs, signing text, evidence count and the sha256 table. The page the owner reads would carry no residual risks and no B1/B2 sentence. For ad-hoc builds it also says nothing about re-granting Screen Recording and Microphone (OD-32). The residual list and the B1/B2 wording belong to the lead's 1.9.7.md and are passed in at dispatch, so the public code holds no program text. CAN LAND AFTER THE CUT: promote runs from main's copy, and no bytes or qa-candidate.yml change. It must be on main before promote publish=true. It gates the publish (acc 6), not the cut or the evidence, hence P1. If it slips, the fallback is a manual edit of the published body (gh release edit --notes-file) right after publish. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "promote-candidate.yml gains a residuals input (Markdown, passed with -F residuals=@file). It is required when publish=true and refused when empty, and optional for dry runs. It reaches prepare-release through env or a file, never interpolated into a shell line",
+    "releaseNotes({provenance, evidence, promotionRunUrl, residuals}) renders the input verbatim as a '## Residual risks and known limits' section after the evidence line and before the sha256 table. prepareRelease refuses residuals that are longer than 10,000 characters or that contain a user-home path or an email address (the INV-7 patterns), naming the rule",
+    "For an ad-hoc Mac build the notes add: after installing, grant Screen Recording and Microphone again once in System Settings > Privacy & Security, because macOS treats an ad-hoc build as a new app (Métis Settings > Repair helps). The qa-identity branch keeps today's text",
+    "provenance.test.mjs covers: section present and in order, verbatim rendering, each refusal, a dry run without residuals, and both signing modes. The existing releaseNotes shape test is updated, not deleted. The contract test asserts the input, the publish=true requirement and env-only passing. Build & Test green (CI only)",
+    "Public hygiene: the code, tests and PR body contain no private program path, owner identifier or program-document citation. The B1/B2 wording lives only in the lead's residuals file",
+    "LEAD_ACTION: after merge, run a publish=false dry run (OD-33) with the draft residuals file. The draft body shows the section, then the draft is deleted; record the run id",
+    "LEAD_ACTION: for the 1.9.7 publish, pass the residuals from docs/metis-2.0/releases/1.9.7.md in public wording, after running the lead's hygiene scan on the file. Include: ad-hoc Mac with TCC re-grant; unsigned Windows; real-dataless ST-1 measured in the owner soak (OD-36); the idle soak as two hosted legs of at most 5.5 h each, extrapolated to 8 h (OD-35); HK-W status; and the B1/B2 sentence, which says the freeze and the orphaned processes are fixed only for the cause and mechanism identified so far, and close only after ten working days of clean diagnostics on the owner's Mac"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 4,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R6 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0504",
+   "title": "freeze-repro.yml: run the hosted-live matrix on a qa-candidate by candidate_run + sha256 and emit the M2-0194 attribution bundle (macOS DMG, Windows Setup)",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0424",
+    "M2-0463"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-2b",
+    "M2-0194",
+    "OD-26",
+    "D-9",
+    "D-28",
+    "OD-31"
+   ],
+   "scope_paths": [
+    ".github/workflows/freeze-repro.yml",
+    "scripts/qa/freeze-repro/",
+    "scripts/evidence/check.mjs",
+    "scripts/evidence/check.test.mjs",
+    "scripts/ci/freeze-repro-workflow.contract.test.ts"
+   ],
+   "summary": "Acceptance 2 needs M2-0194 LIVE_VERIFIED: the freeze/reopen matrix run live on lane-built candidate bytes, with observability and the stall sampler, and every stall attributed. No ticket delivers this today. M2-0424 (READY #328, 515a81fc) adds candidate_run/sha256 inputs but runs run-matrix.sh --dry-run, so its M2-0194 bundle has no live rows. M2-0462/M2-0463 add --hosted-live only for the published 1.9.6 artifact. The M2-0194 program note (PR #23) still needs --qa-account, which D-9 removed. This ticket joins the two paths: mode=hosted-live with candidate_run set drives the rows live on the verified candidate. It changes no installer bytes and does not touch qa-candidate.yml, so it may land AFTER the cut. However, M2-0194 exists to find uncovered mechanisms before the cut, so land it early, run it on the first interim main candidate, then run it again on the final one. It shares freeze-repro.yml, run-matrix.sh and check.mjs with M2-0424, M2-0462, M2-0463 and M2-0511: land one PR on these files at a time, in that order. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "With candidate_run set and mode=hosted-live, the macOS job installs the promotable mac DMG and the Windows job installs the Setup from that run. Each install happens only after provenance.mjs verify passes and the file matches the sha256 input; a mismatch fails the job before install. Each job then runs run-matrix.sh --hosted-live on the installed app. mode=dry-run with candidate_run keeps M2-0424's behaviour, and the 1.9.6 path (no candidate_run) keeps M2-0463's",
+    "Before any download, the job refuses a candidate_run that is not a completed, successful workflow_dispatch run of qa-candidate.yml on main, so PR self-test candidates are refused. The freeze-repro workflow contract test covers: the refusal, every mode x candidate combination, the main guard on both jobs, SHA-pinned actions and no secrets",
+    "The bundle is the M2-0194 shape built from live rows. matrix.jsonl holds M2-0462's machine observations for each row, plus interrupt-results.jsonl. Audit excerpts are limited to app.stall, app.stall.sampled, reveal, sidecar.spawn, sidecar.exit and sidecar.reaped, with only the event name, tMs, numeric fields and enum reasons. Stall bundles appear by file name only. environment.json records mode hosted-live, candidate_run, artifact_sha256 and the installed variant",
+    "stalls.jsonl has one entry per app.stall or app.stall.sampled event: row, tMs, stalledMs, bundle name, and at most 12 main-thread frames (symbol and image basename only, no paths) from the nearest /usr/bin/sample capture, with attribution: null for the analyst. If sampling the candidate is refused or missing, that row is a FAIL that records the error class. It is not retried, because it is a product finding",
+    "Windows: the rows a Windows runner can drive (launch, row-4 exe relaunch, row-1 History over CDP) run on the installed Setup. Sampling and FIFO rows are NOT_APPLICABLE and state the reason. Audit excerpts are still collected",
+    "check.mjs --ticket M2-0194 accepts the live bundle only if: mode, candidate_run and artifact_sha256 are present; every automatic macOS row has main and renderer samples; and every stall excerpt has a stalls.jsonl entry. M2-0424's dry-run fixtures and all M2-0008 checks still pass, with fixture tests in check.test.mjs",
+    "Content-free and public-safe: the $HOME redaction is kept, with no transcript or meeting text, no secrets and no program-repository paths. CI Build & Test is green",
+    "LEAD_ACTION (before the cut): dispatch gh workflow run freeze-repro.yml --ref main -f mode=hosted-live -f candidate_run=<first main qa-candidate run> -f macos_artifact_sha256=<DMG> -f windows_artifact_sha256=<Setup>. Opus attributes every stall in the M2-0194 evidence note. Any mechanism outside M2-0030/0031/0033/0036/0193 is filed as a 1.9.7 blocker before the cut",
+    "LEAD_ACTION: re-dispatch on the final 1.9.7 candidate and file M2-0194 LIVE_VERIFIED per OS: kind hosted-runner, host macos-latest or windows-latest, build_run_id = the candidate run, artifact_sha256, ci_run_id = this run, output = the imported bundle"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 6,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E1 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0505",
+   "title": "ST-1 on the candidate with synthetic dataless fixtures (profile-shaped, History idle, 5 min), a stated real-dataless row and the packaged stat-flags local rows, in qa-candidate.yml (OD-36)",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-2c",
+    "READINESS-197-2026-09-29-2d",
+    "OD-36",
+    "OD-21",
+    "M2-0031",
+    "M2-0191",
+    "M2-0193",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/st-1.test.ts",
+    "scripts/qa/stat-flags-fixture.sh",
+    ".github/workflows/qa-candidate.yml",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+   ],
+   "summary": "OD-36 moves ST-1 on real evicted cloud files to the owner's 5-day soak (M2-0198), and the candidate itself must carry ST-1 with synthetic dataless fixtures. Nothing does this today. st-1.mjs --fixtures dataless needs real SF_DATALESS files under --cloud-dir, and qa-candidate.yml has no macOS dataless job, only st1-windows-external's BLOCKED record. M2-0031's row ('a dataless .brain/index.json with no History interaction, 5 min from launch') is uncovered, because st-1.mjs probes History every 5 s from +20 s. Hosted runners have no cloud-file provider, and SF_DATALESS cannot be set without one (DERIVED; this job records the probe). The synthetic fixture is therefore defined as a kernel-blocking FIFO at every path a mostly-evicted cloud folder would present, in the representative-profile shape of ARCHITECTURE 6.1 (59 meetings, 6 cloud-only, a mostly cloud-only .brain), with History idle. This proves the main-thread and threadpool guarantees on candidate bytes; SF_DATALESS detection on real evicted files is stated as measured in the soak. The same job runs the candidate's own metis-mac-helper stat-flags on local, APFS-compressed, non-ASCII and unstat-able paths, which is the part of M2-0191's fixture that needs no cloud account. MUST LAND BEFORE THE CUT: it edits qa-candidate.yml. st-1.mjs and qa-candidate.yml are in M2-0433's scope, so the two PRs are never open on these files at the same time. The preferred order is this ticket first (additive flags and one new job), with M2-0433 rebasing, so M2-0433's final self-test covers it. It is one of five before-cut PRs on qa-candidate.yml. [Lands BEFORE the 1.9.7 candidate cut.]",
+   "acceptance": [
+    "st-1.mjs --fixtures synthetic-dataless (macOS only; on Windows it is a usage error, exit 2) builds a content-free meetings root with 53 local placeholder meeting files, 6 kernel-blocking FIFOs placed as meeting files, and FIFOs at .brain/index.json and at 3 or more .brain entity files. The report records fixtureKind 'synthetic-dataless', the counts and sfDatalessSet false",
+    "st-1.mjs --history off skips every History probe; the report shows historyMode 'off' and zero history samples. The default stays on, and fifo, dataless and none runs are unchanged. st-1.test.ts covers the placement shape, the flag and the unchanged defaults",
+    "The verdict uses exactly OD-21's criteria over the whole run from launch: no late samples, loop-p99 < 50 ms, loop-max < 250 ms, async-write < 250 ms, dns-lookup < 250 ms. It uses the fifo row's 'exercised' rule, and nothing is re-windowed",
+    "qa-candidate.yml gains job st1-mac-dataless-synthetic (needs provenance, macos-latest). It verifies candidate-mac-qa-identity against the provenance, runs st-1.mjs --fixtures synthetic-dataless --history off --minutes 5, and uploads st-1-macos-synthetic-dataless (if: always(), if-no-files-found: error). Its continue-on-error setting equals st1-mac-fifo's at merge time: report-only while that job is report-only, blocking once M2-0433 has made the ST-1 jobs blocking",
+    "The job writes st-1-macos-real-dataless.json with: row 'dataless-real-cloud'; verdict NOT_RUN_ON_HOSTED; the reason (no cloud-file provider account on hosted runners); measuredBy (post-release field soak diagnostics); and the result of a probe that tries to set SF_DATALESS on a scratch file under sudo (settable true/false and errno). The scratch file is deleted afterwards. This row never reads as PASS",
+    "The same job verifies candidate-mac (the promotable DMG) and runs stat-flags-fixture.sh <helper> --local-only against the DMG app's Contents/Resources/mac-helper/metis-mac-helper. PASS requires the helper's st_flags to equal stat(1) for the local, APFS-compressed and non-ASCII files, the unstat-able path to return null, and SF_DATALESS to be set on none of them. The dataless-file check is reported as not run on hosted runners. stat-flags-macos.json is uploaded. Without --local-only the script is unchanged",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts is created if absent (it is absent on m2/integration 8916f5cf) or extended. It asserts the job's needs, variants, flags, uploads and continue-on-error parity with st1-mac-fifo. The PR's QA candidate self-test runs the job, and CI is green",
+    "Landing order: this PR and M2-0433 are never open on st-1.mjs or qa-candidate.yml at the same time. Preferably this lands first and M2-0433 rebases, so that M2-0433's final blocking self-test covers the new job",
+    "LEAD_ACTION: amend M2-0433 acceptance 2 so the ST-1 jobs it makes blocking include st1-mac-dataless-synthetic. Amend M2-0193 acceptance 5 and its verification line per OD-36: on the lane candidate, History with the FIFO fixtures (st1-mac-fifo) and the synthetic dataless fixtures; real dataless measured in the owner soak (M2-0198). Amend M2-0031's dataless row the same way",
+    "LEAD_ACTION (after the cut): file the synthetic-dataless row as M2-0031's packaged ST-1 record (QA-identity bytes of the candidate run). File M2-0191 LIVE_VERIFIED with kit_refs PARTIAL (stat-flags on the DMG; the real-dataless row goes to M2-0198 per OD-36). State in 1.9.7.md that the real-cloud dataless case is measured in the owner soak"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 6,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0506",
+   "title": "Candidate-lane scenario packaged-lifecycle: run packaged-smoke.mjs (RV-1..4, RE-HIDE, HIST, clean quit, zero survivors) on the candidate's promotable DMG and Setup by sha256",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0467",
+    "M2-0468"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-2f",
+    "M2-0036",
+    "M2-0453",
+    "OD-26",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts"
+   ],
+   "summary": "Acceptance 2 needs RV-1..4 to pass on this candidate. All nine RV rows pass in packaged-smoke (run 36613722413), but packaged-smoke.yml builds its own unsigned app with npm run dist, so none of those results describe candidate bytes. M2-0453 binds lifecycle smoke to candidate sha256s, but it adds promotion-gating jobs to qa-candidate.yml and depends on M2-0046 and M2-0458. It stays after 1.9.7 as the T1 form, not as a 1.9.7 gate. packaged-smoke.mjs already takes <installed app> <report.json>, so the M2-0467 lane can run it on the exact bytes without touching qa-candidate.yml. This ticket adds that scenario. No installer bytes and no qa-candidate.yml change, so it can land AFTER the cut and run on the same sha256. It depends on M2-0467 (the lane) and M2-0468 (the windows-latest Setup install job). It shares candidate-scenarios files with M2-0469/0470/0471, so land one at a time. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "The registry entry packaged-lifecycle has two platforms: mac (variant mac, the DMG) and win (variant win, the Setup), both promotable. The workflow scenario choice is added, and the contract test asserts that the choices equal the registry keys",
+    "Each job installs the installer whose sha256 equals mac_sha256 or win_sha256 into a fresh directory, using the shared candidate-installer selector, on a fresh profile. It then runs node scripts/qa/packaged-smoke.mjs <installed app> <report>. The lane never builds the app",
+    "The outcome is PASS only when packaged-smoke exits 0 and every RV-* row present at the dispatch ref reports PASS: on macOS, RV-1 open-activate and Finder/Spotlight/Launchpad, RV-2 open -n, RV-4 tray and hotkey, and M2-0507's boot row once merged; on Windows, RV-3 exe and shortcut relaunch and RV-4 tray and hotkey. BLOCKED_EXTERNAL rows are listed in lane.json as not covered and never count as PASS. No row is retried",
+    "lane.json carries: build_run_id, artifact_sha256, variant, installer name, ci_run_id, environment {kind hosted-runner, host}, and the RV/RE-HIDE/HIST row verdict table. The report passes the lane's content-free scan",
+    "candidate-scenarios.test.ts covers the registry entry, the RV-row verdict extraction from fixture packaged-smoke reports (all pass; one RV FAIL; an RV row BLOCKED; a missing RV row) and the lane.json shape. CI is green",
+    "packaged-smoke.yml and qa-candidate.yml are unchanged",
+    "LEAD_ACTION: dispatch candidate-scenarios.yml scenario=packaged-lifecycle with the 1.9.7 DMG and Setup sha256s. File M2-0036 LIVE_VERIFIED per platform (hosted-runner, macos-latest or windows-latest, build_run_id, artifact_sha256, ci_run_id). Cite these runs, not the self-built packaged-smoke runs, as the 1.9.7 RV evidence"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0507",
+   "title": "Packaged RV boot row: a LaunchServices cold launch (the launch's own activate) keeps the Hide window parked and opens no Settings (macOS)",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-2f",
+    "ARCHITECTURE-6.1-RV",
+    "M2-0036",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/qa/packaged-smoke.mjs",
+    "scripts/qa/packaged-smoke.test.ts"
+   ],
+   "summary": "RV-1..4 in ARCHITECTURE 6.1 include 'boot activate doesn't [reveal]', and M2-0036 says boot-phase activate stays parked and the first launch does not open Settings. reveal.ts implements this: reveal() returns ignored-boot for activate before markBootComplete. Only reveal.test.ts covers it, though. packaged-smoke.mjs spawns the binary directly, so no packaged row ever receives the activation macOS delivers with a LaunchServices launch, which is how the owner starts the app from Finder, the Dock or Spotlight. This ticket adds that row, and M2-0506 then runs it on the candidate. The second-instance-during-boot pendingReveal path stays unit-covered only: its window, from spawn to markBootComplete right after createWindow in index.ts, is too narrow to hit reliably on a packaged app. That residual is stated. This is a harness-only change, so it can land AFTER the cut but before M2-0506's final dispatch. Land it after M2-0428 and M2-0431, which edit the same file. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "New row RV-boot-launch-activate-stays-parked (macOS), on the onboarded Hide profile. The app is started through LaunchServices, not by spawning the binary: open with --args for the CDP port, and the profile env passed via open --env or launchctl setenv. The PR states which method works on macos-latest",
+    "PASS requires all of: app.renderer.ready observed; no reveal audit with reason activate from launch until 5 s after renderer-ready; the overlay reports parked === true at renderer-ready + 5 s; and no Settings window or route opened. The existing RV rows then run unchanged",
+    "If the runner cannot pass the profile env or CDP port through a LaunchServices launch, the row reports PRECONDITION with the reason. It never reports PASS",
+    "A pure verdict function is unit-tested with fixture observations: pass; a reveal with reason activate during boot (FAIL); parked false after boot (FAIL); Settings opened (FAIL); and the PRECONDITION case",
+    "Packaged smoke (macOS) is green on the PR with the row PASS, and on 3 dispatched branch runs. LEAD_ACTION: record the run ids. Windows smoke is unchanged and green",
+    "LEAD_ACTION: 1.9.7.md states that second-instance-during-boot (pendingReveal) is covered by unit tests only"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 3,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0508",
+   "title": "Per-asset, content-free install/launch reports from qa-candidate smoke-mac and smoke-win (installer, sha256, signature state, launch verdict)",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-5a",
+    "READINESS-197-2026-09-29-5c",
+    "READINESS-197-2026-09-29-1b",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/check-packaged-launch.mjs",
+    "scripts/check-packaged-launch.test.ts",
+    ".github/workflows/qa-candidate.yml",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+   ],
+   "summary": "Two pieces of 1.9.7 evidence come from qa-candidate.yml's smoke jobs: an install/launch PASS for each promotable asset (acc 5a; promote-candidate.yml's evidenceProblems() needs one per asset) and the Windows unsigned statement (acc 5c). Those jobs upload no report, so the evidence exists only in the job log. record.mjs requires a LIVE_VERIFIED output {path, sha256}, so the lead would have to archive raw logs. This ticket adds one JSON report per installer. It changes qa-candidate.yml, so it must land BEFORE the cut to apply to 1.9.7. It is P1: if it misses the cut, 1.9.7 files job-log outputs and this applies from T1. It lands one at a time with M2-0505 and M2-0433 on qa-candidate.yml. [Lands BEFORE the 1.9.7 candidate cut.]",
+   "acceptance": [
+    "check-packaged-launch.mjs --report <file> [--installer <name>] [--artifact-sha256 <hex>] [--candidate-run <id>] writes content-free JSON: installer name, artifact sha256, candidate run, platform, verdict, product window observed, error dialog seen, elapsed ms. Without --report it behaves exactly as today in the release and build lanes",
+    "smoke-mac writes one report per installer per variant, including the signature result (ad-hoc, or the QA certificate sha1 from provenance). smoke-win writes one report for the installed Setup and one for the Portable exe, each with its Get-AuthenticodeSignature status (NotSigned). Each job uploads candidate-launch-<variant> (if: always(), if-no-files-found: error, same retention as the other candidate artifacts)",
+    "Each job fails if any installer lacks a PASS report or if a report's sha256 differs from provenance",
+    "A unit test covers the report builder: it rejects a malformed sha256, and no absolute user path survives. The qa-candidate workflow contract test asserts the uploads and flags. The PR's QA candidate self-test shows the reports",
+    "LEAD_ACTION (after the cut): file one LIVE_VERIFIED per promotable asset (DMG, zip, Setup, and Portable while it stays promotable under M2-0458), with output = its report, artifact_sha256, build_run_id = ci_run_id = the candidate run, and kind hosted-runner"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 3.5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E7 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0509",
+   "title": "Reusable program-audit workflow that runs the evidence back-fill, the re-execution draw and the velocity forecast against the calling (private) repository's ledger, plus sample.mjs --population-of",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-AC7a",
+    "READINESS-197-2026-09-29-AC7b",
+    "M2-0238",
+    "M2-0197",
+    "D-28",
+    "OD-27",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/evidence/sample.mjs",
+    "scripts/evidence/sample.test.mjs",
+    ".github/workflows/program-audit.yml",
+    "scripts/ci/program-audit-workflow.contract.test.ts"
+   ],
+   "summary": "Acceptance 7 needs sample.mjs and velocity.mjs to run against the private ledger and evidence records, in CI only (D-28). None of the current paths works: program-velocity.yml checks out only the public repo; m2-0238-backfill.yml needs a LEDGER_REPO_TOKEN secret that does not exist, and it returns 404; the private repo has no caller. sample.mjs also selects by --since, which with back-filled PR timestamps drops early 1.9.7 tickets (M2-0001/0003/0006) and pulls in unrelated ones. ledger.yml already shows the safe pattern: a public workflow_call workflow runs in the caller's context, checks out the caller's tree and fetches the public scripts, so no cross-repo secret is needed. This ticket adds program-audit.yml on that pattern, plus a population rule tied to M2-0046's dependencies. No installer bytes are involved, so it can land AFTER the cut, but the draw prerequisites should be ready by the cut. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "sample.mjs --population-of <ticket>: the population is that ticket's depends_on ids whose status is DONE or ENGINEERING_COMPLETE in the given ledger; recorded_at is ignored. Giving both --population-of and --since, or neither, is a usage error (exit 2), and an unknown ticket exits 2. The output adds populationRule and of. drawSample and --since are unchanged. sample.test.mjs covers inclusion and exclusion by status, the reproducible draw for a fixed seed, and the usage errors",
+    ".github/workflows/program-audit.yml runs on workflow_call, and on workflow_dispatch for fixture smoke runs in this repo. Inputs: mode (backfill, sample, velocity), ledger-path, records-path, population-of, since, seed, gate, checker-ref. It checks out the caller's tree without persisted credentials and fetches this repository's scripts at checker-ref into a separate path. Permissions: contents: read and pull-requests: read. No secrets, and SHA-pinned actions",
+    "sample mode requires a 40-hex seed and exactly one of population-of or since, and its JSON output includes ledger_commit = the caller's github.sha. velocity mode runs velocity.mjs --ledger --records --gate --out-dir. backfill mode runs backfill.mjs --repo mysticalsin/AskToto-Mantu against the caller's ledger, using github.token for public PR data only",
+    "Each mode uploads a content-free program-audit-<mode> artifact (ticket ids, hours and hashes, no program document text) and writes its result to the job summary",
+    "scripts/ci/program-audit-workflow.contract.test.ts covers the triggers, both checkouts, permissions, no secrets, pins, the per-mode commands and input validation. CI is green. ledger.yml, program-velocity.yml and m2-0238-backfill.yml are unchanged",
+    "Public hygiene: the workflow, tests and PR body contain no private repository name, program path or owner identifier"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E8 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0510",
+   "title": "Program repository callers (Metis-2.0-Program): ledger check on push, and a dispatchable program-audit (backfill, sample, velocity, release-check) that calls the public reusable workflows",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0509"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-AC7a",
+    "READINESS-197-2026-09-29-AC7b",
+    "M2-0238",
+    "OD-37",
+    "D-28",
+    "OD-31"
+   ],
+   "scope_paths": [
+    ".github/workflows/ledger-check.yml",
+    ".github/workflows/program-audit-dispatch.yml"
+   ],
+   "summary": "Both scope paths are in the program repository (Metis-2.0-Program), not the public repo; the ledger notes must say so, so that claims-check does not treat them as public files. The program repo has traceability.yml and windows-qa.yml on main but no caller of the public ledger.yml; one exists only on the branch m2-0057-sanitize-prior-exec. It also has no caller for M2-0509. So neither the M2-0238 ledger check nor any acceptance 7 run can happen, and D-28 bars running them on the Mac. OD-37 made the program repo public for now, so its Actions minutes are free (OD-27 is moot); the callers keep working on the private budget once the repo goes private again. It CAN LAND AFTER THE CUT, but land it now so the back-fill and velocity runs complete before the cut. The first release-check run belongs to M2-0511. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "ledger-check.yml runs on push to main and on workflow_dispatch, and calls mysticalsin/AskToto-Mantu/.github/workflows/ledger.yml@main with ledger-path docs/metis-2.0/ledger/tickets.json (M2-0238 acceptance 2). The branch caller on m2-0057-sanitize-prior-exec is adopted or superseded",
+    "program-audit-dispatch.yml runs on workflow_dispatch with inputs: mode (backfill, sample, velocity, release-check), population_of (default M2-0046), since, seed, gate (default m3), gates_path, provenance_path and notes_path. It calls the public program-audit.yml@main with the program ledger and docs/metis-2.0/evidence/records, passing each mode only the inputs it uses. Permissions are contents: read and pull-requests: read (what the called workflow needs), with no secrets",
+    "One dispatched run each of backfill and velocity on program main completes and uploads its artifact, and the run ids are recorded. The first release-check run is M2-0511's LEAD_ACTION",
+    "LEAD_ACTION: commit the records/<id>.jsonl files and gaps from the backfill artifact into docs/metis-2.0/evidence/records/ (M2-0238). Then dispatch velocity with gate=m3 and commit docs/metis-2.0/FORECAST.md citing the run id (M2-0197), before D-14's needed_by date (10-09)"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E9 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0511",
+   "title": "check.mjs --release <version>: verify every pre-registered 1.9.7 gate row against the candidate provenance, the ledger, the release file and the 10% sample (the M2-0046 verification line), plus a release-check mode in program-audit.yml",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0466",
+    "M2-0509"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "READINESS-197-2026-09-29-1b",
+    "READINESS-197-2026-09-29-AC7a",
+    "release-197-readiness:missing_tickets[12]",
+    "M2-0046-verification",
+    "M2-0206",
+    "merged: NEW-R7",
+    "OD-31"
+   ],
+   "scope_paths": [
+    "scripts/evidence/check.mjs",
+    "scripts/evidence/check.test.mjs",
+    ".github/workflows/program-audit.yml",
+    "scripts/ci/program-audit-workflow.contract.test.ts"
+   ],
+   "summary": "M2-0046's verification line calls node scripts/evidence/check.mjs --release 1.9.7, a mode that exists in neither repo (check.mjs has only --ledger, --pr-event and --ticket M2-0008). Acceptance 1 needs every 1.9.7 record to cite the candidate's build_run_id and artifact_sha256. promote-candidate.yml checks only one PASS per promotable asset, and depends_on is satisfied by ENGINEERING_COMPLETE, so dependencies alone never prove that the LIVE_VERIFIED runs happened. This check does. It absorbs M2-0511's release-file checks. The gate decisions live in the lead's pre-registered gate file, docs/metis-2.0/releases/1.9.7.gates.json in the program repo. REQUIRED on candidate bytes: install/launch per promotable asset (M2-0187); ST-1 fifo, control and synthetic-dataless (M2-0433, the M2-0031 row, M2-0505) plus M2-0193's History row per its OD-36 amendment, on QA-identity bytes; fault-fatal-relaunch (M2-0026 via M2-0467); REAP (M2-0027 via M2-0468, mac and win); EX (M2-0033 via M2-0470); RV (M2-0036 via M2-0506/E4, mac and win); the stall sampler (M2-0192 via M2-0471); attribution (M2-0194 via M2-0504); HK-M 20/20 fresh and shared profile (M2-0028, OD-34); the acc 4 rows (census, the OD-35 soak legs, meeting plus History); the re-execution sample (M2-0238); and ACCEPTED. BASELINE, bound to the 1.9.6 sha256s: M2-0008 and M2-0009. STATED (a PASS, or a residual line in 1.9.7.md): HK-W (M2-0029 via M2-0416), ST-1-W, and real-cloud dataless (OD-36, M2-0198). REPORT-only: renderer-kill (M2-0037 via M2-0469) and the candidate lifecycle promotion jobs (M2-0453, T1). Rows that share ticket, level and host (M2-0433 fifo and control; M2-0028 fresh and shared) are told apart by a per-row match on the record's output path or command. M2-0206's --train mode can reuse the same core later. Scripts only, so it CAN LAND AFTER THE CUT, but it must be on main before promotion. check.mjs is shared with M2-0424, M2-0462 and M2-0504, so one PR at a time. [Lands after the cut; runs on the candidate's bytes.]",
+   "acceptance": [
+    "check.mjs --release <version> --gates <gates.json> --provenance <provenance.json> --ledger <tickets.json> --notes <release notes .md> exits 0 when every gate row is met, 1 with one problem line per unmet row, and 2 on usage errors or malformed input. Exactly one mode flag is allowed, the usage text lists the new mode, and the other modes are unchanged",
+    "provenance.version equals <version>. The release ticket is the single ledger ticket whose scope_paths include docs/metis-2.0/releases/<version>.md",
+    "The gate file schema is versioned and documented in the script header. Rows have the shape {id, ticket, level, bytes: promotable | qa-identity | baseline, hosts, accept: PASS | PASS_OR_STATED | REPORT, match?}, where match is an optional substring of the record's output.path or command that tells apart rows sharing ticket, level and host. Baseline rows carry the expected sha256 list. There is one sample row {population_of, fraction} and one accepted row",
+    "A row is met by the latest record for (ticket, level, host, match) that has result PASS, build_run_id equal to the provenance run id, and an artifact_sha256 among that bytes class's assets in the provenance (for baseline rows, among the listed sha256s). These fields are required for candidate-bound rows at every level, including MEASURED, where record.mjs does not require them. Hosted-runner records must carry ci_run_id. A PASS bound to another run is reported as 'bound to run <id>, not the candidate'",
+    "A PASS_OR_STATED row is met by a PASS or FAIL record bound to the candidate, or by a line in --notes that contains the row id marker. REPORT rows are printed and never fail",
+    "The sample row is met only if: the committed sample JSON has seed equal to provenance.commit; its population and sample equal sample.mjs --population-of recomputed from the ledger at the sample JSON's ledger_commit (tickets that close after the draw do not change it); and every sampled ticket has a PASS record whose reexecuted_by passes record.mjs R-REEX",
+    "The accepted row is met by an ACCEPTED record on the release ticket whose owner_statement names the provenance run id and every promotable sha256",
+    "The release file (--notes) names the candidate run id, the commit and every promotable sha256, and contains the headings 'Residual risks' and 'Deferred'. Each missing item is a problem",
+    "check.test.mjs fixtures cover: all rows met; a record bound to another run; a hosted-runner record without ci_run_id; QA-identity bytes where promotable bytes are required; a MEASURED record without build_run_id; two rows sharing ticket, level and host resolved by match; a stated row met by a notes marker; a sample recomputed at ledger_commit after later closures (met); a sample mismatch; an ACCEPTED record missing a sha256; and a release file missing a heading",
+    "program-audit.yml gains mode release-check (inputs gates-path, provenance-path, notes-path), and its contract test is updated. CI is green",
+    "LEAD_ACTION: before the cut, commit docs/metis-2.0/releases/1.9.7.gates.json (the list in this summary, with match strings) to the program repo. After the cut, commit the candidate's provenance.json beside it. Run M2-0046's verification line as program-audit release-check through M2-0510's dispatcher, never on the Mac, and record that first run id. Amend M2-0046's verification line to the full invocation, and amend M2-0206 so --train reuses this core"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 8,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E10 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
   }
  ]
 }
