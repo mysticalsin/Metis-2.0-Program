@@ -1,0 +1,10 @@
+# Codex/Claude queue rules (detail moved out of HANDOFF.md, 2026-09-29)
+
+## Rules
+- merge.sh judges each PR check by its NEWEST run (per name + workflow); a cancelled newest run with no sibling is re-run once (state/.rerun-<rid>); PR bodies get the refactor-classification section before every sync (lib.sh backfill_classification; M2-0059's Evidence check bounced synced PRs otherwise); ledger commits are path-limited to tickets.json. state/.merge-queue shows slot + wait order.
+- Honest ledger (2026-09-29 evidence audit, d58bf58): ledger.py done closes DONE only when a merge proves every required level (DESIGNED; LOCALLY_TESTED only on the public repo); otherwise ENGINEERING_COMPLETE with evidence.pending. Private docs PRs run no CI (private Actions budget exhausted) and say so.
+- Merge-queue (2026-09-29, single slot): at most ONE public PR is synced to the current base (GitHub update-branch, READY re-pinned, re-marked ready) and re-checked at a time; other behind PRs wait in ticket-ID order. A PR merges only onto an m2/integration head watch-integration.sh has proven (state/.int-checked == base). merge.sh no longer waits post-merge; watch-integration.sh is the single post-merge prover (STOP on red).
+- watch-integration.sh (every cycle) proves any new integration head (outside merges included): Build & Test red -> STOP unless only known/infra flakes (one rerun); smoke failset growth -> STOP.
+- READY pins the reviewed SHA; a moved head -> WAIT_OWNER (owner tool, OD-15) until 30 min quiet, then re-review.
+- ledger.py: engineering_first flag (OD-20, 32 tickets) runs outside-blocked tickets' engineering half; merges of tickets with live-evidence requirements or an external_blocker close ENGINEERING_COMPLETE. state/<ID>.mode overrides routing (12 set). PARALLEL file (now 5). classification_section in every PR body (M2-0059 check). Codex = none (OD-19: Sonnet implements, Opus reviews; git rm allowed; default permission mode).
+- Owner actions pending: GitHub branch protection on public main (agent blocked from repo settings); private-repo Actions budget; Cloudflare read-only prod queries (M2-0014), staging authorization (M2-0103).

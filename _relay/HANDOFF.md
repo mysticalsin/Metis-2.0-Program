@@ -37,14 +37,10 @@ Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level, HeyCli
 ## Decisions made (don't relitigate)
 - D-28 CI only; OD-12 Electron app is the product (OD-16 adds native Mac parity in 2.0); OD-14/OD-19 Claude implements (Sonnet) + reviews (Opus) until 2.0 is ready; OD-15 owner's tool may push to ticket branches (adopt + full gates); OD-16 CF key out of all installers, FR+EN, developer skills in 2.0; OD-17 MASTER 4.3 voice tiers, D-24 facts-only (derived built, off), D-5 self-hosted Hindsight.
 
-## Queue rules added 2026-09-28 (evening)
-- merge.sh judges each PR check by its NEWEST run (per name + workflow); a cancelled newest run with no sibling is re-run once (state/.rerun-<rid>); PR bodies get the refactor-classification section before every sync (lib.sh backfill_classification; M2-0059's Evidence check bounced synced PRs otherwise); ledger commits are path-limited to tickets.json. state/.merge-queue shows slot + wait order.
-- Honest ledger (2026-09-29 evidence audit, d58bf58): ledger.py done closes DONE only when a merge proves every required level (DESIGNED; LOCALLY_TESTED only on the public repo); otherwise ENGINEERING_COMPLETE with evidence.pending. Private docs PRs run no CI (private Actions budget exhausted) and say so.
-- Merge-queue (2026-09-29, single slot): at most ONE public PR is synced to the current base (GitHub update-branch, READY re-pinned, re-marked ready) and re-checked at a time; other behind PRs wait in ticket-ID order. A PR merges only onto an m2/integration head watch-integration.sh has proven (state/.int-checked == base). merge.sh no longer waits post-merge; watch-integration.sh is the single post-merge prover (STOP on red).
-- watch-integration.sh (every cycle) proves any new integration head (outside merges included): Build & Test red -> STOP unless only known/infra flakes (one rerun); smoke failset growth -> STOP.
-- READY pins the reviewed SHA; a moved head -> WAIT_OWNER (owner tool, OD-15) until 30 min quiet, then re-review.
-- ledger.py: engineering_first flag (OD-20, 32 tickets) runs outside-blocked tickets' engineering half; merges of tickets with live-evidence requirements or an external_blocker close ENGINEERING_COMPLETE. state/<ID>.mode overrides routing (12 set). PARALLEL file (now 5). classification_section in every PR body (M2-0059 check). Codex = none (OD-19: Sonnet implements, Opus reviews; git rm allowed; default permission mode).
-- Owner actions pending: GitHub branch protection on public main (agent blocked from repo settings); private-repo Actions budget; Cloudflare read-only prod queries (M2-0014), staging authorization (M2-0103).
+## Queue rules
+Full detail is in _relay/QUEUE-RULES.md. The single-slot merge queue runs in impact order (state/.merge-first) on a proven base only.
+It judges each check by its newest run, re-runs infrastructure failures once, and path-limits ledger commits.
+The honest ledger: DONE only when a merge proves every required level; otherwise ENGINEERING_COMPLETE with evidence.pending.
 
 ## Watch out
 - Private main was force-reset to 90ed28f twice (09-27 04:35Z, 09-28 05:05Z); guard.sh heals rewinds. Owner has not said whether that is his tool.
