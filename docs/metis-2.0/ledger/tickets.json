@@ -22995,6 +22995,46 @@
    "risk": "medium",
    "estimate_hours": 10,
    "status": "TODO"
+  },
+  {
+   "id": "M2-0432",
+   "title": "Fleet model policy: refresh immediately on focus, resume and network-online, and prove the switch with margin (<= 45 s)",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P2",
+   "depends_on": [
+    "M2-0412"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-18",
+    "M2-0412"
+   ],
+   "scope_paths": [
+    "src/main/operator-ingest.ts",
+    "scripts/qa/policy-smoke.mjs"
+   ],
+   "summary": "M2-0412 fixed the coin-flip POLICY-01 timing by polling the policy every 30 s (it was about 60 s, right at the 60 s bound). The lead ruling also asked for an immediate refresh on the signals the app already has, and for a margin assertion. Both were deferred to keep the owner's feature moving.",
+   "acceptance": [
+    "The policy refreshes within 1 s of app focus/resume, network-online, and an Operator response carrying a newer policy version (unit tests with fake timers)",
+    "The refresh scheduler never waits longer than POLICY_POLL_MS + jitter; failures back off without exceeding that cap; the HEARTBEAT_MS/POLICY_POLL_MS divisibility is asserted at module load",
+    "policy-smoke asserts switchMs <= 45,000 on macOS and Windows, and records the poll interval and whether the switch came from a poll or an immediate signal"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "Packaged smoke POLICY-01"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
+   "status": "TODO"
   }
  ]
 }
