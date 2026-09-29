@@ -6569,8 +6569,17 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
-   "notes": "RE-VALIDATE acceptance 1 before starting: D-12 (answered as default on 2026-09-27, docs/metis-2.0/POLICY-2.0.md) keeps metadata-only gateway logs, so cf-aig-collect-log:false on every request no longer applies. Control set: gateway logging stays off (the landed ai-gateway.ts readback is unchanged); protected Operator requests send cf-aig-collect-log:true, cf-aig-collect-log-payload:false and cf-aig-skip-cache:true; a transport without a proven metadata-only result (including a Worker binding route) sends cf-aig-collect-log:false; a transport where neither is proven is BLOCKED."
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "RE-VALIDATE acceptance 1 before starting: D-12 (answered as default on 2026-09-27, docs/metis-2.0/POLICY-2.0.md) keeps metadata-only gateway logs, so cf-aig-collect-log:false on every request no longer applies. Control set: gateway logging stays off (the landed ai-gateway.ts readback is unchanged); protected Operator requests send cf-aig-collect-log:true, cf-aig-collect-log-payload:false and cf-aig-skip-cache:true; a transport without a proven metadata-only result (including a Worker binding route) sends cf-aig-collect-log:false; a transport where neither is proven is BLOCKED.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/320",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "HOST_CONFIGURED"
+    ]
+   }
   },
   {
    "id": "M2-0105",
