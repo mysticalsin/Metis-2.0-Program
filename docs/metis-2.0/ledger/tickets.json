@@ -22953,7 +22953,9 @@
    "type": "fix",
    "owner_model": "opus",
    "priority": "P0",
-   "depends_on": [],
+   "depends_on": [
+    "M2-0428"
+   ],
    "kit_refs": [],
    "finding_refs": [
     "OWNER-REPORT-2026-09-29-flashing",
