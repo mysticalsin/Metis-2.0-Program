@@ -2,7 +2,7 @@
 
 Generated deterministically from `docs/metis-2.0/kit/ID-INVENTORY.json`, `docs/metis-2.0/ledger/tickets.json`, and `docs/metis-2.0/evidence/records/*.jsonl`.
 
-Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
+Rows mapped: 943/943. Unique IDs mapped: 927/927. Families: 38.
 
 `REF-*` rows are keyed by `kit:id`, so the HeyClicky nested-kit namespace and the v6 `SOURCE-REGISTER` namespace remain distinct.
 
@@ -23,6 +23,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | FLOW | 12 | 12 | 100.0% |
 | HC | 32 | 32 | 100.0% |
 | HM | 16 | 16 | 100.0% |
+| HMFLOW | 6 | 6 | 100.0% |
 | HMS | 1 | 1 | 100.0% |
 | HMSTEP | 16 | 16 | 100.0% |
 | HMUC | 32 | 32 | 100.0% |
@@ -53,7 +54,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | Kit | Rows | Mapped | % |
 |---|---:|---:|---:|
 | Metis-HeyClicky-Interaction-Upgrade | 17 | 17 | 100.0% |
-| r11 | 652 | 652 | 100.0% |
+| r11 | 658 | 658 | 100.0% |
 | v5 | 232 | 232 | 100.0% |
 | v6 | 36 | 36 | 100.0% |
 
@@ -78,7 +79,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | Metis-HeyClicky-Interaction-Upgrade:REF-15 | REF-15 | REF | Hindsight overview | Metis-HeyClicky-Interaction-Upgrade | [M2-0020](ledger/tickets/M2-0020.md) | DONE | M2-0020:ledger |
 | Metis-HeyClicky-Interaction-Upgrade:REF-16 | REF-16 | REF | Hindsight memory banks | Metis-HeyClicky-Interaction-Upgrade | [M2-0020](ledger/tickets/M2-0020.md) | DONE | M2-0020:ledger |
 | Metis-HeyClicky-Interaction-Upgrade:REF-17 | REF-17 | REF | Hindsight retain | Metis-HeyClicky-Interaction-Upgrade | [M2-0020](ledger/tickets/M2-0020.md) | DONE | M2-0020:ledger |
-| r11:AGSTEP-01 | AGSTEP-01 | AGSTEP | Reconcile the actual reference and source baseline | r11 | [M2-0015](ledger/tickets/M2-0015.md) | NOT_STARTED | M2-0015:ledger |
+| r11:AGSTEP-01 | AGSTEP-01 | AGSTEP | Reconcile the actual reference and source baseline | r11 | [M2-0015](ledger/tickets/M2-0015.md) | ENGINEERING_COMPLETE | M2-0015:ledger |
 | r11:AGSTEP-02 | AGSTEP-02 | AGSTEP | Freeze agent/context/authority contracts | r11 | [M2-0064](ledger/tickets/M2-0064.md) | NOT_STARTED | M2-0064:ledger |
 | r11:AGSTEP-03 | AGSTEP-03 | AGSTEP | Build scoped context resolution | r11 | [M2-0127](ledger/tickets/M2-0127.md) | NOT_STARTED | M2-0127:ledger |
 | r11:AGSTEP-04 | AGSTEP-04 | AGSTEP | Implement screen guidance and safe dictation | r11 | [M2-0088](ledger/tickets/M2-0088.md) | NOT_STARTED | M2-0088:ledger |
@@ -89,15 +90,15 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:AGSTEP-09 | AGSTEP-09 | AGSTEP | Bind voice/text to exact agents and real Jev/Laya | r11 | [M2-0122](ledger/tickets/M2-0122.md) | NOT_STARTED | M2-0122:ledger |
 | r11:AGSTEP-10 | AGSTEP-10 | AGSTEP | Connect bounded hosted agent execution | r11 | [M2-0141](ledger/tickets/M2-0141.md) | NOT_STARTED | M2-0141:ledger |
 | r11:AGSTEP-11 | AGSTEP-11 | AGSTEP | Connect trusted native action leases and verification | r11 | [M2-0084](ledger/tickets/M2-0084.md), [M2-0085](ledger/tickets/M2-0085.md) | NOT_STARTED | M2-0084:ledger, M2-0085:ledger |
-| r11:AGSTEP-12 | AGSTEP-12 | AGSTEP | Verify scoped connectors and authority upgrades | r11 | [M2-0144](ledger/tickets/M2-0144.md) | DONE | M2-0144:ledger |
+| r11:AGSTEP-12 | AGSTEP-12 | AGSTEP | Verify scoped connectors and authority upgrades | r11 | [M2-0144](ledger/tickets/M2-0144.md) | ENGINEERING_COMPLETE | M2-0144:ledger |
 | r11:AGSTEP-13 | AGSTEP-13 | AGSTEP | Add durable output navigation and sandboxed previews | r11 | [M2-0142](ledger/tickets/M2-0142.md) | NOT_STARTED | M2-0142:ledger |
 | r11:AGSTEP-14 | AGSTEP-14 | AGSTEP | Add explicit routines, source-backed suggestions and quiet mode | r11 | [M2-0143](ledger/tickets/M2-0143.md) | NOT_STARTED | M2-0143:ledger |
 | r11:AGSTEP-15 | AGSTEP-15 | AGSTEP | Complete named-agent Operator accounting | r11 | [M2-0106](ledger/tickets/M2-0106.md) | NOT_STARTED | M2-0106:ledger |
 | r11:AGSTEP-16 | AGSTEP-16 | AGSTEP | Run actual fresh/upgrade cross-system journeys | r11 | [M2-0170](ledger/tickets/M2-0170.md) | NOT_STARTED | M2-0170:ledger |
 | r11:AGSTEP-17 | AGSTEP-17 | AGSTEP | Run abuse, concurrency, accessibility and performance qualification | r11 | [M2-0177](ledger/tickets/M2-0177.md) | NOT_STARTED | M2-0177:ledger |
 | r11:AGSTEP-18 | AGSTEP-18 | AGSTEP | Qualify exact final platform artifacts and report scope | r11 | [M2-0173](ledger/tickets/M2-0173.md) | NOT_STARTED | M2-0173:ledger |
-| r11:AGUC-001 | AGUC-001 | AGUC | A reference contains an old unused skill picker. | r11 | [M2-0015](ledger/tickets/M2-0015.md) | NOT_STARTED | M2-0015:ledger |
-| r11:AGUC-002 | AGUC-002 | AGUC | A source contains an account token or a private endpoint. | r11 | [M2-0015](ledger/tickets/M2-0015.md) | NOT_STARTED | M2-0015:ledger |
+| r11:AGUC-001 | AGUC-001 | AGUC | A reference contains an old unused skill picker. | r11 | [M2-0015](ledger/tickets/M2-0015.md) | ENGINEERING_COMPLETE | M2-0015:ledger |
+| r11:AGUC-002 | AGUC-002 | AGUC | A source contains an account token or a private endpoint. | r11 | [M2-0015](ledger/tickets/M2-0015.md) | ENGINEERING_COMPLETE | M2-0015:ledger |
 | r11:AGUC-003 | AGUC-003 | AGUC | Ask about an off-screen clause in a selected document. | r11 | [M2-0127](ledger/tickets/M2-0127.md) | NOT_STARTED | M2-0127:ledger |
 | r11:AGUC-004 | AGUC-004 | AGUC | Source permission is removed while extraction runs. | r11 | [M2-0127](ledger/tickets/M2-0127.md) | NOT_STARTED | M2-0127:ledger |
 | r11:AGUC-005 | AGUC-005 | AGUC | Ask Métis to show which button changes export format. | r11 | [M2-0088](ledger/tickets/M2-0088.md) | NOT_STARTED | M2-0088:ledger |
@@ -116,8 +117,8 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:AGUC-018 | AGUC-018 | AGUC | Cancel a run as its provider result arrives. | r11 | [M2-0089](ledger/tickets/M2-0089.md) | NOT_STARTED | M2-0089:ledger |
 | r11:AGUC-019 | AGUC-019 | AGUC | A device-bound routine misses several runs while locked. | r11 | [M2-0143](ledger/tickets/M2-0143.md) | NOT_STARTED | M2-0143:ledger |
 | r11:AGUC-020 | AGUC-020 | AGUC | A suggestion finishes during a meeting or screen share. | r11 | [M2-0143](ledger/tickets/M2-0143.md) | NOT_STARTED | M2-0143:ledger |
-| r11:AGUC-021 | AGUC-021 | AGUC | Save a syntactically valid but rejected connector token. | r11 | [M2-0144](ledger/tickets/M2-0144.md) | DONE | M2-0144:ledger |
-| r11:AGUC-022 | AGUC-022 | AGUC | An API result is large or paginated. | r11 | [M2-0144](ledger/tickets/M2-0144.md) | DONE | M2-0144:ledger |
+| r11:AGUC-021 | AGUC-021 | AGUC | Save a syntactically valid but rejected connector token. | r11 | [M2-0144](ledger/tickets/M2-0144.md) | ENGINEERING_COMPLETE | M2-0144:ledger |
+| r11:AGUC-022 | AGUC-022 | AGUC | An API result is large or paginated. | r11 | [M2-0144](ledger/tickets/M2-0144.md) | ENGINEERING_COMPLETE | M2-0144:ledger |
 | r11:AGUC-023 | AGUC-023 | AGUC | Publish a skill update while an agent is running. | r11 | [M2-0140](ledger/tickets/M2-0140.md) | NOT_STARTED | M2-0140:ledger |
 | r11:AGUC-024 | AGUC-024 | AGUC | A role requests a capability whose provider is not present. | r11 | [M2-0140](ledger/tickets/M2-0140.md) | NOT_STARTED | M2-0140:ledger |
 | r11:AGUC-025 | AGUC-025 | AGUC | An agent generates a report and the user returns tomorrow. | r11 | [M2-0142](ledger/tickets/M2-0142.md) | NOT_STARTED | M2-0142:ledger |
@@ -128,7 +129,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:AGUC-030 | AGUC-030 | AGUC | Reduced motion, high contrast, 200% text or IME is active. | r11 | [M2-0100](ledger/tickets/M2-0100.md) | NOT_STARTED | M2-0100:ledger |
 | r11:AGUC-031 | AGUC-031 | AGUC | A new user completes agent creation, context, approval and result. | r11 | [M2-0177](ledger/tickets/M2-0177.md) | NOT_STARTED | M2-0177:ledger |
 | r11:AGUC-032 | AGUC-032 | AGUC | The native or provider prerequisite is not available. | r11 | [M2-0177](ledger/tickets/M2-0177.md) | NOT_STARTED | M2-0177:ledger |
-| r11:AGX-01 | AGX-01 | AGX | Source and adoption integrity | r11 | [M2-0015](ledger/tickets/M2-0015.md) | NOT_STARTED | M2-0015:ledger |
+| r11:AGX-01 | AGX-01 | AGX | Source and adoption integrity | r11 | [M2-0015](ledger/tickets/M2-0015.md) | ENGINEERING_COMPLETE | M2-0015:ledger |
 | r11:AGX-02 | AGX-02 | AGX | Authorized full-document context | r11 | [M2-0127](ledger/tickets/M2-0127.md) | NOT_STARTED | M2-0127:ledger |
 | r11:AGX-03 | AGX-03 | AGX | Screen guidance without hidden action | r11 | [M2-0088](ledger/tickets/M2-0088.md) | NOT_STARTED | M2-0088:ledger |
 | r11:AGX-04 | AGX-04 | AGX | Safe verbatim dictation and insertion | r11 | [M2-0090](ledger/tickets/M2-0090.md) | NOT_STARTED | M2-0090:ledger |
@@ -138,16 +139,16 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:AGX-08 | AGX-08 | AGX | Isolated memory, drafts and source authority | r11 | [M2-0125](ledger/tickets/M2-0125.md) | NOT_STARTED | M2-0125:ledger |
 | r11:AGX-09 | AGX-09 | AGX | Bounded concurrent runs and input leases | r11 | [M2-0089](ledger/tickets/M2-0089.md) | NOT_STARTED | M2-0089:ledger |
 | r11:AGX-10 | AGX-10 | AGX | Explicit routines and calm suggestions | r11 | [M2-0143](ledger/tickets/M2-0143.md) | NOT_STARTED | M2-0143:ledger |
-| r11:AGX-11 | AGX-11 | AGX | Probed connectors and typed schemas | r11 | [M2-0144](ledger/tickets/M2-0144.md) | DONE | M2-0144:ledger |
+| r11:AGX-11 | AGX-11 | AGX | Probed connectors and typed schemas | r11 | [M2-0144](ledger/tickets/M2-0144.md) | ENGINEERING_COMPLETE | M2-0144:ledger |
 | r11:AGX-12 | AGX-12 | AGX | Central skills and truthful capabilities | r11 | [M2-0139](ledger/tickets/M2-0139.md) | NOT_STARTED | M2-0139:ledger |
 | r11:AGX-13 | AGX-13 | AGX | Scoped artifacts and safe previews | r11 | [M2-0142](ledger/tickets/M2-0142.md) | NOT_STARTED | M2-0142:ledger |
 | r11:AGX-14 | AGX-14 | AGX | Per-agent operational truth | r11 | [M2-0106](ledger/tickets/M2-0106.md) | NOT_STARTED | M2-0106:ledger |
 | r11:AGX-15 | AGX-15 | AGX | Minimal animated identity and fast Home | r11 | [M2-0100](ledger/tickets/M2-0100.md) | NOT_STARTED | M2-0100:ledger |
 | r11:AGX-16 | AGX-16 | AGX | Real cross-platform end-to-end qualification | r11 | [M2-0177](ledger/tickets/M2-0177.md) | NOT_STARTED | M2-0177:ledger |
 | r11:COV-01 | COV-01 | COV | One complete Codex handoff; plan, implement, verify and release | r11 | [M2-0173](ledger/tickets/M2-0173.md), [M2-0183](ledger/tickets/M2-0183.md) | NOT_STARTED | M2-0173:ledger, M2-0183:ledger |
-| r11:COV-02 | COV-02 | COV | Deep audit of the entire shipped repository and existing systems | r11 | [M2-0018](ledger/tickets/M2-0018.md) | NOT_STARTED | M2-0018:ledger |
+| r11:COV-02 | COV-02 | COV | Deep audit of the entire shipped repository and existing systems | r11 | [M2-0018](ledger/tickets/M2-0018.md) | ENGINEERING_COMPLETE | M2-0018:ledger |
 | r11:COV-03 | COV-03 | COV | Minimal release-branch repair of both P1 blockers | r11 | [M2-0042](ledger/tickets/M2-0042.md), [M2-0046](ledger/tickets/M2-0046.md) | NOT_STARTED | M2-0042:ledger, M2-0046:ledger |
-| r11:COV-04 | COV-04 | COV | Working signed Windows EXE on GitHub | r11 | [M2-0058](ledger/tickets/M2-0058.md), [M2-0174](ledger/tickets/M2-0174.md) | NOT_STARTED | M2-0058:ledger, M2-0174:ledger |
+| r11:COV-04 | COV-04 | COV | Working signed Windows EXE on GitHub | r11 | [M2-0058](ledger/tickets/M2-0058.md), [M2-0174](ledger/tickets/M2-0174.md) | BLOCKED_EXTERNAL | M2-0058:ledger, M2-0174:ledger |
 | r11:COV-05 | COV-05 | COV | Real native Mac product built using Codex | r11 | [M2-0118](ledger/tickets/M2-0118.md) | NOT_STARTED | M2-0118:ledger |
 | r11:COV-06 | COV-06 | COV | Mac public DMG waits only for legitimate Apple release prerequisites | r11 | [M2-0175](ledger/tickets/M2-0175.md), [M2-0186](ledger/tickets/M2-0186.md) | NOT_STARTED | M2-0175:ledger, M2-0186:ledger |
 | r11:COV-07 | COV-07 | COV | Apple intelligence/PCC where truly eligible, with honest portal tracking | r11 | [M2-0175](ledger/tickets/M2-0175.md) | NOT_STARTED | M2-0175:ledger |
@@ -158,7 +159,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:COV-12 | COV-12 | COV | Complete Notes/hello/Arc/Norbert Wiener/X/camera reference workflow | r11 | [M2-0170](ledger/tickets/M2-0170.md) | NOT_STARTED | M2-0170:ledger |
 | r11:COV-13 | COV-13 | COV | Reliable stop, cancellation, replay and security boundaries | r11 | [M2-0091](ledger/tickets/M2-0091.md) | NOT_STARTED | M2-0091:ledger |
 | r11:COV-14 | COV-14 | COV | Repair right-edge typing and expanded-panel usability | r11 | [M2-0095](ledger/tickets/M2-0095.md) | NOT_STARTED | M2-0095:ledger |
-| r11:COV-15 | COV-15 | COV | Apple-minded four-destination Settings, with every old option dispositioned | r11 | [M2-0101](ledger/tickets/M2-0101.md) | DONE | M2-0101:ledger |
+| r11:COV-15 | COV-15 | COV | Apple-minded four-destination Settings, with every old option dispositioned | r11 | [M2-0101](ledger/tickets/M2-0101.md) | ENGINEERING_COMPLETE | M2-0101:ledger |
 | r11:COV-16 | COV-16 | COV | Cloudflare-hosted speech is the actual default everywhere | r11 | [M2-0107](ledger/tickets/M2-0107.md), [M2-0112](ledger/tickets/M2-0112.md) | NOT_STARTED | M2-0107:ledger, M2-0112:ledger |
 | r11:COV-17 | COV-17 | COV | The strongest qualified transcript fidelity, not fluent invention | r11 | [M2-0113](ledger/tickets/M2-0113.md) | NOT_STARTED | M2-0113:ledger |
 | r11:COV-18 | COV-18 | COV | No Cloudflare content persistence; no-training is a separate statement | r11 | [M2-0111](ledger/tickets/M2-0111.md), [M2-0149](ledger/tickets/M2-0149.md) | NOT_STARTED | M2-0111:ledger, M2-0149:ledger |
@@ -170,7 +171,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:COV-24 | COV-24 | COV | Laya as a real alternative with no Jev API dependency | r11 | [M2-0124](ledger/tickets/M2-0124.md) | NOT_STARTED | M2-0124:ledger |
 | r11:COV-25 | COV-25 | COV | Jev/Laya in Mantu Intelligence, not only command demos | r11 | [M2-0131](ledger/tickets/M2-0131.md) | NOT_STARTED | M2-0131:ledger |
 | r11:COV-26 | COV-26 | COV | A trusted knowledge space/wiki/graph with evidence and corrections | r11 | [M2-0125](ledger/tickets/M2-0125.md) | NOT_STARTED | M2-0125:ledger |
-| r11:COV-27 | COV-27 | COV | Always-on knowledge when the laptop is asleep | r11 | [M2-0119](ledger/tickets/M2-0119.md) | NOT_STARTED | M2-0119:ledger |
+| r11:COV-27 | COV-27 | COV | Always-on knowledge when the laptop is asleep | r11 | [M2-0119](ledger/tickets/M2-0119.md) | ENGINEERING_COMPLETE | M2-0119:ledger |
 | r11:COV-28 | COV-28 | COV | Dust agents read authorized meeting context | r11 | [M2-0128](ledger/tickets/M2-0128.md) | NOT_STARTED | M2-0128:ledger |
 | r11:COV-29 | COV-29 | COV | Dust agents really write safely to canonical knowledge | r11 | [M2-0129](ledger/tickets/M2-0129.md) | NOT_STARTED | M2-0129:ledger |
 | r11:COV-30 | COV-30 | COV | Correction, deletion, revocation and confidential sources across systems | r11 | [M2-0132](ledger/tickets/M2-0132.md) | NOT_STARTED | M2-0132:ledger |
@@ -184,9 +185,9 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:COV-38 | COV-38 | COV | Real Teams media plus honest other-platform support | r11 | [M2-0151](ledger/tickets/M2-0151.md), [M2-0155](ledger/tickets/M2-0155.md), [M2-0156](ledger/tickets/M2-0156.md) | NOT_STARTED | M2-0151:ledger, M2-0155:ledger, M2-0156:ledger |
 | r11:COV-39 | COV-39 | COV | GDPR/privacy readiness and proper sharing—not a Teams badge | r11 | [M2-0150](ledger/tickets/M2-0150.md) | NOT_STARTED | M2-0150:ledger |
 | r11:COV-40 | COV-40 | COV | Whole meeting→knowledge→Dust update→skill→portal journey | r11 | [M2-0176](ledger/tickets/M2-0176.md) | NOT_STARTED | M2-0176:ledger |
-| r11:COV-41 | COV-41 | COV | Refactor the existing product with the actual supplied skill | r11 | [M2-0059](ledger/tickets/M2-0059.md) | NOT_STARTED | M2-0059:ledger |
-| r11:COV-42 | COV-42 | COV | Find code quickly with a persistent map and lean coding context | r11 | [M2-0011](ledger/tickets/M2-0011.md) | IN_PROGRESS | M2-0011:ledger |
-| r11:COV-43 | COV-43 | COV | Review every supplied repository/reference, including GitHub UI improvements | r11 | [M2-0015](ledger/tickets/M2-0015.md) | NOT_STARTED | M2-0015:ledger |
+| r11:COV-41 | COV-41 | COV | Refactor the existing product with the actual supplied skill | r11 | [M2-0059](ledger/tickets/M2-0059.md) | ENGINEERING_COMPLETE | M2-0059:ledger |
+| r11:COV-42 | COV-42 | COV | Find code quickly with a persistent map and lean coding context | r11 | [M2-0011](ledger/tickets/M2-0011.md) | ENGINEERING_COMPLETE | M2-0011:ledger |
+| r11:COV-43 | COV-43 | COV | Review every supplied repository/reference, including GitHub UI improvements | r11 | [M2-0015](ledger/tickets/M2-0015.md) | ENGINEERING_COMPLETE | M2-0015:ledger |
 | r11:COV-44 | COV-44 | COV | End-to-end deployed quality, recovery and durable handoff | r11 | [M2-0183](ledger/tickets/M2-0183.md) | NOT_STARTED | M2-0183:ledger |
 | r11:EXP-01 | EXP-01 | EXP | Prepared, not surprised | r11 | [M2-0114](ledger/tickets/M2-0114.md) | NOT_STARTED | M2-0114:ledger |
 | r11:EXP-02 | EXP-02 | EXP | Human notes remain the user’s work | r11 | [M2-0097](ledger/tickets/M2-0097.md) | NOT_STARTED | M2-0097:ledger |
@@ -199,12 +200,12 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:EXP-09 | EXP-09 | EXP | No silent loss or misleading success | r11 | [M2-0032](ledger/tickets/M2-0032.md), [M2-0066](ledger/tickets/M2-0066.md) | NOT_STARTED | M2-0032:ledger, M2-0066:ledger |
 | r11:EXP-10 | EXP-10 | EXP | Animated identity, bounded cost | r11 | [M2-0039](ledger/tickets/M2-0039.md), [M2-0093](ledger/tickets/M2-0093.md) | NOT_STARTED | M2-0039:ledger, M2-0093:ledger |
 | r11:EXP-11 | EXP-11 | EXP | Portability and control over knowledge | r11 | [M2-0120](ledger/tickets/M2-0120.md) | ENGINEERING_COMPLETE | M2-0120:ledger |
-| r11:EXP-12 | EXP-12 | EXP | Evidence-based competitive and operational qualification | r11 | [M2-0009](ledger/tickets/M2-0009.md), [M2-0178](ledger/tickets/M2-0178.md), [M2-0185](ledger/tickets/M2-0185.md) | NOT_STARTED | M2-0009:ledger, M2-0178:ledger, M2-0185:ledger |
-| r11:F-01 | F-01 | F | Embedded shared credentials | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0056](ledger/tickets/M2-0056.md) | IN_PROGRESS | M2-0013:ledger, M2-0056:ledger |
+| r11:EXP-12 | EXP-12 | EXP | Evidence-based competitive and operational qualification | r11 | [M2-0009](ledger/tickets/M2-0009.md), [M2-0178](ledger/tickets/M2-0178.md), [M2-0185](ledger/tickets/M2-0185.md) | IN_PROGRESS | M2-0009:ledger, M2-0178:ledger, M2-0185:ledger |
+| r11:F-01 | F-01 | F | Embedded shared credentials | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0056](ledger/tickets/M2-0056.md) | ENGINEERING_COMPLETE | M2-0013:ledger, M2-0056:ledger |
 | r11:F-02 | F-02 | F | Command authority drift | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0079](ledger/tickets/M2-0079.md) | IN_PROGRESS | M2-0013:ledger, M2-0079:ledger |
-| r11:F-03 | F-03 | F | Egress coverage gaps | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0147](ledger/tickets/M2-0147.md) | IN_PROGRESS | M2-0013:ledger, M2-0147:ledger |
-| r11:F-04 | F-04 | F | Deployment-dependent auth | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0145](ledger/tickets/M2-0145.md) | IN_PROGRESS | M2-0013:ledger, M2-0145:ledger |
-| r11:F-05 | F-05 | F | Unestablished multi-customer scope | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0145](ledger/tickets/M2-0145.md) | IN_PROGRESS | M2-0013:ledger, M2-0145:ledger |
+| r11:F-03 | F-03 | F | Egress coverage gaps | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0147](ledger/tickets/M2-0147.md) | ENGINEERING_COMPLETE | M2-0013:ledger, M2-0147:ledger |
+| r11:F-04 | F-04 | F | Deployment-dependent auth | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0145](ledger/tickets/M2-0145.md) | ENGINEERING_COMPLETE | M2-0013:ledger, M2-0145:ledger |
+| r11:F-05 | F-05 | F | Unestablished multi-customer scope | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0145](ledger/tickets/M2-0145.md) | ENGINEERING_COMPLETE | M2-0013:ledger, M2-0145:ledger |
 | r11:F-06 | F-06 | F | Ignored adapter result | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0082](ledger/tickets/M2-0082.md), [M2-0083](ledger/tickets/M2-0083.md) | IN_PROGRESS | M2-0013:ledger, M2-0082:ledger, M2-0083:ledger |
 | r11:F-07 | F-07 | F | Incomplete actions / close missing | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0084](ledger/tickets/M2-0084.md), [M2-0085](ledger/tickets/M2-0085.md) | IN_PROGRESS | M2-0013:ledger, M2-0084:ledger, M2-0085:ledger |
 | r11:F-08 | F-08 | F | Discarded Jev decisions | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0122](ledger/tickets/M2-0122.md) | IN_PROGRESS | M2-0013:ledger, M2-0122:ledger |
@@ -215,9 +216,9 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:F-13 | F-13 | F | People/device/session conflation | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0106](ledger/tickets/M2-0106.md), [M2-0226](ledger/tickets/M2-0226.md) | IN_PROGRESS | M2-0013:ledger, M2-0106:ledger, M2-0226:ledger |
 | r11:F-14 | F-14 | F | Onboarding/right-edge failures | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0042](ledger/tickets/M2-0042.md), [M2-0095](ledger/tickets/M2-0095.md), [M2-0202](ledger/tickets/M2-0202.md) | IN_PROGRESS | M2-0013:ledger, M2-0042:ledger, M2-0095:ledger, M2-0202:ledger |
 | r11:F-15 | F-15 | F | Legacy/managed privacy differences | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0112](ledger/tickets/M2-0112.md) | IN_PROGRESS | M2-0013:ledger, M2-0112:ledger |
-| r11:F-16 | F-16 | F | Developer rediscovery | r11 | [M2-0011](ledger/tickets/M2-0011.md), [M2-0013](ledger/tickets/M2-0013.md) | IN_PROGRESS | M2-0011:ledger, M2-0013:ledger |
-| r11:F-17 | F-17 | F | Stale architectural assessments | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0017](ledger/tickets/M2-0017.md) | IN_PROGRESS | M2-0013:ledger, M2-0017:ledger |
-| r11:F-18 | F-18 | F | Packaging mistaken for qualification | r11 | [M2-0002](ledger/tickets/M2-0002.md), [M2-0013](ledger/tickets/M2-0013.md) | IN_PROGRESS | M2-0002:ledger, M2-0013:ledger |
+| r11:F-16 | F-16 | F | Developer rediscovery | r11 | [M2-0011](ledger/tickets/M2-0011.md), [M2-0013](ledger/tickets/M2-0013.md) | ENGINEERING_COMPLETE | M2-0011:ledger, M2-0013:ledger |
+| r11:F-17 | F-17 | F | Stale architectural assessments | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0017](ledger/tickets/M2-0017.md) | ENGINEERING_COMPLETE | M2-0013:ledger, M2-0017:ledger |
+| r11:F-18 | F-18 | F | Packaging mistaken for qualification | r11 | [M2-0002](ledger/tickets/M2-0002.md), [M2-0013](ledger/tickets/M2-0013.md) | ENGINEERING_COMPLETE | M2-0002:ledger, M2-0013:ledger |
 | r11:F-19 | F-19 | F | Competing release feeds/policy | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0053](ledger/tickets/M2-0053.md), [M2-0168](ledger/tickets/M2-0168.md) | IN_PROGRESS | M2-0013:ledger, M2-0053:ledger, M2-0168:ledger |
 | r11:F-20 | F-20 | F | Unproven staging/restore | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0103](ledger/tickets/M2-0103.md), [M2-0159](ledger/tickets/M2-0159.md) | IN_PROGRESS | M2-0013:ledger, M2-0103:ledger, M2-0159:ledger |
 | r11:FLOW-01 | FLOW-01 | FLOW | A new Windows user reaches the real first success | r11 | [M2-0160](ledger/tickets/M2-0160.md), [M2-0177](ledger/tickets/M2-0177.md) | NOT_STARTED | M2-0160:ledger, M2-0177:ledger |
@@ -232,9 +233,9 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:FLOW-10 | FLOW-10 | FLOW | No hidden content persistence or cross-boundary authority | r11 | [M2-0149](ledger/tickets/M2-0149.md), [M2-0177](ledger/tickets/M2-0177.md) | NOT_STARTED | M2-0149:ledger, M2-0177:ledger |
 | r11:FLOW-11 | FLOW-11 | FLOW | Native Mac parity and Apple routes without a false public release | r11 | [M2-0175](ledger/tickets/M2-0175.md), [M2-0177](ledger/tickets/M2-0177.md) | NOT_STARTED | M2-0175:ledger, M2-0177:ledger |
 | r11:FLOW-12 | FLOW-12 | FLOW | An operator and the next coding session can trust the system | r11 | [M2-0002](ledger/tickets/M2-0002.md), [M2-0171](ledger/tickets/M2-0171.md), [M2-0177](ledger/tickets/M2-0177.md) | IN_PROGRESS | M2-0002:ledger, M2-0171:ledger, M2-0177:ledger |
-| r11:HC-01 | HC-01 | HC | Exact inspected build | r11 | [M2-0015](ledger/tickets/M2-0015.md) | NOT_STARTED | M2-0015:ledger |
+| r11:HC-01 | HC-01 | HC | Exact inspected build | r11 | [M2-0015](ledger/tickets/M2-0015.md) | ENGINEERING_COMPLETE | M2-0015:ledger |
 | r11:HC-02 | HC-02 | HC | Native architecture, not recoverable original source | r11 | [M2-0118](ledger/tickets/M2-0118.md) | NOT_STARTED | M2-0118:ledger |
-| r11:HC-03 | HC-03 | HC | Substantial bundled execution payload | r11 | [M2-0009](ledger/tickets/M2-0009.md), [M2-0162](ledger/tickets/M2-0162.md) | NOT_STARTED | M2-0009:ledger, M2-0162:ledger |
+| r11:HC-03 | HC-03 | HC | Substantial bundled execution payload | r11 | [M2-0009](ledger/tickets/M2-0009.md), [M2-0162](ledger/tickets/M2-0162.md) | IN_PROGRESS | M2-0009:ledger, M2-0162:ledger |
 | r11:HC-04 | HC-04 | HC | Computer-use helper already a separate boundary | r11 | [M2-0082](ledger/tickets/M2-0082.md), [M2-0149](ledger/tickets/M2-0149.md) | NOT_STARTED | M2-0082:ledger, M2-0149:ledger |
 | r11:HC-05 | HC-05 | HC | Fifteen curated runtime skill definitions | r11 | [M2-0139](ledger/tickets/M2-0139.md) | NOT_STARTED | M2-0139:ledger |
 | r11:HC-06 | HC-06 | HC | Legacy picker is not the runtime catalog | r11 | [M2-0140](ledger/tickets/M2-0140.md) | NOT_STARTED | M2-0140:ledger |
@@ -261,7 +262,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:HC-27 | HC-27 | HC | The source is not a blanket app license | r11 | [M2-0140](ledger/tickets/M2-0140.md) | NOT_STARTED | M2-0140:ledger |
 | r11:HC-28 | HC-28 | HC | Unsupported generation routes are explicitly excluded | r11 | [M2-0139](ledger/tickets/M2-0139.md) | NOT_STARTED | M2-0139:ledger |
 | r11:HC-29 | HC-29 | HC | Automatic termination is disabled | r11 | [M2-0118](ledger/tickets/M2-0118.md), [M2-0159](ledger/tickets/M2-0159.md) | NOT_STARTED | M2-0118:ledger, M2-0159:ledger |
-| r11:HC-30 | HC-30 | HC | Account, telemetry and updater configuration exists | r11 | [M2-0104](ledger/tickets/M2-0104.md), [M2-0105](ledger/tickets/M2-0105.md), [M2-0168](ledger/tickets/M2-0168.md) | NOT_STARTED | M2-0104:ledger, M2-0105:ledger, M2-0168:ledger |
+| r11:HC-30 | HC-30 | HC | Account, telemetry and updater configuration exists | r11 | [M2-0104](ledger/tickets/M2-0104.md), [M2-0105](ledger/tickets/M2-0105.md), [M2-0168](ledger/tickets/M2-0168.md) | IN_PROGRESS | M2-0104:ledger, M2-0105:ledger, M2-0168:ledger |
 | r11:HC-31 | HC-31 | HC | Intro media is not proof of live automation | r11 | [M2-0160](ledger/tickets/M2-0160.md) | NOT_STARTED | M2-0160:ledger |
 | r11:HC-32 | HC-32 | HC | Compiled controls are not a live test | r11 | [M2-0173](ledger/tickets/M2-0173.md) | NOT_STARTED | M2-0173:ledger |
 | r11:HM-01 | HM-01 | HM | Embedded product, lean clients | r11 | [M2-0137](ledger/tickets/M2-0137.md) | NOT_STARTED | M2-0137:ledger |
@@ -280,6 +281,12 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:HM-14 | HM-14 | HM | Server deployment and resilient operations | r11 | [M2-0133](ledger/tickets/M2-0133.md) | NOT_STARTED | M2-0133:ledger |
 | r11:HM-15 | HM-15 | HM | Incremental migration and reversible rollout | r11 | [M2-0138](ledger/tickets/M2-0138.md) | NOT_STARTED | M2-0138:ledger |
 | r11:HM-16 | HM-16 | HM | Real cross-platform integrated proof | r11 | [M2-0177](ledger/tickets/M2-0177.md) | NOT_STARTED | M2-0177:ledger |
+| r11:HM-FLOW-01 | HM-FLOW-01 | HMFLOW | Remember and reuse | r11 | [M2-0344](ledger/tickets/M2-0344.md) | NOT_STARTED | M2-0344:ledger |
+| r11:HM-FLOW-02 | HM-FLOW-02 | HMFLOW | Meeting to team knowledge | r11 | [M2-0344](ledger/tickets/M2-0344.md) | NOT_STARTED | M2-0344:ledger |
+| r11:HM-FLOW-03 | HM-FLOW-03 | HMFLOW | Forget under concurrency | r11 | [M2-0344](ledger/tickets/M2-0344.md) | NOT_STARTED | M2-0344:ledger |
+| r11:HM-FLOW-04 | HM-FLOW-04 | HMFLOW | Honest outage and limits | r11 | [M2-0344](ledger/tickets/M2-0344.md) | NOT_STARTED | M2-0344:ledger |
+| r11:HM-FLOW-05 | HM-FLOW-05 | HMFLOW | Security and privacy | r11 | [M2-0334](ledger/tickets/M2-0334.md) | NOT_STARTED | M2-0334:ledger |
+| r11:HM-FLOW-06 | HM-FLOW-06 | HMFLOW | Release | r11 | [M2-0343](ledger/tickets/M2-0343.md), [M2-0439](ledger/tickets/M2-0439.md) | NOT_STARTED | M2-0343:ledger, M2-0439:ledger |
 | r11:HMSTEP-01 | HMSTEP-01 | HMSTEP | Qualify the source and runtime contract | r11 | [M2-0020](ledger/tickets/M2-0020.md) | DONE | M2-0020:ledger |
 | r11:HMSTEP-02 | HMSTEP-02 | HMSTEP | Approve retention and authority before ingest | r11 | [M2-0134](ledger/tickets/M2-0134.md) | NOT_STARTED | M2-0134:ledger |
 | r11:HMSTEP-03 | HMSTEP-03 | HMSTEP | Deploy the private service and database | r11 | [M2-0133](ledger/tickets/M2-0133.md) | NOT_STARTED | M2-0133:ledger |
@@ -364,7 +371,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:M2-ACT-02 | M2-ACT-02 | M2 | Real cross-platform outcomes | r11 | [M2-0082](ledger/tickets/M2-0082.md), [M2-0170](ledger/tickets/M2-0170.md) | NOT_STARTED | M2-0082:ledger, M2-0170:ledger |
 | r11:M2-ASR-01 | M2-ASR-01 | M2 | Faithful capture and ordered segment revisions | r11 | [M2-0009](ledger/tickets/M2-0009.md), [M2-0043](ledger/tickets/M2-0043.md), [M2-0108](ledger/tickets/M2-0108.md), [M2-0109](ledger/tickets/M2-0109.md) | IN_PROGRESS | M2-0009:ledger, M2-0043:ledger, M2-0108:ledger, M2-0109:ledger |
 | r11:M2-ASR-02 | M2-ASR-02 | M2 | Qualified transcript/summary quality | r11 | [M2-0113](ledger/tickets/M2-0113.md) | NOT_STARTED | M2-0113:ledger |
-| r11:M2-BASE-01 | M2-BASE-01 | M2 | Pinned, preserved baseline and deployed-state audit | r11 | [M2-0015](ledger/tickets/M2-0015.md), [M2-0016](ledger/tickets/M2-0016.md), [M2-0183](ledger/tickets/M2-0183.md) | NOT_STARTED | M2-0015:ledger, M2-0016:ledger, M2-0183:ledger |
+| r11:M2-BASE-01 | M2-BASE-01 | M2 | Pinned, preserved baseline and deployed-state audit | r11 | [M2-0015](ledger/tickets/M2-0015.md), [M2-0016](ledger/tickets/M2-0016.md), [M2-0183](ledger/tickets/M2-0183.md) | IN_PROGRESS | M2-0015:ledger, M2-0016:ledger, M2-0183:ledger |
 | r11:M2-DATA-01 | M2-DATA-01 | M2 | Existing data and retention preserved | r11 | [M2-0001](ledger/tickets/M2-0001.md), [M2-0003](ledger/tickets/M2-0003.md), [M2-0030](ledger/tickets/M2-0030.md), [M2-0031](ledger/tickets/M2-0031.md), [M2-0066](ledger/tickets/M2-0066.md), [M2-0067](ledger/tickets/M2-0067.md), [M2-0160](ledger/tickets/M2-0160.md), [M2-0169](ledger/tickets/M2-0169.md), [M2-0190](ledger/tickets/M2-0190.md), [M2-0191](ledger/tickets/M2-0191.md), [M2-0193](ledger/tickets/M2-0193.md), [M2-0205](ledger/tickets/M2-0205.md) | IN_PROGRESS | M2-0001:ledger, M2-0003:ledger, M2-0030:ledger, M2-0031:ledger, M2-0066:ledger, M2-0067:ledger, M2-0160:ledger, M2-0169:ledger, M2-0190:ledger, M2-0191:ledger, M2-0193:ledger, M2-0205:ledger |
 | r11:M2-DEC-01 | M2-DEC-01 | M2 | Real Jev applied decision path | r11 | [M2-0122](ledger/tickets/M2-0122.md) | NOT_STARTED | M2-0122:ledger |
 | r11:M2-DEC-02 | M2-DEC-02 | M2 | Laya alternate with honest capabilities/cost | r11 | [M2-0124](ledger/tickets/M2-0124.md) | NOT_STARTED | M2-0124:ledger |
@@ -388,12 +395,12 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:M2-OPS-01 | M2-OPS-01 | M2 | People/devices/activity correctly separated | r11 | [M2-0106](ledger/tickets/M2-0106.md), [M2-0158](ledger/tickets/M2-0158.md) | NOT_STARTED | M2-0106:ledger, M2-0158:ledger |
 | r11:M2-OPS-02 | M2-OPS-02 | M2 | Correct complete usage and money | r11 | [M2-0064](ledger/tickets/M2-0064.md), [M2-0106](ledger/tickets/M2-0106.md), [M2-0158](ledger/tickets/M2-0158.md) | NOT_STARTED | M2-0064:ledger, M2-0106:ledger, M2-0158:ledger |
 | r11:M2-OPS-03 | M2-OPS-03 | M2 | Operational diagnostics and recovery | r11 | [M2-0006](ledger/tickets/M2-0006.md), [M2-0103](ledger/tickets/M2-0103.md), [M2-0159](ledger/tickets/M2-0159.md), [M2-0215](ledger/tickets/M2-0215.md) | IN_PROGRESS | M2-0006:ledger, M2-0103:ledger, M2-0159:ledger, M2-0215:ledger |
-| r11:M2-PKG-01 | M2-PKG-01 | M2 | Genuinely lightweight default installation | r11 | [M2-0009](ledger/tickets/M2-0009.md), [M2-0164](ledger/tickets/M2-0164.md), [M2-0166](ledger/tickets/M2-0166.md), [M2-0200](ledger/tickets/M2-0200.md) | NOT_STARTED | M2-0009:ledger, M2-0164:ledger, M2-0166:ledger, M2-0200:ledger |
+| r11:M2-PKG-01 | M2-PKG-01 | M2 | Genuinely lightweight default installation | r11 | [M2-0009](ledger/tickets/M2-0009.md), [M2-0164](ledger/tickets/M2-0164.md), [M2-0166](ledger/tickets/M2-0166.md), [M2-0200](ledger/tickets/M2-0200.md) | IN_PROGRESS | M2-0009:ledger, M2-0164:ledger, M2-0166:ledger, M2-0200:ledger |
 | r11:M2-PKG-02 | M2-PKG-02 | M2 | Secure optional components | r11 | [M2-0162](ledger/tickets/M2-0162.md), [M2-0163](ledger/tickets/M2-0163.md) | NOT_STARTED | M2-0162:ledger, M2-0163:ledger |
-| r11:M2-PRIV-01 | M2-PRIV-01 | M2 | No controlled cloud content persistence | r11 | [M2-0104](ledger/tickets/M2-0104.md), [M2-0111](ledger/tickets/M2-0111.md), [M2-0149](ledger/tickets/M2-0149.md), [M2-0169](ledger/tickets/M2-0169.md) | NOT_STARTED | M2-0104:ledger, M2-0111:ledger, M2-0149:ledger, M2-0169:ledger |
+| r11:M2-PRIV-01 | M2-PRIV-01 | M2 | No controlled cloud content persistence | r11 | [M2-0104](ledger/tickets/M2-0104.md), [M2-0111](ledger/tickets/M2-0111.md), [M2-0149](ledger/tickets/M2-0149.md), [M2-0169](ledger/tickets/M2-0169.md) | IN_PROGRESS | M2-0104:ledger, M2-0111:ledger, M2-0149:ledger, M2-0169:ledger |
 | r11:M2-PRIV-02 | M2-PRIV-02 | M2 | Route-specific provider assurance and no silent downgrade | r11 | [M2-0102](ledger/tickets/M2-0102.md), [M2-0104](ledger/tickets/M2-0104.md), [M2-0149](ledger/tickets/M2-0149.md) | IN_PROGRESS | M2-0102:ledger, M2-0104:ledger, M2-0149:ledger |
 | r11:M2-PRIV-03 | M2-PRIV-03 | M2 | Content-free diagnostics and finite metadata retention | r11 | [M2-0006](ledger/tickets/M2-0006.md), [M2-0105](ledger/tickets/M2-0105.md), [M2-0149](ledger/tickets/M2-0149.md), [M2-0158](ledger/tickets/M2-0158.md), [M2-0215](ledger/tickets/M2-0215.md) | IN_PROGRESS | M2-0006:ledger, M2-0105:ledger, M2-0149:ledger, M2-0158:ledger, M2-0215:ledger |
-| r11:M2-REL-01 | M2-REL-01 | M2 | Independent honest platform release states | r11 | [M2-0002](ledger/tickets/M2-0002.md), [M2-0016](ledger/tickets/M2-0016.md), [M2-0046](ledger/tickets/M2-0046.md), [M2-0053](ledger/tickets/M2-0053.md), [M2-0160](ledger/tickets/M2-0160.md), [M2-0171](ledger/tickets/M2-0171.md), [M2-0174](ledger/tickets/M2-0174.md), [M2-0175](ledger/tickets/M2-0175.md), [M2-0183](ledger/tickets/M2-0183.md), [M2-0187](ledger/tickets/M2-0187.md), [M2-0208](ledger/tickets/M2-0208.md) | IN_PROGRESS | M2-0002:ledger, M2-0016:ledger, M2-0046:ledger, M2-0053:ledger, M2-0160:ledger, M2-0171:ledger, M2-0174:ledger, M2-0175:ledger, M2-0183:ledger, M2-0187:ledger, M2-0208:ledger |
+| r11:M2-REL-01 | M2-REL-01 | M2 | Independent honest platform release states | r11 | [M2-0002](ledger/tickets/M2-0002.md), [M2-0016](ledger/tickets/M2-0016.md), [M2-0046](ledger/tickets/M2-0046.md), [M2-0053](ledger/tickets/M2-0053.md), [M2-0160](ledger/tickets/M2-0160.md), [M2-0171](ledger/tickets/M2-0171.md), [M2-0174](ledger/tickets/M2-0174.md), [M2-0175](ledger/tickets/M2-0175.md), [M2-0183](ledger/tickets/M2-0183.md), [M2-0187](ledger/tickets/M2-0187.md), [M2-0208](ledger/tickets/M2-0208.md) | BLOCKED_EXTERNAL | M2-0002:ledger, M2-0016:ledger, M2-0046:ledger, M2-0053:ledger, M2-0160:ledger, M2-0171:ledger, M2-0174:ledger, M2-0175:ledger, M2-0183:ledger, M2-0187:ledger, M2-0208:ledger |
 | r11:M2-SEC-01 | M2-SEC-01 | M2 | No shipped organizational master credentials | r11 | [M2-0056](ledger/tickets/M2-0056.md), [M2-0103](ledger/tickets/M2-0103.md), [M2-0162](ledger/tickets/M2-0162.md) | IN_PROGRESS | M2-0056:ledger, M2-0103:ledger, M2-0162:ledger |
 | r11:M2-SEC-02 | M2-SEC-02 | M2 | Effective auth/egress/tool/approval boundaries | r11 | [M2-0016](ledger/tickets/M2-0016.md), [M2-0060](ledger/tickets/M2-0060.md), [M2-0107](ledger/tickets/M2-0107.md), [M2-0121](ledger/tickets/M2-0121.md), [M2-0147](ledger/tickets/M2-0147.md), [M2-0159](ledger/tickets/M2-0159.md), [M2-0189](ledger/tickets/M2-0189.md) | IN_PROGRESS | M2-0016:ledger, M2-0060:ledger, M2-0107:ledger, M2-0121:ledger, M2-0147:ledger, M2-0159:ledger, M2-0189:ledger |
 | r11:M2-SET-01 | M2-SET-01 | M2 | Simple everyday Settings and progressive disclosure | r11 | [M2-0101](ledger/tickets/M2-0101.md), [M2-0117](ledger/tickets/M2-0117.md), [M2-0130](ledger/tickets/M2-0130.md), [M2-0142](ledger/tickets/M2-0142.md), [M2-0152](ledger/tickets/M2-0152.md), [M2-0176](ledger/tickets/M2-0176.md) | IN_PROGRESS | M2-0101:ledger, M2-0117:ledger, M2-0130:ledger, M2-0142:ledger, M2-0152:ledger, M2-0176:ledger |
@@ -402,7 +409,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:M2-SKILL-02 | M2-SKILL-02 | M2 | Server-side governed skill execution | r11 | [M2-0139](ledger/tickets/M2-0139.md), [M2-0141](ledger/tickets/M2-0141.md) | NOT_STARTED | M2-0139:ledger, M2-0141:ledger |
 | r11:M2-SKILL-03 | M2-SKILL-03 | M2 | Catalog freshness and attributable skill usage | r11 | [M2-0140](ledger/tickets/M2-0140.md), [M2-0141](ledger/tickets/M2-0141.md), [M2-0142](ledger/tickets/M2-0142.md), [M2-0176](ledger/tickets/M2-0176.md) | NOT_STARTED | M2-0140:ledger, M2-0141:ledger, M2-0142:ledger, M2-0176:ledger |
 | r11:M2-STT-01 | M2-STT-01 | M2 | Cloudflare default on all fresh 2.0 native platforms | r11 | [M2-0064](ledger/tickets/M2-0064.md), [M2-0112](ledger/tickets/M2-0112.md) | NOT_STARTED | M2-0064:ledger, M2-0112:ledger |
-| r11:M2-STT-02 | M2-STT-02 | M2 | Server-credentialed real-time speech session | r11 | [M2-0103](ledger/tickets/M2-0103.md), [M2-0107](ledger/tickets/M2-0107.md), [M2-0108](ledger/tickets/M2-0108.md), [M2-0111](ledger/tickets/M2-0111.md) | NOT_STARTED | M2-0103:ledger, M2-0107:ledger, M2-0108:ledger, M2-0111:ledger |
+| r11:M2-STT-02 | M2-STT-02 | M2 | Server-credentialed real-time speech session | r11 | [M2-0103](ledger/tickets/M2-0103.md), [M2-0107](ledger/tickets/M2-0107.md), [M2-0108](ledger/tickets/M2-0108.md), [M2-0111](ledger/tickets/M2-0111.md) | IN_PROGRESS | M2-0103:ledger, M2-0107:ledger, M2-0108:ledger, M2-0111:ledger |
 | r11:M2-STT-03 | M2-STT-03 | M2 | Efficient purpose-specific tracks and bounded streams | r11 | [M2-0080](ledger/tickets/M2-0080.md), [M2-0109](ledger/tickets/M2-0109.md), [M2-0113](ledger/tickets/M2-0113.md), [M2-0155](ledger/tickets/M2-0155.md), [M2-0166](ledger/tickets/M2-0166.md) | NOT_STARTED | M2-0080:ledger, M2-0109:ledger, M2-0113:ledger, M2-0155:ledger, M2-0166:ledger |
 | r11:M2-STT-04 | M2-STT-04 | M2 | Speech metering and actual provider/config provenance | r11 | [M2-0105](ledger/tickets/M2-0105.md), [M2-0106](ledger/tickets/M2-0106.md), [M2-0158](ledger/tickets/M2-0158.md) | NOT_STARTED | M2-0105:ledger, M2-0106:ledger, M2-0158:ledger |
 | r11:M2-TEAMS-01 | M2-TEAMS-01 | M2 | Teams app plus verified Entra identity | r11 | [M2-0121](ledger/tickets/M2-0121.md), [M2-0152](ledger/tickets/M2-0152.md) | NOT_STARTED | M2-0121:ledger, M2-0152:ledger |
@@ -411,31 +418,31 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:M2-TEAMS-04 | M2-TEAMS-04 | M2 | Visible consent-aware capture and audience-safe output | r11 | [M2-0154](ledger/tickets/M2-0154.md), [M2-0155](ledger/tickets/M2-0155.md), [M2-0157](ledger/tickets/M2-0157.md) | NOT_STARTED | M2-0154:ledger, M2-0155:ledger, M2-0157:ledger |
 | r11:M2-TEAMS-05 | M2-TEAMS-05 | M2 | Honest cross-platform meeting capability matrix | r11 | [M2-0151](ledger/tickets/M2-0151.md), [M2-0153](ledger/tickets/M2-0153.md), [M2-0156](ledger/tickets/M2-0156.md) | NOT_STARTED | M2-0151:ledger, M2-0153:ledger, M2-0156:ledger |
 | r11:M2-UX-01 | M2-UX-01 | M2 | Exact requested orb/beam/voice hierarchy | r11 | [M2-0093](ledger/tickets/M2-0093.md) | NOT_STARTED | M2-0093:ledger |
-| r11:M2-UX-02 | M2-UX-02 | M2 | Accessible stable right-edge/top-center UI | r11 | [M2-0036](ledger/tickets/M2-0036.md), [M2-0095](ledger/tickets/M2-0095.md), [M2-0117](ledger/tickets/M2-0117.md), [M2-0160](ledger/tickets/M2-0160.md), [M2-0202](ledger/tickets/M2-0202.md) | NOT_STARTED | M2-0036:ledger, M2-0095:ledger, M2-0117:ledger, M2-0160:ledger, M2-0202:ledger |
+| r11:M2-UX-02 | M2-UX-02 | M2 | Accessible stable right-edge/top-center UI | r11 | [M2-0036](ledger/tickets/M2-0036.md), [M2-0095](ledger/tickets/M2-0095.md), [M2-0117](ledger/tickets/M2-0117.md), [M2-0160](ledger/tickets/M2-0160.md), [M2-0202](ledger/tickets/M2-0202.md) | IN_PROGRESS | M2-0036:ledger, M2-0095:ledger, M2-0117:ledger, M2-0160:ledger, M2-0202:ledger |
 | r11:M2-VOICE-01 | M2-VOICE-01 | M2 | Trusted opt-in wake and single audio owner | r11 | [M2-0079](ledger/tickets/M2-0079.md), [M2-0080](ledger/tickets/M2-0080.md), [M2-0081](ledger/tickets/M2-0081.md) | NOT_STARTED | M2-0079:ledger, M2-0080:ledger, M2-0081:ledger |
 | r11:M2-VOICE-02 | M2-VOICE-02 | M2 | Fast visible command bar and local cancellation | r11 | [M2-0081](ledger/tickets/M2-0081.md), [M2-0093](ledger/tickets/M2-0093.md), [M2-0166](ledger/tickets/M2-0166.md) | NOT_STARTED | M2-0081:ledger, M2-0093:ledger, M2-0166:ledger |
-| r11:M2-WIN-01 | M2-WIN-01 | M2 | Qualified signed Windows 2.0 release | r11 | [M2-0058](ledger/tickets/M2-0058.md), [M2-0174](ledger/tickets/M2-0174.md) | NOT_STARTED | M2-0058:ledger, M2-0174:ledger |
+| r11:M2-WIN-01 | M2-WIN-01 | M2 | Qualified signed Windows 2.0 release | r11 | [M2-0058](ledger/tickets/M2-0058.md), [M2-0174](ledger/tickets/M2-0174.md) | BLOCKED_EXTERNAL | M2-0058:ledger, M2-0174:ledger |
 | r11:OBU-01 | OBU-01 | OBU | Baseline and source binding | r11 | [M2-0041](ledger/tickets/M2-0041.md), [M2-0160](ledger/tickets/M2-0160.md) | IN_PROGRESS | M2-0041:ledger, M2-0160:ledger |
 | r11:OBU-02 | OBU-02 | OBU | Media retirement and Tony slot | r11 | [M2-0160](ledger/tickets/M2-0160.md) | NOT_STARTED | M2-0160:ledger |
 | r11:OBU-03 | OBU-03 | OBU | Setup coaching | r11 | [M2-0160](ledger/tickets/M2-0160.md) | NOT_STARTED | M2-0160:ledger |
 | r11:OBU-04 | OBU-04 | OBU | Accessibility and copy | r11 | [M2-0160](ledger/tickets/M2-0160.md) | NOT_STARTED | M2-0160:ledger |
 | r11:OBU-05 | OBU-05 | OBU | Native and installed validation | r11 | [M2-0160](ledger/tickets/M2-0160.md) | NOT_STARTED | M2-0160:ledger |
-| r11:R01 | R01 | R | Métis main identity | r11 | [M2-0015](ledger/tickets/M2-0015.md) | NOT_STARTED | M2-0015:ledger |
+| r11:R01 | R01 | R | Métis main identity | r11 | [M2-0015](ledger/tickets/M2-0015.md) | ENGINEERING_COMPLETE | M2-0015:ledger |
 | r11:R02 | R02 | R | Prior architecture and readiness audit | r11 | [M2-0017](ledger/tickets/M2-0017.md) | DONE | M2-0017:ledger |
-| r11:R03 | R03 | R | Runtime asset inventory | r11 | [M2-0009](ledger/tickets/M2-0009.md) | NOT_STARTED | M2-0009:ledger |
+| r11:R03 | R03 | R | Runtime asset inventory | r11 | [M2-0009](ledger/tickets/M2-0009.md) | ENGINEERING_COMPLETE | M2-0009:ledger |
 | r11:R04 | R04 | R | Local model inventory | r11 | [M2-0115](ledger/tickets/M2-0115.md) | NOT_STARTED | M2-0115:ledger |
-| r11:R05 | R05 | R | Libraries.dev Orb documentation | r11 | [M2-0092](ledger/tickets/M2-0092.md) | IN_PROGRESS | M2-0092:ledger |
-| r11:R06 | R06 | R | Libraries.dev Beam documentation | r11 | [M2-0092](ledger/tickets/M2-0092.md) | IN_PROGRESS | M2-0092:ledger |
-| r11:R07 | R07 | R | Libraries.dev Voice documentation | r11 | [M2-0092](ledger/tickets/M2-0092.md) | IN_PROGRESS | M2-0092:ledger |
-| r11:R08 | R08 | R | ThinkingOrbsKit native package manifest | r11 | [M2-0092](ledger/tickets/M2-0092.md) | IN_PROGRESS | M2-0092:ledger |
-| r11:R09 | R09 | R | BorderBeamKit native package manifest | r11 | [M2-0092](ledger/tickets/M2-0092.md) | IN_PROGRESS | M2-0092:ledger |
+| r11:R05 | R05 | R | Libraries.dev Orb documentation | r11 | [M2-0092](ledger/tickets/M2-0092.md) | DONE | M2-0092:ledger |
+| r11:R06 | R06 | R | Libraries.dev Beam documentation | r11 | [M2-0092](ledger/tickets/M2-0092.md) | DONE | M2-0092:ledger |
+| r11:R07 | R07 | R | Libraries.dev Voice documentation | r11 | [M2-0092](ledger/tickets/M2-0092.md) | DONE | M2-0092:ledger |
+| r11:R08 | R08 | R | ThinkingOrbsKit native package manifest | r11 | [M2-0092](ledger/tickets/M2-0092.md) | DONE | M2-0092:ledger |
+| r11:R09 | R09 | R | BorderBeamKit native package manifest | r11 | [M2-0092](ledger/tickets/M2-0092.md) | DONE | M2-0092:ledger |
 | r11:R10 | R10 | R | Apple PCC eligibility and distribution | r11 | [M2-0175](ledger/tickets/M2-0175.md) | NOT_STARTED | M2-0175:ledger |
 | r11:R11 | R11 | R | Apple native PCC implementation session | r11 | [M2-0175](ledger/tickets/M2-0175.md) | NOT_STARTED | M2-0175:ledger |
 | r11:R12 | R12 | R | Apple PCC quota property | r11 | [M2-0175](ledger/tickets/M2-0175.md) | NOT_STARTED | M2-0175:ledger |
 | r11:R13 | R13 | R | Apple speech asset lifecycle | r11 | [M2-0175](ledger/tickets/M2-0175.md) | NOT_STARTED | M2-0175:ledger |
-| r11:R14 | R14 | R | Microsoft signing options and SmartScreen | r11 | [M2-0058](ledger/tickets/M2-0058.md) | NOT_STARTED | M2-0058:ledger |
-| r11:R15 | R15 | R | Codex official product documentation | r11 | [M2-0023](ledger/tickets/M2-0023.md) | NOT_STARTED | M2-0023:ledger |
-| r11:R16 | R16 | R | Cloudflare Nova-3 model interface | r11 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
+| r11:R14 | R14 | R | Microsoft signing options and SmartScreen | r11 | [M2-0058](ledger/tickets/M2-0058.md) | BLOCKED_EXTERNAL | M2-0058:ledger |
+| r11:R15 | R15 | R | Codex official product documentation | r11 | [M2-0023](ledger/tickets/M2-0023.md) | ENGINEERING_COMPLETE | M2-0023:ledger |
+| r11:R16 | R16 | R | Cloudflare Nova-3 model interface | r11 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
 | r11:R17 | R17 | R | electron-builder NSIS/web installer | r11 | [M2-0164](ledger/tickets/M2-0164.md) | NOT_STARTED | M2-0164:ledger |
 | r11:R18 | R18 | R | electron-builder security/hardening | r11 | [M2-0056](ledger/tickets/M2-0056.md) | DONE | M2-0056:ledger |
 | r11:R19 | R19 | R | Cloudflare R2 presigned URLs | r11 | [M2-0162](ledger/tickets/M2-0162.md) | NOT_STARTED | M2-0162:ledger |
@@ -454,20 +461,20 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:R32 | R32 | R | Jev Rules | r11 | [M2-0123](ledger/tickets/M2-0123.md) | NOT_STARTED | M2-0123:ledger |
 | r11:R33 | R33 | R | Skillbox | r11 | [M2-0139](ledger/tickets/M2-0139.md) | NOT_STARTED | M2-0139:ledger |
 | r11:R34 | R34 | R | TypeSafe MCP | r11 | [M2-0123](ledger/tickets/M2-0123.md) | NOT_STARTED | M2-0123:ledger |
-| r11:R35 | R35 | R | Code-review-graph requested fork | r11 | [M2-0011](ledger/tickets/M2-0011.md) | IN_PROGRESS | M2-0011:ledger |
+| r11:R35 | R35 | R | Code-review-graph requested fork | r11 | [M2-0011](ledger/tickets/M2-0011.md) | ENGINEERING_COMPLETE | M2-0011:ledger |
 | r11:R36 | R36 | R | Graphify requested fork | r11 | [M2-0126](ledger/tickets/M2-0126.md) | NOT_STARTED | M2-0126:ledger |
-| r11:R37 | R37 | R | Ponytail | r11 | [M2-0059](ledger/tickets/M2-0059.md) | NOT_STARTED | M2-0059:ledger |
+| r11:R37 | R37 | R | Ponytail | r11 | [M2-0059](ledger/tickets/M2-0059.md) | ENGINEERING_COMPLETE | M2-0059:ledger |
 | r11:R38 | R38 | R | Jev shell history | r11 | [M2-0123](ledger/tickets/M2-0123.md) | NOT_STARTED | M2-0123:ledger |
-| r11:R39 | R39 | R | Microsoft SignTool | r11 | [M2-0058](ledger/tickets/M2-0058.md) | NOT_STARTED | M2-0058:ledger |
-| r11:R40 | R40 | R | User-provided Operator entry point | r11 | [M2-0014](ledger/tickets/M2-0014.md) | IN_PROGRESS | M2-0014:ledger |
+| r11:R39 | R39 | R | Microsoft SignTool | r11 | [M2-0058](ledger/tickets/M2-0058.md) | BLOCKED_EXTERNAL | M2-0058:ledger |
+| r11:R40 | R40 | R | User-provided Operator entry point | r11 | [M2-0014](ledger/tickets/M2-0014.md) | ENGINEERING_COMPLETE | M2-0014:ledger |
 | r11:R41 | R41 | R | User-provided visual/video assets | r11 | [M2-0160](ledger/tickets/M2-0160.md) | NOT_STARTED | M2-0160:ledger |
-| r11:R42 | R42 | R | Cloudflare Workers AI data use | r11 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
-| r11:R43 | R43 | R | AI Gateway logging controls | r11 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
-| r11:R44 | R44 | R | AI Gateway response caching | r11 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
-| r11:R45 | R45 | R | Cloudflare real-time WebSocket routes | r11 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
-| r11:R46 | R46 | R | Cloudflare Worker binding gateway methods | r11 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
-| r11:R47 | R47 | R | Unified Billing ZDR scope | r11 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
-| r11:R48 | R48 | R | Direct Deepgram data-policy comparison | r11 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
+| r11:R42 | R42 | R | Cloudflare Workers AI data use | r11 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
+| r11:R43 | R43 | R | AI Gateway logging controls | r11 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
+| r11:R44 | R44 | R | AI Gateway response caching | r11 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
+| r11:R45 | R45 | R | Cloudflare real-time WebSocket routes | r11 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
+| r11:R46 | R46 | R | Cloudflare Worker binding gateway methods | r11 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
+| r11:R47 | R47 | R | Unified Billing ZDR scope | r11 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
+| r11:R48 | R48 | R | Direct Deepgram data-policy comparison | r11 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
 | r11:R49 | R49 | R | Current speech default resolver | r11 | [M2-0112](ledger/tickets/M2-0112.md) | NOT_STARTED | M2-0112:ledger |
 | r11:R50 | R50 | R | Current speech credential resolution | r11 | [M2-0107](ledger/tickets/M2-0107.md) | NOT_STARTED | M2-0107:ledger |
 | r11:R51 | R51 | R | Current live speech session | r11 | [M2-0109](ledger/tickets/M2-0109.md) | NOT_STARTED | M2-0109:ledger |
@@ -491,36 +498,36 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:R69 | R69 | R | EDPB lawful processing and employee consent | r11 | [M2-0150](ledger/tickets/M2-0150.md) | NOT_STARTED | M2-0150:ledger |
 | r11:R70 | R70 | R | Data Protection Commission readiness checklist | r11 | [M2-0150](ledger/tickets/M2-0150.md) | NOT_STARTED | M2-0150:ledger |
 | r11:R71 | R71 | R | EDPB legal basis overview | r11 | [M2-0150](ledger/tickets/M2-0150.md) | NOT_STARTED | M2-0150:ledger |
-| r11:R72 | R72 | R | Recovered original Métis implementation brief | r11 | [M2-0015](ledger/tickets/M2-0015.md) | NOT_STARTED | M2-0015:ledger |
+| r11:R72 | R72 | R | Recovered original Métis implementation brief | r11 | [M2-0015](ledger/tickets/M2-0015.md) | ENGINEERING_COMPLETE | M2-0015:ledger |
 | r11:R73 | R73 | R | Recovered original Jev integration plan | r11 | [M2-0123](ledger/tickets/M2-0123.md) | NOT_STARTED | M2-0123:ledger |
-| r11:R74 | R74 | R | Original Claude artifact: access remains unresolved | r11 | [M2-0012](ledger/tickets/M2-0012.md) | NOT_STARTED | M2-0012:ledger |
+| r11:R74 | R74 | R | Original Claude artifact: access remains unresolved | r11 | [M2-0012](ledger/tickets/M2-0012.md) | ENGINEERING_COMPLETE | M2-0012:ledger |
 | r11:R75 | R75 | R | CodeNotch original interaction reference | r11 | [M2-0093](ledger/tickets/M2-0093.md) | NOT_STARTED | M2-0093:ledger |
 | r11:R76 | R76 | R | TypeSafe state and independent questions | r11 | [M2-0123](ledger/tickets/M2-0123.md) | NOT_STARTED | M2-0123:ledger |
 | r11:R77 | R77 | R | TypeSafe API reference | r11 | [M2-0123](ledger/tickets/M2-0123.md) | NOT_STARTED | M2-0123:ledger |
-| r11:R78 | R78 | R | Libraries.dev Orb / Beam / Voice — r6 UI contract recheck | r11 | [M2-0092](ledger/tickets/M2-0092.md) | IN_PROGRESS | M2-0092:ledger |
+| r11:R78 | R78 | R | Libraries.dev Orb / Beam / Voice — r6 UI contract recheck | r11 | [M2-0092](ledger/tickets/M2-0092.md) | DONE | M2-0092:ledger |
 | r11:R79 | R79 | R | W3C APG button semantics — r6 keyboard reference | r11 | [M2-0077](ledger/tickets/M2-0077.md) | NOT_STARTED | M2-0077:ledger |
-| r11:R80 | R80 | R | Uploaded current source export and owner map | r11 | [M2-0013](ledger/tickets/M2-0013.md) | IN_PROGRESS | M2-0013:ledger |
+| r11:R80 | R80 | R | Uploaded current source export and owner map | r11 | [M2-0013](ledger/tickets/M2-0013.md) | ENGINEERING_COMPLETE | M2-0013:ledger |
 | r11:R81 | R81 | R | Granola official product | r11 | [M2-0114](ledger/tickets/M2-0114.md), [M2-0185](ledger/tickets/M2-0185.md) | NOT_STARTED | M2-0114:ledger, M2-0185:ledger |
 | r11:R82 | R82 | R | Granola enhanced-note provenance | r11 | [M2-0114](ledger/tickets/M2-0114.md), [M2-0185](ledger/tickets/M2-0185.md) | NOT_STARTED | M2-0114:ledger, M2-0185:ledger |
 | r11:R83 | R83 | R | Cluely official product | r11 | [M2-0114](ledger/tickets/M2-0114.md), [M2-0185](ledger/tickets/M2-0185.md) | NOT_STARTED | M2-0114:ledger, M2-0185:ledger |
 | r11:R84 | R84 | R | Plaud product capabilities | r11 | [M2-0114](ledger/tickets/M2-0114.md), [M2-0185](ledger/tickets/M2-0185.md) | NOT_STARTED | M2-0114:ledger, M2-0185:ledger |
 | r11:R85 | R85 | R | Demodesk CRM Concierge | r11 | [M2-0114](ledger/tickets/M2-0114.md), [M2-0185](ledger/tickets/M2-0185.md) | NOT_STARTED | M2-0114:ledger, M2-0185:ledger |
-| r11:R86 | R86 | R | Libraries.dev solving geometry and presets | r11 | [M2-0092](ledger/tickets/M2-0092.md) | IN_PROGRESS | M2-0092:ledger |
-| r11:R87 | R87 | R | Cloudflare content handling and logging | r11 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
+| r11:R86 | R86 | R | Libraries.dev solving geometry and presets | r11 | [M2-0092](ledger/tickets/M2-0092.md) | DONE | M2-0092:ledger |
+| r11:R87 | R87 | R | Cloudflare content handling and logging | r11 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
 | r11:R88 | R88 | R | Supplied HeyClicky installer and static artifact study | r11 | [M2-0082](ledger/tickets/M2-0082.md) | NOT_STARTED | M2-0082:ledger |
 | r11:R89 | R89 | R | HeyClicky official versioned product documentation | r11 | [M2-0082](ledger/tickets/M2-0082.md) | NOT_STARTED | M2-0082:ledger |
-| r11:R90 | R90 | R | Official Codex project instructions | r11 | [M2-0023](ledger/tickets/M2-0023.md) | NOT_STARTED | M2-0023:ledger |
-| r11:R91 | R91 | R | Official Codex worktree guidance | r11 | [M2-0023](ledger/tickets/M2-0023.md) | NOT_STARTED | M2-0023:ledger |
-| r11:R92 | R92 | R | Official Claude model configuration | r11 | [M2-0023](ledger/tickets/M2-0023.md) | NOT_STARTED | M2-0023:ledger |
-| r11:R93 | R93 | R | Official Claude programmatic and CLI reference | r11 | [M2-0023](ledger/tickets/M2-0023.md) | NOT_STARTED | M2-0023:ledger |
-| r11:SRC-01 | SRC-01 | SRC | Do not mistake a source export for a complete checkout | r11 | [M2-0005](ledger/tickets/M2-0005.md), [M2-0013](ledger/tickets/M2-0013.md), [M2-0015](ledger/tickets/M2-0015.md) | IN_PROGRESS | M2-0005:ledger, M2-0013:ledger, M2-0015:ledger |
+| r11:R90 | R90 | R | Official Codex project instructions | r11 | [M2-0023](ledger/tickets/M2-0023.md) | ENGINEERING_COMPLETE | M2-0023:ledger |
+| r11:R91 | R91 | R | Official Codex worktree guidance | r11 | [M2-0023](ledger/tickets/M2-0023.md) | ENGINEERING_COMPLETE | M2-0023:ledger |
+| r11:R92 | R92 | R | Official Claude model configuration | r11 | [M2-0023](ledger/tickets/M2-0023.md) | ENGINEERING_COMPLETE | M2-0023:ledger |
+| r11:R93 | R93 | R | Official Claude programmatic and CLI reference | r11 | [M2-0023](ledger/tickets/M2-0023.md) | ENGINEERING_COMPLETE | M2-0023:ledger |
+| r11:SRC-01 | SRC-01 | SRC | Do not mistake a source export for a complete checkout | r11 | [M2-0005](ledger/tickets/M2-0005.md), [M2-0013](ledger/tickets/M2-0013.md), [M2-0015](ledger/tickets/M2-0015.md) | ENGINEERING_COMPLETE | M2-0005:ledger, M2-0013:ledger, M2-0015:ledger |
 | r11:SRC-02 | SRC-02 | SRC | Separate entitlement authority from telemetry and legacy licensing | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0062](ledger/tickets/M2-0062.md), [M2-0146](ledger/tickets/M2-0146.md) | IN_PROGRESS | M2-0013:ledger, M2-0062:ledger, M2-0146:ledger |
 | r11:SRC-03 | SRC-03 | SRC | Apply the Jev decision instead of discarding it | r11 | [M2-0122](ledger/tickets/M2-0122.md) | NOT_STARTED | M2-0122:ledger |
 | r11:SRC-04 | SRC-04 | SRC | Execution result and exception handling must control completion | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0083](ledger/tickets/M2-0083.md) | IN_PROGRESS | M2-0013:ledger, M2-0083:ledger |
 | r11:SRC-05 | SRC-05 | SRC | Exact note, camera and close operations need real adapters | r11 | [M2-0081](ledger/tickets/M2-0081.md), [M2-0084](ledger/tickets/M2-0084.md) | NOT_STARTED | M2-0081:ledger, M2-0084:ledger |
 | r11:SRC-06 | SRC-06 | SRC | Text matching is not wake-word capture | r11 | [M2-0041](ledger/tickets/M2-0041.md), [M2-0081](ledger/tickets/M2-0081.md) | IN_PROGRESS | M2-0041:ledger, M2-0081:ledger |
 | r11:SRC-07 | SRC-07 | SRC | Speech credentials must move behind the session broker | r11 | [M2-0107](ledger/tickets/M2-0107.md) | NOT_STARTED | M2-0107:ledger |
-| r11:SRC-08 | SRC-08 | SRC | Gateway creation cannot certify privacy readiness | r11 | [M2-0041](ledger/tickets/M2-0041.md), [M2-0104](ledger/tickets/M2-0104.md) | IN_PROGRESS | M2-0041:ledger, M2-0104:ledger |
+| r11:SRC-08 | SRC-08 | SRC | Gateway creation cannot certify privacy readiness | r11 | [M2-0041](ledger/tickets/M2-0041.md), [M2-0104](ledger/tickets/M2-0104.md) | ENGINEERING_COMPLETE | M2-0041:ledger, M2-0104:ledger |
 | r11:SRC-09 | SRC-09 | SRC | Legacy embedded credentials and pilot profiles must not leak into 2.0 | r11 | [M2-0056](ledger/tickets/M2-0056.md) | DONE | M2-0056:ledger |
 | r11:SRC-10 | SRC-10 | SRC | Preserve authoritative usage and complete aggregates | r11 | [M2-0041](ledger/tickets/M2-0041.md), [M2-0106](ledger/tickets/M2-0106.md) | IN_PROGRESS | M2-0041:ledger, M2-0106:ledger |
 | r11:SRC-11 | SRC-11 | SRC | Native persistence must not hide loss or retain forbidden transcripts | r11 | [M2-0118](ledger/tickets/M2-0118.md) | NOT_STARTED | M2-0118:ledger |
@@ -531,25 +538,25 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:SRC-16 | SRC-16 | SRC | Profile-aware package gates, OS descriptions and documentation must change together | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0164](ledger/tickets/M2-0164.md) | IN_PROGRESS | M2-0013:ledger, M2-0164:ledger |
 | r11:SRC-17 | SRC-17 | SRC | A development-store seam is not production durability | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0159](ledger/tickets/M2-0159.md) | IN_PROGRESS | M2-0013:ledger, M2-0159:ledger |
 | r11:SRC-18 | SRC-18 | SRC | Mirror-safe release delivery is a first-class gate | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0053](ledger/tickets/M2-0053.md), [M2-0168](ledger/tickets/M2-0168.md) | IN_PROGRESS | M2-0013:ledger, M2-0053:ledger, M2-0168:ledger |
-| r11:SRC-19 | SRC-19 | SRC | Secret scans must not exclude entire tests and documentation trees | r11 | [M2-0049](ledger/tickets/M2-0049.md) | NOT_STARTED | M2-0049:ledger |
-| r11:SRC-20 | SRC-20 | SRC | Failed cloud inventory is not an empty account | r11 | [M2-0103](ledger/tickets/M2-0103.md) | NOT_STARTED | M2-0103:ledger |
+| r11:SRC-19 | SRC-19 | SRC | Secret scans must not exclude entire tests and documentation trees | r11 | [M2-0049](ledger/tickets/M2-0049.md) | ENGINEERING_COMPLETE | M2-0049:ledger |
+| r11:SRC-20 | SRC-20 | SRC | Failed cloud inventory is not an empty account | r11 | [M2-0103](ledger/tickets/M2-0103.md) | ENGINEERING_COMPLETE | M2-0103:ledger |
 | r11:SRC-21 | SRC-21 | SRC | Capture privacy copy must cover screenshots, titles, URLs and helpers too | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0105](ledger/tickets/M2-0105.md) | IN_PROGRESS | M2-0013:ledger, M2-0105:ledger |
 | r11:SRC-22 | SRC-22 | SRC | Preserve tailored recaps and human edits when moving skills server-side | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0141](ledger/tickets/M2-0141.md) | IN_PROGRESS | M2-0013:ledger, M2-0141:ledger |
 | r11:SRC-23 | SRC-23 | SRC | Dust connector checklists do not prove canonical read/write | r11 | [M2-0013](ledger/tickets/M2-0013.md), [M2-0128](ledger/tickets/M2-0128.md) | IN_PROGRESS | M2-0013:ledger, M2-0128:ledger |
 | r11:SRC-24 | SRC-24 | SRC | Every workspace needs a real test/build/release coverage owner | r11 | [M2-0005](ledger/tickets/M2-0005.md), [M2-0013](ledger/tickets/M2-0013.md), [M2-0050](ledger/tickets/M2-0050.md), [M2-0063](ledger/tickets/M2-0063.md) | IN_PROGRESS | M2-0005:ledger, M2-0013:ledger, M2-0050:ledger, M2-0063:ledger |
-| r11:TASK-001 | TASK-001 | TASK | Pin the actual system and preserve the working tree | r11 | [M2-0015](ledger/tickets/M2-0015.md) | NOT_STARTED | M2-0015:ledger |
-| r11:TASK-002 | TASK-002 | TASK | Lock the PRD, effective policies and independent release lanes | r11 | [M2-0016](ledger/tickets/M2-0016.md), [M2-0189](ledger/tickets/M2-0189.md) | IN_PROGRESS | M2-0016:ledger, M2-0189:ledger |
-| r11:TASK-003 | TASK-003 | TASK | Establish a compact source map and numbered handoff | r11 | [M2-0011](ledger/tickets/M2-0011.md) | IN_PROGRESS | M2-0011:ledger |
-| r11:TASK-004 | TASK-004 | TASK | Measure size, capture and hardware baselines | r11 | [M2-0009](ledger/tickets/M2-0009.md) | NOT_STARTED | M2-0009:ledger |
+| r11:TASK-001 | TASK-001 | TASK | Pin the actual system and preserve the working tree | r11 | [M2-0015](ledger/tickets/M2-0015.md) | ENGINEERING_COMPLETE | M2-0015:ledger |
+| r11:TASK-002 | TASK-002 | TASK | Lock the PRD, effective policies and independent release lanes | r11 | [M2-0016](ledger/tickets/M2-0016.md), [M2-0189](ledger/tickets/M2-0189.md) | ENGINEERING_COMPLETE | M2-0016:ledger, M2-0189:ledger |
+| r11:TASK-003 | TASK-003 | TASK | Establish a compact source map and numbered handoff | r11 | [M2-0011](ledger/tickets/M2-0011.md) | ENGINEERING_COMPLETE | M2-0011:ledger |
+| r11:TASK-004 | TASK-004 | TASK | Measure size, capture and hardware baselines | r11 | [M2-0009](ledger/tickets/M2-0009.md) | ENGINEERING_COMPLETE | M2-0009:ledger |
 | r11:TASK-005 | TASK-005 | TASK | Define shared speech, command, policy and metering contracts | r11 | [M2-0064](ledger/tickets/M2-0064.md) | NOT_STARTED | M2-0064:ledger |
 | r11:TASK-006 | TASK-006 | TASK | Establish cross-surface Entra and service identity | r11 | [M2-0121](ledger/tickets/M2-0121.md) | NOT_STARTED | M2-0121:ledger |
 | r11:TASK-007 | TASK-007 | TASK | Lock canonical knowledge, provenance and storage authority | r11 | [M2-0120](ledger/tickets/M2-0120.md) | ENGINEERING_COMPLETE | M2-0120:ledger |
-| r11:TASK-008 | TASK-008 | TASK | Design the simplified Settings inventory and task flows | r11 | [M2-0101](ledger/tickets/M2-0101.md) | DONE | M2-0101:ledger |
+| r11:TASK-008 | TASK-008 | TASK | Design the simplified Settings inventory and task flows | r11 | [M2-0101](ledger/tickets/M2-0101.md) | ENGINEERING_COMPLETE | M2-0101:ledger |
 | r11:TASK-009 | TASK-009 | TASK | Define centrally governed skill contracts and runtime boundaries | r11 | [M2-0139](ledger/tickets/M2-0139.md) | NOT_STARTED | M2-0139:ledger |
 | r11:TASK-010 | TASK-010 | TASK | Qualify meeting APIs, capture permissions and legal prerequisites | r11 | [M2-0151](ledger/tickets/M2-0151.md) | NOT_STARTED | M2-0151:ledger |
-| r11:TASK-011 | TASK-011 | TASK | Qualify the exact Cloudflare hosting and privacy route | r11 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
-| r11:TASK-012 | TASK-012 | TASK | Prepare authorized Cloudflare staging and server credentials | r11 | [M2-0103](ledger/tickets/M2-0103.md) | NOT_STARTED | M2-0103:ledger |
-| r11:TASK-013 | TASK-013 | TASK | Disable speech content logs and caches before capture tests | r11 | [M2-0104](ledger/tickets/M2-0104.md) | NOT_STARTED | M2-0104:ledger |
+| r11:TASK-011 | TASK-011 | TASK | Qualify the exact Cloudflare hosting and privacy route | r11 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
+| r11:TASK-012 | TASK-012 | TASK | Prepare authorized Cloudflare staging and server credentials | r11 | [M2-0103](ledger/tickets/M2-0103.md) | ENGINEERING_COMPLETE | M2-0103:ledger |
+| r11:TASK-013 | TASK-013 | TASK | Disable speech content logs and caches before capture tests | r11 | [M2-0104](ledger/tickets/M2-0104.md) | ENGINEERING_COMPLETE | M2-0104:ledger |
 | r11:TASK-014 | TASK-014 | TASK | Implement the authenticated speech-session broker | r11 | [M2-0107](ledger/tickets/M2-0107.md) | NOT_STARTED | M2-0107:ledger |
 | r11:TASK-015 | TASK-015 | TASK | Make diagnostics and metering projections content-free | r11 | [M2-0105](ledger/tickets/M2-0105.md) | NOT_STARTED | M2-0105:ledger |
 | r11:TASK-016 | TASK-016 | TASK | Connect the real Cloudflare Nova-3 server transport | r11 | [M2-0108](ledger/tickets/M2-0108.md) | NOT_STARTED | M2-0108:ledger |
@@ -611,11 +618,11 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:TASK-058 | TASK-058 | TASK | Complete governance, subject rights and sharing qualification | r11 | [M2-0150](ledger/tickets/M2-0150.md) | NOT_STARTED | M2-0150:ledger |
 | r11:TASK-059 | TASK-059 | TASK | Qualify optional local packs on actual device classes | r11 | [M2-0165](ledger/tickets/M2-0165.md) | NOT_STARTED | M2-0165:ledger |
 | r11:TASK-060 | TASK-060 | TASK | Tune speed and footprint against the recorded baseline | r11 | [M2-0166](ledger/tickets/M2-0166.md) | NOT_STARTED | M2-0166:ledger |
-| r11:TASK-061 | TASK-061 | TASK | Apply the supplied refactoring skill in bounded slices | r11 | [M2-0059](ledger/tickets/M2-0059.md) | NOT_STARTED | M2-0059:ledger |
+| r11:TASK-061 | TASK-061 | TASK | Apply the supplied refactoring skill in bounded slices | r11 | [M2-0059](ledger/tickets/M2-0059.md) | ENGINEERING_COMPLETE | M2-0059:ledger |
 | r11:TASK-062 | TASK-062 | TASK | Exercise production operations, staging and recovery | r11 | [M2-0159](ledger/tickets/M2-0159.md) | NOT_STARTED | M2-0159:ledger |
 | r11:TASK-063 | TASK-063 | TASK | Build, sign, freeze and qualify the immutable candidate family | r11 | [M2-0173](ledger/tickets/M2-0173.md) | NOT_STARTED | M2-0173:ledger |
-| r11:TASK-063.WIN | TASK-063.WIN | SLICE | Sign/freeze/test the candidate. Apple public-signing state is excluded; missing required Windows/shared controls are no… | r11 | [M2-0173](ledger/tickets/M2-0173.md), [M2-0211](ledger/tickets/M2-0211.md) | NOT_STARTED | M2-0173:ledger, M2-0211:ledger |
-| r11:TASK-064 | TASK-064 | TASK | Verify and publish the already signed Windows candidate | r11 | [M2-0174](ledger/tickets/M2-0174.md) | NOT_STARTED | M2-0174:ledger |
+| r11:TASK-063.WIN | TASK-063.WIN | SLICE | Sign/freeze/test the candidate. Apple public-signing state is excluded; missing required Windows/shared controls are no… | r11 | [M2-0173](ledger/tickets/M2-0173.md), [M2-0211](ledger/tickets/M2-0211.md) | BLOCKED_EXTERNAL | M2-0173:ledger, M2-0211:ledger |
+| r11:TASK-064 | TASK-064 | TASK | Verify and publish the already signed Windows candidate | r11 | [M2-0174](ledger/tickets/M2-0174.md) | BLOCKED_EXTERNAL | M2-0174:ledger |
 | r11:TASK-065 | TASK-065 | TASK | Finalize native Mac QA and its separate Apple publication decision | r11 | [M2-0175](ledger/tickets/M2-0175.md), [M2-0186](ledger/tickets/M2-0186.md) | NOT_STARTED | M2-0175:ledger, M2-0186:ledger |
 | r11:TASK-066 | TASK-066 | TASK | Deliver final re-audit, exact evidence and resumable handoff | r11 | [M2-0183](ledger/tickets/M2-0183.md) | NOT_STARTED | M2-0183:ledger |
 | r11:UC-001 | UC-001 | UC | Say “Hey Métis.” | r11 | [M2-0081](ledger/tickets/M2-0081.md) | NOT_STARTED | M2-0081:ledger |
@@ -685,7 +692,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | r11:UC-065 | UC-065 | UC | Fresh Windows/native Mac user opens Speech Settings. | r11 | [M2-0107](ledger/tickets/M2-0107.md), [M2-0112](ledger/tickets/M2-0112.md) | NOT_STARTED | M2-0107:ledger, M2-0112:ledger |
 | r11:UC-066 | UC-066 | UC | Say a command while no meeting is active. | r11 | [M2-0107](ledger/tickets/M2-0107.md) | NOT_STARTED | M2-0107:ledger |
 | r11:UC-067 | UC-067 | UC | The user remains silent before wake. | r11 | [M2-0107](ledger/tickets/M2-0107.md) | NOT_STARTED | M2-0107:ledger |
-| r11:UC-068 | UC-068 | UC | Speech route logging/cache configuration drifts. | r11 | [M2-0104](ledger/tickets/M2-0104.md) | NOT_STARTED | M2-0104:ledger |
+| r11:UC-068 | UC-068 | UC | Speech route logging/cache configuration drifts. | r11 | [M2-0104](ledger/tickets/M2-0104.md) | ENGINEERING_COMPLETE | M2-0104:ledger |
 | r11:UC-069 | UC-069 | UC | Cloudflare or its entitlement is unavailable. | r11 | [M2-0107](ledger/tickets/M2-0107.md) | NOT_STARTED | M2-0107:ledger |
 | r11:UC-070 | UC-070 | UC | User opens Optional local models on a low-memory device. | r11 | [M2-0115](ledger/tickets/M2-0115.md) | NOT_STARTED | M2-0115:ledger |
 | r11:UC-071 | UC-071 | UC | User explicitly installs a recommended offline speech pack. | r11 | [M2-0117](ledger/tickets/M2-0117.md) | NOT_STARTED | M2-0117:ledger |
@@ -820,7 +827,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | v5:CXCAP-28 | CXCAP-28 | CXCAP | Public skill-authoring screen | v5 | [M2-0142](ledger/tickets/M2-0142.md) | NOT_STARTED | M2-0142:ledger |
 | v5:CXCAP-29 | CXCAP-29 | CXCAP | Driver recording/replay automation | v5 | [M2-0082](ledger/tickets/M2-0082.md) | NOT_STARTED | M2-0082:ledger |
 | v5:CXCAP-30 | CXCAP-30 | CXCAP | Universal support for every application | v5 | [M2-0082](ledger/tickets/M2-0082.md) | NOT_STARTED | M2-0082:ledger |
-| v5:CXSTEP-01 | CXSTEP-01 | CXSTEP | Establish current source and reconcile the feature evidence | v5 | [M2-0019](ledger/tickets/M2-0019.md) | NOT_STARTED | M2-0019:ledger |
+| v5:CXSTEP-01 | CXSTEP-01 | CXSTEP | Establish current source and reconcile the feature evidence | v5 | [M2-0019](ledger/tickets/M2-0019.md) | ENGINEERING_COMPLETE | M2-0019:ledger |
 | v5:CXSTEP-02 | CXSTEP-02 | CXSTEP | Define one interaction session and revocable action authority | v5 | [M2-0079](ledger/tickets/M2-0079.md) | NOT_STARTED | M2-0079:ledger |
 | v5:CXSTEP-03 | CXSTEP-03 | CXSTEP | Complete click-to-talk and interruptible spoken replies | v5 | [M2-0087](ledger/tickets/M2-0087.md) | NOT_STARTED | M2-0087:ledger |
 | v5:CXSTEP-04 | CXSTEP-04 | CXSTEP | Bind context to the selected window, field and source | v5 | [M2-0088](ledger/tickets/M2-0088.md) | NOT_STARTED | M2-0088:ledger |
@@ -840,7 +847,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | v5:CXSTEP-18 | CXSTEP-18 | CXSTEP | Package lean clients and complete native platform behavior | v5 | [M2-0164](ledger/tickets/M2-0164.md) | NOT_STARTED | M2-0164:ledger |
 | v5:CXSTEP-19 | CXSTEP-19 | CXSTEP | Run full behavior, abuse, accessibility and performance qualification | v5 | [M2-0177](ledger/tickets/M2-0177.md) | NOT_STARTED | M2-0177:ledger |
 | v5:CXSTEP-20 | CXSTEP-20 | CXSTEP | Converge the full r11 upgrade and prepare separate releases | v5 | [M2-0177](ledger/tickets/M2-0177.md) | NOT_STARTED | M2-0177:ledger |
-| v5:HMS-INTEGRATION | HMS-INTEGRATION | HMS | Adopt the supplied Hindsight skill under existing HMSTEP memory work | v5 | [M2-0019](ledger/tickets/M2-0019.md), [M2-0137](ledger/tickets/M2-0137.md) | NOT_STARTED | M2-0019:ledger, M2-0137:ledger |
+| v5:HMS-INTEGRATION | HMS-INTEGRATION | HMS | Adopt the supplied Hindsight skill under existing HMSTEP memory work | v5 | [M2-0019](ledger/tickets/M2-0019.md), [M2-0137](ledger/tickets/M2-0137.md) | IN_PROGRESS | M2-0019:ledger, M2-0137:ledger |
 | v5:HSAC-01 | HSAC-01 | HSAC | Portable skill loads whole references | v5 | [M2-0137](ledger/tickets/M2-0137.md) | NOT_STARTED | M2-0137:ledger |
 | v5:HSAC-02 | HSAC-02 | HSAC | Keyboard visibility has no memory side effects | v5 | [M2-0096](ledger/tickets/M2-0096.md) | NOT_STARTED | M2-0096:ledger |
 | v5:HSAC-03 | HSAC-03 | HSAC | Memory failure preserves notes | v5 | [M2-0137](ledger/tickets/M2-0137.md) | NOT_STARTED | M2-0137:ledger |
@@ -961,7 +968,7 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | v5:S1 | S1 | S | Vendor behavioral reference; not a test of their app. Latest page entry inspected: 1.0.52, 24 September 2026. | v5 | [M2-0082](ledger/tickets/M2-0082.md) | NOT_STARTED | M2-0082:ledger |
 | v5:S2 | S2 | S | Voice interruption and client-owned playback/truncation. Does not change the required Cloudflare-first route. | v5 | [M2-0087](ledger/tickets/M2-0087.md) | NOT_STARTED | M2-0087:ledger |
 | v5:S3 | S3 | S | Authenticated IPC sender validation, isolation and restricted bridge exposure. | v5 | [M2-0060](ledger/tickets/M2-0060.md) | NOT_STARTED | M2-0060:ledger |
-| v5:S4 | S4 | S | Candidate real-time speech path availability; actual tenant, privacy and performance qualification remains mandatory. | v5 | [M2-0102](ledger/tickets/M2-0102.md) | IN_PROGRESS | M2-0102:ledger |
+| v5:S4 | S4 | S | Candidate real-time speech path availability; actual tenant, privacy and performance qualification remains mandatory. | v5 | [M2-0102](ledger/tickets/M2-0102.md) | ENGINEERING_COMPLETE | M2-0102:ledger |
 | v6:LF-01 | LF-01 | LF | Stay in the conversation. | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
 | v6:LF-02 | LF-02 | LF | Notes become useful. | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
 | v6:LF-03 | LF-03 | LF | One key away. | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
@@ -970,18 +977,18 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | v6:LF-06 | LF-06 | LF | Pick up with context. | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
 | v6:LF-07 | LF-07 | LF | Still your call. | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
 | v6:LF-08 | LF-08 | LF | Stay present. Carry it forward. | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
-| v6:LFAC-01 | LFAC-01 | LFAC | Product identity | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0178:ledger, M2-0182:ledger |
-| v6:LFAC-02 | LFAC-02 | LFAC | Source and claims | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0178:ledger, M2-0182:ledger |
+| v6:LFAC-01 | LFAC-01 | LFAC | Product identity | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | IN_PROGRESS | M2-0178:ledger, M2-0182:ledger |
+| v6:LFAC-02 | LFAC-02 | LFAC | Source and claims | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | IN_PROGRESS | M2-0178:ledger, M2-0182:ledger |
 | v6:LFAC-03 | LFAC-03 | LFAC | Keyboard continuity | v6 | [M2-0179](ledger/tickets/M2-0179.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0179:ledger, M2-0182:ledger |
-| v6:LFAC-04 | LFAC-04 | LFAC | Hindsight proof | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0178:ledger, M2-0182:ledger |
-| v6:LFAC-05 | LFAC-05 | LFAC | Approval/result truth | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0178:ledger, M2-0182:ledger |
+| v6:LFAC-04 | LFAC-04 | LFAC | Hindsight proof | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | IN_PROGRESS | M2-0178:ledger, M2-0182:ledger |
+| v6:LFAC-05 | LFAC-05 | LFAC | Approval/result truth | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | IN_PROGRESS | M2-0178:ledger, M2-0182:ledger |
 | v6:LFAC-06 | LFAC-06 | LFAC | Original branding and assets | v6 | [M2-0180](ledger/tickets/M2-0180.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0180:ledger, M2-0182:ledger |
 | v6:LFAC-07 | LFAC-07 | LFAC | Storyboard | v6 | [M2-0180](ledger/tickets/M2-0180.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0180:ledger, M2-0182:ledger |
 | v6:LFAC-08 | LFAC-08 | LFAC | Motion and readability | v6 | [M2-0180](ledger/tickets/M2-0180.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0180:ledger, M2-0182:ledger |
 | v6:LFAC-09 | LFAC-09 | LFAC | Audio | v6 | [M2-0180](ledger/tickets/M2-0180.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0180:ledger, M2-0182:ledger |
 | v6:LFAC-10 | LFAC-10 | LFAC | Render | v6 | [M2-0180](ledger/tickets/M2-0180.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0180:ledger, M2-0182:ledger |
 | v6:LFAC-11 | LFAC-11 | LFAC | Formats and opening | v6 | [M2-0181](ledger/tickets/M2-0181.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0181:ledger, M2-0182:ledger |
-| v6:LFAC-12 | LFAC-12 | LFAC | Handoff/privacy | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | NOT_STARTED | M2-0178:ledger, M2-0182:ledger |
+| v6:LFAC-12 | LFAC-12 | LFAC | Handoff/privacy | v6 | [M2-0178](ledger/tickets/M2-0178.md), [M2-0182](ledger/tickets/M2-0182.md) | IN_PROGRESS | M2-0178:ledger, M2-0182:ledger |
 | v6:REF-01 | REF-01 | REF | BRAG repository | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
 | v6:REF-02 | REF-02 | REF | Full BRAG skill | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
 | v6:REF-03 | REF-03 | REF | BRAG slim | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
@@ -990,8 +997,8 @@ Rows mapped: 937/937. Unique IDs mapped: 921/921. Families: 37.
 | v6:REF-06 | REF-06 | REF | BRAG composition | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
 | v6:REF-07 | REF-07 | REF | BRAG delivery | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
 | v6:REF-08 | REF-08 | REF | BRAG audio | v6 | [M2-0180](ledger/tickets/M2-0180.md) | NOT_STARTED | M2-0180:ledger |
-| v6:REF-09 | REF-09 | REF | Notchview | v6 | [M2-0178](ledger/tickets/M2-0178.md) | NOT_STARTED | M2-0178:ledger |
-| v6:REF-10 | REF-10 | REF | Exact X video | v6 | [M2-0178](ledger/tickets/M2-0178.md) | NOT_STARTED | M2-0178:ledger |
+| v6:REF-09 | REF-09 | REF | Notchview | v6 | [M2-0178](ledger/tickets/M2-0178.md) | ENGINEERING_COMPLETE | M2-0178:ledger |
+| v6:REF-10 | REF-10 | REF | Exact X video | v6 | [M2-0178](ledger/tickets/M2-0178.md) | ENGINEERING_COMPLETE | M2-0178:ledger |
 | v6:REF-11 | REF-11 | REF | Hindsight repository | v6 | [M2-0133](ledger/tickets/M2-0133.md) | NOT_STARTED | M2-0133:ledger |
 | v6:REF-12 | REF-12 | REF | Hindsight README | v6 | [M2-0133](ledger/tickets/M2-0133.md) | NOT_STARTED | M2-0133:ledger |
 | v6:REF-13 | REF-13 | REF | Hindsight retain | v6 | [M2-0134](ledger/tickets/M2-0134.md) | NOT_STARTED | M2-0134:ledger |
