@@ -2,7 +2,7 @@
 project: Métis (AskToto-Mantu) — 2.0 program
 shift: 10
 agent: claude-code
-updated: 2026-09-29 05:50 EDT
+updated: 2026-09-29 09:10 EDT
 status: in-progress (full autopilot; signing excluded)
 branch: public main = 858a6a22 (milestone #281); m2/integration 83fd757c (ahead of main; proof pending); private main (metis-prog-main)
 ---
@@ -21,12 +21,16 @@ Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level, HeyCli
 - Gates: per-PR packaged smoke (ready_for_review), failset baseline (state/.smoke-failset) + owned rows (state/<ID>.owns), post-merge smoke STOP on growth, revert guard, hygiene (paths too), READY pins reviewed SHA, WAIT_OWNER for the owner's tool (OD-15), known-flakes.txt, red run off (RED-RUN file re-enables).
 
 ## Next steps (in order)
-- P0 M2-0031: OWNER chose B (OD-21): ST-1 stays strict (whole run incl. boot < 250 ms). ROUND FOCUS v8 is in state/M2-0031.lead:
-  split the BrowserWindow constructor (591-706 ms native, show:true) from its first show, split/defer the remaining boot tasks and boot I/O.
-  If only an unsplittable native call or idle-profile runner noise remains, report the numbers to the owner and never relax the criteria.
-- 2026-09-29 done: owner-approved ledger batch c12ae4b (M2-0423 P0 brain-index no-destroy, M2-0424..0427, HM-FLOW refs, deps: the M2-0129->0136 edge was
-  omitted because it would cycle), M2-0417 check (integration never cancelled; superseded cancellation not yet observed), M2-0013 verification fix,
-  M2-0028 merged (HK-M 3/5 bounded pass; the lead verified the reaper never kills by name), M2-0422 boot fix merged, stale public branch deleted.
+- OWNER-REPORTED P0s (2026-09-29, 1.9.7 depends on each; Opus implements; all root causes confirmed by adversarial re-trace; analyses in codex-queue/logs/):
+  - M2-0428 right-edge Hide (4 px edge band = drawer height; READY #329, lead-reviewed, merge-first).
+  - M2-0431 flashing (OD-23: top-center opens from the notch only; fades; grace fix; OV-STABLE). Waits on M2-0428.
+  - M2-0429 meeting audio: the Screen Recording grant is not in effect for the ad-hoc build (identity churn, 12 same-id bundles). Diagnose + one-click repair + onboarding self-test.
+  - M2-0430 slow write-up: an os.freemem() gate forces CPU llama (-ngl 0); the recap is not pre-empted over extraction; the save is gated on the recap.
+  - M2-0202 island redesign (OD-22 no scroll, OD-25 Reader view) in slices, S1 lead written; waits on M2-0428 and M2-0431.
+- M2-0031 (OD-24 split): v10 makes the ST-1 fifo job report-only and merges the fixes (unblocks 279). Strict ST-1 (OD-21) moves to M2-0433, which gates 1.9.7.
+- Owner Mac 09-29: TCC ScreenCapture reset (13 of 14); the owner must remove and re-add Métis in Settings (system-db entry, admin). 2 orphaned llama-servers (since 09-25) stopped; 4 old copies trashed.
+- The completeness batch (26 confirmed gaps; logs/completeness-2026-09-29.json) was DENIED by the classifier: awaiting the owner (allow, partial, or skip).
+- The daily ~01:35 EDT mirror job resets private main (the owner must find it; guard.sh heals).
 - Merge order: codex-queue/state/.merge-first (root blockers by impact: M2-0050 235, M2-0028 160, M2-0103 120, M2-0119 110).
 0. Owner decisions still open from the LEAD_ACTION triage: private Actions budget (unblocks ~12 evidence rows), D-5 platform/region/owner, plaintext-mirror audience, M2-0014 prod readbacks, Dust admin, Windows laptop, D-8, branch protection, delete stale public branch m2/M2-0014-audit-operator-production-reality.
 1. M2-0031 (History freeze P0) must pass the QA-candidate job "ST-1 fifo stall row (macOS)"; plan v4 in codex-queue/state/M2-0031.lead. Then cut 1.9.7 per D-13 (M2-0046: notes in docs/metis-2.0/releases/1.9.7.md; dispatch promote-candidate.yml from main; prerelease, not Latest, no latest*.yml, SHA256SUMS).
