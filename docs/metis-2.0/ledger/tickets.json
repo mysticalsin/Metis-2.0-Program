@@ -183,6 +183,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0418 (M2-0201 Electron capture lane; placeholders replaced by real captures + Opus acceptance)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0419 (P1 Windows timeout in check-ffmpeg-sidecar.test.ts; recurring CI flake across 5 tickets)."
   }
  ],
  "tickets": [
@@ -22258,6 +22264,38 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0419",
+   "title": "Stop the Windows timeout in check-ffmpeg-sidecar.test.ts: seed a small system executable instead of copying node.exe",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "CI-FLAKE-2026-09-29-ffmpeg-sidecar"
+   ],
+   "scope_paths": [
+    "scripts/check-ffmpeg-sidecar.test.ts"
+   ],
+   "summary": "'check-ffmpeg-sidecar licence gate > reports a non-zero exit as an execution failure, not a licence failure' times out at 30 s on windows-latest. It happened in m2/integration 14ecc00b (run 36512387942) and in CI for five unrelated tickets since 2026-09-28 (M2-0028, M2-0031, M2-0071, M2-0103, M2-0412), costing each one an implementer round. On Windows, seedHostBinaryRejectingDashL() copies process.execPath (node.exe, about 80 MB) into a temp resources/ffmpeg path and spawns it twice, once for the probe and once for the gate. A freshly written large executable is scanned on first launch, which on a loaded runner exceeds the timeout.",
+   "acceptance": [
+    "The Windows fixture seeds a small executable that is already on the host and exits non-zero on '-L' without printing an ffmpeg banner (for example %SystemRoot%\\System32\\where.exe), resolved from the environment, not a hard-coded drive. The existing premise guard (spawns, exits non-zero) is kept",
+    "No test timeout is raised, nothing is skipped, and no assertion is weakened; the case still runs on Windows and POSIX",
+    "The case finishes in under 5 s on windows-latest, per the Vitest duration reported in the CI log of the PR"
+   ],
+   "verification": [
+    "CI Build & Test on the PR (windows-latest)"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 1,
    "status": "TODO"
   }
  ]
