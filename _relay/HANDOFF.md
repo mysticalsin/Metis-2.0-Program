@@ -2,7 +2,7 @@
 project: Métis (AskToto-Mantu) — 2.0 program
 shift: 10
 agent: claude-code
-updated: 2026-09-28 22:05 EDT
+updated: 2026-09-29 00:45 EDT
 status: in-progress (full autopilot; signing excluded)
 branch: public main = 858a6a22 (milestone #281); m2/integration 83fd757c (ahead of main; proof pending); private main (metis-prog-main)
 ---
@@ -21,6 +21,13 @@ Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level, HeyCli
 - Gates: per-PR packaged smoke (ready_for_review), failset baseline (state/.smoke-failset) + owned rows (state/<ID>.owns), post-merge smoke STOP on growth, revert guard, hygiene (paths too), READY pins reviewed SHA, WAIT_OWNER for the owner's tool (OD-15), known-flakes.txt, red run off (RED-RUN file re-enables).
 
 ## Next steps (in order)
+- P0 M2-0031 (History freeze): ROUND FOCUS v6 in codex-queue/state/M2-0031.lead (Opus implementer). The Opus analysis (evidence in
+  codex-queue/logs/st1-36518876450/) found:
+  - ST-1 loop-max/async-write failures are INFERRED boot-phase main-loop blocks, and ST-1 never exercises History.
+  - VERIFIED real freeze paths: sync recallOpen/recallExportPlain reads, and a per-root gateway admission (should be one per process).
+  After the instrumented run the lead attributes the block (v6 item 5).
+  Owner questions: should ST-1 limits include boot? should the History exercise become a pass criterion? (Lead recommends yes to the second.)
+- Merge order: codex-queue/state/.merge-first (root blockers by impact: M2-0050 235, M2-0028 160, M2-0103 120, M2-0119 110).
 0. Tony to answer: apply the blocked ledger batch (codex-queue/logs/ledger-batch-draft-2026-09-29.md; classifier denied the subagent — do not apply without his OK). Owner decisions from the LEAD_ACTION triage: private Actions budget (unblocks ~12 evidence rows), D-5 platform/region/owner, plaintext-mirror audience, M2-0014 prod readbacks, Dust admin, Windows laptop, D-8, branch protection, delete stale public branch m2/M2-0014-audit-operator-production-reality.
 1. M2-0031 (History freeze P0) must pass the QA-candidate job "ST-1 fifo stall row (macOS)"; plan v4 in codex-queue/state/M2-0031.lead. Then cut 1.9.7 per D-13 (M2-0046: notes in docs/metis-2.0/releases/1.9.7.md; dispatch promote-candidate.yml from main; prerelease, not Latest, no latest*.yml, SHA256SUMS).
 2. Queue flows the whole ledger by priority (FOCUS lifted; PARALLEL=4). New P0s first: M2-0237.., M2-0412 (portal model policy, OD-18), M2-0413 (brain test cleanup race).
