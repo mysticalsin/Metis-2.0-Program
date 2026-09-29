@@ -7410,9 +7410,15 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "notes": "2026-09-28 (lead): OD-17 answered D-5 — self-hosted private Hindsight on one approved container platform with managed Postgres. Platform/region/operational owner are PENDING and gate only the live deployment (M2-0138, M2-0381). Build and prove services/compose.yml (digest-pinned pgvector Postgres + pinned hindsight-api) with an ubuntu-latest CI compose job (D-28). LEAD_ACTION: private ADR-014 (PENDING + PROPOSED default).",
-   "priority": "P0"
+   "priority": "P0",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/297",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0120",
