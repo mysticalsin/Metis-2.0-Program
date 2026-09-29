@@ -201,6 +201,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0420 (P1 launch-check title race: 'asktoto' default window title failed Windows packaged smoke on unrelated PRs)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0031 owner_model -> opus (P0; v6 root-cause plan)."
   }
  ],
  "tickets": [
@@ -2185,7 +2191,7 @@
    "wave": "W1",
    "milestone": "m3",
    "type": "fix",
-   "owner_model": "sonnet",
+   "owner_model": "opus",
    "depends_on": [
     "M2-0030",
     "M2-0003"
@@ -2240,7 +2246,8 @@
    "status": "IN_PROGRESS",
    "notes": [
     "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion).",
-    "Codex audit-r4 (2026-09-27, verified by Opus at 4ec75897) — MUST be covered by this ticket: (1) no production file imports createStorageGateway yet; (2) History/Recall: src/main/recall.ts:239 does an unbounded Promise.all over readMeeting and :170 reads with raw readFile, bypassing admission, dataless checks, cancellation and deadlines; (3) src/main/transcripts.ts:755 reads meeting-root files synchronously through readSavedFile (:324 decodeSaved(readFileSync)); (4) gateway root() must not be able to reject public methods: a throwing root()/settings resolution must resolve to an unavailable status within the deadline (gateway.ts:91, :318, :354); (5) add a product-level regression through the real History/Recall entry points (not only gateway unit calls) proving the main process stays responsive while meeting files hang or are cloud-only; (6) make the gateway module comment true (the only meetings-root reader)."
+    "Codex audit-r4 (2026-09-27, verified by Opus at 4ec75897) — MUST be covered by this ticket: (1) no production file imports createStorageGateway yet; (2) History/Recall: src/main/recall.ts:239 does an unbounded Promise.all over readMeeting and :170 reads with raw readFile, bypassing admission, dataless checks, cancellation and deadlines; (3) src/main/transcripts.ts:755 reads meeting-root files synchronously through readSavedFile (:324 decodeSaved(readFileSync)); (4) gateway root() must not be able to reject public methods: a throwing root()/settings resolution must resolve to an unavailable status within the deadline (gateway.ts:91, :318, :354); (5) add a product-level regression through the real History/Recall entry points (not only gateway unit calls) proving the main process stays responsive while meeting files hang or are cloud-only; (6) make the gateway module comment true (the only meetings-root reader).",
+    "2026-09-29 (lead): owner_model -> opus (P0 History freeze; Opus root-cause analysis found ST-1 fails on boot-phase main-loop blocks and never exercises History; real freeze paths confirmed: sync recallOpen/recallExportPlain reads and per-root gateway admission). Round focus v6 in the queue lead file."
    ],
    "claimed_by": "ticket runner batch 9 (Codex implements)",
    "claimed_at": "2026-09-27"
