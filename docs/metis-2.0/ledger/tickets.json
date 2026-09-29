@@ -22078,11 +22078,11 @@
     "Every workflow under .github/workflows/ triggered by push to ticket branches or by pull_request declares a top-level concurrency group keyed by workflow + PR number (pull_request) or ref (push)",
     "cancel-in-progress is true only for ticket branches and PRs; it evaluates to false for refs/heads/main, refs/heads/m2/integration, tags and release/workflow_dispatch/schedule runs, so every head of main and m2/integration keeps its own complete run",
     "No job, trigger, path filter or required check name changes; packaged-smoke.yml's existing group is unchanged",
-    "Proof in the PR: two quick pushes to a scratch ticket branch show the first run cancelled by the second (run links), and the m2/integration run list after merge shows no cancelled runs"
+    "LEAD_ACTION (after merge, not the implementer's): the lead records run links showing a superseded ticket-branch run cancelled by the next push and no cancelled m2/integration run"
    ],
    "verification": [
-    "CI on the PR",
-    "run links for the superseded-run cancellation"
+    "CI on the PR (workflow syntax: every workflow still starts)",
+    "lead post-merge run-list check"
    ],
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
