@@ -14548,12 +14548,12 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 1,
-   "status": "TODO",
+   "status": "DONE",
    "evidence": {
-    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/277",
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/290",
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
    },
    "notes": "2026-09-28 (lead): reopened — after #277 the remaining real-PowerShell case (dataless.test.ts ~:461, 'win32: one PowerShell query ... (real PowerShell)') still times out on a cold windows-latest runner (~25 s, run 36471981864). Fix so it cannot flake: warm PowerShell once in beforeAll outside the timed assertion, or measure the budget from the warmed call; no retries, no skipped test.",
    "required_evidence": [
