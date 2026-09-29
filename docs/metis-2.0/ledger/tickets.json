@@ -249,6 +249,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-24: M2-0031 split; strict ST-1 (OD-21 unchanged) moves to M2-0433, which gates 1.9.7 (M2-0046 depends on it)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Owner-approved completeness batch (26 adversarially confirmed gaps): M2-0345 depends_on -= M2-0175; M2-0240 depends_on -= M2-0173; OD-21 History wording on M2-0031/M2-0193; required_evidence filled on 204 tickets (from evidence_target, or by type); M2-0101 DONE->EC; M2-0178 DONE->EC; M2-0238 DONE->EC; M2-0059 DONE->EC; M2-0187 dry-run pending + D-28-compatible unblock step; design-evidence provenance wording on 16 UI acceptance rows; NEW M2-0434 P1 Deploy the self-hosted private Hindsight service with managed Postgres/pgvector:; NEW M2-0435 P1 Pin the OD-17 memory defaults: facts-only retain/recall on at release; reflect, ; NEW M2-0436 P1 Deploy the reviewed 2.0 Operator to the authorized canary/production environment; NEW M2-0437 P1 Deploy the canonical knowledge service and knowledge.* MCP server on the approve; NEW M2-0438 P1 Prove the speech-session broker refuses unauthenticated, expired, replayed, cros; NEW M2-0439 P1 Qualify memory release compatibility, update and rollback for the signed candida; NEW M2-0440 P2 Score command target and intent accuracy with completed/refused/clarified denomi; NEW M2-0441 P1 Expand UC-001..UC-112 into an individual acceptance registry and gate the catalo; NEW M2-0442 P1 Re-point the HeyClicky capability register (CAPABILITY-DISPOSITIONS.json) to the; NEW M2-0443 P2 Create the numbered lessons log and record the refactoring-skill identity (M2-00; NEW M2-0444 P2 Measure engineering efficiency before and after the refactor slices (token, sear; SKIP M2-0210->M2-0173 (cycle); SKIP M2-0210->M2-0174 (cycle); SKIP M2-0210->M2-0175 (cycle); SKIP M2-0210->M2-0211 (cycle); SKIP M2-0210->M2-0315 (cycle); SKIP M2-0210->M2-0343 (cycle); SKIP M2-0210->M2-0344 (cycle); SKIP M2-0210->M2-0348 (cycle); SKIP M2-0210->M2-0352 (cycle); SKIP M2-0210->M2-0372 (cycle); SKIP M2-0210->M2-0374 (cycle); SKIP M2-0210->M2-0384 (cycle); SKIP M2-0210->M2-0387 (cycle); SKIP M2-0210->M2-0388 (cycle); SKIP M2-0210->M2-0390 (cycle); SKIP M2-0210->M2-0435 (cycle); SKIP M2-0210->M2-0439 (cycle); M2-0210 freeze closure += 204 tickets"
   }
  ],
  "tickets": [
@@ -2280,7 +2286,8 @@
     "An unavailable or dataless file is classified, not counted as an attempt; reconcile uses metadata-only listing",
     "When the ledger is foreign-key, keystore-unavailable, read-only or dataless, backfill, ingest, consolidation and the intelligence catch-up are suspended with deferredReason ledger_unavailable and never run against the in-memory empty index; data health shows the state",
     "Packaged ST-1 rows on the lane candidate: a dataless .brain/index.json with no History interaction measured for 5 minutes from launch, and a blocked .brain file plus History open, each with main p99 < 50 ms and no app.stall > 250 ms; ST-1-W result recorded on the Windows laptop",
-    "Logic lives in a new module; src/main/index.ts changes are call-site swaps only and land through the merge queue in the declared order (M2-0188)"
+    "Logic lives in a new module; src/main/index.ts changes are call-site swaps only and land through the merge queue in the declared order (M2-0188)",
+    "OD-21: the History-open exercise in ST-1 is recorded report-only; the History-click freeze is gated by M2-0193's History open/search row."
    ],
    "verification": [
     "npx vitest run src/main/brain",
@@ -2335,7 +2342,7 @@
     "Rows show 'In OneDrive, not downloaded' or 'Unavailable' states; an explicit open hydrates one file with progress",
     "A degraded banner appears within 2 s when sources fail; the list never spins indefinitely",
     "Renderer records {from, to, committedAtMs} for History transitions (toggle-race discriminator)",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer; keyboard and screen-reader labels present"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer; keyboard and screen-reader labels present (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "npx vitest run src/renderer/src/components/RecallView.test.tsx",
@@ -3884,13 +3891,17 @@
     }
    ],
    "due": null,
-   "status": "DONE",
-   "notes": "UNBLOCKED 2026-09-27: Owner named the methods on 2026-09-26: software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER section 2.5 skill.",
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "UNBLOCKED 2026-09-27: Owner named the methods on 2026-09-26: software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER section 2.5 skill. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: two acceptance items unmet",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/265",
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "numbered lessons log (docs/metis-2.0/lessons/)",
+     "refactoring-skill identity from D-15"
+    ]
    }
   },
   {
@@ -5552,7 +5563,7 @@
     "Guidance arrows never produce input; the ghost pointer is optional and visibly distinct",
     "Fresh screenshot/element grounding; stale coordinates rejected",
     "Multiple monitors and screen sharing handled; overlay excluded from capture",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "npx vitest run src/main/features/context"
@@ -5817,7 +5828,7 @@
     "Solving orb inside the pill; live caption above; beam border and audio-driven glow from a sanitized scalar level",
     "64 vs 41 px decision recorded and applied; placement reconciled with JARVIS-COMMAND and CAP2 docs",
     "Reduced motion honoured; wake to first frame within the section 7 budget; no duplicate microphone hook",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer",
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)",
     "Wake to first frame measured on the packaged app (real Chromium) against the section 7 budget; the ARMED and expanded states pass the resource regression gate (M2-0200)"
    ],
    "verification": [
@@ -5900,7 +5911,7 @@
     "Progress and completion rendered only from receipts",
     "Partial multi-step results shown as partial; status query does not restart work",
     "Quiet presentation during calls; undo and recovery affordances",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "npx vitest run src/renderer/src/features/task-card"
@@ -6286,7 +6297,7 @@
     "Named orbs distinct and within the section 7 animation budget",
     "Home stays responsive with 20 agents and a 1,000-turn chat, measured on real Chromium: input-to-frame p95 at or under 100 ms and frame time p95 at or under 16.7 ms",
     "Reduced motion, high contrast, 200% text and IME verified",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "npx vitest run src/renderer/src/features/agents"
@@ -6330,7 +6341,7 @@
     "Every setting classified KEEP/MERGE/ADVANCED/OPERATOR-ONLY/DEPRECATED/PLATFORM-SPECIFIC",
     "Four destinations plus search designed with task flows",
     "Mapped to stable existing keys and actual policy semantics; migration table for legacy keys",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "node scripts/settings/check-inventory.mjs (every schema key classified)"
@@ -6345,15 +6356,18 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner (batch 3)",
    "claimed_at": "2026-09-26",
-   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac.",
+   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: its captures are HTML mocks, not the Electron renderer",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/7",
     "merged_into": "main (squash)",
     "validation": "Opus PASS (batch 11)",
-    "note": "DESIGNED level; captures are a superseded HTML mock per OD-12 — re-capture from the Electron renderer in CI is pending (M2-0007 lane merged)"
+    "note": "DESIGNED level; captures are a superseded HTML mock per OD-12 — re-capture from the Electron renderer in CI is pending (M2-0007 lane merged)",
+    "pending": [
+     "DESIGNED: Electron-renderer re-capture via M2-0418 + Opus acceptance"
+    ]
    }
   },
   {
@@ -7107,7 +7121,7 @@
     "Capture states and recovery are truthful (never 'recording' when not recording); discontinuities shown",
     "Recap during a meeting and summary-only end work (UC-037, UC-039)",
     "Long-meeting fixture keeps bounded working memory (FLOW-04)",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "npx vitest run src/main/features/meeting src/renderer/src/features/meeting"
@@ -7283,7 +7297,7 @@
     "Four destinations plus search as designed; every legacy key migrated or dispositioned",
     "Local model states not-installed/downloading/verified/installed/selected/loaded/unsupported with bytes and privacy implications",
     "Installing a pack does not select it; save failure and remote policy change handled (UC-099)",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "npx vitest run src/renderer/src/features/settings src/main/features/settings"
@@ -8150,7 +8164,7 @@
     "Jev/Laya classifications shown as evidence, never fact; deterministic business calculations preserved",
     "View business logic extracted to intelligence/src/lib with tests; the Relationships graph renders at most 1,500 nodes and 5,000 edges before clustering, with frame time p95 at or under 16.7 ms on the 1,500-node fixture",
     "Duplicated Update-Intelligence reconciled with an equivalence test; package name and smoke script fixed",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "cd intelligence && npm test",
@@ -8578,7 +8592,7 @@
     "Memory outage never blocks capture, notes, visibility or Stop; 'historical memory unavailable' reported accurately",
     "Ephemeral and local-only selections produce no persistent write",
     "Memory workloads accounted with truthful unknowns; the portable skill loads whole references (HSAC-01)",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "npx vitest run src/renderer/src/features/memory src/main/features/memory-client"
@@ -8860,7 +8874,7 @@
     "Entitled/ready/unavailable/offline states",
     "Run/version/attempt usage and safe failure evidence",
     "Artifacts retrievable later; previews sandboxed against scripts, remote images and traversal names",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer",
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)",
     "Artifact handles are scoped to tenant, principal, agent and run, with safe filenames, atomic publication and independent output verification (HC-09)"
    ],
    "verification": [
@@ -9423,7 +9437,7 @@
     "Teams package with personal tab and side panel; SSO via Entra (mock issuer until approved)",
     "Presence and capture controls visible; outputs private by default",
     "No Electron IPC or direct local control exposed",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "npm --prefix teams-app test"
@@ -9779,7 +9793,7 @@
     "Speech readiness/privacy revision, device-qualified local state, Jev/Laya settings, skill runs, knowledge freshness, Dust health",
     "Partial/unavailable/estimated usage displayed distinctly",
     "Missing surfaces added per decision; one light/dark visual QA pass with screenshots dispositions #106..#119",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)"
    ],
    "verification": [
     "npx vitest run operator/src",
@@ -9939,7 +9953,7 @@
     "Explicit legacy-mode migration preserves notes, keys and IDs",
     "Setup coaching, accessibility and copy reviewed (OBU-03/04); resumable onboarding and permissions",
     "Fresh and upgrade onboarding pass on the packaged build on both OS lanes (OBU-05)",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer",
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)",
     "Lands by the 2026-11-15 feature freeze (M2-0210)"
    ],
    "verification": [
@@ -10020,7 +10034,7 @@
    "acceptance": [
     "Parity decision recorded (converge or intentionally diverge) with rationale",
     "Native onboarding and core surfaces designed and implemented to the decision",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer",
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)",
     "Lands by the 2026-11-15 feature freeze (M2-0210)"
    ],
    "verification": [
@@ -10642,7 +10656,8 @@
    "owner_model": "opus",
    "depends_on": [
     "M2-0210",
-    "M2-0171"
+    "M2-0171",
+    "M2-0240"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -10745,7 +10760,9 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0118",
-    "M2-0173"
+    "M2-0173",
+    "M2-0345",
+    "M2-0378"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -10871,7 +10888,8 @@
     "M2-0170",
     "M2-0176",
     "M2-0173",
-    "M2-0208"
+    "M2-0208",
+    "M2-0345"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -10976,13 +10994,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "DONE",
-   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): any privacy line in the film is the M2-0149-verified sentence verbatim, or it is cut. Acceptance unchanged.",
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): any privacy line in the film is the M2-0149-verified sentence verbatim, or it is cut. Acceptance unchanged. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: CLAIMS.json reuses LF-01..08 for different beats than kit STORYBOARD.json",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/267",
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
-    "validation": "independent Codex review PASS + CI green"
+    "validation": "independent Codex review PASS + CI green",
+    "pending": [
+     "LF ids re-keyed to the kit beats (M2-0349)"
+    ]
    }
   },
   {
@@ -11434,7 +11455,7 @@
    ],
    "external_blocker": {
     "owner": "Program owner (Tony)",
-    "unblock_step": "On the QA account run scripts/qa/make-qa-identity.sh to create the stable QA signing identity (self-signed code-signing certificate, or an Apple Development certificate if an Apple ID is available) and store it with `gh secret set QA_MAC_SIGNING`; agents never handle the private key",
+    "unblock_step": "D-28/D-9 compatible: no repository script on a Mac and no QA user. Either a signing identity is supplied as CI secrets for the QA build, or the ad-hoc fallback (qa-candidate.yml warning) is accepted as the 1.9.7 posture with the TCC-grant residual stated in the 1.9.7 notes (owner choice).",
     "needed_by": "2026-09-30",
     "raised_on": "2026-09-26"
    },
@@ -11453,7 +11474,8 @@
     "merged_into": "m2/integration",
     "validation": "Opus PASS round 3 (batch 2)",
     "pending": [
-     "HOST_CONFIGURED"
+     "HOST_CONFIGURED",
+     "candidate dry run from main: qa-candidate.yml green + promote-candidate.yml publish=false (lead)"
     ]
    },
    "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED."
@@ -11826,7 +11848,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): per OD-21 this ticket's History open/search row is the gate for the History-click freeze (M2-0031 records its History exercise report-only)."
   },
   {
    "id": "M2-0194",
@@ -12325,7 +12348,7 @@
     "Invariant test: every park transition lands at y=0 (issue #124 class)",
     "Keyboard, IME, DPI and target sizes pass; no essential control hidden",
     "Packaged right-edge walkthrough on the QA account (lane candidate)",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer",
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)",
     "OD-22: every right-edge hide path works on the packaged app (explicit Hide control, the Hide layout park, auto-hide/re-park after hover-out, the shortcut toggle): a packaged-harness test asserts that after each hide the window is parked at the right edge (not visible over content, click-through) and reveals again on hover/shortcut; the owner's 1.9.6 failure has its own regression test",
     "OD-22: no Right Edge Island state needs scrolling at the smallest supported workArea (1280x720; Windows 125%/150%): for every state rendered at that size, every scroll container has scrollHeight <= clientHeight and no island element uses overflow auto/scroll; long content is summarised or opened in the main window, never scrolled in the island",
     "OD-22: the island UX follows the lead's no-scroll design spec (state list, hierarchy, sizing, typography, motion), validated by an Opus design review against CI screenshots of every state (light/dark, reduced motion, EN+FR)"
@@ -12921,7 +12944,214 @@
     "M2-0206",
     "M2-0207",
     "M2-0208",
-    "M2-0209"
+    "M2-0209",
+    "M2-0345",
+    "M2-0378",
+    "M2-0240",
+    "M2-0172",
+    "M2-0214",
+    "M2-0215",
+    "M2-0216",
+    "M2-0217",
+    "M2-0218",
+    "M2-0219",
+    "M2-0220",
+    "M2-0221",
+    "M2-0222",
+    "M2-0223",
+    "M2-0224",
+    "M2-0225",
+    "M2-0226",
+    "M2-0227",
+    "M2-0228",
+    "M2-0229",
+    "M2-0230",
+    "M2-0231",
+    "M2-0232",
+    "M2-0233",
+    "M2-0235",
+    "M2-0236",
+    "M2-0237",
+    "M2-0238",
+    "M2-0239",
+    "M2-0242",
+    "M2-0243",
+    "M2-0244",
+    "M2-0246",
+    "M2-0247",
+    "M2-0248",
+    "M2-0249",
+    "M2-0250",
+    "M2-0251",
+    "M2-0252",
+    "M2-0253",
+    "M2-0254",
+    "M2-0255",
+    "M2-0256",
+    "M2-0257",
+    "M2-0258",
+    "M2-0259",
+    "M2-0260",
+    "M2-0261",
+    "M2-0262",
+    "M2-0263",
+    "M2-0264",
+    "M2-0265",
+    "M2-0266",
+    "M2-0267",
+    "M2-0268",
+    "M2-0269",
+    "M2-0270",
+    "M2-0271",
+    "M2-0272",
+    "M2-0273",
+    "M2-0274",
+    "M2-0275",
+    "M2-0276",
+    "M2-0277",
+    "M2-0278",
+    "M2-0279",
+    "M2-0280",
+    "M2-0281",
+    "M2-0282",
+    "M2-0283",
+    "M2-0284",
+    "M2-0285",
+    "M2-0286",
+    "M2-0287",
+    "M2-0288",
+    "M2-0289",
+    "M2-0290",
+    "M2-0291",
+    "M2-0292",
+    "M2-0293",
+    "M2-0294",
+    "M2-0295",
+    "M2-0296",
+    "M2-0297",
+    "M2-0298",
+    "M2-0299",
+    "M2-0300",
+    "M2-0301",
+    "M2-0302",
+    "M2-0303",
+    "M2-0304",
+    "M2-0305",
+    "M2-0306",
+    "M2-0307",
+    "M2-0308",
+    "M2-0309",
+    "M2-0310",
+    "M2-0311",
+    "M2-0312",
+    "M2-0313",
+    "M2-0314",
+    "M2-0316",
+    "M2-0317",
+    "M2-0318",
+    "M2-0319",
+    "M2-0320",
+    "M2-0321",
+    "M2-0322",
+    "M2-0323",
+    "M2-0324",
+    "M2-0325",
+    "M2-0326",
+    "M2-0327",
+    "M2-0328",
+    "M2-0329",
+    "M2-0330",
+    "M2-0332",
+    "M2-0333",
+    "M2-0334",
+    "M2-0336",
+    "M2-0337",
+    "M2-0338",
+    "M2-0339",
+    "M2-0340",
+    "M2-0341",
+    "M2-0342",
+    "M2-0346",
+    "M2-0347",
+    "M2-0349",
+    "M2-0350",
+    "M2-0351",
+    "M2-0353",
+    "M2-0354",
+    "M2-0355",
+    "M2-0356",
+    "M2-0357",
+    "M2-0358",
+    "M2-0359",
+    "M2-0360",
+    "M2-0361",
+    "M2-0362",
+    "M2-0363",
+    "M2-0364",
+    "M2-0365",
+    "M2-0366",
+    "M2-0367",
+    "M2-0368",
+    "M2-0369",
+    "M2-0370",
+    "M2-0371",
+    "M2-0373",
+    "M2-0375",
+    "M2-0376",
+    "M2-0377",
+    "M2-0379",
+    "M2-0380",
+    "M2-0381",
+    "M2-0382",
+    "M2-0383",
+    "M2-0385",
+    "M2-0386",
+    "M2-0389",
+    "M2-0391",
+    "M2-0392",
+    "M2-0393",
+    "M2-0394",
+    "M2-0395",
+    "M2-0396",
+    "M2-0397",
+    "M2-0398",
+    "M2-0399",
+    "M2-0400",
+    "M2-0401",
+    "M2-0402",
+    "M2-0403",
+    "M2-0404",
+    "M2-0405",
+    "M2-0406",
+    "M2-0407",
+    "M2-0408",
+    "M2-0409",
+    "M2-0410",
+    "M2-0411",
+    "M2-0412",
+    "M2-0413",
+    "M2-0416",
+    "M2-0417",
+    "M2-0418",
+    "M2-0419",
+    "M2-0420",
+    "M2-0421",
+    "M2-0422",
+    "M2-0423",
+    "M2-0424",
+    "M2-0425",
+    "M2-0426",
+    "M2-0427",
+    "M2-0432",
+    "M2-0434",
+    "M2-0436",
+    "M2-0437",
+    "M2-0438",
+    "M2-0440",
+    "M2-0441",
+    "M2-0442",
+    "M2-0443",
+    "M2-0444"
    ],
    "needs_decision": [
     "D-13",
@@ -12963,7 +13193,7 @@
    "due": "2026-11-15",
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW, CI-provable with fixtures: (1) Add a `--freeze` mode to scripts/evidence/check.mjs with node --test cases. It fails if any M2-0210 depends_on is TODO or IN_PROGRESS. It requires every BLOCKED_EXTERNAL dependency to carry an external_blocker.unblock_step that is shown in the capability matrix. It reuses deferredProblems, so every DEFERRED dependency has a non-null flag and an ACCEPTED record. It requires M2-0160, 0161, 0163 and 0164 to be DONE or ENGINEERING_COMPLETE, and no decision due by 2026-11-15 to be still OPEN. (2) Add a date-gated post-freeze guard in the --pr-event path (evidence.yml), with fixture events: after 2026-11-15, a PR into main or m2/integration must carry a fix record with a verified red-before run, which the existing P-rules already check. That makes \"only defect fixes land, each with a failing test first\" mechanical. The lead widens M2-0210's scope_paths to scripts/evidence/check.mjs and its test. LATER, once depends_on land: build 2.0.0-rc.1 once via qa-candidate.yml; run all packaged suites, the census gate and the nightly golden flows on those bytes, plus the windows-latest parity; do the 10% re-execution via sample.mjs and `velocity.mjs --gate rc1` (M2-0197); file evidence in docs/metis-2.0/evidence/rc1/; the lead promotes rc1 per D-13, and any post-freeze fix produces rc.N with the affected gates re-run. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-rc.1 on the owner Mac, uses it for 72 h and reports any P0/P1 defect. The owner also gives a written approval (filed as an ACCEPTED record) for each ticket the lead proposes as DEFERRED under the D-14 order. That part vanishes if nothing is DEFERRED at the freeze."
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW, CI-provable with fixtures: (1) Add a `--freeze` mode to scripts/evidence/check.mjs with node --test cases. It fails if any M2-0210 depends_on is TODO or IN_PROGRESS. It requires every BLOCKED_EXTERNAL dependency to carry an external_blocker.unblock_step that is shown in the capability matrix. It reuses deferredProblems, so every DEFERRED dependency has a non-null flag and an ACCEPTED record. It requires M2-0160, 0161, 0163 and 0164 to be DONE or ENGINEERING_COMPLETE, and no decision due by 2026-11-15 to be still OPEN. (2) Add a date-gated post-freeze guard in the --pr-event path (evidence.yml), with fixture events: after 2026-11-15, a PR into main or m2/integration must carry a fix record with a verified red-before run, which the existing P-rules already check. That makes \"only defect fixes land, each with a failing test first\" mechanical. The lead widens M2-0210's scope_paths to scripts/evidence/check.mjs and its test. LATER, once depends_on land: build 2.0.0-rc.1 once via qa-candidate.yml; run all packaged suites, the census gate and the nightly golden flows on those bytes, plus the windows-latest parity; do the 10% re-execution via sample.mjs and `velocity.mjs --gate rc1` (M2-0197); file evidence in docs/metis-2.0/evidence/rc1/; the lead promotes rc1 per D-13, and any post-freeze fix produces rc.N with the affected gates re-run. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-rc.1 on the owner Mac, uses it for 72 h and reports any P0/P1 defect. The owner also gives a written approval (filed as an ACCEPTED record) for each ticket the lead proposes as DEFERRED under the D-14 order. That part vanishes if nothing is DEFERRED at the freeze. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): freeze closure bound to every non-cancelled ticket at milestone <= m10 (204 added; cycle-safe) so 2.0 cannot freeze with HeyClicky, native-parity or OD tickets open."
   },
   {
    "id": "M2-0211",
@@ -13188,7 +13418,10 @@
     "validation": "Opus PASS",
     "implementer": "codex"
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — external_blocker open."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — external_blocker open.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0215",
@@ -13249,7 +13482,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0216",
@@ -13293,7 +13529,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -13336,7 +13575,10 @@
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/224",
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -13380,7 +13622,10 @@
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/226",
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS (batch 5)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -13423,7 +13668,10 @@
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/223",
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS (batch 5)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0220",
@@ -13467,7 +13715,10 @@
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/230",
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS (batch 6)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -13508,7 +13759,10 @@
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/232",
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS (batch 7)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -13551,7 +13805,10 @@
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/234",
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS (batch 7)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -13593,7 +13850,10 @@
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/231",
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS (batch 7)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -13634,7 +13894,10 @@
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/229",
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0225",
@@ -13676,7 +13939,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0226",
@@ -13774,7 +14040,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0228",
@@ -13814,7 +14083,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0229",
@@ -13853,7 +14125,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0230",
@@ -13919,7 +14194,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0231",
@@ -13965,7 +14243,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -14009,7 +14290,10 @@
     "implementer": "claude + owner tool",
     "validation": "packaged smoke green on m2/integration 0db09571 (all HIST rows pass, macOS + Windows); milestone #281 into main"
    },
-   "notes": "2026-09-28 (lead): reopened — reverted by #273: after #271 the Windows packaged-smoke job aborted mid-run (all HIST rows PENDING, no process report, run 36405574721); it merged before its own PR smoke ran. Must merge only with its PR packaged smoke run (M2-0234 gate). 2026-09-28 (lead): merged outside the queue (#279) by the owner's tool; verified by the green packaged smoke on 0db09571 and the main milestone #281."
+   "notes": "2026-09-28 (lead): reopened — reverted by #273: after #271 the Windows packaged-smoke job aborted mid-run (all HIST rows PENDING, no process report, run 36405574721); it merged before its own PR smoke ran. Must merge only with its PR packaged smoke run (M2-0234 gate). 2026-09-28 (lead): merged outside the queue (#279) by the owner's tool; verified by the green packaged smoke on 0db09571 and the main milestone #281.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -14052,7 +14336,10 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + CI green"
    },
-   "notes": " 2026-09-28 (lead): reopened — the stand-in boot-reaper proof exits 1 on macOS after #270 (run 36405574721), so acceptance 1 is not met; it merged before its own PR smoke ran. Must merge only with its PR packaged smoke run (M2-0234 gate)."
+   "notes": " 2026-09-28 (lead): reopened — the stand-in boot-reaper proof exits 1 on macOS after #270 (run 36405574721), so acceptance 1 is not met; it merged before its own PR smoke ran. Must merge only with its PR packaged smoke run (M2-0234 gate).",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0234",
@@ -14090,7 +14377,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0235",
@@ -14128,7 +14418,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0236",
@@ -14168,7 +14461,10 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + CI green"
    },
-   "notes": "2026-09-28 (lead): reopened — after #277 the remaining real-PowerShell case (dataless.test.ts ~:461, 'win32: one PowerShell query ... (real PowerShell)') still times out on a cold windows-latest runner (~25 s, run 36471981864). Fix so it cannot flake: warm PowerShell once in beforeAll outside the timed assertion, or measure the budget from the warmed call; no retries, no skipped test."
+   "notes": "2026-09-28 (lead): reopened — after #277 the remaining real-PowerShell case (dataless.test.ts ~:461, 'win32: one PowerShell query ... (real PowerShell)') still times out on a cold windows-latest runner (~25 s, run 36471981864). Fix so it cannot flake: warm PowerShell once in beforeAll outside the timed assertion, or measure the budget from the warmed call; no retries, no skipped test.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0237",
@@ -14216,7 +14512,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0238",
@@ -14256,14 +14555,23 @@
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
-   "status": "DONE",
+   "status": "ENGINEERING_COMPLETE",
    "priority": "P0",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/285",
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + CI green"
-   }
+    "validation": "independent Claude review PASS + CI green",
+    "pending": [
+     "required_evidence on every ticket",
+     "records/<id>.jsonl for the quality tickets",
+     "a running ledger check"
+    ]
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: closure not evidence-backed"
   },
   {
    "id": "M2-0239",
@@ -14310,7 +14618,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0240",
@@ -14325,7 +14636,6 @@
     "M2-0121",
     "M2-0145",
     "M2-0056",
-    "M2-0173",
     "M2-0028"
    ],
    "kit_refs": [],
@@ -14369,7 +14679,10 @@
    "estimate_hours": 4,
    "status": "TODO",
    "priority": "P0",
-   "notes": "OD-16 (owner, 2026-09-28): remove the embedded Cloudflare credential from ALL installers, owner channel included; owner builds get the key through the Operator seat / device setup; the CI artifact scan allows no exception."
+   "notes": "OD-16 (owner, 2026-09-28): remove the embedded Cloudflare credential from ALL installers, owner channel included; owner builds get the key through the Operator seat / device setup; the CI artifact scan allows no exception.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0241",
@@ -14426,7 +14739,10 @@
    "risk": "high",
    "estimate_hours": 4,
    "status": "TODO",
-   "priority": "P0"
+   "priority": "P0",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0242",
@@ -14473,7 +14789,10 @@
    "risk": "high",
    "estimate_hours": 4,
    "status": "TODO",
-   "priority": "P0"
+   "priority": "P0",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0243",
@@ -14526,7 +14845,10 @@
    "risk": "high",
    "estimate_hours": 4,
    "status": "TODO",
-   "priority": "P0"
+   "priority": "P0",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0244",
@@ -14576,7 +14898,10 @@
    "risk": "high",
    "estimate_hours": 4,
    "status": "TODO",
-   "priority": "P0"
+   "priority": "P0",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0245",
@@ -14632,7 +14957,10 @@
    "risk": "high",
    "estimate_hours": 4,
    "status": "TODO",
-   "priority": "P0"
+   "priority": "P0",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0246",
@@ -14690,7 +15018,10 @@
    "risk": "high",
    "estimate_hours": 4,
    "status": "TODO",
-   "priority": "P0"
+   "priority": "P0",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0247",
@@ -14732,7 +15063,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0248",
@@ -14776,7 +15110,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0249",
@@ -14817,7 +15154,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0250",
@@ -14855,7 +15195,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0251",
@@ -14893,7 +15236,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0252",
@@ -14935,7 +15281,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0253",
@@ -14978,7 +15327,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0254",
@@ -15023,7 +15375,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0255",
@@ -15069,7 +15424,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0256",
@@ -15115,7 +15473,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0257",
@@ -15159,7 +15520,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0258",
@@ -15205,7 +15569,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0259",
@@ -15243,7 +15610,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0260",
@@ -15295,7 +15665,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0261",
@@ -15353,7 +15726,10 @@
     "merged_into": "main (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0262",
@@ -15399,7 +15775,10 @@
     "merged_into": "main (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0263",
@@ -15441,7 +15820,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0264",
@@ -15480,7 +15862,10 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P1",
-   "notes": "2026-09-28 (lead): dependency on M2-0195 dropped (SOFT: baseline comes from M2-0009 census on hosted runners; the managed-laptop row stays BLOCKED_EXTERNAL); re-verify against M2-0195 once it lands."
+   "notes": "2026-09-28 (lead): dependency on M2-0195 dropped (SOFT: baseline comes from M2-0009 census on hosted runners; the managed-laptop row stays BLOCKED_EXTERNAL); re-verify against M2-0195 once it lands.",
+   "required_evidence": [
+    "MEASURED"
+   ]
   },
   {
    "id": "M2-0265",
@@ -15524,7 +15909,10 @@
     "merged_into": "main (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0266",
@@ -15578,7 +15966,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0267",
@@ -15627,7 +16018,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0268",
@@ -15671,7 +16065,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0269",
@@ -15713,7 +16110,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0270",
@@ -15757,7 +16157,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0271",
@@ -15804,7 +16207,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0272",
@@ -15850,7 +16256,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0273",
@@ -15895,7 +16304,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0274",
@@ -15939,7 +16351,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0275",
@@ -15983,7 +16398,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0276",
@@ -16040,7 +16458,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0277",
@@ -16081,7 +16502,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0278",
@@ -16132,7 +16556,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0279",
@@ -16178,7 +16605,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0280",
@@ -16228,7 +16658,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0281",
@@ -16277,7 +16710,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0282",
@@ -16319,7 +16755,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0283",
@@ -16362,7 +16801,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0284",
@@ -16406,7 +16848,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0285",
@@ -16451,7 +16896,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0286",
@@ -16495,7 +16943,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0287",
@@ -16542,7 +16993,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0288",
@@ -16590,7 +17044,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0289",
@@ -16647,7 +17104,10 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P1",
-   "notes": "OD-17 (owner, 2026-09-28): keep MASTER §4.3 — a spoken 'yes' confirms only low-impact tiers; high-impact actions need click/keyboard on the Confirm card."
+   "notes": "OD-17 (owner, 2026-09-28): keep MASTER §4.3 — a spoken 'yes' confirms only low-impact tiers; high-impact actions need click/keyboard on the Confirm card.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0290",
@@ -16691,7 +17151,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0291",
@@ -16741,7 +17204,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0292",
@@ -16796,7 +17262,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0293",
@@ -16839,7 +17308,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0294",
@@ -16889,7 +17361,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0295",
@@ -16934,7 +17409,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0296",
@@ -16981,7 +17459,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0297",
@@ -17025,7 +17506,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0298",
@@ -17079,7 +17563,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0299",
@@ -17121,7 +17608,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0300",
@@ -17169,7 +17659,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0301",
@@ -17226,7 +17719,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0302",
@@ -17275,7 +17771,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0303",
@@ -17318,7 +17817,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0304",
@@ -17367,7 +17869,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0305",
@@ -17418,7 +17923,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0306",
@@ -17468,7 +17976,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0307",
@@ -17506,7 +18017,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0308",
@@ -17556,7 +18070,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0309",
@@ -17599,7 +18116,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0310",
@@ -17642,7 +18162,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0311",
@@ -17681,7 +18204,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0312",
@@ -17725,7 +18251,11 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "MEASURED",
+    "LIVE_VERIFIED"
+   ]
   },
   {
    "id": "M2-0313",
@@ -17767,7 +18297,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0314",
@@ -17806,7 +18339,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0315",
@@ -17847,7 +18383,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0316",
@@ -17890,7 +18429,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0317",
@@ -17930,7 +18472,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0318",
@@ -17971,7 +18516,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0319",
@@ -18016,7 +18564,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0320",
@@ -18082,7 +18633,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0321",
@@ -18124,7 +18678,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "MEASURED"
+   ]
   },
   {
    "id": "M2-0322",
@@ -18173,7 +18730,10 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P1",
-   "notes": "OD-16 (owner, 2026-09-28): 2.0 languages are French and English only; Spanish and Brazilian Portuguese move after 2.0. Scope the acceptance to FR + EN."
+   "notes": "OD-16 (owner, 2026-09-28): 2.0 languages are French and English only; Spanish and Brazilian Portuguese move after 2.0. Scope the acceptance to FR + EN.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0323",
@@ -18220,7 +18780,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0324",
@@ -18259,7 +18822,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0325",
@@ -18301,7 +18867,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0326",
@@ -18348,7 +18917,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0327",
@@ -18388,7 +18960,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0328",
@@ -18429,7 +19004,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0329",
@@ -18468,7 +19046,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0330",
@@ -18515,7 +19096,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0331",
@@ -18565,7 +19149,10 @@
     "merged_into": "main (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0332",
@@ -18614,7 +19201,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0333",
@@ -18658,7 +19248,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0334",
@@ -18710,7 +19303,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0335",
@@ -18754,7 +19350,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0336",
@@ -18808,7 +19407,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0337",
@@ -18861,7 +19463,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0338",
@@ -18908,7 +19513,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0339",
@@ -18953,7 +19561,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0340",
@@ -19001,7 +19612,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0341",
@@ -19061,7 +19675,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0342",
@@ -19112,7 +19729,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0343",
@@ -19160,7 +19780,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0344",
@@ -19214,12 +19837,21 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony) / Mantu IT",
+    "unblock": "D-5 platform, region and operational owner for the self-hosted memory service, plus two Entra test identities (B-36), and the M2-0176 Teams and Dust admin steps",
+    "needed_by": "2026-10-12",
+    "raised_on": "2026-09-29"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED",
+    "LIVE_VERIFIED"
+   ]
   },
   {
    "id": "M2-0345",
@@ -19236,7 +19868,6 @@
     "M2-0084",
     "M2-0161",
     "M2-0064",
-    "M2-0175",
     "M2-0241",
     "M2-0245"
    ],
@@ -19283,7 +19914,7 @@
    ],
    "summary": "MASTER D02 and section 1.1 (spec lines 124, 133) require the same qualified journeys in a real Swift/SwiftUI app, and OD-8 excludes only Apple public signing; OD-12 makes Electron the desktop product. native-app at origin/m2/integration has onboarding, permissions, history, settings and meeting transcription only, with no command session, wake, Stop, guidance or action adapters. M2-0118/0161/0175 cover foundation, onboarding and QA; M2-0170 accepts 'native/Electron Mac', so FLOW-02, AGX-16, CXAC-35 and the native half of UC-001..UC-066 have no implementation owner.",
    "acceptance": [
-    "A DECISIONS.md row reconciles D02 with OD-12 (for example: Electron stays the shipping Mac product until a qualified migration; native journeys stay in scope or are DEFERRED), with the owner's answer or the default labelled ASSUMED",
+    "OD-16: native Mac parity is IN 2.0; native journeys are in scope, and any deferral needs a new owner OD row (the former 'native journeys stay in scope or are DEFERRED' option is withdrawn). A DECISIONS.md row reconciles D02 with OD-12 (for example: Electron stays the shipping Mac product until a qualified migration; native journeys stay in scope or are DEFERRED), with the owner's answer or the default labelled ASSUMED",
     "native-app decodes the shared command and capability golden/negative fixtures and implements the section 4.2 session: typed entry and opt-in wake open sessions and local Stop revokes authority at p95 <= 100 ms (XCTest on the CI macOS runner)",
     "The M2-0084 macOS adapters move into a Swift package shared by mac-helper and native-app; open/focus/graceful close, Notes create/append with arbitrary content and camera return typed results only after AX readback (XCTest with a fake AX tree)",
     "Evidence records carry an implementation label (electron-mac, native-mac, windows, mock); a checker rejects native labels on emulated, fixture or other-platform runs; M2-0170 gains a separate native Mac row and FLOW-02 runs on the development-signed native QA candidate with an 'each object exists once' check, live-only steps BLOCKED with the unblock step",
@@ -19300,7 +19931,10 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P1",
-   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron)."
+   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron). 2026-09-29 (lead, owner-asks completeness audit, owner-approved): re-sequenced before the freeze (no longer depends on M2-0175); M2-0175/M2-0177/M2-0210 depend on it (OD-16).",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0346",
@@ -19338,7 +19972,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0347",
@@ -19389,7 +20026,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0348",
@@ -19430,7 +20070,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0349",
@@ -19471,7 +20114,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P1"
+   "priority": "P1",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0350",
@@ -19513,7 +20159,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0351",
@@ -19556,7 +20205,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "MEASURED"
+   ]
   },
   {
    "id": "M2-0352",
@@ -19603,7 +20255,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0353",
@@ -19646,7 +20301,10 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in."
+   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0354",
@@ -19711,7 +20369,10 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in."
+   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0355",
@@ -19762,7 +20423,10 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in."
+   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0356",
@@ -19811,7 +20475,10 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in."
+   "notes": "OD-16 (owner, 2026-09-28): developer opt-in skills ARE in 2.0, gated behind an explicit developer opt-in.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0357",
@@ -19852,7 +20519,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0358",
@@ -19897,7 +20567,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0359",
@@ -19944,7 +20617,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0360",
@@ -19989,7 +20665,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0361",
@@ -20034,7 +20713,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0362",
@@ -20081,7 +20763,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0363",
@@ -20124,7 +20809,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0364",
@@ -20161,7 +20849,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0365",
@@ -20201,7 +20892,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0366",
@@ -20240,7 +20934,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0367",
@@ -20279,7 +20976,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0368",
@@ -20316,7 +21016,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0369",
@@ -20359,7 +21062,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0370",
@@ -20400,7 +21106,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0371",
@@ -20440,7 +21149,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0372",
@@ -20480,7 +21192,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0373",
@@ -20519,7 +21234,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0374",
@@ -20559,7 +21277,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0375",
@@ -20596,7 +21317,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0376",
@@ -20638,7 +21362,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0377",
@@ -20692,7 +21419,10 @@
     "merged_into": "main (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0378",
@@ -20745,7 +21475,11 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron)."
+   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron).",
+   "required_evidence": [
+    "LOCALLY_TESTED",
+    "LIVE_VERIFIED"
+   ]
   },
   {
    "id": "M2-0379",
@@ -20802,7 +21536,10 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-17 (owner, 2026-09-28): D-24 facts-only ships ON; derived memory (observations, mental models, pages) is built and qualified behind lineage, scope and erasure gates but ships OFF by default."
+   "notes": "OD-17 (owner, 2026-09-28): D-24 facts-only ships ON; derived memory (observations, mental models, pages) is built and qualified behind lineage, scope and erasure gates but ships OFF by default.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0380",
@@ -20859,7 +21596,11 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED",
+    "MEASURED"
+   ]
   },
   {
    "id": "M2-0381",
@@ -20908,7 +21649,11 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-17 (owner, 2026-09-28): D-5 self-hosted private Hindsight on one approved container platform with managed Postgres (not a hosted memory cloud); engineering targets the compose profile until the platform is provisioned."
+   "notes": "OD-17 (owner, 2026-09-28): D-5 self-hosted private Hindsight on one approved container platform with managed Postgres (not a hosted memory cloud); engineering targets the compose profile until the platform is provisioned.",
+   "required_evidence": [
+    "LOCALLY_TESTED",
+    "HOST_CONFIGURED"
+   ]
   },
   {
    "id": "M2-0382",
@@ -20959,7 +21704,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0383",
@@ -20998,7 +21746,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0384",
@@ -21036,7 +21787,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0385",
@@ -21080,7 +21834,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0386",
@@ -21123,7 +21880,10 @@
     "merged_into": "main (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0387",
@@ -21161,7 +21921,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0388",
@@ -21206,7 +21969,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0389",
@@ -21251,7 +22017,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0390",
@@ -21289,7 +22058,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0391",
@@ -21332,7 +22104,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0392",
@@ -21378,7 +22153,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0393",
@@ -21420,7 +22198,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0394",
@@ -21460,7 +22241,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0395",
@@ -21506,7 +22290,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0396",
@@ -21548,7 +22335,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0397",
@@ -21587,7 +22377,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0398",
@@ -21628,7 +22421,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0399",
@@ -21670,7 +22466,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0400",
@@ -21714,7 +22513,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0401",
@@ -21756,7 +22558,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0402",
@@ -21797,7 +22602,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0403",
@@ -21838,7 +22646,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0404",
@@ -21880,7 +22691,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0405",
@@ -21923,7 +22737,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0406",
@@ -21965,7 +22782,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0407",
@@ -22009,7 +22829,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0408",
@@ -22052,7 +22875,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0409",
@@ -22093,7 +22919,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0410",
@@ -22133,7 +22962,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0411",
@@ -22171,7 +23003,10 @@
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
-   "priority": "P2"
+   "priority": "P2",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0412",
@@ -22217,7 +23052,10 @@
    "risk": "high",
    "estimate_hours": 6,
    "status": "TODO",
-   "notes": "2026-09-28 (lead): no hard dependency on M2-0145/M2-0103 — build and prove in CI (Operator Worker tests + desktop + packaged smoke against a test Operator); production deploy of the Operator stays an owner action."
+   "notes": "2026-09-28 (lead): no hard dependency on M2-0145/M2-0103 — build and prove in CI (Operator Worker tests + desktop + packaged smoke against a test Operator); production deploy of the Operator stays an owner action.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0413",
@@ -22257,7 +23095,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + CI green"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -22297,7 +23138,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -22334,7 +23178,10 @@
     "workflow_dispatch run on main"
    ],
    "risk": "medium",
-   "estimate_hours": 4
+   "estimate_hours": 4,
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "wave": "W2",
@@ -22370,7 +23217,10 @@
     "workflow_dispatch run on main"
    ],
    "risk": "medium",
-   "estimate_hours": 3
+   "estimate_hours": 3,
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0417",
@@ -22415,7 +23265,10 @@
      "LEAD_ACTION acceptance item (lead, after merge)"
     ]
    },
-   "notes": "2026-09-29 (lead): DONE -> ENGINEERING_COMPLETE until the lead records its LEAD_ACTION acceptance item. 2026-09-29 (lead, post-merge check): VERIFIED: 0 cancelled m2/integration runs among 65 build.yml / 65 isolation-canary.yml runs after the merge (03:08Z-09:40Z). NOT YET OBSERVED: a superseded ticket-branch run cancelled by the next push. 0 overlapping runs on 21 branches, because the single-slot merge queue and the serialized ticket flow no longer push while a branch's run is in progress. The concurrency config is correct by lead review of #307. The LEAD_ACTION stays open until an overlap occurs."
+   "notes": "2026-09-29 (lead): DONE -> ENGINEERING_COMPLETE until the lead records its LEAD_ACTION acceptance item. 2026-09-29 (lead, post-merge check): VERIFIED: 0 cancelled m2/integration runs among 65 build.yml / 65 isolation-canary.yml runs after the merge (03:08Z-09:40Z). NOT YET OBSERVED: a superseded ticket-branch run cancelled by the next push. 0 overlapping runs on 21 branches, because the single-slot merge queue and the serialized ticket flow no longer push while a branch's run is in progress. The concurrency config is correct by lead review of #307. The LEAD_ACTION stays open until an overlap occurs.",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0418",
@@ -22452,7 +23305,10 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
-   "status": "TODO"
+   "status": "TODO",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0419",
@@ -22490,7 +23346,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0420",
@@ -22531,7 +23390,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0421",
@@ -22565,7 +23427,10 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 0.5,
-   "status": "TODO"
+   "status": "TODO",
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0422",
@@ -22610,7 +23475,10 @@
     "pending": [
      "LEAD_ACTION acceptance item (lead, after merge)"
     ]
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0423",
@@ -22657,7 +23525,10 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
-   }
+   },
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0424",
@@ -22697,7 +23568,10 @@
     "lead dispatch"
    ],
    "risk": "low",
-   "estimate_hours": 4
+   "estimate_hours": 4,
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0425",
@@ -22732,7 +23606,10 @@
     "lead dispatch"
    ],
    "risk": "low",
-   "estimate_hours": 3
+   "estimate_hours": 3,
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0426",
@@ -22766,7 +23643,10 @@
     "CI Build & Test on the PR"
    ],
    "risk": "low",
-   "estimate_hours": 1
+   "estimate_hours": 1,
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0427",
@@ -22805,7 +23685,10 @@
     "packaged smoke"
    ],
    "risk": "low",
-   "estimate_hours": 2
+   "estimate_hours": 2,
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
   },
   {
    "id": "M2-0428",
@@ -23090,6 +23973,449 @@
    "risk": "high",
    "estimate_hours": 12,
    "status": "TODO"
+  },
+  {
+   "id": "M2-0434",
+   "wave": "W3",
+   "milestone": "m6",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock": "D-5: name the container platform, region and operational owner for the self-hosted memory/knowledge plane, and approve spend",
+    "needed_by": "2026-10-12",
+    "raised_on": "2026-09-29"
+   },
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Deploy the self-hosted private Hindsight service with managed Postgres/pgvector: IaC, a main-guarded deploy job and a post-deploy readback (engineering first)",
+   "type": "feature",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0119",
+    "M2-0133",
+    "M2-0332"
+   ],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "OD-17",
+    "HMSTEP-03"
+   ],
+   "scope_paths": [
+    "services/",
+    "infra/",
+    ".github/workflows/"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED",
+    "HOST_CONFIGURED",
+    "LIVE_VERIFIED"
+   ],
+   "engineering_first": true,
+   "summary": "OD-17 chose a self-hosted private Hindsight with managed Postgres. No ticket builds the deployment. The engineering half (IaC parameterised by platform/region, CI validation, deploy job, readback) is CI-provable now; the deploy itself waits for D-5.",
+   "acceptance": [
+    "Infrastructure-as-code for the Hindsight service and managed Postgres/pgvector, parameterised by platform and region, using the same image digest as services/compose.yml, validated in CI without deploying",
+    "A main-guarded workflow_dispatch deploy job deploys it, then runs the M2-0332 profile-check readback (/version, OpenAPI sha256, bank config) against the deployed endpoint",
+    "Tests show an unauthenticated request and a request from outside the gateway network are rejected; API/DB/control ports are unreachable from outside the private network",
+    "Readiness and liveness probes and DB health pass; a restore rehearsal from a managed-Postgres backup into an isolated instance applies tombstones and ACL epochs before serving; RTO/RPO recorded",
+    "LEAD_ACTION (after the owner answers D-5, not the implementer's): the lead dispatches the deploy and records platform, region, image digest and DB version"
+   ]
+  },
+  {
+   "id": "M2-0435",
+   "wave": "W3",
+   "milestone": "m6",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Pin the OD-17 memory defaults: facts-only retain/recall on at release; reflect, observations, mental models and pages off behind a qualified admin-gated enable",
+   "type": "feature",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0332",
+    "M2-0379",
+    "M2-0343",
+    "M2-0341"
+   ],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "OD-17",
+    "D-24"
+   ],
+   "scope_paths": [
+    "src/main/memory/",
+    "services/"
+   ],
+   "summary": "OD-17/D-24 fix the release default as facts-only with derived stages off. Nothing pins it in the shipped config or tests.",
+   "acceptance": [
+    "The shipped org policy and bank templates enable facts-only retain and recall once the activation gate passes; a config test fails when the release default is disabled or read-only unless a dated owner deviation record exists",
+    "Reflect, observations, mental models and knowledge pages are off in every shipped bank template; a config test fails if any is on by default",
+    "profile-check allows a derived stage only when the M2-0379 qualification record exists for that stage and version and an Operator admin enabled it (audited)",
+    "A fresh profile against the compose stub retains an approved fact and recalls it in a new session with no admin toggle, and makes zero reflect/observation calls"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
+  },
+  {
+   "id": "M2-0436",
+   "wave": "W3",
+   "milestone": "m6",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock": "Authorize the production/canary deploy (or grant a scoped deploy token) and answer D-8",
+    "needed_by": "2026-11-01",
+    "raised_on": "2026-09-29"
+   },
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Deploy the reviewed 2.0 Operator to the authorized canary/production environment with guarded deploy, readback and rehearsed rollback (engineering first)",
+   "type": "feature",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0159",
+    "M2-0103",
+    "M2-0014"
+   ],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "r11-MASTER"
+   ],
+   "scope_paths": [
+    "operator/scripts/",
+    "operator/"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED",
+    "LIVE_VERIFIED"
+   ],
+   "engineering_first": true,
+   "summary": "The r11 kit requires the reviewed Operator to run in production with its privacy controls read back. The deploy tooling has no guarded production target.",
+   "acceptance": [
+    "deploy.mjs gains a production/canary target that refuses to run unless a verified backup, a staging deploy of the same bundle hash and a D1 migration dry-run have passed; a contract test covers each refusal",
+    "A readback compares version ID/commit, bindings, D1 migration head and privacy controls (gateway log/cache settings, no-store routes, broker grant rules) with staging; any difference fails closed (tested against fixtures)",
+    "A rollback to the previous version ID is scripted and tested against fixtures",
+    "LEAD_ACTION (after owner authorization, not the implementer's): deploy, record the readback, rehearse the canary rollback and record the RTO"
+   ]
+  },
+  {
+   "id": "M2-0437",
+   "wave": "W3",
+   "milestone": "m6",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock": "D-5: name the container platform, region and operational owner for the self-hosted memory/knowledge plane, and approve spend",
+    "needed_by": "2026-10-12",
+    "raised_on": "2026-09-29"
+   },
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Deploy the canonical knowledge service and knowledge.* MCP server on the approved server-plane platform with readback (engineering first)",
+   "type": "feature",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0119",
+    "M2-0125",
+    "M2-0128"
+   ],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "r11-MASTER",
+    "D-6"
+   ],
+   "scope_paths": [
+    "services/",
+    "infra/",
+    ".github/workflows/"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED",
+    "LIVE_VERIFIED"
+   ],
+   "engineering_first": true,
+   "summary": "The knowledge plane (D-6: M365 via Entra API) needs a hosted service and MCP server for agents to read meeting context while the desktop sleeps. No ticket deploys it.",
+   "acceptance": [
+    "Deployment manifests for the knowledge service and MCP server target the approved platform, with Entra-validated ingress, private DB networking and no keys on the desktop; CI validates them against the compose profile",
+    "Contract tests: two principals read and write concurrently with no lost update and no cross-principal read; a revoked connection and a wrong audience are refused",
+    "A sentinel check shows no content or keys land in Cloudflare stores on the hosted path",
+    "LEAD_ACTION (after D-5, not the implementer's): deploy, read back version/digest/region/migration head, and run the desktop-asleep Dust retrieval with citations"
+   ]
+  },
+  {
+   "id": "M2-0438",
+   "wave": "W3",
+   "milestone": "m6",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Prove the speech-session broker refuses unauthenticated, expired, replayed, cross-device and wrong-scope requests before any audio or paid inference",
+   "type": "test",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0107",
+    "M2-0240"
+   ],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "r11-MASTER"
+   ],
+   "scope_paths": [
+    "operator/src/",
+    "operator/test/"
+   ],
+   "summary": "The broker's refusal matrix is asserted nowhere; paid inference or audio could start on a bad grant.",
+   "acceptance": [
+    "Miniflare contract tests for unauthenticated, revoked, expired, replayed (reused grant or nonce), cross-device and wrong-scope requests each return the documented failure code",
+    "A counter test proves zero upstream connections and zero metered units for every refused case",
+    "No caller-supplied upstream URL, host, gateway or model outside the pinned allowlist is honoured (field fuzz test)",
+    "Route names, grant TTL, binding rules and failure codes are documented, and a test pins the codes"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
+  },
+  {
+   "id": "M2-0439",
+   "wave": "W3",
+   "milestone": "m6",
+   "owner_model": "sonnet",
+   "kit_refs": [
+    "HM-FLOW-06"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Qualify memory release compatibility, update and rollback for the signed candidate (HM-FLOW-06, HMSTEP-16)",
+   "type": "test",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0343",
+    "M2-0378"
+   ],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "HM-FLOW-06",
+    "HMSTEP-16"
+   ],
+   "scope_paths": [
+    "src/main/memory/",
+    "services/",
+    "scripts/qa/"
+   ],
+   "summary": "HM-FLOW-06/HMSTEP-16 require N-1/N compatibility and a rollback that never resurrects forgotten items. Nothing tests it.",
+   "acceptance": [
+    "A contract-version matrix tests the Electron (Windows, Mac) client, the native Mac client and the Dust/skill connector against this release's and the previous release's memory API contract; a breaking change fails CI",
+    "Upgrading the memory service from the prior pinned image and DB schema, then rolling back, is rehearsed on the compose profile; canonical edits, tombstones and ACL epochs survive, and rollback never resurrects forgotten items",
+    "Updating the app from the prior candidate keeps the user's memory mode, pending outbox and forget state",
+    "The release record names the memory rollback owner and lists every unrun memory gate explicitly"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
+  },
+  {
+   "id": "M2-0440",
+   "wave": "W3",
+   "milestone": "m6",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Score command target and intent accuracy with completed/refused/clarified denominators and confidence intervals",
+   "type": "test",
+   "priority": "P2",
+   "depends_on": [
+    "M2-0113",
+    "M2-0322"
+   ],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "r11-MASTER"
+   ],
+   "scope_paths": [
+    "scripts/qa/",
+    "src/main/command/"
+   ],
+   "summary": "The r11 command-accuracy ask needs honest denominators; slow/errored cases must not be excluded.",
+   "acceptance": [
+    "The harness reports exact-target and intent accuracy per language and slice, with completed, refused and clarified counts as denominators",
+    "Every rate carries a 95% confidence interval and sample count; slow and errored cases stay in the denominator",
+    "A failing slice narrows the advertised capability in the capability matrix instead of being excluded",
+    "Scoring runs in CI on the permissioned set only"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
+  },
+  {
+   "id": "M2-0441",
+   "wave": "W6",
+   "milestone": "m8",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Expand UC-001..UC-112 into an individual acceptance registry and gate the catalogue regression on every row",
+   "type": "test",
+   "priority": "P1",
+   "depends_on": [],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "MASTER-25.2"
+   ],
+   "scope_paths": [
+    "scripts/qa/",
+    "scripts/evidence/"
+   ],
+   "summary": "MASTER §25.2 says to expand the use-case ranges into individual registry rows and never let one representative pass a range. The only gate is M2-0173's 'relevant 112-use-case regression run'.",
+   "acceptance": [
+    "A machine-readable registry has one row per UC-001..UC-112 with its owning ticket(s), test id(s) and evidence level",
+    "A check fails when a UC row has no test or when a range is marked passed on a representative",
+    "M2-0173's regression reads the registry and reports per-row results; 'relevant subset' is not accepted"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ]
+  },
+  {
+   "id": "M2-0442",
+   "wave": "W2",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "DESIGNED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Re-point the HeyClicky capability register (CAPABILITY-DISPOSITIONS.json) to the tickets that prove each capability, and validate the mapping",
+   "type": "docs",
+   "priority": "P1",
+   "depends_on": [],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "OD-16",
+    "M2-0261"
+   ],
+   "scope_paths": [
+    "docs/metis-2.0/kit/CAPABILITY-DISPOSITIONS.json",
+    "docs/metis-2.0/tools/trace/"
+   ],
+   "summary": "Most rows point at generic tickets whose acceptance never proves the capability. That is how 'like HeyClicky and more' is judged.",
+   "acceptance": [
+    "Owners updated to the proving tickets (CAP-04/06/22 -> M2-0355; CAP-09/28/30/33-37 -> M2-0354; CAP-17/29/31 -> M2-0356; CAP-05/27 -> M2-0358; CAP-07 -> M2-0302; CAP-08/24/38 -> M2-0359; CAP-10/41/48 -> M2-0300; CAP-16/19/20 -> M2-0298; CAP-18/42/43 -> M2-0361; CAP-26/40 -> M2-0360; CAP-46 -> M2-0357; CAP-03 -> M2-0297/M2-0299; CAP-44 -> M2-0276), after re-verifying each against the ticket acceptance",
+    "No row is NOT_TESTED while a ticket citing its CAPADOPT id exists",
+    "The traceability validator fails when an owner ticket's acceptance and finding_refs do not cite the capability, or when a kit row is MET while a citing ticket is open (fixture tests; runs in the private traceability workflow)"
+   ],
+   "required_evidence": [
+    "DESIGNED"
+   ]
+  },
+  {
+   "id": "M2-0443",
+   "wave": "W3",
+   "milestone": "m5",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "DESIGNED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Create the numbered lessons log and record the refactoring-skill identity (M2-0059 remainder)",
+   "type": "docs",
+   "priority": "P2",
+   "depends_on": [
+    "M2-0059"
+   ],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "D-15"
+   ],
+   "scope_paths": [
+    "docs/metis-2.0/lessons/",
+    "docs/metis-2.0/CURRENT.md"
+   ],
+   "summary": "M2-0059 closed without its lessons log and without recording the refactoring-skill decision.",
+   "acceptance": [
+    "docs/metis-2.0/lessons/ exists with a template and LESSON-001 from the first accepted refactor slice, linked from CURRENT.md",
+    "The refactoring-skill identity is recorded from the owner's D-15 answer, or the SAE+Stark default after 2026-10-05, citing the decision"
+   ],
+   "required_evidence": [
+    "DESIGNED"
+   ]
+  },
+  {
+   "id": "M2-0444",
+   "wave": "W3",
+   "milestone": "m6",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "MEASURED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Measure engineering efficiency before and after the refactor slices (token, search and read overhead)",
+   "type": "investigation",
+   "priority": "P2",
+   "depends_on": [
+    "M2-0377",
+    "M2-0426"
+   ],
+   "finding_refs": [
+    "OWNER-ASKS-AUDIT-2026-09-29",
+    "ADR-025"
+   ],
+   "scope_paths": [
+    "docs/metis-2.0/evidence/eng-efficiency.md"
+   ],
+   "summary": "ADR-025's efficiency claim needs before/after numbers; every cell is UNKNOWN.",
+   "acceptance": [
+    "LEAD_ACTION (lead, not the implementer's): the five-task set in eng-efficiency.md runs three times per cell on a pinned commit before the m5 seam set and again after it; medians of tokens, searches, reads and correctness are filed",
+    "Maintainability deltas (FF-04 over-limit files, duplicated-responsibility counts) are reported beside the token figures",
+    "No developer metric is sent to Operator (cites M2-0426)"
+   ],
+   "required_evidence": [
+    "MEASURED"
+   ]
   }
  ]
 }
