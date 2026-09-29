@@ -2304,7 +2304,7 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "IN_PROGRESS",
+   "status": "ENGINEERING_COMPLETE",
    "notes": [
     "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion).",
     "Codex audit-r4 (2026-09-27, verified by Opus at 4ec75897) — MUST be covered by this ticket: (1) no production file imports createStorageGateway yet; (2) History/Recall: src/main/recall.ts:239 does an unbounded Promise.all over readMeeting and :170 reads with raw readFile, bypassing admission, dataless checks, cancellation and deadlines; (3) src/main/transcripts.ts:755 reads meeting-root files synchronously through readSavedFile (:324 decodeSaved(readFileSync)); (4) gateway root() must not be able to reject public methods: a throwing root()/settings resolution must resolve to an unavailable status within the deadline (gateway.ts:91, :318, :354); (5) add a product-level regression through the real History/Recall entry points (not only gateway unit calls) proving the main process stays responsive while meeting files hang or are cloud-only; (6) make the gateway module comment true (the only meetings-root reader).",
@@ -2312,7 +2312,16 @@
     "2026-09-29 (lead, OD-24): owner chose to split: this ticket's tested fixes merge now (unblocks the dependents); the strict ST-1 gate moves unchanged to M2-0433 (gates 1.9.7)."
    ],
    "claimed_by": "ticket runner batch 9 (Codex implements)",
-   "claimed_at": "2026-09-27"
+   "claimed_at": "2026-09-27",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/259",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LIVE_VERIFIED"
+    ]
+   }
   },
   {
    "id": "M2-0032",
