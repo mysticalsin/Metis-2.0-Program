@@ -9199,10 +9199,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
+   "status": "DONE",
    "notes": [
     "Also covers the desktop side found in M2-0045 validation: parseOperatorIntegration ignores the brokered row shape {transport, mode, endpoint, gatewayToken}, so brokered rows parse with baseUrl/credential null and are never registered. Fix both ends together (Worker /v1/mcp/:id route + desktop brokered parsing) or stop defaulting to brokered."
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/321",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0146",
