@@ -237,6 +237,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0429 (P0 meeting audio / Screen Recording grant not in effect / false crash logs) and M2-0430 (P0 slow post-meeting write-up: CPU-only local model via os.freemem gate, no recap pre-emption, save gated on recap); both root causes confirmed by adversarial re-trace; 1.9.7 depends on both."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0431 (P0 owner-reported flashing: whole-menu-bar hover strip + hard-cut transitions + grace cancelled by duplicate leave; root cause confirmed; OD-23 notch-only trigger); 1.9.7 depends on it."
   }
  ],
  "tickets": [
@@ -3111,7 +3117,8 @@
     "M2-0194",
     "M2-0428",
     "M2-0429",
-    "M2-0430"
+    "M2-0430",
+    "M2-0431"
    ],
    "needs_decision": [
     "D-13"
@@ -22937,6 +22944,55 @@
     "Budgets (warm, M-series, 60-min meeting): transcript visible <= 5 s after the drain completes; first recap token <= 10 s; recap done <= 60 s. CI proves ordering and pre-emption with stub models; LEAD_ACTION: the lead verifies the budgets from the audit spans on the owner's next real meetings",
     "If Apple Foundation Models is available but unlicensed, the Settings model panel says so and how to enable it (owner action); the FM path is preferred when licensed and qualified"
    ]
+  },
+  {
+   "id": "M2-0431",
+   "title": "Stop Métis flashing: top-center Hide opens only from the notch area, smooth fade in/out instead of hard cuts, no premature snap-shut, and a packaged stability test",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "OWNER-REPORT-2026-09-29-flashing",
+    "OD-23"
+   ],
+   "scope_paths": [
+    "src/main/island/geometry.ts",
+    "src/main/island/cursor-watch.ts",
+    "src/main/index.ts",
+    "src/renderer/src/lib/overlay-autohide.ts",
+    "src/renderer/src/styles.css",
+    "src/renderer/src/App.tsx",
+    "src/renderer/src/components/RightEdgeSidecar.tsx",
+    "scripts/qa/packaged-smoke.mjs"
+   ],
+   "summary": "Owner report (1.9.6): 'I noticed Metis flashing while using it. this cant happen it breaks trust'. CONFIRMED by an adversarial re-trace of the content-free logs and the code. (1) The top-center Hide hover strip spans the whole menu bar (x 0..workArea.width, y 0-39; geometry.ts:220-223, 341-343; cursor-watch.ts:155-161), so ordinary menu-bar use opens the bar: 225 reveals since 09-23, 114 of them outside the bar's x-span, 136 visible under 2 s, 44 re-opens within 2 s. (2) Every cycle is a hard cut: the spring keyframes keep opacity at 1, opacity is set to 1 before setBounds (index.ts ~3339->3381), and a duplicate pointer-leave cancels the 500 ms grace (overlay-autohide.ts:103), giving 63 parks at 300-360 ms, including all five today. Also: drag while revealed moves the parked window; the right-edge dock re-mounts on every open (replaying .develop-in); Settings sets an opaque background before resizing. OD-23: top-center opens only from the notch area. Analysis: codex-queue/logs/flashing-2026-09-29/inv.md.",
+   "acceptance": [
+    "OD-23: the top-center Hide reveal zone is the bar's own area around the notch/center (about +/-150 px, derived from the bar geometry) with a 250 ms dwell; menu-bar positions outside it (for example x=24 and x=1770 at y=8) never reveal. hover-hit-band.test.ts, cursor-watch.test.ts and geometry.test.ts are updated to the new rule (not deleted), with the owner decision cited",
+    "No hard cuts: reveal and hide fade opacity (0->1 and 1->0, reduced-motion aware); restore sets bounds before opacity 1 (a contract test with a mock window asserts setBounds precedes setOpacity(1)); applyOverlaySurfaceChrome skips unchanged setBackgroundColor/setOpacity; Settings never shows an opaque slab before its resize",
+    "The leave grace is not cancelled by a duplicate pointer-leave (a unit test replays leave,leave and asserts no park before the grace ends); a height collapse while the pointer is over the bar does not park it",
+    "Drag while revealed in top-center Hide does not move the park position (moveBy early-return or anchored resize); a harness test covers moveBy(0,150) + resizeTo(144) + a tick with the cursor 60 px below: no park scheduled, y unchanged",
+    "The right-edge dock renders as one element (no re-mount on open/close); an RTL test asserts the same root DOM node across 3 reveal/park cycles and one Answer mount",
+    "Every reveal/park is logged with a cause (cursor-watch, renderer, hotkey, toggle, settings), and a content-free audit event overlay.flash {visibleMs, zone, placement, layout} is emitted for any reveal that parks within 2 s with no click or keypress",
+    "Packaged smoke OV-STABLE (macOS and Windows): a scripted 3-minute cursor path (menu-bar stops at x=24/1253/1770 for 400 ms, passes through the right-edge band area) causes zero bounds/opacity/visibility changes without a deliberate notch or edge hover; a deliberate hover gives exactly one reveal and one park; opacity is never 1 while the size differs from the target. OV-BG: the background colour stays #00000000 after onboarding and across Settings open/close",
+    "Right-edge hover mechanics stay as fixed by M2-0428 (no regression of the RE-HIDE rows)"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "Packaged smoke OV-STABLE/OV-BG (macOS + Windows)"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 10,
+   "status": "TODO"
   }
  ]
 }
