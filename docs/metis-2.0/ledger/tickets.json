@@ -243,6 +243,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0431 (P0 owner-reported flashing: whole-menu-bar hover strip + hard-cut transitions + grace cancelled by duplicate leave; root cause confirmed; OD-23 notch-only trigger); 1.9.7 depends on it."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-24: M2-0031 split; strict ST-1 (OD-21 unchanged) moves to M2-0433, which gates 1.9.7 (M2-0046 depends on it)."
   }
  ],
  "tickets": [
@@ -2295,7 +2301,8 @@
    "notes": [
     "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion).",
     "Codex audit-r4 (2026-09-27, verified by Opus at 4ec75897) — MUST be covered by this ticket: (1) no production file imports createStorageGateway yet; (2) History/Recall: src/main/recall.ts:239 does an unbounded Promise.all over readMeeting and :170 reads with raw readFile, bypassing admission, dataless checks, cancellation and deadlines; (3) src/main/transcripts.ts:755 reads meeting-root files synchronously through readSavedFile (:324 decodeSaved(readFileSync)); (4) gateway root() must not be able to reject public methods: a throwing root()/settings resolution must resolve to an unavailable status within the deadline (gateway.ts:91, :318, :354); (5) add a product-level regression through the real History/Recall entry points (not only gateway unit calls) proving the main process stays responsive while meeting files hang or are cloud-only; (6) make the gateway module comment true (the only meetings-root reader).",
-    "2026-09-29 (lead): owner_model -> opus (P0 History freeze; Opus root-cause analysis found ST-1 fails on boot-phase main-loop blocks and never exercises History; real freeze paths confirmed: sync recallOpen/recallExportPlain reads and per-root gateway admission). Round focus v6 in the queue lead file."
+    "2026-09-29 (lead): owner_model -> opus (P0 History freeze; Opus root-cause analysis found ST-1 fails on boot-phase main-loop blocks and never exercises History; real freeze paths confirmed: sync recallOpen/recallExportPlain reads and per-root gateway admission). Round focus v6 in the queue lead file.",
+    "2026-09-29 (lead, OD-24): owner chose to split: this ticket's tested fixes merge now (unblocks the dependents); the strict ST-1 gate moves unchanged to M2-0433 (gates 1.9.7)."
    ],
    "claimed_by": "ticket runner batch 9 (Codex implements)",
    "claimed_at": "2026-09-27"
@@ -3118,7 +3125,8 @@
     "M2-0428",
     "M2-0429",
     "M2-0430",
-    "M2-0431"
+    "M2-0431",
+    "M2-0433"
    ],
    "needs_decision": [
     "D-13"
@@ -23034,6 +23042,52 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
+   "status": "TODO"
+  },
+  {
+   "id": "M2-0433",
+   "title": "ST-1 strict gate: the packaged app passes ST-1 over the whole run, boot included (OD-21), and the ST-1 jobs become blocking again",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0031"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-21",
+    "OD-24",
+    "M2-0031",
+    "M2-0422"
+   ],
+   "scope_paths": [
+    "src/main/",
+    "scripts/qa/st-1.mjs",
+    ".github/workflows/qa-candidate.yml"
+   ],
+   "summary": "OD-24 (owner): M2-0031's tested fixes merge now. The strict ST-1 rule (OD-21, unchanged) moves to this ticket, which gates 1.9.7. State after M2-0031 v9 (QA run 36566810821): the control run fails only loop-max at 330 ms, one tray stage (buildTrayInStages: newTray or attachMenu) of about 300-319 ms. The FIFO run fails loop-max at 983 ms and async-write at 363 ms. Native BrowserWindow construction took about 760 ms in the FIFO run against 170 ms in the control run, the same single call varying about 4x between CI machines. History's first call took 2.0 s with FIFOs (bounded). Everything splittable in app code is already split (async ps, deferred tray, yields, shared gateway admission).",
+   "acceptance": [
+    "OD-21: ST-1 passes only with scripts/qa/st-1.mjs verdict PASS on the lane candidate over the whole run from launch, boot included: no late samples, loop-p99 < 50 ms, loop-max < 250 ms, async-write < 250 ms. A trimmed or re-windowed run does not count.",
+    "The ST-1 fifo and control jobs in qa-candidate.yml are blocking again (no continue-on-error) once they pass",
+    "Tray: per-stage timings (loadIcon, newTray, attachMenu) are recorded in the ST-1 report; no single tray stage holds the main thread for 250 ms or more (for example pre-sized template images, and the menu built/attached lazily on first open)",
+    "Window creation: the BrowserWindow constructor cost is recorded in the ST-1 report per run; options that reduce it are measured (for example paintWhenInitiallyHidden, transparency only when the chrome needs it, deferring secondary windows) without breaking FITO-185-Z Act1 <= 300 ms",
+    "async-write < 250 ms with FIFO fixtures: boot I/O and FIFO-pinned reads never starve the threadpool (the shared admission cap holds; boot fs work is staggered)",
+    "If the only remaining violation is a single native call whose cost is dominated by the CI machine, the lead takes the per-run numbers to the owner; the criteria are never relaxed without a new owner decision"
+   ],
+   "verification": [
+    "QA candidate ST-1 fifo + control PASS on the lane candidate"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED",
+    "MEASURED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 12,
    "status": "TODO"
   }
  ]
