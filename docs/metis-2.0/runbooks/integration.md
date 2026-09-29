@@ -534,6 +534,66 @@ therefore waits for the L15 follow-up in §16.
    holding ticket (step 3) and no milestone (step 5). It lands with **Create a merge commit**
    (`gh pr merge --merge`), not a squash, so that `main`'s commits enter `m2/integration`'s history and the
    next milestone PR carries only new commits.
+5. **Post-merge check (M2-0502), within 10 min of every milestone merge**, before any lane is dispatched
+   on `main`. It applies to every milestone merge: the 1.9.7 merge, interim pre-cut merges (for example
+   the ones that carry M2-0504 or M2-0467) and post-cut harness merges. Why: GitHub started no workflow
+   for the push of df205007, the merge of #337 at 17:55Z on 2026-09-29. It has no push-event run, so no
+   `build.yml` run proved `main`, and the four workflow files that first reached `main` in it were never
+   registered (OBSERVED by the lead from the Actions API, about 22:00Z on 2026-09-29:
+   `ledger/tickets.json:27835`, M2-0501's summary; `ledger/tickets.json:27884`, M2-0502's summary). The
+   evidence and the open root cause are in `evidence/M2-0502-main-ci-proof.md`. Set `SHA` to the merge
+   commit, `main`'s head, in full: `SHA=$(gh api repos/mysticalsin/AskToto-Mantu/commits/main --jq .sha)`.
+
+   a. **Push run.**
+      `gh api "repos/mysticalsin/AskToto-Mantu/actions/runs?head_sha=$SHA&event=push" --jq .total_count`
+      prints at least 1. The commit's check-suite count is not used: dispatched runs also create check
+      suites, and df205007's 3 suites all come from later dispatches (OBSERVED, `ledger/tickets.json:27835`).
+   b. **Main CI.** A `build.yml` run exists for `SHA` on `main`:
+      `gh api "repos/mysticalsin/AskToto-Mantu/actions/workflows/build.yml/runs?branch=main&head_sha=$SHA" --jq '.workflow_runs[] | "\(.id) \(.event) \(.status) \(.conclusion)"'`.
+      If no run is listed, as when (a) printed 0, dispatch it on `main` once:
+      `gh workflow run build.yml --repo mysticalsin/AskToto-Mantu --ref main`, then read its id with
+      `gh run list --repo mysticalsin/AskToto-Mantu --workflow build.yml --branch main --event workflow_dispatch --limit 1 --json databaseId,headSha,status,conclusion`,
+      check that `headSha` equals `SHA`, and wait with `gh run watch <id> --repo mysticalsin/AskToto-Mantu --exit-status`.
+      That run is `main`'s CI. It covers what a push run covers, because the package jobs also run on
+      `workflow_dispatch` (§2), and the queue's `ci-proof.sh main` accepts it because it matches a run by
+      branch and head sha (PROVIDED: `ledger/tickets.json:27884`). If `main` moved before the run started,
+      its `headSha` is the new head: start this step again on that head. A failed run makes `main` red:
+      re-run its failed jobs once (F21), and a repeated failure becomes a fix ticket as in §9 step 1.
+   c. **Registration.** After `git fetch origin main`, and with `origin/main` at `SHA`:
+
+      ```
+      comm -3 <(git ls-tree --name-only origin/main .github/workflows/ | grep -E '\.ya?ml$' | sort) \
+        <(gh api --paginate repos/mysticalsin/AskToto-Mantu/actions/workflows --jq '.workflows[].path' | sort)
+      ```
+
+      The first column is each file on `main` that GitHub has not registered; the second is each
+      registered path not in `main`'s tree (a `dynamic/…` entry or a deleted file), which needs nothing.
+      `ledger.yml` is expected in the first column: its only trigger is `workflow_call`, and callers
+      resolve it by path (OBSERVED, `ledger/tickets.json:27835`). Any other file there is unregistered;
+      name it in the record below. Its remedy is M2-0501's self-registration trigger, and no lane that
+      needs it is dispatched until `gh api repos/mysticalsin/AskToto-Mantu/actions/workflows/<file> --jq .state`
+      prints `active`.
+
+   **Done.** A milestone merge is not done until (b) is green and every lane that the next step dispatches
+   resolves: its file prints `active` in (c)'s last command. For a candidate, that is
+   `runbooks/qa-candidate.md` §3's pre-dispatch check. The lead records the merge sha, the count from (a),
+   the `build.yml` run id with its event and conclusion, and (c)'s output in `_relay/HANDOFF.md`; for the
+   1.9.7 merge, also in `releases/1.9.7.md` (M2-0498).
+
+   **The queue's milestone step** (lead tooling, outside both repositories) runs (a) to (c) and logs one
+   distinct outcome instead of a single "main CI NOT green":
+   - `main <sha8> CI green (build.yml run <id>, event <push|workflow_dispatch>)`;
+   - `main <sha8> CI red (build.yml run <id>; failing jobs: <names>)`, the names from
+     `gh run view <id> --repo mysticalsin/AskToto-Mantu --json jobs --jq '.jobs[] | select(.conclusion == "failure") | .name'`;
+   - `main <sha8> no push run for head; dispatched build.yml run <id>`, followed by the green or red line
+     for that run;
+   - `main <sha8> registration: clean` (only `ledger.yml` in the first column), or
+     `main <sha8> registration: unregistered <files>`.
+
+   **The 1.9.7 merge (m3).** The snapshot of step 1 is cut at M2-0498's version-bump commit on
+   `m2/integration` once that commit is green, not on the queue's 24-hour milestone timer. After the owner
+   merges it, this step runs on the merge commit, and green `main` CI with a clean registration check is
+   recorded before the lead dispatches `qa-candidate.yml` (`runbooks/qa-candidate.md` §3).
 
 ## 11. The 1.9.7 release window and release/1.9.x
 
