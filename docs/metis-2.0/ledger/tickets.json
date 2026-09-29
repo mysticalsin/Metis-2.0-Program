@@ -24367,7 +24367,7 @@
    "evidence_target": "DESIGNED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "risk": "medium",
    "estimate_hours": 6,
    "title": "Create the numbered lessons log and record the refactoring-skill identity (M2-0059 remainder)",
@@ -24391,7 +24391,13 @@
    ],
    "required_evidence": [
     "DESIGNED"
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/36",
+    "merged_into": "main (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)"
+   }
   },
   {
    "id": "M2-0444",
