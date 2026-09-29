@@ -26665,7 +26665,7 @@
    ],
    "estimate_hours": 2,
    "risk": "low",
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
    "title": "Write docs/metis-2.0/runbooks/test-isolation.md: the OS sandbox profile and run order for test isolation (M2-0190 acceptance 3)",
@@ -26684,7 +26684,13 @@
    "evidence_target": "DESIGNED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-09-29 (lead): filed from the EC triage; closes M2-0190's last acceptance gap."
+   "notes": "2026-09-29 (lead): filed from the EC triage; closes M2-0190's last acceptance gap.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/38",
+    "merged_into": "main (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)"
+   }
   }
  ]
 }
