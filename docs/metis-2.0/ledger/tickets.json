@@ -22475,7 +22475,16 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 4,
-   "status": "TODO"
+   "status": "ENGINEERING_COMPLETE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/318",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   }
  ]
 }
