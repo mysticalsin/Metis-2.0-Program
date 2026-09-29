@@ -2,7 +2,7 @@
 project: Métis (AskToto-Mantu) — 2.0 program
 shift: 10
 agent: claude-code
-updated: 2026-09-28 21:10 EDT
+updated: 2026-09-28 22:05 EDT
 status: in-progress (full autopilot; signing excluded)
 branch: public main = 858a6a22 (milestone #281); m2/integration 83fd757c (ahead of main; proof pending); private main (metis-prog-main)
 ---
@@ -21,6 +21,7 @@ Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level, HeyCli
 - Gates: per-PR packaged smoke (ready_for_review), failset baseline (state/.smoke-failset) + owned rows (state/<ID>.owns), post-merge smoke STOP on growth, revert guard, hygiene (paths too), READY pins reviewed SHA, WAIT_OWNER for the owner's tool (OD-15), known-flakes.txt, red run off (RED-RUN file re-enables).
 
 ## Next steps (in order)
+0. Tony to answer: apply the blocked ledger batch (codex-queue/logs/ledger-batch-draft-2026-09-29.md; classifier denied the subagent — do not apply without his OK). Owner decisions from the LEAD_ACTION triage: private Actions budget (unblocks ~12 evidence rows), D-5 platform/region/owner, plaintext-mirror audience, M2-0014 prod readbacks, Dust admin, Windows laptop, D-8, branch protection, delete stale public branch m2/M2-0014-audit-operator-production-reality.
 1. M2-0031 (History freeze P0) must pass the QA-candidate job "ST-1 fifo stall row (macOS)"; plan v4 in codex-queue/state/M2-0031.lead. Then cut 1.9.7 per D-13 (M2-0046: notes in docs/metis-2.0/releases/1.9.7.md; dispatch promote-candidate.yml from main; prerelease, not Latest, no latest*.yml, SHA256SUMS).
 2. Queue flows the whole ledger by priority (FOCUS lifted; PARALLEL=4). New P0s first: M2-0237.., M2-0412 (portal model policy, OD-18), M2-0413 (brain test cleanup race).
 3. Lead actions now that main has the workflows: evidence dispatches in codex-queue/LEAD-ACTIONS.txt.
@@ -30,6 +31,8 @@ Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level, HeyCli
 - D-28 CI only; OD-12 Electron app is the product (OD-16 adds native Mac parity in 2.0); OD-14/OD-19 Claude implements (Sonnet) + reviews (Opus) until 2.0 is ready; OD-15 owner's tool may push to ticket branches (adopt + full gates); OD-16 CF key out of all installers, FR+EN, developer skills in 2.0; OD-17 MASTER 4.3 voice tiers, D-24 facts-only (derived built, off), D-5 self-hosted Hindsight.
 
 ## Queue rules added 2026-09-28 (evening)
+- merge.sh judges each PR check by its NEWEST run (per name + workflow); a cancelled newest run with no sibling is re-run once (state/.rerun-<rid>); PR bodies get the refactor-classification section before every sync (lib.sh backfill_classification; M2-0059's Evidence check bounced synced PRs otherwise); ledger commits are path-limited to tickets.json. state/.merge-queue shows slot + wait order.
+- Honest ledger (2026-09-29 evidence audit, d58bf58): ledger.py done closes DONE only when a merge proves every required level (DESIGNED; LOCALLY_TESTED only on the public repo); otherwise ENGINEERING_COMPLETE with evidence.pending. Private docs PRs run no CI (private Actions budget exhausted) and say so.
 - Merge-queue (2026-09-29, single slot): at most ONE public PR is synced to the current base (GitHub update-branch, READY re-pinned, re-marked ready) and re-checked at a time; other behind PRs wait in ticket-ID order. A PR merges only onto an m2/integration head watch-integration.sh has proven (state/.int-checked == base). merge.sh no longer waits post-merge; watch-integration.sh is the single post-merge prover (STOP on red).
 - watch-integration.sh (every cycle) proves any new integration head (outside merges included): Build & Test red -> STOP unless only known/infra flakes (one rerun); smoke failset growth -> STOP.
 - READY pins the reviewed SHA; a moved head -> WAIT_OWNER (owner tool, OD-15) until 30 min quiet, then re-review.
