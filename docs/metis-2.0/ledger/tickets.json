@@ -27903,10 +27903,20 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 2.5,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/39",
+    "merged_into": "main (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)",
+    "pending": [
+     "LOCALLY_TESTED",
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0503",
