@@ -165,6 +165,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "External-blocker sweep (owner-approved): 32 tickets engineering_first (engineering half builds now, closes ENGINEERING_COMPLETE, outside step narrowed in external_blocker); 3 signing tickets BLOCKED_EXTERNAL."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0417 (P0 CI capacity: concurrency groups cancel superseded ticket-branch runs; macOS runner backlog 2026-09-29)."
   }
  ],
  "tickets": [
@@ -22049,6 +22055,41 @@
    ],
    "risk": "medium",
    "estimate_hours": 3
+  },
+  {
+   "id": "M2-0417",
+   "title": "Cancel superseded CI runs: concurrency groups on every workflow that runs for ticket branches and PRs",
+   "wave": "W2",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "CI-BACKLOG-2026-09-29",
+    "M2-0234"
+   ],
+   "scope_paths": [
+    ".github/workflows/"
+   ],
+   "summary": "On 2026-09-29 the public repo had 31 queued runs, most for commits already superseded on their branch: build.yml and isolation-canary.yml run on every push to every branch with no concurrency group, and each run holds macOS jobs (isolation-canary x2, MetisKit swift test). With the plan's 5 concurrent macOS runners, m2/integration's packaged smoke waited 38 minutes for a runner. packaged-smoke.yml already cancels superseded PR runs; the other workflows must do the same, without ever cancelling a proof of main, m2/integration, a tag or a release.",
+   "acceptance": [
+    "Every workflow under .github/workflows/ triggered by push to ticket branches or by pull_request declares a top-level concurrency group keyed by workflow + PR number (pull_request) or ref (push)",
+    "cancel-in-progress is true only for ticket branches and PRs; it evaluates to false for refs/heads/main, refs/heads/m2/integration, tags and release/workflow_dispatch/schedule runs, so every head of main and m2/integration keeps its own complete run",
+    "No job, trigger, path filter or required check name changes; packaged-smoke.yml's existing group is unchanged",
+    "Proof in the PR: two quick pushes to a scratch ticket branch show the first run cancelled by the second (run links), and the m2/integration run list after merge shows no cancelled runs"
+   ],
+   "verification": [
+    "CI on the PR",
+    "run links for the superseded-run cancellation"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 1,
+   "status": "TODO"
   }
  ]
 }
