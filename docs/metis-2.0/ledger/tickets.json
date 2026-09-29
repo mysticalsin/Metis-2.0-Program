@@ -22592,7 +22592,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "title": "Refuse a destructive rebuild of an unavailable brain index, and reject a compatible future-schema index before accepting it",
    "type": "fix",
    "priority": "P0",
@@ -22621,7 +22621,13 @@
     "CI Build & Test on the PR"
    ],
    "risk": "medium",
-   "estimate_hours": 4
+   "estimate_hours": 4,
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/324",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0424",
