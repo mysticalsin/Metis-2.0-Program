@@ -34,7 +34,7 @@ Result on the register (DERIVED): the four `NOT_TESTED` rows (CAP-27, 31, 41, 48
 3. a row carries `status: "MET"` while an owner or citing ticket is not DONE or CANCELLED (row `status` is optional, one of NOT_MET, PARTIAL, MET; no row sets it yet);
 4. an `also_owners` entry is not an existing M2 ticket.
 
-A row may declare `citation_gap` (text); rule 1 then reports a warning instead of an error. Only CAP-38 uses it.
+A row may declare `citation_gap` (text); rule 1 then reports a warning instead of an error. No row uses it any more (the CAP-13 and CAP-38 gaps were closed on 2026-09-29).
 
 Fixture tests are in `build-traceability.test.mjs` (four new tests). They run in the existing private `traceability.yml` workflow (`node --test ...build-traceability.test.mjs`, line 26), which I did not run.
 

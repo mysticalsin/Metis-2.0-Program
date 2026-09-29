@@ -279,6 +279,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0422 DONE: after-merge LEAD_ACTION recorded (boot stretch 652/916 ms from 1282/1419 ms, run 36608178436)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0442 LEAD_ACTIONs applied (capability citations for M2-0359/M2-0082, citation_gap removed from CAP-13/CAP-38); confirmation run waits on the private Actions budget (external_blocker)."
   }
  ],
  "tickets": [
@@ -5178,7 +5184,9 @@
     "F-06",
     "HC-04"
    ],
-   "finding_refs": [],
+   "finding_refs": [
+    "CAPADOPT-cua-driver"
+   ],
    "scope_paths": [
     "src/main/features/actions/registry.ts",
     "src/main/features/actions/verify.ts",
@@ -20646,7 +20654,8 @@
     "clicky-google-workspace",
     "airtable",
     "CAPADOPT-clicky-google-workspace",
-    "CAPADOPT-airtable"
+    "CAPADOPT-airtable",
+    "CAPADOPT-google-workspace"
    ],
    "scope_paths": [
     "operator/src/connectors/catalog.ts",
@@ -24382,7 +24391,11 @@
    "owner_model": "sonnet",
    "kit_refs": [],
    "evidence_target": "DESIGNED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock_step": "Allow Actions minutes for the private program repository (ADR-017), then the lead dispatches traceability.yml and commits traceability-outputs if they change.",
+    "raised_on": "2026-09-29"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "risk": "medium",
@@ -24413,8 +24426,13 @@
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/37",
     "merged_into": "main (squash)",
     "implementer": "claude",
-    "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+    "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)",
+    "pending": [
+     "traceability.yml confirmation run (private-repo Actions budget)"
+    ],
+    "lead_action_recorded": "2026-09-29: citation fixes applied (M2-0359 += CAPADOPT-google-workspace, M2-0082 += CAPADOPT-cua-driver; citation_gap removed from CAP-13/CAP-38; REPOINT doc updated). The traceability.yml confirmation run waits on the private Actions budget."
+   },
+   "engineering_first": true
   },
   {
    "id": "M2-0443",
