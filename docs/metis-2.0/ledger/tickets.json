@@ -11924,8 +11924,17 @@
     }
    ],
    "due": "2026-10-09",
-   "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default."
+   "status": "ENGINEERING_COMPLETE",
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/298",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "ACCEPTED"
+    ]
+   }
   },
   {
    "id": "M2-0198",
