@@ -267,6 +267,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0210 freeze closure += M2-0435, M2-0439, M2-0445 (P1 2.0-scope tickets the ledger check found outside it)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0446 added (P1): model-policy gap in the Settings screen check local branch + nested call sites in the policy contract test (M2-0412 review advisories); in the M2-0210 freeze closure."
   }
  ],
  "tickets": [
@@ -13193,7 +13199,8 @@
     "M2-0444",
     "M2-0435",
     "M2-0439",
-    "M2-0445"
+    "M2-0445",
+    "M2-0446"
    ],
    "needs_decision": [
     "D-13",
@@ -24516,6 +24523,49 @@
     "If the fixture can be truncated or silent: the harness verifies the fixture (non-trivial duration and energy) before importing and re-synthesizes once, and says so in the log",
     "No weakening: check:packaged-asr still requires a real decoded transcript from both engines; no retries that hide a product failure",
     "Packaged smoke (Windows) check:packaged-asr passes on the PR and on 5 dispatched re-runs (LEAD_ACTION: dispatch and record the run ids); when it merges, the lead removes the entry from codex-queue known-smoke-flakes.txt"
+   ]
+  },
+  {
+   "id": "M2-0446",
+   "wave": "W1",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "low",
+   "estimate_hours": 3,
+   "title": "Close the model-policy gap in the Settings screen check: gate the local-backend branch on the localModel policy, and make the policy contract test see nested call sites",
+   "type": "fix",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0412"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "finding_refs": [
+    "REVIEW-M2-0412-2026-09-29-advisory-1",
+    "REVIEW-M2-0412-2026-09-29-advisory-2",
+    "OD-18"
+   ],
+   "scope_paths": [
+    "src/main/index.ts",
+    "src/main/model-policy-contract.test.ts",
+    "src/main/llm.ts"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "summary": "Independent review of M2-0412 (PASS) flagged: the local-backend branch of askVisionForScreenCheck (src/main/index.ts ~4077-4095) streams settings.localLlm.modelId without checking the localModel policy gate, so an organisation that disallows the local model still has it used by the Settings screen check; it passes the contract test only because the same function's API branch is gated. The contract test's enclosingFunction only recognises column-0 function declarations, so a createStream call in a nested arrow inside registerIpc is judged by the whole registerIpc.",
+   "acceptance": [
+    "askVisionForScreenCheck refuses with the same typed policy error when the local model is disallowed, before any stream starts; a unit test proves the local branch is gated (red before the fix)",
+    "model-policy-contract.test.ts resolves the innermost enclosing function (arrow functions and methods included) for each createStream call and fails on an ungated call site; a fixture proves a nested ungated call is caught",
+    "No other behaviour change; existing M2-0412 tests unchanged"
    ]
   }
  ]
