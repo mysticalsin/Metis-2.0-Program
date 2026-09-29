@@ -345,6 +345,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-37: program repo public temporarily; main ruleset 24214300; M2-0480 tracks the revert to private at program close."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Private CI (now public, OD-37): traceability.yml green (run 36639031304) after regenerating stale outputs and fixing test 18 — M2-0011 LOCALLY_TESTED and M2-0442 confirmation recorded."
   }
  ],
  "tickets": [
@@ -1090,9 +1096,13 @@
     "merged_into": "main (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)",
-    "pending": [
-     "LOCALLY_TESTED"
-    ]
+    "pending": [],
+    "locally_tested": {
+     "run": "https://github.com/mysticalsin/Metis-2.0-Program/actions/runs/36639031304",
+     "commit": "252d5232",
+     "steps": "build-traceability.mjs --check and node --test build-traceability.test.mjs both green (23/23)",
+     "recorded": "2026-09-29 by the lead (Claude)"
+    }
    }
   },
   {
@@ -24653,11 +24663,7 @@
    "owner_model": "sonnet",
    "kit_refs": [],
    "evidence_target": "DESIGNED",
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "Allow Actions minutes for the private program repository (ADR-017), then the lead dispatches traceability.yml and commits traceability-outputs if they change.",
-    "raised_on": "2026-09-29"
-   },
+   "external_blocker": null,
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "risk": "medium",
@@ -24689,10 +24695,13 @@
     "merged_into": "main (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)",
-    "pending": [
-     "traceability.yml confirmation run (private-repo Actions budget)"
-    ],
-    "lead_action_recorded": "2026-09-29: citation fixes applied (M2-0359 += CAPADOPT-google-workspace, M2-0082 += CAPADOPT-cua-driver; citation_gap removed from CAP-13/CAP-38; REPOINT doc updated). The traceability.yml confirmation run waits on the private Actions budget."
+    "pending": [],
+    "lead_action_recorded": "2026-09-29: citation fixes applied (M2-0359 += CAPADOPT-google-workspace, M2-0082 += CAPADOPT-cua-driver; citation_gap removed from CAP-13/CAP-38; REPOINT doc updated). The traceability.yml confirmation run waits on the private Actions budget.",
+    "confirmation_run": {
+     "run": "https://github.com/mysticalsin/Metis-2.0-Program/actions/runs/36639031304",
+     "commit": "252d5232",
+     "result": "--check green and node --test green after the lead fixed test 18 (M2-0442's owner-citation rule had broken its expectation)"
+    }
    },
    "engineering_first": true,
    "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed)."
