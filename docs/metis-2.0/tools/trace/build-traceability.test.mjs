@@ -388,7 +388,9 @@ test("fails a NOT_TESTED row while a ticket citing its CAPADOPT id exists", () =
   const map = capabilityFixture();
   map.capabilities[4].owner = "NOT_TESTED";
   assert.match(capabilityErrors(map), /capability row CAP-05 is NOT_TESTED but M2-0001 cites CAPADOPT-resource-5/);
-  assert.equal(capabilityErrors(map, [], [], { finding_refs: [] }), "");
+  // with no ticket citing the id, the NOT_TESTED error is gone (other rows now report their owner's missing citation,
+  // the M2-0442 rule, so only this error's absence is asserted)
+  assert.doesNotMatch(capabilityErrors(map, [], [], { finding_refs: [] }), /is NOT_TESTED but/);
 });
 
 test("fails a MET capability row while an owner or citing ticket is open", () => {
