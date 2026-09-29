@@ -29,8 +29,9 @@ Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level, HeyCli
   - M2-0202 island redesign (OD-22 no scroll, OD-25 Reader view) in slices, S1 lead written; waits on M2-0428 and M2-0431.
 - M2-0031 (OD-24 split): v10 makes the ST-1 fifo job report-only and merges the fixes (unblocks 279). Strict ST-1 (OD-21) moves to M2-0433, which gates 1.9.7.
 - Owner Mac 09-29: TCC ScreenCapture reset (13 of 14); the owner must remove and re-add Métis in Settings (system-db entry, admin). 2 orphaned llama-servers (since 09-25) stopped; 4 old copies trashed.
-- The completeness batch (26 confirmed gaps; logs/completeness-2026-09-29.json) was DENIED by the classifier: awaiting the owner (allow, partial, or skip).
-- The daily ~01:35 EDT mirror job resets private main (the owner must find it; guard.sh heals).
+- The completeness batch (26 confirmed gaps) was APPLIED with owner approval (8a41059): the freeze closure gained 204 tickets, native parity moved before the freeze, every ticket has required_evidence, 4 honest demotions, and new tickets M2-0434..0444. `python3 codex-queue/ledger.py check` reports cycles, missing evidence, closure and wave order.
+- Private main is reset to 90ed28f8 by the owner's Windows PC, which has a stale clone (seen at 05:35Z and 13:46Z); guard.sh heals it within ~3 min. The owner will disable that clone's push.
+- merge.sh tree-identical proof: after a merge whose tree equals the fully checked PR head, the new base is proven (state/.int-proven), giving about 2x merge throughput; watch-integration still proves every head.
 - Merge order: codex-queue/state/.merge-first (root blockers by impact: M2-0050 235, M2-0028 160, M2-0103 120, M2-0119 110).
 0. Owner decisions still open from the LEAD_ACTION triage: private Actions budget (unblocks ~12 evidence rows), D-5 platform/region/owner, plaintext-mirror audience, M2-0014 prod readbacks, Dust admin, Windows laptop, D-8, branch protection, delete stale public branch m2/M2-0014-audit-operator-production-reality.
 1. M2-0031 (History freeze P0) must pass the QA-candidate job "ST-1 fifo stall row (macOS)"; plan v4 in codex-queue/state/M2-0031.lead. Then cut 1.9.7 per D-13 (M2-0046: notes in docs/metis-2.0/releases/1.9.7.md; dispatch promote-candidate.yml from main; prerelease, not Latest, no latest*.yml, SHA256SUMS).
