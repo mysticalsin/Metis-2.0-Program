@@ -24190,7 +24190,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "risk": "medium",
    "title": "Make the post-meeting write-up fast: Metal (GPU) local model on Apple silicon, recap pre-empts background extraction, transcript saved before the recap, extraction fits the context and stops retrying",
    "type": "fix",
@@ -24217,7 +24217,13 @@
     "Budgets (warm, M-series, 60-min meeting): transcript visible <= 5 s after the drain completes; first recap token <= 10 s; recap done <= 60 s. CI proves ordering and pre-emption with stub models; LEAD_ACTION: the lead verifies the budgets from the audit spans on the owner's next real meetings",
     "If Apple Foundation Models is available but unlicensed, the Settings model panel says so and how to enable it (owner action); the FM path is preferred when licensed and qualified"
    ],
-   "notes": "2026-09-29 (lead, EC triage): HK-M analysis (M2-0460): M2-0430's os.freemem() GPU-profile gate is not the cause of the hosted HK-M model-row block. spawnProfileFor runs after the start decision, a hosted runner is below GPU_OFFLOAD_MIN_RAM_GB (12) anyway, and the HK-M hook bypasses the prewarm floor, so M2-0460 does not depend on M2-0430. M2-0460 may touch src/main/llm/local.ts and local-models.ts (the verifyIntegrity/assertRamOk path) but must not edit spawnProfileFor; if both are open, land M2-0430 first. Separately, the sidecar-boot-reaper real-llama proof is BLOCKED_EXTERNAL on every hosted smoke, probably (DERIVED) behind the other freemem() floor, PREWARM_MIN_FREE_RAM_GB 4 in local-routing.ts. If M2-0430 adds an available-memory reader, the lead can decide whether that floor adopts it; M2-0430's acceptance does not require it."
+   "notes": "2026-09-29 (lead, EC triage): HK-M analysis (M2-0460): M2-0430's os.freemem() GPU-profile gate is not the cause of the hosted HK-M model-row block. spawnProfileFor runs after the start decision, a hosted runner is below GPU_OFFLOAD_MIN_RAM_GB (12) anyway, and the HK-M hook bypasses the prewarm floor, so M2-0460 does not depend on M2-0430. M2-0460 may touch src/main/llm/local.ts and local-models.ts (the verifyIntegrity/assertRamOk path) but must not edit spawnProfileFor; if both are open, land M2-0430 first. Separately, the sidecar-boot-reaper real-llama proof is BLOCKED_EXTERNAL on every hosted smoke, probably (DERIVED) behind the other freemem() floor, PREWARM_MIN_FREE_RAM_GB 4 in local-routing.ts. If M2-0430 adds an available-memory reader, the lead can decide whether that floor adopts it; M2-0430's acceptance does not require it.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/330",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0431",
