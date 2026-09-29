@@ -315,6 +315,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0473 added (P1): resource-census.yml Windows path + TTFT proof no longer gates the macOS census (M2-0009 MEASURED)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0474 added (P1): intermittent Windows RV-3 shortcut-relaunch smoke row."
   }
  ],
  "tickets": [
@@ -13307,7 +13313,8 @@
     "M2-0470",
     "M2-0471",
     "M2-0472",
-    "M2-0473"
+    "M2-0473",
+    "M2-0474"
    ],
    "needs_decision": [
     "D-13",
@@ -26153,6 +26160,48 @@
     "LEAD_ACTION: after merge and a main push, dispatch gh workflow run resource-census.yml --ref main -f release_repo=mysticalsin/Metis-Releases -f release_tag=v1.9.6-unsigned; commit docs/metis-2.0/evidence/resource-baseline.md plus raw JSON under evidence/raw/M2-0009/ and record M2-0009 MEASURED (hosted-runner kind, OD-26)"
    ],
    "notes": "2026-09-29 (lead): filed from the failed first dispatch of resource-census.yml (run 36620887469); logs in codex-queue/logs/M2-0009-census/."
+  },
+  {
+   "id": "M2-0474",
+   "wave": "W2",
+   "milestone": "m4",
+   "owner_model": "opus",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 5,
+   "title": "Make the Windows RV-3 shortcut-relaunch smoke row deterministic: the second-instance reveal event is intermittently missing from the audit log",
+   "type": "fix",
+   "priority": "P1",
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "finding_refs": [
+    "CI-FLAKE-2026-09-29-RV-3-windows-shortcut"
+   ],
+   "scope_paths": [
+    "scripts/qa/packaged-smoke.mjs",
+    "src/main/index.ts",
+    "src/main/windows/"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "Packaged smoke (Windows) RV-3 rows green on 5 consecutive runs"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "summary": "Packaged smoke (Windows) row RV-3-windows-shortcut-relaunch (reason second-instance) is intermittent: FAIL twice on m2/integration push run 36622372000 (5ef4422e, 2026-09-29 20:03Z and its re-run), PASS on the identical tree in the train PR run 36619194435 and on 78cdb321 run 36622837223. The harness's diagnosis: 'the missing Windows shortcut reveal event' in the app audit log. Either the product's second-instance handling can drop the reveal (a real reopen bug for users launching from a shortcut while Métis runs) or the harness reads the audit log before the event is flushed. The row is in codex-queue state/.smoke-failset meanwhile so integration does not halt on it.",
+   "acceptance": [
+    "Root cause stated from evidence in the PR (content-free audit timing, second-instance handler path, shortcut launch arguments); on failure the row prints the audit events it saw around the relaunch",
+    "If the product can drop the reveal: fix it (the second-instance handler always reveals and records the reveal) with a unit test reproducing the drop red-before",
+    "If the harness races the audit flush: wait on the event with a bounded deadline instead of a fixed read; no weakening — the row still requires the reveal",
+    "LEAD_ACTION: after merge, remove the row from codex-queue state/.smoke-failset once integration shows it green on 3 consecutive runs"
+   ],
+   "notes": "2026-09-29 (lead): filed when integration halted on this row (STOP cleared by listing it in .smoke-failset)."
   }
  ]
 }
