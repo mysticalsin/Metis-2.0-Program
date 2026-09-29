@@ -255,6 +255,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Owner-approved completeness batch (26 adversarially confirmed gaps): M2-0345 depends_on -= M2-0175; M2-0240 depends_on -= M2-0173; OD-21 History wording on M2-0031/M2-0193; required_evidence filled on 204 tickets (from evidence_target, or by type); M2-0101 DONE->EC; M2-0178 DONE->EC; M2-0238 DONE->EC; M2-0059 DONE->EC; M2-0187 dry-run pending + D-28-compatible unblock step; design-evidence provenance wording on 16 UI acceptance rows; NEW M2-0434 P1 Deploy the self-hosted private Hindsight service with managed Postgres/pgvector:; NEW M2-0435 P1 Pin the OD-17 memory defaults: facts-only retain/recall on at release; reflect, ; NEW M2-0436 P1 Deploy the reviewed 2.0 Operator to the authorized canary/production environment; NEW M2-0437 P1 Deploy the canonical knowledge service and knowledge.* MCP server on the approve; NEW M2-0438 P1 Prove the speech-session broker refuses unauthenticated, expired, replayed, cros; NEW M2-0439 P1 Qualify memory release compatibility, update and rollback for the signed candida; NEW M2-0440 P2 Score command target and intent accuracy with completed/refused/clarified denomi; NEW M2-0441 P1 Expand UC-001..UC-112 into an individual acceptance registry and gate the catalo; NEW M2-0442 P1 Re-point the HeyClicky capability register (CAPABILITY-DISPOSITIONS.json) to the; NEW M2-0443 P2 Create the numbered lessons log and record the refactoring-skill identity (M2-00; NEW M2-0444 P2 Measure engineering efficiency before and after the refactor slices (token, sear; SKIP M2-0210->M2-0173 (cycle); SKIP M2-0210->M2-0174 (cycle); SKIP M2-0210->M2-0175 (cycle); SKIP M2-0210->M2-0211 (cycle); SKIP M2-0210->M2-0315 (cycle); SKIP M2-0210->M2-0343 (cycle); SKIP M2-0210->M2-0344 (cycle); SKIP M2-0210->M2-0348 (cycle); SKIP M2-0210->M2-0352 (cycle); SKIP M2-0210->M2-0372 (cycle); SKIP M2-0210->M2-0374 (cycle); SKIP M2-0210->M2-0384 (cycle); SKIP M2-0210->M2-0387 (cycle); SKIP M2-0210->M2-0388 (cycle); SKIP M2-0210->M2-0390 (cycle); SKIP M2-0210->M2-0435 (cycle); SKIP M2-0210->M2-0439 (cycle); M2-0210 freeze closure += 204 tickets"
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0445 added (P1, W1): intermittent Windows packaged-asr failure (import done, saved meeting without transcript lines) — root cause and fix; queue re-runs the known flake once meanwhile."
   }
  ],
  "tickets": [
@@ -24455,6 +24461,52 @@
    ],
    "required_evidence": [
     "MEASURED"
+   ]
+  },
+  {
+   "id": "M2-0445",
+   "wave": "W1",
+   "milestone": "m3",
+   "owner_model": "opus",
+   "kit_refs": [],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "risk": "medium",
+   "estimate_hours": 6,
+   "title": "Fix the intermittent Windows packaged-asr failure: an audio import reports done but its saved meeting has no transcript lines",
+   "type": "fix",
+   "priority": "P1",
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "finding_refs": [
+    "CI-FLAKE-2026-09-29-packaged-asr-win"
+   ],
+   "scope_paths": [
+    "scripts/check-packaged-asr.mjs",
+    "src/main/index.ts",
+    "src/main/recall.ts",
+    "src/main/import-audio*",
+    "src/main/transcribe*",
+    "src/renderer/src/lib/whisper*",
+    "scripts/qa/"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "Packaged smoke (Windows) check:packaged-asr green on 5 consecutive runs"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "summary": "Packaged smoke (Windows) fails intermittently in check:packaged-asr: the whisper import job reaches state 'done' with a saved meeting file, but recallRead() returns no transcript lines ('whisper: the saved meeting has no transcript lines.'). Seen on m2/integration cd76537a (run 36593670201, 16:03Z) and PR #332 (run 36602799215, 17:19Z) on 2026-09-29; the same trees passed on re-run and on their PR. In the failing integration run the Windows SAPI fixture synthesis took 20 s instead of ~2 s (slow runner), and the import finished ~23 s after it started. Two readings to separate: (a) a product bug — an import can complete and save a meeting before/without its transcript (a race between job completion and the ASR result or the transcript write, or an empty decode treated as success), which would also hit users importing audio on slow Windows machines; (b) a harness defect — a truncated or silent SAPI fixture. The queue re-runs this exact failure once (codex-queue known-smoke-flakes.txt) until this ticket merges.",
+   "acceptance": [
+    "Root cause identified from evidence and stated in the PR: the check first prints, on failure, job state/error, meeting.ok/error, line count, fixture WAV size and duration, and the main-log ASR request/result lines for that job (content-free)",
+    "If the product can mark an import done with an empty or missing transcript: fix it so an import either saves the decoded transcript or fails with a clear error (never a silent empty meeting), with a unit test reproducing the race or empty-decode path red-before",
+    "If the fixture can be truncated or silent: the harness verifies the fixture (non-trivial duration and energy) before importing and re-synthesizes once, and says so in the log",
+    "No weakening: check:packaged-asr still requires a real decoded transcript from both engines; no retries that hide a product failure",
+    "Packaged smoke (Windows) check:packaged-asr passes on the PR and on 5 dispatched re-runs (LEAD_ACTION: dispatch and record the run ids); when it merges, the lead removes the entry from codex-queue known-smoke-flakes.txt"
    ]
   }
  ]
