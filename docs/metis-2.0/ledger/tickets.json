@@ -327,6 +327,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-30 (owner request): onboarding downloads the selected on-device speech engine automatically. New M2-0475 (speech-pack engine, new files behind a flag, pre-soak), M2-0476 (app wiring, after the soak), M2-0477 (localSpeechPack fleet policy); M2-0160/0161/0163/0164/0168/0351 amended; M2-0112 fresh-profile rule updated."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Planning fix: M2-0478 (P0, diagnostics summary schema 2 — M2-0046 depends on it) and M2-0479 (soak evaluator/validator — M2-0198 depends on it) split from M2-0198's engineering half."
   }
  ],
  "tickets": [
@@ -3241,7 +3247,8 @@
     "M2-0429",
     "M2-0430",
     "M2-0431",
-    "M2-0433"
+    "M2-0433",
+    "M2-0478"
    ],
    "needs_decision": [
     "D-13"
@@ -12278,7 +12285,8 @@
    "type": "process",
    "owner_model": "opus",
    "depends_on": [
-    "M2-0046"
+    "M2-0046",
+    "M2-0479"
    ],
    "needs_decision": [],
    "kit_refs": [],
@@ -12313,7 +12321,7 @@
    "due": "2026-10-09",
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: (1) Diagnostics summary schema 2 in src/main/infra/observability/diagnostics-summary.ts, with tests, landed before the 1.9.7 candidate is cut. It reads the rotated audit-<stamp>.log generations as well as the live audit.log. It scopes counts to records from the first app.started of the target version onward. It adds per-UTC-day activity buckets and >5 s stall buckets. It splits sidecar.reaped by reason and counts reaps in boots whose prevShutdown was unclean. It exposes named counts for reveal no-ops (with a pre-registered definition against REVEAL_OUTCOMES) and for brain.index.quarantined. (2) A soak evaluator, for example scripts/qa/owner-soak/verdict.mjs. It takes the pasted summary JSON; checks kind and schema, app.version 1.9.7 and at least five consecutive active days; computes the five acceptance counts; applies a pre-registered PROCEED/HOLD rule; and writes the MEASURED record for docs/metis-2.0/evidence/release-1.9.7/soak-5d.md. (3) An M2-0198 validator in scripts/evidence/check.mjs. Prove all three in public CI with fixture audit trails covering rotation mid-window, a version change mid-trail, a missing day, and an unclean boot followed by a reap. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): Once 1.9.7 is promoted, the owner uses it as his daily build on his own Mac for five consecutive days and pastes the tray summary on day five."
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: (1) Diagnostics summary schema 2 in src/main/infra/observability/diagnostics-summary.ts, with tests, landed before the 1.9.7 candidate is cut. It reads the rotated audit-<stamp>.log generations as well as the live audit.log. It scopes counts to records from the first app.started of the target version onward. It adds per-UTC-day activity buckets and >5 s stall buckets. It splits sidecar.reaped by reason and counts reaps in boots whose prevShutdown was unclean. It exposes named counts for reveal no-ops (with a pre-registered definition against REVEAL_OUTCOMES) and for brain.index.quarantined. (2) A soak evaluator, for example scripts/qa/owner-soak/verdict.mjs. It takes the pasted summary JSON; checks kind and schema, app.version 1.9.7 and at least five consecutive active days; computes the five acceptance counts; applies a pre-registered PROCEED/HOLD rule; and writes the MEASURED record for docs/metis-2.0/evidence/release-1.9.7/soak-5d.md. (3) An M2-0198 validator in scripts/evidence/check.mjs. Prove all three in public CI with fixture audit trails covering rotation mid-window, a version change mid-trail, a missing day, and an unclean boot followed by a reap. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): Once 1.9.7 is promoted, the owner uses it as his daily build on his own Mac for five consecutive days and pastes the tray summary on day five. 2026-09-29 (lead): engineering-first half split into M2-0478 (schema 2 in the app, gates M2-0046) and M2-0479 (evaluator + validator, gates this ticket) — this ticket depends on 1.9.7 so it could not carry work that must ship inside 1.9.7."
   },
   {
    "id": "M2-0199",
@@ -26412,6 +26420,94 @@
    "needs_decision": [],
    "slices": [],
    "notes": "2026-09-29 (lead): split from the M2-0412 amendment (M2-0412 is READY; its PR is not re-opened)."
+  },
+  {
+   "kit_refs": [],
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "verification": [
+    "CI Build & Test"
+   ],
+   "id": "M2-0478",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "feature",
+   "owner_model": "opus",
+   "priority": "P0",
+   "risk": "medium",
+   "estimate_hours": 7,
+   "depends_on": [],
+   "finding_refs": [
+    "CHATGPT-A10",
+    "M2-0198-engineering-half",
+    "LEAD-PLAN-BUG-2026-09-29"
+   ],
+   "title": "Diagnostics summary schema 2 in the app, before the 1.9.7 candidate is cut: rotated audit generations, version-scoped counts, per-day buckets and the five soak counts",
+   "scope_paths": [
+    "src/main/infra/observability/diagnostics-summary.ts",
+    "src/main/infra/observability/diagnostics-summary.test.ts"
+   ],
+   "summary": "Split from M2-0198's engineering-first half (2026-09-28 sweep), which says it must land before the 1.9.7 candidate is cut — but M2-0198 depends on M2-0046 (1.9.7), so the queue could never build it in time and 1.9.7 would ship unable to produce the soak evidence. Today diagnostics-summary.ts is schema 1 (diagnostics-summary.ts:13, :85) and the tray 'Copy diagnostics summary' pastes that. This ticket moves the app half into 1.9.7; M2-0046 depends on it.",
+   "acceptance": [
+    "Schema 2 of the tray 'Copy diagnostics summary' JSON (content-free): reads the rotated audit-<stamp>.log generations as well as the live audit.log, in order, tolerating a torn last line",
+    "Counts are scoped to records from the first app.started of the running version onward (a version change mid-trail starts a new scope), with per-UTC-day activity buckets",
+    "Named counts for the five M2-0198 soak measures: app.stall over 5 s (with >5 s stall buckets per day), unclean shutdowns (prevShutdown), orphaned owned sidecars reaped after an unclean exit (sidecar.reaped split by reason, reaps in boots whose prevShutdown was unclean), reveal no-ops (pre-registered definition against REVEAL_OUTCOMES, stated in code and test), and brain.index.quarantined",
+    "Schema 1 consumers keep working or are updated in the same PR; the summary never contains transcript, meeting, file-name or user text (a test asserts the field allowlist)",
+    "Unit tests with fixture audit trails: rotation mid-window, a version change mid-trail, a missing day, and an unclean boot followed by a reap; CI only (D-28)",
+    "All reads are async and bounded; the ST-1 budget (M2-0433) is unaffected"
+   ],
+   "notes": "2026-09-29 (lead): planning fix — the 1.9.7 build must carry the soak instrumentation; M2-0046 now depends on this ticket."
+  },
+  {
+   "kit_refs": [],
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "verification": [
+    "CI Build & Test"
+   ],
+   "id": "M2-0479",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "risk": "low",
+   "estimate_hours": 5,
+   "depends_on": [
+    "M2-0478"
+   ],
+   "finding_refs": [
+    "CHATGPT-A10",
+    "M2-0198-engineering-half"
+   ],
+   "title": "Owner-soak evaluator and M2-0198 validator: compute PROCEED/HOLD from the pasted schema-2 summary with a pre-registered rule",
+   "scope_paths": [
+    "scripts/qa/owner-soak/verdict.mjs",
+    "scripts/qa/owner-soak/verdict.test.mjs",
+    "scripts/evidence/check.mjs",
+    "scripts/evidence/check.test.mjs"
+   ],
+   "summary": "The scripts half of M2-0198's engineering-first work: turns the owner's day-five paste into the MEASURED record. Needs the schema-2 summary shape; lands before the soak ends. M2-0198 depends on it.",
+   "acceptance": [
+    "scripts/qa/owner-soak/verdict.mjs takes the pasted summary JSON, checks kind and schema 2, app.version 1.9.7 and at least five consecutive active days, computes the five acceptance counts and applies a pre-registered PROCEED/HOLD rule written in the file header before any real data",
+    "It writes the MEASURED record content for docs/metis-2.0/evidence/release-1.9.7/soak-5d.md (content-free)",
+    "check.mjs --ticket M2-0198 validates that record; tests use fixtures (rotation mid-window, version change, a missing day, unclean boot + reap); CI only"
+   ],
+   "notes": "2026-09-29 (lead): split from M2-0198."
   }
  ]
 }
