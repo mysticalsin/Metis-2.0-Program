@@ -225,6 +225,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Owner-approved ledger batch from the LEAD_ACTION triage: M2-0128 depends_on += M2-0135; M2-0129 depends_on += M2-0134; M2-0141 depends_on += M2-0135; M2-0141 depends_on += M2-0137; M2-0129 -> M2-0136 omitted (would cycle via M2-0132); M2-0344 kit_refs += HM-FLOW-01; M2-0344 kit_refs += HM-FLOW-02; M2-0344 kit_refs += HM-FLOW-03; M2-0344 kit_refs += HM-FLOW-04; M2-0334 kit_refs += HM-FLOW-05; M2-0343 kit_refs += HM-FLOW-06; M2-0183 HB acceptance; M2-0093 design note; M2-0094 design note; M2-0100 design note; M2-0114 design note; M2-0117 design note; M2-0130 design note; M2-0137 design note; M2-0158 design note; M2-0160 design note; M2-0120 re-validated; blocker narrowed to mirror audience; M2-0031 finding_refs += RF-AUDIT-R1-R2; M2-0191 finding_refs += RF-AUDIT-R1-R2; M2-0191 finding_refs += RF-AUDIT-R1-R3; NEW M2-0423 P0 Refuse a destructive rebuild of an unavailable brain index, and reject; NEW M2-0424 P1 Let freeze-repro take a QA candidate by run id and sha256, and emit an; NEW M2-0425 P1 Add a dispatchable baseline workflow that runs every M2-0005 gate on 2; NEW M2-0426 P2 Prove developer-efficiency metrics never reach Operator usage: operato; NEW M2-0427 P2 Fail the packaged build if the installer ships graphify, code-review-g"
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0428 (P0 owner-reported right-edge Hide fix, Opus; root cause confirmed by adversarial re-trace); M2-0046 (1.9.7) and M2-0202 depend on it."
   }
  ],
  "tickets": [
@@ -3096,7 +3102,8 @@
     "M2-0191",
     "M2-0192",
     "M2-0193",
-    "M2-0194"
+    "M2-0194",
+    "M2-0428"
    ],
    "needs_decision": [
     "D-13"
@@ -12255,7 +12262,7 @@
   },
   {
    "id": "M2-0202",
-   "title": "Ship the right-edge P1 repairs (TASK-028.A, defects D1-D11) on main's RightEdgeSidecar in the first train after 1.9.7",
+   "title": "Ship the right-edge P1 repairs (TASK-028.A, defects D1-D11) on main's RightEdgeSidecar before 1.9.7 where ready (OD-22)",
    "wave": "W3",
    "milestone": "m5",
    "type": "design",
@@ -12263,7 +12270,8 @@
    "depends_on": [
     "M2-0022",
     "M2-0007",
-    "M2-0036"
+    "M2-0036",
+    "M2-0428"
    ],
    "needs_decision": [
     "D-7"
@@ -12309,7 +12317,7 @@
    "due": null,
    "status": "TODO",
    "priority": "P0",
-   "notes": "2026-09-29 (lead): OWNER-REPORTED on 1.9.6 ('The right edge hide doesnt work'; 'improve the Right edge Island UX UI ... no scroll needed') -> P0, OD-22. Dropped the M2-0198 dependency (a post-1.9.7 soak hold), which contradicted this ticket's own 'ship in T1' summary; lands before 1.9.7 so the owner gets the fix."
+   "notes": "2026-09-29 (lead): OWNER-REPORTED on 1.9.6 ('The right edge hide doesnt work'; 'improve the Right edge Island UX UI ... no scroll needed') -> P0, OD-22. Dropped the M2-0198 dependency (a post-1.9.7 soak hold), which contradicted this ticket's own 'ship in T1' summary; lands before 1.9.7 so the owner gets the fix. 2026-09-29 (lead): the owner-reported right-edge Hide defect is split out as M2-0428 (P0, ships in 1.9.7; M2-0046 depends on it). This ticket carries the no-scroll island redesign plus D1-D11 on top of it."
   },
   {
    "id": "M2-0203",
@@ -22762,6 +22770,61 @@
    ],
    "risk": "low",
    "estimate_hours": 2
+  },
+  {
+   "id": "M2-0428",
+   "title": "Fix right-edge Hide: reveal from the screen edge, never from an inset square; Close/Escape in every state; shortcut and tray work from park",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-22",
+    "OWNER-REPORT-2026-09-29-right-edge-hide",
+    "TASK-028.A"
+   ],
+   "scope_paths": [
+    "src/main/island/geometry.ts",
+    "src/main/island/cursor-watch.ts",
+    "src/main/index.ts",
+    "src/main/lifecycle/reveal.ts",
+    "src/renderer/src/App.tsx",
+    "src/renderer/src/components/RightEdgeSidecar.tsx",
+    "src/shared/overlay-chrome.ts",
+    "src/renderer/src/components/Settings.tsx",
+    "scripts/e2e-smoke.mjs",
+    "scripts/qa/packaged-smoke.mjs"
+   ],
+   "summary": "Owner report on 1.9.6: 'The right edge hide doesnt work'. Root cause, confirmed by an adversarial re-trace (VERIFIED on 1.9.6 2bf21f1c; the logic is unchanged on integration): right-edge Hide parks as an invisible, click-through 52x52 window. The only way back is main's cursor poll over a hover square (the closed-tab rect, clamped to 52x40 by a top-edge rule, 12 px IN from the work-area right, inside the drawer's footprint). Pushing the cursor to the screen edge never reveals the dock, while a 150 ms pause in that invisible square reopens it. Co-causes: no Close/Escape while a meeting runs ('copilot' view), or with a draft, toast or capture; the page is never told main parked it; the Show/Hide shortcut and tray do nothing visible from park (1.9.6), or reveal a stretched tab (integration); toggle-hide is undone by the cursor watch; wrong Settings copy ('move to the top'). Full analysis: codex-queue/logs/right-edge-2026-09-29/hide.md (lead copy).",
+   "acceptance": [
+    "RE-HIDE-1: parked Hide + cursor at the physical right edge (display right - 1) within the drawer's height for 400 ms -> drawer revealed (bounds, opacity 1, click-through off, panel visible)",
+    "RE-HIDE-2: parked Hide + cursor 40 px inside the work area at the old tab position for 600 ms -> stays parked (bounds unchanged, opacity 0, click-through on)",
+    "RE-HIDE-3: with a draft, and separately during a fixture meeting, a visible 'Hide' control exists; using it (or Escape) parks and keeps the draft; the old assertion that Close is absent with a draft is inverted",
+    "RE-HIDE-4: Island during a meeting: reveal, then cursor 200 px left for 1.5 s -> parks and the page renders the rail (no open drawer inside the parked window)",
+    "RE-HIDE-5: toggle while open -> hidden, and still hidden 600 ms later with the cursor over the former zone (park latch until the cursor leaves the band or an explicit reveal)",
+    "RE-HIDE-6: toggle/hotkey/tray/reopen from park -> drawer revealed with the composer focused (the page is told it was revealed), for Hide and Island; a keyboard or programmatic reveal auto-parks after the right-edge grace once the pointer is away",
+    "RE-HIDE-7: after every hide path the window is at park bounds within the work area; Hide: opacity 0 + click-through on; Island: opacity 1 + rail rendered; a layout change via settings re-applies the surface chrome",
+    "Unit: hoverWatchRestRect('hide', m, 'right-edge') reaches the physical edge (or the work-area edge when the Dock is on the right) and spans the drawer height; decideCursorWatch no longer clamps right-edge zones to 40 px; overlayHoverIdle({view:'copilot'}) is true",
+    "Right-edge timing constants are scoped to the right edge; the top-center constants (AUTO_HIDE_GRACE_MS, OVERLAY_LEAVE_PARK_MS) and behaviour are unchanged, and their tests still pass",
+    "Settings/onboarding copy for right-edge Hide says to move to the right edge",
+    "e2e-smoke.mjs runs a right-edge Hide scenario, and packaged-smoke.mjs gains the RE-HIDE rows (cursor driven by stubbing screen.getCursorScreenPoint in app.evaluate; click-through captured by wrapping setIgnoreMouseEvents), green on macOS and Windows packaged smoke"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "Packaged smoke (macOS + Windows) RE-HIDE rows"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 8,
+   "status": "TODO"
   }
  ]
 }
