@@ -4816,8 +4816,14 @@
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO",
-   "notes": "2026-09-28 (lead): dependency on M2-0071 dropped (SOFT: disjoint scope: Settings.tsx and TapCalibration.tsx hold no warning-colour literals); re-verify against M2-0071 once it lands."
+   "status": "DONE",
+   "notes": "2026-09-28 (lead): dependency on M2-0071 dropped (SOFT: disjoint scope: Settings.tsx and TapCalibration.tsx hold no warning-colour literals); re-verify against M2-0071 once it lands.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/302",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0079",
