@@ -363,6 +363,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0262 DONE (traceability green with HM-FLOW rows); M2-0386 LOCALLY_TESTED recorded (capped); M2-0190 HOST_CONFIGURED recorded from isolation-canary run 36634756903 under OD-26; M2-0481 filed for the missing test-isolation runbook."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0187: promote-candidate dry run passed (OD-33); first-run risks of the publish path cleared."
   }
  ],
  "tickets": [
@@ -11726,9 +11732,18 @@
     "pending": [
      "HOST_CONFIGURED",
      "candidate dry run from main: qa-candidate.yml green + promote-candidate.yml publish=false (lead)"
-    ]
+    ],
+    "promote_dry_run": {
+     "qa_candidate_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36636273967",
+     "promote_run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36643160857",
+     "commit": "df205007",
+     "version": "1.9.6 (mechanics candidate)",
+     "result": "every qa-candidate job green; promote publish=false staged exactly the tested bytes against provenance.json, uploaded to a draft on Metis-Releases, verified every uploaded byte by digest, skipped publish, deleted the draft (none left on the feed)",
+     "owner_approval": "OD-33",
+     "recorded": "2026-09-29 by the lead"
+    }
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead, EC triage): Evidence caveat for A3 ('Packaged gates (install/launch smoke, HK, ST-1, RV, EX, census) consume assets by sha256'). On origin/main and m2/integration, only check-packaged-launch.mjs (smoke-mac, smoke-win), the report-only ST-1 rows and hk-m-candidate.yml consume candidate bytes. The packaged ASR decode runs on release/win-unpacked during the build (scripts/build-installers.mjs:170), and packaged-smoke.mjs (RV and lifecycle), e2e-smoke.mjs and the x64 macOS slice never touch candidate bytes. M2-0452, M2-0453, M2-0454, M2-0455 and M2-0456 (M2-0018-F04..F08) close this gap; cite them before claiming A3 in full. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): the 'F14 environment-kind ticket' in the triage's waits_on is M2-0466. Record HOST_CONFIGURED under kind hosted-runner once it is on main. The qa-candidate.yml dispatch on main is also the first step of every Theme A LEAD_ACTION (M2-0467..A6)."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead, EC triage): Evidence caveat for A3 ('Packaged gates (install/launch smoke, HK, ST-1, RV, EX, census) consume assets by sha256'). On origin/main and m2/integration, only check-packaged-launch.mjs (smoke-mac, smoke-win), the report-only ST-1 rows and hk-m-candidate.yml consume candidate bytes. The packaged ASR decode runs on release/win-unpacked during the build (scripts/build-installers.mjs:170), and packaged-smoke.mjs (RV and lifecycle), e2e-smoke.mjs and the x64 macOS slice never touch candidate bytes. M2-0452, M2-0453, M2-0454, M2-0455 and M2-0456 (M2-0018-F04..F08) close this gap; cite them before claiming A3 in full. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): the 'F14 environment-kind ticket' in the triage's waits_on is M2-0466. Record HOST_CONFIGURED under kind hosted-runner once it is on main. The qa-candidate.yml dispatch on main is also the first step of every Theme A LEAD_ACTION (M2-0467..A6). 2026-09-29 OD-33: promote dry run PASSED (runs 36636273967 + 36643160857) — feed token, digest API and cross-run artifact download proven before the real 1.9.7 publish."
   },
   {
    "id": "M2-0188",
