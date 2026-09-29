@@ -321,6 +321,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0474 added (P1): intermittent Windows RV-3 shortcut-relaunch smoke row."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-30 (owner request): onboarding downloads the selected on-device speech engine automatically. New M2-0475 (speech-pack engine, new files behind a flag, pre-soak), M2-0476 (app wiring, after the soak), M2-0477 (localSpeechPack fleet policy); M2-0160/0161/0163/0164/0168/0351 amended; M2-0112 fresh-profile rule updated."
   }
  ],
  "tickets": [
@@ -7106,7 +7112,7 @@
    ],
    "summary": "shouldUseCloudSttEngine returns true only for a cloud-only profile classification, so fresh installs that land in the legacy/unmanaged branch stay on-device, contrary to MASTER. Make Cloudflare the fresh-profile default while preserving explicit legacy choices through migration.",
    "acceptance": [
-    "Fresh profile selects Cloudflare speech regardless of the legacy/unmanaged classification; a fresh Speech Settings view shows Cloudflare selected, no local speech or LLM pack installed or loaded, and no request for an account API token (UC-065)",
+    "Fresh profile selects Cloudflare speech regardless of the legacy/unmanaged classification; a fresh Speech Settings view shows Cloudflare selected, no local speech or LLM pack installed or loaded, and no request for an account API token (UC-065) (Speech: superseded by OD-30 — the selected on-device speech pack is downloaded during onboarding.)",
     "Explicit legacy-mode migration preserves existing user choices",
     "No silent cloud-to-local or local-to-cloud fallback"
    ],
@@ -7124,7 +7130,7 @@
    "slices": [],
    "due": null,
    "status": "TODO",
-   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): Cloudflare speech through the Operator broker is the fresh default on every profile. Until the route's privacy readiness is VERIFIED, speech shows unavailable with an explicit local-install choice; it never selects local by itself. Acceptance unchanged."
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): Cloudflare speech through the Operator broker is the fresh default on every profile. Until the route's privacy readiness is VERIFIED, speech shows unavailable with an explicit local-install choice; it never selects local by itself. Acceptance unchanged. 2026-09-29 OD-30: on a fresh profile the selected on-device speech pack IS downloaded during onboarding (automatic, visible, skippable); 'no local speech pack installed' no longer applies to speech (the local LLM pack stays opt-in)."
   },
   {
    "id": "M2-0113",
@@ -10026,7 +10032,9 @@
     "M2-0042",
     "M2-0007",
     "M2-0163",
-    "M2-0201"
+    "M2-0201",
+    "M2-0476",
+    "M2-0477"
    ],
    "needs_decision": [
     "D-11",
@@ -10060,12 +10068,15 @@
    "finding_refs": [
     "K01-BLK-onboarding-video",
     "K09-DEC-welcome-recording",
-    "CRITIC-KIT-7"
+    "CRITIC-KIT-7",
+    "OD-30"
    ],
    "scope_paths": [
     "src/renderer/src/components/onboarding/",
     "src/renderer/src/lib/onboarding-*.ts",
-    "src/main/features/onboarding/"
+    "src/main/features/onboarding/",
+    "src/renderer/src/components/OnboardingExperience.tsx",
+    "docs/ONBOARDING-EXPERIENCE.md"
    ],
    "summary": "Keep the existing scene order (LESSON-010: an earlier kit wrongly replaced it). Add privacy-ready Cloudflare setup, optional downloads that never block, explicit legacy-mode migration, setup coaching and accessible copy, and a Tony welcome slot that stays text-led until a recording is supplied.",
    "acceptance": [
@@ -10075,7 +10086,15 @@
     "Setup coaching, accessibility and copy reviewed (OBU-03/04); resumable onboarding and permissions",
     "Fresh and upgrade onboarding pass on the packaged build on both OS lanes (OBU-05)",
     "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)",
-    "Lands by the 2026-11-15 feature freeze (M2-0210)"
+    "Lands by the 2026-11-15 feature freeze (M2-0210)",
+    "The setup scene (same scene order, no new scene) shows one 'On-device transcription' card before any byte moves. The card shows the engine chosen for this device (preferredFreshAsrEngine: Parakeet at 8 GiB RAM or less, Whisper base above), its exact size (81 MB or 670 MB), the free disk space and the host it contacts, and starts that engine's download automatically when the scene opens (OD-30), with 'Skip'. The other engine is a separate 'Also download' option, off by default and queued after the selected one.",
+    "Per OD-30 the automatic start is the default and needs no click; while Cloudflare speech is not VERIFIED it also makes on-device the engine for live meetings. An Operator policy of localSpeechPack=required (M2-0412) starts the selected engine's download without a click, shows the same disclosure and marks it as managed. 'Skip', or a policy set to blocked, sends zero requests to the asset host.",
+    "Progress comes from pushed speechPack:progress events: the stage (downloading, verifying, self-testing) and bytes done out of total. The bar is indeterminate when the total is unknown, and no percentage is ever invented. 'Ready' appears only after verification and self-test.",
+    "Continue and Finish never wait for the download. The user can move forward or back and finish while it runs; the download continues in the main process, and the Ready scene shows its true state (for example 'On-device transcription: 62%. Meetings will transcribe as soon as it finishes.').",
+    "The 2 s ASR_SETUP_FAIL_OPEN_MS path is removed. Today it turns a running status into 'Transcription setup needs attention' and then ignores later updates. Instead, Continue is unlocked from the start and the row keeps showing the real state.",
+    "Each failure shows a clear message with Retry and Not now, and never loops: offline ('You're offline. The download resumes by itself when you're back online.'), a captive network ('This network wants you to sign in. Sign in in your browser, then Retry.'), low disk ('Needs 1.2 GB free; 0.8 GB available.'), an integrity failure ('The download failed its integrity check and was deleted. Retry.'), and a host error with its HTTP status.",
+    "docs/ONBOARDING-EXPERIENCE.md describes this non-blocking behaviour. It currently says Continue waits for the files.",
+    "Slice .5: fresh onboarding on the lean artifact passes the M2-0168 rows SP-1, SP-2, SP-7 and SP-8 on hosted macOS and Windows (OD-26)."
    ],
    "verification": [
     "npx vitest run src/renderer/src/lib/onboarding*.test.ts",
@@ -10124,7 +10143,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: the text-led welcome ships as final (no recorded video); ASSUMED per D-20 default. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0160/ (placeholders until M2-0418 Electron capture + Opus acceptance)"
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: the text-led welcome ships as final (no recorded video); ASSUMED per D-20 default. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0160/ (placeholders until M2-0418 Electron capture + Opus acceptance) 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Slice M2-0160.2 is renamed 'On-device transcription pack in the setup scene: consented, non-blocking, resumable download, selected engine first' and grows from 5 h to 8 h (Sonnet). Slice .5 grows from 4 h to 5 h. needs_decision adds OD-30. Waits for the soak under PD-12: OnboardingExperience.tsx was edited by 1.9.7 tickets M2-0429 and M2-0036."
   },
   {
    "id": "M2-0161",
@@ -10144,19 +10163,23 @@
     "M2-MAC-01"
    ],
    "finding_refs": [
-    "K06-DEC-native-onboarding"
+    "K06-DEC-native-onboarding",
+    "OD-30"
    ],
    "scope_paths": [
     "native-app/App/Onboarding/",
     "native-app/App/UI/",
-    "docs/design/NATIVE-PARITY.md"
+    "docs/design/NATIVE-PARITY.md",
+    "native-app/MetisKit/Sources/MetisKit/Onboarding.swift",
+    "native-app/MetisKit/Sources/MetisKit/SpeechTranscription.swift"
    ],
    "summary": "The native model has a five-scene onboarding topology while the desktop has eight; MASTER requires an explicit decision rather than an assumption. Decide, then design the native parity surfaces with qualified native equivalents of the orb and beam.",
    "acceptance": [
     "Parity decision recorded (converge or intentionally diverge) with rationale",
     "Native onboarding and core surfaces designed and implemented to the decision",
     "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)",
-    "Lands by the 2026-11-15 feature freeze (M2-0210)"
+    "Lands by the 2026-11-15 feature freeze (M2-0210)",
+    "When on-device speech is chosen in native onboarding (same OD-30 rule), onboarding requests Apple's SpeechTranscriber models for English and French with AssetInventory.assetInstallationRequest(supporting:) and downloadAndInstall(). It shows the request's progress, keeps going in the background, and replaces the 'downloads on first use' row with the real state, with Retry on failure. Cloudflare stays the native default (MASTER §11.4), and a managed cloud-only deployment never triggers the download."
    ],
    "verification": [
     "xcodebuild -scheme MetisApp test"
@@ -10171,7 +10194,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Native Mac parity (OD-16) for the owner's request. Today the Apple SpeechTranscriber model downloads lazily on the first transcription (SpeechTranscription.swift:35-38), and onboarding shows 'downloads on first use' (Onboarding.swift:229-230). Native code is not code 1.9.7 fixed; its timing comes from the existing M2-0160 dependency."
   },
   {
    "id": "M2-0162",
@@ -10238,7 +10262,8 @@
    "type": "feature",
    "owner_model": "sonnet",
    "depends_on": [
-    "M2-0162"
+    "M2-0162",
+    "M2-0475"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -10250,7 +10275,9 @@
     "M2-PKG-02",
     "M2-LOCAL-01"
    ],
-   "finding_refs": [],
+   "finding_refs": [
+    "OD-30"
+   ],
    "scope_paths": [
     "src/main/features/components/"
    ],
@@ -10259,7 +10286,10 @@
     "Only selected allowed packs downloaded; resumable verified ranges; cancellation",
     "Space and metered-network checks (UC-062); network drop recovers (UC-059)",
     "Verify, extract, self-test and atomic activate; the signed app bundle is never modified",
-    "Lands by the 2026-11-15 feature freeze (M2-0210)"
+    "Lands by the 2026-11-15 feature freeze (M2-0210)",
+    "The speech pack (asr.whisper-base-q8, asr.parakeet-tdt-0.6b-v3-int8) runs on this lifecycle using M2-0475, and the app has exactly one component downloader.",
+    "The speech pack's per-file pins move under the signed capability manifest (M2-0162) with bytes and sha256 unchanged. Sources are tried in order: the R2 asset route, then the commit-pinned upstream. A manifest that changes a pin without a new version is rejected (UC-060).",
+    "Where the OS reports a metered or Low Data Mode network, the app shows the transfer size and waits for confirmation before starting. When the network state is unknown, the size already shown on the consent card serves as the consent."
    ],
    "verification": [
     "npx vitest run src/main/features/components"
@@ -10274,7 +10304,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, OD-30 owner request): AMEND (additions only). The speech pack becomes the first pack on the lifecycle and is built on M2-0475 rather than a second downloader. Split into slices before starting (PD-14): .1 generic lifecycle on that engine (selection, policy, cancellation, UC-059/UC-062), 8 h; .2 adopting the capability manifest, R2-first source order and the metered-network check, 8 h. The total stays 16 h. The ticket does not edit code 1.9.7 fixed; its timing comes from the M2-0162 dependency chain, not PD-12."
   },
   {
    "id": "M2-0164",
@@ -10286,7 +10317,8 @@
    "depends_on": [
     "M2-0163",
     "M2-0108",
-    "M2-0116"
+    "M2-0116",
+    "M2-0160"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -10300,12 +10332,15 @@
    ],
    "finding_refs": [
     "K02-DEC-3.3GB",
-    "M2-0018-F09"
+    "M2-0018-F09",
+    "OD-30"
    ],
    "scope_paths": [
     "electron-builder.yml",
     "scripts/after-pack.mjs",
-    "scripts/build-installers.mjs"
+    "scripts/build-installers.mjs",
+    "electron-builder.win.yml",
+    "docs/ENTERPRISE-DEPLOY-WINDOWS.md"
    ],
    "summary": "Remove optional offline weights and duplicate runtimes from the default package while keeping profile-aware integrity checks, critical native helpers and notices, and make build hooks unable to fetch optional weights just because historic scripts did.",
    "acceptance": [
@@ -10315,7 +10350,12 @@
     "Installed and download sizes measured against the TASK-004 baseline",
     "Lands by the 2026-11-15 feature freeze (M2-0210)",
     "First-use downloads stay size- and SHA-pinned to reviewed manifests.",
-    "The full offline installer remains a separate target, and CI fails lightweight artifacts that exceed the agreed byte budget."
+    "The full offline installer remains a separate target, and CI fails lightweight artifacts that exceed the agreed byte budget.",
+    "The lean profile ships only after M2-0160 offers the speech pack in onboarding.",
+    "Lean artifacts contain no Parakeet or Whisper weights but keep the runtimes transcription needs (resources/ort and the sherpa-onnx native module) and the 184,608-byte en.wav self-test fixture.",
+    "The build writes a profile marker (lean or full) that M2-0476 reads. The lean profile turns the speech-pack flag on.",
+    "The full offline profile (M2-0372) keeps today's bundled Parakeet and Whisper base and the check-packaged-runtime inventory. Whisper large-v3-turbo stays out of every profile and remains a Settings opt-in. check-release.mjs keeps its 1.9 GiB cap.",
+    "docs/ENTERPRISE-DEPLOY-WINDOWS.md:17 states the real size for each profile. It currently claims about 2.2 GB of embedded models, while the manifest shows about 0.75 GB."
    ],
    "verification": [
     "npm run build (unsigned, local) and size census",
@@ -10332,7 +10372,7 @@
    "slices": [],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F09 (mapping title 'Add a lightweight online installer profile'). It is covered here rather than by a new ticket, because this ticket already removes optional offline weights from the default package. Add acceptance lines: 'macOS and Windows lightweight artifacts exclude bundled large model, ASR, LLM, and related runtime payloads.' / 'First-use downloads stay size- and SHA-pinned to reviewed manifests.' (manifests and verified downloads come from M2-0162/M2-0163) / 'The full offline installer remains a separate target, and CI fails lightweight artifacts that exceed the agreed byte budget.' (the offline bundle is M2-0372; the budget gate is M2-0351). Evidence: electron-builder.yml:88-100 copies the local-llm qwen3.5-0.8b model and mmproj plus the ASR weights into packaged resources ('zero runtime download'); scripts/check-release.mjs caps assets only at 1.9 GiB (GitHub's per-asset limit), not at a lightweight budget; docs/ENTERPRISE-DEPLOY-WINDOWS.md:17 describes an offline, self-contained posture. Add electron-builder.win.yml to scope_paths."
+   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F09 (mapping title 'Add a lightweight online installer profile'). It is covered here rather than by a new ticket, because this ticket already removes optional offline weights from the default package. Add acceptance lines: 'macOS and Windows lightweight artifacts exclude bundled large model, ASR, LLM, and related runtime payloads.' / 'First-use downloads stay size- and SHA-pinned to reviewed manifests.' (manifests and verified downloads come from M2-0162/M2-0163) / 'The full offline installer remains a separate target, and CI fails lightweight artifacts that exceed the agreed byte budget.' (the offline bundle is M2-0372; the budget gate is M2-0351). Evidence: electron-builder.yml:88-100 copies the local-llm qwen3.5-0.8b model and mmproj plus the ASR weights into packaged resources ('zero runtime download'); scripts/check-release.mjs caps assets only at 1.9 GiB (GitHub's per-asset limit), not at a lightweight budget; docs/ENTERPRISE-DEPLOY-WINDOWS.md:17 describes an offline, self-contained posture. Add electron-builder.win.yml to scope_paths. 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). The lean installer can no longer ship before onboarding offers the speech pack (edge checked: no dependency cycle). The installer-size decisions stay as they are: the lean core and its budgets, the 1.9 GiB release cap, large-v3-turbo excluded, and the full offline bundle as a separate target. The ticket does not edit code 1.9.7 fixed; its timing comes from its dependency chain."
   },
   {
    "id": "M2-0165",
@@ -10514,7 +10554,10 @@
     "M2-0053",
     "M2-0022",
     "M2-0167",
-    "M2-0058"
+    "M2-0058",
+    "M2-0456",
+    "M2-0452",
+    "M2-0466"
    ],
    "needs_decision": [
     "D-7",
@@ -10530,11 +10573,17 @@
     "UC-064",
     "HC-30"
    ],
-   "finding_refs": [],
+   "finding_refs": [
+    "OD-30"
+   ],
    "scope_paths": [
     "electron-builder.yml",
     "src/main/updater.ts",
-    "docs/metis-2.0/runbooks/update.md"
+    "docs/metis-2.0/runbooks/update.md",
+    "scripts/check-packaged-speech-pack.mjs",
+    "scripts/check-packaged-speech-pack.test.ts",
+    ".github/workflows/qa-candidate.yml",
+    "build/qa-identity.electron-builder.yml"
    ],
    "summary": "Upgrading 1.x installs to 2.0 must keep user data, keys and IDs; failed rollouts must roll back; and the update feed must not strand users on the abandoned 1.9.8 draft line. Mirror-safe delivery follows the owner's Forgejo decision.",
    "acceptance": [
@@ -10542,7 +10591,18 @@
     "Failed application or component rollout rolls back (UC-064)",
     "Update-feed continuity from 1.9.6, 1.9.7 and the train versions to 2.0 per the shipping decision (D-7); the abandoned 1.9.8 draft is never offered",
     "Mirror-safe delivery per the recorded mirror decision",
-    "The update feed and every downloaded artifact are verified by Métis's own signature and hash checks, independent of any third-party updater configuration (HC-30)"
+    "The update feed and every downloaded artifact are verified by Métis's own signature and hash checks, independent of any third-party updater configuration (HC-30)",
+    "FLOW-09: during onboarding, one authorized optional component (the selected speech engine) is downloaded, verified and switched on atomically on the installed lean candidate (installed by candidate_run + sha256) on hosted macOS and Windows. Each row writes a JSON report with no user content, using the hosted-runner environment kind (M2-0466).",
+    "SP-1: on a fresh profile after 'Download' is clicked, progress events never go backwards and carry bytes and total. The sha256 of every installed file, read back, matches the pinned manifest. The state becomes ready only after the self-test.",
+    "SP-2: the user moves ahead and finishes onboarding below 20% progress. The download continues and reaches ready with no renderer action.",
+    "SP-3: the app is killed after at least 30% of the largest file and relaunched. The download resumes with a Range request from the partial offset (the log shows an offset above 0 and fewer bytes transferred than the total) and reaches ready.",
+    "SP-4: the fixture host serves one flipped byte. The file is rejected, never switched on, and a clear error is shown. Retry against a clean host succeeds.",
+    "SP-5: with the host blocked, the offline message appears within 5 s with no error loop. Once unblocked, the download resumes by itself.",
+    "SP-6: on macOS, with userData on a size-limited disk image, the low-disk message with needed and free bytes appears before any byte is written. Windows is covered by the unit test, and the report says so.",
+    "SP-7: right after Finish with the pack ready, fixture speech through the live meeting path produces transcript lines from the selected engine. The requested and observed engines match, there is no fallback, and no 'Repair or reinstall' appears.",
+    "SP-8: after 'Not now', the request log shows zero requests to the asset host, and speech shows as unavailable, truthfully.",
+    "Rows SP-3 to SP-6 use a local fixture host that only the QA-identity build variant can be pointed at; the shipping build has no way to override the source. SP-1 uses the real pinned host.",
+    "Upgrade: a profile from a bundled build that used on-device speech keeps it after upgrading to the lean build, with no silent engine change. Bundled files are adopted by sha256 where a train that adopts them ran first. Otherwise the explicit legacy choice (M2-0160.3 migration) counts as consent and the same download UI runs."
    ],
    "verification": [
     "Packaged upgrade matrix on the QA account and windows-qa lane"
@@ -10557,7 +10617,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Adds FLOW-09's onboarding download line, which the current acceptance leaves out, as slice M2-0168.4 (6 h, Sonnet). The ticket is 14 h and unsliced, so it needs slicing under PD-14 anyway. Proof runs on GitHub-hosted macos-latest and windows-latest, which count as the live host under OD-26. It reuses M2-0456's candidate-mode onboarding driver and M2-0452's content-free ASR report format. This is new CI plumbing, not code 1.9.7 fixed."
   },
   {
    "id": "M2-0169",
@@ -13314,7 +13375,10 @@
     "M2-0471",
     "M2-0472",
     "M2-0473",
-    "M2-0474"
+    "M2-0474",
+    "M2-0475",
+    "M2-0476",
+    "M2-0477"
    ],
    "needs_decision": [
     "D-13",
@@ -20376,7 +20440,8 @@
     "AUDIT-2026-09-28",
     "heyclicky-v5-20",
     "master-r11-45",
-    "M2-0018-F09"
+    "M2-0018-F09",
+    "OD-30"
    ],
    "scope_paths": [
     "scripts/qa/census/",
@@ -20388,7 +20453,8 @@
    "acceptance": [
     "A size report per build lists compressed installer, unpacked resources, helpers, downloads, caches and peak extraction space (script plus unit test)",
     "The lane gate compares against 250 MB and 650 MB (Windows) and 100 MB (native Mac) and fails unless an exception row with owner approval exists",
-    "Results for T3, rc1 and the frozen candidate are attached to budgets.md"
+    "Results for T3, rc1 and the frozen candidate are attached to budgets.md",
+    "The size report lists optional packs as their own rows: Whisper base 81,263,214 B and Parakeet 670,478,772 B, plus the peak disk used during download and activation. They never count toward the 250 MB / 650 MB (Windows) or 100 MB (native Mac) core budgets, and the gate fails if either appears inside a lean artifact."
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -20404,7 +20470,7 @@
    "required_evidence": [
     "MEASURED"
    ],
-   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F09. The budget gate must also cover the Electron macOS lightweight DMG and zip: this ticket names only the Windows 250/650 MB and native Mac 100 MB rows. It must also fail CI when any lightweight artifact exceeds its budget, separately from check-release.mjs's 1.9 GiB platform cap."
+   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F09. The budget gate must also cover the Electron macOS lightweight DMG and zip: this ticket names only the Windows 250/650 MB and native Mac 100 MB rows. It must also fail CI when any lightweight artifact exceeds its budget, separately from check-release.mjs's 1.9 GiB platform cap. 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Says explicitly that the optional speech pack is reported but never counted as core, so the budget cannot be misread as either banning the onboarding download or allowing the weights back into the core installer."
   },
   {
    "id": "M2-0352",
@@ -26202,6 +26268,144 @@
     "LEAD_ACTION: after merge, remove the row from codex-queue state/.smoke-failset once integration shows it green on 3 consecutive runs"
    ],
    "notes": "2026-09-29 (lead): filed when integration halted on this row (STOP cleared by listing it in .smoke-failset)."
+  },
+  {
+   "id": "M2-0475",
+   "title": "Build the on-device speech-pack engine in new files behind a default-off flag: pinned per-file manifest, verified resumable download, atomic activation",
+   "wave": "W2",
+   "milestone": "m5",
+   "type": "feature",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "OWNER-REQUEST-2026-09-29-onboarding-model-download",
+    "OD-30",
+    "D-11"
+   ],
+   "scope_paths": [
+    "src/main/features/components/speech-pack/"
+   ],
+   "summary": "Owner request 2026-09-29: speech models (Whisper, Parakeet) download during onboarding. This is the part that can land before the 1.9.7 soak. It is new files only, imported by nothing outside its folder, with the flag off by default, so the 1.9.7 candidate bytes and every file 1.9.7 fixed stay unchanged (PD-12 not triggered). It keeps the ordering guarantees of src/main/asr-model-download.ts (whole-transfer disk check; .partial files renamed only after length and sha256 match) and the redirect and HTML guards in src/shared/bundle-response.ts. It adds byte-range resume and a staged, self-tested atomic activation. Components: asr.whisper-base-q8 and asr.parakeet-tdt-0.6b-v3-int8. OD-30 (owner, 2026-09-29): onboarding downloads the on-device speech engine selected for this machine automatically — visible card with engine, size, free disk and host, live progress, Skip — never blocking Continue/Finish; the other engine stays an optional download in Settings.",
+   "acceptance": [
+    "manifest.ts pins asr.whisper-base-q8 (11 files, 81,263,214 B) and asr.parakeet-tdt-0.6b-v3-int8 (encoder, decoder, joiner, tokens.txt; 670,478,772 B). Bytes and sha256 must match resources/runtime-assets-manifest.json exactly, and a unit test fails on any difference.",
+    "Every source URL is immutable: pinned to a commit per file, never a branch such as main (the never-main rule from asr-model-manifest.test.ts applies). If Parakeet has no per-file pinned upstream, the upstream archive is pinned by its own byte count and sha256. Each extracted file is then checked against its per-file pin, and extraction is capped for size and guarded against path traversal. The M2-0162 R2 route can later become the first source without changing any pin.",
+    "Before the first byte, free space is checked for the remaining bytes plus the extraction peak plus 512 MB of headroom. A shortfall returns error kind 'disk' with the required and free bytes, and nothing is written.",
+    "Each file streams to <name>.partial and resumes with an HTTP Range request guarded by If-Range. A 200 reply or a changed validator restarts only that file. A file is renamed only after its length and sha256 match. On a mismatch the partial file is deleted and the file is retried once from zero, then the error is 'tamper'. HTML or login-page responses report 'captive'. Timeouts are 60 s per request and 120 s idle. Retry-After is honoured with capped exponential backoff and jitter. A file that already passed verification is never downloaded again.",
+    "Activation: all files are verified in a staging directory, then an injected self-test must decode the pinned 184,608-byte en.wav fixture to non-empty text, then one atomic rename moves them to userData/speech-packs/<component>/<version>, with an active.json marker written last. Tests that kill the process at every step show a crash never leaves an active marker or a half-filled active directory.",
+    "State per component, with no user content: not-installed, queued, downloading{bytesDone, bytesTotal}, verifying, self-testing, ready, paused, or error{offline|disk|tamper|captive|http|cancelled}. Only one download per component at a time. Cancel and pause work. The selected engine is queued first. Events are sent at most once every 250 ms. No transcript, audio or user text appears in any state or log.",
+    "Flag speech-pack: --speech-pack=on|off on the command line or METIS_SPEECH_PACK=on|off (the command line wins), off by default, following src/main/infra/process/supervisor.ts. A contract test proves that no file outside src/main/features/components/speech-pack/ imports the module in this ticket.",
+    "Vitest runs in CI only (D-28) against a local HTTP fixture server and covers: a cut at 30% then a Range resume; a server that ignores Range; one flipped byte; a captive HTML page; offline; a disk shortfall; cancel; and kill points during activation."
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 8,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): from the onboarding-model research (codex-queue/logs/onboarding-models-research-2026-09-29.json)."
+  },
+  {
+   "id": "M2-0476",
+   "title": "Wire the speech pack into the app: pack-aware ASR resolver, pushed progress IPC, background resume, and a truthful capture state while the pack downloads",
+   "wave": "W5",
+   "milestone": "m7",
+   "type": "feature",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0475",
+    "M2-0064",
+    "M2-0198"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OWNER-REQUEST-2026-09-29-onboarding-model-download",
+    "OD-30",
+    "D-11"
+   ],
+   "scope_paths": [
+    "src/main/asr-bundled-ensure.ts",
+    "src/main/asr-model-protocol.ts",
+    "src/main/parakeet.ts",
+    "src/main/index.ts",
+    "src/shared/ipc.ts",
+    "src/preload/index.ts",
+    "src/renderer/src/lib/listen.ts"
+   ],
+   "summary": "Waits for the soak under PD-12. index.ts, ipc.ts and listen.ts were edited by 1.9.7 tickets (M2-0429, M2-0036, M2-0026 and others), and parakeet.ts by the packaged-smoke fix c2d20122. Behaviour changes only when the speech-pack flag is on, and the lean build profile from M2-0164 turns it on. It uses M2-0064's contracts for selected, allowed and ready engines. OD-30 (owner, 2026-09-29): onboarding downloads the on-device speech engine selected for this machine automatically — visible card with engine, size, free disk and host, live progress, Skip — never blocking Continue/Finish; the other engine stays an optional download in Settings.",
+   "acceptance": [
+    "With the flag on, resolveParakeetDir, resolveWhisperModelsRoot and the asr-model:// handler (through its existing userModelsRoot) use the active, verified pack. Bundled resources still win whenever present (1.x and the M2-0372 full offline profile), and a damaged bundle is still never masked by a copy in userData.",
+    "On a lean profile, a missing pack reports PACK_NOT_INSTALLED or PACK_DOWNLOADING with bytes, never 'Repair or reinstall'. That message remains only for a full profile whose bundled files are damaged.",
+    "IPC adds speechPack:state, speechPack:start(components), speechPack:cancel and speechPack:retry, plus a pushed speechPack:progress event (no user content, throttled), all typed in preload. The renderer never polls faster than once per second.",
+    "A pack chosen by the user or by policy resumes in the background after the first window is shown and never blocks start-up. The ST-1 budgets (M2-0433) are unaffected; all I/O is async.",
+    "If the selected engine is still downloading when a capture starts, the capture shows 'On-device transcription is downloading: 410 of 670 MB. Transcription starts automatically when it finishes.' It starts transcribing on the ready event without restarting the capture. The silent Parakeet-to-Whisper switch in listen.ts (console.warn only) is replaced by this visible state. If the other engine is ready, the user is offered one click: 'Use Whisper base until then'.",
+    "During a capture, a download that capture is waiting on continues. Any other pack download pauses and resumes afterwards (kit §14.7).",
+    "The launch-time check reads the marker and file sizes only, with no re-hashing on each launch (as M2-0035 did for local models). The full sha256 check runs at activation and on Repair.",
+    "Vitest covers the resolver, the IPC contract and the listen state changes, in CI only. A contract test proves behaviour is unchanged with the flag off against today's packaged paths."
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 8,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): from the onboarding-model research (codex-queue/logs/onboarding-models-research-2026-09-29.json)."
+  },
+  {
+   "id": "M2-0477",
+   "title": "Add the localSpeechPack field (required | offered | blocked) to the Operator fleet model policy and its desktop policy client",
+   "wave": "W2",
+   "milestone": "m4",
+   "type": "feature",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0412"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OWNER-REQUEST-2026-09-29-onboarding-model-download",
+    "OD-30",
+    "OD-18"
+   ],
+   "scope_paths": [],
+   "summary": "OD-30 lets IT require or block the onboarding speech-pack download for a managed fleet. M2-0412 (READY #283) adds the Operator-managed model policy; this adds the localSpeechPack field on top of it once it merges. Default 'offered' means the OD-30 automatic download.",
+   "acceptance": [
+    "The signed policy carries localSpeechPack: required | offered | blocked (default offered = the OD-30 automatic download). With required, onboarding starts the selected engine's download without a click, with the same size and host disclosure, shown as managed. With blocked, there is no card and no download. An MDM admin file may only move the value toward blocked. This is covered by the desktop policy client tests and the POLICY-01 packaged row."
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 3,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): split from the M2-0412 amendment (M2-0412 is READY; its PR is not re-opened)."
   }
  ]
 }
