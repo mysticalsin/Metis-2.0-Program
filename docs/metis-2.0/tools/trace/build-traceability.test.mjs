@@ -271,6 +271,82 @@ test("renders deterministic markdown without dates", () => {
   assert.doesNotMatch(markdown, /2026-\d{2}-\d{2}/);
 });
 
+const capabilityFixture = (overrides = {}) => ({
+  artifact: {
+    version: "1.0.51",
+    build: "61",
+    sha256: "0".repeat(64),
+    evidence_level: "STATIC_INSPECTION",
+    evidence_limits: "Static inspection only.",
+  },
+  capabilities: Array.from({ length: 48 }, (_, index) => ({
+    id: `CAP-${String(index + 1).padStart(2, "0")}`,
+    name: `resource-${index + 1}`,
+    reference_path: `Contents/Resources/resource-${index + 1}.md`,
+    reference_sha256: "a".repeat(64),
+    disposition: "Core",
+    metis_home: "Artifact Library",
+    owner: "M2-0001",
+    evidence_level: "STATIC_INSPECTION",
+  })),
+  parity_refresh_points: ["T1", "T2", "T3", "rc1"],
+  parity: [{ id: "CXCAP-01", label: "static", source_ref: "CAPABILITY-MATRIX.json items[0]" }],
+  ...overrides,
+});
+
+const capabilityErrors = (capabilityDispositions, rows = []) =>
+  computeTraceability({
+    inventory: { rows: [...inventory.rows, ...rows] },
+    ledger: {
+      tickets: [
+        baseTicket({ kit_refs: ["TASK-001", ...rows.map((row) => row.id)] }),
+      ],
+    },
+    decisionsText: "",
+    blockersText: "",
+    capabilityDispositions,
+  }).errors.join("\n");
+
+const cxcapRow = { ...inventory.rows[0], id: "CXCAP-01", family: "CXCAP", kit: "v5" };
+
+test("accepts a complete capability map with labelled parity ids", () => {
+  assert.equal(capabilityErrors(capabilityFixture(), [cxcapRow]), "");
+});
+
+test("fails a capability row with no owner or an owner that is not a ticket", () => {
+  const missingOwner = capabilityFixture();
+  delete missingOwner.capabilities[0].owner;
+  assert.match(capabilityErrors(missingOwner), /unmapped capability row CAP-01: missing owner/);
+
+  const missingTicket = capabilityFixture();
+  missingTicket.capabilities[1].owner = "M2-9999";
+  assert.match(capabilityErrors(missingTicket), /CAP-02 owner M2-9999 is a missing ticket/);
+
+  const marker = capabilityFixture();
+  marker.capabilities[2].owner = "EXCLUDED";
+  assert.equal(capabilityErrors(marker), "");
+});
+
+test("fails when the capability map does not have exactly 48 rows", () => {
+  const short = capabilityFixture();
+  short.capabilities.pop();
+  assert.match(capabilityErrors(short), /expected 48 rows, found 47/);
+});
+
+test("fails an unlabelled or wrongly labelled CXCAP parity id", () => {
+  const unlabelled = capabilityFixture({ parity: [] });
+  assert.match(capabilityErrors(unlabelled, [cxcapRow]), /unlabelled parity id CXCAP-01/);
+
+  const invalid = capabilityFixture({ parity: [{ id: "CXCAP-01", label: "works", source_ref: "x" }] });
+  assert.match(capabilityErrors(invalid, [cxcapRow]), /unlabelled parity id CXCAP-01/);
+});
+
+test("fails a parity table without the T1..T3 and rc1 refresh points", () => {
+  const noRefresh = capabilityFixture({ parity_refresh_points: ["T1"] });
+  assert.match(capabilityErrors(noRefresh), /label refresh at T2/);
+  assert.match(capabilityErrors(noRefresh), /label refresh at rc1/);
+});
+
 test("required acceptance ids must exist and be named in a mapped ticket acceptance", () => {
   const flowInventory = { rows: [{ ...inventory.rows[0], id: "HM-FLOW-01", family: "HMFLOW" }] };
   const run = (inv, ticket) =>

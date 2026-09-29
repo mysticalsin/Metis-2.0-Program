@@ -210,6 +210,19 @@ Source: `docs/metis-2.0/kit/r11/clicky-study/ARTIFACT.json`, read in this worktr
 | role | reference study only; it is not a Métis source or deployment | DERIVED |
 | unverified | signing trust, runtime behavior, upstream source | UNKNOWN; read-only step: owner-run `codesign -dv` on the mounted app, not done here |
 
+### 6.1 HeyClicky register row (M2-0261)
+
+Every later HeyClicky comparison or adoption record in this program binds to this one artifact (MASTER sections 32.1 and 32.22, HC-01). Pinned id `HC-ART-1.0.51-61`. The same pin sits in `docs/metis-2.0/kit/CAPABILITY-DISPOSITIONS.json` (`artifact`).
+
+| Source | Version | Build | DMG sha256 | Evidence level | Evidence limits | Label |
+|---|---|---|---|---|---|---|
+| HeyClicky 1.0.51 build 61 (`HeyClicky.dmg`, bundle identifier com.humansongs.clicky) | 1.0.51 | 61 | 0c7b2f7b21cc5153e4a3146cdeaff704a67aaf37e08bf06a0117d108edb7b038 | STATIC_INSPECTION | Static inspection only: not executed, no network endpoint called, original source project not recovered, system signing trust not checked. Anything read from the vendor site or changelog is VENDOR_CLAIM, not installed behaviour, and the changelog describes 1.0.52, a newer release than this artifact | OBSERVED ARTIFACT.json:4, :8-9, :28-31; changelog limit from `kit/v5/baseline/Metis-HeyClicky-Interaction-Upgrade.x/Metis-HeyClicky-Interaction-Upgrade/evidence/sources.json` REF-02 `limit` |
+
+Downstream registers (DERIVED, written by M2-0261):
+- `docs/metis-2.0/kit/CAPABILITY-DISPOSITIONS.json`: the 48 packaged Markdown resources (CAP-01 to CAP-48) with disposition, Métis home and an owning M2 ticket or NOT_TESTED, BLOCKED or EXCLUDED, plus the parity label of CXCAP-01 to CXCAP-30. `tools/trace/build-traceability.mjs --check` fails on an unmapped row, a missing owner ticket or an unlabelled CXCAP id.
+- `docs/metis-2.0/baseline/REFERENCE-REGISTER.md`: pin, licence, security notes and adopt, adapt or reject for every R and REF id.
+- `docs/metis-2.0/kit/PORT-DECISIONS.md`, section "HeyClicky parity labels": the human-readable parity table.
+
 ## 7. Owner and lead steps
 
 LEAD_ACTION: fill the Dirty state column of section 1 (commands in the LEAD_ACTION under that table).
