@@ -1,0 +1,9 @@
+{"ts":"2026-09-29T18:43:51.414Z","seq":1,"prev":"GENESIS","event":"app.started","version":"1.9.6","platform":"darwin","arch":"arm64","bootId":"be0ffad9-9d02-4c1f-9d1d-9f1adc949ef6","prevShutdown":"unknown","uvThreadpoolSize":"default"}
+{"ts":"2026-09-29T18:43:52.447Z","seq":2,"prev":"e95a4ad941312653f685d0855194643569d87c67021fd7238f7e7c120b0773a1","event":"app.boot.watch_cleared","earlyDeath":false,"reason":"registerIpc"}
+{"ts":"2026-09-29T18:43:52.450Z","seq":3,"prev":"ff8596998e9d4b226ab12093517e389464dda8ab1396f8e91a2809ce1d74a27a","event":"sidecar.spawn","name":"stall-watch","pid":4102,"pgid":4091}
+{"ts":"2026-09-29T18:43:53.806Z","seq":4,"prev":"20d4cb6bafe0660b84eea008242fd17781dcdac85700c29cd4349edc07c575db","event":"tray.created","emptyIcon":false}
+{"ts":"2026-09-29T18:43:54.615Z","seq":5,"prev":"459218d94d54dd9be5be8f1592aa3f7e25759980db18d71008843425dc335d6b","event":"app.renderer.ready","version":"1.9.6","platform":"darwin","arch":"arm64"}
+{"ts":"2026-09-29T18:44:07.515Z","seq":6,"prev":"fd29933b0aa84a577295735a9ddf177345c98834e5ef0f1a25010b8736aa2136","event":"scheduler.job","kind":"backfill","trigger":"automatic","outcome":"scanned","queued":0,"revived":0,"heldExhausted":0,"heldBackedOff":0,"heldUnreadable":0}
+{"ts":"2026-09-29T18:45:49.856Z","seq":7,"prev":"9af242ec6af81fa4e51e5546463d64063623df5e12d7ceb7a35c0c29fd592353","event":"scheduler.job","kind":"model-work","outcome":"window-open","uptimeMs":120002,"afterInteraction":false}
+{"ts":"2026-09-29T18:45:49.939Z","seq":8,"prev":"4895d663f7017f0dbc41a4cbb5c92c53e4852b0e1e19891c0b95791d22f293a9","event":"scheduler.job","kind":"backfill","trigger":"automatic","outcome":"scanned","queued":0,"revived":0,"heldExhausted":0,"heldBackedOff":0,"heldUnreadable":0}
+{"ts":"2026-09-29T18:45:50.010Z","seq":9,"prev":"e1bf86d8cfd399188361ae34d2ca6feeef75889cdbcd3dbd7b73162bbc9e7ae1","event":"brain.intelligence_index","reason":"catch-up","queued":0,"recapped":0}

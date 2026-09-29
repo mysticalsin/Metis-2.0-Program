@@ -1,0 +1,11 @@
+{"ts":"2026-09-29T18:44:10.647Z","seq":1,"prev":"GENESIS","event":"app.started","version":"1.9.6","platform":"darwin","arch":"arm64","bootId":"32c6187f-343f-4d11-9f07-a197aa310e52","prevShutdown":"unknown","uvThreadpoolSize":"default"}
+{"ts":"2026-09-29T18:44:11.532Z","seq":2,"prev":"4d59e9ba3c6325d6f99b9a04e11cf0b3e300e58da339278403a871a22a000a2e","event":"app.boot.watch_cleared","earlyDeath":false,"reason":"registerIpc"}
+{"ts":"2026-09-29T18:44:11.547Z","seq":3,"prev":"de8c4ee23e7a2059432d9263d624bda41d48755071aefeeb20d1a408d419733f","event":"sidecar.spawn","name":"stall-watch","pid":3409,"pgid":3282}
+{"ts":"2026-09-29T18:44:12.722Z","seq":4,"prev":"324ecca886c9fb7ba1b12f9ebf66e5d3818d48584c9f2a12141335eacf979d98","event":"tray.created","emptyIcon":false}
+{"ts":"2026-09-29T18:44:13.330Z","seq":5,"prev":"21cd6b5c192f64e3256a7b964cfbf5a840baa4eddf1642f32004d8baec4667e3","event":"app.renderer.ready","version":"1.9.6","platform":"darwin","arch":"arm64"}
+{"ts":"2026-09-29T18:44:30.264Z","seq":6,"prev":"2ec2140d5db931539baf07d98c88fd9a023fb8033b191e590519fef4c7601cf9","event":"brain.index.unavailable","cause":"io"}
+{"ts":"2026-09-29T18:44:31.743Z","seq":7,"prev":"e09d7bc4f4d3dcde419a3a376a08ff8ae924857c757adfa54ed22ae4eca4f3cc","event":"brain.index.unavailable","cause":"io"}
+{"ts":"2026-09-29T18:44:31.745Z","seq":8,"prev":"11bdf90e30c9af42bed4024159d00e32e856822bbcdef566806392faa385c493","event":"scheduler.job","kind":"backfill","outcome":"deferred","deferredReason":"ledger_unavailable"}
+{"ts":"2026-09-29T18:44:31.746Z","seq":9,"prev":"ec5b4ec11aba9033246ea0ff7aea1af78e851fe1897068417170df007f056f6c","event":"brain.index.unavailable","cause":"io"}
+{"ts":"2026-09-29T18:46:09.080Z","seq":10,"prev":"a247a5131ece85beaf2ee1ff995a1420e494972234c74e86f9d0a61078f46f07","event":"scheduler.job","kind":"model-work","outcome":"window-open","uptimeMs":120001,"afterInteraction":false}
+{"ts":"2026-09-29T18:46:09.131Z","seq":11,"prev":"19c82c28b839526e88cb4c8746dc0ddf7460453216fa1d6a429968cee9e38f7f","event":"scheduler.job","kind":"intelligence-index","outcome":"deferred","deferredReason":"ledger_unavailable"}

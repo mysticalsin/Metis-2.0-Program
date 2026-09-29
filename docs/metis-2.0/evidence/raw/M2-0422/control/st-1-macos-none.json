@@ -1,0 +1,3868 @@
+{
+  "harness": "ST-1",
+  "row": "none",
+  "platform": "darwin",
+  "arch": "arm64",
+  "installer": "Metis-QA-1.9.6.zip",
+  "build_run_id": 36608178436,
+  "artifact_sha256": "019624e25c5e63aa2fac489b22448d8cfdb903bf1726d7dbd5999e302e605a2e",
+  "poolSize": "default",
+  "fixtures": 0,
+  "minutes": 5,
+  "samples": 297,
+  "lateSamples": 0,
+  "loop": {
+    "p99Ms": 18.268159,
+    "maxMs": 772.800511
+  },
+  "write": {
+    "maxMs": 229.4398749999998
+  },
+  "lookup": {
+    "maxMs": 12.199624999999742
+  },
+  "exercised": null,
+  "criteria": [
+    {
+      "name": "inspector",
+      "pass": true
+    },
+    {
+      "name": "has-samples",
+      "pass": true
+    },
+    {
+      "name": "no-late-samples",
+      "pass": true
+    },
+    {
+      "name": "loop-p99 < 50",
+      "pass": true
+    },
+    {
+      "name": "loop-max < 250",
+      "pass": false
+    },
+    {
+      "name": "async-write < 250",
+      "pass": true
+    },
+    {
+      "name": "dns-lookup < 250",
+      "pass": true
+    }
+  ],
+  "verdict": "FAIL",
+  "complete": true,
+  "errors": [],
+  "setupAtMs": 1184,
+  "timeline": [
+    {
+      "tMs": 2339,
+      "writeMs": 229.4398749999998,
+      "lookupMs": 12.199624999999742,
+      "loopMaxSinceLastMs": 0,
+      "resources": {
+        "PipeWrap": 1,
+        "Timeout": 1
+      },
+      "answeredMs": 273
+    },
+    {
+      "tMs": 3615,
+      "writeMs": 109.25704199999973,
+      "lookupMs": 3.0147079999997004,
+      "loopMaxSinceLastMs": 772.800511,
+      "resources": {
+        "PipeWrap": 4,
+        "ProcessWrap": 1,
+        "Timeout": 7
+      },
+      "answeredMs": 152
+    },
+    {
+      "tMs": 4769,
+      "writeMs": 89.95533399999931,
+      "lookupMs": 3.2206249999999272,
+      "loopMaxSinceLastMs": 368.836607,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9,
+        "Immediate": 1
+      },
+      "answeredMs": 426
+    },
+    {
+      "tMs": 6202,
+      "writeMs": 5.182125000000269,
+      "lookupMs": 0.9946669999999358,
+      "loopMaxSinceLastMs": 104.333311,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 40
+    },
+    {
+      "tMs": 7244,
+      "writeMs": 0.8927500000008877,
+      "lookupMs": 0.489875000000211,
+      "loopMaxSinceLastMs": 112.328703,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 8328,
+      "writeMs": 106.19991699999991,
+      "lookupMs": 2.5627919999997175,
+      "loopMaxSinceLastMs": 144.572415,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 147
+    },
+    {
+      "tMs": 9476,
+      "writeMs": 1.082209000000148,
+      "lookupMs": 0.8426660000004631,
+      "loopMaxSinceLastMs": 230.293503,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 10481,
+      "writeMs": 0.7799999999988358,
+      "lookupMs": 0.8585000000002765,
+      "loopMaxSinceLastMs": 13.385727,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 11486,
+      "writeMs": 0.976542000000336,
+      "lookupMs": 0.8257090000006428,
+      "loopMaxSinceLastMs": 90.767359,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 12492,
+      "writeMs": 1.128458999999566,
+      "lookupMs": 1.933708000000479,
+      "loopMaxSinceLastMs": 39.026687,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 13499,
+      "writeMs": 6.721875000001091,
+      "lookupMs": 0.7982499999998254,
+      "loopMaxSinceLastMs": 36.962303,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 14510,
+      "writeMs": 0.5071659999994154,
+      "lookupMs": 0.38970899999912945,
+      "loopMaxSinceLastMs": 17.268735,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 15525,
+      "writeMs": 0.46795899999960966,
+      "lookupMs": 0.44383400000151596,
+      "loopMaxSinceLastMs": 13.885439,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 16529,
+      "writeMs": 0.45320799999899464,
+      "lookupMs": 0.3943330000001879,
+      "loopMaxSinceLastMs": 26.132479,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 17532,
+      "writeMs": 1.6281249999992724,
+      "lookupMs": 1.0655829999996058,
+      "loopMaxSinceLastMs": 13.680639,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 18541,
+      "writeMs": 0.6852919999982987,
+      "lookupMs": 0.3991249999999127,
+      "loopMaxSinceLastMs": 36.896767,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 19545,
+      "writeMs": 1.1845830000020214,
+      "lookupMs": 0.4688330000026326,
+      "loopMaxSinceLastMs": 36.863999,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 20549,
+      "writeMs": 0.8262910000012198,
+      "lookupMs": 3.4197500000009313,
+      "loopMaxSinceLastMs": 36.700159,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 21557,
+      "writeMs": 0.4251250000015716,
+      "lookupMs": 0.32733399999779067,
+      "loopMaxSinceLastMs": 41.320447,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 22559,
+      "writeMs": 0.7174999999988358,
+      "lookupMs": 0.48916599999938626,
+      "loopMaxSinceLastMs": 26.460159,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 23562,
+      "writeMs": 0.5661669999972219,
+      "lookupMs": 0.4568330000001879,
+      "loopMaxSinceLastMs": 25.657343,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 24566,
+      "writeMs": 1.1359169999996084,
+      "lookupMs": 0.6041249999980209,
+      "loopMaxSinceLastMs": 25.231359,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 25571,
+      "writeMs": 0.5223330000007991,
+      "lookupMs": 0.3914580000018759,
+      "loopMaxSinceLastMs": 33.128447,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 26576,
+      "writeMs": 0.5172920000004524,
+      "lookupMs": 0.41987499999959255,
+      "loopMaxSinceLastMs": 29.769727,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 27580,
+      "writeMs": 0.48470799999995506,
+      "lookupMs": 0.3828749999993306,
+      "loopMaxSinceLastMs": 13.213695,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 28583,
+      "writeMs": 1.556750000003376,
+      "lookupMs": 0.7452080000002752,
+      "loopMaxSinceLastMs": 26.460159,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 29590,
+      "writeMs": 0.5328750000007858,
+      "lookupMs": 0.45970800000213785,
+      "loopMaxSinceLastMs": 15.294463,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 30594,
+      "writeMs": 0.7964159999974072,
+      "lookupMs": 1.7443750000020373,
+      "loopMaxSinceLastMs": 13.467647,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 31604,
+      "writeMs": 1.039667000000918,
+      "lookupMs": 1.060417000000598,
+      "loopMaxSinceLastMs": 30.769151,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 32610,
+      "writeMs": 0.751416999999492,
+      "lookupMs": 0.7809999999990396,
+      "loopMaxSinceLastMs": 38.141951,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 33616,
+      "writeMs": 0.8297909999964759,
+      "lookupMs": 0.5377090000038152,
+      "loopMaxSinceLastMs": 13.000703,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 34619,
+      "writeMs": 1.024667000005138,
+      "lookupMs": 0.5674999999973807,
+      "loopMaxSinceLastMs": 27.623423,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 35623,
+      "writeMs": 6.988583999998809,
+      "lookupMs": 0.713833000001614,
+      "loopMaxSinceLastMs": 29.016063,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 36634,
+      "writeMs": 0.7183330000043497,
+      "lookupMs": 0.8482089999961318,
+      "loopMaxSinceLastMs": 45.907967,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 37640,
+      "writeMs": 1.935708999997587,
+      "lookupMs": 1.160875000001397,
+      "loopMaxSinceLastMs": 26.787839,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 38646,
+      "writeMs": 0.9755420000001322,
+      "lookupMs": 0.5645829999994021,
+      "loopMaxSinceLastMs": 12.779519,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 39651,
+      "writeMs": 1.000625000000582,
+      "lookupMs": 0.5833750000019791,
+      "loopMaxSinceLastMs": 13.287423,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 40657,
+      "writeMs": 1.140957999996317,
+      "lookupMs": 1.314209000003757,
+      "loopMaxSinceLastMs": 20.447231,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 41683,
+      "writeMs": 6.549832999997307,
+      "lookupMs": 0.6045000000012806,
+      "loopMaxSinceLastMs": 18.169855,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 42696,
+      "writeMs": 10.169584000002942,
+      "lookupMs": 0.9526670000050217,
+      "loopMaxSinceLastMs": 18.415615,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 13
+    },
+    {
+      "tMs": 43709,
+      "writeMs": 0.6042500000039581,
+      "lookupMs": 0.5710000000035507,
+      "loopMaxSinceLastMs": 13.885439,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 44712,
+      "writeMs": 0.614041000000725,
+      "lookupMs": 0.6939999999958673,
+      "loopMaxSinceLastMs": 17.268735,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 45718,
+      "writeMs": 3.955958999998984,
+      "lookupMs": 2.756500000003143,
+      "loopMaxSinceLastMs": 14.073855,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 13
+    },
+    {
+      "tMs": 46732,
+      "writeMs": 0.45108299999992596,
+      "lookupMs": 0.6980000000039581,
+      "loopMaxSinceLastMs": 21.561343,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 47735,
+      "writeMs": 0.8515840000036405,
+      "lookupMs": 0.6979169999976875,
+      "loopMaxSinceLastMs": 31.408127,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 48740,
+      "writeMs": 1.170708999998169,
+      "lookupMs": 1.0631670000002487,
+      "loopMaxSinceLastMs": 13.058047,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 49746,
+      "writeMs": 0.840291000000434,
+      "lookupMs": 0.4910830000007991,
+      "loopMaxSinceLastMs": 14.180351,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 50750,
+      "writeMs": 7.158999999999651,
+      "lookupMs": 0.8800829999963753,
+      "loopMaxSinceLastMs": 13.778943,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 51760,
+      "writeMs": 0.8624579999959678,
+      "lookupMs": 0.5412089999954333,
+      "loopMaxSinceLastMs": 14.508031,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 52767,
+      "writeMs": 0.8297079999974812,
+      "lookupMs": 0.8364999999976135,
+      "loopMaxSinceLastMs": 17.072127,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 53772,
+      "writeMs": 0.4820419999959995,
+      "lookupMs": 0.48025000000052387,
+      "loopMaxSinceLastMs": 14.704639,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 54777,
+      "writeMs": 1.3685830000031274,
+      "lookupMs": 0.7298749999972642,
+      "loopMaxSinceLastMs": 14.974975,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 55786,
+      "writeMs": 1.1526659999944968,
+      "lookupMs": 3.4226659999985714,
+      "loopMaxSinceLastMs": 16.629759,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 56797,
+      "writeMs": 0.697333999996772,
+      "lookupMs": 0.9763329999987036,
+      "loopMaxSinceLastMs": 13.967359,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 57803,
+      "writeMs": 0.7928329999995185,
+      "lookupMs": 0.47391599999536993,
+      "loopMaxSinceLastMs": 14.360575,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 58807,
+      "writeMs": 1.0148749999934807,
+      "lookupMs": 0.6870840000046883,
+      "loopMaxSinceLastMs": 20.873215,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 59812,
+      "writeMs": 0.5235829999946873,
+      "lookupMs": 0.7784589999937452,
+      "loopMaxSinceLastMs": 25.214975,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 60818,
+      "writeMs": 1.2432079999998678,
+      "lookupMs": 1.3780839999963064,
+      "loopMaxSinceLastMs": 24.117247,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 61825,
+      "writeMs": 0.8167079999984708,
+      "lookupMs": 0.5213330000042333,
+      "loopMaxSinceLastMs": 26.918911,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 62831,
+      "writeMs": 0.5900420000034501,
+      "lookupMs": 0.49799999999959255,
+      "loopMaxSinceLastMs": 21.463039,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 63835,
+      "writeMs": 6.461750000002212,
+      "lookupMs": 1.1802499999976135,
+      "loopMaxSinceLastMs": 42.237951,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 64847,
+      "writeMs": 0.4822079999939888,
+      "lookupMs": 0.5610410000008414,
+      "loopMaxSinceLastMs": 16.588799,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 65853,
+      "writeMs": 1.5547499999956926,
+      "lookupMs": 2.447583000001032,
+      "loopMaxSinceLastMs": 31.686655,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 66864,
+      "writeMs": 0.7736250000016298,
+      "lookupMs": 0.8097920000000158,
+      "loopMaxSinceLastMs": 34.013183,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 67869,
+      "writeMs": 1.0171250000130385,
+      "lookupMs": 0.8819579999981215,
+      "loopMaxSinceLastMs": 14.024703,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 68877,
+      "writeMs": 0.8546670000068843,
+      "lookupMs": 0.6098340000025928,
+      "loopMaxSinceLastMs": 14.417919,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 69883,
+      "writeMs": 0.9853750000038417,
+      "lookupMs": 1.0522500000079162,
+      "loopMaxSinceLastMs": 19.070975,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 70889,
+      "writeMs": 0.6942079999862472,
+      "lookupMs": 1.4300420000072336,
+      "loopMaxSinceLastMs": 13.221887,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 71898,
+      "writeMs": 1.4377499999973224,
+      "lookupMs": 0.6535829999920679,
+      "loopMaxSinceLastMs": 27.541503,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 72905,
+      "writeMs": 3.158207999993465,
+      "lookupMs": 0.6339580000058049,
+      "loopMaxSinceLastMs": 63.504383,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 17
+    },
+    {
+      "tMs": 73950,
+      "writeMs": 0.5420420000009472,
+      "lookupMs": 0.4958750000077998,
+      "loopMaxSinceLastMs": 90.832895,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 74953,
+      "writeMs": 0.870083000001614,
+      "lookupMs": 0.5389579999900889,
+      "loopMaxSinceLastMs": 88.014847,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 75959,
+      "writeMs": 9.16404099999636,
+      "lookupMs": 1.9042090000002645,
+      "loopMaxSinceLastMs": 52.035583,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 15
+    },
+    {
+      "tMs": 76976,
+      "writeMs": 0.5404170000110753,
+      "lookupMs": 0.8754159999953117,
+      "loopMaxSinceLastMs": 25.214975,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 77981,
+      "writeMs": 5.900915999998688,
+      "lookupMs": 0.42908299999544397,
+      "loopMaxSinceLastMs": 25.051135,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 78992,
+      "writeMs": 1.2703749999927823,
+      "lookupMs": 0.7376249999942956,
+      "loopMaxSinceLastMs": 27.803647,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 79999,
+      "writeMs": 0.43074999999953434,
+      "lookupMs": 0.6642080000019632,
+      "loopMaxSinceLastMs": 44.761087,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 81003,
+      "writeMs": 75.15483300000778,
+      "lookupMs": 1.504333000004408,
+      "loopMaxSinceLastMs": 155.582463,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 83
+    },
+    {
+      "tMs": 82087,
+      "writeMs": 6.328292000005604,
+      "lookupMs": 1.6622079999942798,
+      "loopMaxSinceLastMs": 370.147327,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 83099,
+      "writeMs": 0.7172500000015134,
+      "lookupMs": 0.5557499999995343,
+      "loopMaxSinceLastMs": 33.816575,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 84106,
+      "writeMs": 0.4107079999957932,
+      "lookupMs": 0.3257910000102129,
+      "loopMaxSinceLastMs": 16.654335,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 85114,
+      "writeMs": 0.9715419999993173,
+      "lookupMs": 0.6106670000008307,
+      "loopMaxSinceLastMs": 13.885439,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 86121,
+      "writeMs": 0.8071670000063023,
+      "lookupMs": 0.5209590000013122,
+      "loopMaxSinceLastMs": 14.524415,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 87127,
+      "writeMs": 14.363083000003826,
+      "lookupMs": 0.7417909999930998,
+      "loopMaxSinceLastMs": 13.443071,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 17
+    },
+    {
+      "tMs": 88147,
+      "writeMs": 0.7720840000110911,
+      "lookupMs": 1.150833000006969,
+      "loopMaxSinceLastMs": 53.575679,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 89153,
+      "writeMs": 5.98133300000336,
+      "lookupMs": 0.6861669999925653,
+      "loopMaxSinceLastMs": 17.760255,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 90163,
+      "writeMs": 0.7156669999967562,
+      "lookupMs": 0.48295900000084657,
+      "loopMaxSinceLastMs": 32.325631,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 91204,
+      "writeMs": 0.9508750000095461,
+      "lookupMs": 1.5304999999934807,
+      "loopMaxSinceLastMs": 15.564799,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 92211,
+      "writeMs": 0.570333000010578,
+      "lookupMs": 0.3936249999969732,
+      "loopMaxSinceLastMs": 13.066239,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 93215,
+      "writeMs": 0.8586660000000848,
+      "lookupMs": 0.6604590000060853,
+      "loopMaxSinceLastMs": 14.352383,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 94223,
+      "writeMs": 24.13666699999885,
+      "lookupMs": 0.6997080000001006,
+      "loopMaxSinceLastMs": 35.192831,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 26
+    },
+    {
+      "tMs": 95251,
+      "writeMs": 0.4995409999974072,
+      "lookupMs": 0.37220799998613074,
+      "loopMaxSinceLastMs": 18.251775,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 96255,
+      "writeMs": 2.14570900000399,
+      "lookupMs": 1.634583000006387,
+      "loopMaxSinceLastMs": 29.900799,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 97264,
+      "writeMs": 0.9758750000037253,
+      "lookupMs": 0.7671669999981532,
+      "loopMaxSinceLastMs": 30.621695,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 98270,
+      "writeMs": 0.8662500000064028,
+      "lookupMs": 0.6457499999960419,
+      "loopMaxSinceLastMs": 17.072127,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 99275,
+      "writeMs": 0.8728330000012647,
+      "lookupMs": 0.7183749999967404,
+      "loopMaxSinceLastMs": 14.499839,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 100280,
+      "writeMs": 1.7591660000034608,
+      "lookupMs": 2.310209000002942,
+      "loopMaxSinceLastMs": 37.715967,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 101291,
+      "writeMs": 2.581833000003826,
+      "lookupMs": 1.156875000000582,
+      "loopMaxSinceLastMs": 16.072703,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 102300,
+      "writeMs": 5.6409159999893745,
+      "lookupMs": 2.4190830000006827,
+      "loopMaxSinceLastMs": 14.811135,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 103312,
+      "writeMs": 0.9185419999994338,
+      "lookupMs": 0.9577080000017304,
+      "loopMaxSinceLastMs": 25.673727,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 104319,
+      "writeMs": 0.9262909999961266,
+      "lookupMs": 0.6431659999943804,
+      "loopMaxSinceLastMs": 15.204351,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 105325,
+      "writeMs": 1.189875000010943,
+      "lookupMs": 0.6230419999919832,
+      "loopMaxSinceLastMs": 29.900799,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 106330,
+      "writeMs": 1.7385829999984708,
+      "lookupMs": 1.4350419999973383,
+      "loopMaxSinceLastMs": 57.868287,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 107337,
+      "writeMs": 0.7543750000040745,
+      "lookupMs": 0.594874999995227,
+      "loopMaxSinceLastMs": 45.973503,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 108343,
+      "writeMs": 0.8960419999930309,
+      "lookupMs": 0.648750000007567,
+      "loopMaxSinceLastMs": 14.630911,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 109349,
+      "writeMs": 0.774582999991253,
+      "lookupMs": 0.5182910000003176,
+      "loopMaxSinceLastMs": 30.867455,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 110353,
+      "writeMs": 0.4394159999937983,
+      "lookupMs": 0.7284999999974389,
+      "loopMaxSinceLastMs": 14.376959,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 111359,
+      "writeMs": 1.265041000006022,
+      "lookupMs": 2.5129999999917345,
+      "loopMaxSinceLastMs": 13.475839,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 112368,
+      "writeMs": 1.008750000008149,
+      "lookupMs": 0.91691699999501,
+      "loopMaxSinceLastMs": 14.499839,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 113376,
+      "writeMs": 0.6110419999895385,
+      "lookupMs": 0.3905840000079479,
+      "loopMaxSinceLastMs": 15.302655,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 114380,
+      "writeMs": 0.6385420000005979,
+      "lookupMs": 0.7072920000064187,
+      "loopMaxSinceLastMs": 31.031295,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 115386,
+      "writeMs": 0.8956659999967087,
+      "lookupMs": 0.7640830000018468,
+      "loopMaxSinceLastMs": 34.766847,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 116391,
+      "writeMs": 0.7119999999995343,
+      "lookupMs": 0.5629579999949783,
+      "loopMaxSinceLastMs": 30.785535,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 117396,
+      "writeMs": 0.9259170000004815,
+      "lookupMs": 0.6760000000067521,
+      "loopMaxSinceLastMs": 32.964607,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 118402,
+      "writeMs": 7.028290999995079,
+      "lookupMs": 0.9814579999947455,
+      "loopMaxSinceLastMs": 18.268159,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 119414,
+      "writeMs": 1.0551669999986188,
+      "lookupMs": 1.1165409999957774,
+      "loopMaxSinceLastMs": 14.532607,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 120422,
+      "writeMs": 0.6060410000063712,
+      "lookupMs": 0.6184999999968568,
+      "loopMaxSinceLastMs": 15.818751,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 121426,
+      "writeMs": 1.0737090000038734,
+      "lookupMs": 1.3883749999949941,
+      "loopMaxSinceLastMs": 80.347135,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 122433,
+      "writeMs": 0.7204169999895385,
+      "lookupMs": 0.37779100000625476,
+      "loopMaxSinceLastMs": 31.932415,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 123437,
+      "writeMs": 0.403375000008964,
+      "lookupMs": 0.5954579999961425,
+      "loopMaxSinceLastMs": 23.429119,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 124440,
+      "writeMs": 0.669000000008964,
+      "lookupMs": 0.6589169999933802,
+      "loopMaxSinceLastMs": 20.414463,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 125445,
+      "writeMs": 0.8227500000066357,
+      "lookupMs": 0.5956250000017462,
+      "loopMaxSinceLastMs": 24.428543,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 126450,
+      "writeMs": 0.6829169999982696,
+      "lookupMs": 0.9000840000080643,
+      "loopMaxSinceLastMs": 13.066239,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 127454,
+      "writeMs": 2.9788339999940945,
+      "lookupMs": 2.152249999999185,
+      "loopMaxSinceLastMs": 12.910591,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 128464,
+      "writeMs": 0.4354580000072019,
+      "lookupMs": 0.32087499999033753,
+      "loopMaxSinceLastMs": 24.363007,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 129468,
+      "writeMs": 0.9085830000112765,
+      "lookupMs": 0.8257089999970049,
+      "loopMaxSinceLastMs": 12.877823,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 130474,
+      "writeMs": 0.7264999999897555,
+      "lookupMs": 0.5452909999876283,
+      "loopMaxSinceLastMs": 13.320191,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 131479,
+      "writeMs": 2.1445840000233147,
+      "lookupMs": 1.1721250000118744,
+      "loopMaxSinceLastMs": 14.819327,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 132489,
+      "writeMs": 0.6344580000150017,
+      "lookupMs": 0.5462500000139698,
+      "loopMaxSinceLastMs": 14.475263,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 133493,
+      "writeMs": 0.7465420000080485,
+      "lookupMs": 0.7369999999937136,
+      "loopMaxSinceLastMs": 14.434303,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 134499,
+      "writeMs": 0.46191700000781566,
+      "lookupMs": 0.38170900000841357,
+      "loopMaxSinceLastMs": 34.242559,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 135504,
+      "writeMs": 0.4516250000160653,
+      "lookupMs": 0.5043750000186265,
+      "loopMaxSinceLastMs": 13.033471,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 136509,
+      "writeMs": 3.8264589999744203,
+      "lookupMs": 1.024375000008149,
+      "loopMaxSinceLastMs": 14.483455,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 137518,
+      "writeMs": 0.8715420000080485,
+      "lookupMs": 0.8383749999920838,
+      "loopMaxSinceLastMs": 13.705215,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 138523,
+      "writeMs": 0.8271670000103768,
+      "lookupMs": 0.5851670000120066,
+      "loopMaxSinceLastMs": 17.793023,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 139527,
+      "writeMs": 0.8298329999961425,
+      "lookupMs": 0.6567079999949783,
+      "loopMaxSinceLastMs": 14.008319,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 140532,
+      "writeMs": 0.5082080000138376,
+      "lookupMs": 0.9346249999944121,
+      "loopMaxSinceLastMs": 14.032895,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 141537,
+      "writeMs": 0.9647919999842998,
+      "lookupMs": 2.8036250000004657,
+      "loopMaxSinceLastMs": 12.795903,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 142545,
+      "writeMs": 0.7306669999961741,
+      "lookupMs": 0.5680410000204574,
+      "loopMaxSinceLastMs": 13.443071,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 143550,
+      "writeMs": 6.029125000000931,
+      "lookupMs": 0.718291000026511,
+      "loopMaxSinceLastMs": 32.800767,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 144561,
+      "writeMs": 0.9450829999987036,
+      "lookupMs": 0.5265420000068843,
+      "loopMaxSinceLastMs": 13.189119,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 145567,
+      "writeMs": 6.217791000002762,
+      "lookupMs": 0.8215839999902528,
+      "loopMaxSinceLastMs": 12.664831,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 146578,
+      "writeMs": 0.7555419999989681,
+      "lookupMs": 1.1348330000182614,
+      "loopMaxSinceLastMs": 14.204927,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 147584,
+      "writeMs": 1.6608330000017304,
+      "lookupMs": 0.7001250000030268,
+      "loopMaxSinceLastMs": 15.564799,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 148592,
+      "writeMs": 0.9490839999925811,
+      "lookupMs": 0.6357499999867287,
+      "loopMaxSinceLastMs": 14.827519,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 149597,
+      "writeMs": 0.8609580000047572,
+      "lookupMs": 0.799542000022484,
+      "loopMaxSinceLastMs": 14.909439,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 150603,
+      "writeMs": 0.7250409999978729,
+      "lookupMs": 0.7474999999976717,
+      "loopMaxSinceLastMs": 15.826943,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 151607,
+      "writeMs": 0.9456669999926817,
+      "lookupMs": 0.822083000006387,
+      "loopMaxSinceLastMs": 15.081471,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 152614,
+      "writeMs": 0.979124999983469,
+      "lookupMs": 0.8292500000097789,
+      "loopMaxSinceLastMs": 53.280767,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 153620,
+      "writeMs": 0.8003749999916181,
+      "lookupMs": 0.7633339999883901,
+      "loopMaxSinceLastMs": 17.498111,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 154627,
+      "writeMs": 0.6272919999901205,
+      "lookupMs": 0.6420829999842681,
+      "loopMaxSinceLastMs": 16.072703,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 155631,
+      "writeMs": 0.8626250000088476,
+      "lookupMs": 0.896666999993613,
+      "loopMaxSinceLastMs": 13.918207,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 156636,
+      "writeMs": 1.3357909999904223,
+      "lookupMs": 3.4425419999752194,
+      "loopMaxSinceLastMs": 13.836287,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 157645,
+      "writeMs": 3.147333000000799,
+      "lookupMs": 0.758417000004556,
+      "loopMaxSinceLastMs": 13.295615,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 158654,
+      "writeMs": 0.797666999977082,
+      "lookupMs": 1.021999999997206,
+      "loopMaxSinceLastMs": 16.711679,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 159661,
+      "writeMs": 0.5032500000088476,
+      "lookupMs": 0.44587500000488944,
+      "loopMaxSinceLastMs": 16.228351,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 160667,
+      "writeMs": 0.790500000002794,
+      "lookupMs": 0.5015420000127051,
+      "loopMaxSinceLastMs": 15.417343,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 161672,
+      "writeMs": 6.148875000013504,
+      "lookupMs": 2.1738749999785796,
+      "loopMaxSinceLastMs": 14.606335,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 13
+    },
+    {
+      "tMs": 162686,
+      "writeMs": 0.5883329999924172,
+      "lookupMs": 0.8139170000213198,
+      "loopMaxSinceLastMs": 52.461567,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 163692,
+      "writeMs": 0.8624579999886919,
+      "lookupMs": 0.7935419999994338,
+      "loopMaxSinceLastMs": 25.264127,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 164696,
+      "writeMs": 0.6999579999828711,
+      "lookupMs": 0.8625840000167955,
+      "loopMaxSinceLastMs": 17.022975,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 165702,
+      "writeMs": 0.9090840000135358,
+      "lookupMs": 1.0021249999990687,
+      "loopMaxSinceLastMs": 15.802367,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 166708,
+      "writeMs": 1.0270000000018626,
+      "lookupMs": 2.145416999992449,
+      "loopMaxSinceLastMs": 16.744447,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 167715,
+      "writeMs": 0.4535840000025928,
+      "lookupMs": 0.37537500000325963,
+      "loopMaxSinceLastMs": 16.130047,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 168719,
+      "writeMs": 0.5087920000078157,
+      "lookupMs": 0.34950000001117587,
+      "loopMaxSinceLastMs": 13.705215,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 169724,
+      "writeMs": 1.1236250000074506,
+      "lookupMs": 0.9296660000109114,
+      "loopMaxSinceLastMs": 16.056319,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 170730,
+      "writeMs": 1.0593749999825377,
+      "lookupMs": 0.6912080000038259,
+      "loopMaxSinceLastMs": 15.269887,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 171737,
+      "writeMs": 1.2206249999871943,
+      "lookupMs": 1.3760420000180602,
+      "loopMaxSinceLastMs": 15.359999,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 172747,
+      "writeMs": 0.6863749999902211,
+      "lookupMs": 0.8094580000033602,
+      "loopMaxSinceLastMs": 15.155199,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 173754,
+      "writeMs": 0.7924580000108108,
+      "lookupMs": 0.810750000004191,
+      "loopMaxSinceLastMs": 15.294463,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 174759,
+      "writeMs": 1.0145830000110436,
+      "lookupMs": 0.6386250000214204,
+      "loopMaxSinceLastMs": 16.719871,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 175763,
+      "writeMs": 0.5799579999875277,
+      "lookupMs": 0.5942499999946449,
+      "loopMaxSinceLastMs": 15.319039,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 176768,
+      "writeMs": 0.9964169999875594,
+      "lookupMs": 1.3301659999997355,
+      "loopMaxSinceLastMs": 15.974399,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 177775,
+      "writeMs": 0.55883300001733,
+      "lookupMs": 0.5765829999872949,
+      "loopMaxSinceLastMs": 15.949823,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 178783,
+      "writeMs": 0.905624999984866,
+      "lookupMs": 0.6405000000086147,
+      "loopMaxSinceLastMs": 15.638527,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 179787,
+      "writeMs": 0.945291999989422,
+      "lookupMs": 2.676166999997804,
+      "loopMaxSinceLastMs": 15.761407,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 180796,
+      "writeMs": 7.255667000019457,
+      "lookupMs": 0.9677910000027623,
+      "loopMaxSinceLastMs": 70.189055,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 181810,
+      "writeMs": 1.0240409999969415,
+      "lookupMs": 0.6042080000042915,
+      "loopMaxSinceLastMs": 15.728639,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 182819,
+      "writeMs": 0.8599169999943115,
+      "lookupMs": 0.504332999989856,
+      "loopMaxSinceLastMs": 45.449215,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 183824,
+      "writeMs": 8.295540999999503,
+      "lookupMs": 0.8120420000050217,
+      "loopMaxSinceLastMs": 381.681663,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 184836,
+      "writeMs": 0.7968330000003334,
+      "lookupMs": 0.5122080000001006,
+      "loopMaxSinceLastMs": 15.990783,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 185841,
+      "writeMs": 0.8716249999997672,
+      "lookupMs": 0.6377079999947455,
+      "loopMaxSinceLastMs": 16.547839,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 186847,
+      "writeMs": 1.9772079999966081,
+      "lookupMs": 2.45020900000236,
+      "loopMaxSinceLastMs": 18.268159,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 187857,
+      "writeMs": 0.908917000022484,
+      "lookupMs": 0.7074999999895226,
+      "loopMaxSinceLastMs": 17.006591,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 188864,
+      "writeMs": 1.0926669999898877,
+      "lookupMs": 0.7880829999921843,
+      "loopMaxSinceLastMs": 17.121279,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 189870,
+      "writeMs": 0.8386249999748543,
+      "lookupMs": 0.7541249999776483,
+      "loopMaxSinceLastMs": 17.350655,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 190875,
+      "writeMs": 0.9681250000139698,
+      "lookupMs": 0.6872500000172295,
+      "loopMaxSinceLastMs": 15.712255,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 191880,
+      "writeMs": 0.9418749999895226,
+      "lookupMs": 1.115749999997206,
+      "loopMaxSinceLastMs": 16.449535,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 192889,
+      "writeMs": 0.5158750000118744,
+      "lookupMs": 0.45087500000954606,
+      "loopMaxSinceLastMs": 23.789567,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 193893,
+      "writeMs": 1.2801659999822732,
+      "lookupMs": 1.116083000000799,
+      "loopMaxSinceLastMs": 32.178175,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 194901,
+      "writeMs": 0.9110829999845009,
+      "lookupMs": 0.7983340000209864,
+      "loopMaxSinceLastMs": 17.629183,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 195908,
+      "writeMs": 0.927291999978479,
+      "lookupMs": 0.6945830000040587,
+      "loopMaxSinceLastMs": 17.498111,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 196913,
+      "writeMs": 1.9629579999891575,
+      "lookupMs": 1.7792080000217538,
+      "loopMaxSinceLastMs": 17.727487,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 197922,
+      "writeMs": 0.9832909999822732,
+      "lookupMs": 0.856166999990819,
+      "loopMaxSinceLastMs": 15.998975,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 198927,
+      "writeMs": 0.8619999999937136,
+      "lookupMs": 0.6982919999863952,
+      "loopMaxSinceLastMs": 18.284543,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 199934,
+      "writeMs": 7.240416000015102,
+      "lookupMs": 0.7575840000063181,
+      "loopMaxSinceLastMs": 18.268159,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 12
+    },
+    {
+      "tMs": 200947,
+      "writeMs": 7.821332999999868,
+      "lookupMs": 0.7478330000012647,
+      "loopMaxSinceLastMs": 15.695871,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 201960,
+      "writeMs": 0.6102910000190604,
+      "lookupMs": 0.48662499999045394,
+      "loopMaxSinceLastMs": 21.512191,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 202965,
+      "writeMs": 0.7766669999982696,
+      "lookupMs": 3.1208750000223517,
+      "loopMaxSinceLastMs": 13.590527,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 203974,
+      "writeMs": 0.8986659999936819,
+      "lookupMs": 0.6980829999956768,
+      "loopMaxSinceLastMs": 13.393919,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 204978,
+      "writeMs": 1.032792000012705,
+      "lookupMs": 0.8100829999893904,
+      "loopMaxSinceLastMs": 17.874943,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 205983,
+      "writeMs": 1.0074170000152662,
+      "lookupMs": 0.7422079999814741,
+      "loopMaxSinceLastMs": 14.254079,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 206989,
+      "writeMs": 0.976541999989422,
+      "lookupMs": 1.1453329999931157,
+      "loopMaxSinceLastMs": 13.418495,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 207998,
+      "writeMs": 1.4134590000030585,
+      "lookupMs": 1.0369160000118427,
+      "loopMaxSinceLastMs": 15.507455,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 209009,
+      "writeMs": 1.0951660000137053,
+      "lookupMs": 0.9370840000046883,
+      "loopMaxSinceLastMs": 17.809407,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 210018,
+      "writeMs": 1.1312920000054874,
+      "lookupMs": 1.0185829999973066,
+      "loopMaxSinceLastMs": 17.547263,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 211027,
+      "writeMs": 1.398916999984067,
+      "lookupMs": 1.1868329999851994,
+      "loopMaxSinceLastMs": 17.629183,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 212032,
+      "writeMs": 1.019583999994211,
+      "lookupMs": 2.2447920000122394,
+      "loopMaxSinceLastMs": 17.612799,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 213042,
+      "writeMs": 0.9229170000180602,
+      "lookupMs": 0.7328330000163987,
+      "loopMaxSinceLastMs": 16.908287,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 214046,
+      "writeMs": 0.6612500000046566,
+      "lookupMs": 0.727958999981638,
+      "loopMaxSinceLastMs": 17.268735,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 215052,
+      "writeMs": 0.8426249999902211,
+      "lookupMs": 0.693291000003228,
+      "loopMaxSinceLastMs": 18.366463,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 216059,
+      "writeMs": 0.9252909999922849,
+      "lookupMs": 0.7849170000117738,
+      "loopMaxSinceLastMs": 17.924095,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 217066,
+      "writeMs": 0.8472499999916181,
+      "lookupMs": 1.617415999993682,
+      "loopMaxSinceLastMs": 18.333695,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 218074,
+      "writeMs": 1.048666000016965,
+      "lookupMs": 0.7598749999888241,
+      "loopMaxSinceLastMs": 16.891903,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 219083,
+      "writeMs": 9.233500000002095,
+      "lookupMs": 1.4744580000115093,
+      "loopMaxSinceLastMs": 15.613951,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 15
+    },
+    {
+      "tMs": 220102,
+      "writeMs": 1.0664169999945443,
+      "lookupMs": 0.6867090000014286,
+      "loopMaxSinceLastMs": 15.917055,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 221114,
+      "writeMs": 0.6735409999964759,
+      "lookupMs": 0.6480419999861624,
+      "loopMaxSinceLastMs": 16.203775,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 222120,
+      "writeMs": 2.456833000003826,
+      "lookupMs": 2.5721659999981057,
+      "loopMaxSinceLastMs": 18.235391,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 223133,
+      "writeMs": 0.9707500000076834,
+      "lookupMs": 0.7365830000198912,
+      "loopMaxSinceLastMs": 16.343039,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 224138,
+      "writeMs": 1.1817079999891575,
+      "lookupMs": 0.6745419999933802,
+      "loopMaxSinceLastMs": 17.268735,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 225145,
+      "writeMs": 0.7648749999934807,
+      "lookupMs": 1.146708000014769,
+      "loopMaxSinceLastMs": 18.284543,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 226152,
+      "writeMs": 0.9100409999955446,
+      "lookupMs": 0.6847499999857973,
+      "loopMaxSinceLastMs": 17.154047,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 227163,
+      "writeMs": 0.9672919999866281,
+      "lookupMs": 2.2012500000128057,
+      "loopMaxSinceLastMs": 16.211967,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 228169,
+      "writeMs": 1.1648750000167638,
+      "lookupMs": 0.7650000000139698,
+      "loopMaxSinceLastMs": 18.382847,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 229176,
+      "writeMs": 1.0052079999877606,
+      "lookupMs": 0.7188339999993332,
+      "loopMaxSinceLastMs": 18.153471,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 230182,
+      "writeMs": 0.9900419999903534,
+      "lookupMs": 0.7817079999949783,
+      "loopMaxSinceLastMs": 17.563647,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 231189,
+      "writeMs": 0.900208000006387,
+      "lookupMs": 0.7122499999823049,
+      "loopMaxSinceLastMs": 18.350079,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 232197,
+      "writeMs": 2.4909590000170283,
+      "lookupMs": 0.6250419999996666,
+      "loopMaxSinceLastMs": 18.300927,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 233206,
+      "writeMs": 0.8802079999877606,
+      "lookupMs": 0.7542090000060853,
+      "loopMaxSinceLastMs": 18.284543,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 234212,
+      "writeMs": 0.9839589999755844,
+      "lookupMs": 0.7028749999881256,
+      "loopMaxSinceLastMs": 17.252351,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 235220,
+      "writeMs": 1.0321249999979045,
+      "lookupMs": 0.9113749999960419,
+      "loopMaxSinceLastMs": 18.317311,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 236225,
+      "writeMs": 0.807334000011906,
+      "lookupMs": 0.9243330000026617,
+      "loopMaxSinceLastMs": 15.171583,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 237231,
+      "writeMs": 1.2642079999786802,
+      "lookupMs": 2.7055830000026617,
+      "loopMaxSinceLastMs": 12.902399,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 238239,
+      "writeMs": 0.9666250000009313,
+      "lookupMs": 0.7239169999957085,
+      "loopMaxSinceLastMs": 16.203775,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 239246,
+      "writeMs": 0.749666999996407,
+      "lookupMs": 0.4122910000151023,
+      "loopMaxSinceLastMs": 14.188543,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 240250,
+      "writeMs": 1.0662909999955446,
+      "lookupMs": 0.7696250000153668,
+      "loopMaxSinceLastMs": 15.368191,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 241256,
+      "writeMs": 0.6988340000098106,
+      "lookupMs": 0.621458999987226,
+      "loopMaxSinceLastMs": 15.065087,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 242260,
+      "writeMs": 0.7576249999983702,
+      "lookupMs": 0.9243340000102762,
+      "loopMaxSinceLastMs": 15.941631,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 243266,
+      "writeMs": 0.9308749999909196,
+      "lookupMs": 0.6855000000214204,
+      "loopMaxSinceLastMs": 15.482879,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 244270,
+      "writeMs": 1.0171250000130385,
+      "lookupMs": 0.6732499999925494,
+      "loopMaxSinceLastMs": 15.294463,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 245275,
+      "writeMs": 0.8261669999919832,
+      "lookupMs": 0.6353750000125729,
+      "loopMaxSinceLastMs": 16.269311,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 246282,
+      "writeMs": 0.9549170000245795,
+      "lookupMs": 0.7241249999788124,
+      "loopMaxSinceLastMs": 14.270463,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 247287,
+      "writeMs": 1.1922909999848343,
+      "lookupMs": 1.7441249999974389,
+      "loopMaxSinceLastMs": 16.826367,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 248293,
+      "writeMs": 0.5840829999942798,
+      "lookupMs": 0.3908330000122078,
+      "loopMaxSinceLastMs": 13.926399,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 249298,
+      "writeMs": 0.6761249999981374,
+      "lookupMs": 0.6632910000043921,
+      "loopMaxSinceLastMs": 13.434879,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 250303,
+      "writeMs": 0.7109589999890886,
+      "lookupMs": 0.7203330000047572,
+      "loopMaxSinceLastMs": 16.146431,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 251308,
+      "writeMs": 0.6838339999958407,
+      "lookupMs": 0.6030840000021271,
+      "loopMaxSinceLastMs": 14.032895,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 252312,
+      "writeMs": 0.9893750000046566,
+      "lookupMs": 1.093250000005355,
+      "loopMaxSinceLastMs": 15.654911,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 253321,
+      "writeMs": 0.5151659999974072,
+      "lookupMs": 0.6990839999925811,
+      "loopMaxSinceLastMs": 15.400959,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 254325,
+      "writeMs": 0.9061660000006668,
+      "lookupMs": 0.6798330000019632,
+      "loopMaxSinceLastMs": 13.852671,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 255328,
+      "writeMs": 0.7770829999935813,
+      "lookupMs": 0.7495000000053551,
+      "loopMaxSinceLastMs": 15.589375,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 256334,
+      "writeMs": 0.7719590000051539,
+      "lookupMs": 0.7736670000012964,
+      "loopMaxSinceLastMs": 14.917631,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 257338,
+      "writeMs": 0.5619170000136364,
+      "lookupMs": 0.8478750000067521,
+      "loopMaxSinceLastMs": 16.105471,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 258344,
+      "writeMs": 0.5559999999823049,
+      "lookupMs": 0.688040999986697,
+      "loopMaxSinceLastMs": 14.770175,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 259349,
+      "writeMs": 0.6181669999787118,
+      "lookupMs": 0.7294999999867287,
+      "loopMaxSinceLastMs": 15.048703,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 260355,
+      "writeMs": 3.4323330000042915,
+      "lookupMs": 1.3871670000080485,
+      "loopMaxSinceLastMs": 15.196159,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 261367,
+      "writeMs": 1.3120420000050217,
+      "lookupMs": 0.4400420000019949,
+      "loopMaxSinceLastMs": 13.033471,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 262374,
+      "writeMs": 1.0612079999991693,
+      "lookupMs": 1.2542910000192933,
+      "loopMaxSinceLastMs": 16.457727,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 263382,
+      "writeMs": 0.5789160000276752,
+      "lookupMs": 0.589417000010144,
+      "loopMaxSinceLastMs": 16.056319,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 264387,
+      "writeMs": 0.9852079999982379,
+      "lookupMs": 0.8458339999779128,
+      "loopMaxSinceLastMs": 15.638527,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 265395,
+      "writeMs": 1.0474169999943115,
+      "lookupMs": 0.7014170000329614,
+      "loopMaxSinceLastMs": 16.130047,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 266402,
+      "writeMs": 0.799708999984432,
+      "lookupMs": 0.7789999999804422,
+      "loopMaxSinceLastMs": 15.343615,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 267408,
+      "writeMs": 0.5760000000009313,
+      "lookupMs": 0.5901670000166632,
+      "loopMaxSinceLastMs": 15.900671,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 268412,
+      "writeMs": 0.7800409999908879,
+      "lookupMs": 0.6760840000351891,
+      "loopMaxSinceLastMs": 17.891327,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 269418,
+      "writeMs": 0.8672079999814741,
+      "lookupMs": 0.7194580000359565,
+      "loopMaxSinceLastMs": 15.802367,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 270423,
+      "writeMs": 0.43679200002225116,
+      "lookupMs": 0.4022080000140704,
+      "loopMaxSinceLastMs": 15.237119,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 271427,
+      "writeMs": 0.7237919999752194,
+      "lookupMs": 0.5367909999913536,
+      "loopMaxSinceLastMs": 17.760255,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 272430,
+      "writeMs": 0.7729999999864958,
+      "lookupMs": 2.167249999998603,
+      "loopMaxSinceLastMs": 16.195583,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 273437,
+      "writeMs": 1.0738750000018626,
+      "lookupMs": 0.589124999998603,
+      "loopMaxSinceLastMs": 18.317311,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 274440,
+      "writeMs": 0.9254169999621809,
+      "lookupMs": 0.6609579999931157,
+      "loopMaxSinceLastMs": 15.949823,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 275449,
+      "writeMs": 6.753999999957159,
+      "lookupMs": 0.826541000045836,
+      "loopMaxSinceLastMs": 17.170431,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 276461,
+      "writeMs": 1.0179580000112765,
+      "lookupMs": 0.8422080000163987,
+      "loopMaxSinceLastMs": 17.121279,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 277467,
+      "writeMs": 0.7866250000079162,
+      "lookupMs": 4.676542000030167,
+      "loopMaxSinceLastMs": 14.106623,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 278479,
+      "writeMs": 1.1838340000249445,
+      "lookupMs": 0.7840419999556616,
+      "loopMaxSinceLastMs": 15.441919,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 279485,
+      "writeMs": 0.5921669999952428,
+      "lookupMs": 0.6241659999941476,
+      "loopMaxSinceLastMs": 14.704639,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 280490,
+      "writeMs": 5.7689160000300035,
+      "lookupMs": 0.4261659999610856,
+      "loopMaxSinceLastMs": 15.155199,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 281501,
+      "writeMs": 0.9130829999921843,
+      "lookupMs": 0.6291249999776483,
+      "loopMaxSinceLastMs": 16.957439,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 282507,
+      "writeMs": 1.0962920000310987,
+      "lookupMs": 1.4649590000044554,
+      "loopMaxSinceLastMs": 16.596991,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 283513,
+      "writeMs": 0.8877909999573603,
+      "lookupMs": 0.6680840000044554,
+      "loopMaxSinceLastMs": 18.186239,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 284520,
+      "writeMs": 0.8455419999663718,
+      "lookupMs": 0.6687079999828711,
+      "loopMaxSinceLastMs": 17.694719,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 285524,
+      "writeMs": 0.837541000044439,
+      "lookupMs": 0.6575830000219867,
+      "loopMaxSinceLastMs": 18.219007,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 286532,
+      "writeMs": 0.885459000011906,
+      "lookupMs": 0.6951669999980368,
+      "loopMaxSinceLastMs": 18.219007,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 287537,
+      "writeMs": 1.020250000001397,
+      "lookupMs": 1.7680410000029951,
+      "loopMaxSinceLastMs": 18.219007,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 288548,
+      "writeMs": 1.0598749999771826,
+      "lookupMs": 0.8124580000294372,
+      "loopMaxSinceLastMs": 16.875519,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 289557,
+      "writeMs": 1.0687080000061542,
+      "lookupMs": 0.7690830000210553,
+      "loopMaxSinceLastMs": 18.366463,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 290563,
+      "writeMs": 1.5125840000109747,
+      "lookupMs": 0.7727079999749549,
+      "loopMaxSinceLastMs": 17.580031,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 291570,
+      "writeMs": 0.8772910000407137,
+      "lookupMs": 1.1887920000008307,
+      "loopMaxSinceLastMs": 17.121279,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 292577,
+      "writeMs": 1.0813339999876916,
+      "lookupMs": 1.523542000039015,
+      "loopMaxSinceLastMs": 16.113663,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 293585,
+      "writeMs": 0.8452919999836013,
+      "lookupMs": 0.7557080000406131,
+      "loopMaxSinceLastMs": 15.441919,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 294592,
+      "writeMs": 1.0287499999976717,
+      "lookupMs": 0.7078340000007302,
+      "loopMaxSinceLastMs": 17.268735,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 295597,
+      "writeMs": 0.7821660000481643,
+      "lookupMs": 0.670916999981273,
+      "loopMaxSinceLastMs": 17.924095,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 296602,
+      "writeMs": 0.9132910000043921,
+      "lookupMs": 0.6142499999841675,
+      "loopMaxSinceLastMs": 18.219007,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 297609,
+      "writeMs": 1.839957999996841,
+      "lookupMs": 0.8483329999726266,
+      "loopMaxSinceLastMs": 16.474111,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 298617,
+      "writeMs": 0.8427909999736585,
+      "lookupMs": 0.5913750000181608,
+      "loopMaxSinceLastMs": 16.859135,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 299625,
+      "writeMs": 0.8702920000068843,
+      "lookupMs": 0.7095829999889247,
+      "loopMaxSinceLastMs": 17.170431,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 300631,
+      "writeMs": 0.8157080000382848,
+      "lookupMs": 0.6570840000058524,
+      "loopMaxSinceLastMs": 18.268159,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 301638,
+      "writeMs": 0.9638750000158325,
+      "lookupMs": 0.6724590000230819,
+      "loopMaxSinceLastMs": 18.431999,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    }
+  ],
+  "history": [
+    {
+      "tMs": 20549,
+      "ms": 7.598958999999013
+    },
+    {
+      "tMs": 25571,
+      "ms": 3.3676250000025902
+    },
+    {
+      "tMs": 30594,
+      "ms": 4.633165999999619
+    },
+    {
+      "tMs": 35623,
+      "ms": 3.6368340000044554
+    },
+    {
+      "tMs": 40657,
+      "ms": 4.546290999998746
+    },
+    {
+      "tMs": 45718,
+      "ms": 11.064667000006011
+    },
+    {
+      "tMs": 50750,
+      "ms": 2.8661659999997937
+    },
+    {
+      "tMs": 55786,
+      "ms": 5.936957999998413
+    },
+    {
+      "tMs": 60818,
+      "ms": 5.222084000000905
+    },
+    {
+      "tMs": 65853,
+      "ms": 9.034458000001905
+    },
+    {
+      "tMs": 70889,
+      "ms": 5.120250000007218
+    },
+    {
+      "tMs": 75959,
+      "ms": 10.116792000000714
+    },
+    {
+      "tMs": 81003,
+      "ms": 9.997792000009213
+    },
+    {
+      "tMs": 86121,
+      "ms": 2.3875829999888083
+    },
+    {
+      "tMs": 91204,
+      "ms": 5.024291999987327
+    },
+    {
+      "tMs": 96255,
+      "ms": 5.471457999999984
+    },
+    {
+      "tMs": 101291,
+      "ms": 4.337041999999201
+    },
+    {
+      "tMs": 106330,
+      "ms": 5.410250000000815
+    },
+    {
+      "tMs": 111359,
+      "ms": 6.435624999998254
+    },
+    {
+      "tMs": 116391,
+      "ms": 3.683915999994497
+    },
+    {
+      "tMs": 121426,
+      "ms": 31.46600000000035
+    },
+    {
+      "tMs": 126450,
+      "ms": 3.8657080000120914
+    },
+    {
+      "tMs": 131479,
+      "ms": 4.558374999993248
+    },
+    {
+      "tMs": 136509,
+      "ms": 5.327625000005355
+    },
+    {
+      "tMs": 141537,
+      "ms": 5.017416000016965
+    },
+    {
+      "tMs": 146578,
+      "ms": 2.8361670000012964
+    },
+    {
+      "tMs": 151607,
+      "ms": 4.554625000018859
+    },
+    {
+      "tMs": 156636,
+      "ms": 8.789665999996942
+    },
+    {
+      "tMs": 161672,
+      "ms": 13.242583000013838
+    },
+    {
+      "tMs": 166708,
+      "ms": 4.343000000022585
+    },
+    {
+      "tMs": 171737,
+      "ms": 4.369958000024781
+    },
+    {
+      "tMs": 176768,
+      "ms": 3.8699999999953434
+    },
+    {
+      "tMs": 181810,
+      "ms": 4.61837499999092
+    },
+    {
+      "tMs": 186847,
+      "ms": 7.437666000012541
+    },
+    {
+      "tMs": 191880,
+      "ms": 2.6358750000072177
+    },
+    {
+      "tMs": 196913,
+      "ms": 5.687458999978844
+    },
+    {
+      "tMs": 201960,
+      "ms": 3.2300000000104774
+    },
+    {
+      "tMs": 206989,
+      "ms": 7.1403750000172295
+    },
+    {
+      "tMs": 212032,
+      "ms": 4.856499999994412
+    },
+    {
+      "tMs": 217066,
+      "ms": 4.821832999994513
+    },
+    {
+      "tMs": 222120,
+      "ms": 5.668875000003027
+    },
+    {
+      "tMs": 227163,
+      "ms": 4.9841250000172295
+    },
+    {
+      "tMs": 232197,
+      "ms": 4.744791999983136
+    },
+    {
+      "tMs": 237231,
+      "ms": 7.934708999993745
+    },
+    {
+      "tMs": 242260,
+      "ms": 3.7473339999851305
+    },
+    {
+      "tMs": 247287,
+      "ms": 4.506292000005487
+    },
+    {
+      "tMs": 252312,
+      "ms": 3.1394579999905545
+    },
+    {
+      "tMs": 257338,
+      "ms": 3.776665999990655
+    },
+    {
+      "tMs": 262374,
+      "ms": 3.632041000004392
+    },
+    {
+      "tMs": 267408,
+      "ms": 5.336458000005223
+    },
+    {
+      "tMs": 272430,
+      "ms": 4.644957999989856
+    },
+    {
+      "tMs": 277467,
+      "ms": 4.622250000014901
+    },
+    {
+      "tMs": 282507,
+      "ms": 4.417209000035655
+    },
+    {
+      "tMs": 287537,
+      "ms": 4.357416999991983
+    },
+    {
+      "tMs": 292577,
+      "ms": 3.556417000014335
+    },
+    {
+      "tMs": 297609,
+      "ms": 4.786582999979146
+    }
+  ],
+  "cpuProfile": {
+    "startedAtMs": 1852,
+    "running": false,
+    "stoppedAtMs": 90163,
+    "file": "st-1-macos-none.cpuprofile"
+  },
+  "mainLog": {
+    "error": "Runtime.evaluate: Promise was collected"
+  },
+  "appEvidence": {
+    "dir": "st-1-macos-none-app",
+    "copied": [
+      "logs/audit*.log",
+      "diagnostics/stalls"
+    ],
+    "errors": []
+  }
+}

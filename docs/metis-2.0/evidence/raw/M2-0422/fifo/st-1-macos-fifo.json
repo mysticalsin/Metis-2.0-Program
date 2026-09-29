@@ -1,0 +1,4166 @@
+{
+  "harness": "ST-1",
+  "row": "fifo",
+  "platform": "darwin",
+  "arch": "arm64",
+  "installer": "Metis-QA-1.9.6.zip",
+  "build_run_id": 36608178436,
+  "artifact_sha256": "019624e25c5e63aa2fac489b22448d8cfdb903bf1726d7dbd5999e302e605a2e",
+  "poolSize": "default",
+  "fixtures": 6,
+  "minutes": 5,
+  "samples": 297,
+  "lateSamples": 0,
+  "loop": {
+    "p99Ms": 18.317311,
+    "maxMs": 645.398527
+  },
+  "write": {
+    "maxMs": 182.00479199999995
+  },
+  "lookup": {
+    "maxMs": 95.72120800000266
+  },
+  "exercised": true,
+  "fixturesOpened": [
+    ".brain/index.json",
+    ".brain/entities/person/st1-fifo.json"
+  ],
+  "criteria": [
+    {
+      "name": "inspector",
+      "pass": true
+    },
+    {
+      "name": "has-samples",
+      "pass": true
+    },
+    {
+      "name": "no-late-samples",
+      "pass": true
+    },
+    {
+      "name": "loop-p99 < 50",
+      "pass": true
+    },
+    {
+      "name": "loop-max < 250",
+      "pass": false
+    },
+    {
+      "name": "async-write < 250",
+      "pass": true
+    },
+    {
+      "name": "dns-lookup < 250",
+      "pass": true
+    }
+  ],
+  "verdict": "FAIL",
+  "complete": true,
+  "errors": [],
+  "setupAtMs": 868,
+  "timeline": [
+    {
+      "tMs": 2154,
+      "writeMs": 182.00479199999995,
+      "lookupMs": 5.516791999999896,
+      "loopMaxSinceLastMs": 0,
+      "resources": {
+        "PipeWrap": 1,
+        "Timeout": 1
+      },
+      "answeredMs": 212
+    },
+    {
+      "tMs": 3368,
+      "writeMs": 0.6511669999999867,
+      "lookupMs": 0.5223750000000109,
+      "loopMaxSinceLastMs": 645.398527,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 4372,
+      "writeMs": 82.10895899999923,
+      "lookupMs": 1.913416999999754,
+      "loopMaxSinceLastMs": 205.127679,
+      "resources": {
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9,
+        "Immediate": 1
+      },
+      "answeredMs": 216
+    },
+    {
+      "tMs": 5590,
+      "writeMs": 12.295082999999977,
+      "lookupMs": 2.8118750000003274,
+      "loopMaxSinceLastMs": 142.606335,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 20
+    },
+    {
+      "tMs": 6626,
+      "writeMs": 39.96458299999995,
+      "lookupMs": 7.557208999999602,
+      "loopMaxSinceLastMs": 259.653631,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 303
+    },
+    {
+      "tMs": 7931,
+      "writeMs": 0.5961250000000291,
+      "lookupMs": 0.6125839999995151,
+      "loopMaxSinceLastMs": 21.446655,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 8936,
+      "writeMs": 0.5904580000005808,
+      "lookupMs": 0.45620899999994435,
+      "loopMaxSinceLastMs": 12.673023,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 9941,
+      "writeMs": 0.5055000000011205,
+      "lookupMs": 0.4222090000002936,
+      "loopMaxSinceLastMs": 14.073855,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 10945,
+      "writeMs": 1.0012920000008307,
+      "lookupMs": 1.1277499999996508,
+      "loopMaxSinceLastMs": 15.056895,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 11952,
+      "writeMs": 0.7994170000001759,
+      "lookupMs": 0.8997500000004948,
+      "loopMaxSinceLastMs": 22.888447,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 12956,
+      "writeMs": 0.5993340000004537,
+      "lookupMs": 0.7603330000001733,
+      "loopMaxSinceLastMs": 38.207487,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 13962,
+      "writeMs": 6.902958000000581,
+      "lookupMs": 0.814249999999447,
+      "loopMaxSinceLastMs": 13.328383,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 14974,
+      "writeMs": 8.113124999999854,
+      "lookupMs": 1.586583000000246,
+      "loopMaxSinceLastMs": 13.574143,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 14
+    },
+    {
+      "tMs": 15990,
+      "writeMs": 7.377792000001136,
+      "lookupMs": 0.6349170000012236,
+      "loopMaxSinceLastMs": 14.811135,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 17002,
+      "writeMs": 0.8506659999984549,
+      "lookupMs": 0.5420840000006137,
+      "loopMaxSinceLastMs": 14.950399,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 18008,
+      "writeMs": 0.7533750000002328,
+      "lookupMs": 0.9556249999986903,
+      "loopMaxSinceLastMs": 15.278079,
+      "resources": {
+        "FSReqPromise": 1,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 8
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 19014,
+      "writeMs": 1.0916659999966214,
+      "lookupMs": 1.1229999999995925,
+      "loopMaxSinceLastMs": 133.627903,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 11
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 20021,
+      "writeMs": 1.2329999999965366,
+      "lookupMs": 0.7527499999996508,
+      "loopMaxSinceLastMs": 16.990207,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 12
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 21029,
+      "writeMs": 1.1123340000012831,
+      "lookupMs": 0.5724159999990661,
+      "loopMaxSinceLastMs": 13.590527,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 14
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 22033,
+      "writeMs": 6.2566660000011325,
+      "lookupMs": 1.505457999999635,
+      "loopMaxSinceLastMs": 23.216127,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 12
+      },
+      "answeredMs": 12
+    },
+    {
+      "tMs": 23048,
+      "writeMs": 0.8744170000027225,
+      "lookupMs": 1.010707999997976,
+      "loopMaxSinceLastMs": 42.074111,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 11
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 24064,
+      "writeMs": 5.732124999998632,
+      "lookupMs": 2.261665999998513,
+      "loopMaxSinceLastMs": 59.080703,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 19
+    },
+    {
+      "tMs": 25085,
+      "writeMs": 4.474667000002228,
+      "lookupMs": 1.153915999999299,
+      "loopMaxSinceLastMs": 36.241407,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 26096,
+      "writeMs": 1.1563329999989946,
+      "lookupMs": 0.7624159999977564,
+      "loopMaxSinceLastMs": 37.781503,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 27101,
+      "writeMs": 0.7945830000026035,
+      "lookupMs": 1.858291000000463,
+      "loopMaxSinceLastMs": 23.248895,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 28108,
+      "writeMs": 0.7260830000013812,
+      "lookupMs": 0.6296670000010636,
+      "loopMaxSinceLastMs": 14.254079,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 29113,
+      "writeMs": 1.3717499999984284,
+      "lookupMs": 1.4077919999981532,
+      "loopMaxSinceLastMs": 28.803071,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 30121,
+      "writeMs": 1.0102499999993597,
+      "lookupMs": 3.3466669999979786,
+      "loopMaxSinceLastMs": 38.174719,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 31129,
+      "writeMs": 0.6228750000009313,
+      "lookupMs": 0.5913340000006428,
+      "loopMaxSinceLastMs": 55.640063,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 32134,
+      "writeMs": 0.8173749999987194,
+      "lookupMs": 0.6154999999998836,
+      "loopMaxSinceLastMs": 24.248319,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 33139,
+      "writeMs": 0.43833299999823794,
+      "lookupMs": 0.4413749999948777,
+      "loopMaxSinceLastMs": 25.903103,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 34143,
+      "writeMs": 0.8692499999961001,
+      "lookupMs": 0.7307090000031167,
+      "loopMaxSinceLastMs": 13.123583,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 35148,
+      "writeMs": 1.2034159999966505,
+      "lookupMs": 3.3182079999969574,
+      "loopMaxSinceLastMs": 33.538047,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 36156,
+      "writeMs": 0.81104200000118,
+      "lookupMs": 0.6085419999944861,
+      "loopMaxSinceLastMs": 12.107775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 37162,
+      "writeMs": 1.0539579999967827,
+      "lookupMs": 0.6518750000032014,
+      "loopMaxSinceLastMs": 13.533183,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 38166,
+      "writeMs": 0.7562079999988782,
+      "lookupMs": 0.5117089999985183,
+      "loopMaxSinceLastMs": 22.331391,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 39170,
+      "writeMs": 0.42333299999882,
+      "lookupMs": 0.370374999998603,
+      "loopMaxSinceLastMs": 31.719423,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 40173,
+      "writeMs": 2.921958999999333,
+      "lookupMs": 2.299582999999984,
+      "loopMaxSinceLastMs": 33.423359,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 17
+    },
+    {
+      "tMs": 41191,
+      "writeMs": 0.6624579999988782,
+      "lookupMs": 0.8717500000057044,
+      "loopMaxSinceLastMs": 18.481151,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 42197,
+      "writeMs": 1.1813750000001164,
+      "lookupMs": 1.201999999997497,
+      "loopMaxSinceLastMs": 46.628863,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 43206,
+      "writeMs": 0.619250000003376,
+      "lookupMs": 0.6754999999975553,
+      "loopMaxSinceLastMs": 13.795327,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 44210,
+      "writeMs": 0.9462499999935972,
+      "lookupMs": 0.587666999999783,
+      "loopMaxSinceLastMs": 13.426687,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 45216,
+      "writeMs": 14.670292000002519,
+      "lookupMs": 0.5636670000021695,
+      "loopMaxSinceLastMs": 59.736063,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 19
+    },
+    {
+      "tMs": 46236,
+      "writeMs": 1.0090409999975236,
+      "lookupMs": 1.3247919999994338,
+      "loopMaxSinceLastMs": 13.328383,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 47242,
+      "writeMs": 0.6419999999998254,
+      "lookupMs": 0.56104200000118,
+      "loopMaxSinceLastMs": 13.885439,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 48247,
+      "writeMs": 0.7223330000051646,
+      "lookupMs": 0.8427079999964917,
+      "loopMaxSinceLastMs": 13.230079,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 49253,
+      "writeMs": 1.0323329999955604,
+      "lookupMs": 1.1355829999956768,
+      "loopMaxSinceLastMs": 14.835711,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 50259,
+      "writeMs": 0.7056669999947189,
+      "lookupMs": 2.9453750000029686,
+      "loopMaxSinceLastMs": 13.664255,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 51267,
+      "writeMs": 0.7484169999952428,
+      "lookupMs": 0.7459579999995185,
+      "loopMaxSinceLastMs": 13.885439,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 52274,
+      "writeMs": 0.6780839999992168,
+      "lookupMs": 0.8036659999997937,
+      "loopMaxSinceLastMs": 13.352959,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 53278,
+      "writeMs": 0.7090000000025611,
+      "lookupMs": 0.5822499999994761,
+      "loopMaxSinceLastMs": 13.467647,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 54283,
+      "writeMs": 0.6625840000051539,
+      "lookupMs": 0.5621670000036829,
+      "loopMaxSinceLastMs": 36.372479,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 55287,
+      "writeMs": 0.7245839999959571,
+      "lookupMs": 1.5042079999984708,
+      "loopMaxSinceLastMs": 13.197311,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 56293,
+      "writeMs": 0.7481250000055297,
+      "lookupMs": 0.7761250000039581,
+      "loopMaxSinceLastMs": 13.893631,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 57297,
+      "writeMs": 1.027249999999185,
+      "lookupMs": 0.7547909999993863,
+      "loopMaxSinceLastMs": 14.090239,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 58302,
+      "writeMs": 1.2695410000014817,
+      "lookupMs": 2.629333000004408,
+      "loopMaxSinceLastMs": 15.949823,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 59312,
+      "writeMs": 1.613166999995883,
+      "lookupMs": 1.0510409999988042,
+      "loopMaxSinceLastMs": 13.467647,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 60323,
+      "writeMs": 1.0920830000031856,
+      "lookupMs": 0.9021659999998519,
+      "loopMaxSinceLastMs": 15.269887,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 61330,
+      "writeMs": 0.692125000001397,
+      "lookupMs": 0.6360839999979362,
+      "loopMaxSinceLastMs": 14.032895,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 62335,
+      "writeMs": 7.232458999998926,
+      "lookupMs": 0.5342920000039157,
+      "loopMaxSinceLastMs": 13.705215,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 63350,
+      "writeMs": 1.6441669999985606,
+      "lookupMs": 0.9990409999954863,
+      "loopMaxSinceLastMs": 14.180351,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 64357,
+      "writeMs": 0.87354200000118,
+      "lookupMs": 0.7024999999994179,
+      "loopMaxSinceLastMs": 13.410303,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 65363,
+      "writeMs": 1.1442919999972219,
+      "lookupMs": 2.648750000000291,
+      "loopMaxSinceLastMs": 17.825791,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 66371,
+      "writeMs": 0.7262919999920996,
+      "lookupMs": 0.6878339999966556,
+      "loopMaxSinceLastMs": 14.499839,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 67376,
+      "writeMs": 0.8216249999968568,
+      "lookupMs": 1.0227080000040587,
+      "loopMaxSinceLastMs": 13.541375,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 68383,
+      "writeMs": 0.7972920000029262,
+      "lookupMs": 1.0914579999953276,
+      "loopMaxSinceLastMs": 13.680639,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 69387,
+      "writeMs": 0.4954169999982696,
+      "lookupMs": 0.44324999999662396,
+      "loopMaxSinceLastMs": 15.794175,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 70391,
+      "writeMs": 0.742792000004556,
+      "lookupMs": 2.2964170000050217,
+      "loopMaxSinceLastMs": 12.599295,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 71399,
+      "writeMs": 0.6731659999932162,
+      "lookupMs": 0.5555829999939306,
+      "loopMaxSinceLastMs": 12.943359,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 72404,
+      "writeMs": 1.0285410000069533,
+      "lookupMs": 0.7492920000076992,
+      "loopMaxSinceLastMs": 50.069503,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 73410,
+      "writeMs": 0.4723329999978887,
+      "lookupMs": 0.4459999999962747,
+      "loopMaxSinceLastMs": 24.690687,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 74413,
+      "writeMs": 0.5034579999919515,
+      "lookupMs": 0.5030419999966398,
+      "loopMaxSinceLastMs": 13.795327,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 75417,
+      "writeMs": 1.1280410000035772,
+      "lookupMs": 1.1191249999974389,
+      "loopMaxSinceLastMs": 41.844735,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 76424,
+      "writeMs": 0.4970000000030268,
+      "lookupMs": 0.5181250000023283,
+      "loopMaxSinceLastMs": 13.426687,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 77429,
+      "writeMs": 1.0175000000017462,
+      "lookupMs": 0.6304999999993015,
+      "loopMaxSinceLastMs": 35.422207,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 78436,
+      "writeMs": 0.5570000000006985,
+      "lookupMs": 0.37516700000560377,
+      "loopMaxSinceLastMs": 21.331967,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 79440,
+      "writeMs": 0.6968749999941792,
+      "lookupMs": 0.5770409999968251,
+      "loopMaxSinceLastMs": 27.279359,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 80444,
+      "writeMs": 0.536458999995375,
+      "lookupMs": 1.1979580000042915,
+      "loopMaxSinceLastMs": 23.298047,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 81449,
+      "writeMs": 0.7219590000022436,
+      "lookupMs": 0.4741249999933643,
+      "loopMaxSinceLastMs": 27.656191,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 82452,
+      "writeMs": 0.484375,
+      "lookupMs": 0.6810830000031274,
+      "loopMaxSinceLastMs": 12.713983,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 83456,
+      "writeMs": 0.7520840000070166,
+      "lookupMs": 1.0282500000030268,
+      "loopMaxSinceLastMs": 33.914879,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 84464,
+      "writeMs": 1.8842079999885755,
+      "lookupMs": 2.207750000001397,
+      "loopMaxSinceLastMs": 21.823487,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 85477,
+      "writeMs": 9.402333999998518,
+      "lookupMs": 1.3893749999988358,
+      "loopMaxSinceLastMs": 172.752895,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 19
+    },
+    {
+      "tMs": 86497,
+      "writeMs": 0.9428749999933643,
+      "lookupMs": 0.7852080000011483,
+      "loopMaxSinceLastMs": 12.509183,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 87503,
+      "writeMs": 0.7799170000071172,
+      "lookupMs": 0.6390419999952428,
+      "loopMaxSinceLastMs": 15.245311,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 88507,
+      "writeMs": 1.064249999995809,
+      "lookupMs": 0.9415840000001481,
+      "loopMaxSinceLastMs": 14.123007,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 89514,
+      "writeMs": 0.8147920000046724,
+      "lookupMs": 0.833874999996624,
+      "loopMaxSinceLastMs": 23.379967,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 90518,
+      "writeMs": 0.5303330000024289,
+      "lookupMs": 0.9734590000007302,
+      "loopMaxSinceLastMs": 38.862847,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 91557,
+      "writeMs": 1.02774999999383,
+      "lookupMs": 0.6023750000022119,
+      "loopMaxSinceLastMs": 14.000127,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 92566,
+      "writeMs": 0.7870839999959571,
+      "lookupMs": 0.6683750000083819,
+      "loopMaxSinceLastMs": 14.090239,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 93572,
+      "writeMs": 0.5832499999960419,
+      "lookupMs": 0.47350000000733417,
+      "loopMaxSinceLastMs": 13.230079,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 94575,
+      "writeMs": 22.897624999997788,
+      "lookupMs": 3.072249999997439,
+      "loopMaxSinceLastMs": 103.088127,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 36
+    },
+    {
+      "tMs": 95614,
+      "writeMs": 1.678874999997788,
+      "lookupMs": 2.19258400000399,
+      "loopMaxSinceLastMs": 171.311103,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 96625,
+      "writeMs": 0.7971249999973224,
+      "lookupMs": 0.7143749999959255,
+      "loopMaxSinceLastMs": 13.131775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 97632,
+      "writeMs": 1.1144579999963753,
+      "lookupMs": 1.0128340000082972,
+      "loopMaxSinceLastMs": 14.204927,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 98639,
+      "writeMs": 0.36520800000289455,
+      "lookupMs": 0.35558400000445545,
+      "loopMaxSinceLastMs": 12.976127,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 99643,
+      "writeMs": 0.5328330000047572,
+      "lookupMs": 0.4607089999917662,
+      "loopMaxSinceLastMs": 14.270463,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 100648,
+      "writeMs": 0.5375840000051539,
+      "lookupMs": 1.2182920000050217,
+      "loopMaxSinceLastMs": 13.426687,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 101653,
+      "writeMs": 0.7597500000119908,
+      "lookupMs": 0.6505830000096466,
+      "loopMaxSinceLastMs": 13.860863,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 102658,
+      "writeMs": 1.2611249999899883,
+      "lookupMs": 0.6693329999980051,
+      "loopMaxSinceLastMs": 31.539199,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 103663,
+      "writeMs": 0.5244579999998678,
+      "lookupMs": 0.4021250000077998,
+      "loopMaxSinceLastMs": 23.707647,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 104668,
+      "writeMs": 1.0115419999929145,
+      "lookupMs": 0.6648750000022119,
+      "loopMaxSinceLastMs": 12.795903,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 105673,
+      "writeMs": 0.8510419999947771,
+      "lookupMs": 0.6450409999961266,
+      "loopMaxSinceLastMs": 13.516799,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 106680,
+      "writeMs": 0.5264999999926658,
+      "lookupMs": 0.43220900000596885,
+      "loopMaxSinceLastMs": 32.374783,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 107685,
+      "writeMs": 7.945665999999619,
+      "lookupMs": 1.2245830000028946,
+      "loopMaxSinceLastMs": 13.942783,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 14
+    },
+    {
+      "tMs": 108700,
+      "writeMs": 1.0927499999961583,
+      "lookupMs": 0.6902090000075987,
+      "loopMaxSinceLastMs": 28.557311,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 109707,
+      "writeMs": 0.8169579999957932,
+      "lookupMs": 1.3634170000004815,
+      "loopMaxSinceLastMs": 24.231935,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 110712,
+      "writeMs": 0.5183339999930467,
+      "lookupMs": 1.3184170000022277,
+      "loopMaxSinceLastMs": 25.903103,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 111719,
+      "writeMs": 5.722166999999899,
+      "lookupMs": 95.72120800000266,
+      "loopMaxSinceLastMs": 31.817727,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 106
+    },
+    {
+      "tMs": 112826,
+      "writeMs": 0.400166999999783,
+      "lookupMs": 0.3927090000070166,
+      "loopMaxSinceLastMs": 98.500607,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 113829,
+      "writeMs": 0.9140410000109114,
+      "lookupMs": 0.9124160000064876,
+      "loopMaxSinceLastMs": 16.891903,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 114837,
+      "writeMs": 6.595291999998153,
+      "lookupMs": 0.713833000001614,
+      "loopMaxSinceLastMs": 49.577983,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 115848,
+      "writeMs": 7.668666999990819,
+      "lookupMs": 0.9465420000051381,
+      "loopMaxSinceLastMs": 44.695551,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 116862,
+      "writeMs": 18.455667000001995,
+      "lookupMs": 1.1834579999995185,
+      "loopMaxSinceLastMs": 15.638527,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 65
+    },
+    {
+      "tMs": 117937,
+      "writeMs": 46.53341600000567,
+      "lookupMs": 9.572709000000032,
+      "loopMaxSinceLastMs": 187.564031,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 63
+    },
+    {
+      "tMs": 119025,
+      "writeMs": 0.3981669999920996,
+      "lookupMs": 0.4772499999962747,
+      "loopMaxSinceLastMs": 33.456127,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 120030,
+      "writeMs": 0.5027499999996508,
+      "lookupMs": 0.4371670000109589,
+      "loopMaxSinceLastMs": 13.705215,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 121035,
+      "writeMs": 1.1227920000092126,
+      "lookupMs": 1.3286669999943115,
+      "loopMaxSinceLastMs": 61.177855,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 122044,
+      "writeMs": 0.7733330000046408,
+      "lookupMs": 0.5089589999988675,
+      "loopMaxSinceLastMs": 17.170431,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 123048,
+      "writeMs": 0.46804100000008475,
+      "lookupMs": 0.4320000000006985,
+      "loopMaxSinceLastMs": 14.761983,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 124053,
+      "writeMs": 6.745209000000614,
+      "lookupMs": 0.6578330000047572,
+      "loopMaxSinceLastMs": 29.081599,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 125064,
+      "writeMs": 0.7597919999971054,
+      "lookupMs": 0.7471249999944121,
+      "loopMaxSinceLastMs": 20.643839,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 126070,
+      "writeMs": 0.4605420000007143,
+      "lookupMs": 0.6950829999987036,
+      "loopMaxSinceLastMs": 16.474111,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 127075,
+      "writeMs": 0.4949999999953434,
+      "lookupMs": 0.5516670000070008,
+      "loopMaxSinceLastMs": 24.805375,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 128078,
+      "writeMs": 0.5005830000009155,
+      "lookupMs": 0.3957079999963753,
+      "loopMaxSinceLastMs": 17.334271,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 129083,
+      "writeMs": 1.9449159999930998,
+      "lookupMs": 0.525500000003376,
+      "loopMaxSinceLastMs": 18.366463,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 130091,
+      "writeMs": 0.7514999999984866,
+      "lookupMs": 0.43624999999883585,
+      "loopMaxSinceLastMs": 13.721599,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 131096,
+      "writeMs": 2.076042000000598,
+      "lookupMs": 2.501708999989205,
+      "loopMaxSinceLastMs": 18.071551,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 132104,
+      "writeMs": 0.3741250000020955,
+      "lookupMs": 0.35558299999684095,
+      "loopMaxSinceLastMs": 12.845055,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 133108,
+      "writeMs": 0.4809580000001006,
+      "lookupMs": 0.36633300001267344,
+      "loopMaxSinceLastMs": 16.089087,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 134113,
+      "writeMs": 5.64862500000163,
+      "lookupMs": 0.35654199999407865,
+      "loopMaxSinceLastMs": 12.492799,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 135123,
+      "writeMs": 0.4267499999841675,
+      "lookupMs": 0.3787910000246484,
+      "loopMaxSinceLastMs": 21.200895,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 136126,
+      "writeMs": 0.8633750000153668,
+      "lookupMs": 0.7412919999915175,
+      "loopMaxSinceLastMs": 28.721151,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 137130,
+      "writeMs": 0.5303750000020955,
+      "lookupMs": 0.4500840000109747,
+      "loopMaxSinceLastMs": 12.492799,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 138134,
+      "writeMs": 0.4233750000130385,
+      "lookupMs": 0.39633299998240545,
+      "loopMaxSinceLastMs": 12.771327,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 139138,
+      "writeMs": 0.4444999999832362,
+      "lookupMs": 0.42662499999278225,
+      "loopMaxSinceLastMs": 12.468223,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 140143,
+      "writeMs": 0.9108749999722932,
+      "lookupMs": 1.228333000006387,
+      "loopMaxSinceLastMs": 71.761919,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 141150,
+      "writeMs": 0.5178330000198912,
+      "lookupMs": 0.44691700002294965,
+      "loopMaxSinceLastMs": 16.367615,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 142156,
+      "writeMs": 0.4497080000001006,
+      "lookupMs": 0.34604200001922436,
+      "loopMaxSinceLastMs": 14.630911,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 143162,
+      "writeMs": 0.5211249999993015,
+      "lookupMs": 0.46741700000711717,
+      "loopMaxSinceLastMs": 15.630335,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 144166,
+      "writeMs": 0.4743339999986347,
+      "lookupMs": 0.4638750000158325,
+      "loopMaxSinceLastMs": 15.409151,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 145169,
+      "writeMs": 0.39033299998845905,
+      "lookupMs": 0.34750000000349246,
+      "loopMaxSinceLastMs": 13.418495,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 146173,
+      "writeMs": 5.872499999997672,
+      "lookupMs": 0.38941699999850243,
+      "loopMaxSinceLastMs": 21.594111,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 147180,
+      "writeMs": 0.6085410000232514,
+      "lookupMs": 0.49420799998915754,
+      "loopMaxSinceLastMs": 15.097855,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 148184,
+      "writeMs": 0.34862500001327135,
+      "lookupMs": 0.3482089999888558,
+      "loopMaxSinceLastMs": 14.983167,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 149200,
+      "writeMs": 27.97362500001327,
+      "lookupMs": 0.5925419999985024,
+      "loopMaxSinceLastMs": 45.645823,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 30
+    },
+    {
+      "tMs": 150231,
+      "writeMs": 0.712375000002794,
+      "lookupMs": 0.5274999999965075,
+      "loopMaxSinceLastMs": 16.826367,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 151235,
+      "writeMs": 20.992458000022452,
+      "lookupMs": 0.4386250000097789,
+      "loopMaxSinceLastMs": 16.285695,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 23
+    },
+    {
+      "tMs": 152261,
+      "writeMs": 0.40191600000252947,
+      "lookupMs": 0.38370799997937866,
+      "loopMaxSinceLastMs": 20.873215,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 153264,
+      "writeMs": 0.5541249999951106,
+      "lookupMs": 0.5231249999778811,
+      "loopMaxSinceLastMs": 15.179775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 154269,
+      "writeMs": 0.7595410000067204,
+      "lookupMs": 0.5811659999890253,
+      "loopMaxSinceLastMs": 15.138815,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 155274,
+      "writeMs": 0.5782500000204891,
+      "lookupMs": 0.6749579999886919,
+      "loopMaxSinceLastMs": 14.860287,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 156280,
+      "writeMs": 0.9672919999866281,
+      "lookupMs": 2.0917910000134725,
+      "loopMaxSinceLastMs": 16.310271,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 157293,
+      "writeMs": 0.5896669999929145,
+      "lookupMs": 0.7036250000237487,
+      "loopMaxSinceLastMs": 13.500415,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 158298,
+      "writeMs": 0.5433749999792781,
+      "lookupMs": 0.5412920000089798,
+      "loopMaxSinceLastMs": 13.860863,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 159301,
+      "writeMs": 0.47599999999511056,
+      "lookupMs": 0.4822909999929834,
+      "loopMaxSinceLastMs": 14.344191,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 160306,
+      "writeMs": 1.2550409999967087,
+      "lookupMs": 1.1262500000011642,
+      "loopMaxSinceLastMs": 14.622719,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 161320,
+      "writeMs": 1.419707999972161,
+      "lookupMs": 0.8172079999931157,
+      "loopMaxSinceLastMs": 14.409727,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 162330,
+      "writeMs": 0.6159999999799766,
+      "lookupMs": 0.48558400000911206,
+      "loopMaxSinceLastMs": 24.526847,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 163336,
+      "writeMs": 6.766749999980675,
+      "lookupMs": 0.9194579999893904,
+      "loopMaxSinceLastMs": 15.056895,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 164348,
+      "writeMs": 0.6127500000002328,
+      "lookupMs": 0.55754199999501,
+      "loopMaxSinceLastMs": 22.577151,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 165353,
+      "writeMs": 0.6758329999865964,
+      "lookupMs": 0.7920829999784473,
+      "loopMaxSinceLastMs": 16.777215,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 166359,
+      "writeMs": 8.549832999997307,
+      "lookupMs": 0.7012499999837019,
+      "loopMaxSinceLastMs": 14.917631,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 15
+    },
+    {
+      "tMs": 167375,
+      "writeMs": 0.6792919999861624,
+      "lookupMs": 0.48220900000887923,
+      "loopMaxSinceLastMs": 20.332543,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 168380,
+      "writeMs": 5.7735000000102445,
+      "lookupMs": 0.7902500000200234,
+      "loopMaxSinceLastMs": 19.234815,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 169390,
+      "writeMs": 1.327292000001762,
+      "lookupMs": 1.006667000008747,
+      "loopMaxSinceLastMs": 21.037055,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 170396,
+      "writeMs": 0.6367920000047889,
+      "lookupMs": 0.5333329999994021,
+      "loopMaxSinceLastMs": 13.803519,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 171400,
+      "writeMs": 0.5787079999863636,
+      "lookupMs": 0.7021250000107102,
+      "loopMaxSinceLastMs": 12.967935,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 172407,
+      "writeMs": 0.8479170000064187,
+      "lookupMs": 1.4425420000043232,
+      "loopMaxSinceLastMs": 15.884287,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 173415,
+      "writeMs": 0.544041000015568,
+      "lookupMs": 0.3492079999996349,
+      "loopMaxSinceLastMs": 14.934015,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 174419,
+      "writeMs": 5.709207999985665,
+      "lookupMs": 0.43179200001759455,
+      "loopMaxSinceLastMs": 14.573567,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 175431,
+      "writeMs": 0.51400000002468,
+      "lookupMs": 0.3816250000090804,
+      "loopMaxSinceLastMs": 16.433151,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 176436,
+      "writeMs": 0.6518340000184253,
+      "lookupMs": 0.6150419999903534,
+      "loopMaxSinceLastMs": 13.664255,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 177442,
+      "writeMs": 0.4354170000005979,
+      "lookupMs": 0.3876670000026934,
+      "loopMaxSinceLastMs": 12.992511,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 178445,
+      "writeMs": 0.6933750000025611,
+      "lookupMs": 0.7955829999991693,
+      "loopMaxSinceLastMs": 22.003711,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 179450,
+      "writeMs": 0.7105000000155997,
+      "lookupMs": 0.527416999975685,
+      "loopMaxSinceLastMs": 15.007743,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 180454,
+      "writeMs": 0.4132499999832362,
+      "lookupMs": 0.380250000016531,
+      "loopMaxSinceLastMs": 15.753215,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 181458,
+      "writeMs": 1.0829590000212193,
+      "lookupMs": 0.90333400000236,
+      "loopMaxSinceLastMs": 16.113663,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 182467,
+      "writeMs": 0.3372080000117421,
+      "lookupMs": 0.45033299998613074,
+      "loopMaxSinceLastMs": 17.924095,
+      "resources": {
+        "FSReqPromise": 4,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 183470,
+      "writeMs": 0.5856670000066515,
+      "lookupMs": 0.48579100001370534,
+      "loopMaxSinceLastMs": 16.105471,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 184474,
+      "writeMs": 0.7983329999842681,
+      "lookupMs": 0.8006250000034925,
+      "loopMaxSinceLastMs": 14.254079,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 185481,
+      "writeMs": 1.465874999994412,
+      "lookupMs": 0.9627090000140015,
+      "loopMaxSinceLastMs": 17.776639,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 186489,
+      "writeMs": 1.6358339999860618,
+      "lookupMs": 3.591459000017494,
+      "loopMaxSinceLastMs": 15.704063,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 187499,
+      "writeMs": 1.7348340000025928,
+      "lookupMs": 1.1413750000065193,
+      "loopMaxSinceLastMs": 16.490495,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 188511,
+      "writeMs": 2.872040999995079,
+      "lookupMs": 1.2873749999853317,
+      "loopMaxSinceLastMs": 18.137087,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 189522,
+      "writeMs": 0.401624999998603,
+      "lookupMs": 0.33449999999720603,
+      "loopMaxSinceLastMs": 18.219007,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 190526,
+      "writeMs": 0.6949590000149328,
+      "lookupMs": 0.5456669999985024,
+      "loopMaxSinceLastMs": 31.014911,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 191532,
+      "writeMs": 18.947125000006054,
+      "lookupMs": 0.4454589999804739,
+      "loopMaxSinceLastMs": 19.415039,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 21
+    },
+    {
+      "tMs": 192556,
+      "writeMs": 0.48220900000887923,
+      "lookupMs": 0.6833330000226852,
+      "loopMaxSinceLastMs": 14.123007,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 193561,
+      "writeMs": 1.3877080000238493,
+      "lookupMs": 1.1113330000080168,
+      "loopMaxSinceLastMs": 18.284543,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 194570,
+      "writeMs": 1.6013329999987036,
+      "lookupMs": 1.0641670000040904,
+      "loopMaxSinceLastMs": 16.891903,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 195578,
+      "writeMs": 0.9443749999918509,
+      "lookupMs": 0.7917920000036247,
+      "loopMaxSinceLastMs": 16.531455,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 196586,
+      "writeMs": 1.816499999986263,
+      "lookupMs": 4.228499999997439,
+      "loopMaxSinceLastMs": 16.244735,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 197601,
+      "writeMs": 1.38770900000236,
+      "lookupMs": 1.1117910000029951,
+      "loopMaxSinceLastMs": 18.169855,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 198608,
+      "writeMs": 0.8787500000034925,
+      "lookupMs": 0.671582999988459,
+      "loopMaxSinceLastMs": 18.366463,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 199614,
+      "writeMs": 1.3164579999865964,
+      "lookupMs": 1.0077080000191927,
+      "loopMaxSinceLastMs": 17.596415,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 200624,
+      "writeMs": 1.4580000000132713,
+      "lookupMs": 0.9706669999868609,
+      "loopMaxSinceLastMs": 16.605183,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 201631,
+      "writeMs": 1.8325839999888558,
+      "lookupMs": 4.252375000010943,
+      "loopMaxSinceLastMs": 25.804799,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 12
+    },
+    {
+      "tMs": 202645,
+      "writeMs": 0.47399999998742715,
+      "lookupMs": 0.34200000000419095,
+      "loopMaxSinceLastMs": 17.432575,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 203649,
+      "writeMs": 1.388875000004191,
+      "lookupMs": 1.1443750000034925,
+      "loopMaxSinceLastMs": 18.415615,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 204655,
+      "writeMs": 1.9441250000090804,
+      "lookupMs": 1.164374999993015,
+      "loopMaxSinceLastMs": 16.769023,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 205663,
+      "writeMs": 0.7767499999899883,
+      "lookupMs": 0.37979200002155267,
+      "loopMaxSinceLastMs": 18.399231,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 206668,
+      "writeMs": 7.137833000015235,
+      "lookupMs": 0.5735829999903217,
+      "loopMaxSinceLastMs": 55.672831,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 207679,
+      "writeMs": 0.9037919999973383,
+      "lookupMs": 0.7483329999959096,
+      "loopMaxSinceLastMs": 16.556031,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 208685,
+      "writeMs": 1.4020829999935813,
+      "lookupMs": 1.0887089999741875,
+      "loopMaxSinceLastMs": 18.186239,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 209693,
+      "writeMs": 1.8251250000030268,
+      "lookupMs": 1.7005000000062864,
+      "loopMaxSinceLastMs": 21.200895,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 210702,
+      "writeMs": 0.6520000000018626,
+      "lookupMs": 0.5499159999890253,
+      "loopMaxSinceLastMs": 333.971455,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 211708,
+      "writeMs": 1.7984589999832679,
+      "lookupMs": 3.491249999991851,
+      "loopMaxSinceLastMs": 18.710527,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 212718,
+      "writeMs": 1.2989999999990687,
+      "lookupMs": 1.0055839999986347,
+      "loopMaxSinceLastMs": 19.972095,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 213725,
+      "writeMs": 0.4505419999768492,
+      "lookupMs": 0.4021669999929145,
+      "loopMaxSinceLastMs": 17.334271,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 214734,
+      "writeMs": 1.6610409999848343,
+      "lookupMs": 1.171291000006022,
+      "loopMaxSinceLastMs": 16.080895,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 215741,
+      "writeMs": 1.4375,
+      "lookupMs": 0.9669580000045244,
+      "loopMaxSinceLastMs": 18.251775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 216747,
+      "writeMs": 1.5078750000102445,
+      "lookupMs": 2.7092499999853317,
+      "loopMaxSinceLastMs": 15.925247,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 217759,
+      "writeMs": 1.0548340000095777,
+      "lookupMs": 0.6982920000154991,
+      "loopMaxSinceLastMs": 18.251775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 218765,
+      "writeMs": 1.3787090000114404,
+      "lookupMs": 1.0479169999889564,
+      "loopMaxSinceLastMs": 18.284543,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 219775,
+      "writeMs": 1.4727919999859296,
+      "lookupMs": 1.0576249999867287,
+      "loopMaxSinceLastMs": 17.645567,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 220784,
+      "writeMs": 2.1034590000053868,
+      "lookupMs": 1.583041999983834,
+      "loopMaxSinceLastMs": 18.415615,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 221792,
+      "writeMs": 17.958125000004657,
+      "lookupMs": 7.393249999993714,
+      "loopMaxSinceLastMs": 24.805375,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 28
+    },
+    {
+      "tMs": 222821,
+      "writeMs": 0.7857499999809079,
+      "lookupMs": 0.6147500000079162,
+      "loopMaxSinceLastMs": 18.268159,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 223827,
+      "writeMs": 1.3814999999885913,
+      "lookupMs": 1.0794590000004973,
+      "loopMaxSinceLastMs": 18.448383,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 224835,
+      "writeMs": 1.4322500000125729,
+      "lookupMs": 1.0935829999798443,
+      "loopMaxSinceLastMs": 18.153471,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 225842,
+      "writeMs": 1.0123329999914858,
+      "lookupMs": 0.78125,
+      "loopMaxSinceLastMs": 18.923519,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 226846,
+      "writeMs": 0.5137499999837019,
+      "lookupMs": 0.9362919999985024,
+      "loopMaxSinceLastMs": 17.530879,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 227851,
+      "writeMs": 1.4624590000021271,
+      "lookupMs": 0.9782089999935124,
+      "loopMaxSinceLastMs": 18.382847,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 228859,
+      "writeMs": 1.4549589999951422,
+      "lookupMs": 1.2027090000046883,
+      "loopMaxSinceLastMs": 18.202623,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 229867,
+      "writeMs": 1.0330829999875277,
+      "lookupMs": 0.7592909999948461,
+      "loopMaxSinceLastMs": 18.317311,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 230876,
+      "writeMs": 0.9004169999971054,
+      "lookupMs": 0.8763329999928828,
+      "loopMaxSinceLastMs": 18.464767,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 231884,
+      "writeMs": 3.7558330000028946,
+      "lookupMs": 1.5556249999790452,
+      "loopMaxSinceLastMs": 18.006015,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 10
+    },
+    {
+      "tMs": 232896,
+      "writeMs": 1.4507079999893904,
+      "lookupMs": 1.1305839999986347,
+      "loopMaxSinceLastMs": 18.251775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 233907,
+      "writeMs": 0.5117500000051223,
+      "lookupMs": 0.4850410000071861,
+      "loopMaxSinceLastMs": 18.251775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 234910,
+      "writeMs": 1.0120830000087153,
+      "lookupMs": 0.6293750000186265,
+      "loopMaxSinceLastMs": 17.694719,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 235915,
+      "writeMs": 1.561333999998169,
+      "lookupMs": 1.1853330000012647,
+      "loopMaxSinceLastMs": 17.104895,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 236925,
+      "writeMs": 0.5348339999909513,
+      "lookupMs": 0.7114170000131708,
+      "loopMaxSinceLastMs": 17.235967,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 16
+    },
+    {
+      "tMs": 237945,
+      "writeMs": 1.3077089999860618,
+      "lookupMs": 1.013833999983035,
+      "loopMaxSinceLastMs": 21.430271,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 238953,
+      "writeMs": 0.7902499999909196,
+      "lookupMs": 1.080707999994047,
+      "loopMaxSinceLastMs": 18.120703,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 239958,
+      "writeMs": 0.6343329999945126,
+      "lookupMs": 0.5451249999750871,
+      "loopMaxSinceLastMs": 23.478271,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 240964,
+      "writeMs": 1.3545419999863952,
+      "lookupMs": 1.0085409999883268,
+      "loopMaxSinceLastMs": 18.776063,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 241972,
+      "writeMs": 4.079957999987528,
+      "lookupMs": 1.323833000002196,
+      "loopMaxSinceLastMs": 18.300927,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 242984,
+      "writeMs": 1.6166249999951106,
+      "lookupMs": 1.105333999992581,
+      "loopMaxSinceLastMs": 18.382847,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 243991,
+      "writeMs": 1.2092919999849983,
+      "lookupMs": 1.2914999999920838,
+      "loopMaxSinceLastMs": 15.884287,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 245001,
+      "writeMs": 2.148332999990089,
+      "lookupMs": 1.4894170000043232,
+      "loopMaxSinceLastMs": 18.563071,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 246010,
+      "writeMs": 0.4622910000034608,
+      "lookupMs": 0.6518750000104774,
+      "loopMaxSinceLastMs": 18.661375,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 247018,
+      "writeMs": 1.9501670000026934,
+      "lookupMs": 4.050041999988025,
+      "loopMaxSinceLastMs": 18.268159,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 11
+    },
+    {
+      "tMs": 248033,
+      "writeMs": 1.3757920000061858,
+      "lookupMs": 1.081333000009181,
+      "loopMaxSinceLastMs": 17.596415,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 249043,
+      "writeMs": 1.3649579999910202,
+      "lookupMs": 0.9788750000006985,
+      "loopMaxSinceLastMs": 18.448383,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 250051,
+      "writeMs": 0.9643750000104774,
+      "lookupMs": 0.7023340000014286,
+      "loopMaxSinceLastMs": 18.317311,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 251058,
+      "writeMs": 6.226583999989089,
+      "lookupMs": 0.4278749999939464,
+      "loopMaxSinceLastMs": 16.523263,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 252069,
+      "writeMs": 7.396208999998635,
+      "lookupMs": 0.3402080000087153,
+      "loopMaxSinceLastMs": 17.219583,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 253081,
+      "writeMs": 0.8974159999925178,
+      "lookupMs": 0.756667000008747,
+      "loopMaxSinceLastMs": 17.317887,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 254086,
+      "writeMs": 0.8609580000047572,
+      "lookupMs": 0.6496249999909196,
+      "loopMaxSinceLastMs": 17.154047,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 255091,
+      "writeMs": 1.7879160000011325,
+      "lookupMs": 1.2672500000044238,
+      "loopMaxSinceLastMs": 18.251775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 256099,
+      "writeMs": 1.7313330000033602,
+      "lookupMs": 1.2936249999911524,
+      "loopMaxSinceLastMs": 18.382847,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 257111,
+      "writeMs": 0.7589169999992009,
+      "lookupMs": 0.8687919999938458,
+      "loopMaxSinceLastMs": 18.300927,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 258117,
+      "writeMs": 1.8953340000007302,
+      "lookupMs": 1.3466660000267439,
+      "loopMaxSinceLastMs": 18.071551,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 259128,
+      "writeMs": 1.3711659999971744,
+      "lookupMs": 0.9059580000175629,
+      "loopMaxSinceLastMs": 18.300927,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 260136,
+      "writeMs": 0.93954200000735,
+      "lookupMs": 0.7217079999973066,
+      "loopMaxSinceLastMs": 18.825215,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 261144,
+      "writeMs": 1.3024579999910202,
+      "lookupMs": 0.9091250000055879,
+      "loopMaxSinceLastMs": 18.399231,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 262152,
+      "writeMs": 0.8046249999897555,
+      "lookupMs": 1.758040999993682,
+      "loopMaxSinceLastMs": 18.219007,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 263159,
+      "writeMs": 1.4367499999934807,
+      "lookupMs": 0.9991249999729916,
+      "loopMaxSinceLastMs": 18.366463,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 264170,
+      "writeMs": 1.5351250000530854,
+      "lookupMs": 1.0188750000088476,
+      "loopMaxSinceLastMs": 18.251775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 265175,
+      "writeMs": 1.6084160000318661,
+      "lookupMs": 1.3755000000237487,
+      "loopMaxSinceLastMs": 18.071551,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 266185,
+      "writeMs": 1.0061659999773838,
+      "lookupMs": 0.7303339999634773,
+      "loopMaxSinceLastMs": 18.202623,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 267191,
+      "writeMs": 0.8772919999901205,
+      "lookupMs": 1.2281669999938458,
+      "loopMaxSinceLastMs": 18.219007,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 268196,
+      "writeMs": 0.3708749999641441,
+      "lookupMs": 0.3337920000194572,
+      "loopMaxSinceLastMs": 14.696447,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 269201,
+      "writeMs": 0.7790839999797754,
+      "lookupMs": 0.6740839999984019,
+      "loopMaxSinceLastMs": 17.956863,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 270207,
+      "writeMs": 1.863208000024315,
+      "lookupMs": 0.7791250000009313,
+      "loopMaxSinceLastMs": 16.564223,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 271213,
+      "writeMs": 0.9380419999943115,
+      "lookupMs": 0.9351250000181608,
+      "loopMaxSinceLastMs": 18.251775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 272220,
+      "writeMs": 1.3796669999719597,
+      "lookupMs": 1.3102920000092126,
+      "loopMaxSinceLastMs": 18.268159,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 273230,
+      "writeMs": 1.4760000000242144,
+      "lookupMs": 1.2820410000276752,
+      "loopMaxSinceLastMs": 18.595839,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 274240,
+      "writeMs": 1.2932920000166632,
+      "lookupMs": 0.9465830000117421,
+      "loopMaxSinceLastMs": 18.284543,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 275251,
+      "writeMs": 1.3167089999769814,
+      "lookupMs": 0.8536250000470318,
+      "loopMaxSinceLastMs": 18.317311,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 276259,
+      "writeMs": 1.3286250000237487,
+      "lookupMs": 1.0731249999953434,
+      "loopMaxSinceLastMs": 17.121279,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 277266,
+      "writeMs": 1.647499999962747,
+      "lookupMs": 3.0762920000124723,
+      "loopMaxSinceLastMs": 17.072127,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 8
+    },
+    {
+      "tMs": 278274,
+      "writeMs": 0.43416699999943376,
+      "lookupMs": 0.4238330000080168,
+      "loopMaxSinceLastMs": 17.727487,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 279279,
+      "writeMs": 1.9428750000079162,
+      "lookupMs": 1.3705419999896549,
+      "loopMaxSinceLastMs": 18.399231,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 280289,
+      "writeMs": 0.9747499999939464,
+      "lookupMs": 0.8587500000139698,
+      "loopMaxSinceLastMs": 18.137087,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 4
+    },
+    {
+      "tMs": 281297,
+      "writeMs": 1.5004160000244156,
+      "lookupMs": 1.0584170000511222,
+      "loopMaxSinceLastMs": 18.284543,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 282309,
+      "writeMs": 1.6057499999878928,
+      "lookupMs": 2.9330409999820404,
+      "loopMaxSinceLastMs": 19.349503,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 283321,
+      "writeMs": 1.4191250000149012,
+      "lookupMs": 0.9310830000322312,
+      "loopMaxSinceLastMs": 18.104319,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 284330,
+      "writeMs": 0.7926250000018626,
+      "lookupMs": 0.6830409999820404,
+      "loopMaxSinceLastMs": 16.875519,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 285335,
+      "writeMs": 1.5792079999810085,
+      "lookupMs": 0.9818749999976717,
+      "loopMaxSinceLastMs": 18.169855,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 286345,
+      "writeMs": 1.4741250000079162,
+      "lookupMs": 1.6144590000039898,
+      "loopMaxSinceLastMs": 18.153471,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 287356,
+      "writeMs": 1.2306669999961741,
+      "lookupMs": 6.816667000006419,
+      "loopMaxSinceLastMs": 20.709375,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 15
+    },
+    {
+      "tMs": 288374,
+      "writeMs": 0.9360830000368878,
+      "lookupMs": 0.6857909999671392,
+      "loopMaxSinceLastMs": 17.055743,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 289382,
+      "writeMs": 0.9597499999799766,
+      "lookupMs": 0.6989170000306331,
+      "loopMaxSinceLastMs": 23.838719,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 290386,
+      "writeMs": 1.536041000043042,
+      "lookupMs": 1.2687499999883585,
+      "loopMaxSinceLastMs": 18.235391,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 291394,
+      "writeMs": 1.371500000008382,
+      "lookupMs": 1.0606250000419095,
+      "loopMaxSinceLastMs": 18.219007,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 292403,
+      "writeMs": 2.0010829999810085,
+      "lookupMs": 3.191874999960419,
+      "loopMaxSinceLastMs": 18.186239,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 9
+    },
+    {
+      "tMs": 293414,
+      "writeMs": 1.44945800001733,
+      "lookupMs": 1.2698749999981374,
+      "loopMaxSinceLastMs": 18.268159,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 294424,
+      "writeMs": 1.9659579999861307,
+      "lookupMs": 1.2507500000065193,
+      "loopMaxSinceLastMs": 17.399807,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 7
+    },
+    {
+      "tMs": 295434,
+      "writeMs": 1.5609169999952428,
+      "lookupMs": 1.3433749999967404,
+      "loopMaxSinceLastMs": 25.591807,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 6
+    },
+    {
+      "tMs": 296441,
+      "writeMs": 1.3951249999809079,
+      "lookupMs": 1.0815000000293367,
+      "loopMaxSinceLastMs": 15.785983,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 5
+    },
+    {
+      "tMs": 297449,
+      "writeMs": 0.6859159999876283,
+      "lookupMs": 0.9578750000218861,
+      "loopMaxSinceLastMs": 17.367039,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 10
+      },
+      "answeredMs": 3
+    },
+    {
+      "tMs": 298458,
+      "writeMs": 0.5209169999579899,
+      "lookupMs": 0.5261659999960102,
+      "loopMaxSinceLastMs": 17.252351,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 299462,
+      "writeMs": 0.30758299998706207,
+      "lookupMs": 0.387250000028871,
+      "loopMaxSinceLastMs": 16.203775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 300467,
+      "writeMs": 0.5519169999752194,
+      "lookupMs": 0.4841249999590218,
+      "loopMaxSinceLastMs": 13.008895,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    },
+    {
+      "tMs": 301471,
+      "writeMs": 0.6317090000375174,
+      "lookupMs": 0.46016699995379895,
+      "loopMaxSinceLastMs": 15.179775,
+      "resources": {
+        "FSReqPromise": 2,
+        "PipeWrap": 2,
+        "ProcessWrap": 1,
+        "Timeout": 9
+      },
+      "answeredMs": 2
+    }
+  ],
+  "history": [
+    {
+      "tMs": 20021,
+      "ms": 2016.0428329999995
+    },
+    {
+      "tMs": 25085,
+      "ms": 3.9867919999996957
+    },
+    {
+      "tMs": 30121,
+      "ms": 3.9937079999981506
+    },
+    {
+      "tMs": 35148,
+      "ms": 4.455583000002662
+    },
+    {
+      "tMs": 40173,
+      "ms": 4.1487080000006245
+    },
+    {
+      "tMs": 45216,
+      "ms": 2.7971249999973224
+    },
+    {
+      "tMs": 50259,
+      "ms": 6.920166999996582
+    },
+    {
+      "tMs": 55287,
+      "ms": 1.7625840000036987
+    },
+    {
+      "tMs": 60323,
+      "ms": 14.202541999999085
+    },
+    {
+      "tMs": 65363,
+      "ms": 4.429291999993438
+    },
+    {
+      "tMs": 70391,
+      "ms": 2.900999999998021
+    },
+    {
+      "tMs": 75417,
+      "ms": 3.944374999991851
+    },
+    {
+      "tMs": 80444,
+      "ms": 1.7666250000038417
+    },
+    {
+      "tMs": 85477,
+      "ms": 4.427584000004572
+    },
+    {
+      "tMs": 90518,
+      "ms": 4.567749999987427
+    },
+    {
+      "tMs": 95614,
+      "ms": 7.44962499999383
+    },
+    {
+      "tMs": 100648,
+      "ms": 2.665833000006387
+    },
+    {
+      "tMs": 105673,
+      "ms": 3.9627089999994496
+    },
+    {
+      "tMs": 110712,
+      "ms": 1.8900419999990845
+    },
+    {
+      "tMs": 115848,
+      "ms": 7.089500000001863
+    },
+    {
+      "tMs": 121035,
+      "ms": 3.6577499999984866
+    },
+    {
+      "tMs": 126070,
+      "ms": 2.2722499999945285
+    },
+    {
+      "tMs": 131096,
+      "ms": 3.862583000009181
+    },
+    {
+      "tMs": 136126,
+      "ms": 1.309000000008382
+    },
+    {
+      "tMs": 141150,
+      "ms": 1.8649579999910202
+    },
+    {
+      "tMs": 146173,
+      "ms": 2.894000000000233
+    },
+    {
+      "tMs": 151235,
+      "ms": 20.20616699999664
+    },
+    {
+      "tMs": 156280,
+      "ms": 8.963083999988157
+    },
+    {
+      "tMs": 161320,
+      "ms": 3.3814999999885913
+    },
+    {
+      "tMs": 166359,
+      "ms": 7.143249999993714
+    },
+    {
+      "tMs": 171400,
+      "ms": 3.067916999978479
+    },
+    {
+      "tMs": 176436,
+      "ms": 2.392707999999402
+    },
+    {
+      "tMs": 181458,
+      "ms": 1.402124999993248
+    },
+    {
+      "tMs": 186489,
+      "ms": 4.642833999998402
+    },
+    {
+      "tMs": 191532,
+      "ms": 1.758957999991253
+    },
+    {
+      "tMs": 196586,
+      "ms": 6.457625000010012
+    },
+    {
+      "tMs": 201631,
+      "ms": 5.032291000010446
+    },
+    {
+      "tMs": 206668,
+      "ms": 2.390541000000667
+    },
+    {
+      "tMs": 211708,
+      "ms": 4.101457999990089
+    },
+    {
+      "tMs": 216747,
+      "ms": 3.7215419999847654
+    },
+    {
+      "tMs": 221792,
+      "ms": 24.89924999998766
+    },
+    {
+      "tMs": 226846,
+      "ms": 1.1336250000167638
+    },
+    {
+      "tMs": 231884,
+      "ms": 3.8302499999990687
+    },
+    {
+      "tMs": 236925,
+      "ms": 3.598166999989189
+    },
+    {
+      "tMs": 241972,
+      "ms": 3.790833000006387
+    },
+    {
+      "tMs": 247018,
+      "ms": 4.733333000011044
+    },
+    {
+      "tMs": 252069,
+      "ms": 7.007333999994444
+    },
+    {
+      "tMs": 257111,
+      "ms": 1.6959999999962747
+    },
+    {
+      "tMs": 262152,
+      "ms": 2.331333000009181
+    },
+    {
+      "tMs": 267191,
+      "ms": 1.9906250000349246
+    },
+    {
+      "tMs": 272220,
+      "ms": 5.097917000006419
+    },
+    {
+      "tMs": 277266,
+      "ms": 4.12095800001407
+    },
+    {
+      "tMs": 282309,
+      "ms": 3.573167000024114
+    },
+    {
+      "tMs": 287356,
+      "ms": 7.7367080000112765
+    },
+    {
+      "tMs": 292403,
+      "ms": 4.119165999989491
+    },
+    {
+      "tMs": 297449,
+      "ms": 1.2494999999762513
+    }
+  ],
+  "cpuProfile": {
+    "startedAtMs": 1552,
+    "running": false,
+    "stoppedAtMs": 90518,
+    "file": "st-1-macos-fifo.cpuprofile"
+  },
+  "mainLog": {
+    "error": "Runtime.evaluate: Promise was collected"
+  },
+  "appEvidence": {
+    "dir": "st-1-macos-fifo-app",
+    "copied": [
+      "logs/audit*.log",
+      "diagnostics/stalls"
+    ],
+    "errors": []
+  }
+}
