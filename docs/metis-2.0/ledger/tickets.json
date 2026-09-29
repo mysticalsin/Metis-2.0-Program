@@ -5924,7 +5924,7 @@
    "summary": "TASK-028.A (the P1 repairs D1-D11) ships early in M2-0202. This ticket completes one geometry authority for handle, inward expansion, caption and approval/result cards and requalifies the right edge with the completed command session.",
    "acceptance": [
     "One geometry authority for handle, inward expansion, caption and approval/result cards",
-    "Definite-height scrolling, IME, keyboard, DPI and target sizes; no essential control hidden",
+    "No scrolling in any island state (OD-22); IME, keyboard, DPI and target sizes; no essential control hidden",
     "Requalified with the completed command session (TASK-028.B)"
    ],
    "verification": [
@@ -5942,7 +5942,8 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead): 'definite-height scrolling' replaced by 'no scrolling in any island state' per owner decision OD-22."
   },
   {
    "id": "M2-0096",
@@ -12262,8 +12263,7 @@
    "depends_on": [
     "M2-0022",
     "M2-0007",
-    "M2-0036",
-    "M2-0198"
+    "M2-0036"
    ],
    "needs_decision": [
     "D-7"
@@ -12287,7 +12287,10 @@
     "Invariant test: every park transition lands at y=0 (issue #124 class)",
     "Keyboard, IME, DPI and target sizes pass; no essential control hidden",
     "Packaged right-edge walkthrough on the QA account (lane candidate)",
-    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer"
+    "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer",
+    "OD-22: every right-edge hide path works on the packaged app (explicit Hide control, the Hide layout park, auto-hide/re-park after hover-out, the shortcut toggle): a packaged-harness test asserts that after each hide the window is parked at the right edge (not visible over content, click-through) and reveals again on hover/shortcut; the owner's 1.9.6 failure has its own regression test",
+    "OD-22: no Right Edge Island state needs scrolling at the smallest supported workArea (1280x720; Windows 125%/150%): for every state rendered at that size, every scroll container has scrollHeight <= clientHeight and no island element uses overflow auto/scroll; long content is summarised or opened in the main window, never scrolled in the island",
+    "OD-22: the island UX follows the lead's no-scroll design spec (state list, hierarchy, sizing, typography, motion), validated by an Opus design review against CI screenshots of every state (light/dark, reduced motion, EN+FR)"
    ],
    "verification": [
     "npx vitest run src/main/island/geometry.test.ts",
@@ -12304,7 +12307,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "priority": "P0",
+   "notes": "2026-09-29 (lead): OWNER-REPORTED on 1.9.6 ('The right edge hide doesnt work'; 'improve the Right edge Island UX UI ... no scroll needed') -> P0, OD-22. Dropped the M2-0198 dependency (a post-1.9.7 soak hold), which contradicted this ticket's own 'ship in T1' summary; lands before 1.9.7 so the owner gets the fix."
   },
   {
    "id": "M2-0203",
