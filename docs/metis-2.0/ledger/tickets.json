@@ -261,6 +261,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0445 added (P1, W1): intermittent Windows packaged-asr failure (import done, saved meeting without transcript lines) — root cause and fix; queue re-runs the known flake once meanwhile."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0210 freeze closure += M2-0435, M2-0439, M2-0445 (P1 2.0-scope tickets the ledger check found outside it)."
   }
  ],
  "tickets": [
@@ -13184,7 +13190,10 @@
     "M2-0441",
     "M2-0442",
     "M2-0443",
-    "M2-0444"
+    "M2-0444",
+    "M2-0435",
+    "M2-0439",
+    "M2-0445"
    ],
    "needs_decision": [
     "D-13",
