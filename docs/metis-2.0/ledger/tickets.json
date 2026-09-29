@@ -1101,7 +1101,7 @@
     "New defects are filed as ledger tickets, never fixed silently"
    ],
    "verification": [
-    "python3 scripts/trace/diff-export.py (read-only, kit copy in scratch)"
+    "Read-only mechanical diff recorded in docs/metis-2.0/review/SRC-REVERIFY.md (Appendix; 58-path output), per the 2026-09-29 lead ruling: scripts/trace/diff-export.py exists in neither repository"
    ],
    "required_evidence": [
     "DESIGNED"
@@ -1121,7 +1121,8 @@
     "merged_into": "main (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "notes": "2026-09-29 (lead): verification line amended; it named scripts/trace/diff-export.py, which exists in neither repository (SRC-REVERIFY.md:20, :94). The equivalent read-only check that was actually recorded is the Appendix mechanical diff."
   },
   {
    "id": "M2-0014",
