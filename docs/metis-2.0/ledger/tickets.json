@@ -291,6 +291,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0210 freeze closure: removed ['M2-0435', 'M2-0439'] again — they depend on the freeze (post-freeze tickets); adding them made a dependency cycle."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-26..OD-29 recorded (hosted runners count as live host; private Actions budget raised; OBU-03 exception for M2-0429; public main ruleset). Ticket notes updated."
   }
  ],
  "tickets": [
@@ -1030,7 +1036,7 @@
    "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner",
    "claimed_at": "2026-09-26",
-   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED.",
+   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/17",
     "merged_into": "main (squash)",
@@ -1577,7 +1583,8 @@
     "merged_into": "main (squash)",
     "implementer": "codex",
     "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again."
   },
   {
    "id": "M2-0020",
@@ -3405,7 +3412,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values. 2026-09-27 (lead): the personal-email/account-id cleanup item is delivered by M2-0230 (split so it is not blocked by M2-0048/M2-0053); M2-0049 only verifies the docs scan passes on main afterwards.",
+   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values. 2026-09-27 (lead): the personal-email/account-id cleanup item is delivered by M2-0230 (split so it is not blocked by M2-0048/M2-0053); M2-0049 only verifies the docs scan passes on main afterwards. 2026-09-29 OD-29: branch protection applied on public main — ruleset protect-main-pr-and-checks (id 24204320): PR required, 5 core checks, 0 approvals, no bypass.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/292",
     "merged_into": "m2/integration (squash)",
@@ -11737,7 +11744,7 @@
      "HOST_CONFIGURED"
     ]
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 OD-26: owner ruled that GitHub-hosted runners count as the live host for LIVE_VERIFIED and HOST_CONFIGURED evidence."
   },
   {
    "id": "M2-0191",
@@ -12124,7 +12131,7 @@
    ],
    "due": "2026-10-09",
    "status": "ENGINEERING_COMPLETE",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default.",
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/298",
     "merged_into": "m2/integration (squash)",
@@ -14638,7 +14645,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: closure not evidence-backed"
+   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: closure not evidence-backed 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again."
   },
   {
    "id": "M2-0239",
@@ -15845,7 +15852,8 @@
    },
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again."
   },
   {
    "id": "M2-0263",
@@ -21951,7 +21959,8 @@
    },
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again."
   },
   {
    "id": "M2-0387",
@@ -23861,7 +23870,7 @@
     "The Listen mic-only note and the Bar chip use the diagnosis (they say which copy/build holds the grant and offer Repair)",
     "LEAD_ACTION (after merge, not the implementer's): verify tccutil-reset-without-sudo behaviour on a hosted macOS runner and record it; Developer ID signing (owner action, OD-8) is noted as the permanent cure for identity churn"
    ],
-   "notes": "2026-09-29 (lead ruling, owner to confirm): OBU-03 forbids editing the macOS permissions database. M2-0429's one-click Repair keeps that intent: it never edits the database; on a user click it runs Apple's /usr/bin/tccutil reset ScreenCapture for this app's own bundle id only (allowlist com.mantu.asktoto/.qa, execFile without a shell, audited), the same effect as removing Metis with '-' in System Settings. Owner confirmation requested; until then the ruling stands as a documented exception to OBU-03.",
+   "notes": "2026-09-29 (lead ruling, owner to confirm): OBU-03 forbids editing the macOS permissions database. M2-0429's one-click Repair keeps that intent: it never edits the database; on a user click it runs Apple's /usr/bin/tccutil reset ScreenCapture for this app's own bundle id only (allowlist com.mantu.asktoto/.qa, execFile without a shell, audited), the same effect as removing Metis with '-' in System Settings. Owner confirmation requested; until then the ruling stands as a documented exception to OBU-03. 2026-09-29 OD-28: owner approved the OBU-03 exception (one-click tccutil reset of Métis's own Screen Recording entry). Remaining LEAD_ACTION: a hosted-macOS run proving tccutil works without sudo (OD-26: hosted runners count).",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/332",
     "merged_into": "m2/integration (squash)",
@@ -24436,7 +24445,8 @@
     ],
     "lead_action_recorded": "2026-09-29: citation fixes applied (M2-0359 += CAPADOPT-google-workspace, M2-0082 += CAPADOPT-cua-driver; citation_gap removed from CAP-13/CAP-38; REPOINT doc updated). The traceability.yml confirmation run waits on the private Actions budget."
    },
-   "engineering_first": true
+   "engineering_first": true,
+   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again."
   },
   {
    "id": "M2-0443",
