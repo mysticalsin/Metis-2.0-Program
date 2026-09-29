@@ -2367,7 +2367,9 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "priority": "P0",
+   "notes": "2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path."
   },
   {
    "id": "M2-0033",
@@ -11812,7 +11814,7 @@
    "wave": "W1",
    "milestone": "m3",
    "type": "fix",
-   "owner_model": "sonnet",
+   "owner_model": "opus",
    "depends_on": [
     "M2-0030",
     "M2-0031",
@@ -11858,7 +11860,8 @@
    "slices": [],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): per OD-21 this ticket's History open/search row is the gate for the History-click freeze (M2-0031 records its History exercise report-only)."
+   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): per OD-21 this ticket's History open/search row is the gate for the History-click freeze (M2-0031 records its History exercise report-only). 2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path.",
+   "priority": "P0"
   },
   {
    "id": "M2-0194",
