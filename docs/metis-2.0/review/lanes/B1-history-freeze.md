@@ -1,6 +1,6 @@
 # Lane B1 — History freeze/crash root-cause analysis
 
-Repo: `/Users/tony/AI-Brain-build/metis-2.0` (read-only checkout, origin/main `2bf21f1c`, v1.9.6)
+Repo: `/Users/<redacted-user>/AI-Brain-build/metis-2.0` (read-only checkout, origin/main `2bf21f1c`, v1.9.6)
 Bug: *"when I click on History sometimes it just doesn't open the app again. It's running but it just freezes or crashes."*
 
 Method: reproduce → root cause → regression test → surgical fix (per `14-reliability-and-recovery.md`, `27-operational-playbooks.md`, `software-delivery.md`). Evidence labels: **OBSERVED** (seen in code/logs/live data), **DERIVED** (reasoned from observed facts), **ASSUMED**, **UNKNOWN**.

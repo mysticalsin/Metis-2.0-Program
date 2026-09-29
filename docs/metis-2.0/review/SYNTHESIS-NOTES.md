@@ -4,7 +4,7 @@
 |---|---|
 | Date | 2026-09-26 |
 | Role | Opus judge/synthesizer, software-architecture-engineer v1.4.0 labels (OBSERVED / PROVIDED / DERIVED / ASSUMED / PROPOSED / UNKNOWN) |
-| Output | `/Users/tony/AI-Brain-build/metis-v2-program/docs/metis-2.0/ledger/tickets.json` (184 tickets, schema version 1) |
+| Output | `/Users/<redacted-user>/AI-Brain-build/metis-v2-program/docs/metis-2.0/ledger/tickets.json` (184 tickets, schema version 1) |
 | Builder | `scratchpad/ledger/build.py` plus `part_*.py`; it validates dependencies, enums, coverage and a privacy scan, then writes the JSON with `json.dump` |
 | Execution | Nothing in the repo was run. Only read-only `ls`/`grep` against the reference checkout, and Python over the review and kit JSON. |
 

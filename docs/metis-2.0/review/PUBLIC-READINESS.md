@@ -143,4 +143,4 @@ Consequences:
 6. **Only if open-source is wanted:** get Mantu legal and IP sign-off (B2, B3), then use the §8a fresh-snapshot repo. Never re-flip this one.
 
 ---
-Method notes: every command was read-only against `/Users/tony/AI-Brain-build/metis-operator-ux` and the GitHub API. The anonymous mirror clone, blob extraction and scans ran in the session scratchpad. gitleaks output used `--redact`. Pattern outputs were masked at source.
+Method notes: every command was read-only against `/Users/<redacted-user>/AI-Brain-build/metis-operator-ux` and the GitHub API. The anonymous mirror clone, blob extraction and scans ran in the session scratchpad. gitleaks output used `--redact`. Pattern outputs were masked at source.

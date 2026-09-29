@@ -2,7 +2,7 @@
 
 **Lane:** L12-arch-graph
 **Scope:** `src/` (main, renderer, shared, preload) full depth; `operator/src`, `intelligence/src` at summary level.
-**Repo:** `/Users/tony/AI-Brain-build/metis-2.0`, read-only checkout of `origin/main` @ `2bf21f1c` (v1.9.6)
+**Repo:** `/Users/<redacted-user>/AI-Brain-build/metis-2.0`, read-only checkout of `origin/main` @ `2bf21f1c` (v1.9.6)
 **Method:** brownfield discovery (read-only, evidence-ledgered) + domain/code-boundary fitness-function thinking (SAE refs 03, 05) + Stark/Addy five-axis review (correctness, readability, architecture, security, performance, +reliability/testability). Evidence labels: **OBSERVED** (seen directly in code), **DERIVED** (reasoned from observed facts), **ASSUMED**, **UNKNOWN**.
 
 ---

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">M2-0093 designed prototype screenshot matrix</title>
+  <desc id="desc">Light and dark 1x and 2x plus reduced motion states for the ARMED orb and expanded pill.</desc>
+  <style>text{font-family:Inter,Arial,sans-serif}.h{font-size:24px;font-weight:700}.s{font-size:15px}.m{font-size:13px}.card{rx:8}.orb{fill:none;stroke-width:5}.beam{fill:none;stroke-width:3;stroke-dasharray:8 8}</style>
+  <rect width="1200" height="760" fill="#f7f5f0"/>
+  <text x="32" y="44" class="h" fill="#1c1d20">M2-0093 ARMED orb and expanded pill</text>
+  <g transform="translate(32 78)">
+    <rect class="card" width="350" height="230" fill="#ffffff" stroke="#c8c1b6"/>
+    <text x="20" y="34" class="s" fill="#1c1d20">Light 1x: ARMED</text>
+    <circle cx="175" cy="115" r="34" class="orb" stroke="#1c1d20"/>
+    <text x="72" y="188" class="m" fill="#5c5f66">Only orb. No pill, caption, beam or badge.</text>
+  </g>
+  <g transform="translate(424 78)">
+    <rect class="card" width="350" height="230" fill="#111317" stroke="#3b414a"/>
+    <text x="20" y="34" class="s" fill="#f4f2ec">Dark 1x: trusted wake</text>
+    <text x="118" y="72" class="m" fill="#d7e4ff">Listening to command</text>
+    <rect x="72" y="92" width="206" height="62" rx="31" fill="#171b22" stroke="#76a7ff" stroke-width="2"/>
+    <circle cx="112" cy="123" r="23" class="orb" stroke="#f4f2ec"/>
+    <path d="M78 162 C140 187 212 187 272 162" class="beam" stroke="#76a7ff"/>
+    <text x="88" y="194" class="m" fill="#bfc7d5">Sanitized scalar drives glow.</text>
+  </g>
+  <g transform="translate(816 78)">
+    <rect class="card" width="350" height="230" fill="#ffffff" stroke="#c8c1b6"/>
+    <text x="20" y="34" class="s" fill="#1c1d20">Light 2x: approval</text>
+    <rect x="54" y="76" width="242" height="78" rx="20" fill="#f4f6fa" stroke="#22324d" stroke-width="2"/>
+    <circle cx="94" cy="115" r="24" class="orb" stroke="#22324d"/>
+    <text x="130" y="109" class="m" fill="#1c1d20">Approve sending recap?</text>
+    <text x="130" y="132" class="m" fill="#596170">Enter approves, Esc cancels.</text>
+  </g>
+  <g transform="translate(228 348)">
+    <rect class="card" width="350" height="230" fill="#111317" stroke="#3b414a"/>
+    <text x="20" y="34" class="s" fill="#f4f2ec">Dark 2x: typing</text>
+    <text x="98" y="74" class="m" fill="#c7d2e6">Ask Metis</text>
+    <rect x="54" y="92" width="242" height="64" rx="32" fill="#171b22" stroke="#4c5667"/>
+    <circle cx="94" cy="124" r="23" class="orb" stroke="#f4f2ec"/>
+    <rect x="128" y="111" width="126" height="26" rx="6" fill="#0f1115" stroke="#5c6676"/>
+  </g>
+  <g transform="translate(620 348)">
+    <rect class="card" width="350" height="230" fill="#ffffff" stroke="#c8c1b6"/>
+    <text x="20" y="34" class="s" fill="#1c1d20">Reduced motion</text>
+    <circle cx="175" cy="108" r="34" class="orb" stroke="#1c1d20"/>
+    <rect x="88" y="164" width="174" height="8" rx="4" fill="#d6dde8"/>
+    <rect x="88" y="164" width="104" height="8" rx="4" fill="#4b6b9b"/>
+    <text x="56" y="198" class="m" fill="#5c5f66">Static orb plus stepped level indicator.</text>
+  </g>
+</svg>

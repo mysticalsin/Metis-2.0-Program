@@ -3,7 +3,7 @@
 **Reviewer lane:** B2-resource-heavy · **Bug:** "it's very heavy on the PC" (Mac + Windows)
 **Method:** reproduce → root cause → regression test → surgical fix (SAE reliability/recovery + operational playbooks; Stark software-delivery loop). Evidence labels: **OBSERVED** (seen in code/logs), **DERIVED** (reasoned from observed facts), **ASSUMED**, **UNKNOWN**. Severity: P0 = user-visible hang/crash/data loss/security in normal use; P1 = serious defect / major resource waste; P2 = maintainability/structure with real cost; P3 = minor.
 
-All file:line references below were read directly from `/Users/tony/AI-Brain-build/metis-2.0` (read-only). No files in the repo or any kit directory were modified.
+All file:line references below were read directly from `/Users/<redacted-user>/AI-Brain-build/metis-2.0` (read-only). No files in the repo or any kit directory were modified.
 
 ---
 

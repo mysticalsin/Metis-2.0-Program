@@ -1,6 +1,6 @@
 # Lane L10 — intelligence-native — AUDIT report
 
-Reviewer: senior staff engineer (AUDIT mode, read-only). Repo: `/Users/tony/AI-Brain-build/metis-2.0`
+Reviewer: senior staff engineer (AUDIT mode, read-only). Repo: `/Users/<redacted-user>/AI-Brain-build/metis-2.0`
 (read-only checkout of `origin/main` @ `2bf21f1c`, v1.9.6). Lane scope: `intelligence/` (9.3K LOC
 standalone Vite/React sub-app), `native-app/` (MetisKit Swift package + SwiftUI shell + XcodeGen),
 `native/` (mac-helper Swift sidecar), `resources/` (binary asset manifest), `skills/`.
@@ -372,7 +372,7 @@ TS/Swift-focused lane and the file's content wasn't reviewed).
 **Constraint compliance:** no repo file was edited, no git state-changing command was run, no `npm install`
 was run, no meeting/transcript content was read (only file/directory listings and sizes), no credential or
 key files (`key-*.bin`, `secret-key.bin`, `Cookies`, `identity.json`) were opened. The only path outside
-`/Users/tony/AI-Brain-build/metis-2.0` I read from was `intelligence/scripts/build-data.mjs`'s *literal
+`/Users/<redacted-user>/AI-Brain-build/metis-2.0` I read from was `intelligence/scripts/build-data.mjs`'s *literal
 string constant* naming a vault directory path — I did not open or read anything under that path.
 
 ---

@@ -4,7 +4,7 @@ Collected on Tony's Mac by the lead session. Raw observations; no secrets, accou
 
 ## Installed app
 - `/Applications/Metis.app` CFBundleShortVersionString `1.9.6`, CFBundleIdentifier `com.mantu.asktoto`.
-- userData `~/Library/Application Support/asktoto`: `local-llm/` 3.3G, `asr-models/` 640M, `SingletonLock -> Totos-Mac.local-9125`.
+- userData `~/Library/Application Support/asktoto`: `local-llm/` 3.3G, `asr-models/` 640M, `SingletonLock -> Toto…-Mac.local-9125`.
 
 ## Processes (`/bin/ps -axo pid,ppid,%cpu,%mem,rss,etime,command`, ~08:20Z)
 ```
@@ -45,8 +45,8 @@ Mechanism (L03-01 verifier): non-app node/vitest processes resolve the real OneD
 `codex exec` → "You've hit your usage limit … try again at Sep 29th, 2026 7:33 PM."
 
 ## Freeze root cause — first-hand spindump verification (lead, 2026-09-26)
-`/Library/Logs/DiagnosticReports/Metis_2026-09-25-135445_Totos-Mac.spin`: Command Metis, Version 1.9.6, PID 1468, Reason "Slow response to HID event", Duration 85.55 s (HID event started 79.0 s before sampling), 68 samples.
+`/Library/Logs/DiagnosticReports/Metis_2026-09-25-135445_Toto…-Mac.spin`: Command Metis, Version 1.9.6, PID 1468, Reason "Slow response to HID event", Duration 85.55 s (HID event started 79.0 s before sampling), 68 samples.
 Thread 0x2fd8 `CrBrowserMain` (main thread): `-[NSMenuTrackingSession startRunningMenuEventLoop:]` (tray menu open, 68/68) → `uv__run_timers` → `node::Environment::RunTimers` (67/68) → JS → `uv_fs_read` (synchronous) → kernel `apfs_materialize_dataless_file_ext` → `lck_mtx_sleep` (≈50/68 samples, in repeated bursts 1-5, 6-15, …).
-Meaning: a main-process JS timer performs synchronous reads of OneDrive cloud-only (dataless) files; while OneDrive materializes them the Electron main thread is blocked — tray, hotkeys, IPC (History), `activate`/reopen all stop. A second spindump `Metis_2026-09-24-173549_Totos-Mac.spin` (same reason) contains `apfs_materialize_dataless` 3 times.
+Meaning: a main-process JS timer performs synchronous reads of OneDrive cloud-only (dataless) files; while OneDrive materializes them the Electron main thread is blocked — tray, hotkeys, IPC (History), `activate`/reopen all stop. A second spindump `Metis_2026-09-24-173549_Toto…-Mac.spin` (same reason) contains `apfs_materialize_dataless` 3 times.
 Corroboration: main.log 2026-09-25 13:47:07.905 → 13:52:31.490 local, a 5 m 23.6 s gap with no main-process log lines, immediately after `net::ERR_INTERNET_DISCONNECTED`.
 Compounding: in the Hide layout (Tony's layout per main.log "park hide"), `app.on('activate')` only calls `win.showInactive()` on an already-"visible" opacity-0 8×2 hairline → reopen is a visible no-op even when the main thread is free.

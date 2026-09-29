@@ -154,7 +154,7 @@ non-exhaustively checked, in `seed-local.mjs` and `screenshot.mjs`).
 const PREVIEW_DIR = '/private/tmp/claude-501/operator-preview'                      // gates.mjs:35, no env override at all
 const SCRATCH_DIR =
   process.env.METIS_QA_SCRATCH ||
-  '/private/tmp/claude-501/-Users-tony-Library-CloudStorage-OneDrive-MantuGroup-Documents-Chief-of-Staff-Apps-Source-Metis-Portal/7883530c-5678-450a-aef0-46d1bc798bfd/scratchpad'
+  '/private/tmp/claude-501/-Users-<redacted-user>-Library-CloudStorage-OneDrive-MantuGroup-Documents-Chief-of-Staff-Apps-Source-Metis-Portal/7883530c-5678-450a-aef0-46d1bc798bfd/scratchpad'
 ```
 `preview-tokens.mjs` and `preview-motion.mjs` hardcode the same `OUT_DIR` with **no** environment-variable
 override at all. This is a macOS-only path (`/private/tmp` doesn't exist as a meaningful mount on Linux CI),
