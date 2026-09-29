@@ -113,3 +113,52 @@ LEAD_ACTION: Update `docs/metis-2.0/ledger/tickets.json` and generated ledger ti
 - DERIVED: Per-module PORT_TESTS/REIMPLEMENT/VENDOR decision recorded with target repo module: YES. Source: module-decision table.
 - DERIVED: No second authority system: YES. VENDOR is rejected for runtime-authority modules; REIMPLEMENT is limited to server-side ports; existing authority remains in trusted main/native paths. Sources: "No-second-authority decision"; `docs/metis-2.0/kit/v5/behavior-core/README.md:28-30`.
 - DERIVED: Kit suites ran in scratch copies under M2-0190-style isolation: YES. Sources: scratch proof-suite table; `/private/tmp/metis-m2-0019-scratch-20260928015505/reports/isolation-path-audit.txt:1-4`.
+
+## HeyClicky parity labels (M2-0261)
+
+OBSERVED: Every label below is about the statically inspected artifact HeyClicky 1.0.51 build 61, DMG sha256 `0c7b2f7b21cc5153e4a3146cdeaff704a67aaf37e08bf06a0117d108edb7b038`, evidence level STATIC_INSPECTION. Source: `docs/metis-2.0/kit/r11/clicky-study/ARTIFACT.json:4`, `:8-9`; the artifact was never executed (`ARTIFACT.json:28-31`).
+DERIVED: Label meaning. **static** = present as packaged components, symbols, strings or manifests in the artifact; not run. **documented** = described in bundled or vendor documents; not run. **verified locally** = run and observed on a Métis-controlled machine; no row has this label, because nothing was executed (D-28). **missing** = documents state it is absent from this runtime. **unknown** = not established by static inspection or documents.
+DERIVED: The machine-readable copy is `docs/metis-2.0/kit/CAPABILITY-DISPOSITIONS.json` (`parity`). `tools/trace/build-traceability.mjs --check` fails when a CXCAP id of the inventory has no label from this set, and `tools/trace/check-reference-claims.mjs` fails when a row below disagrees with the JSON. A vendor changelog or vendor policy statement is a VENDOR_CLAIM and is never a label of installed behaviour.
+DERIVED: Labels refresh at T1, T2, T3 and rc1; the next refresh is T1. Source of each row: `docs/metis-2.0/kit/v5/delivery/CAPABILITY-MATRIX.json` (the `evidence` field of `items[n]`, read 2026-09-28); the notes are M2-0261's reading of that field.
+
+| Id | Capability | Label | Evidence level | Note | Source | Next refresh |
+|---|---|---|---|---|---|---|
+| CXCAP-01 | Primary configurable global keyboard toggle plus mouse/typed alternatives | static | STATIC_INSPECTION | Packaged hotkey and session components; the matrix also says user-observed, which this study did not re-observe | kit/v5/delivery/CAPABILITY-MATRIX.json items[0] | T1 |
+| CXCAP-02 | Spoken conversation with captions | static | STATIC_INSPECTION | Packaged realtime audio/voice symbols and endpoint strings; no endpoint was called | kit/v5/delivery/CAPABILITY-MATRIX.json items[1] | T1 |
+| CXCAP-03 | Interruptible spoken responses | static | STATIC_INSPECTION | Packaged duplex audio components; interruption support is a realtime-provider documentation claim | kit/v5/delivery/CAPABILITY-MATRIX.json items[2] | T1 |
+| CXCAP-04 | Contextual answer about the selected app | static | STATIC_INSPECTION | Packaged screen and element-location components | kit/v5/delivery/CAPABILITY-MATRIX.json items[3] | T1 |
+| CXCAP-05 | Visible arrows and screen guidance | static | STATIC_INSPECTION | Packaged screen annotation components | kit/v5/delivery/CAPABILITY-MATRIX.json items[4] | T1 |
+| CXCAP-06 | Agent ghost pointer | static | STATIC_INSPECTION | Packaged cursor controls; the newer vendor release removing the floating cursor is a VENDOR_CLAIM, not installed behaviour | kit/v5/delivery/CAPABILITY-MATRIX.json items[5] | T1 |
+| CXCAP-07 | Actual foreground pointer actions | documented | DOCUMENTED | Driver input mechanisms are described in bundled driver documents; platform-dependent, not executed | kit/v5/delivery/CAPABILITY-MATRIX.json items[6] | T1 |
+| CXCAP-08 | Background app actions without focus theft | documented | DOCUMENTED | Bundled driver guidance plus the vendor changelog (VENDOR_CLAIM); not executed | kit/v5/delivery/CAPABILITY-MATRIX.json items[7] | T1 |
+| CXCAP-09 | Multi-step computer task execution | static | STATIC_INSPECTION | Packaged Codex runtime and computer-use bridge; not executed | kit/v5/delivery/CAPABILITY-MATRIX.json items[8] | T1 |
+| CXCAP-10 | Fresh screenshot/element grounding | documented | DOCUMENTED | Bundled driver snapshot/token protocol description; not executed | kit/v5/delivery/CAPABILITY-MATRIX.json items[9] | T1 |
+| CXCAP-11 | Independent result verification | documented | DOCUMENTED | Bundled driver verification/effect guidance; not executed | kit/v5/delivery/CAPABILITY-MATRIX.json items[10] | T1 |
+| CXCAP-12 | Browser work with explicit account/tab scope | documented | DOCUMENTED | Bundled driver and connector guidance; not executed | kit/v5/delivery/CAPABILITY-MATRIX.json items[11] | T1 |
+| CXCAP-13 | Verbatim dictation to another app | static | STATIC_INSPECTION | Packaged dictation/focus/insertion components | kit/v5/delivery/CAPABILITY-MATRIX.json items[12] | T1 |
+| CXCAP-14 | Optional rewrite distinct from transcription | static | STATIC_INSPECTION | Packaged cleanup and correction components | kit/v5/delivery/CAPABILITY-MATRIX.json items[13] | T1 |
+| CXCAP-15 | Reusable named agents and distinct orbs | static | STATIC_INSPECTION | Packaged agent session, workspace and UI components | kit/v5/delivery/CAPABILITY-MATRIX.json items[14] | T1 |
+| CXCAP-16 | Voice follow-up to the selected task | static | STATIC_INSPECTION | Packaged voice/agent integration components | kit/v5/delivery/CAPABILITY-MATRIX.json items[15] | T1 |
+| CXCAP-17 | Attach sources and preview outputs | static | STATIC_INSPECTION | Packaged artifact/document/workspace support | kit/v5/delivery/CAPABILITY-MATRIX.json items[16] | T1 |
+| CXCAP-18 | Create documents, spreadsheets, PDFs and code artifacts | static | STATIC_INSPECTION | Fifteen internal SKILL manifests include the relevant categories; no skill was run | kit/v5/delivery/CAPABILITY-MATRIX.json items[17] | T1 |
+| CXCAP-19 | Authenticated integrations and MCP | static | STATIC_INSPECTION | Packaged integration/Composio session endpoints; no endpoint was called | kit/v5/delivery/CAPABILITY-MATRIX.json items[18] | T1 |
+| CXCAP-20 | Per-agent memory and continuing threads | static | STATIC_INSPECTION | Packaged agent workspace/memory structure | kit/v5/delivery/CAPABILITY-MATRIX.json items[19] | T1 |
+| CXCAP-21 | Read-only suggestions, accept/adjust workflow | static | STATIC_INSPECTION | Packaged suggestion types; the background-read behaviour is a vendor policy statement (VENDOR_CLAIM) | kit/v5/delivery/CAPABILITY-MATRIX.json items[20] | T1 |
+| CXCAP-22 | Routines with sleep/offline recovery | static | STATIC_INSPECTION | Packaged cron and scheduling types; sleep/offline recovery not observed | kit/v5/delivery/CAPABILITY-MATRIX.json items[21] | T1 |
+| CXCAP-23 | Concurrent independent agent tasks | static | STATIC_INSPECTION | Packaged named task architecture | kit/v5/delivery/CAPABILITY-MATRIX.json items[22] | T1 |
+| CXCAP-24 | Usage, approval and completion status | static | STATIC_INSPECTION | Packaged metering/permissions/session components | kit/v5/delivery/CAPABILITY-MATRIX.json items[23] | T1 |
+| CXCAP-25 | Quiet mode during calls/screen sharing | static | STATIC_INSPECTION | Packaged audio/capture context; vendor documentation is a VENDOR_CLAIM | kit/v5/delivery/CAPABILITY-MATRIX.json items[24] | T1 |
+| CXCAP-26 | Resumable onboarding and permissions | static | STATIC_INSPECTION | Packaged permission coordinator and onboarding assets | kit/v5/delivery/CAPABILITY-MATRIX.json items[25] | T1 |
+| CXCAP-27 | Updates and recovery | static | STATIC_INSPECTION | Packaged Sparkle framework and update feed; no update was applied | kit/v5/delivery/CAPABILITY-MATRIX.json items[26] | T1 |
+| CXCAP-28 | Public skill-authoring screen | documented | DOCUMENTED | Vendor changelog says the Skills UI was paused (VENDOR_CLAIM); manifests remain in the binary | kit/v5/delivery/CAPABILITY-MATRIX.json items[27] | T1 |
+| CXCAP-29 | Driver recording/replay automation | missing | DOCUMENTED | Bundled reference docs state that recording tools are not exposed in this runtime | kit/v5/delivery/CAPABILITY-MATRIX.json items[28] | T1 |
+| CXCAP-30 | Universal support for every application | unknown | UNKNOWN | Not established by static inspection or marketing | kit/v5/delivery/CAPABILITY-MATRIX.json items[29] | T1 |
+
+DERIVED: Count by label (jq over the JSON `parity` array, 2026-09-28): static 22, documented 6, verified locally 0, missing 1, unknown 1; total 30. CXCAP-06, CXCAP-08, CXCAP-21, CXCAP-25 and CXCAP-28 carry a VENDOR_CLAIM note.
+
+## 48 capability dispositions and reference register (M2-0261)
+
+DERIVED: The 48 packaged Markdown resources (CAP-01 to CAP-48) with disposition, Métis home and owning ticket are in `docs/metis-2.0/kit/CAPABILITY-DISPOSITIONS.json` (`capabilities`); each row keeps the source path and sha256 of the resource. Owners: M2-0142 (artifacts, documents, presentations), M2-0141 (research and creative routing), M2-0301 (connectors), M2-0139 (developer opt-in skills), M2-0120 (knowledge sources), M2-0082 and M2-0084 (trusted executor and Mac adapters), M2-0088 (context broker). Rows with no owning ticket are NOT_TESTED (blender, excalidraw, maps, youtube-content) or EXCLUDED (findmy, imessage, polymarket, spotify and the eight evidence-only documents; 4 NOT_TESTED and 12 EXCLUDED, counted with jq). The reference disposition register is `docs/metis-2.0/baseline/REFERENCE-REGISTER.md`.
+
+LEAD_ACTION: Refresh the CXCAP labels at T1, T2, T3 and rc1, and move a row to `verified locally` only after a local run that a person observed; file that as an evidence record.
+LEAD_ACTION: Update `docs/metis-2.0/ledger/tickets.json` and the generated ledger ticket markdown for M2-0261 after review; this worker did not edit ledger files.

@@ -44,6 +44,7 @@ export const defaultPaths = (root = defaultRoot) => ({
   evidenceRecords: path.join(root, "evidence/records"),
   decisions: path.join(root, "DECISIONS.md"),
   blockers: path.join(root, "BLOCKERS.md"),
+  capabilityDispositions: path.join(root, "kit/CAPABILITY-DISPOSITIONS.json"),
   outputMarkdown: path.join(root, "TRACEABILITY.md"),
   outputJson: path.join(root, "ledger/traceability.json"),
 });
@@ -118,6 +119,73 @@ export async function loadEvidenceRecords(recordsDir) {
 // IDs that must exist in the inventory and be named in the acceptance of a mapped ticket.
 export const REQUIRED_ACCEPTANCE_IDS = Array.from({ length: 6 }, (_, index) => `HM-FLOW-${String(index + 1).padStart(2, "0")}`);
 
+// HeyClicky capability map (M2-0261): the 48 packaged Markdown resources and the CXCAP parity labels.
+export const EXPECTED_CAPABILITY_ROWS = 48;
+export const CAPABILITY_OWNER_MARKERS = ["NOT_TESTED", "BLOCKED", "EXCLUDED"];
+export const PARITY_LABELS = ["static", "documented", "verified locally", "missing", "unknown"];
+export const PARITY_REFRESH_POINTS = ["T1", "T2", "T3", "rc1"];
+const CAPABILITY_ID_RE = /^CAP-\d{2}$/;
+const SHA256_RE = /^[0-9a-f]{64}$/;
+
+export function validateCapabilityDispositions(dispositions, { ticketIds, rows, errors }) {
+  const artifact = dispositions.artifact ?? {};
+  for (const field of ["version", "build", "sha256", "evidence_level", "evidence_limits"]) {
+    if (typeof artifact[field] !== "string" || artifact[field].trim() === "") {
+      errors.push(`capability dispositions: artifact is missing ${field}`);
+    }
+  }
+  if (typeof artifact.sha256 === "string" && !SHA256_RE.test(artifact.sha256)) {
+    errors.push("capability dispositions: artifact sha256 is not 64 lowercase hex characters");
+  }
+
+  const capabilities = dispositions.capabilities;
+  if (!Array.isArray(capabilities)) {
+    errors.push("capability dispositions: capabilities must be an array");
+  } else {
+    if (capabilities.length !== EXPECTED_CAPABILITY_ROWS) {
+      errors.push(`capability dispositions: expected ${EXPECTED_CAPABILITY_ROWS} rows, found ${capabilities.length}`);
+    }
+    const seen = new Set();
+    for (const row of capabilities) {
+      const id = row.id;
+      if (!CAPABILITY_ID_RE.test(id ?? "")) errors.push(`capability row has invalid id ${id}`);
+      if (seen.has(id)) errors.push(`capability row ${id} is duplicated`);
+      seen.add(id);
+      for (const field of ["name", "reference_path", "disposition", "metis_home", "owner", "evidence_level"]) {
+        if (typeof row[field] !== "string" || row[field].trim() === "") {
+          errors.push(`unmapped capability row ${id}: missing ${field}`);
+        }
+      }
+      if (!SHA256_RE.test(row.reference_sha256 ?? "")) errors.push(`capability row ${id} has an invalid reference_sha256`);
+      const owner = row.owner;
+      if (typeof owner === "string" && owner !== "" && !CAPABILITY_OWNER_MARKERS.includes(owner)) {
+        if (!PROGRAM_TICKET_RE.test(owner)) {
+          errors.push(`capability row ${id} owner ${owner} is not an M2 ticket or one of ${CAPABILITY_OWNER_MARKERS.join("/")}`);
+        } else if (!ticketIds.has(owner)) {
+          errors.push(`capability row ${id} owner ${owner} is a missing ticket`);
+        }
+      }
+    }
+  }
+
+  const refresh = dispositions.parity_refresh_points ?? [];
+  for (const point of PARITY_REFRESH_POINTS) {
+    if (!refresh.includes(point)) errors.push(`parity table does not schedule a label refresh at ${point}`);
+  }
+  const parity = Array.isArray(dispositions.parity) ? dispositions.parity : [];
+  const parityById = new Map(parity.map((entry) => [entry.id, entry]));
+  for (const id of new Set(rows.filter((row) => row.family === "CXCAP").map((row) => row.id))) {
+    const entry = parityById.get(id);
+    if (!entry || !PARITY_LABELS.includes(entry.label)) {
+      errors.push(`unlabelled parity id ${id}: label must be one of ${PARITY_LABELS.join(", ")}`);
+      continue;
+    }
+    if (typeof entry.source_ref !== "string" || entry.source_ref.trim() === "") {
+      errors.push(`parity id ${id} has no source reference`);
+    }
+  }
+}
+
 export function computeTraceability({
   inventory,
   ledger,
@@ -125,6 +193,7 @@ export function computeTraceability({
   decisionsText = "",
   blockersText = "",
   requiredAcceptanceIds = [],
+  capabilityDispositions = null,
 }) {
   const errors = [];
   const warnings = [];
@@ -180,6 +249,10 @@ export function computeTraceability({
       row.tickets.some((summary) => (ticketsById.get(summary.id).acceptance ?? []).some((line) => line.includes(id))),
     );
     if (!named) errors.push(`required inventory id ${id} is not named in the acceptance of any mapped ticket`);
+  }
+
+  if (capabilityDispositions) {
+    validateCapabilityDispositions(capabilityDispositions, { ticketIds, rows, errors });
   }
 
   const duplicateRefs = findDuplicateRefRows(outputRows);
@@ -519,12 +592,13 @@ function escapeCell(value) {
 }
 
 export async function build(paths = defaultPaths()) {
-  const [inventory, ledger, records, decisionsText, blockersText] = await Promise.all([
+  const [inventory, ledger, records, decisionsText, blockersText, capabilityDispositions] = await Promise.all([
     loadInventory(paths),
     readJson(paths.tickets),
     loadEvidenceRecords(paths.evidenceRecords),
     readFile(paths.decisions, "utf8"),
     readFile(paths.blockers, "utf8"),
+    readJson(paths.capabilityDispositions),
   ]);
   return computeTraceability({
     inventory,
@@ -533,6 +607,7 @@ export async function build(paths = defaultPaths()) {
     decisionsText,
     blockersText,
     requiredAcceptanceIds: REQUIRED_ACCEPTANCE_IDS,
+    capabilityDispositions,
   });
 }
 
