@@ -37,4 +37,4 @@ The brief requires citing `scripts/hermetic/owner-account.sb`, `scripts/hermetic
 - UNKNOWN: the exact rules, variable names and flags in `owner-account.sb` and `run-under-owner-sandbox.sh`.
 - UNKNOWN: the job names and checks in `isolation-canary.yml`. Only its existence is OBSERVED (docs/metis-2.0/runbooks/integration.md:239).
 
-LEAD_ACTION: run `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:scripts/hermetic/owner-account.sb`, the same for `scripts/hermetic/run-under-owner-sandbox.sh` and `.github/workflows/isolation-canary.yml`, then add sections "Profile as merged", "Wrapper" and "Canary jobs" here with file:line citations, or re-dispatch M2-0481 with that permission granted.
+LEAD_ACTION: in a clone of the public repo (metis-operator-ux), run `git show origin/m2/integration:scripts/hermetic/owner-account.sb`, the same for `scripts/hermetic/run-under-owner-sandbox.sh` and `.github/workflows/isolation-canary.yml`, then add sections "Profile as merged", "Wrapper" and "Canary jobs" here with file:line citations, or re-dispatch M2-0481 with that permission granted.
