@@ -12300,7 +12300,8 @@
     "M2-0022",
     "M2-0007",
     "M2-0036",
-    "M2-0428"
+    "M2-0428",
+    "M2-0431"
    ],
    "needs_decision": [
     "D-7"
@@ -12346,7 +12347,7 @@
    "due": null,
    "status": "TODO",
    "priority": "P0",
-   "notes": "2026-09-29 (lead): OWNER-REPORTED on 1.9.6 ('The right edge hide doesnt work'; 'improve the Right edge Island UX UI ... no scroll needed') -> P0, OD-22. Dropped the M2-0198 dependency (a post-1.9.7 soak hold), which contradicted this ticket's own 'ship in T1' summary; lands before 1.9.7 so the owner gets the fix. 2026-09-29 (lead): the owner-reported right-edge Hide defect is split out as M2-0428 (P0, ships in 1.9.7; M2-0046 depends on it). This ticket carries the no-scroll island redesign plus D1-D11 on top of it."
+   "notes": "2026-09-29 (lead): OWNER-REPORTED on 1.9.6 ('The right edge hide doesnt work'; 'improve the Right edge Island UX UI ... no scroll needed') -> P0, OD-22. Dropped the M2-0198 dependency (a post-1.9.7 soak hold), which contradicted this ticket's own 'ship in T1' summary; lands before 1.9.7 so the owner gets the fix. 2026-09-29 (lead): the owner-reported right-edge Hide defect is split out as M2-0428 (P0, ships in 1.9.7; M2-0046 depends on it). This ticket carries the no-scroll island redesign plus D1-D11 on top of it. 2026-09-29 (lead): owner L6 answer (OD-25): long content opens in a Reader view beside the island; the island never scrolls. Delivered in slices S1-S7 (spec v3, codex-queue/logs/right-edge-2026-09-29/spec-v3.md + its re-review as binding amendments); sequenced after M2-0428 and M2-0431 (same hover/right-edge code)."
   },
   {
    "id": "M2-0203",
