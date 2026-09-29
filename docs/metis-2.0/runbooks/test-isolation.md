@@ -36,9 +36,11 @@ OBSERVED (docs/metis-2.0/ledger/tickets.json:11927-11932): the one `isolation-ca
 
 ## Unread sources (BLOCKING: acceptance 1 unmet)
 
-The brief requires citing `scripts/hermetic/owner-account.sb`, `scripts/hermetic/run-under-owner-sandbox.sh` and the `isolation-canary.yml` job names as merged on origin/m2/integration. In the re-dispatch, `git -C /Users/tony/AI-Brain-build/metis-operator-ux show origin/m2/integration:<path>` was again refused (approval required, with and without a pipe), and a direct Read of that clone's working tree found no such file. The files are not in this worktree.
+The brief requires citing `scripts/hermetic/owner-account.sb`, `scripts/hermetic/run-under-owner-sandbox.sh` and the `isolation-canary.yml` job names as merged on origin/m2/integration. In the re-dispatch, `git -C <clone of the public repo> show origin/m2/integration:<path>` was again refused (approval required, with and without a pipe, re-tried a third time in this pass), and a direct Read of that clone's working tree found no such file. The files are not in this worktree.
 
 - UNKNOWN: the exact rules, variable names and flags in `owner-account.sb` and `run-under-owner-sandbox.sh`.
 - UNKNOWN: the job names and checks in `isolation-canary.yml`. Only its existence is OBSERVED (docs/metis-2.0/runbooks/integration.md:239).
+
+LEAD_ACTION: amend the acceptance text of M2-0190 in docs/metis-2.0/ledger/tickets.json (line 11898 at time of writing) to drop the QA-account and owner-account steps, so it matches D-9, D-28, OD-26 and this runbook's run order.
 
 LEAD_ACTION: in a clone of the public repo (metis-operator-ux), run `git show origin/m2/integration:scripts/hermetic/owner-account.sb`, the same for `scripts/hermetic/run-under-owner-sandbox.sh` and `.github/workflows/isolation-canary.yml`, then add sections "Profile as merged", "Wrapper" and "Canary jobs" here with file:line citations, or re-dispatch M2-0481 with that permission granted.
