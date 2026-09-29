@@ -17,7 +17,7 @@ agents in isolated worktrees, one ledger ticket at a time.
 | [`TRACEABILITY.md`](TRACEABILITY.md) / [`TRACEABILITY.json`](TRACEABILITY.json) | Every ID in the kit/registry inventory mapped to the ledger tickets that cover it. |
 | [`ledger/INDEX.md`](ledger/INDEX.md) | All 213 tickets, grouped by wave, with type/owner/milestone/deps/blocker/status. |
 | [`ledger/tickets.json`](ledger/tickets.json) | The ledger's source of truth (schema v2). |
-| [`ledger/tickets/`](ledger/tickets/) | One file per ticket: full fields, acceptance and verification as checklists, plus `## Log` and `## Validation (Opus)`. |
+| [`ledger/tickets/`](ledger/tickets/) | **Frozen snapshots** of the original ticket text for M2-0001..M2-0213 (full fields, acceptance and verification as checklists), written in commit `5391490` on 2026-09-26. No generator exists and they are never regenerated, so their `status` and checkboxes are stale. [`ledger/tickets.json`](ledger/tickets.json) is the only source of ticket status and evidence, and the only record of tickets after M2-0213. |
 | [`evidence/`](evidence/SCHEMA.md) | ADR-017: the evidence record schema, readiness labels, host labels and closure rules (M2-0002); `evidence/records/<ticket>.jsonl` holds the append-only records themselves. |
 | [`review/`](review/) | Redacted copies of the review lane reports, coverage/prep notes, runtime evidence and the ChatGPT audit that this plan was built from. |
 | [`kit/`](kit/) | Text-only reference copies of the r11, v6 and v5 input kits, for agents that only see this repo. |

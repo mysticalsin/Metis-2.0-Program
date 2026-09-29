@@ -4,6 +4,8 @@ name: Traceability
 # pull_request runs could not start and each one sent a failure email. Run on demand with
 #   gh workflow run traceability.yml -R mysticalsin/Metis-2.0-Program
 # Restore push/pull_request triggers once the owner raises the Actions budget (ledger M2-0011 note).
+# 2026-09-29 (lead): also checks HOST-BINDINGS.md against the public code repo at m2/integration and
+# uploads regenerated traceability outputs (artifact traceability-outputs) for the lead to commit.
 on:
   workflow_dispatch:
 
@@ -22,3 +24,44 @@ jobs:
 
       - name: Test traceability generator
         run: node --test docs/metis-2.0/tools/trace/build-traceability.test.mjs
+
+      # The steps below also run when a check above failed, so every check reports and the artifact is kept.
+      - name: Checkout public code repo (m2/integration)
+        if: ${{ !cancelled() }}
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: mysticalsin/AskToto-Mantu
+          ref: m2/integration
+          path: asktoto-mantu
+          persist-credentials: false
+
+      - name: Check host bindings against m2/integration
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          out="$RUNNER_TEMP/traceability-outputs"
+          mkdir -p "$out"
+          git -C asktoto-mantu rev-parse HEAD | tee "$out/code-sha.txt"
+          node docs/metis-2.0/tools/trace/check-bindings.mjs --code-root "$GITHUB_WORKSPACE/asktoto-mantu" 2>&1 | tee "$out/check-bindings.log"
+
+      - name: Regenerate traceability outputs
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          out="$RUNNER_TEMP/traceability-outputs"
+          mkdir -p "$out"
+          status=0
+          node docs/metis-2.0/tools/trace/build-traceability.mjs > "$out/build-traceability.log" 2>&1 || status=$?
+          cat "$out/build-traceability.log"
+          git status --short -- docs/metis-2.0 | tee "$out/changed-files.txt"
+          cp docs/metis-2.0/TRACEABILITY.md docs/metis-2.0/ledger/traceability.json docs/metis-2.0/kit/ID-INVENTORY.json "$out/"
+          exit "$status"
+
+      - name: Upload traceability outputs
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: traceability-outputs
+          path: ${{ runner.temp }}/traceability-outputs/
+          if-no-files-found: error
+          retention-days: 14

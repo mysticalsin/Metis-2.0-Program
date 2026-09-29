@@ -25,8 +25,8 @@ LEAD_ACTION: in docs/metis-2.0/ledger/tickets.json add kit_refs "HM-FLOW-06" and
 
 Rationale (DERIVED): M2-0344 already carries HM-FLOW-01/02/04 in `finding_refs` and owns the fault matrix and resurrection checks that HM-FLOW-03 needs; M2-0334 already carries HM-FLOW-05; M2-0343 already carries HM-FLOW-06. Row keys are unique (`r11:HM-FLOW-0N`), so bare ids resolve without the `kit:id` form. Any ticket with a reworded line must keep the exact id string, because the check uses `line.includes(id)`.
 
-LEAD_ACTION: after the ledger edits, regenerate the generated files with `node docs/metis-2.0/tools/trace/build-traceability.mjs` (writes docs/metis-2.0/ledger/traceability.json and docs/metis-2.0/TRACEABILITY.md), then run it with `--check` and commit the outputs. Not run here (D-28); hand-editing the generated files would be fabricated output, so they are unchanged.
-LEAD_ACTION: regenerate docs/metis-2.0/ledger/tickets/*.md from tickets.json for M2-0334, M2-0343 and M2-0344 with the ledger's normal generator.
+Resolved 2026-09-29 (lead): staged in `.github/workflows/traceability.yml` — runs when private CI minutes are available (owner action). The workflow runs `--check`, then regenerates docs/metis-2.0/ledger/traceability.json and docs/metis-2.0/TRACEABILITY.md and uploads them as the `traceability-outputs` artifact; the lead commits the outputs from that artifact. Until the ledger edits above land, the generator reports the HM-FLOW errors and writes nothing, so the artifact then carries only its log. Not run yet (D-28 forbids running it on a Mac); the generated files stay unchanged and are never hand-edited.
+Resolved 2026-09-29 (lead): no ticket-md generator exists. `ledger/tickets/*.md` are frozen snapshots of M2-0001..M2-0213 (`docs/metis-2.0/README.md`); M2-0334, M2-0343 and M2-0344 have no md file, and `ledger/tickets.json` is the only source for them.
 
 ## 3. Sweep for other missing ID families (OBSERVED unless marked)
 
