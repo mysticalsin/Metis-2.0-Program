@@ -23814,7 +23814,8 @@
     "bg-screen backoff: exponential 6 s -> 10 min, latching after 5 consecutive permission failures, reset on success/settings change/relaunch; one screen.preprocess.suspended audit per streak",
     "The Listen mic-only note and the Bar chip use the diagnosis (they say which copy/build holds the grant and offer Repair)",
     "LEAD_ACTION (after merge, not the implementer's): verify tccutil-reset-without-sudo behaviour on a hosted macOS runner and record it; Developer ID signing (owner action, OD-8) is noted as the permanent cure for identity churn"
-   ]
+   ],
+   "notes": "2026-09-29 (lead ruling, owner to confirm): OBU-03 forbids editing the macOS permissions database. M2-0429's one-click Repair keeps that intent: it never edits the database; on a user click it runs Apple's /usr/bin/tccutil reset ScreenCapture for this app's own bundle id only (allowlist com.mantu.asktoto/.qa, execFile without a shell, audited), the same effect as removing Metis with '-' in System Settings. Owner confirmation requested; until then the ruling stands as a documented exception to OBU-03."
   },
   {
    "id": "M2-0430",
