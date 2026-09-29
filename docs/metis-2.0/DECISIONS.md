@@ -50,6 +50,7 @@ Evidence labels follow software-architecture-engineer v1.4.0: OBSERVED, PROVIDED
 | OD-34 | 2026-09-29 | Owner: sidecar **supervision ships default-on in 1.9.7 only after HK-M passes 20/20 on the candidate**; 1.9.7 waits for it (no ship-OFF fallback). |
 | OD-35 | 2026-09-29 | Owner: the M2-0046 **8 h idle soak runs as two hosted legs** (macOS and Windows, each <= 5.5 h, within GitHub's 6 h job limit) on the candidate bytes, each judged by a growth rule pre-registered before the run and extrapolated to 8 h. Amends the '8 h continuous' wording. |
 | OD-36 | 2026-09-29 | Owner: **ST-1 on real cloud placeholder (dataless) files is proven during the owner's 5-day soak** (M2-0198 diagnostics on his normal daily use; no test run on his Mac, D-28). The 1.9.7 candidate carries ST-1 with the synthetic dataless fixtures in CI. |
+| OD-37 | 2026-09-29 | Owner (explicit, after the lead's written warning of what becomes public — competitor teardowns, kit material, security notes, confidential-marked docs, full history; secret scan clean, no third-party personal data found): **make the program repo public temporarily**, fix the issues, and **make it private again when everything is done**. Effects: ruleset 24214300 blocks force-pushes and deletion of main (the Windows PC's stale clone can no longer reset it); public-repo Actions minutes replace the exhausted private budget (OD-27 moot). The revert is tracked as the last program step. |
 
 ## B. Program decisions (Opus, 2026-09-26)
 

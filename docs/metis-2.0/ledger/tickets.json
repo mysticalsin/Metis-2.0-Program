@@ -339,6 +339,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-31..OD-36 recorded (1.9.7 full qualification, ad-hoc mac, promote dry run, supervision waits for 20/20, two hosted soak legs, dataless ST-1 in the owner soak); M2-0046 acceptance amended."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-37: program repo public temporarily; main ruleset 24214300; M2-0480 tracks the revert to private at program close."
   }
  ],
  "tickets": [
@@ -1078,7 +1084,7 @@
    "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner",
    "claimed_at": "2026-09-26",
-   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again.",
+   "notes": "Re-scoped 2026-09-27 (lead): the generator reads private program documents, so it lives in the PRIVATE repo under docs/metis-2.0/tools/trace/ (reuse scripts/trace/build-traceability.mjs from the earlier attempt if present); public PR #211 is closed unmerged. It may run only in the private repo context, never on meeting data; its outputs are docs/metis-2.0/TRACEABILITY.md and ledger/traceability.json (generated, the one exception to the no-ledger-edit rule for this ticket). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed).",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/17",
     "merged_into": "main (squash)",
@@ -1649,7 +1655,7 @@
     "implementer": "codex",
     "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    },
-   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 (lead, EC triage): Gap ticket M2-0449 (private kit-checks.yml kit-suites job; depends on M2-0385; needs the OD-27 budget). Schema gap for the LOCALLY_TESTED record: SCHEMA.md section 3 requires 'pr' as a public PR number for LOCALLY_TESTED, and a private-repo CI run has none. Fold an allowance for private-repo runs into the OD-26 evidence-schema change rather than citing an unrelated public PR. check_acceptance.py stays NOT_RUN until a trusted native artifact exists."
+   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 (lead, EC triage): Gap ticket M2-0449 (private kit-checks.yml kit-suites job; depends on M2-0385; needs the OD-27 budget). Schema gap for the LOCALLY_TESTED record: SCHEMA.md section 3 requires 'pr' as a public PR number for LOCALLY_TESTED, and a private-repo CI run has none. Fold an allowance for private-repo runs into the OD-26 evidence-schema change rather than citing an unrelated public PR. check_acceptance.py stays NOT_RUN until a trusted native artifact exists. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed)."
   },
   {
    "id": "M2-0020",
@@ -12282,7 +12288,7 @@
    ],
    "due": "2026-10-09",
    "status": "ENGINEERING_COMPLETE",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again.",
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed).",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/298",
     "merged_into": "m2/integration (squash)",
@@ -14828,7 +14834,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: closure not evidence-backed 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again."
+   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: closure not evidence-backed 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed)."
   },
   {
    "id": "M2-0239",
@@ -16060,7 +16066,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again."
+   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed)."
   },
   {
    "id": "M2-0263",
@@ -22193,7 +22199,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again."
+   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed)."
   },
   {
    "id": "M2-0387",
@@ -24689,7 +24695,7 @@
     "lead_action_recorded": "2026-09-29: citation fixes applied (M2-0359 += CAPADOPT-google-workspace, M2-0082 += CAPADOPT-cua-driver; citation_gap removed from CAP-13/CAP-38; REPOINT doc updated). The traceability.yml confirmation run waits on the private Actions budget."
    },
    "engineering_first": true,
-   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again."
+   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed)."
   },
   {
    "id": "M2-0443",
@@ -26545,6 +26551,48 @@
     "check.mjs --ticket M2-0198 validates that record; tests use fixtures (rotation mid-window, version change, a missing day, unclean boot + reap); CI only"
    ],
    "notes": "2026-09-29 (lead): split from M2-0198."
+  },
+  {
+   "id": "M2-0480",
+   "wave": "W9",
+   "milestone": "m12",
+   "type": "external",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0210"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-37"
+   ],
+   "scope_paths": [
+    "docs/metis-2.0/DECISIONS.md"
+   ],
+   "estimate_hours": 0.5,
+   "risk": "low",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Make the program repository private again once Métis 2.0 is done (OD-37)",
+   "summary": "OD-37 made mysticalsin/Metis-2.0-Program public temporarily (2026-09-29) to lock main against the stale Windows clone's force-pushes and to get free Actions minutes. When the program closes, the lead returns it to private. Note: the main ruleset needs GitHub Pro on a private repo, so it stops being enforced once private.",
+   "acceptance": [
+    "LEAD_ACTION: gh repo edit mysticalsin/Metis-2.0-Program --visibility private --accept-visibility-change-consequences, after the closing ticket is DONE and the owner confirms",
+    "DECISIONS.md records the revert date; the Windows PC clone's push is disabled first (or GitHub Pro keeps the ruleset)"
+   ],
+   "verification": [
+    "gh repo view --json visibility = PRIVATE"
+   ],
+   "required_evidence": [
+    "HOST_CONFIGURED"
+   ],
+   "evidence_target": "HOST_CONFIGURED",
+   "external_blocker": {
+    "owner": "lead + owner confirmation",
+    "unblock_step": "Run after Métis 2.0 closes (OD-37)."
+   },
+   "flag": null,
+   "notes": "2026-09-29 (lead): held by its external_blocker so the queue never launches it."
   }
  ]
 }
