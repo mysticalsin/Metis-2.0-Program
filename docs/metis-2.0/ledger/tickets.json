@@ -16138,12 +16138,21 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "priority": "P1",
    "notes": "2026-09-28 (lead): dependency on M2-0195 dropped (SOFT: baseline comes from M2-0009 census on hosted runners; the managed-laptop row stays BLOCKED_EXTERNAL); re-verify against M2-0195 once it lands.",
    "required_evidence": [
     "MEASURED"
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/301",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "MEASURED"
+    ]
+   }
   },
   {
    "id": "M2-0265",
