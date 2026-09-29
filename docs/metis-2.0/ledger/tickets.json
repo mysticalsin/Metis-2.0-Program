@@ -14219,8 +14219,14 @@
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
-   "status": "TODO",
-   "priority": "P0"
+   "status": "DONE",
+   "priority": "P0",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/322",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0240",
