@@ -23662,7 +23662,7 @@
    "kit_refs": [],
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "evidence_target": "LOCALLY_TESTED",
    "priority": "P0",
    "id": "M2-0416",
@@ -23693,7 +23693,13 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 (lead, EC triage): M2-0448 depends on PR #300 (same file). Merge #300 first. M2-0448 will change candidate_run and sha256 to required: false at dispatch, so suite=capabilities can be dispatched without dummy installer values, and will replace that with an up-front hk-w guard (numeric run id, 64-hex sha256) before npm ci. M2-0416's 'inputs are required' acceptance keeps holding through that guard. 2026-09-29 (lead, EC triage): 2026-09-29 (Theme A): the in-flight branch m2/M2-0416-hk-w-lane-installs (be1ef04b) adds scripts/qa/candidate-installer.mjs. M2-0467 and M2-0468 extend that same selector to the macOS DMG/zip and reuse it for the Windows Setup, so landing M2-0416 first avoids a merge conflict. It is not a declared dependency because M2-0416 depends on M2-0187, whose external_blocker would cap the new tickets."
+   "notes": "2026-09-29 (lead, EC triage): M2-0448 depends on PR #300 (same file). Merge #300 first. M2-0448 will change candidate_run and sha256 to required: false at dispatch, so suite=capabilities can be dispatched without dummy installer values, and will replace that with an up-front hk-w guard (numeric run id, 64-hex sha256) before npm ci. M2-0416's 'inputs are required' acceptance keeps holding through that guard. 2026-09-29 (lead, EC triage): 2026-09-29 (Theme A): the in-flight branch m2/M2-0416-hk-w-lane-installs (be1ef04b) adds scripts/qa/candidate-installer.mjs. M2-0467 and M2-0468 extend that same selector to the macOS DMG/zip and reuse it for the Windows Setup, so landing M2-0416 first avoids a merge conflict. It is not a declared dependency because M2-0416 depends on M2-0187, whose external_blocker would cap the new tickets.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/300",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0417",
