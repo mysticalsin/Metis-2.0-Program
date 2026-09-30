@@ -4842,9 +4842,96 @@
    "risk": "medium",
    "estimate_hours": 14,
    "validation_hours": 1.5,
-   "slices": [],
+   "slices": [
+    {
+     "id": "M2-0071.1",
+     "title": "UI primitives to ui/; DustSetup and AgentPicker to features/settings with behaviour tests first",
+     "scope_paths": [
+      "src/renderer/src/components/Settings.tsx",
+      "src/renderer/src/ui/",
+      "src/renderer/src/features/settings/"
+     ],
+     "acceptance": [
+      "DustSetup and AgentPicker get tests before any move",
+      "SLICE: Section, Toggle, StepBadge, ManagedChip and ctl live in renderer/ui; DustSetup and AgentPicker (with credential-store and provider-readiness) live in features/settings; Settings.contract.test.ts reads the moved files and keeps every expect(); behaviour unchanged (state/M2-0071.lead S1)"
+     ],
+     "estimate_hours": 5,
+     "owner_model": "sonnet",
+     "depends_on_slices": []
+    },
+    {
+     "id": "M2-0071.2",
+     "title": "Move the next group of Settings sections into features/settings (pure move, contract test kept)",
+     "scope_paths": [
+      "src/renderer/src/components/Settings.tsx",
+      "src/renderer/src/features/settings/"
+     ],
+     "acceptance": [
+      "SLICE: the next group of Settings sections (about a third of what remains) moves to features/settings as a pure move; Settings.contract.test.ts still reads every moved file and keeps every expect(); behaviour unchanged"
+     ],
+     "estimate_hours": 8,
+     "owner_model": "sonnet",
+     "depends_on_slices": [
+      "M2-0071.1"
+     ]
+    },
+    {
+     "id": "M2-0071.3",
+     "title": "Move the remaining Settings sections; the Settings to TapCalibration import cycle is gone",
+     "scope_paths": [
+      "src/renderer/src/components/Settings.tsx",
+      "src/renderer/src/components/TapCalibration.tsx",
+      "src/renderer/src/features/settings/",
+      "src/renderer/src/ui/"
+     ],
+     "acceptance": [
+      "Primitives in renderer/ui; sections in features/settings; the Settings to TapCalibration cycle is gone"
+     ],
+     "estimate_hours": 8,
+     "owner_model": "sonnet",
+     "depends_on_slices": [
+      "M2-0071.2"
+     ]
+    },
+    {
+     "id": "M2-0071.4",
+     "title": "Screenshot comparison of every Settings section before/after, Opus reviewed, in CI/QA (never on the owner Mac, D-28)",
+     "scope_paths": [
+      "scripts/qa/",
+      ".github/workflows/"
+     ],
+     "acceptance": [
+      "Screenshot comparison of every Settings section identical before/after (Opus reviewed)"
+     ],
+     "estimate_hours": 6,
+     "owner_model": "sonnet",
+     "depends_on_slices": [
+      "M2-0071.3"
+     ]
+    },
+    {
+     "id": "M2-0071.5",
+     "title": "Settings.tsx at or under 800 LOC and the peel-when-you-touch-it rule for anything left",
+     "scope_paths": [
+      "src/renderer/src/components/Settings.tsx",
+      "src/renderer/src/features/settings/",
+      "scripts/architecture-baseline.json"
+     ],
+     "acceptance": [
+      "Settings.tsx at or under 800 LOC by m6",
+      "Peel when you touch it: dedicated work stops on 2026-10-18; afterwards each slice is peeled by the feature PR that touches the area (separate pure-move PR first); the remainder completes before the feature freeze (M2-0210) or is DEFERRED with owner approval"
+     ],
+     "estimate_hours": 6,
+     "owner_model": "sonnet",
+     "depends_on_slices": [
+      "M2-0071.4"
+     ]
+    }
+   ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "slice_current": 1,
+   "notes": " | 2026-09-30 (lead): sliced so the merge of S1 (#306) advances the ticket instead of closing it; slice estimates replace the 14 h ticket estimate."
   },
   {
    "id": "M2-0072",
