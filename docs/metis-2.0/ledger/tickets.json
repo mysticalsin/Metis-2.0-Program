@@ -35232,13 +35232,14 @@
    "milestone": "m3",
    "type": "fix",
    "owner_model": "opus",
-   "priority": "P1",
+   "priority": "P0",
    "depends_on": [
     "M2-0428"
    ],
    "kit_refs": [],
    "finding_refs": [
-    "packaged-smoke runs 36682011618 (M2-0467) and 36688495533 (M2-0505), 2026-09-30"
+    "packaged-smoke runs 36682011618 (M2-0467) and 36688495533 (M2-0505), 2026-09-30",
+    "also M2-0505 run 36695998941 and M2-0445 run 36699629444 (10:38Z): 4 failures of this row today, every one the only failing row"
    ],
    "scope_paths": [
     "src/main/island/",
