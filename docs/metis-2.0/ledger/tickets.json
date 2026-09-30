@@ -29340,6 +29340,109 @@
    "external_blocker": null,
    "flag": null,
    "notes": "2026-09-30 (lead): filed from the M2-0460 lead step (LEAD-ACTIONS)."
+  },
+  {
+   "id": "M2-0524",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "opus",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0467",
+    "M2-0494",
+    "M2-0495"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-26",
+    "OD-30",
+    "rocket-fuel engagement 2 Rock 3"
+   ],
+   "scope_paths": [
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    "scripts/qa/journey.mjs",
+    "scripts/qa/journey.test.ts",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+    ".github/workflows/candidate-scenarios.yml"
+   ],
+   "estimate_hours": 14,
+   "risk": "medium",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [
+    {
+     "id": "M2-0524.1",
+     "title": "journey scenario registry entry, driver with exit mapping and content-free report, onboarding and file-fed meeting steps",
+     "scope_paths": [
+      "scripts/qa/candidate-scenarios.mjs",
+      "scripts/qa/candidate-scenarios.test.ts",
+      "scripts/qa/journey.mjs",
+      "scripts/qa/journey.test.ts",
+      "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+      ".github/workflows/candidate-scenarios.yml"
+     ],
+     "acceptance": [
+      "`journey` is a scenario in the scripts/qa/candidate-scenarios.mjs registry (the single source of truth) and in candidate-scenarios.yml's `scenario` choice, on macOS and Windows, installing the QA-identity candidate artifact; M2-0467's run guard, provenance check, fresh-profile assertion and content-free gate apply unchanged",
+      "scripts/qa/journey.mjs drives the installed candidate on a fresh profile and exits 0 PASS / 1 FAIL / 2 PRECONDITION (same mapping as fault-fatal-relaunch); its report lists every step with outcome and milliseconds and holds no transcript text, meeting title, user path or account name",
+      "Step 1, onboarding: completes onboarding including the speech-engine step (OD-30: the selected engine downloads and verifies when that flag is on; otherwise the bundled engine reports ready)",
+      "Step 2-3, meeting: a meeting fed by the QA-identity file source (M2-0494) runs for the registry's fixed duration and stops; the transcript is saved with at least the registry's minimum line count and the write-up appears within the registry's budget"
+     ],
+     "estimate_hours": 8,
+     "owner_model": "opus",
+     "depends_on_slices": []
+    },
+    {
+     "id": "M2-0524.2",
+     "title": "journey History, right-edge hide/reveal, Settings round-trip and clean-quit steps, tests and contract pin",
+     "scope_paths": [
+      "scripts/qa/candidate-scenarios.mjs",
+      "scripts/qa/candidate-scenarios.test.ts",
+      "scripts/qa/journey.mjs",
+      "scripts/qa/journey.test.ts",
+      "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+      ".github/workflows/candidate-scenarios.yml"
+     ],
+     "acceptance": [
+      "Step 4, History: the saved meeting is listed and opens through the app's own History path within the registry's budget, with no hang",
+      "Step 5-6, window and settings: right-edge hide then reveal succeed (same oracle as the packaged-smoke RE-HIDE rows); one setting changed in Settings survives a relaunch and is restored",
+      "Step 7, quit: the app quits with no survivor process (same survivor check as packaged smoke)",
+      "Hermetic tests cover step order, the exit mapping, the report shape and the content-free scan; the workflow contract test pins the `journey` registry entry and choice",
+      "LEAD_ACTION, after the milestone merge to main: dispatch candidate-scenarios.yml with scenario=journey on the latest complete qa-candidate run; when macOS and Windows both PASS, record LIVE_VERIFIED kind hosted-runner with scripts/evidence/record.mjs"
+     ],
+     "estimate_hours": 6,
+     "owner_model": "opus",
+     "depends_on_slices": [
+      "M2-0524.1"
+     ]
+    }
+   ],
+   "slice_current": 1,
+   "title": "End-to-end journey scenario on the exact candidate bytes: onboarding, file-fed meeting, transcript and write-up, History, hide/reveal, Settings, clean quit (hosted macOS + Windows)",
+   "summary": "Owner request 2026-09-30 (fully test Métis end to end). Adds the `journey` scenario to the candidate-scenarios lane (M2-0467) so one dispatch proves the whole user path on the installed candidate by sha256, on a fresh profile, on hosted macOS and Windows (OD-26). Uses the QA-identity file source (M2-0494/M2-0495) so no microphone or screen access is needed.",
+   "acceptance": [
+    "`journey` is a scenario in the scripts/qa/candidate-scenarios.mjs registry (the single source of truth) and in candidate-scenarios.yml's `scenario` choice, on macOS and Windows, installing the QA-identity candidate artifact; M2-0467's run guard, provenance check, fresh-profile assertion and content-free gate apply unchanged",
+    "scripts/qa/journey.mjs drives the installed candidate on a fresh profile and exits 0 PASS / 1 FAIL / 2 PRECONDITION (same mapping as fault-fatal-relaunch); its report lists every step with outcome and milliseconds and holds no transcript text, meeting title, user path or account name",
+    "Step 1, onboarding: completes onboarding including the speech-engine step (OD-30: the selected engine downloads and verifies when that flag is on; otherwise the bundled engine reports ready)",
+    "Step 2-3, meeting: a meeting fed by the QA-identity file source (M2-0494) runs for the registry's fixed duration and stops; the transcript is saved with at least the registry's minimum line count and the write-up appears within the registry's budget",
+    "Step 4, History: the saved meeting is listed and opens through the app's own History path within the registry's budget, with no hang",
+    "Step 5-6, window and settings: right-edge hide then reveal succeed (same oracle as the packaged-smoke RE-HIDE rows); one setting changed in Settings survives a relaunch and is restored",
+    "Step 7, quit: the app quits with no survivor process (same survivor check as packaged smoke)",
+    "Hermetic tests cover step order, the exit mapping, the report shape and the content-free scan; the workflow contract test pins the `journey` registry entry and choice",
+    "LEAD_ACTION, after the milestone merge to main: dispatch candidate-scenarios.yml with scenario=journey on the latest complete qa-candidate run; when macOS and Windows both PASS, record LIVE_VERIFIED kind hosted-runner with scripts/evidence/record.mjs"
+   ],
+   "verification": [
+    "gh run list --workflow candidate-scenarios.yml: 'Candidate scenario journey on <run>' concludes success on macOS and Windows"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED",
+    "LIVE_VERIFIED"
+   ],
+   "evidence_target": "LIVE_VERIFIED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-09-30 (lead): filed as rocket-fuel engagement 2 Rock 3 (codex-queue/.rocket-fuel/ROCKS.md)."
   }
  ]
 }
