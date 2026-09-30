@@ -381,6 +381,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "2026-09-29 (lead): STUCK after 8 rounds (a guard flip-flop between two failure sets). Narrowed to slice 1 (state/M2-0193.lead); slices 2-4 filed as M2-0512=S4, M2-0513=S2, M2-0514=S3; S3/S4 gate 1.9.7, S2 (module move) waits for the soak (PD-12)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Removed M2-0513 (S2, after the soak) from the 1.9.7 gates M2-0512/M2-0514 — it made a dependency cycle through M2-0198."
   }
  ],
  "tickets": [
@@ -28430,7 +28436,7 @@
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): split from M2-0193."
+   "notes": "2026-09-29 (lead): split from M2-0193. 2026-09-29 (lead): does not depend on the S2 module move (M2-0513), which waits for the soak; implement in place."
   },
   {
    "id": "M2-0513",
@@ -28486,8 +28492,7 @@
    "owner_model": "opus",
    "priority": "P0",
    "depends_on": [
-    "M2-0193",
-    "M2-0513"
+    "M2-0193"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -28526,7 +28531,7 @@
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): split from M2-0193."
+   "notes": "2026-09-29 (lead): split from M2-0193. 2026-09-29 (lead): does not depend on the S2 module move (M2-0513), which waits for the soak; implement in place."
   }
  ]
 }
