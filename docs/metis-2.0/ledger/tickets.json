@@ -417,6 +417,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "D-8 ANSWERED (kill switch now, redeploy from main); M2-0522 tracks the owner-run redeploy."
+  },
+  {
+   "date": "2026-09-30",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0431 sliced into two ≤5 h slices (acceptance partitioned)."
   }
  ],
  "tickets": [
@@ -24404,7 +24410,54 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 10,
-   "status": "TODO"
+   "status": "TODO",
+   "slices": [
+    {
+     "id": "M2-0431.1",
+     "title": "Notch-only top-center reveal with dwell (OD-23), fades instead of hard cuts, leave-grace fix and anchored drag",
+     "scope_paths": [
+      "src/main/island/geometry.ts",
+      "src/main/island/cursor-watch.ts",
+      "src/main/index.ts",
+      "src/renderer/src/lib/overlay-autohide.ts",
+      "src/renderer/src/styles.css"
+     ],
+     "acceptance": [
+      "OD-23: the top-center Hide reveal zone is the bar's own area around the notch/center (about +/-150 px, derived from the bar geometry) with a 250 ms dwell; menu-bar positions outside it (for example x=24 and x=1770 at y=8) never reveal. hover-hit-band.test.ts, cursor-watch.test.ts and geometry.test.ts are updated to the new rule (not deleted), with the owner decision cited",
+      "No hard cuts: reveal and hide fade opacity (0->1 and 1->0, reduced-motion aware); restore sets bounds before opacity 1 (a contract test with a mock window asserts setBounds precedes setOpacity(1)); applyOverlaySurfaceChrome skips unchanged setBackgroundColor/setOpacity; Settings never shows an opaque slab before its resize",
+      "The leave grace is not cancelled by a duplicate pointer-leave (a unit test replays leave,leave and asserts no park before the grace ends); a height collapse while the pointer is over the bar does not park it",
+      "Drag while revealed in top-center Hide does not move the park position (moveBy early-return or anchored resize); a harness test covers moveBy(0,150) + resizeTo(144) + a tick with the cursor 60 px below: no park scheduled, y unchanged",
+      "Right-edge hover mechanics stay as fixed by M2-0428 (no regression of the RE-HIDE rows)",
+      "SLICE: the dock single-element render, the overlay.flash audit and the packaged OV-STABLE row are M2-0431.2"
+     ],
+     "estimate_hours": 5,
+     "owner_model": "opus",
+     "depends_on_slices": []
+    },
+    {
+     "id": "M2-0431.2",
+     "title": "Right-edge dock as one element, reveal/park cause logging with the overlay.flash audit, and the packaged OV-STABLE smoke row",
+     "scope_paths": [
+      "src/renderer/src/components/RightEdgeSidecar.tsx",
+      "src/renderer/src/App.tsx",
+      "src/main/index.ts",
+      "scripts/qa/packaged-smoke.mjs"
+     ],
+     "acceptance": [
+      "The right-edge dock renders as one element (no re-mount on open/close); an RTL test asserts the same root DOM node across 3 reveal/park cycles and one Answer mount",
+      "Every reveal/park is logged with a cause (cursor-watch, renderer, hotkey, toggle, settings), and a content-free audit event overlay.flash {visibleMs, zone, placement, layout} is emitted for any reveal that parks within 2 s with no click or keypress",
+      "Packaged smoke OV-STABLE (macOS and Windows): a scripted 3-minute cursor path (menu-bar stops at x=24/1253/1770 for 400 ms, passes through the right-edge band area) causes zero bounds/opacity/visibility changes without a deliberate notch or edge hover; a deliberate hover gives exactly one reveal and one park; opacity is never 1 while the size differs from the target. OV-BG: the background colour stays #00000000 after onboarding and across Settings open/close",
+      "SLICE: builds on M2-0431.1's reveal and fade behaviour without changing it"
+     ],
+     "estimate_hours": 5,
+     "owner_model": "opus",
+     "depends_on_slices": [
+      "M2-0431.1"
+     ]
+    }
+   ],
+   "slice_current": 1,
+   "notes": "2026-09-30 (lead): sliced into M2-0431.1 / M2-0431.2 (10 h P0 over the 8 h rule; rocket-fuel engagement 2 round 3)."
   },
   {
    "id": "M2-0432",
