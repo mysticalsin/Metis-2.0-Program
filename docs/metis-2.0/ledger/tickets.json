@@ -12223,11 +12223,89 @@
    "risk": "high",
    "estimate_hours": 8,
    "validation_hours": 1.0,
-   "slices": [],
+   "slices": [
+    {
+     "id": "M2-0193.1",
+     "title": "Gateway hydrate-only guard; History callers classify first; only the explicit IPC open hydrates; batched classify, LRU and aborted superseded searches",
+     "scope_paths": [
+      "src/main/recall.ts",
+      "src/main/recall.test.ts",
+      "src/main/index.ts",
+      "src/main/history-actions.ts",
+      "src/main/history-actions.test.ts",
+      "src/main/infra/storage/gateway.ts",
+      "src/main/infra/storage/gateway.test.ts",
+      "scripts/architecture-baseline.json"
+     ],
+     "acceptance": [
+      "READ_CACHE_MAX clear-all replaced by an LRU; failed reads cached so a keystroke does not retry every file",
+      "Superseded searches cancelled through AbortSignal at the queue level",
+      "SLICE: the gateway refuses a non-regular file only on a hydrate read; recallRead and meetingOpenTarget classify first and never read a non-regular file; only IPC.recallRead and IPC.recallOpen hydrate; after an explicit open the next listing shows the real row (state/M2-0193.lead S1)"
+     ],
+     "estimate_hours": 8,
+     "owner_model": "opus",
+     "depends_on_slices": []
+    },
+    {
+     "id": "M2-0193.2",
+     "title": "Move the History read path out of recall.ts into its own module (no node:fs in recall.ts; index.ts call-site swaps only)",
+     "scope_paths": [
+      "src/main/recall.ts",
+      "src/main/index.ts",
+      "src/main/history-read.ts",
+      "scripts/architecture-baseline.json"
+     ],
+     "acceptance": [
+      "recall.ts has no node:fs import (FF-05b hard rule for this file)",
+      "Logic lives in a new module; src/main/index.ts changes are call-site swaps only and land through the merge queue in the declared order (M2-0188)"
+     ],
+     "estimate_hours": 5,
+     "owner_model": "opus",
+     "depends_on_slices": [
+      "M2-0193.1"
+     ]
+    },
+    {
+     "id": "M2-0193.3",
+     "title": "Explicit-open hydration progress reaches the renderer over IPC, with a failed state and one hydration at a time",
+     "scope_paths": [
+      "src/main/recall.ts",
+      "src/main/index.ts",
+      "src/shared/ipc.ts",
+      "src/preload/index.ts",
+      "src/renderer/src/components/history/"
+     ],
+     "acceptance": [
+      "List and search skip files classified dataless or unknown and return them as 'not downloaded' rows; an explicit open hydrates one file with progress under a content permit"
+     ],
+     "estimate_hours": 5,
+     "owner_model": "opus",
+     "depends_on_slices": [
+      "M2-0193.2"
+     ]
+    },
+    {
+     "id": "M2-0193.4",
+     "title": "Packaged ST-1 History row on the lane candidate, and the cause of the ~2 s first call",
+     "scope_paths": [
+      "scripts/qa/",
+      "src/main/infra/storage/admission.ts"
+     ],
+     "acceptance": [
+      "Packaged ST-1 on the lane candidate: History open and search with the FIFO and real dataless fixtures give main p99 < 50 ms and a usable degraded list within 2 s; ST-1-W result recorded"
+     ],
+     "estimate_hours": 6,
+     "owner_model": "opus",
+     "depends_on_slices": [
+      "M2-0193.3"
+     ]
+    }
+   ],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): per OD-21 this ticket's History open/search row is the gate for the History-click freeze (M2-0031 records its History exercise report-only). 2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path. 2026-09-29 (lead): STUCK after 8 rounds (a guard flip-flop between two failure sets). Narrowed to slice 1 (state/M2-0193.lead); slices 2-4 filed as M2-0512=S4, M2-0513=S2, M2-0514=S3; S3/S4 gate 1.9.7, S2 (module move) waits for the soak (PD-12).",
-   "priority": "P0"
+   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): per OD-21 this ticket's History open/search row is the gate for the History-click freeze (M2-0031 records its History exercise report-only). 2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path. 2026-09-29 (lead): STUCK after 8 rounds (a guard flip-flop between two failure sets). Narrowed to slice 1 (state/M2-0193.lead); slices 2-4 filed as M2-0512=S4, M2-0513=S2, M2-0514=S3; S3/S4 gate 1.9.7, S2 (module move) waits for the soak (PD-12). | 2026-09-30 (lead): sliced into the 4 slices of the S1 lead ruling so the merge of S1 (#335) advances the ticket instead of closing it.",
+   "priority": "P0",
+   "slice_current": 1
   },
   {
    "id": "M2-0194",
