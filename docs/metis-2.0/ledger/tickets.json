@@ -30349,8 +30349,14 @@
      ]
     }
    ],
-   "slice_current": 1,
-   "notes": "2026-09-30 (lead): sliced into M2-0431.1 / M2-0431.2 (10 h P0 over the 8 h rule; rocket-fuel engagement 2 round 3)."
+   "slice_current": 2,
+   "notes": "2026-09-30 (lead): sliced into M2-0431.1 / M2-0431.2 (10 h P0 over the 8 h rule; rocket-fuel engagement 2 round 3).",
+   "slices_merged": [
+    {
+     "slice": "M2-0431.1",
+     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/372"
+    }
+   ]
   },
   {
    "id": "M2-0432",
