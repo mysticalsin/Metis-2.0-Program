@@ -28937,7 +28937,7 @@
    ],
    "estimate_hours": 4,
    "risk": "high",
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
    "title": "D-8 security review: the three off-main commits in the production Operator build, including the ACCESS bypass at /v1/decide",
@@ -28958,7 +28958,13 @@
    "evidence_target": "DESIGNED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-09-29 (lead): filed from the owner's D-8 ruling."
+   "notes": "2026-09-29 (lead): filed from the owner's D-8 ruling.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/40",
+    "merged_into": "main (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)"
+   }
   }
  ]
 }
