@@ -375,6 +375,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "1.9.7 full qualification (OD-31): 30 producer tickets M2-0482..M2-0511 filed; 16 existing tickets raised to P0 W1/m3 and made M2-0046 dependencies; version bump M2-0498 depends on every before-cut ticket."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "2026-09-29 (lead): STUCK after 8 rounds (a guard flip-flop between two failure sets). Narrowed to slice 1 (state/M2-0193.lead); slices 2-4 filed as M2-0512=S4, M2-0513=S2, M2-0514=S3; S3/S4 gate 1.9.7, S2 (module move) waits for the soak (PD-12)."
   }
  ],
  "tickets": [
@@ -3338,7 +3344,9 @@
     "M2-0507",
     "M2-0509",
     "M2-0510",
-    "M2-0511"
+    "M2-0511",
+    "M2-0512",
+    "M2-0514"
    ],
    "needs_decision": [
     "D-13"
@@ -12174,7 +12182,7 @@
    "slices": [],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): per OD-21 this ticket's History open/search row is the gate for the History-click freeze (M2-0031 records its History exercise report-only). 2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path.",
+   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): per OD-21 this ticket's History open/search row is the gate for the History-click freeze (M2-0031 records its History exercise report-only). 2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path. 2026-09-29 (lead): STUCK after 8 rounds (a guard flip-flop between two failure sets). Narrowed to slice 1 (state/M2-0193.lead); slices 2-4 filed as M2-0512=S4, M2-0513=S2, M2-0514=S3; S3/S4 gate 1.9.7, S2 (module move) waits for the soak (PD-12).",
    "priority": "P0"
   },
   {
@@ -27666,7 +27674,9 @@
     "M2-0495",
     "M2-0505",
     "M2-0502",
-    "M2-0508"
+    "M2-0508",
+    "M2-0512",
+    "M2-0514"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -28375,6 +28385,148 @@
    "needs_decision": [],
    "slices": [],
    "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E10 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+  },
+  {
+   "id": "M2-0512",
+   "title": "ST-1 History measured row: per-call latency for list, search and brainStatus, first call < 250 ms, and the cause of the ~2 s first call",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0193"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "M2-0193-slice",
+    "OWNER-REPORT-history-freeze"
+   ],
+   "scope_paths": [
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/lib/st-1-core.mjs",
+    "scripts/qa/st-1.test.ts",
+    ".github/workflows/qa-candidate.yml"
+   ],
+   "summary": "Slice S4 of M2-0193 (History freeze P0), split by the lead on 2026-09-29 after 8 stuck rounds (plan: codex-queue/logs/unstick-m2-0193-plan.json).",
+   "acceptance": [
+    "HISTORY_PROBE times recallList, recallSearch (a term present in the fixtures) and brainStatus as separate calls, each with its own ms, and keeps the existing combined fields so current report readers still work",
+    "st-1-core historySummary gives firstMs and p50/p95/max per call, plus a History row verdict: first recallList < 250 ms, every list and search settles within 2 s (usable degraded list), main-thread p99 < 50 ms during the exercise; ST-1 loop/write criteria untouched (M2-0433 owns them)",
+    "Unit tests in scripts/qa/st-1.test.ts pin the verdict at the 250 ms and 2 s boundaries and on an empty or hung probe",
+    "Deliverable records 'LEAD_ACTION: dispatch qa-candidate ST-1 on the lane candidate (sha256) with --fixtures fifo on macos-latest and --fixtures dataless, plus ST-1-W on windows-latest; file historySummary and the per-call split' and BLOCKED_EXTERNAL with the exact step for any row the hosted runner cannot provide (real evicted cloud files)",
+    "If the per-call split shows the first recallList waiting behind .brain FIFO reads that hold every admission permit, the deliverable names that and a gateway ticket is filed (reserve a metadata-lane permit in admission.ts); admission.ts is not changed in this slice"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): split from M2-0193."
+  },
+  {
+   "id": "M2-0513",
+   "title": "Move the History read path out of recall.ts into its own module (no behaviour change)",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "refactor",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0193",
+    "M2-0198"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "M2-0193-slice",
+    "OWNER-REPORT-history-freeze"
+   ],
+   "scope_paths": [
+    "src/main/recall.ts",
+    "src/main/history-read.ts",
+    "scripts/architecture-baseline.json"
+   ],
+   "summary": "Slice S2 of M2-0193 (History freeze P0), split by the lead on 2026-09-29 after 8 stuck rounds (plan: codex-queue/logs/unstick-m2-0193-plan.json).",
+   "acceptance": [
+    "The gateway-backed History read path (read cache, readMeeting, readMeetings, readMeetingUncached, row stubs) lives in a new module that never imports recall.ts (no new FF-02 cycle; the module is reachable, so FF-03 does not change)",
+    "recall.ts FF-04 back at or below its pre-ticket 950 lines, with the baseline set to the exact count (or the entry removed when it drops to 800 lines or fewer)",
+    "No behaviour change: every existing test passes unedited; the public API of recall.ts (listMeetings, searchMeetings, searchMeetingsLatest, recallRead and the rest) is unchanged",
+    "Read scripts/refactor/verify-move.mjs first: classify the PR as pure-move (state/M2-0193.kind) only when the Evidence 'Verify pure-move refactor' step accepts the extraction; otherwise classify it behaviour-change and state that there is no behaviour diff"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 2,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): split from M2-0193."
+  },
+  {
+   "id": "M2-0514",
+   "title": "Explicit open: hydration progress over IPC and one hydration at a time",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0193",
+    "M2-0513"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "M2-0193-slice",
+    "OWNER-REPORT-history-freeze"
+   ],
+   "scope_paths": [
+    "src/main/recall.ts",
+    "src/main/history-read.ts",
+    "src/main/history-actions.ts",
+    "src/main/index.ts",
+    "src/shared/ipc.ts",
+    "src/preload/index.ts",
+    "src/main/recall.test.ts",
+    "src/main/history-actions.test.ts"
+   ],
+   "summary": "Slice S3 of M2-0193 (History freeze P0), split by the lead on 2026-09-29 after 8 stuck rounds (plan: codex-queue/logs/unstick-m2-0193-plan.json).",
+   "acceptance": [
+    "HydrationProgress gains a failed state; the IPC.recallRead and IPC.recallOpen handlers forward hydrating/done/failed to the requesting window over a new IPC event exposed in preload (index.ts: call-site change only)",
+    "At most one hydrate read runs process-wide: a second explicit open while one runs answers at once with a clear message and takes no content permit (test with a held readFile stub), so hydration can never hold both admission permits",
+    "A hydrate read that ends not-ok (timeout after HYDRATE_DEADLINE_MS, unavailable) reports failed and returns the not-readable message; History list and search stay usable meanwhile (test)",
+    "Renderer display of progress and of notDownloaded rows is recorded as 'LEAD_ACTION: M2-0032 consumes the hydration progress event and MeetingSummary.notDownloaded' (M2-0032 owns rendering)",
+    "No test weakened; skip count unchanged; architecture baseline exact"
+   ],
+   "verification": [
+    "CI Build & Test"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "medium",
+   "estimate_hours": 4,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): split from M2-0193."
   }
  ]
 }
