@@ -35165,6 +35165,48 @@
    "external_blocker": null,
    "flag": null,
    "notes": "2026-09-30 (lead): filed as rocket-fuel engagement 2 Rock 3 (codex-queue/.rocket-fuel/ROCKS.md)."
+  },
+  {
+   "id": "M2-0525",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "lead measurement 2026-09-30 07:55Z: 5 macOS jobs running, 45 queued; 19 of the queued were isolation-canary's two macOS jobs on ticket-branch pushes"
+   ],
+   "scope_paths": [
+    ".github/workflows/isolation-canary.yml",
+    ".github/workflows/build.yml",
+    "scripts/ci/"
+   ],
+   "estimate_hours": 3,
+   "risk": "medium",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Path-gate the native-only macOS jobs on ticket-branch pushes (isolation-canary's MetisKit swift test and owner-account.sb, build.yml's Native job); always full on m2/integration, main, release/* and dispatch",
+   "summary": "The public repo gets 5 concurrent macOS runners. Every ticket push runs isolation-canary's two macOS jobs and build.yml's Native job even when the change is TypeScript only, so macOS jobs queue 45 deep and every PR, train and candidate waits. Gate those jobs on the files they actually exercise; keep every other job and every protected ref unchanged.",
+   "acceptance": [
+    "A first ubuntu job computes whether the push touches the native surface (the files the gated jobs read: native/, native-app/, the .sb sandbox profiles, the swift test runner scripts, the two workflow files themselves, and anything else those jobs' steps read — listed in one place) by diffing against the merge-base with origin/m2/integration; no unpinned or new third-party action",
+    "isolation-canary's MetisKit swift test and owner-account.sb jobs and build.yml's Native job run when that output is true, and ALWAYS on pushes to m2/integration, main and release/*, on workflow_dispatch and on pull_request to main; otherwise they conclude skipped and the workflow run still concludes success",
+    "Every other job (Quality checks, lint, security, operator, license server, deny-non-loopback, packages, packaged smoke, QA self-tests) is unchanged",
+    "A contract test pins: the always-full refs and events, that each gated job's if: reads the changes output, that the path list covers every file the gated jobs' steps reference, and that no check required on main by the ruleset (OD-29) can be skipped on a PR into main",
+    "PR body evidence: the run for this PR's own push (it touches the workflow files, so the gated jobs RUN) and the reasoning for a TS-only push (gated jobs skipped, run success); LEAD_ACTION: after merge, confirm on the next TS-only ticket push that the three jobs show skipped and the queued macOS count drops"
+   ],
+   "verification": [
+    "gh api runs?status=queued: macOS queued job count before/after on comparable load"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-09-30 (lead): filed from the runner-queue measurement; highest-leverage throughput fix for 1.9.7 and everything after."
   }
  ]
 }
