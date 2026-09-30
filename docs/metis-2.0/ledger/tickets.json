@@ -26606,7 +26606,7 @@
    "kit_refs": [],
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "required_evidence": [
@@ -26644,7 +26644,13 @@
     "Unit tests with fixture audit trails: rotation mid-window, a version change mid-trail, a missing day, and an unclean boot followed by a reap; CI only (D-28)",
     "All reads are async and bounded; the ST-1 budget (M2-0433) is unaffected"
    ],
-   "notes": "2026-09-29 (lead): planning fix — the 1.9.7 build must carry the soak instrumentation; M2-0046 now depends on this ticket."
+   "notes": "2026-09-29 (lead): planning fix — the 1.9.7 build must carry the soak instrumentation; M2-0046 now depends on this ticket.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/344",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "kit_refs": [],
