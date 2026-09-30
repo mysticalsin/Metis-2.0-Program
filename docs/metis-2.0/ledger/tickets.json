@@ -411,6 +411,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0120 DONE (D-6 fully answered); M2-0007 HOST_CONFIGURED path noted (M2-0416 + M2-0473 under OD-26/OD-38)."
+  },
+  {
+   "date": "2026-09-30",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "D-8 ANSWERED (kill switch now, redeploy from main); M2-0522 tracks the owner-run redeploy."
   }
  ],
  "tickets": [
@@ -13559,7 +13565,8 @@
     "M2-0476",
     "M2-0477",
     "M2-0481",
-    "M2-0521"
+    "M2-0521",
+    "M2-0522"
    ],
    "needs_decision": [
     "D-13",
@@ -28993,6 +29000,51 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)"
    }
+  },
+  {
+   "id": "M2-0522",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "external",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0521"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "D-8",
+    "M2-0521"
+   ],
+   "scope_paths": [
+    "docs/metis-2.0/review/D-8-SECURITY-REVIEW.md"
+   ],
+   "estimate_hours": 1,
+   "risk": "high",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "D-8 durable fix: redeploy the production Operator from main (removes the unreviewed /v1/decide) after the owner's interim kill switch",
+   "summary": "Owner ruling 2026-09-30 on D-8 (M2-0521 review, Medium): interim — the owner switches the Jev feature OFF in the Operator portal and confirms the Access Bypass policy covers /v1/decide only; durable — redeploy the Operator Worker from origin/main, which has no /v1/decide. Deploying needs the owner's Cloudflare credentials (npx wrangler deploy from operator/ on main, or the owner-approved deploy path), so this is an owner-run step the lead prepares and verifies.",
+   "acceptance": [
+    "LEAD_ACTION (owner-run): the owner has switched the Jev kill switch OFF in the Operator portal and confirmed the Access Bypass policy scope (recorded with date)",
+    "LEAD_ACTION (owner-run): Operator redeployed from origin/main; GET /health shows the main commit stamp (credential-free check)",
+    "Credential-free check after redeploy: an unauthenticated request to /v1/decide no longer returns 2xx",
+    "No unreviewed commit remains in the production build (OPERATOR-REALITY updated)"
+   ],
+   "verification": [
+    "curl -s <operator-host>/health version stamp = origin/main commit"
+   ],
+   "required_evidence": [
+    "HOST_CONFIGURED"
+   ],
+   "evidence_target": "HOST_CONFIGURED",
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock_step": "Operator portal: Jev kill switch OFF + Access Bypass scope check; then redeploy Operator from main (Cloudflare credentials)."
+   },
+   "flag": null,
+   "notes": "2026-09-30 (lead): filed from the owner's D-8 ruling."
   }
  ]
 }
