@@ -33458,10 +33458,20 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 5,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/399",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0491",
