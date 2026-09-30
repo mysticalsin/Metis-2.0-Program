@@ -393,6 +393,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "2026-09-29 (lead): STUCK after 8 rounds; restarted as slices M2-0515=S1, M2-0516=S2, M2-0517=S3, M2-0518=S4, M2-0519=S5, M2-0520=S6 on a fresh branch (plan codex-queue/logs/unstick-m2-0433-plan.json). PR #336 closed unmerged as a reference."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Owner answers: D-14 approved (M2-0197 ACCEPTED), D-15 answered, D-8 security review first (M2-0521), D-5 platform = Cloudflare Containers + managed Postgres (provider/region open)."
   }
  ],
  "tickets": [
@@ -4127,7 +4133,7 @@
    ],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "UNBLOCKED 2026-09-27: Owner named the methods on 2026-09-26: software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER section 2.5 skill. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: two acceptance items unmet",
+   "notes": "UNBLOCKED 2026-09-27: Owner named the methods on 2026-09-26: software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER section 2.5 skill. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: two acceptance items unmet 2026-09-29: D-15 ANSWERED — software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER 2.5 refactoring skill.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/265",
     "merged_into": "m2/integration (squash)",
@@ -7710,7 +7716,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "2026-09-28 (lead): OD-17 answered D-5 — self-hosted private Hindsight on one approved container platform with managed Postgres. Platform/region/operational owner are PENDING and gate only the live deployment (M2-0138, M2-0381). Build and prove services/compose.yml (digest-pinned pgvector Postgres + pinned hindsight-api) with an ubuntu-latest CI compose job (D-28). LEAD_ACTION: private ADR-014 (PENDING + PROPOSED default).",
+   "notes": "2026-09-28 (lead): OD-17 answered D-5 — self-hosted private Hindsight on one approved container platform with managed Postgres. Platform/region/operational owner are PENDING and gate only the live deployment (M2-0138, M2-0381). Build and prove services/compose.yml (digest-pinned pgvector Postgres + pinned hindsight-api) with an ubuntu-latest CI compose job (D-28). LEAD_ACTION: private ADR-014 (PENDING + PROPOSED default). 2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose.",
    "priority": "P0",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/297",
@@ -8069,7 +8075,7 @@
    "due": null,
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Slice M2-0124.1 plus acceptance 4. Operator exposes Laya readiness and selection, and reports 'unavailable' while no hosted adapter is configured. The Laya-only isolation test in operator/src/routes/decide.test.ts: with Laya selected and unavailable, /v1/decide makes zero calls to the mock Jev vendor (spy asserted) and falls back automatically only when an approved fallback is explicitly configured. A CI check scans the packaged desktop artifacts (macOS and Windows) and fails on any Python or Torch payload. Proof: `npx vitest run operator/src/routes/decide.test.ts` and the package scan, both green in CI. Do not build the compose container or the checkpoint (M2-0124.2). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Laya vendor/hosting relationship owner confirms the Laya source and checkpoint licence and approves Laya's hosting platform. OD-17 answered D-5 for Hindsight only. Once that is done, slice M2-0124.2 can start: the container adapter with a pinned checkpoint in the compose profile, running `docker compose -f services/compose.yml run laya-tests` in CI."
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Slice M2-0124.1 plus acceptance 4. Operator exposes Laya readiness and selection, and reports 'unavailable' while no hosted adapter is configured. The Laya-only isolation test in operator/src/routes/decide.test.ts: with Laya selected and unavailable, /v1/decide makes zero calls to the mock Jev vendor (spy asserted) and falls back automatically only when an approved fallback is explicitly configured. A CI check scans the packaged desktop artifacts (macOS and Windows) and fails on any Python or Torch payload. Proof: `npx vitest run operator/src/routes/decide.test.ts` and the package scan, both green in CI. Do not build the compose container or the checkpoint (M2-0124.2). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Laya vendor/hosting relationship owner confirms the Laya source and checkpoint licence and approves Laya's hosting platform. OD-17 answered D-5 for Hindsight only. Once that is done, slice M2-0124.2 can start: the container adapter with a pinned checkpoint in the compose profile, running `docker compose -f services/compose.yml run laya-tests` in CI. 2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose."
   },
   {
    "id": "M2-0125",
@@ -8153,7 +8159,8 @@
     }
    ],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose."
   },
   {
    "id": "M2-0126",
@@ -12406,7 +12413,7 @@
    ],
    "due": "2026-10-09",
    "status": "ENGINEERING_COMPLETE",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed).",
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed). 2026-09-29: D-14 ANSWERED (owner approved the degrade order) — ACCEPTED owner statement recorded; FORECAST.md still pending (velocity run on the public program repo, OD-37).",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/298",
     "merged_into": "m2/integration (squash)",
@@ -12414,7 +12421,11 @@
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
     "pending": [
      "ACCEPTED"
-    ]
+    ],
+    "accepted": {
+     "owner_statement": "2026-09-29: owner approved the D-14 degrade order as recorded (M2-0155, M2-0124, M2-0185, M2-0161, M2-0156; degrading only lowers evidence or ships DEFERRED flag-off; every kit ID stays traced)",
+     "via": "lead question in session"
+    }
    },
    "priority": "P0"
   },
@@ -13534,7 +13545,8 @@
     "M2-0475",
     "M2-0476",
     "M2-0477",
-    "M2-0481"
+    "M2-0481",
+    "M2-0521"
    ],
    "needs_decision": [
     "D-13",
@@ -24890,7 +24902,8 @@
     "merged_into": "main (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "notes": "2026-09-29: D-15 ANSWERED — software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER 2.5 refactoring skill."
   },
   {
    "id": "M2-0444",
@@ -28858,6 +28871,48 @@
    "needs_decision": [],
    "slices": [],
    "notes": "2026-09-29 (lead): M2-0433 restart slice."
+  },
+  {
+   "id": "M2-0521",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "investigation",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "D-8",
+    "M2-0014",
+    "OPERATOR-REALITY"
+   ],
+   "scope_paths": [
+    "docs/metis-2.0/review/D-8-SECURITY-REVIEW.md"
+   ],
+   "estimate_hours": 4,
+   "risk": "high",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "D-8 security review: the three off-main commits in the production Operator build, including the ACCESS bypass at /v1/decide",
+   "summary": "Owner ruling 2026-09-29 on D-8: an Opus security review comes first; no Operator deploy from main until the owner rules on its findings. Per docs/metis-2.0/review/OPERATOR-REALITY.md, production runs an off-main build: 3955000e (docs-only), 9b4446c8 'feat(operator): Cap1 portal Jev vault + /v1/decide (typesafe_jev)', 926036a0 touching operator/src/access.ts and docs/design/METIS-2.0-VAULT-DECIDE.md (the ACCESS bypass). Review read-only from the public clone (git show on those commits and origin/metis-2.0-inventory).",
+   "acceptance": [
+    "docs/metis-2.0/review/D-8-SECURITY-REVIEW.md: for each of the three commits, what it changes, the exact bypass condition at /v1/decide (who can reach it, with what credential or none, from where), the data or actions it exposes, and whether production runs it (per OPERATOR-REALITY)",
+    "Threat assessment with severity (CVSS-style reasoning, no exploit steps): exploitability from the internet, blast radius (vault, D1, jev secret), and whether anything is exposed right now",
+    "Three options with trade-offs for the owner: revert the bypass and redeploy from main; merge through a reviewed PR with specific fixes; keep as-is with compensating controls — and a recommendation",
+    "If the review finds an active exposure, the first line says so and the lead is told immediately (the lead then asks the owner for an urgent ruling)",
+    "Read-only: no deploy, no wrangler command, no production request beyond reading repository history; no secrets in the document"
+   ],
+   "verification": [
+    "Independent Opus review of the document"
+   ],
+   "required_evidence": [
+    "DESIGNED"
+   ],
+   "evidence_target": "DESIGNED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-09-29 (lead): filed from the owner's D-8 ruling."
   }
  ]
 }
