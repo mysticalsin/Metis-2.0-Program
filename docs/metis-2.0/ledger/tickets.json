@@ -405,6 +405,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Owner answers: D-5 (Neon EU Frankfurt), D-6 mirror M1, OD-38 drop the Windows laptop, OD-39 policy confirmed (M2-0189 ACCEPTED). Blockers cleared on M2-0189, M2-0120, M2-0007."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0120 DONE (D-6 fully answered); M2-0007 HOST_CONFIGURED path noted (M2-0416 + M2-0473 under OD-26/OD-38)."
   }
  ],
  "tickets": [
@@ -860,7 +866,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead): external_blocker updated after D-9 was changed to CI runners (BLOCKERS §3a LEAD_ACTION); HOST_CONFIGURED still pending on the laptop lane. 2026-09-29 OD-38: the managed Windows laptop requirement is dropped; Windows evidence from hosted windows-latest (OD-26); enterprise-image specifics become a stated residual.",
+   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead): external_blocker updated after D-9 was changed to CI runners (BLOCKERS §3a LEAD_ACTION); HOST_CONFIGURED still pending on the laptop lane. 2026-09-29 OD-38: the managed Windows laptop requirement is dropped; Windows evidence from hosted windows-latest (OD-26); enterprise-image specifics become a stated residual. 2026-09-29 (lead): HOST_CONFIGURED path under OD-26/OD-38 = windows-qa.yml on windows-latest installing a candidate by sha256 (M2-0416) plus one census run per lane (M2-0473); the lead records it when both have run (no dependency edge: those tickets already depend on this one).",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
@@ -7774,7 +7780,7 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "ENGINEERING_COMPLETE",
+   "status": "DONE",
    "claimed_by": "claude-code ticket runner (batch 3)",
    "claimed_at": "2026-09-26",
    "evidence": {
@@ -7782,7 +7788,7 @@
     "merged_into": "m2/integration (squash)",
     "red_run": "36285223679",
     "green_run": "36286531924",
-    "validation": "Opus PASS round 2 (batch 3); acceptance 1 blocked on D-6"
+    "validation": "Opus PASS round 2 (batch 3); acceptance 1 blocked on D-6; acceptance 1 and 3 closed 2026-09-29: D-6 store (M365 via Entra API) and mirror audience M1 recorded in DECISIONS.md and ADR-019 O-1/§9.2"
    },
    "notes": "2026-09-29 (lead, owner-approved ledger batch): acceptance 1 re-validated 2026-09-28 by the independent Opus review of M2-0265 (codex-queue/logs/codex/M2-0265-review-1.last.txt, PASS against the D-6 row). D-6 canonical store answered (ANSWERED_AS_DEFAULT 2026-09-27: M365 via Entra API); the plaintext-mirror audience (M1/M2/M3) is still ASSUMED M1 and stays an owner question. 2026-09-29: D-6 second half ANSWERED — mirror audience M1; ADR-019 O-1 and §9.2 status updated by the lead."
   },
