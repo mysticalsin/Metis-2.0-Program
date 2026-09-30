@@ -1,0 +1,54 @@
+name: Kit suites
+
+# Manual only, needs no input (M2-0449). Run on demand with
+#   gh workflow run kit-suites.yml -R mysticalsin/Metis-2.0-Program --ref main
+# The private-repository Actions budget must be raised first (OD-27).
+# Runs the kit v5 behavior-core and r11 proof suites in a scratch copy (never in the checkout) and uploads the
+# per-suite reports as artifact kit-suites-reports. It does not depend on the kit-checks.yml that M2-0385 hands over.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  kit-suites:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      # behavior-core needs Node >= 22 (kit/v5/behavior-core/package.json engines).
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+
+      - name: Test the summarizer
+        run: node --test docs/metis-2.0/tools/kit/summarize-kit-suites.test.mjs
+
+      # The steps below also run when the summarizer tests failed, so the reports are always uploaded.
+      - name: Run kit suites in a scratch copy
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: bash docs/metis-2.0/tools/kit/run-kit-suites.sh
+
+      - name: Summarize kit suites
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          node docs/metis-2.0/tools/kit/summarize-kit-suites.mjs \
+            --out "$RUNNER_TEMP/kit-suites-out" --scratch "$RUNNER_TEMP/kit-scratch" \
+            | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload kit suite reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: kit-suites-reports
+          path: ${{ runner.temp }}/kit-suites-out/
+          if-no-files-found: error
+          retention-days: 14
