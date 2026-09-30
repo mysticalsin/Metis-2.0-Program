@@ -34706,12 +34706,13 @@
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/354",
     "merged_into": "m2/integration (squash)",
-    "implementer": "mixed",
-    "reviewer": "mixed",
-    "validation": "independent Mixed review PASS + every PR check green (CI, packaged smoke)",
+    "implementer": "claude-opus",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
     "pending": [
      "LEAD_ACTION acceptance item (lead, after merge)"
-    ]
+    ],
+    "note": "built and reviewed in the Claude-only era (launched before the 2026-09-30 13:06Z switch to mixed); the squash commit body on m2/integration says \"Mixed\" in error"
    }
   },
   {
