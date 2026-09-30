@@ -29951,7 +29951,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "title": "Let freeze-repro take a QA candidate by run id and sha256, and emit an M2-0194 attribution bundle",
    "type": "test",
    "priority": "P0",
@@ -29981,7 +29981,17 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 (lead, EC triage): Shares .github/workflows/freeze-repro.yml, scripts/qa/freeze-repro/run-matrix.sh and scripts/evidence/check.mjs with M2-0462 and M2-0463 (M2-0008 hosted-live mode). Land them one after the other, with one open PR on these files at a time. Keep the M2-0194 candidate_run/sha256 inputs separate from the M2-0008 mode input, and have whichever lands second rebase and keep both contract tests."
+   "notes": "2026-09-29 (lead, EC triage): Shares .github/workflows/freeze-repro.yml, scripts/qa/freeze-repro/run-matrix.sh and scripts/evidence/check.mjs with M2-0462 and M2-0463 (M2-0008 hosted-live mode). Land them one after the other, with one open PR on these files at a time. Keep the M2-0194 candidate_run/sha256 inputs separate from the M2-0008 mode input, and have whichever lands second rebase and keep both contract tests.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/328",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0425",
