@@ -387,6 +387,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Removed M2-0513 (S2, after the soak) from the 1.9.7 gates M2-0512/M2-0514 — it made a dependency cycle through M2-0198."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "2026-09-29 (lead): STUCK after 8 rounds; restarted as slices M2-0515=S1, M2-0516=S2, M2-0517=S3, M2-0518=S4, M2-0519=S5, M2-0520=S6 on a fresh branch (plan codex-queue/logs/unstick-m2-0433-plan.json). PR #336 closed unmerged as a reference."
   }
  ],
  "tickets": [
@@ -24411,7 +24417,13 @@
    "owner_model": "opus",
    "priority": "P0",
    "depends_on": [
-    "M2-0031"
+    "M2-0031",
+    "M2-0515",
+    "M2-0516",
+    "M2-0517",
+    "M2-0518",
+    "M2-0519",
+    "M2-0520"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -24442,11 +24454,15 @@
     "MEASURED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "lead",
+    "unblock_step": "Umbrella: closes when slices M2-0515..M2-0520 merge and the ST-1 jobs are blocking with a recorded strict PASS; the lead then marks it. Held so the queue never relaunches PR #336."
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 12,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29 (lead): STUCK after 8 rounds; restarted as slices M2-0515=S1, M2-0516=S2, M2-0517=S3, M2-0518=S4, M2-0519=S5, M2-0520=S6 on a fresh branch (plan codex-queue/logs/unstick-m2-0433-plan.json). PR #336 closed unmerged as a reference."
   },
   {
    "id": "M2-0434",
@@ -28538,6 +28554,310 @@
    "needs_decision": [],
    "slices": [],
    "notes": "2026-09-29 (lead): split from M2-0193. 2026-09-29 (lead): does not depend on the S2 module move (M2-0513), which waits for the soak; implement in place."
+  },
+  {
+   "id": "M2-0515",
+   "title": "Clean restart: per-stage boot timings and a runner witness in every ST-1 report (report-only, no app behaviour change)",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-21",
+    "OD-24",
+    "M2-0433-slice"
+   ],
+   "scope_paths": [
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/lib/st-1-core.mjs",
+    "scripts/qa/st-1.test.ts",
+    "src/main/infra/observability/run-observability.ts",
+    "src/main/infra/observability/run-observability.test.ts",
+    "src/main/infra/observability/projection.ts",
+    "src/main/logger.ts",
+    "src/main/boot-tray.ts",
+    "src/main/boot-tray.test.ts",
+    "src/main/index.ts",
+    "scripts/architecture-baseline.json",
+    ".github/workflows/qa-candidate.yml"
+   ],
+   "summary": "Slice S1 of M2-0433 (strict ST-1, OD-21, gates 1.9.7). The lead restarted M2-0433 on 2026-09-29 after 8 stuck rounds: PR #336 was conflicting so its ST-1 self-test never ran; work aimed at stages that were not the cause (plan and per-run data: codex-queue/logs/unstick-m2-0433-plan.json). Start from origin/m2/integration; origin/m2/M2-0433-st-1-strict-gate is a read-only reference to port from with git show. Never relax ST-1 (OD-21/OD-24).",
+   "acceptance": [
+    "Fresh branch from origin/m2/integration; PR #336 closed as superseded, its branch reference-only",
+    "Every ST-1 report carries bootStages (ms, ts, sinceSpawnMs) for createWindow.construct, createWindow.firstShow, createTray.loadIcon, createTray.newTray and createTray.attachMenu (loadIcon.fallback when taken)",
+    "The app audits app.boot.stage in a later main-thread task, never inside the measured task; a throwing stage is still recorded; shutdownClean flushes pending records",
+    "Overlay constructor stays literally `win = new BrowserWindow({` with inline title: 'Métis'; content-protection, window-title, act1-dom-probe, onboarding-boot and settings-surface contracts green and unmodified",
+    "Every timeline entry (late ones included) and the report carry witness data: harness loop delay, a concurrent probe write, machine CPU busy %; evaluateCriteria and the verdict are unchanged (unit test proves identical criteria with and without witness)",
+    "profiler.requestedAtMs recorded and profiler.startedAtMs stamped when Profiler.start answers",
+    "qa-candidate.yml: st1-mac-fifo/control stay report-only exactly as on integration; src/main/boot-tray.ts, src/main/lifecycle/first-show.ts and src/main/lifecycle/boot-work.ts added to the pull_request paths filter",
+    "index.ts no longer than on integration (offset by moving the accelerator formatter to boot-tray.ts); FF-04 equals wc -l; no other ratchet count rises; Build & Test green",
+    "LEAD_ACTION: QA self-test of the head read; bootStages, witness and profile-clock fields present; numbers copied into the S2 lead ruling"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "QA candidate self-test ST-1 reports on the PR head"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): M2-0433 restart slice."
+  },
+  {
+   "id": "M2-0516",
+   "title": "Window boot task: navigation in its own task, plus a same-runner constructor variant matrix (QA-only, report-only)",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0515"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-21",
+    "OD-24",
+    "M2-0433-slice"
+   ],
+   "scope_paths": [
+    "src/main/index.ts",
+    "src/main/lifecycle/first-show.ts",
+    "src/main/lifecycle/first-show.test.ts",
+    "src/main/boot-window-rendering.ts",
+    "src/main/boot-window-rendering.test.ts",
+    "src/main/infra/observability/projection.ts",
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/lib/st-1-core.mjs",
+    "scripts/qa/st-1.test.ts",
+    ".github/workflows/qa-candidate.yml",
+    "scripts/architecture-baseline.json"
+   ],
+   "summary": "Slice S2 of M2-0433 (strict ST-1, OD-21, gates 1.9.7). The lead restarted M2-0433 on 2026-09-29 after 8 stuck rounds: PR #336 was conflicting so its ST-1 self-test never ran; work aimed at stages that were not the cause (plan and per-run data: codex-queue/logs/unstick-m2-0433-plan.json). Start from origin/m2/integration; origin/m2/M2-0433-st-1-strict-gate is a read-only reference to port from with git show. Never relax ST-1 (OD-21/OD-24).",
+   "acceptance": [
+    "Boot window only: bindAct1DomProbe then the literal `bindReadinessThenNavigate(win, rendererUrl,` run in the task right after construction and before the first show, skipped when the window was replaced or destroyed; recovery/replay createWindow callers keep synchronous navigation; timed as createWindow.navigate; helper with behaviour tests in lifecycle/first-show.ts",
+    "Constructor literal and inline options unchanged; variant option values come from a helper whose environment read is gated on QA_IDENTITY_BUILD (shipping bytes unchanged; dev-env-gates contract green)",
+    "Report-only st1-mac-window job: shipped, spellcheck-off, paint-when-hidden, prewarm-spellchecker (separate earlier task), prewarm-view (diagnostic) × opaque/transparent chrome, 2 interleaved repeats, one runner; reports marked purpose window-construction, st1Evidence false; boot-window-rendering.ts added to the paths filter",
+    "All contracts green; index.ts no longer than on integration; FF-04 exact; Build & Test green",
+    "LEAD_ACTION (measured): in fifo and control the constructor task holds only the constructor; createWindow.navigate < 250 ms; per-variant construct table recorded for S5"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "QA candidate self-test ST-1 reports on the PR head"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 6,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): M2-0433 restart slice."
+  },
+  {
+   "id": "M2-0517",
+   "title": "Tray stages each under 250 ms: icon bytes read off the main thread, decorate in its own task, menu kept at boot",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0515"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-21",
+    "OD-24",
+    "M2-0433-slice"
+   ],
+   "scope_paths": [
+    "src/main/boot-tray.ts",
+    "src/main/boot-tray.test.ts",
+    "src/main/index.ts",
+    "src/main/infra/observability/projection.ts",
+    "scripts/architecture-baseline.json"
+   ],
+   "summary": "Slice S3 of M2-0433 (strict ST-1, OD-21, gates 1.9.7). The lead restarted M2-0433 on 2026-09-29 after 8 stuck rounds: PR #336 was conflicting so its ST-1 self-test never ran; work aimed at stages that were not the cause (plan and per-run data: codex-queue/logs/unstick-m2-0433-plan.json). Start from origin/m2/integration; origin/m2/M2-0433-st-1-strict-gate is a read-only reference to port from with git show. Never relax ST-1 (OD-21/OD-24).",
+   "acceptance": [
+    "loadIcon reads tray.png and its @2x sibling with fs.promises and builds the same image from buffers (1x and 2x representations, template behaviour unchanged); full-size-icon fallback kept",
+    "newTray is `new Tray(icon)` with the loaded image only; decorate (setTitle, setToolTip, the literal tray.on('click', () => sendHotkey...), tray.created audit) runs in the next task; buildMenu/attachMenu stay boot stages; rebuildTrayMenu unchanged; no lazy menu, no bare status item",
+    "Unit tests: one stage per task, stage order, a failing stage reported once and later stages skipped",
+    "Contracts green; index.ts no longer than on integration; FF-04 exact; Build & Test green",
+    "LEAD_ACTION (measured): loadIcon, decorate and attachMenu < 250 ms in both rows; newTray per run recorded (newTray alone >= 250 goes to S5)"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "QA candidate self-test ST-1 reports on the PR head"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 4,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): M2-0433 restart slice."
+  },
+  {
+   "id": "M2-0518",
+   "title": "Stalls and boot-burst writes: fix what the witness attributes to the app",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0515",
+    "M2-0516",
+    "M2-0517"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-21",
+    "OD-24",
+    "M2-0433-slice"
+   ],
+   "scope_paths": [
+    "src/main/lifecycle/boot-work.ts",
+    "src/main/lifecycle/boot-work.test.ts",
+    "src/main/index.ts",
+    "src/main/infra/observability/",
+    "scripts/architecture-baseline.json"
+   ],
+   "summary": "Slice S4 of M2-0433 (strict ST-1, OD-21, gates 1.9.7). The lead restarted M2-0433 on 2026-09-29 after 8 stuck rounds: PR #336 was conflicting so its ST-1 self-test never ran; work aimed at stages that were not the cause (plan and per-run data: codex-queue/logs/unstick-m2-0433-plan.json). Start from origin/m2/integration; origin/m2/M2-0433-st-1-strict-gate is a read-only reference to port from with git show. Never relax ST-1 (OD-21/OD-24).",
+   "acceptance": [
+    "Lead ruling classifies every loop spike >= 250 ms, late sample and write >= 250 ms in the S1-S3 QA reports as app work, app-only idle delay (harness loop and CPU calm), or machine-wide (witness also delayed or CPU saturated)",
+    "App-only idle delays after the boot power-save hold ends: the fix the lead rules on (e.g. holding prevent-app-suspension while the overlay is shown) with a behaviour test; a power trade-off beyond the lead's authority goes to the owner",
+    "App-attributable boot-burst writes: non-essential boot child processes (ps listing) and fs/crypto work start behind the first show through the boot-work queue, with tests; no boot job is skipped silently (audit when held)",
+    "Machine-wide events: no code; listed per run for S5",
+    "LEAD_ACTION (measured): async-write < 250 ms and no late samples in both rows, except events proven machine-wide"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "QA candidate self-test ST-1 reports on the PR head"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 6,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): M2-0433 restart slice."
+  },
+  {
+   "id": "M2-0519",
+   "title": "Constructor and status item: adopt a measured window option or escalate to the owner (acceptance 6)",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0516",
+    "M2-0517",
+    "M2-0518"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-21",
+    "OD-24",
+    "M2-0433-slice"
+   ],
+   "scope_paths": [
+    "src/main/index.ts",
+    "src/main/boot-window-rendering.ts",
+    "src/main/boot-window-rendering.test.ts",
+    "scripts/architecture-baseline.json"
+   ],
+   "summary": "Slice S5 of M2-0433 (strict ST-1, OD-21, gates 1.9.7). The lead restarted M2-0433 on 2026-09-29 after 8 stuck rounds: PR #336 was conflicting so its ST-1 self-test never ran; work aimed at stages that were not the cause (plan and per-run data: codex-queue/logs/unstick-m2-0433-plan.json). Start from origin/m2/integration; origin/m2/M2-0433-st-1-strict-gate is a read-only reference to port from with git show. Never relax ST-1 (OD-21/OD-24).",
+   "acceptance": [
+    "If a variant keeps createWindow.construct and any prewarm stage < 250 ms in both chromes on the same runner and keeps FITO-185-Z behaviour: ship it (its QA switch removed), contracts green, measured < 250 ms in both ST-1 rows",
+    "Otherwise no code: LEAD_ACTION takes the per-run table (run id, job, createWindow.construct, createTray.newTray, witness loop/write/CPU at that moment) to the owner; the criteria stay unchanged"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "QA candidate self-test ST-1 reports on the PR head"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 3,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): M2-0433 restart slice."
+  },
+  {
+   "id": "M2-0520",
+   "title": "ST-1 fifo and control jobs blocking again after a recorded strict PASS",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0518",
+    "M2-0519"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-21",
+    "OD-24",
+    "M2-0433-slice"
+   ],
+   "scope_paths": [
+    ".github/workflows/qa-candidate.yml"
+   ],
+   "summary": "Slice S6 of M2-0433 (strict ST-1, OD-21, gates 1.9.7). The lead restarted M2-0433 on 2026-09-29 after 8 stuck rounds: PR #336 was conflicting so its ST-1 self-test never ran; work aimed at stages that were not the cause (plan and per-run data: codex-queue/logs/unstick-m2-0433-plan.json). Start from origin/m2/integration; origin/m2/M2-0433-st-1-strict-gate is a read-only reference to port from with git show. Never relax ST-1 (OD-21/OD-24).",
+   "acceptance": [
+    "Started only after the lead records verdict PASS for both rows on one QA self-test of a head that equals integration plus every fix slice",
+    "Job- and step-level continue-on-error removed from st1-mac-fifo and st1-mac-control, comment 'Blocking (OD-21, M2-0433)'; st1-mac-window stays report-only; nothing else changes",
+    "LEAD_ACTION: the QA candidate on main (the lane candidate) shows PASS in both rows; ledger M2-0433 DONE with the run ids"
+   ],
+   "verification": [
+    "CI Build & Test",
+    "QA candidate self-test ST-1 reports on the PR head"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "high",
+   "estimate_hours": 1,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-09-29 (lead): M2-0433 restart slice."
   }
  ]
 }
