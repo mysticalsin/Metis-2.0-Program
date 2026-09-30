@@ -32440,7 +32440,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "risk": "low",
    "estimate_hours": 3,
    "title": "Fix resource-census.yml so the M2-0009 census runs on hosted runners: Windows profile path, and the macOS census no longer skipped when the local TTFT proof times out",
@@ -32474,7 +32474,17 @@
     "Build & Test green; no other workflow changed",
     "LEAD_ACTION: after merge and a main push, dispatch gh workflow run resource-census.yml --ref main -f release_repo=mysticalsin/Metis-Releases -f release_tag=v1.9.6-unsigned; commit docs/metis-2.0/evidence/resource-baseline.md plus raw JSON under evidence/raw/M2-0009/ and record M2-0009 MEASURED (hosted-runner kind, OD-26)"
    ],
-   "notes": "2026-09-29 (lead): filed from the failed first dispatch of resource-census.yml (run 36620887469); logs in codex-queue/logs/M2-0009-census/."
+   "notes": "2026-09-29 (lead): filed from the failed first dispatch of resource-census.yml (run 36620887469); logs in codex-queue/logs/M2-0009-census/.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/346",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-sonnet",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0474",
