@@ -26459,7 +26459,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "risk": "medium",
    "estimate_hours": 5,
    "title": "Make the Windows RV-3 shortcut-relaunch smoke row deterministic: the second-instance reveal event is intermittently missing from the audit log",
@@ -26490,7 +26490,16 @@
     "If the harness races the audit flush: wait on the event with a bounded deadline instead of a fixed read; no weakening — the row still requires the reveal",
     "LEAD_ACTION: after merge, remove the row from codex-queue state/.smoke-failset once integration shows it green on 3 consecutive runs"
    ],
-   "notes": "2026-09-29 (lead): filed when integration halted on this row (STOP cleared by listing it in .smoke-failset)."
+   "notes": "2026-09-29 (lead): filed when integration halted on this row (STOP cleared by listing it in .smoke-failset).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/347",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0475",
