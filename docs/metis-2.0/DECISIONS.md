@@ -54,6 +54,7 @@ Evidence labels follow software-architecture-engineer v1.4.0: OBSERVED, PROVIDED
 | OD-38 | 2026-09-29 | Owner: **drop the managed Windows 11 laptop requirement** (M2-0007 step 2 / B-03 / B-06). Windows evidence comes from hosted windows-latest (OD-26); the enterprise-image specifics (EDR, OneDrive Files On-Demand) are stated as a residual risk in release notes. |
 | OD-39 | 2026-09-29 | Owner **confirms POLICY-2.0.md as written** (D-4 Operator seat, D-11 Cloudflare via Operator with the OD-30 amendment, D-12 metadata-only gateway logs): M2-0189 ACCEPTED. |
 | OD-40 | 2026-09-30 | Owner **approves the mixed build lanes** at the rocket-fuel G6 gate ("Ship + switch to mixed"): the queue runs IMPLEMENTER=mixed — opus-owned tickets are built by Claude Opus and reviewed by Codex, sonnet-owned tickets are built by Codex and reviewed by Claude Opus; an unavailable model (exit 75) hands that round to the other vendor, and no model reviews its own round. Supersedes the "Claude does it all" part of OD-19 for new launches. |
+| OD-41 | 2026-09-30 | Owner **approves the early build behind the soak**: tickets whose only unfinished dependency is the owner soak M2-0198 are built, reviewed and CI-checked now (PRs held as drafts), and merge only after M2-0198 passes; PD-12 still holds for merges. Switch: codex-queue/EARLY-BUILD (lists the gate ids); merge.sh never merges a ticket with an unfinished ledger dependency. |
 
 ## B. Program decisions (Opus, 2026-09-26)
 
