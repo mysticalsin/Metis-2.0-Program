@@ -1,0 +1,329 @@
+{
+  "schema": 1,
+  "result": "pass",
+  "failures": [],
+  "app": {
+    "version": "1.9.6",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "events": {
+    "app.started": 1,
+    "app.renderer.ready": 1,
+    "app.stall": 0,
+    "app.crash": 0,
+    "app.unresponsive": 0,
+    "app.shutdown.clean": 1
+  },
+  "timingsMs": {
+    "ready": 2530,
+    "exit": 728,
+    "survivorsGone": 44
+  },
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "shutdown": {
+    "audited": true,
+    "marker": true
+  },
+  "rv": [
+    {
+      "id": "RV-1-macos-open-activate",
+      "reason": "activate",
+      "automation": "open-app-path",
+      "status": "PASS",
+      "evidence": {
+        "event": "reveal",
+        "reason": "activate",
+        "outcome": "shown",
+        "parked": true,
+        "layout": "hide"
+      },
+      "unblock": null
+    },
+    {
+      "id": "RV-2-macos-open-new-instance",
+      "reason": "second-instance",
+      "automation": "open-new-instance",
+      "status": "PASS",
+      "evidence": {
+        "event": "reveal",
+        "reason": "second-instance",
+        "outcome": "shown",
+        "parked": true,
+        "layout": "hide"
+      },
+      "unblock": null
+    },
+    {
+      "id": "RV-4-tray-show",
+      "reason": "tray",
+      "automation": "tray-menu",
+      "status": "PASS",
+      "evidence": {
+        "event": "reveal",
+        "reason": "tray",
+        "outcome": "shown",
+        "parked": true,
+        "layout": "hide"
+      },
+      "unblock": null
+    },
+    {
+      "id": "RV-4-global-hotkey",
+      "reason": "hotkey",
+      "automation": "global-hotkey",
+      "status": "PASS",
+      "evidence": {
+        "event": "reveal",
+        "reason": "hotkey",
+        "outcome": "shown",
+        "parked": true,
+        "layout": "hide"
+      },
+      "unblock": null
+    },
+    {
+      "id": "RV-1-macos-finder-spotlight-launchpad",
+      "reason": "activate",
+      "automation": "finder-open-app-file",
+      "status": "PASS",
+      "evidence": {
+        "event": "reveal",
+        "reason": "activate",
+        "outcome": "shown",
+        "parked": true,
+        "layout": "hide"
+      },
+      "unblock": null
+    }
+  ],
+  "navigationGuard": [
+    {
+      "id": "HIST-clean-bar-open",
+      "state": "clean",
+      "entry": "bar-history",
+      "status": "PASS",
+      "evidence": {
+        "seededMeetings": 2,
+        "guardVisible": false,
+        "harnessState": {
+          "beforeOnboardingDone": true,
+          "afterOnboardingDone": true,
+          "overlayLayout": "bar",
+          "autoHideOverlay": false
+        }
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-clean-settings-open",
+      "state": "clean",
+      "entry": "settings-open-full-history",
+      "status": "PASS",
+      "evidence": {
+        "returnedToHistory": true,
+        "guardVisible": false
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-clean-row-doubleclick",
+      "state": "clean",
+      "entry": "history-row-doubleclick",
+      "status": "PASS",
+      "evidence": {
+        "openedReview": true,
+        "guardVisible": false
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-clean-bottom-open",
+      "state": "clean",
+      "entry": "history-open-button",
+      "status": "PASS",
+      "evidence": {
+        "openedReview": true,
+        "guardVisible": false
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-clean-back",
+      "state": "clean",
+      "entry": "review-back-to-history",
+      "status": "PASS",
+      "evidence": {
+        "returnedToHistory": true,
+        "guardVisible": false
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-clean-recent-meeting",
+      "state": "clean",
+      "entry": "review-recent-meeting",
+      "status": "PASS",
+      "evidence": {
+        "openedRecentMeeting": true,
+        "guardVisible": false
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-cancel-bar",
+      "state": "dirty",
+      "entry": "bar-history-cancel",
+      "status": "PASS",
+      "evidence": {
+        "decision": "cancel",
+        "entry": "bar-history",
+        "draftPreserved": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-discard-bar",
+      "state": "dirty",
+      "entry": "bar-history-discard",
+      "status": "PASS",
+      "evidence": {
+        "decision": "discard",
+        "entry": "bar-history",
+        "returnedToHistory": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-save-bar",
+      "state": "dirty",
+      "entry": "bar-history-save",
+      "status": "PASS",
+      "evidence": {
+        "decision": "save",
+        "entry": "bar-history",
+        "persistedBeforeNavigation": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-cancel-settings-open",
+      "state": "dirty",
+      "entry": "settings-open-full-history-cancel",
+      "status": "PASS",
+      "evidence": {
+        "decision": "cancel",
+        "entry": "settings-open-full-history",
+        "draftPreserved": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-discard-settings-open",
+      "state": "dirty",
+      "entry": "settings-open-full-history-discard",
+      "status": "PASS",
+      "evidence": {
+        "decision": "discard",
+        "entry": "settings-open-full-history",
+        "returnedToHistory": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-save-settings-open",
+      "state": "dirty",
+      "entry": "settings-open-full-history-save",
+      "status": "PASS",
+      "evidence": {
+        "decision": "save",
+        "entry": "settings-open-full-history",
+        "persistedBeforeNavigation": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-cancel-back",
+      "state": "dirty",
+      "entry": "review-back-to-history-cancel",
+      "status": "PASS",
+      "evidence": {
+        "decision": "cancel",
+        "draftPreserved": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-discard-back",
+      "state": "dirty",
+      "entry": "review-back-to-history-discard",
+      "status": "PASS",
+      "evidence": {
+        "decision": "discard",
+        "returnedToHistory": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-save-back",
+      "state": "dirty",
+      "entry": "review-back-to-history-save",
+      "status": "PASS",
+      "evidence": {
+        "decision": "save",
+        "returnedToHistory": true,
+        "persistedBeforeNavigation": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-cancel-recent",
+      "state": "dirty",
+      "entry": "review-recent-meeting-cancel",
+      "status": "PASS",
+      "evidence": {
+        "decision": "cancel",
+        "entry": "review-recent-meeting",
+        "draftPreserved": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-discard-recent",
+      "state": "dirty",
+      "entry": "review-recent-meeting-discard",
+      "status": "PASS",
+      "evidence": {
+        "decision": "discard",
+        "entry": "review-recent-meeting",
+        "openedTargetMeeting": true
+      },
+      "unblock": null
+    },
+    {
+      "id": "HIST-dirty-save-recent",
+      "state": "dirty",
+      "entry": "review-recent-meeting-save",
+      "status": "PASS",
+      "evidence": {
+        "decision": "save",
+        "entry": "review-recent-meeting",
+        "persistedBeforeNavigation": true
+      },
+      "unblock": null
+    }
+  ],
+  "processes": {
+    "atQuit": {
+      "Metis": 1,
+      "Metis Helper": 4,
+      "Metis Helper (Renderer)": 1,
+      "chrome_crashpad_handler": 1,
+      "metis-mac-helper": 1
+    },
+    "survivors": {}
+  }
+}

@@ -2791,9 +2791,16 @@
     "validation": "independent Codex review PASS + CI green",
     "pending": [
      "LIVE_VERIFIED"
-    ]
+    ],
+    "supporting": {
+     "run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36613722413",
+     "commit": "6ea79002 (m2/integration)",
+     "what": "RV-1..4 matrix PASS on macos-latest and windows-latest (packaged-smoke self-built bytes)",
+     "raw": "docs/metis-2.0/evidence/raw/M2-0036/",
+     "note": "supporting only; LIVE_VERIFIED is recorded from the 1.9.7 candidate lanes (hosted-runner kind, OD-26) on the candidate sha256"
+    }
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): record the two LIVE_VERIFIED lines from packaged-smoke run 36613722413 under kind hosted-runner (host macos-latest and windows-latest) with ci_run_id 36613722413, once M2-0466 is on main. Do not use the qa-mac or windows-runner workaround the triage proposed."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): record the two LIVE_VERIFIED lines from packaged-smoke run 36613722413 under kind hosted-runner (host macos-latest and windows-latest) with ci_run_id 36613722413, once M2-0466 is on main. Do not use the qa-mac or windows-runner workaround the triage proposed. 2026-09-30 (lead): supporting packaged-smoke reports from run 36613722413 saved (artifacts expire 10-13); LIVE_VERIFIED waits for the candidate-bytes lane."
   },
   {
    "id": "M2-0037",
@@ -3010,9 +3017,16 @@
     "validation": "independent Codex review PASS + CI green",
     "pending": [
      "LIVE_VERIFIED"
-    ]
+    ],
+    "supporting": {
+     "run": "https://github.com/mysticalsin/AskToto-Mantu/actions/runs/36613722413",
+     "commit": "6ea79002 (m2/integration)",
+     "what": "navigation guard 18/18 HIST rows PASS on macos-latest and windows-latest (packaged-smoke self-built bytes)",
+     "raw": "docs/metis-2.0/evidence/raw/M2-0040/",
+     "note": "supporting only; LIVE_VERIFIED is recorded from the 1.9.7 candidate lanes (hosted-runner kind, OD-26) on the candidate sha256"
+    }
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): the same as M2-0036. Record under kind hosted-runner with ci_run_id 36613722413 once M2-0466 is on main."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): the same as M2-0036. Record under kind hosted-runner with ci_run_id 36613722413 once M2-0466 is on main. 2026-09-30 (lead): supporting packaged-smoke reports from run 36613722413 saved (artifacts expire 10-13); LIVE_VERIFIED waits for the candidate-bytes lane."
   },
   {
    "id": "M2-0041",
