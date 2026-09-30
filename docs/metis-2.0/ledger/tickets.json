@@ -399,6 +399,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Owner answers: D-14 approved (M2-0197 ACCEPTED), D-15 answered, D-8 security review first (M2-0521), D-5 platform = Cloudflare Containers + managed Postgres (provider/region open)."
+  },
+  {
+   "date": "2026-09-29",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Owner answers: D-5 (Neon EU Frankfurt), D-6 mirror M1, OD-38 drop the Windows laptop, OD-39 policy confirmed (M2-0189 ACCEPTED). Blockers cleared on M2-0189, M2-0120, M2-0007."
   }
  ],
  "tickets": [
@@ -846,12 +852,7 @@
    "required_evidence": [
     "HOST_CONFIGURED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony) / Mantu IT",
-    "unblock_step": "Step (1), the macOS QA user on the owner's Mac, is SUPERSEDED by D-9 ANSWERED_CHANGED 2026-09-27 (packaged-app QA runs on GitHub macos-latest/windows-latest; no QA user on the owner's Mac). Remaining: (2) name a managed Windows 11 x64 laptop with the standard enterprise image (EDR, OneDrive Files On-Demand) for the HOST_CONFIGURED/ST-1-W lane; (3) export the allowlisted non-content settings keys listed in docs/metis-2.0/runbooks/qa-host.md for the representative profile.",
-    "needed_by": "2026-09-29",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
@@ -859,7 +860,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead): external_blocker updated after D-9 was changed to CI runners (BLOCKERS §3a LEAD_ACTION); HOST_CONFIGURED still pending on the laptop lane.",
+   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead): external_blocker updated after D-9 was changed to CI runners (BLOCKERS §3a LEAD_ACTION); HOST_CONFIGURED still pending on the laptop lane. 2026-09-29 OD-38: the managed Windows laptop requirement is dropped; Windows evidence from hosted windows-latest (OD-26); enterprise-image specifics become a stated residual.",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
@@ -7716,7 +7717,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "2026-09-28 (lead): OD-17 answered D-5 — self-hosted private Hindsight on one approved container platform with managed Postgres. Platform/region/operational owner are PENDING and gate only the live deployment (M2-0138, M2-0381). Build and prove services/compose.yml (digest-pinned pgvector Postgres + pinned hindsight-api) with an ubuntu-latest CI compose job (D-28). LEAD_ACTION: private ADR-014 (PENDING + PROPOSED default). 2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose.",
+   "notes": "2026-09-28 (lead): OD-17 answered D-5 — self-hosted private Hindsight on one approved container platform with managed Postgres. Platform/region/operational owner are PENDING and gate only the live deployment (M2-0138, M2-0381). Build and prove services/compose.yml (digest-pinned pgvector Postgres + pinned hindsight-api) with an ubuntu-latest CI compose job (D-28). LEAD_ACTION: private ADR-014 (PENDING + PROPOSED default). 2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose. 2026-09-29: D-5 ANSWERED — Cloudflare Containers + Neon serverless Postgres (pgvector), EU Frankfurt, via Hyperdrive.",
    "priority": "P0",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/297",
@@ -7766,12 +7767,7 @@
     "DESIGNED",
     "LOCALLY_TESTED"
    ],
-   "external_blocker": {
-    "owner": "Tony (owner decision D-6, second half)",
-    "unblock": "Confirm the plaintext-mirror audience (M1/M2/M3; assumed M1); then update ADR-019 O-1 and section 9.2",
-    "needed_by": "2026-10-12",
-    "raised_on": "2026-09-27"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "medium",
    "estimate_hours": 8,
@@ -7788,7 +7784,7 @@
     "green_run": "36286531924",
     "validation": "Opus PASS round 2 (batch 3); acceptance 1 blocked on D-6"
    },
-   "notes": "2026-09-29 (lead, owner-approved ledger batch): acceptance 1 re-validated 2026-09-28 by the independent Opus review of M2-0265 (codex-queue/logs/codex/M2-0265-review-1.last.txt, PASS against the D-6 row). D-6 canonical store answered (ANSWERED_AS_DEFAULT 2026-09-27: M365 via Entra API); the plaintext-mirror audience (M1/M2/M3) is still ASSUMED M1 and stays an owner question."
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): acceptance 1 re-validated 2026-09-28 by the independent Opus review of M2-0265 (codex-queue/logs/codex/M2-0265-review-1.last.txt, PASS against the D-6 row). D-6 canonical store answered (ANSWERED_AS_DEFAULT 2026-09-27: M365 via Entra API); the plaintext-mirror audience (M1/M2/M3) is still ASSUMED M1 and stays an owner question. 2026-09-29: D-6 second half ANSWERED — mirror audience M1; ADR-019 O-1 and §9.2 status updated by the lead."
   },
   {
    "id": "M2-0121",
@@ -8075,7 +8071,7 @@
    "due": null,
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Slice M2-0124.1 plus acceptance 4. Operator exposes Laya readiness and selection, and reports 'unavailable' while no hosted adapter is configured. The Laya-only isolation test in operator/src/routes/decide.test.ts: with Laya selected and unavailable, /v1/decide makes zero calls to the mock Jev vendor (spy asserted) and falls back automatically only when an approved fallback is explicitly configured. A CI check scans the packaged desktop artifacts (macOS and Windows) and fails on any Python or Torch payload. Proof: `npx vitest run operator/src/routes/decide.test.ts` and the package scan, both green in CI. Do not build the compose container or the checkpoint (M2-0124.2). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Laya vendor/hosting relationship owner confirms the Laya source and checkpoint licence and approves Laya's hosting platform. OD-17 answered D-5 for Hindsight only. Once that is done, slice M2-0124.2 can start: the container adapter with a pinned checkpoint in the compose profile, running `docker compose -f services/compose.yml run laya-tests` in CI. 2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose."
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Slice M2-0124.1 plus acceptance 4. Operator exposes Laya readiness and selection, and reports 'unavailable' while no hosted adapter is configured. The Laya-only isolation test in operator/src/routes/decide.test.ts: with Laya selected and unavailable, /v1/decide makes zero calls to the mock Jev vendor (spy asserted) and falls back automatically only when an approved fallback is explicitly configured. A CI check scans the packaged desktop artifacts (macOS and Windows) and fails on any Python or Torch payload. Proof: `npx vitest run operator/src/routes/decide.test.ts` and the package scan, both green in CI. Do not build the compose container or the checkpoint (M2-0124.2). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Laya vendor/hosting relationship owner confirms the Laya source and checkpoint licence and approves Laya's hosting platform. OD-17 answered D-5 for Hindsight only. Once that is done, slice M2-0124.2 can start: the container adapter with a pinned checkpoint in the compose profile, running `docker compose -f services/compose.yml run laya-tests` in CI. 2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose. 2026-09-29: D-5 ANSWERED — Cloudflare Containers + Neon serverless Postgres (pgvector), EU Frankfurt, via Hyperdrive."
   },
   {
    "id": "M2-0125",
@@ -8160,7 +8156,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose."
+   "notes": "2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose. 2026-09-29: D-5 ANSWERED — Cloudflare Containers + Neon serverless Postgres (pgvector), EU Frankfurt, via Hyperdrive."
   },
   {
    "id": "M2-0126",
@@ -8616,7 +8612,8 @@
    "validation_hours": 1.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-09-29: D-5 ANSWERED — Cloudflare Containers + Neon serverless Postgres (pgvector), EU Frankfurt, via Hyperdrive."
   },
   {
    "id": "M2-0134",
@@ -11930,12 +11927,7 @@
     "DESIGNED",
     "ACCEPTED"
    ],
-   "external_blocker": {
-    "owner": "Program owner (Tony)",
-    "unblock_step": "D-4, D-11 and D-12 were answered on 2026-09-27 (DECISIONS.md). Remaining: confirm in one line (decision slot) that docs/metis-2.0/POLICY-2.0.md as written reflects those answers. The lead then files the ACCEPTED record.",
-    "needed_by": "2026-10-02",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": null,
    "risk": "high",
    "estimate_hours": 3,
@@ -11943,16 +11935,17 @@
    "slices": [],
    "due": "2026-10-02",
    "status": "ENGINEERING_COMPLETE",
-   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: ACCEPTED. 2026-09-29 (lead): external_blocker text updated to what remains after D-4/D-11/D-12 were answered (BLOCKERS §3a LEAD_ACTION).",
+   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: ACCEPTED. 2026-09-29 (lead): external_blocker text updated to what remains after D-4/D-11/D-12 were answered (BLOCKERS §3a LEAD_ACTION). 2026-09-29 OD-39: owner confirmed the policy record; ACCEPTED.",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/11",
     "merged_into": "main (squash)",
     "validation": "Opus PASS (batch 6); rebuilt clean from #9",
-    "pending": [
-     "ACCEPTED"
-    ]
+    "pending": [],
+    "accepted": {
+     "owner_statement": "2026-09-29: owner confirmed POLICY-2.0.md as written (D-4, D-11 with the OD-30 amendment, D-12) — OD-39"
+    }
    }
   },
   {

@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Ticket | M2-0120 (TASK-007). Kit refs: M2-KNOW-02, M2-KNOW-04, M2-GOV-02, EXP-11, R58. Finding: K03-DEC-knowledge-model |
-| Status | **ACCEPTED for the store (D-6 answered 2026-09-27); the mirror audience is still PROPOSED.** Owner decision **D-6** was answered as the recommended default, "M365 via Entra API" (OBSERVED: `docs/metis-2.0/DECISIONS.md:114`, status column). So the canonical store is option B and the always-on service path in §2.2 is the approved path. The engineering decisions (§3 to §9) are unchanged. The register records no separate answer for the mirror audience, so M1 (§9.2) stays the recommended default and is ASSUMED until the owner confirms it (O-1). Nothing is migrated yet, and no content leaves the device until M2-0125 and M2-0126 land. Reviewed matrix: `DATA-AUTHORITY-MATRIX.md` (M2-0265). |
+| Status | **ACCEPTED for the store (D-6 answered 2026-09-27); the mirror audience is M1, personal mirror only (owner, 2026-09-29).** Owner decision **D-6** was answered as the recommended default, "M365 via Entra API" (OBSERVED: `docs/metis-2.0/DECISIONS.md:114`, status column). So the canonical store is option B and the always-on service path in §2.2 is the approved path. The engineering decisions (§3 to §9) are unchanged. The register records no separate answer for the mirror audience, so M1 (§9.2) stays the recommended default and is ASSUMED until the owner confirms it (O-1). Nothing is migrated yet, and no content leaves the device until M2-0125 and M2-0126 land. Reviewed matrix: `DATA-AUTHORITY-MATRIX.md` (M2-0265). |
 | Contract | `src/shared/contracts/knowledge/` in the public repository, PR #217 (`m2/M2-0120-knowledge-contracts`, base `m2/integration`) |
 | Baseline | `m2/integration` at `7dab8e89`, read with `git show`. D-28 applies: nothing was run on a Mac except `tsc --noEmit`. |
 | Companions | ARCHITECTURE.md §2.7 C11 (component admission register), §2.5 (Mantu Intelligence row), §5 ADR-019 row; `designs/M2-0003-DESIGN.md` (decryption as ownership proof); kit MASTER §17 and §35 |
@@ -334,7 +334,7 @@ The mapping is total and single-valued: every legacy value has exactly one canon
 
 | # | Item | Label | Owner | Next step |
 |---|---|---|---|---|
-| O-1 | D-6 store: ANSWERED 2026-09-27, option B (§2.2). The mirror boundary has no separate recorded answer | Store: closed (OBSERVED, `DECISIONS.md:114`). Mirror: ASSUMED M1 | Program owner | Confirm M1, M2 or M3 (§9.2) by 2026-10-12, or record that D-6's answer covers M1. |
+| O-1 | D-6 store: ANSWERED 2026-09-27, option B (§2.2). Mirror boundary ANSWERED 2026-09-29: M1 (personal mirror only) | Store: closed. Mirror: closed, M1 (owner, 2026-09-29) | Program owner | Closed. |
 | O-2 | Which Graph primitive (list item or drive item), with its size limits, throttling and `If-Match` semantics, including the exact precondition-failure response (ASSUMED 412) | UNKNOWN | M2-0125 | Qualify against a test site before choosing. R58 covers list items only. |
 | O-3 | The producer ingest request (extraction on the device or in the service) | PROPOSED later | M2-0125 | Decide after D-3, D-5 and D-12, and add it to this contract |
 | O-4 | The retention policy catalog | UNKNOWN | Owner (D-3, D-12) | Until then `retention.policy` is opaque |
