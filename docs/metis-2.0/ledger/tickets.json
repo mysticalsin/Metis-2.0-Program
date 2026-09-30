@@ -35216,6 +35216,49 @@
    "external_blocker": null,
    "flag": null,
    "notes": "2026-09-30 (lead): filed from the runner-queue measurement; highest-leverage throughput fix for 1.9.7 and everything after."
+  },
+  {
+   "id": "M2-0526",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0428"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "packaged-smoke runs 36682011618 (M2-0467) and 36688495533 (M2-0505), 2026-09-30"
+   ],
+   "scope_paths": [
+    "src/main/island/",
+    "src/main/index.ts",
+    "scripts/qa/packaged-smoke.mjs"
+   ],
+   "estimate_hours": 5,
+   "risk": "medium",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Meeting hide intermittently parks the right-edge sliver 32 px above the requested band (RE-HIDE-3-meeting-hide, macOS)",
+   "summary": "On app bytes identical to a green m2/integration, the macOS packaged-smoke row RE-HIDE-3-meeting-hide failed in 2 of about 12 PR runs on 2026-09-30. Evidence: requestedHideBand {x:1020,y:61,w:4,h:560}, observed bounds {x:1020,y:29,w:4,h:592}, workArea y=31, kind 'other', opacity 0, click-through on. The bottom edge is unchanged and the top moved up 32 px, above the work area, which points at a second bounds writer (or a stale height) racing the park during a live meeting. The row is listed in codex-queue/known-smoke-flakes.txt so a run failing ONLY this row gets one re-run; that entry goes when this merges.",
+   "acceptance": [
+    "Root cause named with evidence: which code path writes the y=29/h=592 bounds during a live meeting hide on macOS, and why only sometimes",
+    "The parked hide sliver always equals the requested band (never above the work area), fixed at the cause (no retry loop or sleep in the harness or the app)",
+    "A deterministic test reproduces the race (fails before the fix) and passes after it",
+    "LEAD_ACTION after merge: remove the RE-HIDE-3-meeting-hide row entry from codex-queue/known-smoke-flakes.txt and watch 10 consecutive macOS smoke runs for that row"
+   ],
+   "verification": [
+    "packaged smoke macOS RE-HIDE-3-meeting-hide PASS on 10 consecutive runs after the merge"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-09-30 (lead): filed from two intermittent smoke failures on unchanged app bytes. Coordinate with M2-0431 (fades, grace, anchored drag) which touches the same geometry."
   }
  ]
 }
