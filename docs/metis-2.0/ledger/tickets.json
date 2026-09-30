@@ -35203,7 +35203,7 @@
    ],
    "estimate_hours": 3,
    "risk": "medium",
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "title": "Path-gate the native-only macOS jobs on ticket-branch pushes (isolation-canary's MetisKit swift test and owner-account.sb, build.yml's Native job); always full on m2/integration, main, release/* and dispatch",
@@ -35224,7 +35224,13 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-09-30 (lead): filed from the runner-queue measurement; highest-leverage throughput fix for 1.9.7 and everything after."
+   "notes": "2026-09-30 (lead): filed from the runner-queue measurement; highest-leverage throughput fix for 1.9.7 and everything after.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/376",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0526",
