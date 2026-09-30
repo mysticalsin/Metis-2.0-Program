@@ -1,10 +1,10 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 15
+shift: 16
 agent: claude-code
-updated: 2026-09-30 09:49 EDT
+updated: 2026-09-30 17:50 EDT
 status: in-progress (full autopilot; signing excluded; IMPLEMENTER=mixed OD-40; early build behind the soak OD-41)
-branch: m2/integration = 3a17f9fa; program repo Metis-2.0-Program PUBLIC temporarily (OD-37; revert M2-0480)
+branch: m2/integration = 629e28c8; main = 009ab850 (milestone #396, 41 commits, 20:12Z); program repo PUBLIC temporarily (OD-37)
 ---
 
 # Handoff — Métis 2.0 program
@@ -13,25 +13,31 @@ branch: m2/integration = 3a17f9fa; program repo Metis-2.0-Program PUBLIC tempora
 Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level; merged to main after CI + packaged smoke green. Signing excluded.
 
 ## Current state
-- Ledger 526 tickets: 378 unfinished (~2,579 h), 103 slice-driven (372 slices left). 1.9.7 (M2-0046, target 10-07..09) has ~40 open deps.
-- Queue now: IMPLEMENTER=mixed (opus-owned: Claude Opus builds / Codex reviews; sonnet-owned: Codex builds / Claude Opus reviews; exit 75 -> other vendor; routing in codex-queue/route.sh + lib.sh model_*). Rollback: echo claude > codex-queue/IMPLEMENTER (backups logs/*.pre-rock2-*).
-- Live queue improvements today (all attacked by Codex to SHIP, tests in codex-queue/tests/*.sh — run all, every one must PASS): slice automation (Rock 1), pipe_has (pipefail SIGPIPE), job-keyed flaky smoke rows, fail-fast CI proof + ci_* run-identity helpers, ledger_push_done (no stale local ledger commits), critical-chain rank (ledger.py rank; candidates + merge order), M2-0525 macOS path gate merged (queue 45 -> 9).
-- Afternoon (all Codex-attacked to SHIP, tests in codex-queue/tests/*.sh — 11 suites): baseline-merge.py + baseline_sync (baseline-only conflicts resolved by the lane, no implementer round; 9/12 real conflicts identical to the implementer, 3 correct give-ups), train/slot lane alternation (trains no longer starve behind a not-ready first PR), critical-chain rank for launch + merge order, OD-41 early build (codex-queue/EARLY-BUILD = M2-0198: post-soak first-layer tickets, incl. M2-0060 = head of the 60-PR chain, build now as held drafts; merge.sh never merges a ticket with an unfinished ledger dependency).
-- 1.9.7 path: ST-1 chain M2-0516/0517 running (Claude Opus), M2-0193 slice 1 re-sync, M2-0431.2 READY #379 (lead-approved), census/scenario chain waits on READY M2-0467/0473/0486/0487 (first in state/.merge-first).
-- M2-0526 (RE-HIDE-3 flake root cause) bounced 13:45Z: its own trace disproved the setMinimumSize theory; direction = roundedCorners:false (state/M2-0526.feedback).
+- Ledger 528 tickets, 368 unfinished (~2,479 h). Queue: 6 running, 47 READY, 1 STUCK (M2-0205, lead ruling in state/M2-0205.lead; service retry pending).
+- 1.9.7 bump M2-0498: 12/19 deps done. Open: M2-0431 (slice 2 READY, 2 unlisted Windows HIST rows red), M2-0193 (slice 4/4 running), M2-0495/M2-0505 (READY; stale QA-build infra reds re-run by lead 21:0xZ), M2-0433 (waits M2-0516/0518/0519/0520), M2-0032/0512/0514 (wait M2-0193).
+- Main: milestone #396 merged by milestone.sh; resource-census.yml dispatched on main (run 36773284514, M2-0009 evidence); candidate-scenarios.yml registered on main (Rock 3 precondition met; M2-0524 still waits M2-0495).
+- Queue fixes installed today (codex-queue/tests/*.sh: 16 suites, 128/128 PASS):
+  - vitest_fails + known_flakes_only (per failed job; unhandled-error guard): no more false STOPs from harness rows.
+  - ci_key_failures heads CI feedback (failing tests + architecture-baseline differences; 36 tickets had failed the baseline 69 times blind).
+  - milestone.sh: PR head = snapshot branch m2/milestone (fast-forward push), judged by merge.sh's shared rule (pr_checks/pending_checks/rerun_infra now in lib.sh).
+  - Train boarding: known-flake-only smoke reds board; stale infra/known-flake reds of PRs behind the base re-run once; verdicts cached per run attempt (state/.verdict-<run>); boarding scans 24.
+  - is_infra_flake: tagged-script network FAIL lines and Go network errors are infrastructure.
+- Codex attack trend on these: r1 REVISE, r2 REVISE (rebutted with evidence + guard), r3 REVISE (no-run-id red; fixed), r4 RUNNING (codex-queue/.rocket-fuel/codex/attack-cijudge-r4.last.txt).
+- M2-0528 filed (deflake Windows HIST-dirty-discard/save-recent) + those rows listed in codex-queue/known-smoke-flakes.txt; M2-0527 running (intelligence-index deflake).
 
 ## Next steps (in order)
-1. Keep 1.9.7 critical path moving: review P0 PRs as they go READY; merge order state/.merge-first (1.9.7 unblockers first), rest by ledger rank.
-2. Watch mixed-mode rounds (queue.log: fallback / no reviewer / codex usage limit).
-3. M2-0526: confirm its next PR smoke geometry trace shows no 'frame' above the band before it merges; then remove the known-smoke-flakes row after 10 green runs.
-4. After M2-0498 merges: installer hold is automatic; milestone -> qa-candidate on main -> evidence lanes (HK-M 20/20) -> owner ACCEPT -> promote.
-5. Owner items (see the remaining-work report 2026-09-30): M2-0012, M2-0522 (Jev kill switch + redeploy), M2-0498 questions, D-3/D-13/D-29, M2-0058 signing budget, M2-0014, M2-0214 key, GitHub support request, soak after 1.9.7, M2-0480 at the end.
-6. Pending owner answer: build post-soak tickets during the soak (merge after) to buy ~5 days — offered, not decided.
+1. Read attack-cijudge-r4.last.txt; fix any blocker via a .fix copy + mv (backups logs/*.pre-*), rerun every tests/*.sh, attack again until SHIP.
+2. Watch the next train build: it should board up to 4 cars (log "train #N: K PRs ... squashed"); look for "re-ran once (behind the base)".
+3. M2-0205 retry: confirm its next CI feedback starts with "Architecture baseline differences"; if it sticks again, slice it.
+4. Known-flake removals: RE-HIDE-3 row after 10 green macOS smoke runs (M2-0526 merged); intelligence-index line when M2-0527 merges; HIST rows when M2-0528 merges.
+5. After M2-0498 merges: installer hold is automatic; milestone (snapshot PR) -> qa-candidate on main -> evidence lanes (HK-M 20/20) -> owner ACCEPT -> promote.
+6. Owner items: M2-0012, M2-0522 (Jev kill switch + redeploy), M2-0498 questions, D-3/D-13/D-29, M2-0058 signing budget, M2-0014, M2-0214 key, GitHub support request, soak after 1.9.7, M2-0480 at the end.
 
 ## Decisions made (don't relitigate)
-D-28 CI only; OD-12..OD-40 in DECISIONS.md; PD-12 soak gate stays; rocket-fuel engagement 2 G6 approved (Rock 1+2 DONE, Rock 3 = M2-0524 waits on M2-0467 on main).
+D-28 CI only; OD-12..OD-41 in DECISIONS.md; PD-12 soak gate stays; rocket-fuel engagement 2 G6 approved (Rock 1+2 DONE, Rock 3 = M2-0524).
 
 ## Watch out
 - Program repo is PUBLIC: nothing secret/personal/meeting-related.
-- Queue scripts: edit via .new/.fix + mv, keep logs/*.pre-* backups, run every tests/*.sh; zsh does not word-split (use bash).
+- Queue scripts: edit via .fix + mv (re-runnable patch scripts read live), keep logs/*.pre-* backups, run every tests/*.sh; zsh does not word-split and macOS bash 3.2 mis-scans quotes inside "$( "..." )" (use single-quoted sed scripts).
+- Check Codex attack liveness with pgrep -lf, never ps|grep; high-effort attacks take 30-70 min; never remove a statedir .lock while one runs.
 - Take ledger.lock and run ledger.py check (abort on ^cycle / slice_current) before every ledger push.
