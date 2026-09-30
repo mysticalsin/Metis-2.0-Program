@@ -35369,6 +35369,45 @@
      "LEAD_ACTION acceptance item (lead, after merge)"
     ]
    }
+  },
+  {
+   "id": "M2-0527",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "m2/integration 2a6d5e87 Build & Test run 36753707670 (Windows) and M2-0031 CI rounds 3,4,5,7,8 (2026-09-28/29)"
+   ],
+   "scope_paths": [
+    "src/main/brain/intelligence-index.test.ts",
+    "src/main/brain/intelligence-index.ts"
+   ],
+   "estimate_hours": 2,
+   "risk": "low",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Deflake intelligence-index 'does not promote a deferred dispatch even if its local subset completes' (timing race on Windows runners)",
+   "summary": "The test waits with vi.waitFor for intelligenceIndexStatus(s).running to become false; on a loaded Windows runner it times out (expected true to be false at intelligence-index.test.ts:406). It passed on the same tree in the merge-train checks, and failed intermittently in M2-0031's CI rounds. Listed in codex-queue/known-flakes.txt so integration re-runs once instead of halting; that entry goes when this merges.",
+   "acceptance": [
+    "The test no longer depends on wall-clock timing: it drives the index run to completion deterministically (awaited promise, fake timers or an explicit completion hook), with the same assertions",
+    "It fails if the production behaviour it guards is broken (show the mutation you used in the PR description) and passes reliably",
+    "LEAD_ACTION after merge: remove the intelligence-index line from codex-queue/known-flakes.txt"
+   ],
+   "verification": [
+    "CI green on ubuntu and windows"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-09-30 (lead): filed when the flake reddened integration after train #338 landed M2-0193/M2-0526/M2-0487."
   }
  ]
 }
