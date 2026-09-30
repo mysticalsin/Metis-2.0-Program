@@ -29131,6 +29131,50 @@
    },
    "flag": null,
    "notes": "2026-09-30 (lead): filed from the owner's D-8 ruling."
+  },
+  {
+   "id": "M2-0523",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P2",
+   "depends_on": [
+    "M2-0460"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "M2-0460",
+    "M2-0028"
+   ],
+   "scope_paths": [
+    "scripts/qa/hk-m.mjs",
+    "scripts/qa/hk-m.test.ts",
+    "src/main/llm/local-models.ts",
+    "src/main/llm/available-memory.ts"
+   ],
+   "estimate_hours": 2,
+   "risk": "low",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "HK-M harness RAM floors cannot drift from the app: parity test for the model total-RAM floor and the prewarm free-RAM floor",
+   "summary": "scripts/qa/hk-m.mjs hard-codes HK_M_MODEL_MIN_TOTAL_RAM_GB = 8 (said to mirror qwen3.5-0.8b minTotalRamGB in src/main/llm/local-models.ts) and PREWARM_MIN_FREE_RAM_GB = 4, whose comment points at src/main/llm/local-routing.ts, which has no such constant. The hosted-runner evidence (5 m2/integration smoke runs after #350: hw.memsize 7 GiB, ramFloorOverride on 2 rows every run) depends on these floors matching the app. Make the harness read the app's real values, or add a test that fails when they diverge.",
+   "acceptance": [
+    "The harness's model total-RAM floor equals the minTotalRamGB of the model HK-M loads, proven by a test that fails if either side changes alone",
+    "The harness's prewarm free-RAM floor is the app's actual prewarm gate value (locate it; fix the stale local-routing.ts pointer in the comment), proven by a test that fails if either side changes alone",
+    "No behaviour change to the app's RAM gates or to the harness's override logic"
+   ],
+   "verification": [
+    "CI: the new parity test passes and fails when either constant is edited alone (shown in the PR description)"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-09-30 (lead): filed from the M2-0460 lead step (LEAD-ACTIONS)."
   }
  ]
 }
