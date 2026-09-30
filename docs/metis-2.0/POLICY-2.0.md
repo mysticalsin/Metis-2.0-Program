@@ -20,6 +20,8 @@
 - **Unready route (DERIVED):** until privacy readiness is VERIFIED, speech shows unavailable with an explicit local-install choice; the engine never switches by itself.
 - **If revisited:** a local default reverses M2-0112 and the M2-0160 setup scene, and reopens bundled weights in the core installer.
 
+> **Amended by OD-30 (owner, 2026-09-29).** Onboarding also downloads the on-device speech engine selected for the machine (automatic, disclosed, skippable, never blocking; the other engine stays an optional Settings download). Cloudflare via Operator remains the D-11 default route once privacy readiness is VERIFIED; until then a meeting uses the downloaded on-device engine and shows its true state, instead of 'unavailable'. The engine never switches silently. Consequences: M2-0112, M2-0160, M2-0164, M2-0475/0476/0477.
+
 ## D-12. What is the gateway log policy (C-18), and what does the retention claim say?
 
 - **Answer (PROVIDED, verbatim):** "Metadata-only". Recorded policy [S1]: metadata-only gateway logs, no payload logging or caching; the claim says only what M2-0149 verifies. This is the separate approval MASTER §16.6.2 asks for; the end-to-end transport verification is still owed (DERIVED [S4]).
