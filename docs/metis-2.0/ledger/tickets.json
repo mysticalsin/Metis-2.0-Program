@@ -5478,8 +5478,14 @@
    ],
    "due": null,
    "status": "TODO",
-   "slice_current": 1,
-   "notes": " | 2026-09-30 (lead): sliced so the merge of S1 (#306) advances the ticket instead of closing it; slice estimates replace the 14 h ticket estimate."
+   "slice_current": 2,
+   "notes": " | 2026-09-30 (lead): sliced so the merge of S1 (#306) advances the ticket instead of closing it; slice estimates replace the 14 h ticket estimate.",
+   "slices_merged": [
+    {
+     "slice": "M2-0071.1",
+     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/306"
+    }
+   ]
   },
   {
    "id": "M2-0072",
