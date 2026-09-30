@@ -35331,7 +35331,7 @@
    ],
    "estimate_hours": 5,
    "risk": "medium",
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
    "title": "Meeting hide intermittently parks the right-edge sliver 32 px above the requested band (RE-HIDE-3-meeting-hide, macOS)",
@@ -35351,7 +35351,17 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-09-30 (lead): filed from two intermittent smoke failures on unchanged app bytes. Coordinate with M2-0431 (fades, grace, anchored drag) which touches the same geometry."
+   "notes": "2026-09-30 (lead): filed from two intermittent smoke failures on unchanged app bytes. Coordinate with M2-0431 (fades, grace, anchored drag) which touches the same geometry.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/378",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-opus",
+    "reviewer": "codex",
+    "validation": "independent Codex review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   }
  ]
 }
