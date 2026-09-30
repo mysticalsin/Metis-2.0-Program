@@ -17898,7 +17898,7 @@
    "status": "TODO",
    "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): per OD-21 this ticket's History open/search row is the gate for the History-click freeze (M2-0031 records its History exercise report-only). 2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path. 2026-09-29 (lead): STUCK after 8 rounds (a guard flip-flop between two failure sets). Narrowed to slice 1 (state/M2-0193.lead); slices 2-4 filed as M2-0512=S4, M2-0513=S2, M2-0514=S3; S3/S4 gate 1.9.7, S2 (module move) waits for the soak (PD-12). | 2026-09-30 (lead): sliced into the 4 slices of the S1 lead ruling so the merge of S1 (#335) advances the ticket instead of closing it.",
    "priority": "P0",
-   "slice_current": 3,
+   "slice_current": 4,
    "slices_merged": [
     {
      "slice": "M2-0193.1",
@@ -17907,6 +17907,10 @@
     {
      "slice": "M2-0193.2",
      "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/394"
+    },
+    {
+     "slice": "M2-0193.3",
+     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/402"
     }
    ]
   },
