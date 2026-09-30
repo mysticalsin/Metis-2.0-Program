@@ -423,6 +423,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0431 sliced into two ≤5 h slices (acceptance partitioned)."
+  },
+  {
+   "date": "2026-09-30",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0528 filed: deflake Windows HIST-dirty-discard/save-recent smoke rows (known-smoke-flakes entry)."
   }
  ],
  "tickets": [
@@ -35458,6 +35464,45 @@
    "external_blocker": null,
    "flag": null,
    "notes": "2026-09-30 (lead): filed when the flake reddened integration after train #338 landed M2-0193/M2-0526/M2-0487."
+  },
+  {
+   "id": "M2-0528",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "Packaged smoke (Windows) runs 36764499385 (M2-0490), 36745394100 (M2-0431), 36726434472 (M2-0516): HIST-dirty-discard-recent / HIST-dirty-save-recent time out; green on every m2/integration smoke run (2a6d5e87, b30e22a1, 66ff004f), 2026-09-30"
+   ],
+   "scope_paths": [
+    "scripts/qa/packaged-smoke.mjs",
+    "scripts/qa/packaged-smoke.test.ts"
+   ],
+   "estimate_hours": 3,
+   "risk": "low",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Deflake the Windows packaged-smoke History navigation-guard rows HIST-dirty-discard-recent and HIST-dirty-save-recent (15 s locator timeouts on hosted runners)",
+   "summary": "On hosted Windows runners the review-recent-meeting discard/save scenarios time out waiting for the History search field (getByLabel('Search past meetings')) or the 'Back to history' button (locator timeouts of 15 000 ms), on PRs that do not touch History, while every m2/integration smoke run passes them. Listed in codex-queue/known-smoke-flakes.txt so a PR or train red only on them is re-run once (and may board a train); those two row lines go when this merges.",
+   "acceptance": [
+    "The two scenarios wait on an app-side readiness signal (the History list rendered and interactive) instead of a fixed 15 s locator timeout, or record why the view was not reached (the harness's own diagnosis in the row's report)",
+    "Neither row can pass while the navigation guard it checks is broken (show the mutation you used in the PR description)",
+    "LEAD_ACTION after merge: remove the two HIST row lines from codex-queue/known-smoke-flakes.txt"
+   ],
+   "verification": [
+    "Packaged smoke (Windows) green on the PR and on m2/integration"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-09-30 (lead): filed with the known-smoke-flakes entry; 14 READY PRs sat with red checks, 5 of them on these rows."
   }
  ]
 }
