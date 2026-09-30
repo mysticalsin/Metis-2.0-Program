@@ -1,10 +1,10 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 13
+shift: 14
 agent: claude-code
-updated: 2026-09-29 19:25 EDT
-status: in-progress (full autopilot; signing excluded)
-branch: public main = df205007 (ruleset PR + 5 checks); m2/integration = 8916f5cf; program repo Metis-2.0-Program is PUBLIC temporarily (OD-37; main locked against force-push; revert via M2-0480 at program end)
+updated: 2026-09-30 03:52 EDT
+status: in-progress (full autopilot; signing excluded; rocket-fuel engagement 2 with Codex as Integrator)
+branch: public main = df205007; m2/integration = 9c2fef0a; program repo Metis-2.0-Program is PUBLIC temporarily (OD-37; revert via M2-0480 at program end)
 ---
 
 # Handoff — Métis 2.0 program
@@ -13,34 +13,25 @@ branch: public main = df205007 (ruleset PR + 5 checks); m2/integration = 8916f5c
 Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level; HeyClicky parity plus the owner's asks (r11 MASTER, v5/v6); merged to main after CI and packaged smoke are green. Signing is excluded.
 
 ## Current state
-- **Ledger:** 511 tickets. The critical path is 1.9.7 (M2-0046), then the owner's 5-day soak (M2-0198), then W3+ (about 279 tickets gated by PD-12).
-- **1.9.7 = FULL qualification** (OD-31, target 10-07..09). Other owner decisions:
-  - OD-32: the mac build is ad-hoc signed.
-  - OD-33: promote dry run. DONE, PASS (runs 36636273967 and 36643160857).
-  - OD-34: supervision is default-on only after HK-M passes 20/20 on the candidate.
-  - OD-35: the idle soak is two hosted legs of at most 5.5 h each, with a pre-registered growth rule.
-  - OD-36: real-dataless ST-1 is proven in the owner soak.
-- **Producers:** M2-0482..M2-0511, plus 16 existing tickets raised to P0 W1/m3. All are M2-0046 dependencies. Version bump M2-0498 depends on every before-cut ticket (it lands last). Launch order is codex-queue/PRIORITY; merge order is state/.merge-first.
-- **P0 fixes:**
-  - Merged: M2-0429 meeting audio, M2-0430 write-up speed.
-  - M2-0428 right-edge hide: resolving conflicts again.
-  - M2-0431 flashing: after M2-0428.
-  - M2-0433 strict ST-1: long pole, CI failing.
-  - M2-0193 then M2-0032: History.
-  - M2-0478: diagnostics schema 2, in the merge slot.
-- **Queue:** merge trains live (3 trains, 12 PRs today). Red-train blame goes to files. Flakes are in known-smoke-flakes.txt and state/.smoke-failset (RV-3 Windows; M2-0474). Scans are cached per head. PARALLEL=6, niced.
-- **OD-30:** onboarding downloads the selected on-device speech engine (M2-0475 engine now, M2-0476 wiring after the soak, M2-0477 policy).
+- **Ledger:** 524 tickets. Critical path: 1.9.7 (M2-0046, FULL qualification, OD-31) → owner 5-day soak (M2-0198) → PD-12-gated W3+ → freeze 11-15 → ship 11-30.
+- **Slicing is live (rocket-fuel Rock 1, installed ~08:00Z 09-30):** 103 tickets build one ≤8 h slice per PR (ledger `slices` + `slice_current`). `ledger.py done` advances the slice (idempotent per PR); merge.sh record() → lib.sh slice_advanced clears per-slice state only when the ledger push reached origin; a manual lead is archived as state/<ID>.lead.<slice> and the next slice gets an AUTO-SLICE lead. Tests: codex-queue/tests/{slice-progression,slice-record,pipe-has}.sh. Codex round-2 attack pending → then Rock 1 DONE.
+- **Queue bug fixed live:** `| grep -q` under pipefail misread big CI logs (SIGPIPE) → real failures got flake reruns; lib.sh pipe_has now used for large producers (also installer_held and the honest-status marker scan).
+- **Rock 2 (Codex building):** IMPLEMENTER=mixed (opus tickets: Claude builds, Codex reviews; sonnet: the reverse; fallback on 75; never self-review). Writes only .new files + tests/implementer-routing.sh; install after Level 10.
+- **Rock 3:** M2-0524 journey scenario (2 slices, deps M2-0467/0494/0495). M2-0467 bounced once: its contract test expected the pre-M2-0499 qa-candidate ref guard (lead note in state/M2-0467.lead).
+- **Filed today:** M2-0523 (HK-M RAM-floor parity test), M2-0524. M2-0460 step 1 done: 5 integration smoke runs, hosted mac memsize 7 GiB, ramFloorOverride 2 rows, HK-M 5/5 each.
 
 ## Next steps (in order)
-1. Review each P0 PR when READY. Keep PRIORITY / .merge-first on the before-cut chain.
-2. After M2-0498 (bump) merges: hold installer-changing PRs on m2/integration until the owner records ACCEPTED (only tests/docs/workflows may land). This is not built into merge.sh yet; add a hold check before the bump merges.
-3. Milestone merge to main with green main CI (M2-0486 area), then dispatch qa-candidate.yml on main for the 1.9.7 cut. Then run the evidence lanes on the candidate. Then release/1.9.x plus promote (publish) after ACCEPTED.
-4. Owner items: M2-0012 (weekly decision slot, role names, send drafts); D-14 degrade order (M2-0197 ACCEPTED); private repo back to private at the end (M2-0480).
+1. Codex round-2 verdict on Rock 1 (.rocket-fuel/codex/attack-rock-1-r2.last.txt): fix any finding, then mark Rock 1 DONE.
+2. Rock 2 Level 10: run every codex-queue/tests/*.sh by hand, read every .new diff, then install via mv; set IMPLEMENTER=mixed only after that.
+3. Review P0 PRs as they go READY; after M2-0498 merges the installer hold is automatic (state/.installer-hold).
+4. Milestone merge → qa-candidate on main → evidence lanes (HK-M 20/20 for M2-0028) → release/1.9.x + promote after owner ACCEPTED.
+5. M2-0202 slice 7 needs M2-0418 merged first (hold by hand if not).
+6. Owner items: D-8 Jev kill switch OFF + Access bypass scope check, then Operator redeploy (M2-0522); revoke the Kimi key (M2-0214); M2-0012; Neon account; repo private at the end (M2-0480).
 
 ## Decisions made (don't relitigate)
-D-28 CI only; OD-12..OD-37 in DECISIONS.md; PD-12 soak gate stays.
+D-28 CI only; OD-12..OD-39 and D-5/6/8/14/15 in DECISIONS.md; PD-12 soak gate stays; rocket-fuel PLAN.md approved (meet-r4).
 
 ## Watch out
-- The program repo is PUBLIC now: nothing secret, personal or meeting-related may be pushed there.
-- Edit queue scripts via .new + mv. Bash 3.2 quirks. zsh: parse in bash. Read the full ledger.py check after dependency edits. Take ledger.lock for every private-main push.
-- Network drops happen (22:30-22:48Z today): passes then fail silently in service.err. Check `tail logs/service.err` when the queue goes quiet.
+- The program repo is PUBLIC: nothing secret, personal or meeting-related may be pushed.
+- Edit queue scripts via .new + mv (backups in codex-queue/logs/*.pre-rock1-*). Bash 3.2 quirks. zsh does not word-split: run loops in bash. Take ledger.lock and run ledger.py check (abort on ^cycle or slice_current) before every ledger push.
+- Network drops happen: passes then fail silently in service.err.
