@@ -31075,7 +31075,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "risk": "low",
    "estimate_hours": 3,
    "title": "Close the model-policy gap in the Settings screen check: gate the local-backend branch on the localModel policy, and make the policy contract test see nested call sites",
@@ -31107,7 +31107,14 @@
     "askVisionForScreenCheck refuses with the same typed policy error when the local model is disallowed, before any stream starts; a unit test proves the local branch is gated (red before the fix)",
     "model-policy-contract.test.ts resolves the innermost enclosing function (arrow functions and methods included) for each createStream call and fails on an ungated call site; a fixture proves a nested ungated call is caught",
     "No other behaviour change; existing M2-0412 tests unchanged"
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/425",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0447",
