@@ -35537,7 +35537,7 @@
    ],
    "estimate_hours": 2,
    "risk": "low",
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "title": "HK-M harness RAM floors cannot drift from the app: parity test for the model total-RAM floor and the prewarm free-RAM floor",
@@ -35556,7 +35556,14 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-09-30 (lead): filed from the M2-0460 lead step (LEAD-ACTIONS)."
+   "notes": "2026-09-30 (lead): filed from the M2-0460 lead step (LEAD-ACTIONS).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/375",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0524",
