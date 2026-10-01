@@ -35788,7 +35788,7 @@
    ],
    "estimate_hours": 2,
    "risk": "low",
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
    "title": "Deflake intelligence-index 'does not promote a deferred dispatch even if its local subset completes' (timing race on Windows runners)",
@@ -35807,7 +35807,17 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-09-30 (lead): filed when the flake reddened integration after train #338 landed M2-0193/M2-0526/M2-0487."
+   "notes": "2026-09-30 (lead): filed when the flake reddened integration after train #338 landed M2-0193/M2-0526/M2-0487.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/404",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0528",
