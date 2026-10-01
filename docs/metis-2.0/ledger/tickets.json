@@ -435,6 +435,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0529 filed: deflake mac-helper proc-info identity test (exec race)."
+  },
+  {
+   "date": "2026-10-01",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0404 sliced: pure move (S1) then the top-level module ratchet (S2)."
   }
  ],
  "tickets": [
@@ -29135,7 +29141,45 @@
    "priority": "P2",
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "slices": [
+    {
+     "id": "M2-0404.1",
+     "title": "Pure move: the operator-*, dust*, speaker-*, asr-*, parakeet* and license* groups into features/ or infra/ folders, and the onboarding-* helpers into src/renderer/src/features/onboarding/ (no behaviour change)",
+     "scope_paths": [
+      "src/main/",
+      "src/renderer/src/features/",
+      "src/renderer/src/lib/"
+     ],
+     "acceptance": [
+      "SLICE: the listed groups move into one features/ or infra/ folder each and the onboarding-* helpers into src/renderer/src/features/onboarding/, as a PURE MOVE: files relocated with only import-path updates in moved files and their importers, plus the source map; the PR is classified 'Pure move' and verify-move passes; no new rule, no workflow or doc rewrites beyond the source map",
+      "FF-01 stays at 0 production violations; every moved test keeps its assertions"
+     ],
+     "estimate_hours": 2,
+     "owner_model": "sonnet",
+     "depends_on_slices": []
+    },
+    {
+     "id": "M2-0404.2",
+     "title": "Top-level module ratchet in check-architecture (behaviour change)",
+     "scope_paths": [
+      "scripts/check-architecture.mjs",
+      "scripts/check-architecture.test.ts",
+      "scripts/architecture-baseline.json"
+     ],
+     "acceptance": [
+      "A check-architecture rule counts non-test .ts files directly under src/main and src/renderer/src/lib; the count can only fall and a new top-level file fails (counted after slice 1's moves)"
+     ],
+     "estimate_hours": 1,
+     "owner_model": "sonnet",
+     "depends_on_slices": [
+      "M2-0404.1"
+     ]
+    }
+   ],
+   "slice_current": 1,
+   "slices_merged": [],
+   "notes": " 2026-10-01 (lead): sliced — one PR mixed 132 moves with a new rule, so the Evidence record (check-pr-kind) failed every round ('a behaviour-change PR relocates 70176 tokens'); the ticket's own acceptance asks for pure-move PRs."
   },
   {
    "id": "M2-0405",
