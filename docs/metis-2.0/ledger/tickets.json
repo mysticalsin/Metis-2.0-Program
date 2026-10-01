@@ -32396,10 +32396,20 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0469, audited); unblocks M2-0037."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0469, audited); unblocks M2-0037.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/385",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-opus",
+    "reviewer": "codex",
+    "validation": "independent Codex review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0470",
