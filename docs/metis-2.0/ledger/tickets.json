@@ -32867,10 +32867,17 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): split from the M2-0412 amendment (M2-0412 is READY; its PR is not re-opened)."
+   "notes": "2026-09-29 (lead): split from the M2-0412 amendment (M2-0412 is READY; its PR is not re-opened).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/426",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "kit_refs": [],
