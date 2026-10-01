@@ -32813,7 +32813,7 @@
    "kit_refs": [],
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "required_evidence": [
@@ -32851,7 +32851,14 @@
     "It writes the MEASURED record content for docs/metis-2.0/evidence/release-1.9.7/soak-5d.md (content-free)",
     "check.mjs --ticket M2-0198 validates that record; tests use fixtures (rotation mid-window, version change, a missing day, unclean boot + reap); CI only"
    ],
-   "notes": "2026-09-29 (lead): split from M2-0198."
+   "notes": "2026-09-29 (lead): split from M2-0198.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/365",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0480",
