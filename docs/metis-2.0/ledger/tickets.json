@@ -35786,7 +35786,7 @@
    ],
    "estimate_hours": 1,
    "risk": "low",
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "title": "Deflake the mac-helper proc-info identity test: wait for the child to exec sleep before asserting its exe path (race on loaded macOS runners)",
@@ -35804,7 +35804,14 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-01 (lead): filed when the race halted integration on fde3c33d; the failed job was re-run by the lead."
+   "notes": "2026-10-01 (lead): filed when the race halted integration on fde3c33d; the failed job was re-run by the lead.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/422",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   }
  ]
 }
