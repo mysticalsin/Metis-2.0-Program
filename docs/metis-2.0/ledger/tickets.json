@@ -30495,7 +30495,14 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
-   "status": "TODO"
+   "status": "DONE",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/424",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-sonnet",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0433",
