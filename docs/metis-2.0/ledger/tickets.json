@@ -30364,7 +30364,7 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 10,
-   "status": "TODO",
+   "status": "DONE",
    "slices": [
     {
      "id": "M2-0431.1",
@@ -30416,8 +30416,19 @@
     {
      "slice": "M2-0431.1",
      "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/372"
+    },
+    {
+     "slice": "M2-0431.2",
+     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/379"
     }
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/379",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-opus",
+    "reviewer": "codex",
+    "validation": "independent Codex review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0432",
