@@ -30113,7 +30113,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "title": "Fail the packaged build if the installer ships graphify, code-review-graph or a bundled Python",
    "type": "ci",
    "priority": "P2",
@@ -30143,7 +30143,17 @@
    "estimate_hours": 2,
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/325",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-sonnet",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0428",
