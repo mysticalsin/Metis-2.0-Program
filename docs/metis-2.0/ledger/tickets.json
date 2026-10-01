@@ -429,6 +429,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0528 filed: deflake Windows HIST-dirty-discard/save-recent smoke rows (known-smoke-flakes entry)."
+  },
+  {
+   "date": "2026-10-01",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0529 filed: deflake mac-helper proc-info identity test (exec race)."
   }
  ],
  "tickets": [
@@ -35727,6 +35733,43 @@
    "external_blocker": null,
    "flag": null,
    "notes": "2026-09-30 (lead): filed with the known-smoke-flakes entry; 14 READY PRs sat with red checks, 5 of them on these rows."
+  },
+  {
+   "id": "M2-0529",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "m2/integration fde3c33d Build & Test run 36830471083 (Native job) and M2-0526 CI round 1 (2026-09-30): 'proc-info identity JSON' got exeRealpath /bin/bash for the child of `sleep 30`"
+   ],
+   "scope_paths": [
+    "native/mac-helper/Tests/run-helper-tests.sh"
+   ],
+   "estimate_hours": 1,
+   "risk": "low",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Deflake the mac-helper proc-info identity test: wait for the child to exec sleep before asserting its exe path (race on loaded macOS runners)",
+   "summary": "run-helper-tests.sh starts `sleep 30` through bash and runs proc-info on the child at once; on a loaded runner proc-info can read the process before exec replaced bash, so exeRealpath is /bin/bash and the assertion endswith('/sleep') fails (integration halted on fde3c33d; also M2-0526's first CI round). The other fields (pid, ppid, pgid, args) were already right.",
+   "acceptance": [
+    "The test waits (bounded, e.g. up to 5 s) until the child's exe is the sleep binary, or starts the child with exec so no bash image exists, before asserting; the assertions themselves stay as strict",
+    "It still fails when proc-info reports a wrong exe path (show the mutation you used in the PR description)"
+   ],
+   "verification": [
+    "Build & Test Native job green on the PR and on m2/integration"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-10-01 (lead): filed when the race halted integration on fde3c33d; the failed job was re-run by the lead."
   }
  ]
 }
