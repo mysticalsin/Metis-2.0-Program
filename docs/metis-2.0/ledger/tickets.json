@@ -34879,10 +34879,17 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 4,
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): split from M2-0193. 2026-09-29 (lead): does not depend on the S2 module move (M2-0513), which waits for the soak; implement in place."
+   "notes": "2026-09-29 (lead): split from M2-0193. 2026-09-29 (lead): does not depend on the S2 module move (M2-0513), which waits for the soak; implement in place.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/417",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-opus",
+    "reviewer": "codex",
+    "validation": "independent Codex review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0513",
