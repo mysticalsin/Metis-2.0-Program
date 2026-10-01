@@ -35300,10 +35300,17 @@
    "flag": null,
    "risk": "high",
    "estimate_hours": 3,
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): M2-0433 restart slice."
+   "notes": "2026-09-29 (lead): M2-0433 restart slice.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/427",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-opus",
+    "reviewer": "codex",
+    "validation": "independent Codex review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0520",
