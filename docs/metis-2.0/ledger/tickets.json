@@ -29498,11 +29498,18 @@
    "flag": null,
    "risk": "high",
    "estimate_hours": 6,
-   "status": "TODO",
+   "status": "DONE",
    "notes": "2026-09-28 (lead): no hard dependency on M2-0145/M2-0103 — build and prove in CI (Operator Worker tests + desktop + packaged smoke against a test Operator); production deploy of the Operator stays an owner action.",
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/283",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0413",
