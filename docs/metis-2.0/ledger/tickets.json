@@ -30206,7 +30206,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "title": "Prove developer-efficiency metrics never reach Operator usage: operator.test.ts regression",
    "type": "test",
    "priority": "P2",
@@ -30231,7 +30231,14 @@
    "estimate_hours": 1,
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/323",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-sonnet",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0427",
