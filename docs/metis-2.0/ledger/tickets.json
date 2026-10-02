@@ -507,6 +507,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-48..OD-50 recorded; M2-0046 depends on M2-0202 (OD-49)."
+  },
+  {
+   "date": "2026-10-02",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0539..M2-0541 filed from the merge-lane diagnosis (ST-1 window first launch, History slow capture, verify-move ENOBUFS)."
   }
  ],
  "tickets": [
@@ -36499,6 +36505,124 @@
    "external_blocker": null,
    "flag": null,
    "notes": "2026-10-02 (lead): filed from the M2-0537 review; must land before M2-0520 makes the rows blocking."
+  },
+  {
+   "wave": "W1",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0539",
+   "type": "fix",
+   "priority": "P0",
+   "estimate_hours": 5,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead merge-lane diagnosis 2026-10-02 (queue.log 2026-10-01..02): the ST-1 window <250 ms row failed 14 times on PRs that do not touch window code (M2-0520, M2-0032, M2-0505), always on the first measured launch (window-shipped-opaque-1, 335-535 ms); even after the OD-42 warm-up launches the first measured launch reached 351.9 ms (run 36999698235); milestone #429 stayed red on it for 12.8 h"
+   ],
+   "scope_paths": [
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/lib/st-1-core.mjs",
+    "scripts/qa/st-1.test.ts"
+   ],
+   "title": "ST-1 window gate: find and fix why the first measured launch of each run exceeds 250 ms (criterion unchanged)",
+   "summary": "The window-construction row of ST-1 fails on unrelated PRs, always on the first measured launch of a run, so it bounces PRs and holds the merge lane. Find whether the cost is the harness (cold caches, variant order, measurement start) or the app (a real first-window cost a user would see) and fix it at the cause. The 250 ms criterion and every other ST-1 criterion stay as they are (OD-21, OD-45).",
+   "acceptance": [
+    "Per-launch, per-variant timings in the ST-1 report show where the first measured launch spends its time (content-free numbers)",
+    "Root cause stated with evidence from CI runs; if it is the app, the app is fixed (no harness change hides it); if it is the harness, every variant gets the same warm conditions and the measurement still covers what a user waits for",
+    "Three consecutive qa-candidate runs on m2/integration-equivalent bytes pass the window row with the 250 ms criterion unchanged",
+    "Tests in scripts/qa/st-1.test.ts pin the warm-up/rotation behaviour and fail without the change"
+   ],
+   "verification": [
+    "CI: three qa-candidate runs on the PR with the window row green; the report's per-launch timings attached as artifacts"
+   ],
+   "notes": "2026-10-02 (lead): filed from the merge-lane diagnosis; P0 because it bounces unrelated PRs."
+  },
+  {
+   "wave": "W1",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0540",
+   "type": "fix",
+   "priority": "P0",
+   "estimate_hours": 3,
+   "risk": "low",
+   "finding_refs": [
+    "Lead merge-lane diagnosis 2026-10-02 (queue.log 2026-10-01..02): History design evidence failed on 71/72 captures four times on 10-02 (M2-0032 x2, M2-0534 x2), only the slow*/light-1x-reduced-motion capture timing out, with M2-0032's warm-up already in the base; ~2.5 h of lane time"
+   ],
+   "scope_paths": [
+    "scripts/qa/history-design-capture.mjs",
+    "scripts/qa/history-design-capture.test.ts"
+   ],
+   "title": "History design evidence: stop the slow light-1x-reduced-motion capture from timing out (no capture or threshold dropped)",
+   "summary": "One capture of the History design evidence (the slow-network, light, 1x, reduced-motion variant) times out on unrelated PRs; M2-0032's warm-up does not cover it. Fix the cause so all 72 captures complete, keeping every contrast and clipping check.",
+   "acceptance": [
+    "Root cause of the timeout stated from CI evidence (what the capture waits for and why it does not arrive in time)",
+    "All 72 captures complete on three consecutive CI runs; no capture removed, skipped or loosened; contrast/clipping checks unchanged",
+    "A test in history-design-capture.test.ts fails without the change"
+   ],
+   "verification": [
+    "CI: three History design evidence runs on the PR with 72/72 captures"
+   ],
+   "notes": "2026-10-02 (lead): filed from the merge-lane diagnosis."
+  },
+  {
+   "wave": "W1",
+   "milestone": "m3",
+   "owner_model": "sonnet",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "id": "M2-0541",
+   "type": "fix",
+   "priority": "P1",
+   "estimate_hours": 2,
+   "risk": "low",
+   "finding_refs": [
+    "Lead merge-lane diagnosis 2026-10-02 (queue.log 2026-10-01..02): the Evidence record check failed 10 times on M2-0404 with `spawnSync git ENOBUFS` from scripts/refactor/verify-move.mjs (execFileSync's default 1 MiB output buffer on a large git diff)"
+   ],
+   "scope_paths": [
+    "scripts/refactor/verify-move.mjs",
+    "scripts/refactor/verify-move.test.mjs"
+   ],
+   "title": "verify-move: read large git output without ENOBUFS so big pure-move PRs get a real verdict",
+   "summary": "verify-move.mjs runs git through execFileSync with the default 1 MiB maxBuffer, so a large move fails with ENOBUFS instead of a pure-move verdict. Read the output without that limit (stream it, or a bounded but sufficient maxBuffer with a clear error beyond it); the pure-move and behaviour-change rules (M2-0248) stay exactly as they are.",
+   "acceptance": [
+    "A git output larger than 1 MiB is read and judged; beyond any remaining bound the tool fails with an explicit message, never ENOBUFS",
+    "The verdicts for existing fixtures are unchanged; a test with a >1 MiB diff fails without the change"
+   ],
+   "verification": [
+    "CI: Quality checks green; verify-move.test.mjs covers the large-output case"
+   ],
+   "notes": "2026-10-02 (lead): filed from the merge-lane diagnosis."
   }
  ]
 }
