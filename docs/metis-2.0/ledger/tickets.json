@@ -459,6 +459,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Run 37008199760 analysed (reports, job logs, CPU profiles): M2-0532 (ST-1 harness measurement), M2-0533 (boot and History main-thread trims) and M2-0534 (synthetic History after idle) filed; M2-0520 amended (contract test, synthetic report-only) and made to depend on M2-0532 and M2-0533."
+  },
+  {
+   "date": "2026-10-02",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0533 acceptance 2 corrected: audit/log writes leave the boot path; the hash-chained audit writer stays synchronous (MQA-232)."
   }
  ],
  "tickets": [
@@ -36172,7 +36178,7 @@
    "summary": "The CPU profiles of run 37008199760 name JS work on the main thread in the first seconds and on the first History call that can move without changing behaviour: getLoginItemSettings in the boot body and in every publicSettings call (17-144 ms per launch; 65-66 ms of the 147/241 ms publicSettings blocks), synchronous audit and log writes (13-58 ms each), the boot-watch rmSync, mac-helper spawns and the ASR HTML probe (~34 ms), History sorting with localeCompare (220.8 ms on the first call) and zonedParts building a new Intl.DateTimeFormat (131.9 ms).",
    "acceptance": [
     "getLoginItemSettings no longer runs in the boot body or per publicSettings call: cached, refreshed off the boot path",
-    "The boot-stage audit write and the brain store's log write are asynchronous; boot-watch cleanup, mac-helper spawns and the ASR HTML probe run at idle time after first show",
+    "The boot-stage audit flush and the brain store's unavailable-index warning leave the boot path (run once in an idle task after first show); the hash-chained audit writer stays synchronous and ordered (MQA-232); boot-watch cleanup, mac-helper spawns and the ASR HTML probe run at idle time after first show",
     "History sorting uses one cached Intl.Collator and zonedParts reuses one Intl.DateTimeFormat per time zone; tests prove the same order and output; the PR reports the fifo row's first recallList time against run 37008199760's 511 ms",
     "No ST-1 criterion changes; behaviour unchanged; architecture counts may only fall"
    ],
@@ -36185,7 +36191,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-02 (lead): filed from the run 37008199760 profile analysis; expected gain ~65-235 ms at boot and ~350 ms on the first History call; alone not enough for a strict pass (the failing blocks are native window construction and an unprofiled block near renderer-ready). M2-0520 depends on it."
+   "notes": "2026-10-02 (lead): filed from the run 37008199760 profile analysis; expected gain ~65-235 ms at boot and ~350 ms on the first History call; alone not enough for a strict pass (the failing blocks are native window construction and an unprofiled block near renderer-ready). M2-0520 depends on it. 2026-10-02 (lead): acceptance 2 corrected — off the boot path, not async I/O (async audit writes broke MQA-232 chain ordering and hung the store I/O-fault tests on Windows, run 37048346909)."
   },
   {
    "id": "M2-0534",
