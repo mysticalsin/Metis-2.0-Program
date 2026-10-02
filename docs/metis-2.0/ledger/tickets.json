@@ -35985,7 +35985,7 @@
    ],
    "estimate_hours": 2,
    "risk": "low",
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "title": "ST-1 window rows: one unmeasured warm-up launch before the measured launches (OD-42)",
@@ -36004,7 +36004,14 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-01 (lead): filed from OD-42; blocks the milestone into main (#429 red on the gate) and the 1.9.7 candidate lanes."
+   "notes": "2026-10-01 (lead): filed from OD-42; blocks the milestone into main (#429 red on the gate) and the 1.9.7 candidate lanes.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/430",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   }
  ]
 }
