@@ -1,46 +1,47 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 21
+shift: 22
 agent: claude-code
-updated: 2026-10-02 14:35 EDT
-status: in-progress (full autopilot; signing excluded; IMPLEMENTER=mixed OD-40; early build behind the soak OD-41)
-branch: m2/integration moving (M2-0531, M2-0032 merged today); main = milestone snapshot 2d2a85e8
+updated: 2026-10-02 17:05 EDT
+status: in-progress (OD-45: stable 1.9.7 is priority #1; signing excluded; IMPLEMENTER=mixed OD-40)
+branch: m2/integration moving (M2-0532 merged 20:41Z); main = milestone snapshot 2d2a85e8
 ---
 
 # Handoff — Métis 2.0 program
 
 ## Objective & acceptance criteria
-Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level; merged to main after CI + packaged smoke green. Signing excluded.
+OD-45 (owner, 2026-10-02): ship a stable Métis 1.9.7 first — capture, startup/History responsiveness, strict ST-1 tests, final
+installer; unrelated 2.0 work deferred; every release check preserved. Then 2.0 by 2026-11-30.
 
 ## Current state
-- 1.9.7 bump M2-0498 open deps: M2-0495 (sent back with a verified ruling), M2-0433 <- M2-0520 (held) <- M2-0532, M2-0533.
-- Strict ST-1 (OD-21) still fails on hosted runners. Run 37008199760 (integration + M2-0531), reports + CPU profiles analysed and
-  verified by two workflows: fifo FAIL (exercised under OD-43), control FAIL; first writes 904-1346 ms, loop blocks 400-1210 ms at boot;
-  mostly native window construction (View ~580 ms) and an unprofiled block near renderer-ready (~570 ms); onboarded launches fail too
-  (8/8); movable JS ~65-235 ms at boot and ~350 ms on the first History call. The harness under-measures boot (sample 0 always 0).
-- Filed (fa55076): M2-0532 (ST-1 harness measurement; sent back 18:10Z: Node's histogram reset drops the next interval — use the
-  never-reset whole-run max per sample), M2-0533 (boot + History trims; in CI rounds, last red only a baseline count to lower),
-  M2-0534 (P1, synthetic row History after idle). M2-0520 amended (contract-test parity; synthetic stays report-only).
-- M2-0495: the capture smoke's driver cannot click Stop (seeded profile uses the right-edge sidecar, whose button is "Stop meeting");
-  zero live lines remains open (leading suspect: the sandboxed audio service cannot read the WAV) — the ruling makes a red self-explaining
-  (app logs uploaded, one DIAG line). Disabling the audio-service sandbox for QA only would need evidence + owner approval.
-- Queue fixes today (all Codex-attacked to SHIP, 26 suites green): critical_on_base, st1_summary, window_gate_only (OD-44),
-  restart-wait (after a spent build-once restart, wait while a newer run works).
+- 1.9.7 closure (M2-0498 deps still open): M2-0495 (capture; READY, ruling applied), M2-0533 (boot/History trims; bounced — it edited
+  qa-candidate.yml out of scope, apostrophes broke a jq step; ruling: restore the workflow), M2-0535 (first-Listen Whisper load error,
+  allocated to Ultron), M2-0520 (held) -> M2-0433. M2-0532 merged.
+- Queue focus: codex-queue/FOCUS = the 1.9.7 closure (only these launch); PRIORITY puts them first; DEFER-OFFPATH on (merge.sh
+  release_deferred: off-path PRs changing installer content wait until 1.9.7 ACCEPTED; tests/docs/QA scripts still land; release-branch
+  hotfixes never wait; D-32 installer hold scoped to m2/integration; boarded trains recheck both). Codex attack r1-r3 REVISE -> r4 SHIP.
+- M2-0535 for Ultron: brief docs/metis-2.0/handoffs/M2-0535-ultron-brief.md; landing branch m2/M2-0535-first-listen-whisper-init
+  (AskToto-Mantu, at 0499fffb); ledger IN_PROGRESS claimed by Ultron (the Codex queue never launches it). Root cause verified:
+  listen.ts:1421 epoch guard drops load errors (pendingWhisperEpochRef 0 until the first post-ready window). The lead registers
+  Ultron's PR with the merge lane after an independent review.
+- Strict ST-1 still fails on hosted runners (boot burst, mostly native window construction + an unprofiled block; onboarded launches
+  fail too). With M2-0532 merged the timeline now attributes every block.
 
 ## Next steps (in order)
-1. Watch M2-0532/M2-0533 -> merge; then measure fifo/control over >= 3 QA runs with the corrected harness (artifacts:
-   gh run download outside the sandbox, parse with python only).
-2. Bring the owner the strict-gate decision with those numbers: larger/dedicated macOS runner (keeps OD-21; check availability and
-   cost) vs starting the strict window at first show with boot covered by the window gate (changes OD-21).
-3. M2-0495: watch for the DIAG line; if it shows a fake device with zero input, ask the owner about the QA-only audio-sandbox switch.
-4. Then M2-0520 (release the hold), M2-0433, M2-0498 bump -> installer hold -> qa-candidate on main -> evidence lanes -> owner ACCEPT.
-5. Owner items: OneDrive reset (log loop recurred twice today; cleared with approval); keep the host awake and powered overnight.
+1. M2-0533 -> merge; M2-0495 capture smoke -> read its DIAG line (if a fake device with zero input: ask the owner about a QA-only
+   audio-sandbox switch).
+2. Collect >= 3 QA runs of fifo/control with the corrected harness; bring the owner the strict-gate decision (larger/dedicated macOS
+   runner keeps OD-21 vs strict window from first show). Then release M2-0520 (rm its status) -> M2-0433.
+3. When Ultron opens the M2-0535 PR: independent review, then register it (state/M2-0535.status READY AskToto-Mantu <pr> <head>).
+4. M2-0498 bump -> installer hold -> qa-candidate on main -> evidence lanes -> owner ACCEPT -> delete DEFER-OFFPATH and FOCUS.
+5. After ACCEPTED (owner, 2026-10-02): remove /Applications/Metis.app (1.9.6) and the 1.9.5 build copy under asktoto-release, keep all
+   user data, install 1.9.7 from the release feed.
 
 ## Decisions made (don't relitigate)
-D-28 CI only; OD-12..OD-44; PD-12 soak gate; never re-run qa-candidate.yml (build once); RELEASE-GATE lane rule.
+D-28 CI only; D-32 installer hold on m2/integration; OD-12..OD-45; never re-run qa-candidate.yml (build once); RELEASE-GATE lane rule.
 
 ## Watch out
 - Program repo is PUBLIC: nothing secret/personal/meeting-related.
-- Codex attacks: allowed_domains chatgpt.com and inline every file in the brief. gh: read-only use outside the sandbox only.
-- A READY ticket is sent back by writing state/<ID>.lead + .feedback and "NEEDS_SYNC <repo> <pr>" to its status.
-- Shell: bash script files; rtk rewrites find/grep (use /usr/bin/*); zsh `$H:s` and `=word` traps.
+- Codex attacks: allowed_domains chatgpt.com, inline all files; thread rotated today (resume refused: paginated_threads).
+- Review diffs in full (never truncate a diff stat); check edits outside scope_paths.
+- Stop-hook answers can differ from dialog answers: re-ask when they conflict.
