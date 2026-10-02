@@ -36134,7 +36134,7 @@
    ],
    "estimate_hours": 3,
    "risk": "medium",
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "title": "ST-1 harness: boot blocks reach the timeline, the profiler's own cost is reported, and the pinned-expression timer never throws",
@@ -36154,7 +36154,14 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-02 (lead): filed from the run 37008199760 analysis; M2-0520 depends on it (the strict PASS must be measured correctly)."
+   "notes": "2026-10-02 (lead): filed from the run 37008199760 analysis; M2-0520 depends on it (the strict PASS must be measured correctly).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/434",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0533",
