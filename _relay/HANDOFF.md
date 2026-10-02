@@ -1,10 +1,10 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 20
+shift: 21
 agent: claude-code
-updated: 2026-10-02 08:55 EDT
+updated: 2026-10-02 14:35 EDT
 status: in-progress (full autopilot; signing excluded; IMPLEMENTER=mixed OD-40; early build behind the soak OD-41)
-branch: m2/integration moving (M2-0530, M2-0504, M2-0410 merged today); main = milestone snapshot 2d2a85e8 (#429, merged 10:37Z)
+branch: m2/integration moving (M2-0531, M2-0032 merged today); main = milestone snapshot 2d2a85e8
 ---
 
 # Handoff — Métis 2.0 program
@@ -13,37 +13,34 @@ branch: m2/integration moving (M2-0530, M2-0504, M2-0410 merged today); main = m
 Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level; merged to main after CI + packaged smoke green. Signing excluded.
 
 ## Current state
-- Milestone #429 merged into main (snapshot 2d2a85e8). M2-0530 (OD-42 window warm-up) merged into integration.
-- 1.9.7 bump M2-0498 open deps: M2-0032 (READY #419; red only on a window-gate outlier, 351.9 ms among 87-125 ms -> OD-44 restart),
-  M2-0495 (own file-capture smoke red: audit event yes, no live lines, no saved meeting), M2-0433 <- M2-0520 <- M2-0531.
-- M2-0520 (M2-0433 slice S6, makes fifo/control blocking) HELD by the lead (STUCK + retried marker + state/M2-0520.lead): its
-  precondition (a lead-recorded strict PASS of fifo and control on one QA self-test) is unmet. Run 36991557510: fifo NOT_EXERCISED.
-- Root cause (verified in code): since M2-0193 (f15afa58) the storage gateway never opens a non-regular file, so no FIFO keeps a
-  reader. OD-43 (owner): exercised = refused without opening; a FIFO with a reader at the end is a FAIL. M2-0531 filed P0 (also: the
-  harness exits before stdout flushes, so job logs cut the report at 64 KiB); launched 11:55Z, first in .merge-first.
-- Still open after M2-0531: the boot burst (first write 373 ms, loop 307 ms at ~1-2 s; control rows earlier 952-1201 ms) can fail
-  strict ST-1 on hosted runners; control passed once (run 36991557510).
-- Queue fixes installed today (Codex-attacked to SHIP, 26 suites green): critical_on_base (fix25: off-path PRs and trains wait for a
-  READY critical PR on the same base), st1_summary (fix26: ST-1 failures feed verdict/criteria/worst samples), window_gate_only
-  (fix27: OD-44 one restart per head when the window gate is the only red and failed on time alone).
-- Overnight stalls were the host asleep (clamshell, battery) — not code.
+- 1.9.7 bump M2-0498 open deps: M2-0495 (sent back with a verified ruling), M2-0433 <- M2-0520 (held) <- M2-0532, M2-0533.
+- Strict ST-1 (OD-21) still fails on hosted runners. Run 37008199760 (integration + M2-0531), reports + CPU profiles analysed and
+  verified by two workflows: fifo FAIL (exercised under OD-43), control FAIL; first writes 904-1346 ms, loop blocks 400-1210 ms at boot;
+  mostly native window construction (View ~580 ms) and an unprofiled block near renderer-ready (~570 ms); onboarded launches fail too
+  (8/8); movable JS ~65-235 ms at boot and ~350 ms on the first History call. The harness under-measures boot (sample 0 always 0).
+- Filed (fa55076): M2-0532 (ST-1 harness measurement; sent back 18:10Z: Node's histogram reset drops the next interval — use the
+  never-reset whole-run max per sample), M2-0533 (boot + History trims; in CI rounds, last red only a baseline count to lower),
+  M2-0534 (P1, synthetic row History after idle). M2-0520 amended (contract-test parity; synthetic stays report-only).
+- M2-0495: the capture smoke's driver cannot click Stop (seeded profile uses the right-edge sidecar, whose button is "Stop meeting");
+  zero live lines remains open (leading suspect: the sandboxed audio service cannot read the WAV) — the ruling makes a red self-explaining
+  (app logs uploaded, one DIAG line). Disabling the audio-service sandbox for QA only would need evidence + owner approval.
+- Queue fixes today (all Codex-attacked to SHIP, 26 suites green): critical_on_base, st1_summary, window_gate_only (OD-44),
+  restart-wait (after a spent build-once restart, wait while a newer run works).
 
 ## Next steps (in order)
-1. Watch M2-0531 -> merge; then lead: run/inspect a QA self-test of integration with fifo+control; record strict PASS (or file the
-   boot-burst fix) before releasing M2-0520 (rm state/M2-0520.status; the lead file explains the hold).
-2. M2-0032: expect "closed and reopened #419" (OD-44) and a fresh run; M2-0495: implementer round on the file-capture smoke.
-3. M2-0433 after M2-0520; then M2-0498 bump -> installer hold -> qa-candidate on main -> evidence lanes -> owner ACCEPT.
-4. Known flakes: HIST rows stay until a few green Windows smoke runs after M2-0528; RE-HIDE-3 after 10 green macOS runs.
-5. Owner items: keep the host awake overnight; OneDrive reset; earlier list (shift 16 archive).
+1. Watch M2-0532/M2-0533 -> merge; then measure fifo/control over >= 3 QA runs with the corrected harness (artifacts:
+   gh run download outside the sandbox, parse with python only).
+2. Bring the owner the strict-gate decision with those numbers: larger/dedicated macOS runner (keeps OD-21; check availability and
+   cost) vs starting the strict window at first show with boot covered by the window gate (changes OD-21).
+3. M2-0495: watch for the DIAG line; if it shows a fake device with zero input, ask the owner about the QA-only audio-sandbox switch.
+4. Then M2-0520 (release the hold), M2-0433, M2-0498 bump -> installer hold -> qa-candidate on main -> evidence lanes -> owner ACCEPT.
+5. Owner items: OneDrive reset (log loop recurred twice today; cleared with approval); keep the host awake and powered overnight.
 
 ## Decisions made (don't relitigate)
-D-28 CI only; OD-12..OD-44 (OD-43 fifo exercised = refused without opening; OD-44 window-gate-only red = one new run per head);
-PD-12 soak gate; never re-run qa-candidate.yml (build once); RELEASE-GATE lane rule (delete the file to revert).
+D-28 CI only; OD-12..OD-44; PD-12 soak gate; never re-run qa-candidate.yml (build once); RELEASE-GATE lane rule.
 
 ## Watch out
 - Program repo is PUBLIC: nothing secret/personal/meeting-related.
-- Codex attacks from this sandbox: allowed_domains chatgpt.com, and inline every file in the brief (Codex's own shell sandbox cannot
-  start here; running unsandboxed was denied).
-- gh fails TLS inside the sandbox; the queue (launchd) fetches logs to logs/<ID>.infra-<run>.txt — read those.
-- Before blaming code for a gap in queue.log, check `pmset -g log` for Sleep/DarkWake.
-- Shell: bash script files (zsh: no word splitting, `$H:s` modifier, `=word` expansion).
+- Codex attacks: allowed_domains chatgpt.com and inline every file in the brief. gh: read-only use outside the sandbox only.
+- A READY ticket is sent back by writing state/<ID>.lead + .feedback and "NEEDS_SYNC <repo> <pr>" to its status.
+- Shell: bash script files; rtk rewrites find/grep (use /usr/bin/*); zsh `$H:s` and `=word` traps.
