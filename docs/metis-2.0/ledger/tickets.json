@@ -36314,7 +36314,7 @@
    ],
    "estimate_hours": 3,
    "risk": "medium",
-   "status": "IN_PROGRESS",
+   "status": "DONE",
    "claimed_by": "ultron (owner's agent fleet; allocated by the lead under OD-45)",
    "landing_branch": "m2/M2-0535-first-listen-whisper-init",
    "handoff_brief": "docs/metis-2.0/handoffs/M2-0535-ultron-brief.md",
@@ -36337,7 +36337,14 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-02 (lead): allocated to Ultron by the owner (OD-45); landing branch created at 0499fffb; the Codex queue never launches it (IN_PROGRESS, claimed by Ultron); the lead registers the PR with the merge lane after an independent review. Dependency of M2-0498 (1.9.7). 2026-10-02 (lead): Ultron cannot be reached from the lead's session (no Dust tool; the shared vault is not syncing while OneDrive is stopped; no Ultron intake). To keep 1.9.7 (OD-45) moving: if no Ultron PR exists on the landing branch by 2026-10-03T13:00Z, the Codex queue takes the ticket with the same brief, branch and checks. 2026-10-02 (lead): Ultron opened PR #436 (head 06e2c249: tests red then fix green, plus a session-bound fallback and the capture-admission fix the first review required); independent review APPROVE with an adversarial check; CI Build & Test red on d730eff7, green on 06e2c249; registered with the merge lane; the Codex fallback is cancelled. Merge before 2026-10-06 (the format check becomes blocking then)."
+   "notes": "2026-10-02 (lead): allocated to Ultron by the owner (OD-45); landing branch created at 0499fffb; the Codex queue never launches it (IN_PROGRESS, claimed by Ultron); the lead registers the PR with the merge lane after an independent review. Dependency of M2-0498 (1.9.7). 2026-10-02 (lead): Ultron cannot be reached from the lead's session (no Dust tool; the shared vault is not syncing while OneDrive is stopped; no Ultron intake). To keep 1.9.7 (OD-45) moving: if no Ultron PR exists on the landing branch by 2026-10-03T13:00Z, the Codex queue takes the ticket with the same brief, branch and checks. 2026-10-02 (lead): Ultron opened PR #436 (head 06e2c249: tests red then fix green, plus a session-bound fallback and the capture-admission fix the first review required); independent review APPROVE with an adversarial check; CI Build & Test red on d730eff7, green on 06e2c249; registered with the merge lane; the Codex fallback is cancelled. Merge before 2026-10-06 (the format check becomes blocking then).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/436",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "mixed",
+    "reviewer": "mixed",
+    "validation": "independent Mixed review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0536",
