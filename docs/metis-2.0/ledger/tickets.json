@@ -36191,7 +36191,7 @@
    ],
    "estimate_hours": 4,
    "risk": "medium",
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "title": "Boot and History main-thread trims: defer login-item settings, async audit/log writes, idle-time cleanup and probes, a cached collator and date formatter",
@@ -36211,7 +36211,14 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-02 (lead): filed from the run 37008199760 profile analysis; expected gain ~65-235 ms at boot and ~350 ms on the first History call; alone not enough for a strict pass (the failing blocks are native window construction and an unprofiled block near renderer-ready). M2-0520 depends on it. 2026-10-02 (lead): acceptance 2 corrected — off the boot path, not async I/O (async audit writes broke MQA-232 chain ordering and hung the store I/O-fault tests on Windows, run 37048346909)."
+   "notes": "2026-10-02 (lead): filed from the run 37008199760 profile analysis; expected gain ~65-235 ms at boot and ~350 ms on the first History call; alone not enough for a strict pass (the failing blocks are native window construction and an unprofiled block near renderer-ready). M2-0520 depends on it. 2026-10-02 (lead): acceptance 2 corrected — off the boot path, not async I/O (async audit writes broke MQA-232 chain ordering and hung the store I/O-fault tests on Windows, run 37048346909).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/435",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0534",
