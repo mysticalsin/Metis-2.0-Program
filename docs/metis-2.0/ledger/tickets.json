@@ -501,6 +501,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0046 depends on M2-0500 and M2-0503 (OD-31 producers that were filed but not linked)."
+  },
+  {
+   "date": "2026-10-02",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-48..OD-50 recorded; M2-0046 depends on M2-0202 (OD-49)."
   }
  ],
  "tickets": [
@@ -3541,7 +3547,8 @@
     "M2-0512",
     "M2-0514",
     "M2-0500",
-    "M2-0503"
+    "M2-0503",
+    "M2-0202"
    ],
    "needs_decision": [
     "D-13"
@@ -3591,7 +3598,7 @@
    "slices": [],
    "due": "2026-10-04",
    "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x)."
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency."
   },
   {
    "id": "M2-0047",
