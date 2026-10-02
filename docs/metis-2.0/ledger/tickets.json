@@ -489,6 +489,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-46 recorded; M2-0537 filed (strict ST-1 rows on a self-hosted runner on the owner's Mac under owner-account.sb), dependency of M2-0520."
+  },
+  {
+   "date": "2026-10-02",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0538 filed (harden the owner-runner sandbox), dependency of M2-0520."
   }
  ],
  "tickets": [
@@ -35526,7 +35532,8 @@
     "M2-0531",
     "M2-0532",
     "M2-0533",
-    "M2-0537"
+    "M2-0537",
+    "M2-0538"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -36414,6 +36421,51 @@
    "external_blocker": null,
    "flag": null,
    "notes": "2026-10-02 (lead): filed from OD-46. The runner itself is installed by the lead on the owner's Mac (LEAD_ACTION). M2-0520 depends on it."
+  },
+  {
+   "id": "M2-0538",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [
+    "M2-0537"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "Lead review of M2-0537 (2026-10-02): scripts/hermetic/owner-account.sb denies only the CloudStorage mounts, the Keychains and the real Métis Application Support folders; the owner-runner jobs run on every same-repo PR push, before review, so the rest of the owner's home (credentials, documents, the queue workspace) stays readable"
+   ],
+   "scope_paths": [
+    "scripts/hermetic/owner-runner.sb",
+    "scripts/hermetic/run-under-owner-sandbox.sh",
+    "scripts/hermetic/prove-owner-sandbox.sh",
+    ".github/workflows/qa-candidate.yml",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+   ],
+   "estimate_hours": 3,
+   "risk": "medium",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Harden the owner-runner sandbox: deny the owner's credentials, personal folders and the queue workspace to the strict ST-1 jobs",
+   "summary": "OD-46 runs the strict ST-1 jobs on the owner's Mac under owner-account.sb, which protects Métis data, the cloud mounts and the Keychains but leaves the rest of the home folder readable to code that runs before review. A stricter profile for those jobs only closes that.",
+   "acceptance": [
+    "A profile scripts/hermetic/owner-runner.sb (owner-account.sb plus more denies) used only by the owner-runner jobs denies read and write of $HOME/.ssh, .aws, .gnupg, .config, .netrc, .claude, .codex, Documents, Desktop, Downloads, Pictures, Movies, Music, Library/Mail, Library/Messages, Library/Safari, Library/Cookies and $HOME/AI-Brain-build; the runner's work directory and $RUNNER_TEMP stay writable",
+    "prove-owner-sandbox.sh asserts every new denial (fail closed) before any candidate command runs",
+    "owner-account.sb and every other job are unchanged; ST-1 criteria unchanged",
+    "The contract test pins the profile and the probe list"
+   ],
+   "verification": [
+    "QA self-test on the PR: the probe step lists every denial as Operation not permitted and both strict rows still produce reports"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-10-02 (lead): filed from the M2-0537 review; must land before M2-0520 makes the rows blocking."
   }
  ]
 }
