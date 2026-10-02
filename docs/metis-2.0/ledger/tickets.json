@@ -32171,10 +32171,20 @@
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0464, audited); unblocks M2-0008."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0464, audited); unblocks M2-0008.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/42",
+    "merged_into": "main (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + no CI ran (private docs PR: private-repo Actions unavailable)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0465",
