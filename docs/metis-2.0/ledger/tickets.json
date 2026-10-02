@@ -465,6 +465,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0533 acceptance 2 corrected: audit/log writes leave the boot path; the hash-chained audit writer stays synchronous (MQA-232)."
+  },
+  {
+   "date": "2026-10-02",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0535 filed (first-Listen Whisper load error) and allocated to the owner's Ultron fleet under OD-45, brief in docs/metis-2.0/handoffs/, landing branch m2/M2-0535-first-listen-whisper-init; added to M2-0498's dependencies."
   }
  ],
  "tickets": [
@@ -34205,7 +34211,8 @@
     "M2-0508",
     "M2-0512",
     "M2-0514",
-    "M2-0530"
+    "M2-0530",
+    "M2-0535"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -36234,6 +36241,49 @@
    "external_blocker": null,
    "flag": null,
    "notes": "2026-10-02 (lead): filed from OD-43 follow-up; not on the M2-0433 gate (M2-0520 makes only fifo and control blocking)."
+  },
+  {
+   "id": "M2-0535",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "ultron",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "src/renderer/src/lib/listen.ts:1421 (m2/integration 0499fffb): the worker 'error' branch applies the replacement-session guard to load failures; pendingWhisperEpochRef is 0 until the first window after 'ready' (:970, only write :1368 behind the ready gate :1227) while start() increments the session epoch (:2225), so a first-Listen load error is always dropped"
+   ],
+   "scope_paths": [
+    "src/renderer/src/lib/listen.ts",
+    "src/renderer/src/lib/listen.stop-drain.test.ts"
+   ],
+   "estimate_hours": 3,
+   "risk": "medium",
+   "status": "IN_PROGRESS",
+   "claimed_by": "ultron (owner's agent fleet; allocated by the lead under OD-45)",
+   "landing_branch": "m2/M2-0535-first-listen-whisper-init",
+   "handoff_brief": "docs/metis-2.0/handoffs/M2-0535-ultron-brief.md",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Surface a first-Listen Whisper load error instead of waiting for speech forever",
+   "summary": "If the Whisper model fails to load on the first Listen, the error is dropped: the loading row and 'Waiting for speech…' stay up with zero lines and nothing retries. The replacement-session guard meant for per-window errors also swallows load failures, because no window has been stamped before 'ready'. Full brief: docs/metis-2.0/handoffs/M2-0535-ultron-brief.md.",
+   "acceptance": [
+    "A Whisper load failure on the first Listen (prewarmed worker reused, cold start, Parakeet fallback, network retry) reaches the UI: the error shows and loading ends; per-window errors of a replaced session are still dropped (the guard applies once the model is ready)",
+    "A fresh Whisper worker never starts 'ready' because an earlier cloud/Parakeet/Apple session left readyRef set",
+    "Failing-first unit tests in listen.stop-drain.test.ts (two commits: tests red, then the fix green); every existing listen/whisper test, asr-decode-failure.mqa193 and typecheck stay green",
+    "One PR from m2/M2-0535-first-listen-whisper-init into m2/integration titled 'fix: surface a first-Listen Whisper load error [M2-0535]'; the diff touches only the two scope files; every check green with none skipped, weakened or re-run to green; independent review approved"
+   ],
+   "verification": [
+    "Unit tests red then green in GitHub Actions (never on the owner's Mac, D-28); the next M2-0495 capture smoke shows lines within 120 s, or the load error with no stuck loading row"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-10-02 (lead): allocated to Ultron by the owner (OD-45); landing branch created at 0499fffb; the Codex queue never launches it (IN_PROGRESS, claimed by Ultron); the lead registers the PR with the merge lane after an independent review. Dependency of M2-0498 (1.9.7)."
   }
  ]
 }
