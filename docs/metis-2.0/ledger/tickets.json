@@ -36056,7 +36056,7 @@
    ],
    "estimate_hours": 3,
    "risk": "medium",
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "title": "ST-1 fifo and synthetic-dataless rows: exercised means refused without opening (OD-43); the full report reaches the job log",
@@ -36076,7 +36076,14 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-02 (lead): filed from OD-43; M2-0520 (M2-0433 slice S6) depends on it."
+   "notes": "2026-10-02 (lead): filed from OD-43; M2-0520 (M2-0433 slice S6) depends on it.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/432",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   }
  ]
 }
