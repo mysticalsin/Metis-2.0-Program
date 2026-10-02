@@ -2592,9 +2592,16 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
+   "status": "DONE",
    "priority": "P0",
-   "notes": "2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path."
+   "notes": "2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/419",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-opus",
+    "reviewer": "codex",
+    "validation": "independent Codex review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0033",
