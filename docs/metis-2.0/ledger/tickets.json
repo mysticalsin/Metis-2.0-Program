@@ -35891,7 +35891,7 @@
    ],
    "estimate_hours": 3,
    "risk": "low",
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
    "title": "Deflake the Windows packaged-smoke History navigation-guard rows HIST-dirty-discard-recent and HIST-dirty-save-recent (15 s locator timeouts on hosted runners)",
@@ -35910,7 +35910,17 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-09-30 (lead): filed with the known-smoke-flakes entry; 14 READY PRs sat with red checks, 5 of them on these rows."
+   "notes": "2026-09-30 (lead): filed with the known-smoke-flakes entry; 14 READY PRs sat with red checks, 5 of them on these rows.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/405",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0529",
