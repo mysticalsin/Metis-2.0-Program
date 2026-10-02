@@ -31084,7 +31084,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "risk": "medium",
    "estimate_hours": 6,
    "title": "Fix the intermittent Windows packaged-asr failure: an audio import reports done but its saved meeting has no transcript lines",
@@ -31121,7 +31121,14 @@
     "No weakening: check:packaged-asr still requires a real decoded transcript from both engines; no retries that hide a product failure",
     "Packaged smoke (Windows) check:packaged-asr passes on the PR and on 5 dispatched re-runs (LEAD_ACTION: dispatch and record the run ids); when it merges, the lead removes the entry from codex-queue known-smoke-flakes.txt"
    ],
-   "notes": "2026-09-29 (lead, EC triage): Coordination: M2-0452 (M2-0018-F04) depends on this ticket. M2-0452 runs scripts/check-packaged-asr.mjs on the installed Windows candidate inside qa-candidate.yml and adds --report and --artifact-sha256. Keep the harness's positional CLI stable, and emit the failure diagnostics this ticket adds (job state, line count, fixture size and duration) in a form M2-0452 can copy into its content-free JSON report."
+   "notes": "2026-09-29 (lead, EC triage): Coordination: M2-0452 (M2-0018-F04) depends on this ticket. M2-0452 runs scripts/check-packaged-asr.mjs on the installed Windows candidate inside qa-candidate.yml and adds --report and --artifact-sha256. Keep the harness's positional CLI stable, and emit the failure diagnostics this ticket adds (job state, line count, fixture size and duration) in a form M2-0452 can copy into its content-free JSON report.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/339",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-opus",
+    "reviewer": "codex",
+    "validation": "independent Codex review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0446",
