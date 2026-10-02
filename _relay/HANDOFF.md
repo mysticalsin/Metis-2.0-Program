@@ -1,10 +1,10 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 18
+shift: 19
 agent: claude-code
-updated: 2026-10-01 12:45 EDT
+updated: 2026-10-02 02:45 EDT
 status: in-progress (full autopilot; signing excluded; IMPLEMENTER=mixed OD-40; early build behind the soak OD-41)
-branch: m2/integration = 7ac31ea1; main = 009ab850 (milestone #396); program repo PUBLIC temporarily (OD-37)
+branch: m2/integration = b5d3b8b9; main = 009ab850 (milestone #396); program repo PUBLIC temporarily (OD-37)
 ---
 
 # Handoff — Métis 2.0 program
@@ -13,26 +13,27 @@ branch: m2/integration = 7ac31ea1; main = 009ab850 (milestone #396); program rep
 Ship Métis 2.0 by 2026-11-30: every ledger ticket at its evidence level; merged to main after CI + packaged smoke green. Signing excluded.
 
 ## Current state
-- 1.9.7 bump M2-0498: 15/19 deps done; open M2-0433 (waits M2-0518/M2-0520), M2-0032 (History design-evidence contrast fix, in work), M2-0495, M2-0505 (READY after a one-line baseline ruling; bounced once more on a SAPI timeout, now classified infra).
-- M2-0519 merged with prewarm-view shipped; measured on its QA run: construct <= 221 ms, prewarm <= 242 ms in both chromes (thin margin on the cold first run).
-- Queue: 39 READY, 1 STUCK; 25 merged today. Lane: RELEASE-GATE (codex-queue/RELEASE-GATE = M2-0498) — only critical-path in-flight PRs hold the lane; trains run again.
-- Disk: the 4 fills tonight were OneDrive's SyncEngine error loop (~1.3 GiB/min of logs). OneDrive app + "OneDrive Sync Service" stopped 16:20Z with owner approval; owner to reset OneDrive / fix its sync issue. Queue pauses itself below 5 GiB (disk_low).
-- Installed + Codex-attacked to SHIP since shift 17 (codex-queue/tests/*.sh: 22 suites green): build-once restart/orphan bounds incl. newer_run_working (bounded 2 h); pr_checks newest-by-job-id (no stale green behind a queued re-run); is_infra_flake (':' tags, fetch failed); critical-path lane protection; M2-0529 deflake filed + merged.
-- Codex review thread rotated to 01a0f82d-39ed-7c02-a42e-876a684bc1e4 (old one refused resume).
+- Ledger: 94 DONE, 100 ENGINEERING_COMPLETE, 332 TODO (30 READY, 6 running, 295 not started), 3 BLOCKED_EXTERNAL, 1 CANCELLED.
+- 1.9.7 bump M2-0498: open deps M2-0032 (READY #419, CI running), M2-0495 (READY #377), M2-0520 (in review rounds) -> M2-0433, M2-0530 (OD-42 window warm-up launch, launched 06:30Z, first in .merge-first). M2-0518, M2-0529, M2-0505, M2-0491 merged.
+- Milestone #429 red on the ST-1 window gate (5f0fe601) until M2-0530 lands; it then moves to the next green integration head.
+- Overnight throughput (2 merges in 9 h) was the host asleep (pmset: clamshell sleep on battery); the queue ran only in ~45 s maintenance wakes. Not a code defect: no timeout patch.
+- STUCK triage: M2-0410 revert guard was a move (pinnedBridgeCall moved to golden-flows/right-edge-hide-rows.mjs; pinnedExpression was only in its doc comment) -> allow-removal for that one identifier + lead ruling to port integration's History-seeding changes on the re-sync; retried. M2-0205 (16 rounds; ingest-completion.test.ts:308/:332, ingest-team.test.ts:122) under read-only diagnosis for a lead ruling.
 
 ## Next steps (in order)
-1. Watch trains/merges; M2-0518, M2-0520 -> M2-0433 -> M2-0498 (installer hold) -> milestone (snapshot PR) -> qa-candidate on main -> evidence lanes -> owner ACCEPT.
-2. Stuck tickets: lead rulings in state/<ID>.lead, then retry (service.sh's STUCK retry only runs when queue.sh returns — retry by hand: touch state/<ID>.retried; rm state/<ID>.status).
-3. Known-flake removals: RE-HIDE-3 after 10 green macOS runs; intelligence-index line when M2-0527 merges; HIST rows when M2-0528 merges.
-4. When OneDrive is back: watch ~/Library/Logs/OneDrive; if it grows fast the loop is back.
-5. service.sh's running loop predates its 2026-09-29 edits; restart only when no merge pass runs.
-6. Owner items unchanged (shift 16 archive) + OneDrive reset.
+1. Watch M2-0032, M2-0495, M2-0520 -> M2-0433, M2-0530 -> M2-0498 bump (installer hold) -> milestone #429 -> qa-candidate on main -> evidence lanes -> owner ACCEPT.
+2. M2-0205: write state/M2-0205.lead from the diagnosis (sync first: 30 behind), then retry (touch state/M2-0205.retried; rm state/M2-0205.status).
+3. M2-0410: confirm the re-synced head keeps every integration identifier (revert guard) and goes READY.
+4. When M2-0404 slice 1 merges ("slice merged"): rm state/M2-0404.kind so slice 2 (ratchet) is classified Behaviour change.
+5. Known-flake removals: RE-HIDE-3 after 10 green macOS runs; HIST rows when M2-0528 merges.
+6. Owner items: keep the Mac awake overnight (on power, lid open); OneDrive reset; earlier list (shift 16 archive).
 
 ## Decisions made (don't relitigate)
-D-28 CI only; OD-12..OD-41; PD-12 soak gate; never re-run qa-candidate.yml (build once by design); RELEASE-GATE lane rule (delete the file to revert).
+D-28 CI only; OD-12..OD-42 (OD-42: one unmeasured warm-up launch before ST-1 window rows); PD-12 soak gate; never re-run qa-candidate.yml (build once by design); RELEASE-GATE lane rule (delete the file to revert).
 
 ## Watch out
 - Program repo is PUBLIC: nothing secret/personal/meeting-related.
-- Queue scripts: re-runnable patch scripts -> .fixN + mv, logs/*.pre-* backups, every tests/*.sh; tests may only arrange state production creates; model real workflow shapes (late job creation) in fixtures.
-- Run shell experiments in bash, not zsh (word splitting) and use script files (bash 3.2 quote bug); mktemp needs $TMPDIR in the sandbox.
-- Codex liveness: pgrep -lf; never touch a statedir .lock while one runs.
+- Before blaming code for a gap in queue.log, check `pmset -g log` for Sleep/DarkWake in that window.
+- Queue scripts: re-runnable patch scripts -> .fixN + mv, logs/*.pre-* backups, every tests/*.sh (23 suites green).
+- Shell: bash script files, not zsh (word splitting; `$H:s` is a zsh modifier — write `${H}:path`); mktemp needs $TMPDIR.
+- gh inside the sandbox fails TLS (x509 OSStatus); read PR state from git where possible.
+- Codex liveness: wait on the attack PID; never touch a statedir .lock while one runs.
