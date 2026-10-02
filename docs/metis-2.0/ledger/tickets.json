@@ -483,6 +483,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0535 PR #436 reviewed (APPROVE) and registered with the merge lane; M2-0536 filed (P1 follow-ups, deferred under OD-45)."
+  },
+  {
+   "date": "2026-10-02",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-46 recorded; M2-0537 filed (strict ST-1 rows on a self-hosted runner on the owner's Mac under owner-account.sb), dependency of M2-0520."
   }
  ],
  "tickets": [
@@ -35505,7 +35511,8 @@
     "M2-0519",
     "M2-0531",
     "M2-0532",
-    "M2-0533"
+    "M2-0533",
+    "M2-0537"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -36352,6 +36359,47 @@
    "external_blocker": null,
    "flag": null,
    "notes": "2026-10-02 (lead): filed from the PR #436 reviews; off the 1.9.7 path (OD-45 defers it)."
+  },
+  {
+   "id": "M2-0537",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-46; QA runs 36991557510 and 37008199760 (strict rows fail on hosted runners; onboarded launches 8/8 fail); larger runners need an organization on GitHub Team/Enterprise (the repo is a personal account's)"
+   ],
+   "scope_paths": [
+    ".github/workflows/qa-candidate.yml",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+   ],
+   "estimate_hours": 3,
+   "risk": "high",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Strict ST-1 fifo and control jobs run on the owner's Mac (self-hosted runner) under the owner-account sandbox (OD-46)",
+   "summary": "The strict rows cannot pass on standard hosted macOS runners and larger hosted runners are not available to this repository. OD-46 moves only st1-mac-fifo and st1-mac-control to a self-hosted runner on the owner's Mac (label metis-owner-mac), in the owner's account, with every candidate command under scripts/hermetic/owner-account.sb.",
+   "acceptance": [
+    "st1-mac-fifo and st1-mac-control run on runs-on: [self-hosted, macOS, ARM64, metis-owner-mac]; every other job unchanged",
+    "Both jobs refuse a pull_request whose head repository is not this repository (job-level if:), so fork code never reaches the owner's Mac; their dispatch/push behaviour is otherwise unchanged",
+    "A first step proves the sandbox is in force and fails the job closed if not: under scripts/hermetic/run-under-owner-sandbox.sh a read of $HOME/Library/CloudStorage and of $HOME/Library/Application Support/Metis must be denied; every later command that unpacks, installs or launches the candidate (including scripts/qa/st-1.mjs) runs through that wrapper",
+    "Temporary profiles and the unpacked candidate are removed in an if: always() step; nothing is written outside the runner's work directory and $RUNNER_TEMP",
+    "Criteria, thresholds and continue-on-error unchanged (the rows stay report-only until M2-0520); the contract test pins the label, the fork guard, the sandbox probe and the wrapper"
+   ],
+   "verification": [
+    "QA self-test on the PR: both jobs ran on the metis-owner-mac runner (job log names it), the sandbox probe is green, and the reports show the rows' verdicts"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-10-02 (lead): filed from OD-46. The runner itself is installed by the lead on the owner's Mac (LEAD_ACTION). M2-0520 depends on it."
   }
  ]
 }
