@@ -447,6 +447,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-42 recorded; M2-0530 filed (ST-1 window warm-up launch), added to M2-0498's dependencies."
+  },
+  {
+   "date": "2026-10-02",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-43 recorded; M2-0531 filed (ST-1 fifo/synthetic-dataless 'exercised' = refused without opening, full report in the job log), added to M2-0520's dependencies. M2-0520 held by the lead: its precondition (a recorded strict PASS of fifo and control) is not met."
   }
  ],
  "tickets": [
@@ -35458,7 +35464,8 @@
    "priority": "P0",
    "depends_on": [
     "M2-0518",
-    "M2-0519"
+    "M2-0519",
+    "M2-0531"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -35490,7 +35497,7 @@
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): M2-0433 restart slice."
+   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-02 (lead): held — precondition unmet (run 36991557510: fifo NOT_EXERCISED, boot write 373 ms); waits for M2-0531 and a lead-recorded strict PASS of both rows."
   },
   {
    "id": "M2-0521",
@@ -36029,6 +36036,47 @@
     "reviewer": "claude-opus",
     "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
    }
+  },
+  {
+   "id": "M2-0531",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-43; QA self-test run 36991557510 (M2-0520 on integration 793fd20d): fifo row NOT_EXERCISED, fixturesOpened [] — since M2-0193 (f15afa58) gateway.ts classify maps non-regular entries to unknown and history-read.ts never opens them; the job log cut the report at 64 KiB (console.log then process.exit)"
+   ],
+   "scope_paths": [
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/lib/st-1-core.mjs",
+    "scripts/qa/st-1.test.ts"
+   ],
+   "estimate_hours": 3,
+   "risk": "medium",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "ST-1 fifo and synthetic-dataless rows: exercised means refused without opening (OD-43); the full report reaches the job log",
+   "summary": "The fifo row's exercised rule (a fixture still has a reader at the end) can only pass through a regression since the storage gateway stopped opening non-regular files (M2-0193). OD-43: the row is exercised when the app reached the fixtures and refused them without opening; a fixture with a reader at the end is a FAIL. Also the report is printed and the process exits at once, so the job log keeps only its first 64 KiB.",
+   "acceptance": [
+    "fifo and synthetic-dataless rows: exercised is true only when at least one History probe answered (not skipped) with unavailable/not-downloaded rows >= the FIFO meeting fixtures placed, and brainStatus answered; the report names that evidence",
+    "A fixture with a reader at the end makes the row FAIL with its own criterion (the app opened a non-regular file), never PASS or NOT_EXERCISED; tests cover refused (exercised), opened (FAIL) and History never answered (NOT_EXERCISED)",
+    "Every timing criterion, threshold and window is unchanged (OD-21/OD-24); the control and window rows are unchanged; the PR links OD-43",
+    "The full report reaches the job log: the harness exits only after stdout has flushed (a test with a report over 64 KiB)"
+   ],
+   "verification": [
+    "QA self-test on the PR: the fifo row reports PASS or FAIL, never NOT_EXERCISED, with the new evidence in its report, and the job log holds the whole report"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-10-02 (lead): filed from OD-43; M2-0520 (M2-0433 slice S6) depends on it."
   }
  ]
 }
