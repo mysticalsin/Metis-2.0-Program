@@ -477,6 +477,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0535: fallback to the Codex queue if Ultron has not opened its PR by 2026-10-03T13:00Z (OD-45 keeps 1.9.7 moving)."
+  },
+  {
+   "date": "2026-10-02",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0535 PR #436 reviewed (APPROVE) and registered with the merge lane; M2-0536 filed (P1 follow-ups, deferred under OD-45)."
   }
  ],
  "tickets": [
@@ -36303,12 +36309,49 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-02 (lead): allocated to Ultron by the owner (OD-45); landing branch created at 0499fffb; the Codex queue never launches it (IN_PROGRESS, claimed by Ultron); the lead registers the PR with the merge lane after an independent review. Dependency of M2-0498 (1.9.7). 2026-10-02 (lead): Ultron cannot be reached from the lead's session (no Dust tool; the shared vault is not syncing while OneDrive is stopped; no Ultron intake). To keep 1.9.7 (OD-45) moving: if no Ultron PR exists on the landing branch by 2026-10-03T13:00Z, the Codex queue takes the ticket with the same brief, branch and checks.",
-   "fallback": {
-    "deadline_utc": "2026-10-03T13:00:00Z",
-    "to": "codex-queue",
-    "rule": "no PR from Ultron on the landing branch by the deadline: status TODO, claimed_by cleared, id added to codex-queue FOCUS"
-   }
+   "notes": "2026-10-02 (lead): allocated to Ultron by the owner (OD-45); landing branch created at 0499fffb; the Codex queue never launches it (IN_PROGRESS, claimed by Ultron); the lead registers the PR with the merge lane after an independent review. Dependency of M2-0498 (1.9.7). 2026-10-02 (lead): Ultron cannot be reached from the lead's session (no Dust tool; the shared vault is not syncing while OneDrive is stopped; no Ultron intake). To keep 1.9.7 (OD-45) moving: if no Ultron PR exists on the landing branch by 2026-10-03T13:00Z, the Codex queue takes the ticket with the same brief, branch and checks. 2026-10-02 (lead): Ultron opened PR #436 (head 06e2c249: tests red then fix green, plus a session-bound fallback and the capture-admission fix the first review required); independent review APPROVE with an adversarial check; CI Build & Test red on d730eff7, green on 06e2c249; registered with the merge lane; the Codex fallback is cancelled. Merge before 2026-10-06 (the format check becomes blocking then)."
+  },
+  {
+   "id": "M2-0536",
+   "wave": "W2",
+   "milestone": "m4",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [
+    "M2-0535"
+   ],
+   "kit_refs": [],
+   "finding_refs": [
+    "PR #436 reviews (2026-10-02): listen.ts looksLikeNetworkError returns !online || NETWORK_ERR.test (144-146), so an offline machine with a damaged bundled model shows OFFLINE_MSG instead of BUNDLE_REPAIR; no test for a load error after a mid-session fallBackToWhisper; start() computes loading from a stale readyRef after a Parakeet/Apple/cloud session (2462 before ensureWorker 2477)"
+   ],
+   "scope_paths": [
+    "src/renderer/src/lib/listen.ts",
+    "src/renderer/src/lib/listen.stop-drain.test.ts"
+   ],
+   "estimate_hours": 2,
+   "risk": "low",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Listen follow-ups from M2-0535: bundled load errors never wait for the network, a fallback load-error test, no stale readyRef at start",
+   "summary": "Non-blocking follow-ups the two independent reviews of PR #436 raised; none is a regression against 1.9.6.",
+   "acceptance": [
+    "A bundled Whisper load failure shows the repair message even offline (armNetworkRetry is skipped for bundled loads)",
+    "A test covers a load error after a mid-session fallBackToWhisper: surfaced, loading false",
+    "The Whisper branch of start() clears readyRef when no worker exists before computing loading; no window is dequeued and dropped while the first bundled-path lookup is pending",
+    "Failing-first tests; every existing listen/whisper test stays green; diff limited to the two scope files"
+   ],
+   "verification": [
+    "Unit tests red then green in GitHub Actions (D-28)"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-10-02 (lead): filed from the PR #436 reviews; off the 1.9.7 path (OD-45 defers it)."
   }
  ]
 }
