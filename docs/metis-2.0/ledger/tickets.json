@@ -29710,7 +29710,7 @@
    "kit_refs": [],
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "evidence_target": "LOCALLY_TESTED",
    "priority": "P1",
    "id": "M2-0415",
@@ -29741,7 +29741,14 @@
    "estimate_hours": 4,
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/327",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "wave": "W1",
