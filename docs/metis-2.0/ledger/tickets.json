@@ -471,6 +471,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0535 filed (first-Listen Whisper load error) and allocated to the owner's Ultron fleet under OD-45, brief in docs/metis-2.0/handoffs/, landing branch m2/M2-0535-first-listen-whisper-init; added to M2-0498's dependencies."
+  },
+  {
+   "date": "2026-10-02",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0535: fallback to the Codex queue if Ultron has not opened its PR by 2026-10-03T13:00Z (OD-45 keeps 1.9.7 moving)."
   }
  ],
  "tickets": [
@@ -36290,7 +36296,12 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-02 (lead): allocated to Ultron by the owner (OD-45); landing branch created at 0499fffb; the Codex queue never launches it (IN_PROGRESS, claimed by Ultron); the lead registers the PR with the merge lane after an independent review. Dependency of M2-0498 (1.9.7)."
+   "notes": "2026-10-02 (lead): allocated to Ultron by the owner (OD-45); landing branch created at 0499fffb; the Codex queue never launches it (IN_PROGRESS, claimed by Ultron); the lead registers the PR with the merge lane after an independent review. Dependency of M2-0498 (1.9.7). 2026-10-02 (lead): Ultron cannot be reached from the lead's session (no Dust tool; the shared vault is not syncing while OneDrive is stopped; no Ultron intake). To keep 1.9.7 (OD-45) moving: if no Ultron PR exists on the landing branch by 2026-10-03T13:00Z, the Codex queue takes the ticket with the same brief, branch and checks.",
+   "fallback": {
+    "deadline_utc": "2026-10-03T13:00:00Z",
+    "to": "codex-queue",
+    "rule": "no PR from Ultron on the landing branch by the deadline: status TODO, claimed_by cleared, id added to codex-queue FOCUS"
+   }
   }
  ]
 }
