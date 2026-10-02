@@ -453,6 +453,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-43 recorded; M2-0531 filed (ST-1 fifo/synthetic-dataless 'exercised' = refused without opening, full report in the job log), added to M2-0520's dependencies. M2-0520 held by the lead: its precondition (a recorded strict PASS of fifo and control) is not met."
+  },
+  {
+   "date": "2026-10-02",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Run 37008199760 analysed (reports, job logs, CPU profiles): M2-0532 (ST-1 harness measurement), M2-0533 (boot and History main-thread trims) and M2-0534 (synthetic History after idle) filed; M2-0520 amended (contract test, synthetic report-only) and made to depend on M2-0532 and M2-0533."
   }
  ],
  "tickets": [
@@ -35472,7 +35478,9 @@
    "depends_on": [
     "M2-0518",
     "M2-0519",
-    "M2-0531"
+    "M2-0531",
+    "M2-0532",
+    "M2-0533"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -35481,13 +35489,15 @@
     "M2-0433-slice"
    ],
    "scope_paths": [
-    ".github/workflows/qa-candidate.yml"
+    ".github/workflows/qa-candidate.yml",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
    ],
    "summary": "Slice S6 of M2-0433 (strict ST-1, OD-21, gates 1.9.7). The lead restarted M2-0433 on 2026-09-29 after 8 stuck rounds: PR #336 was conflicting so its ST-1 self-test never ran; work aimed at stages that were not the cause (plan and per-run data: codex-queue/logs/unstick-m2-0433-plan.json). Start from origin/m2/integration; origin/m2/M2-0433-st-1-strict-gate is a read-only reference to port from with git show. Never relax ST-1 (OD-21/OD-24).",
    "acceptance": [
     "Started only after the lead records verdict PASS for both rows on one QA self-test of a head that equals integration plus every fix slice",
     "Job- and step-level continue-on-error removed from st1-mac-fifo and st1-mac-control, comment 'Blocking (OD-21, M2-0433)'; st1-mac-window stays report-only; nothing else changes",
-    "LEAD_ACTION: the QA candidate on main (the lane candidate) shows PASS in both rows; ledger M2-0433 DONE with the run ids"
+    "LEAD_ACTION: the QA candidate on main (the lane candidate) shows PASS in both rows; ledger M2-0433 DONE with the run ids",
+    "The synthetic-dataless job stays report-only (its History-idle run cannot meet OD-43 until M2-0534); the contract test's parity check (synthetic continue-on-error equals fifo's) is replaced by: fifo and control blocking, synthetic report-only"
    ],
    "verification": [
     "CI Build & Test",
@@ -35504,7 +35514,7 @@
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-02 (lead): held — precondition unmet (run 36991557510: fifo NOT_EXERCISED, boot write 373 ms); waits for M2-0531 and a lead-recorded strict PASS of both rows."
+   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-02 (lead): held — precondition unmet (run 36991557510: fifo NOT_EXERCISED, boot write 373 ms); waits for M2-0531 and a lead-recorded strict PASS of both rows. 2026-10-02 (lead): run 37008199760 (integration + M2-0531): fifo FAIL (exercised), control FAIL; precondition still unmet. Amended: contract-test parity (it would fail once fifo's continue-on-error is removed), depends on M2-0532 and M2-0533."
   },
   {
    "id": "M2-0521",
@@ -36091,6 +36101,133 @@
     "reviewer": "claude-opus",
     "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
    }
+  },
+  {
+   "id": "M2-0532",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "QA candidate self-test run 37008199760 (integration + M2-0531; reports, job logs and CPU profiles): sample-0 loopMaxSinceLastMs 0 in 22/22 launches; control setup error at tMs 615"
+   ],
+   "scope_paths": [
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/lib/st-1-core.mjs",
+    "scripts/qa/st-1.test.ts"
+   ],
+   "estimate_hours": 3,
+   "risk": "medium",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "ST-1 harness: boot blocks reach the timeline, the profiler's own cost is reported, and the pinned-expression timer never throws",
+   "summary": "The ST-1 harness under-measures boot: the per-sample loop histogram is reset inside each sample, so a block that straddles a reset reaches only the whole-run maximum (sample 0's loopMaxSinceLastMs was 0 in all 22 launches; loop.maxMs exceeded every per-sample value in 16 of 20). Profiler.start leaves 67-141 ms of boot unsampled and its cost is not reported. pinnedExpression's setTimeout can throw inside the app ('testEnabled is not a function', 8 of 157 launches), recorded as a setup error.",
+   "acceptance": [
+    "Every timeline sample carries the loop maximum since the previous sample including the interval that straddles the histogram reset, and sample 0 covers attach to first sample; a test shows a block before sample 0 appears in sample 0",
+    "The report states when Profiler.start was requested and answered and stops the profiler after the summary; no criterion uses profiler time",
+    "pinnedExpression's bound can never reject or throw (its timer is guarded); a test with a throwing setTimeout still returns the expression's value",
+    "Criteria, thresholds and verdict logic unchanged (OD-21/OD-43); a test shows identical verdicts with and without the new fields"
+   ],
+   "verification": [
+    "QA self-test on the PR: every row's first samples show the boot blocks, the report names the profiler start/answer times, no setup error from the bounded evaluation"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-10-02 (lead): filed from the run 37008199760 analysis; M2-0520 depends on it (the strict PASS must be measured correctly)."
+  },
+  {
+   "id": "M2-0533",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "perf",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "QA candidate self-test run 37008199760 (integration + M2-0531; reports, job logs and CPU profiles): index.ts getLoginItemSettings, logger.ts flushBootStages sync write, history-read.ts localeCompare comparator, intelligence-index.ts zonedParts, brain/store.ts sync log write (line refs at 800def44)"
+   ],
+   "scope_paths": [
+    "src/main/index.ts",
+    "src/main/logger.ts",
+    "src/main/history-read.ts",
+    "src/main/intelligence-index.ts",
+    "src/main/brain/store.ts",
+    "scripts/architecture-baseline.json"
+   ],
+   "estimate_hours": 4,
+   "risk": "medium",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "Boot and History main-thread trims: defer login-item settings, async audit/log writes, idle-time cleanup and probes, a cached collator and date formatter",
+   "summary": "The CPU profiles of run 37008199760 name JS work on the main thread in the first seconds and on the first History call that can move without changing behaviour: getLoginItemSettings in the boot body and in every publicSettings call (17-144 ms per launch; 65-66 ms of the 147/241 ms publicSettings blocks), synchronous audit and log writes (13-58 ms each), the boot-watch rmSync, mac-helper spawns and the ASR HTML probe (~34 ms), History sorting with localeCompare (220.8 ms on the first call) and zonedParts building a new Intl.DateTimeFormat (131.9 ms).",
+   "acceptance": [
+    "getLoginItemSettings no longer runs in the boot body or per publicSettings call: cached, refreshed off the boot path",
+    "The boot-stage audit write and the brain store's log write are asynchronous; boot-watch cleanup, mac-helper spawns and the ASR HTML probe run at idle time after first show",
+    "History sorting uses one cached Intl.Collator and zonedParts reuses one Intl.DateTimeFormat per time zone; tests prove the same order and output; the PR reports the fifo row's first recallList time against run 37008199760's 511 ms",
+    "No ST-1 criterion changes; behaviour unchanged; architecture counts may only fall"
+   ],
+   "verification": [
+    "QA self-test on the PR: the named frames are gone from the first 10 s profile and the first History call is faster"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-10-02 (lead): filed from the run 37008199760 profile analysis; expected gain ~65-235 ms at boot and ~350 ms on the first History call; alone not enough for a strict pass (the failing blocks are native window construction and an unprofiled block near renderer-ready). M2-0520 depends on it."
+  },
+  {
+   "id": "M2-0534",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "QA candidate self-test run 37008199760 (integration + M2-0531; reports, job logs and CPU profiles): synthetic-dataless NOT_EXERCISED, historyProbesAnswered 0, brainStatus not answered"
+   ],
+   "scope_paths": [
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/lib/st-1-core.mjs",
+    "scripts/qa/st-1.test.ts",
+    ".github/workflows/qa-candidate.yml",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+   ],
+   "estimate_hours": 2,
+   "risk": "low",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "ST-1 synthetic-dataless row: History opens after the idle period so the OD-43 evidence can hold",
+   "summary": "The synthetic-dataless row runs with History idle for its whole 5 minutes (M2-0505), so under OD-43 it can never be exercised (History answered 0 probes in run 37008199760): NOT_EXERCISED by construction.",
+   "acceptance": [
+    "A History mode for the row: no History probe during the idle period, then bounded retries until one answers, sampling throughout",
+    "The OD-43 exercised rule is unchanged; a FAIL during the open counts against the row",
+    "The contract test asserts the new mode; criteria and thresholds unchanged"
+   ],
+   "verification": [
+    "QA self-test on the PR: the synthetic row reports PASS or FAIL, never NOT_EXERCISED, with the refusal evidence"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-10-02 (lead): filed from OD-43 follow-up; not on the M2-0433 gate (M2-0520 makes only fifo and control blocking)."
   }
  ]
 }
