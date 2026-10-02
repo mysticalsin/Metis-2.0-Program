@@ -441,6 +441,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0404 sliced: pure move (S1) then the top-level module ratchet (S2)."
+  },
+  {
+   "date": "2026-10-01",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-42 recorded; M2-0530 filed (ST-1 window warm-up launch), added to M2-0498's dependencies."
   }
  ],
  "tickets": [
@@ -34139,7 +34145,8 @@
     "M2-0502",
     "M2-0508",
     "M2-0512",
-    "M2-0514"
+    "M2-0514",
+    "M2-0530"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -35921,6 +35928,46 @@
     "reviewer": "claude-opus",
     "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
    }
+  },
+  {
+   "id": "M2-0530",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-42; milestone PR #429 QA candidate run 36920312785: window-shipped-opaque-1 construct 419.5 ms (first cold launch, CPU 99.4%), other shipped runs 137-164 ms"
+   ],
+   "scope_paths": [
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/st-1.test.mjs",
+    ".github/workflows/qa-candidate.yml"
+   ],
+   "estimate_hours": 2,
+   "risk": "low",
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "title": "ST-1 window rows: one unmeasured warm-up launch before the measured launches (OD-42)",
+   "summary": "The window-construction gate (--gate-window, M2-0519) fails on the first cold launch on a runner while every warm launch passes. OD-42: launch the candidate once without measuring (no report, or a report marked warmup that --gate-window ignores), then run the measured repeats; the < 250 ms criterion is unchanged for every measured run in both chromes.",
+   "acceptance": [
+    "Each ST-1 window job (both chromes) launches the candidate once before its measured repeats; that warm-up writes no report the gate reads (or a report marked warmup: true that --gate-window skips and lists as skipped)",
+    "--gate-window still fails when any MEASURED shipped run has createWindow.construct or createWindow.prewarm >= 250 ms (show the test), and the gate output names how many warm-up launches were skipped",
+    "The criterion text and thresholds are unchanged (OD-21/OD-24); the PR links OD-42"
+   ],
+   "verification": [
+    "QA candidate ST-1 window row green on the PR with the warm-up visible in its log"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "notes": "2026-10-01 (lead): filed from OD-42; blocks the milestone into main (#429 red on the gate) and the 1.9.7 candidate lanes."
   }
  ]
 }
