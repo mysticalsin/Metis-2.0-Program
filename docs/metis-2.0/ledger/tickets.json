@@ -37501,10 +37501,17 @@
    "risk": "low",
    "estimate_hours": 2,
    "validation_hours": 0.5,
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-10-03 (lead): filed from readiness N13. Not a dependency of M2-0046: records already validate under today's code, SCHEMA.md section 6 step 7 makes the lead check both rules by hand, and a candidate-bound gate row already pins each record to the candidate run and bytes (build_run_id, artifact_sha256). If it is to govern the 1.9.7 release-check, it must reach main first, because program-audit.yml's checker-ref defaults to main. scripts/evidence/ is not in qa-candidate.yml's pull_request paths, so its PR never queues on the owner runner (N19), and it is not installer content, so the OD-45/OD-47 merge deferral does not apply. When it merges, the lead moves the two rules from SCHEMA.md section 6 step 7 into section 3 and drops 'not enforced yet'. No existing record uses the label (evidence/records/ has no .jsonl files), so nothing needs re-filing."
+   "notes": "2026-10-03 (lead): filed from readiness N13. Not a dependency of M2-0046: records already validate under today's code, SCHEMA.md section 6 step 7 makes the lead check both rules by hand, and a candidate-bound gate row already pins each record to the candidate run and bytes (build_run_id, artifact_sha256). If it is to govern the 1.9.7 release-check, it must reach main first, because program-audit.yml's checker-ref defaults to main. scripts/evidence/ is not in qa-candidate.yml's pull_request paths, so its PR never queues on the owner runner (N19), and it is not installer content, so the OD-45/OD-47 merge deferral does not apply. When it merges, the lead moves the two rules from SCHEMA.md section 6 step 7 into section 3 and drops 'not enforced yet'. No existing record uses the label (evidence/records/ has no .jsonl files), so nothing needs re-filing.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/469",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0550",
