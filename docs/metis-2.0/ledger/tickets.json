@@ -597,6 +597,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Evidence normalisation: top-level decisions register (30 D-* ids) and external_blocker.unblock_step on 93 EC/BLOCKED tickets (8 left unknown)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Evidence normalisation: lead-reviewed unblock steps for the 8 EC tickets the automated pass left unknown (M2-0013, 0030, 0104, 0443, 0481, 0521, 0540, 0544)."
   }
  ],
  "tickets": [
@@ -1497,7 +1503,11 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Evidence backfill (ADR-017 phase 2): the lead writes a DESIGNED evidence record to docs/metis-2.0/evidence/records/<ID>.jsonl citing the merged program PR #21, its independent Codex review and the SRC-REVERIFY.md appendix named in verification; no external dependency. The ticket moves to DONE once ledger check accepts the record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 8,
@@ -1513,7 +1523,7 @@
     "implementer": "codex",
     "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    },
-   "notes": "2026-09-29 (lead): verification line amended; it named scripts/trace/diff-export.py, which exists in neither repository (SRC-REVERIFY.md:20, :94). The equivalent read-only check that was actually recorded is the Appendix mechanical diff. 2026-09-29 (lead, EC triage): Add finding ref M2-0018-F13 and this acceptance line (exact mapping text): 'Record command/wake review result: flushPending / mark_committed logic was not found in command-mic code; command-mic remains renderer-only and does not own command ingest.' Evidence from the review: src/renderer/src/lib/use-command-mic.ts:60 owns only the renderer microphone lease state; use-command-mic.ts:203 finalizes renderer hook state without main command ingestion; src/shared/metis-command-session.ts:96 ignores meeting transcripts as authority."
+   "notes": "2026-09-29 (lead): verification line amended; it named scripts/trace/diff-export.py, which exists in neither repository (SRC-REVERIFY.md:20, :94). The equivalent read-only check that was actually recorded is the Appendix mechanical diff. 2026-09-29 (lead, EC triage): Add finding ref M2-0018-F13 and this acceptance line (exact mapping text): 'Record command/wake review result: flushPending / mark_committed logic was not found in command-mic code; command-mic remains renderer-only and does not own command ingest.' Evidence from the review: src/renderer/src/lib/use-command-mic.ts:60 owns only the renderer microphone lease state; use-command-mic.ts:203 finalizes renderer hook state without main command ingestion; src/shared/metis-command-session.ts:96 ignores meeting transcripts as authority. 2026-10-03 (lead, evidence normalisation): unblock step written from lead review (the automated pass found no named step)."
   },
   {
    "id": "M2-0014",
@@ -2643,7 +2653,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "LIVE_VERIFIED comes from the strict ST-1 FIFO row (scripts/qa/st-1.mjs --fixtures fifo --count 6 on the packaged candidate by sha256) on the OD-46 owner runner (label metis-owner-mac), once M2-0538 and M2-0543 merge and the queue is drained; the lead records that run id and candidate sha256 as the LIVE_VERIFIED record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "storage.gateway",
    "risk": "high",
    "estimate_hours": 10,
@@ -2653,7 +2667,8 @@
    "status": "ENGINEERING_COMPLETE",
    "notes": [
     "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion).",
-    "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
+    "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED.",
+    "2026-10-03 (lead, evidence normalisation): unblock step written from lead review (the automated pass found no named step)."
    ],
    "claimed_by": "claude-code ticket runner (batch 4)",
    "claimed_at": "2026-09-27",
@@ -9139,7 +9154,11 @@
     "LOCALLY_TESTED",
     "HOST_CONFIGURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (or a scoped read-only Cloudflare token the owner grants)",
+    "unblock_step": "Run verifyDefaultGatewayPrivacy, or an equivalent authenticated readback of the default AI Gateway, against the deployed staging gateway and paste the returned configuration and readiness state into the ticket (the LEAD_ACTION in app repo docs/security/AI-GATEWAY-NO-RETENTION.md); the lead then records it as HOST_CONFIGURED.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 10,
@@ -9147,7 +9166,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "RE-VALIDATE acceptance 1 before starting: D-12 (answered as default on 2026-09-27, docs/metis-2.0/POLICY-2.0.md) keeps metadata-only gateway logs, so cf-aig-collect-log:false on every request no longer applies. Control set: gateway logging stays off (the landed ai-gateway.ts readback is unchanged); protected Operator requests send cf-aig-collect-log:true, cf-aig-collect-log-payload:false and cf-aig-skip-cache:true; a transport without a proven metadata-only result (including a Worker binding route) sends cf-aig-collect-log:false; a transport where neither is proven is BLOCKED.",
+   "notes": "RE-VALIDATE acceptance 1 before starting: D-12 (answered as default on 2026-09-27, docs/metis-2.0/POLICY-2.0.md) keeps metadata-only gateway logs, so cf-aig-collect-log:false on every request no longer applies. Control set: gateway logging stays off (the landed ai-gateway.ts readback is unchanged); protected Operator requests send cf-aig-collect-log:true, cf-aig-collect-log-payload:false and cf-aig-skip-cache:true; a transport without a proven metadata-only result (including a Worker binding route) sends cf-aig-collect-log:false; a transport where neither is proven is BLOCKED. 2026-10-03 (lead, evidence normalisation): unblock step written from lead review (the automated pass found no named step).",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/320",
     "merged_into": "m2/integration (squash)",
@@ -31574,7 +31593,11 @@
    "owner_model": "sonnet",
    "kit_refs": [],
    "evidence_target": "DESIGNED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Evidence backfill (ADR-017 phase 2): the lead writes a DESIGNED evidence record to docs/metis-2.0/evidence/records/<ID>.jsonl citing the merged program PR #36 and its independent Claude review; no external dependency. The ticket moves to DONE once ledger check accepts the record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "risk": "medium",
@@ -31607,7 +31630,7 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + no CI ran (private docs PR: private-repo Actions unavailable)"
    },
-   "notes": "2026-09-29: D-15 ANSWERED — software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER 2.5 refactoring skill."
+   "notes": "2026-09-29: D-15 ANSWERED — software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER 2.5 refactoring skill. 2026-10-03 (lead, evidence normalisation): unblock step written from lead review (the automated pass found no named step)."
   },
   {
    "id": "M2-0444",
@@ -33783,9 +33806,13 @@
     "DESIGNED"
    ],
    "evidence_target": "DESIGNED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Evidence backfill (ADR-017 phase 2): the lead writes a DESIGNED evidence record to docs/metis-2.0/evidence/records/<ID>.jsonl citing the merged program PR #38 and its independent review; no external dependency. The ticket moves to DONE once ledger check accepts the record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
-   "notes": "2026-09-29 (lead): filed from the EC triage; closes M2-0190's last acceptance gap.",
+   "notes": "2026-09-29 (lead): filed from the EC triage; closes M2-0190's last acceptance gap. 2026-10-03 (lead, evidence normalisation): unblock step written from lead review (the automated pass found no named step).",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/38",
     "merged_into": "main (squash)",
@@ -36287,9 +36314,13 @@
     "DESIGNED"
    ],
    "evidence_target": "DESIGNED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Evidence backfill (ADR-017 phase 2): the lead writes a DESIGNED evidence record to docs/metis-2.0/evidence/records/<ID>.jsonl citing the merged program PR #40 and its independent Opus review of the document; no external dependency. The ticket moves to DONE once ledger check accepts the record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
-   "notes": "2026-09-29 (lead): filed from the owner's D-8 ruling.",
+   "notes": "2026-09-29 (lead): filed from the owner's D-8 ruling. 2026-10-03 (lead, evidence normalisation): unblock step written from lead review (the automated pass found no named step).",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/40",
     "merged_into": "main (squash)",
@@ -37238,7 +37269,11 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Evidence backfill (ADR-017 phase 2): the lead writes a LOCALLY_TESTED evidence record to docs/metis-2.0/evidence/records/<ID>.jsonl citing the green check runs of app PR #442, after confirming they meet the verification line (three History design evidence runs, 72/72 captures); no external dependency. The ticket moves to DONE once ledger check accepts the record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "id": "M2-0540",
@@ -37263,7 +37298,7 @@
    "verification": [
     "CI: three History design evidence runs on the PR with 72/72 captures"
    ],
-   "notes": "2026-10-02 (lead): filed from the merge-lane diagnosis.",
+   "notes": "2026-10-02 (lead): filed from the merge-lane diagnosis. 2026-10-03 (lead, evidence normalisation): unblock step written from lead review (the automated pass found no named step).",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/442",
     "merged_into": "m2/integration (squash)",
@@ -37418,7 +37453,11 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Program-repo CI: traceability.yml (workflow_dispatch) runs build-traceability --check and its node test today, but not check-reference-claims.mjs, its node test, or the gitleaks scan named in verification. The lead adds those three to a program-repo workflow, dispatches it on main, and records the run as the LOCALLY_TESTED evidence record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "estimate_hours": 3,
@@ -37450,7 +37489,7 @@
     "node docs/metis-2.0/tools/trace/check-reference-claims.mjs (program-repo CI)",
     "gitleaks detect --no-git --source docs/metis-2.0 (program-repo CI)"
    ],
-   "notes": "2026-10-03 (lead): filed under OD-56; cut before the D-14 list if the OD-50 checkpoint triggers.",
+   "notes": "2026-10-03 (lead): filed under OD-56; cut before the D-14 list if the OD-50 checkpoint triggers. 2026-10-03 (lead, evidence normalisation): unblock step written from lead review (the automated pass found no named step).",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/44",
     "merged_into": "main (squash)",
