@@ -36360,7 +36360,7 @@
    ],
    "estimate_hours": 2,
    "risk": "low",
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "title": "ST-1 synthetic-dataless row: History opens after the idle period so the OD-43 evidence can hold",
@@ -36379,7 +36379,14 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-02 (lead): filed from OD-43 follow-up; not on the M2-0433 gate (M2-0520 makes only fifo and control blocking)."
+   "notes": "2026-10-02 (lead): filed from OD-43 follow-up; not on the M2-0433 gate (M2-0520 makes only fifo and control blocking).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/433",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0535",
