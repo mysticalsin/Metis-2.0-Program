@@ -681,6 +681,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0574 (packaged-smoke inspector awaitPromise flake, \"Promise was collected\")."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-66 (owner): ST-1 window gate in-job re-measure replaces the OD-44 whole-check re-run; filed M2-0575."
   }
  ],
  "tickets": [
@@ -39820,6 +39826,55 @@
     "PR CI: Build & Test (npm test runs scripts/qa/golden-flows/main-inspector.test.ts), Packaged smoke (macOS) and (Windows)"
    ],
    "notes": "2026-10-03 (lead): filed from the verified flake root cause; merge-lane flake fix, first in the merge order."
+  },
+  {
+   "id": "M2-0575",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "opus",
+   "priority": "P0",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0539"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 4,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead flake root-cause review 2026-10-03 (diagnosis + adversarial verification): ST-1 window gate fails 3/39 complete runs after OD-42 (7.7%) from single-launch variance on unchanged bytes (runs 36999698235, 37071491310, 37156371974)"
+   ],
+   "scope_paths": [
+    "scripts/qa/lib/st-1-core.mjs",
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/st-1.test.ts",
+    ".github/workflows/qa-candidate.yml",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+   ],
+   "title": "ST-1 window gate: one in-job re-measure of a single slow launch per chrome (OD-66), criterion unchanged at 250 ms",
+   "summary": "One strict launch decides the ST-1 window-construction verdict and nothing re-measures it inside the job, so launch variance on unchanged bytes (254.8 ms against 54-117 ms siblings) fails about 7.7% of runs and costs a whole-check re-run (OD-44). OD-66 replaces that with one same-chrome re-measure inside the job, accepted only when it is under 250 ms and the slow launch is the only over-budget one of its chrome; every acceptance is listed and annotated.",
+   "acceptance": [
+    "WINDOW_STAGE_BUDGET_MS stays 250 and GATED_WINDOW_STAGES stays ['createWindow.prewarm', 'createWindow.construct']. No threshold, timeout or warm-up count changes.",
+    "A shipped measured launch with a gated stage >= 250 ms passes only when three things hold: a re-measure launch in the same chrome, with report field `remeasures` naming it and run after every planned launch, has both gated stages present and < 250 ms; it is the only over-budget measured launch of that chrome in the run; and its only failures are budget failures. A missing stage, missing ms or missing chrome is never re-measurable.",
+    "window-gate.json lists every accepted over-budget launch under `remeasured` as {launch, stage, ms, remeasure, remeasureMs}, and every re-measure report is gated itself. The gate prints one `::warning::` annotation per remeasured entry.",
+    "qa-candidate.yml st1-mac-window runs `node scripts/qa/st-1.mjs --print-window-remeasure-plan st1-report` after the measured plan and before the gate. It launches each planned entry with `--window-variant shipped --window-remeasures <launch>`, plus `--profile-template onboarded-profile` for transparent. The plan is [] when no shipped launch reached 250 ms, so no launch is added. scripts/ci/qa-candidate-workflow.contract.test.ts pins this.",
+    "scripts/qa/st-1.test.ts uses the numbers from runs 37156371974 and 37071491310. With no re-measure the gate fails. It passes with a same-chrome re-measure at 120 ms (construct) or 50 ms (prewarm). It fails with a re-measure at 260 ms, a missing re-measure, or a wrong-chrome re-measure, and it fails when two shipped opaque launches exceed 250 ms. The test fails on the pre-change code.",
+    "WINDOW_CONSTRUCTION_ROOT_CAUSE records classification LAUNCH_VARIANCE. Its evidence runs are 36999698235, 37071491310 and 37156371974, with per-launch construct/prewarm ms and the runner witness values at those launches. 37080909059 is removed because it is not a QA candidate run. The baseline is: 3/39 runs failed after OD-42, 3/78 opaque launches >= 250 ms, opaque construct median 119 and p95 184 ms. The existing rootCause assertions are updated.",
+    "CI: three consecutive qa-candidate runs on m2/integration-equivalent bytes produce st-1-macos-window/window-gate.json with pass: true and budgetMs: 250, with the artifacts attached. After 30 more runs, the lead recounts the window-gate failure rate and the share of runs with a non-empty `remeasured`, and attaches both to the ticket. A re-measure share above 15% of runs is filed as a suspected regression.",
+    "OD-66 (owner, 2026-10-03) amends OD-44 for this gate: one in-job re-measure per chrome replaces the whole-check re-run; the criterion stays < 250 ms for createWindow.construct and createWindow.prewarm, and the merge lane no longer re-runs a PR whose only red check is the ST-1 window gate once this lands"
+   ],
+   "verification": [
+    "PR CI: node --test / vitest scripts/qa/st-1.test.ts and the qa-candidate workflow contract test; the QA candidate self-test on the PR shows window-gate.json pass: true with budgetMs 250"
+   ],
+   "notes": "2026-10-03 (lead): filed from the verified flake root cause under OD-66."
   }
  ],
  "decisions": {
