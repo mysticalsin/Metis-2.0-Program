@@ -36692,7 +36692,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "estimate_hours": 2,
    "risk": "high",
    "finding_refs": [
@@ -36715,7 +36715,14 @@
    "verification": [
     "CI: Quality checks green with the new contract test; the PR's QA candidate run has jobs and the two owner-runner jobs start"
    ],
-   "notes": "2026-10-03 (lead): P0, first in the queue; M2-0495 is held until this merges (its own proof runs in qa-candidate)."
+   "notes": "2026-10-03 (lead): P0, first in the queue; M2-0495 is held until this merges (its own proof runs in qa-candidate).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/443",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   }
  ]
 }
