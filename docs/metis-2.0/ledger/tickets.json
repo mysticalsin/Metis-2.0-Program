@@ -669,6 +669,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Evidence Phase 2 normalisation: 28 DONE tickets capped by an EC/BLOCKED ancestor -> ENGINEERING_COMPLETE (L10); required_evidence aligned to the delivered in-house level on 17 code tickets (LOCALLY_TESTED) and 14 design tickets (DESIGNED), outside levels kept."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Evidence Phase 2: 28 inheritance-capped ENGINEERING_COMPLETE tickets get an unblock step naming their capping root(s): M2-0024, M2-0032, M2-0041, M2-0048, M2-0050, M2-0051, M2-0052, M2-0145, M2-0213, M2-0217, M2-0218, M2-0219, M2-0228, M2-0229, M2-0237, M2-0239, M2-0248, M2-0259, M2-0261, M2-0263, M2-0410, M2-0415, M2-0416, M2-0462, M2-0512, M2-0514, M2-0519, M2-0523."
   }
  ],
  "tickets": [
@@ -2301,7 +2307,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0012 close (M2-0012: Book the weekly 30-minute decision slot (first slot held by 2026-10-02); name a person for each external owner role in BLOCKERS.md; send the)"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
@@ -2313,7 +2323,7 @@
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/205",
     "note": "Public agent layer (AGENTS.md, CLAUDE.md, Cursor rule, PR template); program docs moved to the private repo mysticalsin/Metis-2.0-Program"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2 step 4): required_evidence ['DESIGNED'] -> ['LOCALLY_TESTED'] — its merged PR is code in the app repository (CI-tested), so L9 judges the level it actually delivers; outside levels stay required."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2 step 4): required_evidence ['DESIGNED'] -> ['LOCALLY_TESTED'] — its merged PR is code in the app repository (CI-tested), so L9 judges the level it actually delivers; outside levels stay required. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0025",
@@ -2875,7 +2885,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0193 close (M2-0193: Lead: amend M2-0193 acceptance 5 (and slice M2-0193.4) and its verification line per OD-36. On the candidate, History runs with the FIFO fix)"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 6,
@@ -2884,7 +2898,7 @@
    "due": null,
    "status": "ENGINEERING_COMPLETE",
    "priority": "P0",
-   "notes": "2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does.",
+   "notes": "2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/419",
     "merged_into": "m2/integration (squash)",
@@ -3507,7 +3521,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0005 close (M2-0005: After M2-0425 (still TODO) merges its dispatchable baseline workflow to app main, the lead dispatches it on 2bf21f1c with only the M2-0001/M)"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 6,
@@ -3523,7 +3541,7 @@
     "merged_into": "m2/integration",
     "validation": "Opus PASS round 1 (batch 3)"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0042",
@@ -4008,7 +4026,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0005, M2-0047 close (M2-0005: After M2-0425 (still TODO) merges its dispatchable baseline workflow to app main, the lead dispatches it on 2bf21f1c with only the M2-0001/M; M2-0047: Lead: file M2-0047's LOCALLY_TESTED record (kind ci) from a green Build & Test run in which the now-blocking 'Architecture ratchet' step ran)"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
@@ -4022,7 +4044,7 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + CI green"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0049",
@@ -4140,7 +4162,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0049, M2-0190 close (M2-0049: Lead: file M2-0049's LOCALLY_TESTED record (kind ci) from a green Build & Test run on app main whose repo-wide 'Gitleaks secret scan' step p; M2-0190: Lead: the runbook's first LEAD_ACTION check already fails. A read-only git diff of scripts/hermetic and isolation-canary.yml against origin/)"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 6,
@@ -4154,7 +4180,7 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0051",
@@ -4189,7 +4215,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0050, M2-0190 close (M2-0050: No outside step of its own: it closes DONE once its capping ancestors M2-0049, M2-0190 close (M2-0049: Lead: file M2-0049's LOCALLY_TESTED r; M2-0190: Lead: the runbook's first LEAD_ACTION check already fails. A read-only git diff of scripts/hermetic and isolation-canary.yml against origin/)"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
@@ -4203,7 +4233,7 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0052",
@@ -4238,7 +4268,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0047, M2-0051 close (M2-0047: Lead: file M2-0047's LOCALLY_TESTED record (kind ci) from a green Build & Test run in which the now-blocking 'Architecture ratchet' step ran; M2-0051: No outside step of its own: it closes DONE once its capping ancestors M2-0050, M2-0190 close (M2-0050: No outside step of its own: it closes)"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 5,
@@ -4252,7 +4286,7 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0053",
@@ -13820,7 +13854,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Cloudflare account owner (Mantu IT; person to be named by program owner)",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0103 close (M2-0103: Cloudflare account owner (Mantu IT; person to be named by the program owner): create the staging Worker `metis-operator-staging` and D1 data)"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 12,
@@ -13830,7 +13868,8 @@
    "status": "ENGINEERING_COMPLETE",
    "notes": [
     "Also covers the desktop side found in M2-0045 validation: parseOperatorIntegration ignores the brokered row shape {transport, mode, endpoint, gatewayToken}, so brokered rows parse with baseUrl/credential null and are never registered. Fix both ends together (Worker /v1/mcp/:id route + desktop brokered parsing) or stop defaulting to brokered.",
-    "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+    "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does.",
+    "2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
    ],
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/321",
@@ -20466,7 +20505,11 @@
     "DESIGNED",
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0178, M2-0349 close (M2-0178: Lead: file M2-0178's DESIGNED record citing M2-0349's merged re-key of the claim register to the kit's LF-01..LF-08 beats (PR #294, on app m; M2-0349: Lead: the README's KIT_BEATS diff already fails. KIT_BEATS and CLAIMS.json storyboard_scenes run 0-70 s, with titles that are not in the kit)"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 10,
@@ -20474,7 +20517,7 @@
    "slices": [],
    "due": "2026-11-15",
    "status": "ENGINEERING_COMPLETE",
-   "notes": "2026-09-28 (lead): depends on M2-0349 (re-keys CLAIMS.json LF-01..08). ASSUMED defaults until the owner answers D-27: cut/concept variants per D-27 proposal, bundled Inter/Geist fonts, ubuntu-24.04 runner as render machine. D-27 stays OPEN. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does.",
+   "notes": "2026-09-28 (lead): depends on M2-0349 (re-keys CLAIMS.json LF-01..08). ASSUMED defaults until the owner answers D-27: cut/concept variants per D-27 proposal, bundled Inter/Geist fonts, ubuntu-24.04 runner as render machine. D-27 stays OPEN. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/296",
     "merged_into": "m2/integration (squash)",
@@ -20683,7 +20726,11 @@
     "npx tsc --noEmit"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0187 close (M2-0187: D-28/D-9 compatible: no repository script on a Mac and no QA user. Either a signing identity is supplied as CI secrets for the QA build, or )"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "id": "M2-0217",
@@ -20720,7 +20767,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "wave": "W2",
@@ -20730,7 +20777,11 @@
     "npx tsc --noEmit"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0041 close (M2-0041: No outside step of its own: it closes DONE once its capping ancestor M2-0005 close (M2-0005: After M2-0425 (still TODO) merges its dispatcha)"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "id": "M2-0218",
@@ -20768,7 +20819,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "wave": "W2",
@@ -20778,7 +20829,11 @@
     "npx tsc --noEmit"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0041 close (M2-0041: No outside step of its own: it closes DONE once its capping ancestor M2-0005 close (M2-0005: After M2-0425 (still TODO) merges its dispatcha)"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "id": "M2-0219",
@@ -20815,7 +20870,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0220",
@@ -21217,7 +21272,11 @@
     "CI build.yml runs"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0026 close (M2-0026: The lead confirms that candidate-scenarios.yml is registered on app main and dispatches qa-candidate.yml on main. The lead then dispatches c)"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
@@ -21231,7 +21290,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0229",
@@ -21260,7 +21319,11 @@
     "CI packaged-smoke run on m2/integration"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0007 close (M2-0007: The lead first confirms that windows-qa.yml is registered on app main (M2-0501 LEAD_ACTION). The lead then dispatches windows-qa.yml --ref m)"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 1,
@@ -21274,7 +21337,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0230",
@@ -21647,7 +21710,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0047 close (M2-0047: Lead: file M2-0047's LOCALLY_TESTED record (kind ci) from a green Build & Test run in which the now-blocking 'Architecture ratchet' step ran)"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
@@ -21662,7 +21729,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0238",
@@ -21762,7 +21829,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Cloudflare account owner (Mantu IT; person to be named by program owner)",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0103 close (M2-0103: Cloudflare account owner (Mantu IT; person to be named by the program owner): create the staging Worker `metis-operator-staging` and D1 data)"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
@@ -21777,7 +21848,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0240",
@@ -22273,7 +22344,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0059, M2-0237 close (M2-0059: Lead: update the stale D-15 entries to match DECISIONS.md D-15 (ANSWERED 2026-09-29: software-architecture-engineer v1.4.0 + Stark v9.3.0). ; M2-0237: No outside step of its own: it closes DONE once its capping ancestor M2-0047 close (M2-0047: Lead: file M2-0047's LOCALLY_TESTED record (kin)"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
@@ -22288,7 +22363,7 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0249",
@@ -22884,7 +22959,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0049 close (M2-0049: Lead: file M2-0049's LOCALLY_TESTED record (kind ci) from a green Build & Test run on app main whose repo-wide 'Gitleaks secret scan' step p)"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
@@ -22899,7 +22978,7 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0260",
@@ -23004,13 +23083,17 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "DESIGNED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0015, M2-0019 close (M2-0015: The program owner, or a scoped read-only token the owner grants, runs the two read-only production readbacks named in M2-0014's external_blo; M2-0019: The lead dispatches kit-suites.yml on the program repository's main (M2-0449). From that run the lead files M2-0019's LOCALLY_TESTED record:)"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "priority": "P1",
-   "notes": "2026-09-28 (lead): dependency on M2-0014 dropped (SOFT: redundant: keeps M2-0015 which depends on M2-0014); re-verify against M2-0014 once it lands. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2 step 4): required_evidence ['LOCALLY_TESTED'] -> ['DESIGNED'] — its merged PR is a design document in the program repository, so L9 judges the level it actually delivers; outside levels stay required.",
+   "notes": "2026-09-28 (lead): dependency on M2-0014 dropped (SOFT: redundant: keeps M2-0015 which depends on M2-0014); re-verify against M2-0014 once it lands. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2 step 4): required_evidence ['LOCALLY_TESTED'] -> ['DESIGNED'] — its merged PR is a design document in the program repository, so L9 judges the level it actually delivers; outside levels stay required. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/35",
     "merged_into": "main (squash)",
@@ -23112,7 +23195,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0005, M2-0190 close (M2-0005: After M2-0425 (still TODO) merges its dispatchable baseline workflow to app main, the lead dispatches it on 2bf21f1c with only the M2-0001/M; M2-0190: Lead: the runbook's first LEAD_ACTION check already fails. A read-only git diff of scripts/hermetic and isolation-canary.yml against origin/)"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
@@ -23127,7 +23214,7 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0264",
@@ -30421,7 +30508,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0018 close (M2-0018: The lead files M2-0018's DESIGNED record with pr=261 and Build & Test run 36381711794 (head e9f8e520). The record notes that F09, F15, F16 a)"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
@@ -30437,7 +30528,7 @@
     "reviewer": "claude-opus",
     "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "id": "M2-0411",
@@ -30633,7 +30724,11 @@
    "milestone": "m3",
    "owner_model": "sonnet",
    "kit_refs": [],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0009, M2-0196 close (M2-0009: The lead re-dispatches resource-census.yml --ref main against the v1.9.6-unsigned release and commits docs/metis-2.0/evidence/resource-basel; M2-0196: Lead: in the public app repo, run windows-qa.yml on main with suite=capabilities. Download the windows-qa-capabilities artifact and commit c)"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "evidence_target": "LOCALLY_TESTED",
@@ -30674,14 +30769,18 @@
     "reviewer": "claude-opus",
     "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
    },
-   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does."
+   "notes": "2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step."
   },
   {
    "wave": "W1",
    "milestone": "m3",
    "owner_model": "sonnet",
    "kit_refs": [],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0029, M2-0187 close (M2-0029: The lead confirms that windows-qa.yml is registered on app main (M2-0501). The lead then dispatches windows-qa.yml --ref main -f suite=hk-w ; M2-0187: D-28/D-9 compatible: no repository script on a Mac and no QA user. Either a signing identity is supplied as CI secrets for the QA build, or )"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "evidence_target": "LOCALLY_TESTED",
@@ -30714,7 +30813,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 (lead, EC triage): M2-0448 depends on PR #300 (same file). Merge #300 first. M2-0448 will change candidate_run and sha256 to required: false at dispatch, so suite=capabilities can be dispatched without dummy installer values, and will replace that with an up-front hk-w guard (numeric run id, 64-hex sha256) before npm ci. M2-0416's 'inputs are required' acceptance keeps holding through that guard. 2026-09-29 (lead, EC triage): 2026-09-29 (Theme A): the in-flight branch m2/M2-0416-hk-w-lane-installs (be1ef04b) adds scripts/qa/candidate-installer.mjs. M2-0467 and M2-0468 extend that same selector to the macOS DMG/zip and reuse it for the Windows Setup, so landing M2-0416 first avoids a merge conflict. It is not a declared dependency because M2-0416 depends on M2-0187, whose external_blocker would cap the new tickets. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does.",
+   "notes": "2026-09-29 (lead, EC triage): M2-0448 depends on PR #300 (same file). Merge #300 first. M2-0448 will change candidate_run and sha256 to required: false at dispatch, so suite=capabilities can be dispatched without dummy installer values, and will replace that with an up-front hk-w guard (numeric run id, 64-hex sha256) before npm ci. M2-0416's 'inputs are required' acceptance keeps holding through that guard. 2026-09-29 (lead, EC triage): 2026-09-29 (Theme A): the in-flight branch m2/M2-0416-hk-w-lane-installs (be1ef04b) adds scripts/qa/candidate-installer.mjs. M2-0467 and M2-0468 extend that same selector to the macOS DMG/zip and reuse it for the Windows Setup, so landing M2-0416 first avoids a merge conflict. It is not a declared dependency because M2-0416 depends on M2-0187, whose external_blocker would cap the new tickets. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/300",
     "merged_into": "m2/integration (squash)",
@@ -33183,14 +33282,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0466 close (M2-0466: The lead applies the two schema amendments still missing. Item 3: evidence/SCHEMA.md states that new hosted macos-latest and windows-latest )"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 8,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0462, audited); unblocks M2-0008. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0462, audited); unblocks M2-0008. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/357",
     "merged_into": "m2/integration (squash)",
@@ -36302,14 +36405,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0193 close (M2-0193: Lead: amend M2-0193 acceptance 5 (and slice M2-0193.4) and its verification line per OD-36. On the candidate, History runs with the FIFO fix)"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 4,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): split from M2-0193. 2026-09-29 (lead): does not depend on the S2 module move (M2-0513), which waits for the soak; implement in place. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does.",
+   "notes": "2026-09-29 (lead): split from M2-0193. 2026-09-29 (lead): does not depend on the S2 module move (M2-0513), which waits for the soak; implement in place. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/417",
     "merged_into": "m2/integration (squash)",
@@ -36404,14 +36511,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0193 close (M2-0193: Lead: amend M2-0193 acceptance 5 (and slice M2-0193.4) and its verification line per OD-36. On the candidate, History runs with the FIFO fix)"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 4,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): split from M2-0193. 2026-09-29 (lead): does not depend on the S2 module move (M2-0513), which waits for the soak; implement in place. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does.",
+   "notes": "2026-09-29 (lead): split from M2-0193. 2026-09-29 (lead): does not depend on the S2 module move (M2-0513), which waits for the soak; implement in place. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/416",
     "merged_into": "m2/integration (squash)",
@@ -36728,14 +36839,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestors M2-0516, M2-0517, M2-0518 close (M2-0516: From the fifo and control ST-1 reports of a QA candidate self-test (the verification line names the PR #381 head), the lead records two thin; M2-0517: From the fifo and control ST-1 QA reports (the verification line names the PR #380 head), the lead records that loadIcon, decorate and attac; M2-0518: The lead records a QA candidate ST-1 run in which async-write is under 250 ms and there are no late samples in both the fifo and control row)"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does.",
+   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/427",
     "merged_into": "m2/integration (squash)",
@@ -36938,9 +37053,13 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "No outside step of its own: it closes DONE once its capping ancestor M2-0460 close (M2-0460: The change has been on app main since milestone #396. The lead confirms hk-m-candidate.yml is registered on main (it now registers itself fr)"
+   },
    "flag": null,
-   "notes": "2026-09-30 (lead): filed from the M2-0460 lead step (LEAD-ACTIONS). 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does.",
+   "notes": "2026-09-30 (lead): filed from the M2-0460 lead step (LEAD-ACTIONS). 2026-10-03 (lead, evidence Phase 2 step 1): DONE -> ENGINEERING_COMPLETE — an ENGINEERING_COMPLETE/BLOCKED_EXTERNAL ancestor caps it (L10); it closes DONE when that ancestor does. 2026-10-03 (lead, evidence Phase 2): external_blocker names its capping root(s) so descendants' inherited_block carries an unblock step.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/375",
     "merged_into": "m2/integration (squash)",
