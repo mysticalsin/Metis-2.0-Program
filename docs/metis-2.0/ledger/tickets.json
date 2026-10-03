@@ -36438,7 +36438,7 @@
    ],
    "estimate_hours": 3,
    "risk": "high",
-   "status": "TODO",
+   "status": "DONE",
    "needs_decision": [],
    "slices": [],
    "title": "Strict ST-1 fifo and control jobs run on the owner's Mac (self-hosted runner) under the owner-account sandbox (OD-46)",
@@ -36459,7 +36459,14 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-02 (lead): filed from OD-46. The runner itself is installed by the lead on the owner's Mac (LEAD_ACTION). M2-0520 depends on it."
+   "notes": "2026-10-02 (lead): filed from OD-46. The runner itself is installed by the lead on the owner's Mac (LEAD_ACTION). M2-0520 depends on it.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/437",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0538",
