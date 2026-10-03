@@ -621,6 +621,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Evidence Rock 3 prep: external_blocker (owner Program lead, unblock_step = the LEAD_ACTION items) plus engineering_first on the 18 open LEAD_ACTION tickets that had no blocker: M2-0421, M2-0425, M2-0447, M2-0451, M2-0452, M2-0453, M2-0454, M2-0455, M2-0456, M2-0458, M2-0495, M2-0497, M2-0498, M2-0500, M2-0503, M2-0520, M2-0524, M2-0558."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Evidence Rock 3 prep: external_blocker with the outside-evidence step on 39 open tickets needing HOST_CONFIGURED/LIVE_VERIFIED/MEASURED/ACCEPTED (35 engineering_first; held from the queue: M2-0046, M2-0111, M2-0166, M2-0177); left for the lead (no source names the step): M2-0067, M2-0084, M2-0312, M2-0380."
   }
  ],
  "tickets": [
@@ -3246,7 +3252,11 @@
     "LOCALLY_TESTED",
     "MEASURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T1 cut (one qa-candidate.yml dispatch on main at 1.9.9, M2-0206), the lead dispatches resource-census.yml --ref main with candidate_run=<T1 run>, mac_sha256=<DMG>, win_sha256=<Setup> and baseline_run=<the 1.9.7 candidate census run M2-0491 filed for M2-0046>, which is the 'before' on the unchanged candidate. The lead files MEASURED per OS (hosted-runner, macos-latest and windows-latest, with ci_run_id, build_run_id and artifact_sha256): parked-idle CPU over 300 s against 1% of one core, plus the parked-bar-orb and threejs-obsidian-orb traces; a result over budget is written into ADR-018 as the residual.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "idle.throttle",
    "risk": "medium",
    "estimate_hours": 10,
@@ -3310,7 +3320,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Sliced 3 ways (4+3+3=10 h); src/main/index.ts is touched only in .1 (timer start/stop, blur/focus and park/reveal hooks swapped to the new module). Gaps found in the code on origin/m2/integration: (1) no main-to-renderer presenter channel exists today (presenterState() in index.ts is only consumed by lifecycle/reveal.ts), so .1 needs a one-line channel constant in src/shared/ipc.ts, which the ticket's scope_paths omit; (2) bar-pill-orb.ts deliberately ignores reducedMotion ('Bar Circle/Jarvis are brand chrome', Windows animations-off regression) and its tests assert that, so .2 must pick how reduced motion is honoured (static or <=8 fps frame, never a blank orb) and update those tests; (3) CURSOR_REVEAL_DWELL_MS is already 150 ms, so 'reveal latency p95 <= 150 ms' must be defined net of the intentional dwell, and the 24 ms band has to start before the reveal strip so a 250 ms idle tick cannot add up to 250 ms of latency. ADR-018 is only a row in DECISIONS.md so far; census runs use scripts/qa/census/run.mjs on CI/QA lanes only (D-28)."
+   "slicing_note": "Sliced 3 ways (4+3+3=10 h); src/main/index.ts is touched only in .1 (timer start/stop, blur/focus and park/reveal hooks swapped to the new module). Gaps found in the code on origin/m2/integration: (1) no main-to-renderer presenter channel exists today (presenterState() in index.ts is only consumed by lifecycle/reveal.ts), so .1 needs a one-line channel constant in src/shared/ipc.ts, which the ticket's scope_paths omit; (2) bar-pill-orb.ts deliberately ignores reducedMotion ('Bar Circle/Jarvis are brand chrome', Windows animations-off regression) and its tests assert that, so .2 must pick how reduced motion is honoured (static or <=8 fps frame, never a blank orb) and update those tests; (3) CURSOR_REVEAL_DWELL_MS is already 150 ms, so 'reveal latency p95 <= 150 ms' must be defined net of the intentional dwell, and the 24 ms band has to start before the reveal strip so a 250 ms idle tick cannot add up to 250 ms of latency. ADR-018 is only a row in DECISIONS.md so far; census runs use scripts/qa/census/run.mjs on CI/QA lanes only (D-28).",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0040",
@@ -3506,14 +3518,20 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T1 cut (1.9.9, M2-0206), the lead files LIVE_VERIFIED per OS (hosted-runner, macos-latest and windows-latest, with ci_run_id, build_run_id and artifact_sha256) from that qa-candidate run's packaged onboarding smoke on the installed DMG and Setup, which is the candidate-visual job M2-0456 adds. The lead then updates MQA-338/339 in docs/qa/BUG-LEDGER.md with those run ids.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 6,
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0043",
@@ -3605,14 +3623,20 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T1 cut (1.9.9, M2-0206), the lead dispatches windows-qa.yml --ref main -f suite=capture-gate with that candidate's Setup (candidate_run and sha256). When the run shows no repeating capture.failed events with capture denied or failing, the lead files LIVE_VERIFIED (hosted-runner, windows-latest, with ci_run_id, build_run_id and artifact_sha256).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 5,
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0045",
@@ -3805,7 +3829,11 @@
     "ACCEPTED",
     "MEASURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock_step": "The lead cuts 1.9.7 with one qa-candidate.yml dispatch on main after M2-0498's version bump and the milestone merge, runs every 1.9.7.gates.json row through its producer ticket, files the LIVE_VERIFIED and MEASURED records, fills 1.9.7.md and runs check.mjs --release 1.9.7 as program-audit release-check (M2-0511, CI only). The owner then reviews 1.9.7.md and the records and files ACCEPTED on M2-0046 naming the candidate run and the DMG, ZIP and Setup sha256s (OD-53). promote-candidate.yml publish=true follows (the owner, or the lead under a recorded ruling), then the CI byte-equality check and the release/1.9.x cut at the provenance commit (D-34).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 10,
@@ -3813,7 +3841,7 @@
    "slices": [],
    "due": "2026-10-04",
    "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency. 2026-10-03 (lead, OD-31 readiness audit): producers linked M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0418/M2-0447 are 1.9.7 work because M2-0202 slice 7 (OD-51) needs M2-0418's states.ts and its WCAG audit. 2026-10-03 (lead, D-34): acc 9 now says 'cut at the provenance commit'; the app repository has no 1.9.7 tag and gets none (promote tags only the feed). 2026-10-03 (lead, M2-0488 LEAD_ACTION, readiness N14): growth rules registered before any idle-soak or meeting-history dispatch: IDLE-GROWTH-1 and MEETING-GROWTH-1, rulesSha256 53d05c480c66dbc8fe7005a235d67853fc7051acd13556d85c53bfb2e0a9b636 (canonical RULES, one hash for both rules; pin scripts/qa/soak/growth-rule.contract.test.ts:11), merged commit 03a0ca3e39c8859a7b997a6f815090466acd10e8 (PR #395; on main since fd38fd09); note docs/metis-2.0/evidence/release-1.9.7/growth-rule-registration.md. A verdict or lane.json whose rule.rulesSha256 differs from the sha256 that note registered before its run, or from a run created before the note reached program main (shakedowns included), is not evidence for acc 4b/4c; rule.fileSha256 is not a criterion."
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency. 2026-10-03 (lead, OD-31 readiness audit): producers linked M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0418/M2-0447 are 1.9.7 work because M2-0202 slice 7 (OD-51) needs M2-0418's states.ts and its WCAG audit. 2026-10-03 (lead, D-34): acc 9 now says 'cut at the provenance commit'; the app repository has no 1.9.7 tag and gets none (promote tags only the feed). 2026-10-03 (lead, M2-0488 LEAD_ACTION, readiness N14): growth rules registered before any idle-soak or meeting-history dispatch: IDLE-GROWTH-1 and MEETING-GROWTH-1, rulesSha256 53d05c480c66dbc8fe7005a235d67853fc7051acd13556d85c53bfb2e0a9b636 (canonical RULES, one hash for both rules; pin scripts/qa/soak/growth-rule.contract.test.ts:11), merged commit 03a0ca3e39c8859a7b997a6f815090466acd10e8 (PR #395; on main since fd38fd09); note docs/metis-2.0/evidence/release-1.9.7/growth-rule-registration.md. A verdict or lane.json whose rule.rulesSha256 differs from the sha256 that note registered before its run, or from a run created before the note reached program main (shakedowns included), is not evidence for acc 4b/4c; rule.fileSha256 is not a criterion. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED/ACCEPTED/MEASURED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it."
   },
   {
    "id": "M2-0047",
@@ -4603,7 +4631,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T1 cut (1.9.9, M2-0206), the first train candidate built once this is on main, the lead re-runs the packaged HK, RV and ST suites on those bytes: hk-m-candidate.yml with the DMG sha256, windows-qa.yml -f suite=hk-w with the Setup sha256, candidate-scenarios.yml -f scenario=packaged-lifecycle with both, and the candidate run's own ST-1 jobs. The lead files the pure-move LIVE_VERIFIED records (hosted-runner on macos-latest and windows-latest; owner-mac on metis-owner-mac for st1-mac-fifo and st1-mac-control), each with ci_run_id, build_run_id and artifact_sha256.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 10,
@@ -4664,7 +4696,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Three pure-move PRs, each touching src/main/index.ts only at call sites. Order is forced: the guards read the main window through AppContext, and registerHandler takes a guard from security.ts. Baseline on origin/m2/integration: index.ts is 9,818 lines (the summary says 9,519), with 163 ipcMain.handle calls and an FF-09 baseline of 167. The guards to move are noteIpcDenied, assertMainWindow, isMainWindowSender, denyIfLimited and assertBrainReader, at roughly lines 1209-1270. Their tests (src/main/ipc/security.test.ts, register.test.ts) sit next to the modules but are not listed in scope_paths. The packaged HK/RV/ST re-run in .3 is a post-merge CI lane run, never on the owner's Mac (D-28)."
+   "slicing_note": "Three pure-move PRs, each touching src/main/index.ts only at call sites. Order is forced: the guards read the main window through AppContext, and registerHandler takes a guard from security.ts. Baseline on origin/m2/integration: index.ts is 9,818 lines (the summary says 9,519), with 163 ipcMain.handle calls and an FF-09 baseline of 167. The guards to move are noteIpcDenied, assertMainWindow, isMainWindowSender, denyIfLimited and assertBrainReader, at roughly lines 1209-1270. Their tests (src/main/ipc/security.test.ts, register.test.ts) sit next to the modules but are not listed in scope_paths. The packaged HK/RV/ST re-run in .3 is a post-merge CI lane run, never on the owner's Mac (D-28).",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0061",
@@ -4973,7 +5007,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T1 cut (1.9.9, M2-0206), the first train candidate built once slice .5 is on main, the lead re-runs the packaged HK, RV and ST suites on those bytes: hk-m-candidate.yml with the DMG sha256, windows-qa.yml -f suite=hk-w with the Setup sha256, candidate-scenarios.yml -f scenario=packaged-lifecycle with both, and the candidate run's own ST-1 jobs. The lead files the pure-move LIVE_VERIFIED records (hosted-runner on macos-latest and windows-latest; owner-mac on metis-owner-mac for st1-mac-fifo and st1-mac-control), each with ci_run_id, build_run_id and artifact_sha256.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 16,
@@ -5063,7 +5101,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Refined the existing 4 slices (ids and intent kept) and added M2-0065.5, because M2-0059/M2-0248 forbid mixing a move with test conversion in one PR, so converting the lifecycle tests has to be its own PR. Total 17 h against 16. On origin/m2/integration, index.ts is 9,818 lines. registerIpc() alone covers lines 4882 to about 9100 (171 ipcMain registrations). Moving lifecycle, window and process code removes roughly 1,000 to 1,500 lines, so the 2,000-LOC line can only close after M2-0060 and M2-0068 (and M2-0069/0070) peel registerIpc. M2-0255 already asks for one reconciled m5 target. Scope gaps in the ticket's scope_paths: (a) FF-10 needs edits to 23 files outside them: apple-speech, asr-bundled-ensure, cli-installer, cli, desktop-adapters, dust-cli-chat, dust-secret-store, dustcli, ffmpeg-decoder, foreground-watcher, graphify, license/device, llm/fm-runtime, mac-helper, managed-node, parakeet-extract, parakeet, speaker-embedding-client, whisper-import, win-security, infra/observability/sidecar-events, infra/observability/stall-sampler, infra/storage/dataless. (b) FF-11 needs src/main/intelligence.ts. (c) About 60 test files read index.ts with readFileSync (the summary counts 51), for example src/main/main-lifecycle.contract.test.ts; .1 must retarget the ones whose markers move, and .5 rewrites the lifecycle ones. Widen scope_paths or the scope guard will block .1, .2, .3 and .5. All four windows already set sandbox, contextIsolation, nodeIntegration false and webSecurity true, so .3 has no behaviour change. .2 and .4 do not touch the files .1 and .3 edit and can run in parallel."
+   "slicing_note": "Refined the existing 4 slices (ids and intent kept) and added M2-0065.5, because M2-0059/M2-0248 forbid mixing a move with test conversion in one PR, so converting the lifecycle tests has to be its own PR. Total 17 h against 16. On origin/m2/integration, index.ts is 9,818 lines. registerIpc() alone covers lines 4882 to about 9100 (171 ipcMain registrations). Moving lifecycle, window and process code removes roughly 1,000 to 1,500 lines, so the 2,000-LOC line can only close after M2-0060 and M2-0068 (and M2-0069/0070) peel registerIpc. M2-0255 already asks for one reconciled m5 target. Scope gaps in the ticket's scope_paths: (a) FF-10 needs edits to 23 files outside them: apple-speech, asr-bundled-ensure, cli-installer, cli, desktop-adapters, dust-cli-chat, dust-secret-store, dustcli, ffmpeg-decoder, foreground-watcher, graphify, license/device, llm/fm-runtime, mac-helper, managed-node, parakeet-extract, parakeet, speaker-embedding-client, whisper-import, win-security, infra/observability/sidecar-events, infra/observability/stall-sampler, infra/storage/dataless. (b) FF-11 needs src/main/intelligence.ts. (c) About 60 test files read index.ts with readFileSync (the summary counts 51), for example src/main/main-lifecycle.contract.test.ts; .1 must retarget the ones whose markers move, and .5 rewrites the lifecycle ones. Widen scope_paths or the scope guard will block .1, .2, .3 and .5. All four windows already set sandbox, contextIsolation, nodeIntegration false and webSecurity true, so .3 has no behaviour change. .2 and .4 do not touch the files .1 and .3 edit and can run in parallel.",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0066",
@@ -5112,7 +5152,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T1 cut (1.9.9, M2-0206), the lead runs the packaged JR suite on that candidate's bytes on hosted macos-latest (kill -9 during edits, relaunch, zero loss of acknowledged revisions) and files LIVE_VERIFIED (hosted-runner, with ci_run_id, build_run_id and artifact_sha256); T1 needs JR on its bytes. The journal's behaviour under managed retention stays ASSUMED until the owner answers D-3, and only the release claim waits.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "journal",
    "risk": "high",
    "estimate_hours": 16,
@@ -5184,7 +5228,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Refines the existing 3-slice split (ids and intent kept). One change: the 64 MiB cap moves from .1 to .3 because it shares an acceptance line with JR-1..4 and retention gating, and acceptance lines can't be split. .1 moved to opus because append-only framing, ack-after-fsync ordering and torn-tail tolerance are subtle. Hot files are touched only in .2, as call-site wiring through the M2-0060 registerHandler. App.tsx is also touched only in .2, to pass the save state to the live view. D-3 stays ASSUMED (journal off where retention disallows it). JR-1..4 run on the QA account or a CI lane, never the owner's Mac (D-28)."
+   "slicing_note": "Refines the existing 3-slice split (ids and intent kept). One change: the 64 MiB cap moves from .1 to .3 because it shares an acceptance line with JR-1..4 and retention gating, and acceptance lines can't be split. .1 moved to opus because append-only framing, ack-after-fsync ordering and torn-tail tolerance are subtle. Hot files are touched only in .2, as call-site wiring through the M2-0060 registerHandler. App.tsx is also touched only in .2, to pass the save state to the live view. D-3 stays ASSUMED (journal off where retention disallows it). JR-1..4 run on the QA account or a CI lane, never the owner's Mac (D-28).",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0067",
@@ -5339,7 +5385,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the first train candidate built once all four slices are on main (T1 1.9.9 if it lands before that cut, otherwise T2), the lead re-runs the packaged HK, RV and ST suites on those bytes: hk-m-candidate.yml with the DMG sha256, windows-qa.yml -f suite=hk-w with the Setup sha256, candidate-scenarios.yml -f scenario=packaged-lifecycle with both, and the candidate run's own ST-1 jobs. The lead files the pure-move LIVE_VERIFIED records (hosted-runner on macos-latest and windows-latest; owner-mac on metis-owner-mac for st1-mac-fifo and st1-mac-control), each with ci_run_id, build_run_id and artifact_sha256.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 12,
@@ -5415,7 +5465,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Order: the cycle break (.1) needs no src/main/index.ts edit and can land first; .2-.4 need M2-0060's registerHandler (src/main/ipc/register.ts) so moved handlers do not add FF-09 counts (FF-09 counts ipcMain registrations outside src/main/ipc/). Every slice that shrinks index.ts, removes a cycle or deletes a source-text test lowers FF-02/FF-04/FF-07/FF-09 counts, and the ratchet fails on falling counts until scripts/architecture-baseline.json is lowered in the same PR (check-architecture.mjs header): that file and the pinned tests (src/main/security-audit-10, erasure-completeness, index-audit-fixes, c-main-fixes, brain-entity-names .contract.test.ts) sit outside the ticket's scope_paths but must be edited by .1-.4. The sliceBetween markers also bracket neighbouring handlers (e.g. calendarToday..recallRead, saveTranscript..brainOpenDashboard), so each move must re-anchor or replace those neighbouring pins too."
+   "slicing_note": "Order: the cycle break (.1) needs no src/main/index.ts edit and can land first; .2-.4 need M2-0060's registerHandler (src/main/ipc/register.ts) so moved handlers do not add FF-09 counts (FF-09 counts ipcMain registrations outside src/main/ipc/). Every slice that shrinks index.ts, removes a cycle or deletes a source-text test lowers FF-02/FF-04/FF-07/FF-09 counts, and the ratchet fails on falling counts until scripts/architecture-baseline.json is lowered in the same PR (check-architecture.mjs header): that file and the pinned tests (src/main/security-audit-10, erasure-completeness, index-audit-fixes, c-main-fixes, brain-entity-names .contract.test.ts) sit outside the ticket's scope_paths but must be edited by .1-.4. The sliceBetween markers also bracket neighbouring handlers (e.g. calendarToday..recallRead, saveTranscript..brainOpenDashboard), so each move must re-anchor or replace those neighbouring pins too.",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0069",
@@ -6183,14 +6235,20 @@
     "LOCALLY_TESTED",
     "MEASURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead files MEASURED from the CI run of acceptance 2's real-Chromium measurement on the merged commit (Playwright against the built renderer or the packaged app, with the 5,000-row fixture): frame-time p95 for each of the four lists against 16 ms, with ci_run_id and the environment it ran in.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 8,
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0076",
@@ -6639,7 +6697,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T2 cut (2.0.0-beta.1, M2-0207), the lead runs the packaged wake/stop latency run on that candidate on hosted macos-latest with fixture audio, including the UC-008 playback and echo fixture, and files LIVE_VERIFIED (hosted-runner, with ci_run_id, build_run_id and artifact_sha256): local Stop p95 <= 100 ms and no cloud audio before wake. Wake stays default-off until that candidate's M2-0200 census gate measures it within budget.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "wake.local",
    "risk": "high",
    "estimate_hours": 16,
@@ -6712,7 +6774,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Stop authority lands first so every later wake slice has a local, network-free off switch. Starting the wake host and adding its setting need call-site edits in src/main/index.ts and src/shared/ipc.ts (outside the ticket's scope_paths); keep them to .2 (host start/stop) and .4 (setting). utilityProcess.fork outside src/main/infra/process/ adds an FF-10 count, so the host must be forked through the infra/process supervisor (outside scope) or the PR fails the ratchet. Depends on M2-0079's features/command/session.ts for the session that wake opens; .4 cannot flip the default until M2-0200 measures wake within budget."
+   "slicing_note": "Stop authority lands first so every later wake slice has a local, network-free off switch. Starting the wake host and adding its setting need call-site edits in src/main/index.ts and src/shared/ipc.ts (outside the ticket's scope_paths); keep them to .2 (host start/stop) and .4 (setting). utilityProcess.fork outside src/main/infra/process/ adds an FF-10 count, so the host must be forked through the infra/process supervisor (outside scope) or the PR fails the ratchet. Depends on M2-0079's features/command/session.ts for the session that wake opens; .4 cannot flip the default until M2-0200 measures wake within budget.",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0082",
@@ -6900,7 +6964,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T2 cut (2.0.0-beta.1, M2-0207), the lead runs the packaged 'Métis, open Notes' smoke that slice M2-0083.3 adds against the T2 DMG by sha256 on hosted macos-latest, and files LIVE_VERIFIED (hosted-runner, with ci_run_id, build_run_id and artifact_sha256) when it ends in a readback-verified result.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 14,
@@ -6964,9 +7032,10 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F16 (mapping title 'Render verified command listening and proposal UX'). This ticket already covers it: CommandListeningPill.tsx and CommandProposalCard.tsx are in scope and A1 mounts the card. Add acceptance lines (exact mapping text): 'Command capture shows the listening pill during active capture.' / 'The UI switches to a verified allowlisted proposal preview when main supplies one.' / 'The UI never renders a confirm control for opaque proposal state.' Evidence: src/shared/ipc.ts exposes opaque command state to the renderer (the review cited :1872), and RightEdgeSidecar.tsx:397 renders it cancel-only today; that behaviour must survive the card wiring. M2-0246 (folded) rows CMD-03 and CMD-04 test this in CI.",
+   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F16 (mapping title 'Render verified command listening and proposal UX'). This ticket already covers it: CommandListeningPill.tsx and CommandProposalCard.tsx are in scope and A1 mounts the card. Add acceptance lines (exact mapping text): 'Command capture shows the listening pill during active capture.' / 'The UI switches to a verified allowlisted proposal preview when main supplies one.' / 'The UI never renders a confirm control for opaque proposal state.' Evidence: src/shared/ipc.ts exposes opaque command state to the renderer (the review cited :1872), and RightEdgeSidecar.tsx:397 renders it cancel-only today; that behaviour must survive the card wiring. M2-0246 (folded) rows CMD-03 and CMD-04 test this in CI. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "slice_current": 1,
-   "slicing_note": "Kept the existing 3 slices, ids and hours; acceptance partitioned. Code on origin/m2/integration: MetisCommandRuntime.ingestTranscript has no caller; CommandControl is built in index.ts:1037 and pushes MetisCommandState (proposalId/nonce only, no preview) to the renderer; RightEdgeSidecar renders a cancel-only 'no verified summary' notice; CommandProposalCard and CommandListeningPill are never mounted; every desktop adapter returns okResult(..., 'unknown'), so readback-based 'verified' (for example a frontmost-app/AX check for Notes) is new work in .2. CommandControl already maps 'unknown' to outcome_unverified. Scope gaps: the typed-input channel needs src/preload/index.ts and a handler in src/main/metis-command-register.ts or index.ts, and the pill mount and commandState plumbing live in src/renderer/src/App.tsx; none of these is in scope_paths. The packaged smoke sits in .3 because it needs the mounted card; it runs on the QA lane, never on the owner's Mac (D-28). Upstream M2-0081 (recognizer) and M2-0082 (verifier) are both TODO."
+   "slicing_note": "Kept the existing 3 slices, ids and hours; acceptance partitioned. Code on origin/m2/integration: MetisCommandRuntime.ingestTranscript has no caller; CommandControl is built in index.ts:1037 and pushes MetisCommandState (proposalId/nonce only, no preview) to the renderer; RightEdgeSidecar renders a cancel-only 'no verified summary' notice; CommandProposalCard and CommandListeningPill are never mounted; every desktop adapter returns okResult(..., 'unknown'), so readback-based 'verified' (for example a frontmost-app/AX check for Notes) is new work in .2. CommandControl already maps 'unknown' to outcome_unverified. Scope gaps: the typed-input channel needs src/preload/index.ts and a handler in src/main/metis-command-register.ts or index.ts, and the pill mount and commandState plumbing live in src/renderer/src/App.tsx; none of these is in scope_paths. The packaged smoke sits in .3 because it needs the mounted card; it runs on the QA lane, never on the owner's Mac (D-28). Upstream M2-0081 (recognizer) and M2-0082 (verifier) are both TODO.",
+   "engineering_first": true
   },
   {
    "id": "M2-0084",
@@ -7157,7 +7226,11 @@
    "required_evidence": [
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the first train candidate that carries it (T2 if merged by the m6 exit), the lead dispatches windows-qa.yml --ref main -f suite=actions with that candidate's Setup (candidate_run and sha256) and files LIVE_VERIFIED (hosted-runner, windows-latest, with ci_run_id, build_run_id and artifact_sha256) for UC-009..016, UC-025, UC-026, UC-031 and UC-040 with UIA readback, each use case without a Windows equivalent reported unsupported. Rows that need a real enterprise desktop are stated as residuals (OD-38).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 17.0,
@@ -7217,7 +7290,8 @@
    "status": "TODO",
    "slice_current": 1,
    "slicing_note": "Built on M2-0082's typed results. Four edits sit outside the two scope_paths and are needed for CI to stay green: (1) moving executeWin out of src/main/desktop-adapters.ts, M2-0084's file, is a call-site edit in .1; (2) the helper must be spawned through src/main/infra/process/ so it adds no FF-10 violation, and the new module must be reachable from an entry point so it adds no FF-03 violation; (3) uia-helper.ps1 must ship through electron-builder.win.yml extraResources; (4) windows-qa.yml offers only suite=hk-w today, so .3 adds the 'actions' suite named in the ticket's verification. The pinned path is %SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe, resolved the same way desktop-adapters.ts resolves explorer.exe.",
-   "notes": " 2026-10-03 (lead, OD-56): amended — Critique KEEP: same rule as M2-0084 on Windows. Lands in .1 with launch and not-installed (5 h -> 6 h)."
+   "notes": "2026-10-03 (lead, OD-56): amended — Critique KEEP: same rule as M2-0084 on Windows. Lands in .1 with launch and not-installed (5 h -> 6 h). 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "engineering_first": true
   },
   {
    "id": "M2-0086",
@@ -7635,7 +7709,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the first train candidate that carries it (T2 if merged by the m6 exit), the lead runs slice M2-0089.3's packaged takeover measurement on that candidate on hosted macos-latest and windows-latest and files LIVE_VERIFIED per OS (hosted-runner, with ci_run_id, build_run_id and artifact_sha256): agent input stops within 100 ms of mouse or keyboard input. The Windows-laptop row is a stated residual (OD-38).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 12,
@@ -7690,7 +7768,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "The ticket's only scope path is input-lease.ts; tests sit beside it. Nothing in the repo senses human input today (no CGEventTap, GetLastInputInfo or uiohook; powerMonitor idle time is too coarse for 100 ms), so .3 needs an OS input-sensing seam in the native helpers (native/mac-helper, a Windows hook) that is outside the ticket scope: the lead should widen .3's scope or split that seam out. Depends on M2-0082 creating src/main/features/actions/. The packaged 100 ms measurement on the QA account and the Windows laptop is physical-machine work: deliver the tool and CI job, report those rows BLOCKED_EXTERNAL until run."
+   "slicing_note": "The ticket's only scope path is input-lease.ts; tests sit beside it. Nothing in the repo senses human input today (no CGEventTap, GetLastInputInfo or uiohook; powerMonitor idle time is too coarse for 100 ms), so .3 needs an OS input-sensing seam in the native helpers (native/mac-helper, a Windows hook) that is outside the ticket scope: the lead should widen .3's scope or split that seam out. Depends on M2-0082 creating src/main/features/actions/. The packaged 100 ms measurement on the QA account and the Windows laptop is physical-machine work: deliver the tool and CI job, report those rows BLOCKED_EXTERNAL until run.",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0090",
@@ -7999,7 +8079,11 @@
     "LIVE_VERIFIED",
     "MEASURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the first train candidate that carries it (T2 if merged by the m6 exit), the lead runs slice M2-0093.4's packaged wake-to-first-frame measurement and state-sequence capture on that candidate on hosted macos-latest, and an Opus session other than the implementer reviews the captures. The lead files LIVE_VERIFIED (hosted-runner, with ci_run_id, build_run_id and artifact_sha256) and MEASURED (wake-to-first-frame against the section 7 budget, plus that candidate's M2-0200 resource-census gate verdict).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 20,
@@ -8076,9 +8160,10 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "C-08 (which chrome modes show the ARMED orb, and whether `hide` stays the fresh default) is still an open owner question with no D-row: D-4 was labelled C-03/C-08/C-16 but answers C-16 only (docs/metis-2.0/POLICY-2.0.md). Do not change the fresh default silently. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0093/ (placeholders until M2-0418 Electron capture + Opus acceptance)",
+   "notes": "C-08 (which chrome modes show the ARMED orb, and whether `hide` stays the fresh default) is still an open owner question with no D-row: D-4 was labelled C-03/C-08/C-16 but answers C-16 only (docs/metis-2.0/POLICY-2.0.md). Do not change the fresh default silently. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0093/ (placeholders until M2-0418 Electron capture + Opus acceptance) 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED/MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "slice_current": 1,
-   "slicing_note": "Kept ids .1-.4 and their intent, with one change. The 64 vs 41 px acceptance line bundles the size decision with doc placement reconciliation, and it goes to .2, whose title already applies the 64/41 decision. That settles the pill geometry before the beam and glow work. .4 keeps the in-app placement check, the packaged wake-to-first-frame measurement and the design evidence, and is re-estimated 4 -> 5 h (.2 6 -> 5 h). src/renderer/src/features/bar/ does not exist on origin/m2/integration yet; bar-pill-orb.ts and BrandThinkingOrb.tsx do. The M2-0201 prototype state list (docs/metis-2.0/design/M2-0201/M2-0093/STATE-LIST.md) has an Approval state that no acceptance line names, so .2 renders it for the evidence matrix. It also says 'one solving orb, 72 px target' for ARMED against the ticket's 'mesh button', which .2's decision must also resolve. .4 needs M2-0418 (Electron capture lane) and M2-0200 (resource gate), both TODO."
+   "slicing_note": "Kept ids .1-.4 and their intent, with one change. The 64 vs 41 px acceptance line bundles the size decision with doc placement reconciliation, and it goes to .2, whose title already applies the 64/41 decision. That settles the pill geometry before the beam and glow work. .4 keeps the in-app placement check, the packaged wake-to-first-frame measurement and the design evidence, and is re-estimated 4 -> 5 h (.2 6 -> 5 h). src/renderer/src/features/bar/ does not exist on origin/m2/integration yet; bar-pill-orb.ts and BrandThinkingOrb.tsx do. The M2-0201 prototype state list (docs/metis-2.0/design/M2-0201/M2-0093/STATE-LIST.md) has an Approval state that no acceptance line names, so .2 renders it for the evidence matrix. It also says 'one solving orb, 72 px target' for ARMED against the ticket's 'mesh button', which .2's decision must also resolve. .4 needs M2-0418 (Electron capture lane) and M2-0200 (resource gate), both TODO.",
+   "engineering_first": true
   },
   {
    "id": "M2-0094",
@@ -8244,7 +8329,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the first train candidate that carries it together with the completed command session (M2-0079), the lead files LIVE_VERIFIED per OS (hosted-runner, macos-latest and windows-latest, with ci_run_id, build_run_id and artifact_sha256) from a packaged D1-D11 right-edge walkthrough (IME, keyboard, DPI, target sizes, park transitions) on that candidate's DMG and Setup, and an Opus session other than the implementer reviews the captures.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 10,
@@ -8303,9 +8392,10 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead): 'definite-height scrolling' replaced by 'no scrolling in any island state' per owner decision OD-22.",
+   "notes": "2026-09-29 (lead): 'definite-height scrolling' replaced by 'no scrolling in any island state' per owner decision OD-22. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "slice_current": 1,
-   "slicing_note": "Needs decision D-7 before .1. The right-edge sizes currently live in two places: src/main/island/geometry.ts:227-230 and src/renderer/src/components/RightEdgeSidecar.tsx:7-8. The renderer cannot import src/main (FF-01), so one authority needs a module both processes can import (under src/shared/) or main pushing the computed layout. Neither is in scope_paths; add the shared module. The drawer still has a scroll container (right-edge-sidecar__drawer-scroll), which .2 must remove per OD-22. .3 cannot start until M2-0079 (TODO, and that depends on M2-0065) delivers the command session. The ledger .md for this ticket still says 'Definite-height scrolling'; the JSON acceptance (no scrolling, OD-22) was used."
+   "slicing_note": "Needs decision D-7 before .1. The right-edge sizes currently live in two places: src/main/island/geometry.ts:227-230 and src/renderer/src/components/RightEdgeSidecar.tsx:7-8. The renderer cannot import src/main (FF-01), so one authority needs a module both processes can import (under src/shared/) or main pushing the computed layout. Neither is in scope_paths; add the shared module. The drawer still has a scroll container (right-edge-sidecar__drawer-scroll), which .2 must remove per OD-22. .3 cannot start until M2-0079 (TODO, and that depends on M2-0065) delivers the command session. The ledger .md for this ticket still says 'Definite-height scrolling'; the JSON acceptance (no scrolling, OD-22) was used.",
+   "engineering_first": true
   },
   {
    "id": "M2-0096",
@@ -8373,7 +8463,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T2 cut (2.0.0-beta.1, M2-0207), the lead runs slice M2-0096.4's packaged NKAC-02 (show/hide during recording) and NKAC-14 (crash recovery keeps the choices) on the T2 DMG and Setup on hosted macos-latest and windows-latest, and files LIVE_VERIFIED per OS (hosted-runner, with ci_run_id, build_run_id and artifact_sha256). Product global-hotkey routing is PARTIAL on windows-latest, so any row it cannot prove is a stated residual (OD-38).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 16,
@@ -8453,7 +8547,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Refines the existing 4-slice split (ids and intent kept). .1 moves registerShortcuts (index.ts:4501) into features/shortcuts, with injected deps and a transactional rebind. Hot files are touched only in .1 (call-site plus the inventory channel), so .2 and .4 edit only features/shortcuts and reveal.ts. No original acceptance line fits .3, the visual Settings slice, so its only acceptance is a SLICE boundary line. Settings.tsx gets a call-site edit only. Hours moved from .1 to .4 (4+6+3+3) because repeats/IME/fullscreen/sleep-wake plus the packaged NKAC runs don't fit in 2 h. Packaged runs happen on the QA account and the windows-qa lane (D-28)."
+   "slicing_note": "Refines the existing 4-slice split (ids and intent kept). .1 moves registerShortcuts (index.ts:4501) into features/shortcuts, with injected deps and a transactional rebind. Hot files are touched only in .1 (call-site plus the inventory channel), so .2 and .4 edit only features/shortcuts and reveal.ts. No original acceptance line fits .3, the visual Settings slice, so its only acceptance is a SLICE boundary line. Settings.tsx gets a call-site edit only. Hours moved from .1 to .4 (4+6+3+3) because repeats/IME/fullscreen/sleep-wake plus the packaged NKAC runs don't fit in 2 h. Packaged runs happen on the QA account and the windows-qa lane (D-28).",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0097",
@@ -8499,7 +8595,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T2 cut (2.0.0-beta.1, M2-0207), the lead runs slice M2-0097.3's packaged SIGKILL-while-typing-notes check on the T2 bytes on hosted macos-latest and files LIVE_VERIFIED (hosted-runner, with ci_run_id, build_run_id and artifact_sha256) showing every acknowledged note revision survives. D-3 stays ASSUMED until the owner answers it, and only the release claim waits.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 12,
@@ -8562,7 +8662,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Kept .1 and .2 with their ids and intent. Added .3 because the SIGKILL line requires typing into the packaged app, and the editor only exists after .2. That also lowers .1 from 7 h to 5.5 h. The Swift mirror path (M2-0064's convention) is outside the ticket scope but is required by the contract line. There is no notes code on m2/integration today; everything builds on M2-0066 (journal) and M2-0096 (shortcuts)."
+   "slicing_note": "Kept .1 and .2 with their ids and intent. Added .3 because the SIGKILL line requires typing into the packaged app, and the editor only exists after .2. That also lowers .1 from 7 h to 5.5 h. The Swift mirror path (M2-0064's convention) is outside the ticket scope but is required by the contract line. There is no notes code on m2/integration today; everything builds on M2-0066 (journal) and M2-0096 (shortcuts).",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0098",
@@ -8610,7 +8712,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T2 cut (2.0.0-beta.1, M2-0207), the lead runs slice M2-0098.5's RC-1..6 fault injection (busy loop, kill, failed preload) with reveal.autoRecover on, on the T2 bytes on hosted macos-latest and windows-latest, and files LIVE_VERIFIED per OS (hosted-runner, with ci_run_id, build_run_id and artifact_sha256). D-2 and D-3 stay ASSUMED at their defaults until answered.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "reveal.autoRecover",
    "risk": "high",
    "estimate_hours": 16,
@@ -8698,7 +8804,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": ".1 is docs-only (private repo, docs mode); code slices name ADR-004 by id but never the private docs/metis-2.0 path. hello/heartbeat/ping need new IPC channels: call-site edits in src/shared/ipc.ts, src/preload/index.ts and src/main/index.ts (outside the ticket's scope_paths) confined to .2, plus the render-process-gone/recovery hook in index.ts confined to .4. Heartbeat and ping timers in src/main/lifecycle/renderer-health.ts would add FF-14 counts (background timers outside src/main/infra/scheduler/), so they must be scheduled through infra/scheduler (outside scope) or the ratchet fails. Recovery reuses lifecycle/reload-budget.ts and render-loop-halted-dialog.ts patterns; .5's fault-injection lanes need a workflow file outside scope. Depends on the M2-0036/M2-0065 journal for 'journal restored'."
+   "slicing_note": ".1 is docs-only (private repo, docs mode); code slices name ADR-004 by id but never the private docs/metis-2.0 path. hello/heartbeat/ping need new IPC channels: call-site edits in src/shared/ipc.ts, src/preload/index.ts and src/main/index.ts (outside the ticket's scope_paths) confined to .2, plus the render-process-gone/recovery hook in index.ts confined to .4. Heartbeat and ping timers in src/main/lifecycle/renderer-health.ts would add FF-14 counts (background timers outside src/main/infra/scheduler/), so they must be scheduled through infra/scheduler (outside scope) or the ratchet fails. Recovery reuses lifecycle/reload-budget.ts and render-loop-halted-dialog.ts patterns; .5's fault-injection lanes need a workflow file outside scope. Depends on the M2-0036/M2-0065 journal for 'journal restored'.",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0099",
@@ -8866,7 +8974,11 @@
     "LOCALLY_TESTED",
     "MEASURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead files MEASURED from the CI run of slice M2-0100.2's real-Chromium measurement on the merged commit: Agent Home with 20 agents and a 1,000-turn chat, input-to-frame p95 <= 100 ms and frame p95 <= 16.7 ms, with ci_run_id and the environment it ran in.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 12,
@@ -8934,9 +9046,10 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0100/ (placeholders until M2-0418 Electron capture + Opus acceptance)",
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0100/ (placeholders until M2-0418 Electron capture + Opus acceptance) 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "slice_current": 1,
-   "slicing_note": "Sliced 4 ways (3.5+4+2.5+2=12 h). src/renderer/src/features/ does not exist on origin/m2/integration (the only agent UI is components/AgentStatus.tsx), and the renderer has no virtualization library, so .2 either hand-rolls windowing or needs a dependency approval. Evidence under docs/metis-2.0/evidence/M2-0100/design/ is outside scope_paths, and .4 is blocked until the M2-0418 Electron capture lane (TODO) exists. The Opus validator for .4 must be a different session from the implementer. Upstream M2-0099 (main-side agent registry) and M2-0093 are TODO; M2-0201.3 (prototype) is done."
+   "slicing_note": "Sliced 4 ways (3.5+4+2.5+2=12 h). src/renderer/src/features/ does not exist on origin/m2/integration (the only agent UI is components/AgentStatus.tsx), and the renderer has no virtualization library, so .2 either hand-rolls windowing or needs a dependency approval. Evidence under docs/metis-2.0/evidence/M2-0100/design/ is outside scope_paths, and .4 is blocked until the M2-0418 Electron capture lane (TODO) exists. The Opus validator for .4 must be a different session from the implementer. Upstream M2-0099 (main-side agent registry) and M2-0093 are TODO; M2-0201.3 (prototype) is done.",
+   "engineering_first": true
   },
   {
    "id": "M2-0101",
@@ -9501,7 +9614,11 @@
     "LOCALLY_TESTED",
     "HOST_CONFIGURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Once the staging Worker and D1 exist or a scoped token is granted (M2-0103's step, Cloudflare account owner) and M2-0104's gateway readback is recorded, the lead deploys the merged Operator to staging and runs one synthetic speech session with no organization key on the device. The lead records HOST_CONFIGURED with the staging version readback and the short-lived, session-bound broker grant.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 16,
@@ -9571,9 +9688,10 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the broker grant is the only credential for the default speech route. An organization token stored by an earlier version is removed on upgrade, because D-11 allows no organization token on the device. Acceptance unchanged.",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the broker grant is the only credential for the default speech route. An organization token stored by an earlier version is removed on upgrade, because D-11 allows no organization token on the device. Acceptance unchanged. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its HOST_CONFIGURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "slice_current": 1,
-   "slicing_note": "Ordering problem to fix in the ledger. Today live-session.ts connects straight to gateway.ai.cloudflare.com with 'cf-aig-authorization: Bearer <org token>'. A session grant only replaces that token if something server-side accepts it, which is the relay in M2-0108 (TODO). M2-0108 in turn depends on M2-0107. Suggest making M2-0108 depend on M2-0107.2 only and M2-0107.3 depend on M2-0108. Otherwise .3 breaks speech and fails 'every slice leaves the app working'. .1 should reuse operator/src/device-auth.ts verifyDeviceRequest and the M2-0104 privacy-readiness state. Registering the new route needs a line in operator/src/routes/index.ts or registry.ts, and 'Settings copy updated' lives in src/renderer/src/components/Settings.tsx. Both are outside scope_paths."
+   "slicing_note": "Ordering problem to fix in the ledger. Today live-session.ts connects straight to gateway.ai.cloudflare.com with 'cf-aig-authorization: Bearer <org token>'. A session grant only replaces that token if something server-side accepts it, which is the relay in M2-0108 (TODO). M2-0108 in turn depends on M2-0107. Suggest making M2-0108 depend on M2-0107.2 only and M2-0107.3 depend on M2-0108. Otherwise .3 breaks speech and fails 'every slice leaves the app working'. .1 should reuse operator/src/device-auth.ts verifyDeviceRequest and the M2-0104 privacy-readiness state. Registering the new route needs a line in operator/src/routes/index.ts or registry.ts, and 'Settings copy updated' lives in src/renderer/src/components/Settings.tsx. Both are outside scope_paths.",
+   "engineering_first": true
   },
   {
    "id": "M2-0108",
@@ -9615,7 +9733,11 @@
     "LOCALLY_TESTED",
     "HOST_CONFIGURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After M2-0107's broker is on staging, the lead deploys the merged relay to staging and runs one synthetic-audio session through it to the pinned @cf/deepgram/nova-3 model. The lead records HOST_CONFIGURED with the deployed version, the pinned model and config readback and the session's terminal metadata; the Nova-3 entitlement must first be confirmed by the Cloudflare account owner (M2-0102).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 14,
@@ -9679,7 +9801,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "New split: the relay route, then the desktop client switch, then terminal handling and privacy. operator/src/routes/index.ts is outside the ticket scope, but .1 needs its one-line register call (the file's documented pattern for new routes). The language mapping in cloud-stt-language.ts (auto -> multi+detect, French -> fr-CA, #183) is preserved, not rewritten. The A4 privacy documentation lives in the relay module's privacy header, which is within ticket scope. If the lead wants it in docs/metis-2.0/speech/ROUTE-QUALIFICATION.md, scope has to widen."
+   "slicing_note": "New split: the relay route, then the desktop client switch, then terminal handling and privacy. operator/src/routes/index.ts is outside the ticket scope, but .1 needs its one-line register call (the file's documented pattern for new routes). The language mapping in cloud-stt-language.ts (auto -> multi+detect, French -> fr-CA, #183) is preserved, not rewritten. The A4 privacy documentation lives in the relay module's privacy header, which is within ticket scope. If the lead wants it in docs/metis-2.0/speech/ROUTE-QUALIFICATION.md, scope has to widen.",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its HOST_CONFIGURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0109",
@@ -9931,14 +10055,19 @@
    "required_evidence": [
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock_step": "With the staging speech path live (M2-0107, M2-0108), the lead runs the sentinel-audio script through client, relay, hosted model, segment UI and metadata persistence on success, failure and disconnect over the WebSocket path. The owner, or the lead with a scoped read-only Cloudflare token the owner grants (as for M2-0104), reads back every sink (gateway logs and cache, Workers logs, D1, exports), and the lead files LIVE_VERIFIED with the checklist showing no content persisted.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 8,
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it."
   },
   {
    "id": "M2-0112",
@@ -10036,7 +10165,11 @@
     "LOCALLY_TESTED",
     "MEASURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead dispatches node evals/transcript/run.mjs on the frozen holdout and node scripts/qa/latency-harness.mjs in CI (D-28) against the staging speech route that M2-0111 proved, and files MEASURED with the per-slice scores against the margins frozen before scoring and the capture-to-caption latency p50/p95, with ci_run_id.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 16,
@@ -10091,7 +10224,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Refines the existing three slices. .1 moves to opus because freezing margins and critical-error definitions before scoring is methodology design. Two fixes sit outside the ticket's scope_paths. First, the extractNumerals misordering the summary names is in src/shared/grounding.ts, which scripts/evals/local-recap-evaluator.ts and src/main/brain/ingest.ts also use; land it with .2 once the scope is widened, or as a tiny separate PR. Second, the 400 ms stub is scripts/bench-asr-ttfc.mjs, reported through scripts/qa/census/footprint*.mjs; swapping .3 in touches those files. Per D-28, the harness runs on CI or QA lanes only, never on the owner's Mac. .3 needs only .1's frozen rules, not .2's cases, so it can run in parallel with .2."
+   "slicing_note": "Refines the existing three slices. .1 moves to opus because freezing margins and critical-error definitions before scoring is methodology design. Two fixes sit outside the ticket's scope_paths. First, the extractNumerals misordering the summary names is in src/shared/grounding.ts, which scripts/evals/local-recap-evaluator.ts and src/main/brain/ingest.ts also use; land it with .2 once the scope is widened, or as a tiny separate PR. Second, the 400 ms stub is scripts/bench-asr-ttfc.mjs, reported through scripts/qa/census/footprint*.mjs; swapping .3 in touches those files. Per D-28, the harness runs on CI or QA lanes only, never on the owner's Mac. .3 needs only .1's frozen rules, not .2's cases, so it can run in parallel with .2.",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0114",
@@ -12018,7 +12153,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Once the Jev account holder has placed the real key in the staging Operator vault and confirmed the jev-1.13.0 pin (M2-0123's step), the lead runs slice M2-0131.3's rollout proof on staging with that key and files LIVE_VERIFIED. Until the key exists, slice .3 records the rollout BLOCKED on it.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 12,
@@ -12072,7 +12211,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": ".2 is in the intelligence/ package and does not need .1, so it can run in parallel. The Intelligence views that render it (intelligence/src/views/) belong to M2-0130 and are outside this scope. The .3 evidence record needs a docs/metis-2.0/evidence/ path, which is not in the ticket's scope_paths. .3 is expected to close BLOCKED until the vendor key and the M2-0123 staging route exist."
+   "slicing_note": ".2 is in the intelligence/ package and does not need .1, so it can run in parallel. The Intelligence views that render it (intelligence/src/views/) belong to M2-0130 and are outside this scope. The .3 evidence record needs a docs/metis-2.0/evidence/ path, which is not in the ticket's scope_paths. .3 is expected to close BLOCKED until the vendor key and the M2-0123 staging route exist.",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0132",
@@ -13927,7 +14068,11 @@
    "required_evidence": [
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock_step": "The lead runs node scripts/qa/sentinel-routes.mjs --env staging in CI over every active speech and follow-on route on success, error, retry, cancel and revocation, over HTTP and WebSocket. The owner, or the lead with the scoped read-only Cloudflare token (the M2-0104 route), reads back each controlled sink and the gateway configuration, and the lead files LIVE_VERIFIED with the drift baseline and the supplier terms the Cloudflare account owner gave for M2-0102.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 16,
@@ -13998,9 +14143,10 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the claim is the MASTER section 16.6.5 sentence tailored to the verified route, shown only while readiness is VERIFIED, and it keeps 'Authorized usage metadata is retained for administration'; never 'zero retention', 'no logs' or 'Cloudflare stores no data'. Sentinels prove the metadata-only control on HTTP and WebSocket. Record the log regime: Legacy Logs keep entries until deleted, so a finite metadata retention bound needs a deletion job.",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the claim is the MASTER section 16.6.5 sentence tailored to the verified route, shown only while readiness is VERIFIED, and it keeps 'Authorized usage metadata is retained for administration'; never 'zero retention', 'no logs' or 'Cloudflare stores no data'. Sentinels prove the metadata-only control on HTTP and WebSocket. Record the log regime: Legacy Logs keep entries until deleted, so a finite metadata retention bound needs a deletion job. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "slice_current": 1,
-   "slicing_note": "operator/src/ai-gateway.ts already has verifyDefaultGatewayPrivacy, which reads back collect_logs and cache_ttl. .2 adds a baseline and a session-start fail-closed check on top of it (a call site outside the ticket scope). Note that operator/src/privacy/ will sit alongside the existing operator/src/privacy.ts. Supplier assurance in .4 may need documents from the owner; if they don't arrive, record them as an external blocker rather than stalling the slice."
+   "slicing_note": "operator/src/ai-gateway.ts already has verifyDefaultGatewayPrivacy, which reads back collect_logs and cache_ttl. .2 adds a baseline and a session-start fail-closed check on top of it (a call site outside the ticket scope). Note that operator/src/privacy/ will sit alongside the existing operator/src/privacy.ts. Supplier assurance in .4 may need documents from the owner; if they don't arrive, record them as an external blocker rather than stalling the slice.",
+   "engineering_first": true
   },
   {
    "id": "M2-0150",
@@ -15155,7 +15301,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the rc1 cut (qa-candidate.yml on main at 2.0.0-rc.1 with the lean profile), the lead files LIVE_VERIFIED per OS (hosted-runner, macos-latest and windows-latest, with ci_run_id, build_run_id and artifact_sha256) from that run's fresh and upgrade onboarding: the M2-0168 speech-pack rows SP-1, SP-2, SP-7 and SP-8 and the packaged onboarding smoke (M2-0456's candidate-visual job). Those M2-0168 rows land after this ticket, because M2-0168 depends on it through M2-0164.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 24,
@@ -15258,9 +15408,10 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: the text-led welcome ships as final (no recorded video); ASSUMED per D-20 default. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0160/ (placeholders until M2-0418 Electron capture + Opus acceptance) 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Slice M2-0160.2 is renamed 'On-device transcription pack in the setup scene: consented, non-blocking, resumable download, selected engine first' and grows from 5 h to 8 h (Sonnet). Slice .5 grows from 4 h to 5 h. needs_decision adds OD-30. Waits for the soak under PD-12: OnboardingExperience.tsx was edited by 1.9.7 tickets M2-0429 and M2-0036.",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: the text-led welcome ships as final (no recorded video); ASSUMED per D-20 default. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0160/ (placeholders until M2-0418 Electron capture + Opus acceptance) 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Slice M2-0160.2 is renamed 'On-device transcription pack in the setup scene: consented, non-blocking, resumable download, selected engine first' and grows from 5 h to 8 h (Sonnet). Slice .5 grows from 4 h to 5 h. needs_decision adds OD-30. Waits for the soak under PD-12: OnboardingExperience.tsx was edited by 1.9.7 tickets M2-0429 and M2-0036. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "slice_current": 1,
-   "slicing_note": "Refines the existing five slices, keeping their ids, titles and owners; hours change to 6/5/4/5/4. The speechPack IPC (state, start, cancel, retry and the pushed progress event) comes from M2-0476, and localSpeechPack from M2-0477. With those in place, no slice edits src/main/index.ts, src/shared/ipc.ts or src/preload/index.ts. ASR_SETUP_FAIL_OPEN_MS is at OnboardingExperience.tsx:517 and is also asserted in src/renderer/src/components/Onboarding.helpers.test.ts:456, so .2 must update that test. src/main/features/onboarding/ does not exist yet; .3 creates it. The .5 evidence and the design captures land under docs/metis-2.0/evidence/M2-0160/, outside the scope_paths. The whole ticket must land by the 2026-11-15 freeze."
+   "slicing_note": "Refines the existing five slices, keeping their ids, titles and owners; hours change to 6/5/4/5/4. The speechPack IPC (state, start, cancel, retry and the pushed progress event) comes from M2-0476, and localSpeechPack from M2-0477. With those in place, no slice edits src/main/index.ts, src/shared/ipc.ts or src/preload/index.ts. ASR_SETUP_FAIL_OPEN_MS is at OnboardingExperience.tsx:517 and is also asserted in src/renderer/src/components/Onboarding.helpers.test.ts:456, so .2 must update that test. src/main/features/onboarding/ does not exist yet; .3 creates it. The .5 evidence and the design captures land under docs/metis-2.0/evidence/M2-0160/, outside the scope_paths. The whole ticket must land by the 2026-11-15 freeze.",
+   "engineering_first": true
   },
   {
    "id": "M2-0161",
@@ -15679,7 +15830,11 @@
    "required_evidence": [
     "MEASURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the first qa-candidate.yml run on main that builds the lean default (rc1), the lead dispatches resource-census.yml --ref main with that candidate_run, the DMG and Setup sha256s and baseline_run = the v1.9.6 census run that M2-0264 MEASURED cites. The lead files MEASURED per OS (hosted-runner, with ci_run_id, build_run_id and artifact_sha256): installer (download) size and installed footprint against the TASK-004 baseline and the lean byte budget.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 12,
@@ -15762,9 +15917,10 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F09 (mapping title 'Add a lightweight online installer profile'). It is covered here rather than by a new ticket, because this ticket already removes optional offline weights from the default package. Add acceptance lines: 'macOS and Windows lightweight artifacts exclude bundled large model, ASR, LLM, and related runtime payloads.' / 'First-use downloads stay size- and SHA-pinned to reviewed manifests.' (manifests and verified downloads come from M2-0162/M2-0163) / 'The full offline installer remains a separate target, and CI fails lightweight artifacts that exceed the agreed byte budget.' (the offline bundle is M2-0372; the budget gate is M2-0351). Evidence: electron-builder.yml:88-100 copies the local-llm qwen3.5-0.8b model and mmproj plus the ASR weights into packaged resources ('zero runtime download'); scripts/check-release.mjs caps assets only at 1.9 GiB (GitHub's per-asset limit), not at a lightweight budget; docs/ENTERPRISE-DEPLOY-WINDOWS.md:17 describes an offline, self-contained posture. Add electron-builder.win.yml to scope_paths. 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). The lean installer can no longer ship before onboarding offers the speech pack (edge checked: no dependency cycle). The installer-size decisions stay as they are: the lean core and its budgets, the 1.9 GiB release cap, large-v3-turbo excluded, and the full offline bundle as a separate target. The ticket does not edit code 1.9.7 fixed; its timing comes from its dependency chain.",
+   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F09 (mapping title 'Add a lightweight online installer profile'). It is covered here rather than by a new ticket, because this ticket already removes optional offline weights from the default package. Add acceptance lines: 'macOS and Windows lightweight artifacts exclude bundled large model, ASR, LLM, and related runtime payloads.' / 'First-use downloads stay size- and SHA-pinned to reviewed manifests.' (manifests and verified downloads come from M2-0162/M2-0163) / 'The full offline installer remains a separate target, and CI fails lightweight artifacts that exceed the agreed byte budget.' (the offline bundle is M2-0372; the budget gate is M2-0351). Evidence: electron-builder.yml:88-100 copies the local-llm qwen3.5-0.8b model and mmproj plus the ASR weights into packaged resources ('zero runtime download'); scripts/check-release.mjs caps assets only at 1.9 GiB (GitHub's per-asset limit), not at a lightweight budget; docs/ENTERPRISE-DEPLOY-WINDOWS.md:17 describes an offline, self-contained posture. Add electron-builder.win.yml to scope_paths. 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). The lean installer can no longer ship before onboarding offers the speech pack (edge checked: no dependency cycle). The installer-size decisions stay as they are: the lean core and its budgets, the 1.9 GiB release cap, large-v3-turbo excluded, and the full offline bundle as a separate target. The ticket does not edit code 1.9.7 fixed; its timing comes from its dependency chain. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "slice_current": 1,
-   "slicing_note": "Today build-installers.mjs always runs fetch-local-model.mjs, fetch-speaker-model.mjs and fetch-models.mjs (lines 126-129), and electron-builder.yml always ships resources/models (Parakeet and Whisper weights, with whisper-large-v3-turbo already excluded) and resources/local-llm/models (the bundled Qwen3.5 0.8B, 763,759,712 bytes). The acceptance names only the speech weights; .2 must record whether the Qwen weights count as 'optional offline weights' for lean. .3 makes the lean profile skip those fetches and fail if one runs. The default flips to lean only in .4, because the lean profile may not ship before M2-0160 (TODO, 24 h) offers the speech pack in onboarding. So .1-.3 can land early without changing what users get. M2-0476 reads the profile marker written in .2. The CI byte budget and the check-release 1.9 GiB cap live in scripts/check-release.mjs and .github/workflows, and the pinned manifests in resources/, all outside scope_paths; widen the scope for .3. docs/ENTERPRISE-DEPLOY-WINDOWS.md:17 still says '~2.2 GB'."
+   "slicing_note": "Today build-installers.mjs always runs fetch-local-model.mjs, fetch-speaker-model.mjs and fetch-models.mjs (lines 126-129), and electron-builder.yml always ships resources/models (Parakeet and Whisper weights, with whisper-large-v3-turbo already excluded) and resources/local-llm/models (the bundled Qwen3.5 0.8B, 763,759,712 bytes). The acceptance names only the speech weights; .2 must record whether the Qwen weights count as 'optional offline weights' for lean. .3 makes the lean profile skip those fetches and fail if one runs. The default flips to lean only in .4, because the lean profile may not ship before M2-0160 (TODO, 24 h) offers the speech pack in onboarding. So .1-.3 can land early without changing what users get. M2-0476 reads the profile marker written in .2. The CI byte budget and the check-release 1.9 GiB cap live in scripts/check-release.mjs and .github/workflows, and the pinned manifests in resources/, all outside scope_paths; widen the scope for .3. docs/ENTERPRISE-DEPLOY-WINDOWS.md:17 still says '~2.2 GB'.",
+   "engineering_first": true
   },
   {
    "id": "M2-0165",
@@ -15911,7 +16067,11 @@
    "required_evidence": [
     "MEASURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "First, before the tuning slices, the lead dispatches resource-census.yml --ref main on the latest train candidate (T3) as slice .1's before-profile. After the tuning lands, the lead dispatches it on the rc1 candidate with baseline_run = that before run, and files MEASURED per OS (hosted-runner, with ci_run_id, build_run_id and artifact_sha256) against the section 7 idle CPU and memory budgets; any budget still missed goes to the owner as a recorded residual decision.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 16,
@@ -15988,7 +16148,8 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Refined the existing split. The old .1 was first in build order yet promised an after-profile and residuals, which can only exist after tuning, so those move to a new closing .4. .2 is left as broad as src/main/ and src/renderer/src/lib/ on purpose: the .1 hotspot list narrows it before work starts. .3 carries the M2-0200 gate line because it contains the Opus-only rule and is the last tuning change; T1/T2/T3 gate records come from those trains (10-18, 11-01, 11-08)."
+   "slicing_note": "Refined the existing split. The old .1 was first in build order yet promised an after-profile and residuals, which can only exist after tuning, so those move to a new closing .4. .2 is left as broad as src/main/ and src/renderer/src/lib/ on purpose: the .1 hotspot list narrows it before work starts. .3 carries the M2-0200 gate line because it contains the Opus-only rule and is the last tuning change; T1/T2/T3 gate records come from those trains (10-18, 11-01, 11-08).",
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it."
   },
   {
    "id": "M2-0167",
@@ -16103,7 +16264,11 @@
    "required_evidence": [
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the rc1 cut, the lead files LIVE_VERIFIED per OS (hosted-runner, macos-latest and windows-latest, with ci_run_id, build_run_id and artifact_sha256) from that run's speech-pack jobs this ticket adds to qa-candidate.yml (FLOW-09 and SP-1..SP-8 on the installed lean candidate) and from the packaged upgrade and rollback matrix (slice .4: 1.9.6, 1.9.7 and the train builds from the feed upgraded to the rc1 bytes by sha256, keeping notes, settings, keys and IDs). The signed-Windows half waits for M2-0211's signing (M2-0058, BLOCKED_EXTERNAL).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 14,
@@ -16205,9 +16370,10 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Adds FLOW-09's onboarding download line, which the current acceptance leaves out, as slice M2-0168.4 (6 h, Sonnet). The ticket is 14 h and unsliced, so it needs slicing under PD-14 anyway. Proof runs on GitHub-hosted macos-latest and windows-latest, which count as the live host under OD-26. It reuses M2-0456's candidate-mode onboarding driver and M2-0452's content-free ASR report format. This is new CI plumbing, not code 1.9.7 fixed.",
+   "notes": "2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Adds FLOW-09's onboarding download line, which the current acceptance leaves out, as slice M2-0168.4 (6 h, Sonnet). The ticket is 14 h and unsliced, so it needs slicing under PD-14 anyway. Proof runs on GitHub-hosted macos-latest and windows-latest, which count as the live host under OD-26. It reuses M2-0456's candidate-mode onboarding driver and M2-0452's content-free ASR report format. This is new CI plumbing, not code 1.9.7 fixed. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "slice_current": 1,
-   "slicing_note": "The FLOW-09/SP rows verify the optional speech download that M2-0160 (onboarding, non-blocking downloads, the .3 legacy-choice migration) implements, but M2-0160 is not in depends_on: .2-.4 cannot pass before it lands. scripts/check-packaged-speech-pack.mjs and its test do not exist yet; qa-candidate.yml (477 lines) is shared with M2-0452/M2-0456, so .2-.4 are serialized to avoid conflicts there. 'Mirror-safe delivery' waits on D-17 (Forgejo mirror, OPEN, due 2026-11-02), so it is isolated in the docs-only .5 and blocks nothing else; if D-17 needs a mirror feed in code, .5 also takes electron-builder.yml/updater.ts. Hosted-runner rows use M2-0466's environment kind; SP-6 on Windows is unit-covered and the report says so."
+   "slicing_note": "The FLOW-09/SP rows verify the optional speech download that M2-0160 (onboarding, non-blocking downloads, the .3 legacy-choice migration) implements, but M2-0160 is not in depends_on: .2-.4 cannot pass before it lands. scripts/check-packaged-speech-pack.mjs and its test do not exist yet; qa-candidate.yml (477 lines) is shared with M2-0452/M2-0456, so .2-.4 are serialized to avoid conflicts there. 'Mirror-safe delivery' waits on D-17 (Forgejo mirror, OPEN, due 2026-11-02), so it is isolated in the docs-only .5 and blocks nothing else; if D-17 needs a mirror feed in code, .5 also takes electron-builder.yml/updater.ts. Hosted-runner rows use M2-0466's environment kind; SP-6 on Windows is unit-covered and the report says so.",
+   "engineering_first": true
   },
   {
    "id": "M2-0169",
@@ -16581,7 +16747,11 @@
    "required_evidence": [
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the rc1 freeze (M2-0210), the lead dispatches qa-candidate.yml once on main at the frozen commit, records its provenance sha256s as frozen, runs the relevant 112-use-case regression on those bytes (packaged suites and golden-flows-nightly.yml from M2-0208) and node scripts/release/decide.mjs --candidate 2.0.0 in CI, and files LIVE_VERIFIED with the PASS decision. signtool verify waits for M2-0211 (M2-0058 signing identity, BLOCKED_EXTERNAL), and the Mac candidate is QA-identity signed only if the owner has supplied QA_MAC_SIGNING (M2-0187), otherwise ad-hoc.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 14,
@@ -16653,7 +16823,9 @@
    "due": "2026-11-22",
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "release.yml (438 lines) already has the release-decision (M2-0171) and per-OS release jobs. qa-candidate.yml and promote-candidate.yml (M2-0187) build once and promote the same bytes. .1-.3 extend these; they do not add a new pipeline. .4 is an operational qualification run: it commits evidence plus the PASS decision and cannot start before rc1 exists (M2-0210, TODO). Windows signing stays in M2-0211 (BLOCKED_EXTERNAL). .3 therefore freezes the unsigned Windows payload hash and records the post-signing hash as a separate, linked entry."
+   "slicing_note": "release.yml (438 lines) already has the release-decision (M2-0171) and per-OS release jobs. qa-candidate.yml and promote-candidate.yml (M2-0187) build once and promote the same bytes. .1-.3 extend these; they do not add a new pipeline. .4 is an operational qualification run: it commits evidence plus the PASS decision and cannot start before rc1 exists (M2-0210, TODO). Windows signing stays in M2-0211 (BLOCKED_EXTERNAL). .3 therefore freezes the unsigned Windows payload hash and records the post-signing hash as a separate, linked entry.",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0174",
@@ -17003,7 +17175,11 @@
    "required_evidence": [
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "On the frozen candidate (M2-0173), the lead dispatches golden-flows-nightly.yml (M2-0208) against that candidate run and runs the abuse, concurrency, accessibility and performance qualification on the same bytes, then files LIVE_VERIFIED per flow (hosted-runner, with ci_run_id, build_run_id and artifact_sha256). Any flow that needs an outside system is recorded BLOCKED with that system's unblock step (for example M2-0170, M2-0176).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 16,
@@ -17058,7 +17234,8 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "New split. The single 'all 12 flows' acceptance line can't be divided by flow, so .1 runs every flow (automated by the M2-0208 nightly runner) and reconciles it against nightly history. .2 and .3 are qualification passes over the same frozen candidate hashes. Runs happen on the QA account and CI lanes only (D-28). Records are content-free."
+   "slicing_note": "New split. The single 'all 12 flows' acceptance line can't be divided by flow, so .1 runs every flow (automated by the M2-0208 nightly runner) and reconciles it against nightly history. .2 and .3 are qualification passes over the same frozen candidate hashes. Runs happen on the QA account and CI lanes only (D-28). Records are content-free.",
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it."
   },
   {
    "id": "M2-0178",
@@ -18715,14 +18892,20 @@
     "LOCALLY_TESTED",
     "MEASURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T1 cut (1.9.9, M2-0206), the lead dispatches resource-census.yml --ref main on the T1 candidate (candidate_run, DMG and Setup sha256s) with baseline_run = the 1.9.7 candidate census run from M2-0491, and files MEASURED per OS (hosted-runner, with ci_run_id, build_run_id and artifact_sha256) carrying compare.mjs's per-state verdict. T2, T3, rc1 and the frozen candidate repeat it.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
    "validation_hours": 0.5,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0201",
@@ -18876,7 +19059,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the 1.9.7 cut, the lead files the right-edge-walkthrough gate row (LIVE_VERIFIED, hosted-runner, macos-latest and windows-latest, build_run_id = the candidate run, artifact_sha256 = the promotable DMG and Setup) from a packaged right-edge walkthrough on those candidate bytes. No job on origin/m2/integration runs that walkthrough on candidate bytes: M2-0456's candidate-visual job is the only planned one and 1.9.7.md defers it to m4, so the lead must record M2-0456 as a 1.9.7 gate (its LEAD_ACTION) or the row has no producer.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 10,
@@ -19063,7 +19250,7 @@
    "due": null,
    "status": "TODO",
    "priority": "P0",
-   "notes": "2026-09-29 (lead): OWNER-REPORTED on 1.9.6 ('The right edge hide doesnt work'; 'improve the Right edge Island UX UI ... no scroll needed') -> P0, OD-22. Dropped the M2-0198 dependency (a post-1.9.7 soak hold), which contradicted this ticket's own 'ship in T1' summary; lands before 1.9.7 so the owner gets the fix. 2026-09-29 (lead): the owner-reported right-edge Hide defect is split out as M2-0428 (P0, ships in 1.9.7; M2-0046 depends on it). This ticket carries the no-scroll island redesign plus D1-D11 on top of it. 2026-09-29 (lead): owner L6 answer (OD-25): long content opens in a Reader view beside the island; the island never scrolls. Delivered in slices S1-S7 (spec v3, codex-queue/logs/right-edge-2026-09-29/spec-v3.md + its re-review as binding amendments); sequenced after M2-0428 and M2-0431 (same hover/right-edge code). 2026-10-03 (lead): OD-51 — all 7 slices are 1.9.7 work (milestone m3); remaining slice estimates sum to the real cost.",
+   "notes": "2026-09-29 (lead): OWNER-REPORTED on 1.9.6 ('The right edge hide doesnt work'; 'improve the Right edge Island UX UI ... no scroll needed') -> P0, OD-22. Dropped the M2-0198 dependency (a post-1.9.7 soak hold), which contradicted this ticket's own 'ship in T1' summary; lands before 1.9.7 so the owner gets the fix. 2026-09-29 (lead): the owner-reported right-edge Hide defect is split out as M2-0428 (P0, ships in 1.9.7; M2-0046 depends on it). This ticket carries the no-scroll island redesign plus D1-D11 on top of it. 2026-09-29 (lead): owner L6 answer (OD-25): long content opens in a Reader view beside the island; the island never scrolls. Delivered in slices S1-S7 (spec v3, codex-queue/logs/right-edge-2026-09-29/spec-v3.md + its re-review as binding amendments); sequenced after M2-0428 and M2-0431 (same hover/right-edge code). 2026-10-03 (lead): OD-51 — all 7 slices are 1.9.7 work (milestone m3); remaining slice estimates sum to the real cost. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "slice_current": 3,
    "slicing_note": "spec v3 §12 S1-S7 (lead file); S7 waits for M2-0418 (CI lane) — hold by hand if it is not merged",
    "slices_merged": [
@@ -19075,7 +19262,8 @@
      "slice": "M2-0202.2",
      "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/444"
     }
-   ]
+   ],
+   "engineering_first": true
   },
   {
    "id": "M2-0203",
@@ -19208,14 +19396,20 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the T1 cut (1.9.9, M2-0206), the lead runs the packaged expand, switch and rollback run on the T1 DMG by sha256 on hosted macos-latest: expand writes the userData ledger beside the legacy .brain/index.json, switch reads from it, and rolling back to 1.9.6 reads the untouched legacy file. The lead files LIVE_VERIFIED (hosted-runner, with ci_run_id, build_run_id and artifact_sha256).",
+    "raised_on": "2026-10-03"
+   },
    "flag": "ledger.userdata",
    "risk": "high",
    "estimate_hours": 8,
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO"
+   "status": "TODO",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0206",
@@ -19382,7 +19576,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Once golden-flows-nightly.yml is registered on main and the owner has approved its first run (verification line), the lead dispatches it with --ref main on the latest lane candidate (T2, 2.0.0-beta.1, M2-0207) and files LIVE_VERIFIED (hosted-runner, with ci_run_id, build_run_id and artifact_sha256) from its FLOW-01..12 rows (PASS, NOT_RUN with the owning ticket, or BLOCKED with the unblock step). The nightly schedule then publishes the trend in docs/metis-2.0/evidence/golden-flows/.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 10,
@@ -19437,7 +19635,9 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "The nightly lane lands first, so it runs from day one. Flows are then filled in two batches of six, and unscripted flows report NOT_RUN against their owning slice. The FLOW-01..12 titles come from docs/metis-2.0/kit/ID-INVENTORY.json. FLOW-01 needs the Windows lane and FLOW-11 the native Mac app, so both likely report NOT_RUN or BLOCKED at m7. The evidence path docs/metis-2.0/evidence/golden-flows/ lives in the program repo (metis-prog-main), not the app repo. Publishing the trend needs an artifact pull or a cross-repo step, and that path is not in this ticket's scope_paths. Existing harness patterns to reuse: scripts/qa/packaged-smoke.mjs, e2e-workflows.mjs, lib/."
+   "slicing_note": "The nightly lane lands first, so it runs from day one. Flows are then filled in two batches of six, and unscripted flows report NOT_RUN against their owning slice. The FLOW-01..12 titles come from docs/metis-2.0/kit/ID-INVENTORY.json. FLOW-01 needs the Windows lane and FLOW-11 the native Mac app, so both likely report NOT_RUN or BLOCKED at m7. The evidence path docs/metis-2.0/evidence/golden-flows/ lives in the program repo (metis-prog-main), not the app repo. Publishing the trend needs an artifact pull or a cross-repo step, and that path is not in this ticket's scope_paths. Existing harness patterns to reuse: scripts/qa/packaged-smoke.mjs, e2e-workflows.mjs, lib/.",
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0209",
@@ -25651,7 +25851,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the rc1 cut, the lead runs the 2-hour synthetic-meeting soak this ticket builds on the candidate's packaged bytes on hosted macos-latest and windows-latest (inside the 6 h job limit) with the realtime speech path on staging, and files MEASURED per OS (hosted-runner, with ci_run_id, build_run_id and artifact_sha256) for memory, CPU, segment offsets, sockets and helpers, attached to M2-0166 and M2-0210. The T3 leg in acc 1 cannot run in order, because T3 (m7) is built before this ticket's M2-0166 dependency (m10) lands; it needs a ledger amendment.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
@@ -25659,7 +25863,9 @@
    "priority": "P1",
    "required_evidence": [
     "MEASURED"
-   ]
+   ],
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
   },
   {
    "id": "M2-0322",
@@ -27197,7 +27403,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the rc1 cut, and again on the frozen candidate, the lead dispatches resource-census.yml --ref main on those bytes together with the per-build size report this ticket adds, and files MEASURED per build (hosted-runner, with ci_run_id, build_run_id and artifact_sha256) against 250 MB and 650 MB (Windows), 100 MB (native Mac) and the Electron macOS lean DMG and zip budgets; any exception needs the owner's recorded approval. The T3 leg cannot run in order, because T3 (m7) precedes this ticket's M2-0164 and M2-0166 dependencies (m10); it needs a ledger amendment.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
@@ -27206,7 +27416,8 @@
    "required_evidence": [
     "MEASURED"
    ],
-   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F09. The budget gate must also cover the Electron macOS lightweight DMG and zip: this ticket names only the Windows 250/650 MB and native Mac 100 MB rows. It must also fail CI when any lightweight artifact exceeds its budget, separately from check-release.mjs's 1.9 GiB platform cap. 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Says explicitly that the optional speech pack is reported but never counted as core, so the budget cannot be misread as either banning the onboarding download or allowing the weights back into the core installer."
+   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F09. The budget gate must also cover the Electron macOS lightweight DMG and zip: this ticket names only the Windows 250/650 MB and native Mac 100 MB rows. It must also fail CI when any lightweight artifact exceeds its budget, separately from check-release.mjs's 1.9 GiB platform cap. 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Says explicitly that the optional speech pack is reported but never counted as core, so the budget cannot be misread as either banning the onboarding download or allowing the weights back into the core installer. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "engineering_first": true
   },
   {
    "id": "M2-0352",
@@ -28472,17 +28683,22 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock_step": "The owner names the operational owner for the memory service and approves spend (the rest of D-5), so the lead can dispatch M2-0434's deploy job, and the Entra tenant administrator supplies two test identities (B-36). The lead then runs the HMUC-032 retain, recall-with-source, correct and forget journey on the native QA candidate on hosted macos-latest against that deployment and files LIVE_VERIFIED with the native-mac implementation label (M2-0345); until then the row is recorded BLOCKED with this step.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron).",
+   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron). 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "required_evidence": [
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
-   ]
+   ],
+   "engineering_first": true
   },
   {
    "id": "M2-0379",
@@ -28646,17 +28862,22 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "unblock_step": "The owner names the operational owner for the self-hosted memory service and approves spend (the rest of D-5; platform and region were answered on 2026-09-29: Cloudflare Containers with Neon Postgres and pgvector, EU Frankfurt, through Hyperdrive). The lead then dispatches M2-0434's main-guarded deploy job, runs a readback against that deployment (unauthenticated requests rejected, API, DB and admin ports closed outside the gateway network, TLS and egress settings, backups on and a restore drill with RTO/RPO) and files HOST_CONFIGURED.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-17 (owner, 2026-09-28): D-5 self-hosted private Hindsight on one approved container platform with managed Postgres (not a hosted memory cloud); engineering targets the compose profile until the platform is provisioned.",
+   "notes": "OD-17 (owner, 2026-09-28): D-5 self-hosted private Hindsight on one approved container platform with managed Postgres (not a hosted memory cloud); engineering targets the compose profile until the platform is provisioned. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its HOST_CONFIGURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
    "required_evidence": [
     "LOCALLY_TESTED",
     "HOST_CONFIGURED"
-   ]
+   ],
+   "engineering_first": true
   },
   {
    "id": "M2-0382",
