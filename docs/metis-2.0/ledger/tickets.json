@@ -36629,7 +36629,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "id": "M2-0540",
    "type": "fix",
    "priority": "P0",
@@ -36652,7 +36652,14 @@
    "verification": [
     "CI: three History design evidence runs on the PR with 72/72 captures"
    ],
-   "notes": "2026-10-02 (lead): filed from the merge-lane diagnosis."
+   "notes": "2026-10-02 (lead): filed from the merge-lane diagnosis.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/442",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "wave": "W1",
