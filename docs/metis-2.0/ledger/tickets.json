@@ -18166,9 +18166,20 @@
    "validation_hours": 1.0,
    "slices": [],
    "due": null,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Already filed, so no new ticket is needed. Land M2-0414 first: point resource-census.yml and freeze-repro.yml at mysticalsin/Metis-Releases v1.9.6-unsigned and verify SHA256SUMS before install. Then land M2-0415: scripts/qa/windows/baseline.ps1 measures the M2-0009 census states on the installed 1.9.6, runs in a main-ref-guarded workflow_dispatch windows-latest lane, and prints the laptop-only rows as BLOCKED_EXTERNAL with the exact unblock step. Several rows run on windows-latest: install/launch, the clean-quit survivor census, and working set, private bytes and CPU-time deltas, labelled non-representative of a managed host. File their findings as tickets or 1.9.7 residuals (acceptance line 3). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): A managed Windows 11 x64 laptop on the standard enterprise image (EDR as deployed, OneDrive Files On-Demand), with remote access for the runner. It is needed for ST-1-W (placeholders plus network off), HK-W (End task on main) under EDR, the representative resource census, and the PowerShell foreground-watcher cost and EDR interaction. The owner must also confirm the request still stands after D-9 and name the Mantu IT person."
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Already filed, so no new ticket is needed. Land M2-0414 first: point resource-census.yml and freeze-repro.yml at mysticalsin/Metis-Releases v1.9.6-unsigned and verify SHA256SUMS before install. Then land M2-0415: scripts/qa/windows/baseline.ps1 measures the M2-0009 census states on the installed 1.9.6, runs in a main-ref-guarded workflow_dispatch windows-latest lane, and prints the laptop-only rows as BLOCKED_EXTERNAL with the exact unblock step. Several rows run on windows-latest: install/launch, the clean-quit survivor census, and working set, private bytes and CPU-time deltas, labelled non-representative of a managed host. File their findings as tickets or 1.9.7 residuals (acceptance line 3). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): A managed Windows 11 x64 laptop on the standard enterprise image (EDR as deployed, OneDrive Files On-Demand), with remote access for the runner. It is needed for ST-1-W (placeholders plus network off), HK-W (End task on main) under EDR, the representative resource census, and the PowerShell foreground-watcher cost and EDR interaction. The owner must also confirm the request still stands after D-9 and name the Mantu IT person.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/439",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LIVE_VERIFIED",
+     "MEASURED"
+    ]
+   }
   },
   {
    "id": "M2-0196",
