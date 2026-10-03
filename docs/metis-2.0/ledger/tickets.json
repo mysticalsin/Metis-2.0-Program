@@ -603,6 +603,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Evidence normalisation: lead-reviewed unblock steps for the 8 EC tickets the automated pass left unknown (M2-0013, 0030, 0104, 0443, 0481, 0521, 0540, 0544)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0552..M2-0557 (census and freeze-repro harness fixes from the N8/N10 readiness diagnosis; M2-0046 depends on all but the non-gating TTFT proof) and M2-0558 (Electron fuses, security, m5)."
   }
  ],
  "tickets": [
@@ -1158,7 +1164,7 @@
    ],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 EC triage: the LIVE_VERIFIED path is M2-0462 (non-interactive hosted-live mode of run-matrix.sh), M2-0463 (freeze-repro.yml mode input, macOS and Windows) and M2-0464 (docs/metis-2.0/runbooks/diagnostics-sampling.md, acceptance 8). Lead to confirm this reading of acceptance 1: 'QA account' and 'representative synthetic profile from M2-0007' are met on hosted runners per D-9/OD-26, with a synthetic profile the harness builds (seed-profile.mjs is not in the public repo). Real dataless files (acceptance 2), row 9 and the File Provider interrupt stay BLOCKED_EXTERNAL because there is no test cloud account; the 'documented unsuccessful matrix' clause allows that. Records must use the OD-26 hosted-runner kind, not qa-mac-1. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): M2-0466 fixes the environment-kind half of the gap. Record LIVE_VERIFIED as kind hosted-runner, host macos-latest or windows-latest, with ci_run_id; run-matrix.sh's --qa-host-label default of qa-mac-1 must be overridden. The non-interactive live-mode ticket is separate and not part of Theme A. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, EC triage): 'the LIVE_VERIFIED path is M2-0462 ..., M2-0463 ... and M2-0464' and 'Record LIVE_VERIFIED as kind hosted-runner, host macos-late",
+   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 EC triage: the LIVE_VERIFIED path is M2-0462 (non-interactive hosted-live mode of run-matrix.sh), M2-0463 (freeze-repro.yml mode input, macOS and Windows) and M2-0464 (docs/metis-2.0/runbooks/diagnostics-sampling.md, acceptance 8). Lead to confirm this reading of acceptance 1: 'QA account' and 'representative synthetic profile from M2-0007' are met on hosted runners per D-9/OD-26, with a synthetic profile the harness builds (seed-profile.mjs is not in the public repo). Real dataless files (acceptance 2), row 9 and the File Provider interrupt stay BLOCKED_EXTERNAL because there is no test cloud account; the 'documented unsuccessful matrix' clause allows that. Records must use the OD-26 hosted-runner kind, not qa-mac-1. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): M2-0466 fixes the environment-kind half of the gap. Record LIVE_VERIFIED as kind hosted-runner, host macos-latest or windows-latest, with ci_run_id; run-matrix.sh's --qa-host-label default of qa-mac-1 must be overridden. The non-interactive live-mode ticket is separate and not part of Theme A. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, EC triage): 'the LIVE_VERIFIED path is M2-0462 ..., M2-0463 ... and M2-0464' and 'Record LIVE_VERIFIED as kind hosted-runner, host macos-late 2026-10-03 (lead): first hosted-live run 37090252167 against v1.9.6-unsigned: Windows passed; macOS reproduced the freeze (main thread 100% in open() on FIFO fixtures about 20 s after launch) but the harness scored it not-exercised. Fixes M2-0555, M2-0556, M2-0557; re-dispatch after they reach main.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/250",
     "merged_into": "m2/integration (squash)",
@@ -1235,7 +1241,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: MEASURED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): record MEASURED from the hosted resource-census run under kind hosted-runner (host macos-latest and windows-latest) with ci_run_id once M2-0466 is on main, not kind ci with an unregistered host. 2026-09-29 (lead): first resource-census dispatch (run 36620887469) failed on both legs; fix ticket M2-0473, then re-dispatch and record MEASURED. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, lead): 'first resource-census dispatch (run 36620887469) failed on both legs; fix ticket M2-0473, then re-dispatch and record MEASURED', and",
+   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: MEASURED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): record MEASURED from the hosted resource-census run under kind hosted-runner (host macos-latest and windows-latest) with ci_run_id once M2-0466 is on main, not kind ci with an unregistered host. 2026-09-29 (lead): first resource-census dispatch (run 36620887469) failed on both legs; fix ticket M2-0473, then re-dispatch and record MEASURED. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, lead): 'first resource-census dispatch (run 36620887469) failed on both legs; fix ticket M2-0473, then re-dispatch and record MEASURED', and 2026-10-03 (lead): census run 37090250380 against v1.9.6-unsigned failed again (macOS parked-bar-orb trace not established, as in 36773284514; Windows parked-idle CDP protocol error). Fixes M2-0552, M2-0553 (M2-0554 for the non-gating TTFT proof); re-dispatch after they reach main.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/249",
     "merged_into": "m2/integration (squash)",
@@ -3739,7 +3745,12 @@
     "M2-0537",
     "M2-0418",
     "M2-0447",
-    "M2-0458"
+    "M2-0458",
+    "M2-0552",
+    "M2-0553",
+    "M2-0555",
+    "M2-0556",
+    "M2-0557"
    ],
    "needs_decision": [
     "D-13"
@@ -38024,6 +38035,313 @@
     "CI: packaged smoke (macOS) x3 green on the PR"
    ],
    "notes": "2026-10-03 (lead): filed from the M2-0543 bounce; P1 (lane flake on the 1.9.7 path)."
+  },
+  {
+   "id": "M2-0552",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 4,
+   "risk": "low",
+   "finding_refs": [
+    "Lead diagnosis 2026-10-03 (read-only, logs and artifacts) of readiness runs N8 resource-census 37090250380 and N10 freeze-repro 37090252167 (main fd38fd09c6 against v1.9.6-unsigned): 'renderer trace scenario is not established: parked-bar-orb' (also run 36773284514); profile.mjs:101-103 right-edge; src/shared/overlay-presentation.ts:36 right-edge+bar -> island; lib.mjs:325-329 probe; run.mjs:252"
+   ],
+   "scope_paths": [
+    "scripts/qa/census/profile.mjs",
+    "scripts/qa/census/profile.test.ts",
+    "scripts/qa/census/run.mjs",
+    "scripts/qa/census/lib.test.ts",
+    ".github/workflows/resource-census.yml"
+   ],
+   "title": "Census traces the bar orb on a profile that never shows it",
+   "summary": "The census profile uses right-edge placement, which turns the 'bar' layout into 'island' and never renders the Bar or ControlPill, so [data-bar-pill-orb] never exists: the parked-bar-orb and threejs-obsidian-orb trace probes always fail and the macOS settled-idle and parked-idle census never record.",
+   "acceptance": [
+    "profile.mjs accepts --placement top-center|right-edge; the default stays right-edge and the representative profile manifest sha256 values do not change",
+    "The macOS workflow builds a separate top-center/bar/obsidian trace profile and runs the three --trace-scenario captures against it; the representative settled-idle run no longer passes --trace-scenario",
+    "run.mjs refuses a bar-orb trace scenario up front when the profile's overlayPlacement is right-edge, and a failed probe error includes the probe result (orb found, box, canvas found)",
+    "Unit tests cover the placement flag, the up-front refusal and the error content",
+    "A main dispatch for v1.9.6-unsigned uploads the parked-bar-orb, backdrop-filter and threejs-obsidian-orb proof and trace files plus darwin-settled-idle.json; a scenario absent from 1.9.6 is recorded, not hidden"
+   ],
+   "verification": [
+    "PR CI: unit tests for scripts/qa/census/*.test.ts",
+    "After merge to main (both workflows run only on refs/heads/main): gh workflow run resource-census.yml --ref main -f release_repo=mysticalsin/Metis-Releases -f release_tag=v1.9.6-unsigned"
+   ],
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis."
+  },
+  {
+   "id": "M2-0553",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0552"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 3,
+   "risk": "low",
+   "finding_refs": [
+    "Lead diagnosis 2026-10-03 (read-only, logs and artifacts) of readiness runs N8 resource-census 37090250380 and N10 freeze-repro 37090252167 (main fd38fd09c6 against v1.9.6-unsigned): Windows: 'cdpSession.send: Protocol error (Browser.getWindowForTarget): Browser.getWindowForTarget wasn't found'; park.mjs:67-71"
+   ],
+   "scope_paths": [
+    "scripts/qa/census/park.mjs",
+    "scripts/qa/census/park.test.ts",
+    "scripts/qa/census/run.mjs",
+    "scripts/qa/census/lib.test.ts"
+   ],
+   "title": "Parked-idle census asks Electron for a window API it does not have",
+   "summary": "park.mjs reads window bounds with the Chrome DevTools methods Browser.getWindowForTarget and Browser.getWindowBounds, which the Electron app does not implement, so parked-idle fails with a protocol error on Windows and would on macOS once M2-0552 lets it run.",
+   "acceptance": [
+    "The park checker reads bounds from the overlay renderer (window.screenX, screenY, outerWidth, outerHeight via page.evaluate) or another method Electron implements; no Browser.* DevTools call is left under scripts/qa/census",
+    "The boundsSignal text is updated in park.mjs and run.mjs and in the test fixtures",
+    "A unit test with a fake page proves the checker maps the evaluated geometry and reports 8x2 as parked",
+    "A Windows main dispatch on v1.9.6-unsigned produces census-output/win32-parked-idle.json, either MEASURED or a PRECONDITION report with observedBounds, never 'Protocol error'",
+    "The observed right-edge + hide park bounds are recorded; if they are not 8x2, a follow-up is opened instead of loosening the check"
+   ],
+   "verification": [
+    "PR CI: unit tests for scripts/qa/census/park.test.ts and lib.test.ts",
+    "After merge to main (both workflows run only on refs/heads/main): gh workflow run resource-census.yml --ref main -f release_repo=mysticalsin/Metis-Releases -f release_tag=v1.9.6-unsigned"
+   ],
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis."
+  },
+  {
+   "id": "M2-0554",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P2",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 2,
+   "risk": "low",
+   "finding_refs": [
+    "Lead diagnosis 2026-10-03 (read-only, logs and artifacts) of readiness runs N8 resource-census 37090250380 and N10 freeze-repro 37090252167 (main fd38fd09c6 against v1.9.6-unsigned): healthy after 24918 ms, cold prefill 38378 ms for 3033 tokens, then 'FAILED: TimeoutError'; prove-local-ttft.mjs:473 AbortSignal.timeout(60_000), catch-all :609"
+   ],
+   "scope_paths": [
+    "scripts/prove-local-ttft.mjs",
+    "scripts/qa/census/lib.mjs",
+    "scripts/qa/census/lib.test.ts"
+   ],
+   "title": "Local TTFT proof crashes instead of reporting a slow suggest turn",
+   "summary": "The streamed suggest call has an uncaught 60 s limit covering the whole 96-token stream, so on CPU-only hosted runners the proof dies with a TimeoutError stack and any first-token time it measured is lost. The step does not gate the job (continue-on-error).",
+   "acceptance": [
+    "The streamed suggest call records the first-token time at the first content delta",
+    "A timeout before any token prints a FAIL verdict line ('warm suggest produced no first token within N ms') and exits 1 with no stack trace",
+    "A timeout after the first token still prints 'warm TTFT: N ms' and the verdict",
+    "The suggest timeout is a named constant sized for CPU-only runners, like PREWARM_TIMEOUT_MS",
+    "The census parser records a FAIL reason (suggest-timeout) and warmTtftMs when present, with unit tests; the step keeps continue-on-error"
+   ],
+   "verification": [
+    "PR CI: unit tests for scripts/qa/census/lib.test.ts and the existing prove-local-ttft tests",
+    "After merge to main (both workflows run only on refs/heads/main): gh workflow run resource-census.yml --ref main -f release_repo=mysticalsin/Metis-Releases -f release_tag=v1.9.6-unsigned; prove-local-ttft.log ends with a verdict line, not a TimeoutError stack"
+   ],
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis."
+  },
+  {
+   "id": "M2-0555",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 3,
+   "risk": "low",
+   "finding_refs": [
+    "Lead diagnosis 2026-10-03 (read-only, logs and artifacts) of readiness runs N8 resource-census 37090250380 and N10 freeze-repro 37090252167 (main fd38fd09c6 against v1.9.6-unsigned): 'live run did not produce PASS evidence'; matrix rows 1-4 devtools-unreachable while app.stderr shows 'DevTools listening on ws://127.0.0.1:9334'; row 1-3 main samples 100% in open(); cdp-observe.mjs:97-98, 151-152"
+   ],
+   "scope_paths": [
+    "scripts/qa/freeze-repro/cdp-observe.mjs",
+    "scripts/qa/freeze-repro/run-matrix.contract.test.ts"
+   ],
+   "title": "Freeze repro calls a hung app 'not exercised' instead of 'frozen'",
+   "summary": "When the 1.9.6 main thread is blocked, the DevTools listener is up but /json/list never answers; cdp-observe treats that the same as no listener and marks every macOS row not-exercised, so a reproduced freeze (main thread 100% in open() on every sample) becomes a failed, incomplete bundle.",
+   "acceptance": [
+    "observe() keeps the /json/list outcome; a port that accepts the connection but whose HTTP request times out gives operator_result 'observed', symptom_observed true, reason 'devtools-http-timeout'",
+    "Connection refused still gives not-exercised / devtools-unreachable, and the existing unused-port contract test is unchanged",
+    "A new contract test uses a stub server that accepts TCP and never answers",
+    "On a hosted macOS run against 1.9.6, rows 1-3 are 'observed', main samples are attached and the hosted-live summary says 'reproduced'"
+   ],
+   "verification": [
+    "PR CI: run-matrix.contract.test.ts",
+    "After merge to main: gh workflow run freeze-repro.yml --ref main -f mode=hosted-live -f macos_artifact_sha256=1687e2ca89e8db14840ded63c20e0812ceadb544e0169e1efa92bef77eddb0e4 -f windows_artifact_sha256=77a532f3c33a0be6f9315e7e0df02c2420c25a297e90c5fa6baff18f84193df8"
+   ],
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis."
+  },
+  {
+   "id": "M2-0556",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0555"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 4,
+   "risk": "low",
+   "finding_refs": [
+    "Lead diagnosis 2026-10-03 (read-only, logs and artifacts) of readiness runs N8 resource-census 37090250380 and N10 freeze-repro 37090252167 (main fd38fd09c6 against v1.9.6-unsigned): 'run-matrix.sh: line 225: 2784 Killed: 9'; row 4 main sample truncated; interrupt process-signal not-exercised, waited_seconds 0; orphan Metis process at job cleanup; run-matrix.sh:817-841, 863-868"
+   ],
+   "scope_paths": [
+    "scripts/qa/freeze-repro/run-matrix.sh",
+    "scripts/qa/freeze-repro/run-matrix.contract.test.ts"
+   ],
+   "title": "Second-instance row kills the frozen app before the last checks run",
+   "summary": "Row 4 launches a second instance against the hung first instance; the first instance dies by SIGKILL about 20 s later (inferred: Chromium's single-instance handshake), so row 4 loses its renderer sample and the SIGTERM check finds no app to signal.",
+   "acceptance": [
+    "The process-signal check runs while the original first instance is alive and FIFO-blocked (before row 4's second launch), or row 4 relaunches the app; it is never not-exercised because the app pid has gone",
+    "If the main process exits during a row, the bundle records main_exited with signal and time as an observation",
+    "Renderer samples missing after the main process exits are recorded with reason main-exited and do not count as sample failures",
+    "Row 4 records what happened to the first and the second instance",
+    "freeze-repro.yml hosted-live on main: the macOS M2-0008 job is green and scripts/evidence/check.mjs passes"
+   ],
+   "verification": [
+    "PR CI: run-matrix.contract.test.ts",
+    "After merge to main: gh workflow run freeze-repro.yml --ref main -f mode=hosted-live -f macos_artifact_sha256=1687e2ca89e8db14840ded63c20e0812ceadb544e0169e1efa92bef77eddb0e4 -f windows_artifact_sha256=77a532f3c33a0be6f9315e7e0df02c2420c25a297e90c5fa6baff18f84193df8"
+   ],
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis."
+  },
+  {
+   "id": "M2-0557",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 1.5,
+   "risk": "low",
+   "finding_refs": [
+    "Lead diagnosis 2026-10-03 (read-only, logs and artifacts) of readiness runs N8 resource-census 37090250380 and N10 freeze-repro 37090252167 (main fd38fd09c6 against v1.9.6-unsigned): fuse-probe stderr 'Cannot find module out/m2-0008-freeze-repro/fuse-probe/node-options-probe.cjs' via node_init on both legs; node-options-fuse.json DISABLED_OR_UNAVAILABLE; run-matrix.sh:364-389"
+   ],
+   "scope_paths": [
+    "scripts/qa/freeze-repro/run-matrix.sh",
+    "scripts/qa/freeze-repro/run-matrix.contract.test.ts"
+   ],
+   "title": "Fuse probe uses a relative path and records the fuse as off",
+   "summary": "record_fuse_state passes a relative path to NODE_OPTIONS --require, which Node resolves as a package name; the probe fails with MODULE_NOT_FOUND and both bundles record DISABLED_OR_UNAVAILABLE, although the probe's own stderr shows 1.9.6 loading NODE_OPTIONS under ELECTRON_RUN_AS_NODE.",
+   "acceptance": [
+    "The probe path passed to --require is absolute and quoted (a Windows path via cygpath -w)",
+    "A contract test with a relative --out asserts the absolute path",
+    "Hosted bundles on both OSes report the real fuse state, and an enabled fuse is reported to M2-0558"
+   ],
+   "verification": [
+    "PR CI: run-matrix.contract.test.ts",
+    "After merge to main: gh workflow run freeze-repro.yml --ref main -f mode=hosted-live -f macos_artifact_sha256=1687e2ca89e8db14840ded63c20e0812ceadb544e0169e1efa92bef77eddb0e4 -f windows_artifact_sha256=77a532f3c33a0be6f9315e7e0df02c2420c25a297e90c5fa6baff18f84193df8; read node-options-fuse.json on both legs"
+   ],
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis."
+  },
+  {
+   "id": "M2-0558",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "security",
+   "owner_model": "opus",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0557"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 6,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead diagnosis 2026-10-03 (read-only, logs and artifacts) of readiness runs N8 resource-census 37090250380 and N10 freeze-repro 37090252167 (main fd38fd09c6 against v1.9.6-unsigned): freeze-repro 37090252167 fuse-probe stderr on both legs shows 1.9.6 loading NODE_OPTIONS under ELECTRON_RUN_AS_NODE; git grep finds no fuse configuration on main or m2/integration"
+   ],
+   "scope_paths": [
+    "electron-builder.yml",
+    "scripts/build",
+    "src/main/cli.ts",
+    "src/main/cli-installer.ts",
+    "src/main/dust-cli-chat.ts",
+    "docs/security"
+   ],
+   "title": "Set the Electron fuses for shipping builds and decide whether the app keeps RunAsNode",
+   "summary": "No Electron fuse is set anywhere in the build (no @electron/fuses or electronFuses config on main or m2/integration), so the shipped app keeps Electron's defaults: ELECTRON_RUN_AS_NODE, NODE_OPTIONS and the node inspect flags are honoured. On macOS any local process can then run code as Metis and inherit its Screen Recording and Microphone grants. The app itself uses ELECTRON_RUN_AS_NODE as its bundled Node runtime for the CLI features (src/main/cli.ts, cli-installer.ts, dust-cli-chat.ts), so turning RunAsNode off needs a recorded owner decision; no product use of NODE_OPTIONS or the inspect flags was found.",
+   "acceptance": [
+    "An inventory of every product use of ELECTRON_RUN_AS_NODE, NODE_OPTIONS and the node inspect flags on m2/integration, with file:line, is committed under docs/security",
+    "The shipping macOS DMG and Windows Setup builds turn off EnableNodeOptionsEnvironmentVariable and EnableNodeCliInspectArguments; asar integrity validation and OnlyLoadAppFromAsar are enabled where the packager supports them; the QA-identity variant may keep inspect on for the Playwright driver, stated in the build config",
+    "LEAD_ACTION: before RunAsNode changes, the owner decides between moving the CLI runtime off ELECTRON_RUN_AS_NODE (utilityProcess or a separately shipped Node) and turning RunAsNode off, or keeping it with the residual risk written into THREAT-MODEL.md; the decision is recorded in DECISIONS.md",
+    "A CI step reads the fuses from the packaged app on both OSes and fails when they differ from the declared state",
+    "The freeze-repro fuse probe (M2-0557) reports the new state on the next candidate"
+   ],
+   "verification": [
+    "PR CI: the packaged fuse check on macOS and Windows",
+    "Freeze-repro hosted-live bundle node-options-fuse.json on the next candidate"
+   ],
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis."
   }
  ],
  "decisions": {
