@@ -579,6 +579,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "1.9.7 pre-cut paperwork: 1.9.7.gates.json pre-registered (no Portable, OD-53), growth rules registered (M2-0488), SCHEMA N13 + M2-0549, 1.9.7.md skeleton; M2-0458 moves into 1.9.7 (M2-0046, M2-0498 depend on it)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0550 filed (History design first-capture timeout after M2-0540)."
   }
  ],
  "tickets": [
@@ -37499,6 +37505,45 @@
    "needs_decision": [],
    "slices": [],
    "notes": "2026-10-03 (lead): filed from readiness N13. Not a dependency of M2-0046: records already validate under today's code, SCHEMA.md section 6 step 7 makes the lead check both rules by hand, and a candidate-bound gate row already pins each record to the candidate run and bytes (build_run_id, artifact_sha256). If it is to govern the 1.9.7 release-check, it must reach main first, because program-audit.yml's checker-ref defaults to main. scripts/evidence/ is not in qa-candidate.yml's pull_request paths, so its PR never queues on the owner runner (N19), and it is not installer content, so the OD-45/OD-47 merge deferral does not apply. When it merges, the lead moves the two rules from SCHEMA.md section 6 step 7 into section 3 and drops 'not enforced yet'. No existing record uses the label (evidence/records/ has no .jsonl files), so nothing needs re-filing."
+  },
+  {
+   "id": "M2-0550",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 3,
+   "risk": "low",
+   "finding_refs": [
+    "Lead, 2026-10-03: after M2-0540 merged, QA run 37128364535 (M2-0543 #467) still failed History design evidence 71/72 on its FIRST capture, slow-with-rows / light-1x-reduced-motion ('state not reached: locator.waitFor: Timeout 10000ms exceeded'); the same capture failed on M2-0032/M2-0534 on 2026-10-02; it bounces 1.9.7 critical PRs"
+   ],
+   "scope_paths": [
+    "scripts/qa/history-design-capture.mjs",
+    "scripts/qa/history-design-capture.test.ts"
+   ],
+   "title": "History design evidence: make the first capture (slow-with-rows, light-1x-reduced-motion) reach its state reliably (no capture or check dropped)",
+   "summary": "M2-0540's fix did not cover the run's first capture: it still times out waiting for the slow-with-rows state on a cold renderer. Find why the first capture's state is not reached within 10 s (cold first navigation, the slow-network fixture arming before the page is ready, or the order of variants) and fix it at the cause; every capture and every contrast and clipping check stays.",
+   "acceptance": [
+    "Root cause of the first-capture timeout stated from CI evidence (per-capture timings in the report)",
+    "All 72 captures complete on three consecutive QA candidate runs; no capture removed, skipped or reordered to hide it; the 10 s state wait is not raised without the cause being shown",
+    "A test in history-design-capture.test.ts fails without the change"
+   ],
+   "verification": [
+    "CI: three QA candidate runs with History design evidence 72/72"
+   ],
+   "notes": "2026-10-03 (lead): P0 because the flake bounces 1.9.7 critical PRs; M2-0540 (DONE) did not fix this capture."
   }
  ]
 }
