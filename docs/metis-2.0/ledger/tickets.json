@@ -543,6 +543,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0256 re-sliced into 3 slices (20 h) after 8 rounds; M2-0393 FF-05b expectation follows (stays 0)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0249 rescoped (builds on M2-0060.3; FF-07-safe enumeration acceptance) and parked until M2-0060's last slice."
   }
  ],
  "tickets": [
@@ -21662,17 +21668,22 @@
    ],
    "scope_paths": [
     "src/main/ipc/register.ts",
+    "src/main/ipc/register.test.ts",
     "src/main/ipc/security.ts",
-    "src/shared/ipc.ts",
+    "src/shared/ipc-auth.ts",
     "src/main/index.ts",
-    "src/renderer/src/lib/"
+    "src/renderer/src/lib/",
+    "scripts/check-architecture.mjs",
+    "scripts/check-architecture.test.ts",
+    "scripts/architecture-baseline.json"
    ],
-   "summary": "M2-0060's registerHandler guarantees a schema and a sender guard, but authentication stays a per-handler convention: requireAuth() appears on 129 lines of index.ts with about 20 different unauthenticated result shapes, so a new handler can compile without any auth check.",
+   "summary": "M2-0060's registerHandler guarantees a schema and a sender guard, but authentication stays a per-handler convention: requireAuth() appears on 129 lines of index.ts with about 20 different unauthenticated result shapes, so a new handler can compile without any auth check. Builds on M2-0060.3's registerHandler(channel, {schema, guard, handler}) and M2-0060.2's ipc/security.ts; it adds an auth policy to that signature and does not create or redesign either file.",
    "acceptance": [
     "registerHandler requires auth: 'required' | 'public'; an @ts-expect-error test proves omitting it fails typecheck",
     "For 'required' handlers registerHandler returns one typed Unauthenticated result from shared contracts before the body runs; a renderer helper handles it, tested on one handler per migrated domain",
-    "An enumeration test lists every 'public' handler and fails when one is added without an entry in a reviewed allowlist",
-    "Migrated handlers contain no requireAuth() call; a check-architecture count of requireAuth() under src/main/features and src/main/ipc is 0"
+    "A 'public' registration must name a channel in PUBLIC_IPC_HANDLERS (src/main/ipc/security.ts). An @ts-expect-error test proves that an unlisted channel fails typecheck, and a unit test proves registerHandler throws for it at registration. A behavioural test records the auth value of every registerHandler call made by each registration function that uses registerHandler, and asserts that the set of 'public' channels equals new Set(PUBLIC_IPC_HANDLERS). No test reads source files (FF-07).",
+    "Migrated handlers contain no requireAuth() call; a check-architecture count of requireAuth() under src/main/features and src/main/ipc is 0",
+    "Migrated handlers are the ones on registerHandler at the base (M2-0060.3's handler); further migrations stay with the extraction tickets. No architecture-baseline count rises; FF-16 enters the baseline at {}."
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -21687,7 +21698,8 @@
    "priority": "P1",
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "notes": " 2026-10-03 (lead, STUCK triage): stacked (OD-48) on M2-0060.1 only, so it rebuilt M2-0060.2/.3's files; parked until M2-0060's last slice is READY or merged (ledger.py fix37 now enforces it); branch 988aacbb kept as reference; rebuild from M2-0060.3."
   },
   {
    "id": "M2-0250",
