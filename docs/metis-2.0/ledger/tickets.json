@@ -615,6 +615,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0206 (1.9.9 owner-channel build) depends on M2-0558 (Electron fuses)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Evidence Rock 3 prep: external_blocker (owner Program lead, unblock_step = the LEAD_ACTION items) plus engineering_first on the 18 open LEAD_ACTION tickets that had no blocker: M2-0421, M2-0425, M2-0447, M2-0451, M2-0452, M2-0453, M2-0454, M2-0455, M2-0456, M2-0458, M2-0495, M2-0497, M2-0498, M2-0500, M2-0503, M2-0520, M2-0524, M2-0558."
   }
  ],
  "tickets": [
@@ -30526,14 +30532,20 @@
     "CI Build & Test on the PR (native job green)"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION (after merge, not the implementer's): the lead confirms the step is green on the next m2/integration run"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 0.5,
    "status": "TODO",
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded."
   },
   {
    "id": "M2-0422",
@@ -30698,7 +30710,11 @@
    "depends_on": [],
    "kit_refs": [],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION (after merge, not the implementer's): the lead dispatches it and fills M2-0005's baseline document from the artifact"
+   },
    "flag": null,
    "status": "TODO",
    "title": "Add a dispatchable baseline workflow that runs every M2-0005 gate on 2bf21f1c under the hermetic harness",
@@ -30726,7 +30742,9 @@
    "estimate_hours": 3,
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "engineering_first": true,
+   "notes": "2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded."
   },
   {
    "id": "M2-0426",
@@ -31857,14 +31875,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION: record the PR's Design capture run id (macOS and Windows) and the manifest audit summary (negative control detected, zero failures) in the ticket log"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 5,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0447, audited); unblocks M2-0101."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0447, audited); unblocks M2-0101. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0448",
@@ -32080,14 +32103,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION (after merge, and after a main push registers design-capture.yml): run gh workflow run design-capture.yml -R mysticalsin/AskToto-Mantu --ref main and download both OS artifacts. Commit the S01-S17 PNGs and the manifest (with its audit summary) under the private docs/metis-2.0/evidence/M2-0101/design/, keeping the HTML-mock set marked superseded (OD-12). An Opus validator session other than the author then checks them against SETTINGS-2.0.md section 10 and the M2-0201 prototype and records acceptance, and the lead files M2-0101's DESIGNED record and moves M2-0101 to DONE"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 5,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0451, audited); unblocks M2-0101."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0451, audited); unblocks M2-0101. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0452",
@@ -32136,14 +32164,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance items after the engineering merge: LEAD_ACTION (merge timing): promote-candidate.yml:62-75 requires every job of the qa-candidate run to succeed, so this job becomes a promotion gate once it reaches main. Merge this PR into m2/integration only after the 1.9.7 candidate commit is fixed on main (M2-0046), unless the lead records a decision that this job is a 1.9.7 gate, in which case move the ticket to W1/m3 | LEAD_ACTION: file LOCALLY_TESTED with ci_run_id = the PR head's Build & Test run (check.mjs P3 accepts only build.yml), plus the PR's commit and pr. Cite the QA candidate self-test run id and its candidate-asr-win report as output. After the change reaches main, dispatch `gh workflow run qa-candidate.yml -R mysticalsin/AskToto-Mantu --ref main -f commit=<main head sha>` and keep that run's candidate-asr-win report with the candidate's per-asset promotion evidence (M2-0217)"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 5,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0452, audited); unblocks M2-0018."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0452, audited); unblocks M2-0018. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0453",
@@ -32191,14 +32224,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance items after the engineering merge: LEAD_ACTION (merge timing): promote-candidate.yml:62-75 requires every job of the qa-candidate run to succeed, so these jobs become promotion gates once they reach main. Merge this PR into m2/integration only after the 1.9.7 candidate commit is fixed on main (M2-0046), unless the lead records a decision that these jobs are 1.9.7 gates, in which case move the ticket to W1/m3 | LEAD_ACTION: file LOCALLY_TESTED with ci_run_id = the PR head's Build & Test run (check.mjs P3), and cite the QA candidate self-test run id and its candidate-lifecycle reports as output. After the change reaches main, dispatch qa-candidate.yml on main head and use the candidate-lifecycle reports as the per-asset PASS evidence that promote-candidate.yml requires"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0453, audited); unblocks M2-0018."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0453, audited); unblocks M2-0018. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0454",
@@ -32245,14 +32283,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance items after the engineering merge: LEAD_ACTION (merge timing): promote-candidate.yml:62-75 requires every job of the qa-candidate run to succeed, so a FAIL here blocks promotion once the job reaches main. Merge this PR into m2/integration only after the 1.9.7 candidate commit is fixed on main (M2-0046), unless the lead records a decision that this job is a 1.9.7 gate, in which case move the ticket to W1/m3 | LEAD_ACTION: file LOCALLY_TESTED with ci_run_id = the PR head's Build & Test run (check.mjs P3), and cite the QA candidate self-test run id and its candidate-native-picker-win report as output. If the verdict is BLOCKED_EXTERNAL, add the laptop run to the M2-0007 device checklist"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 7,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0454, audited); unblocks M2-0018."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0454, audited); unblocks M2-0018. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0455",
@@ -32298,14 +32341,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance items after the engineering merge: LEAD_ACTION (merge timing): promote-candidate.yml:62-75 requires every job of the qa-candidate run to succeed, so an x86_64 FAIL blocks promotion once this reaches main. Decide before merge: either this is a 1.9.7 gate (then move the ticket to W1/m3 and merge now), or merge it into m2/integration only after the 1.9.7 candidate commit is fixed on main (M2-0046) | LEAD_ACTION: file LOCALLY_TESTED with ci_run_id = the PR head's Build & Test run (check.mjs P3), and cite the QA candidate self-test run id and both slice reports as output"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 4,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0455, audited); unblocks M2-0018."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0455, audited); unblocks M2-0018. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0456",
@@ -32351,14 +32399,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance items after the engineering merge: LEAD_ACTION (merge timing): promote-candidate.yml:62-75 requires every job of the qa-candidate run to succeed, so this job becomes a promotion gate once it reaches main. Merge this PR into m2/integration only after the 1.9.7 candidate commit is fixed on main (M2-0046), unless the lead records a decision that this job is a 1.9.7 gate, in which case move the ticket to W1/m3 | LEAD_ACTION: file LOCALLY_TESTED with ci_run_id = the PR head's Build & Test run (check.mjs P3), and cite the QA candidate self-test run id and the uploaded screenshots as output"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0456, audited); unblocks M2-0018."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0456, audited); unblocks M2-0018. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0457",
@@ -32478,14 +32531,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION: OD-53 (2026-10-03): the owner chose 'Portable is not a promotable 1.9.7 asset'. This ticket lands before the 1.9.7 cut (M2-0498 and M2-0046 depend on it): provenance.mjs drops Metis-Portable from the promotable set, so check.mjs --release, the ACCEPTED owner_statement, 1.9.7.md and promote-candidate.yml name only the DMG, ZIP and Setup sha256s. Portable stays a QA artifact (acceptance line 6)."
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0458, audited); unblocks M2-0018. 2026-10-03 (lead): OD-53 makes Metis-Portable a non-promotable QA artifact for 1.9.7, which answers acc 9: merge before the 1.9.7 cut. The dependency on M2-0046 is dropped (it would be a cycle); M2-0458 is now a dependency of M2-0046 and M2-0498, milestone m3. The placement note in the summary is superseded."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0458, audited); unblocks M2-0018. 2026-10-03 (lead): OD-53 makes Metis-Portable a non-promotable QA artifact for 1.9.7, which answers acc 9: merge before the 1.9.7 cut. The dependency on M2-0046 is dropped (it would be a cycle); M2-0458 is now a dependency of M2-0046 and M2-0498, milestone m3. The placement note in the summary is superseded. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0459",
@@ -34775,14 +34833,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION: the 1.9.7 cut (the qa-candidate.yml dispatch on main) needs this job green, like every other job. Cite its artifact in 1.9.7.md"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 4,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S9 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S9 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0496",
@@ -34881,14 +34944,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance items after the engineering merge: LEAD_ACTION, after the cut and once M2-0488's rule is registered: dispatch candidate-scenarios.yml --ref main with scenario=meeting-history, candidate_run=<1.9.7 run> and mac_sha256=<Metis-QA zip sha256 from SHA256SUMS.txt>. | LEAD_ACTION, recording the result: on PASS, file for M2-0046 acc 4c a LIVE_VERIFIED record (History during capture) and a MEASURED record (growth), under hosted-runner / macos-latest with ci_run_id, build_run_id and the QA zip sha256, disclosed as QA-identity bytes. 1.9.7.md states Windows meeting activity and the loopback channel as unverified residuals. On FAIL the candidate does not qualify."
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S11 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S11 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0498",
@@ -34952,14 +35020,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance items after the engineering merge: LEAD_ACTION: keep the installer hold (D-32 window) on m2/integration until the owner records ACCEPTED, not only until the cut. Any failed candidate evidence means a re-cut from main's head, so main must still hold only 1.9.7 content. PRs that change only tests, docs or workflows keep landing | LEAD_ACTION: cut m2/milestone-m3 at the bump's merge commit and merge it to main per integration.md §10, then run M2-0502's post-merge check (a push-event run on the merge commit, or a dispatched Build & Test, plus workflow registration). Then dispatch qa-candidate.yml on main with commit=<main head> (run_attempt 1). Its provenance.json has version 1.9.7, and SHA256SUMS.txt lists Metis-1.9.7.dmg, Metis-1.9.7.zip, Metis-Setup-1.9.7.exe, Metis-Portable-1.9.7.exe and Metis-QA-1.9.7.zip. Record the run id in docs/metis-2.0/releases/1.9.7.md | LEAD_ACTION before filing: get the owner's explicit in/out answer on M2-0202 for 1.9.7 (OD-22 against the D-32 window), and confirm that Portable still ships in 1.9.7 (M2-0458). If M2-0202 is in, move it to m3 and add it to depends_on"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 1,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R1 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead): the version bump waits for the last M2-0202 slice and M2-0542, so no re-cut follows it."
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R1 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead): the version bump waits for the last M2-0202 slice and M2-0542, so no re-cut follows it. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0499",
@@ -35068,14 +35141,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION: on the first real hotfix candidate, run promote with publish=false before publish=true, and record both run ids"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 4,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0501",
@@ -35244,14 +35322,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance items after the engineering merge: LEAD_ACTION: after merge, run a publish=false dry run (OD-33) with the draft residuals file. The draft body shows the section, then the draft is deleted; record the run id | LEAD_ACTION: for the 1.9.7 publish, pass the residuals from docs/metis-2.0/releases/1.9.7.md in public wording, after running the lead's hygiene scan on the file. Include: ad-hoc Mac with TCC re-grant; unsigned Windows; real-dataless ST-1 measured in the owner soak (OD-36); the idle soak as two hosted legs of at most 5.5 h each, extrapolated to 8 h (OD-35); HK-W status; and the B1/B2 sentence, which says the freeze and the orphaned processes are fixed only for the cause and mechanism identified so far, and close only after ten working days of clean diagnostics on the owner's Mac"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 4,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R6 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R6 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0504",
@@ -36289,14 +36372,19 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION: the QA candidate on main (the lane candidate) shows PASS in both rows; ledger M2-0433 DONE with the run ids"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 1,
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-02 (lead): held — precondition unmet (run 36991557510: fifo NOT_EXERCISED, boot write 373 ms); waits for M2-0531 and a lead-recorded strict PASS of both rows. 2026-10-02 (lead): run 37008199760 (integration + M2-0531): fifo FAIL (exercised), control FAIL; precondition still unmet. Amended: contract-test parity (it would fail once fifo's continue-on-error is removed), depends on M2-0532 and M2-0533."
+   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-02 (lead): held — precondition unmet (run 36991557510: fifo NOT_EXERCISED, boot write 373 ms); waits for M2-0531 and a lead-recorded strict PASS of both rows. 2026-10-02 (lead): run 37008199760 (integration + M2-0531): fifo FAIL (exercised), control FAIL; precondition still unmet. Amended: contract-test parity (it would fail once fifo's continue-on-error is removed), depends on M2-0532 and M2-0533. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0521",
@@ -36545,9 +36633,14 @@
     "LIVE_VERIFIED"
    ],
    "evidence_target": "LIVE_VERIFIED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION, after the milestone merge to main: dispatch candidate-scenarios.yml with scenario=journey on the latest complete qa-candidate run; when macOS and Windows both PASS, record LIVE_VERIFIED kind hosted-runner with scripts/evidence/record.mjs"
+   },
    "flag": null,
-   "notes": "2026-09-30 (lead): filed as rocket-fuel engagement 2 Rock 3 (codex-queue/.rocket-fuel/ROCKS.md)."
+   "notes": "2026-09-30 (lead): filed as rocket-fuel engagement 2 Rock 3 (codex-queue/.rocket-fuel/ROCKS.md). 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   },
   {
    "id": "M2-0525",
@@ -38319,7 +38412,11 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "raised_on": "2026-10-03",
+    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION: before RunAsNode changes, the owner decides between moving the CLI runtime off ELECTRON_RUN_AS_NODE (utilityProcess or a separately shipped Node) and turning RunAsNode off, or keeping it with the residual risk written into THREAT-MODEL.md; the decision is recorded in DECISIONS.md"
+   },
    "flag": null,
    "status": "TODO",
    "estimate_hours": 6,
@@ -38348,7 +38445,8 @@
     "PR CI: the packaged fuse check on macOS and Windows",
     "Freeze-repro hosted-live bundle node-options-fuse.json on the next candidate"
    ],
-   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis."
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "engineering_first": true
   }
  ],
  "decisions": {
