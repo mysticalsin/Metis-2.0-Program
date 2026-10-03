@@ -639,6 +639,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Evidence-producer gap review: filed M2-0559, M2-0560, M2-0561, M2-0562, M2-0563, M2-0564, M2-0565, M2-0566, M2-0567, M2-0568, M2-0569, M2-0570 and amended 36 tickets (M2-0039, M2-0044, M2-0046, M2-0066, M2-0067, M2-0081, M2-0084, M2-0085, M2-0093, M2-0097, M2-0107, M2-0108, M2-0111, M2-0113, M2-0131, M2-0149, M2-0159, M2-0166, M2-0173, M2-0175, M2-0200, M2-0205, M2-0206, M2-0207, M2-0209, M2-0210, M2-0312, M2-0321, M2-0345, M2-0351, M2-0378, M2-0380, M2-0381, M2-0434, M2-0436, M2-0548) so every outside-evidence row has a CI producer or a stated owner question."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-58 (owner Mac runner online per cut window), OD-59 (1.9.9 fuses: RunAsNode stays on; M2-0558 acceptance), OD-60 (Laya deferred past 2.0: M2-0312, M2-0570 DEFERRED; M2-0124 split, container half M2-0571 DEFERRED; D-23 ANSWERED_CHANGED), OD-61 (Cloudflare tokens in a protected staging environment; M2-0566); D-36 OPEN."
   }
  ],
  "tickets": [
@@ -11398,7 +11404,7 @@
   },
   {
    "id": "M2-0124",
-   "title": "Qualify the Laya alternative behind /v1/decide without any Jev dependency (TASK-032)",
+   "title": "'unavailable' readiness state and selection in Operator, the Laya-only isolation test (no Jev call), and the no-Python/Torch desktop-package guard",
    "wave": "W6",
    "milestone": "m8",
    "type": "external",
@@ -11428,12 +11434,10 @@
     "K02-DEC-laya"
    ],
    "scope_paths": [
-    "services/laya/",
     "operator/src/routes/decide.ts"
    ],
    "summary": "Laya has zero implementation. Build a container adapter (Python/Torch, never in the desktop) against the local compose profile with a pinned checkpoint, expose readiness and selection, and prove Laya-only never routes to Jev. REF-14 here is the HeyClicky kit's Laya source record.",
    "acceptance": [
-    "Container adapter with pinned checkpoint and dependencies runs in the compose profile (CI only), built only after the Laya source and checkpoint licence are confirmed; until then only the 'unavailable' readiness state and the Laya-only isolation test exist",
     "Readiness and selection exposed in Operator; 'unavailable' shown until hosted",
     "Laya-only isolation test: no Jev call; approved auto fallback only when explicitly configured",
     "No Python/Torch in the desktop package"
@@ -11445,69 +11449,15 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": {
-    "owner": "Laya vendor/hosting relationship owner (role; person to be named by program owner)",
-    "unblock_step": "Laya vendor/hosting relationship owner (role; person to be named by program owner): confirm the Laya source and checkpoint licence and approve Laya's hosting platform (OD-17 answered D-5 for Hindsight only; Laya hosting remains open). Gates only slice M2-0124.2 (container adapter with pinned checkpoint); until then Laya shows 'unavailable' and never routes to Jev.",
-    "needed_by": "2026-10-26",
-    "raised_on": "2026-09-26"
-   },
+   "external_blocker": null,
    "flag": "laya",
    "risk": "medium",
-   "estimate_hours": 13,
+   "estimate_hours": 4,
    "validation_hours": 1.0,
-   "slices": [
-    {
-     "id": "M2-0124.1",
-     "title": "'unavailable' readiness state and selection in Operator, the Laya-only isolation test (no Jev call), and the no-Python/Torch desktop-package guard",
-     "scope_paths": [
-      "operator/src/routes/decide.ts"
-     ],
-     "acceptance": [
-      "Readiness and selection exposed in Operator; 'unavailable' shown until hosted",
-      "Laya-only isolation test: no Jev call; approved auto fallback only when explicitly configured",
-      "No Python/Torch in the desktop package"
-     ],
-     "estimate_hours": 4,
-     "owner_model": "sonnet",
-     "depends_on_slices": []
-    },
-    {
-     "id": "M2-0124.2",
-     "title": "Laya container image: Python/Torch adapter with the pinned checkpoint and pinned dependencies under services/laya (conditional on the licence)",
-     "scope_paths": [
-      "services/laya/"
-     ],
-     "acceptance": [
-      "SLICE: image builds and passes its own contract tests in CI; not yet in the compose profile and not yet reachable from /v1/decide"
-     ],
-     "estimate_hours": 5,
-     "owner_model": "sonnet",
-     "depends_on_slices": [
-      "M2-0124.1"
-     ]
-    },
-    {
-     "id": "M2-0124.3",
-     "title": "Compose-profile CI run of the Laya adapter and /v1/decide wiring, so readiness leaves 'unavailable' only when Laya is hosted (conditional on the licence)",
-     "scope_paths": [
-      "services/laya/",
-      "operator/src/routes/decide.ts"
-     ],
-     "acceptance": [
-      "Container adapter with pinned checkpoint and dependencies runs in the compose profile (CI only), built only after the Laya source and checkpoint licence are confirmed; until then only the 'unavailable' readiness state and the Laya-only isolation test exist"
-     ],
-     "estimate_hours": 4,
-     "owner_model": "sonnet",
-     "depends_on_slices": [
-      "M2-0124.2"
-     ]
-    }
-   ],
+   "slices": [],
    "due": null,
    "status": "TODO",
-   "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Slice M2-0124.1 plus acceptance 4. Operator exposes Laya readiness and selection, and reports 'unavailable' while no hosted adapter is configured. The Laya-only isolation test in operator/src/routes/decide.test.ts: with Laya selected and unavailable, /v1/decide makes zero calls to the mock Jev vendor (spy asserted) and falls back automatically only when an approved fallback is explicitly configured. A CI check scans the packaged desktop artifacts (macOS and Windows) and fails on any Python or Torch payload. Proof: `npx vitest run operator/src/routes/decide.test.ts` and the package scan, both green in CI. Do not build the compose container or the checkpoint (M2-0124.2). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Laya vendor/hosting relationship owner confirms the Laya source and checkpoint licence and approves Laya's hosting platform. OD-17 answered D-5 for Hindsight only. Once that is done, slice M2-0124.2 can start: the container adapter with a pinned checkpoint in the compose profile, running `docker compose -f services/compose.yml run laya-tests` in CI. 2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose. 2026-09-29: D-5 ANSWERED — Cloudflare Containers + Neon serverless Postgres (pgvector), EU Frankfurt, via Hyperdrive.",
-   "slice_current": 1,
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Slice M2-0124.1 plus acceptance 4. Operator exposes Laya readiness and selection, and reports 'unavailable' while no hosted adapter is configured. The Laya-only isolation test in operator/src/routes/decide.test.ts: with Laya selected and unavailable, /v1/decide makes zero calls to the mock Jev vendor (spy asserted) and falls back automatically only when an approved fallback is explicitly configured. A CI check scans the packaged desktop artifacts (macOS and Windows) and fails on any Python or Torch payload. Proof: `npx vitest run operator/src/routes/decide.test.ts` and the package scan, both green in CI. Do not build the compose container or the checkpoint (M2-0124.2). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Laya vendor/hosting relationship owner confirms the Laya source and checkpoint licence and approves Laya's hosting platform. OD-17 answered D-5 for Hindsight only. Once that is done, slice M2-0124.2 can start: the container adapter with a pinned checkpoint in the compose profile, running `docker compose -f services/compose.yml run laya-tests` in CI. 2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose. 2026-09-29: D-5 ANSWERED — Cloudflare Containers + Neon serverless Postgres (pgvector), EU Frankfurt, via Hyperdrive. 2026-10-03 (lead): OD-60 defers Laya serving past 2.0; this ticket is now its former slice .1 only; the container half moved to M2-0571 (DEFERRED).",
    "slicing_note": "Refined the existing split: .1 keeps its intent and now also carries the desktop-package guard (3->4 h), so that line can be met before the licence decision. The old 10 h .2 exceeded the 8 h cap, so it becomes .2 (image, 5 h) and .3 (compose plus route wiring, 4 h); total 13 h. .2 and .3 stay conditional on the external unblock (licence and hosting confirmation, needed by 2026-10-26; decisions D-5, D-23) and may be DEFERRED without affecting .1. /v1/decide does not exist yet (M2-0123, TODO). services/compose.yml (the compose profile, currently Postgres plus Hindsight) and the packaging guard's home (scripts/ or electron-builder checks) are outside scope_paths."
   },
   {
@@ -25517,7 +25467,7 @@
    "type": "test",
    "owner_model": "sonnet",
    "depends_on": [
-    "M2-0124",
+    "M2-0571",
     "M2-0131",
     "M2-0570"
    ],
@@ -25552,13 +25502,13 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
-   "status": "TODO",
+   "status": "DEFERRED",
    "priority": "P1",
    "required_evidence": [
     "MEASURED",
     "LIVE_VERIFIED"
    ],
-   "notes": "2026-10-03 (lead): depends on M2-0570, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Names the producer for acc 1 and acc 2, and separates what CI can measure now from what needs the hosted endpoint. LEAD EDIT outside the amendment fields: change milestone m5 to m8 and wave W3 to W6, because the ticket already depends on the m8/W6 tickets M2-0124 and M2-0131, and M2-0570 is m8. If the owner answers D-23 'not in 2.0', this ticket moves to DEFERRED with M2-0570."
+   "notes": "2026-10-03 (lead): depends on M2-0570, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Names the producer for acc 1 and acc 2, and separates what CI can measure now from what needs the hosted endpoint. LEAD EDIT outside the amendment fields: change milestone m5 to m8 and wave W3 to W6, because the ticket already depends on the m8/W6 tickets M2-0124 and M2-0131, and M2-0570 is m8. If the owner answers D-23 'not in 2.0', this ticket moves to DEFERRED with M2-0570. 2026-10-03 (lead): DEFERRED past 2.0 by OD-60 (owner answer to D-23)."
   },
   {
    "id": "M2-0313",
@@ -38796,11 +38746,7 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": {
-    "owner": "Program lead",
-    "raised_on": "2026-10-03",
-    "unblock_step": "The lead completes the LEAD_ACTION acceptance item after the engineering merge: LEAD_ACTION: before RunAsNode changes, the owner decides between moving the CLI runtime off ELECTRON_RUN_AS_NODE (utilityProcess or a separately shipped Node) and turning RunAsNode off, or keeping it with the residual risk written into THREAT-MODEL.md; the decision is recorded in DECISIONS.md"
-   },
+   "external_blocker": null,
    "flag": null,
    "status": "TODO",
    "estimate_hours": 6,
@@ -38821,7 +38767,7 @@
    "acceptance": [
     "An inventory of every product use of ELECTRON_RUN_AS_NODE, NODE_OPTIONS and the node inspect flags on m2/integration, with file:line, is committed under docs/security",
     "The shipping macOS DMG and Windows Setup builds turn off EnableNodeOptionsEnvironmentVariable and EnableNodeCliInspectArguments; asar integrity validation and OnlyLoadAppFromAsar are enabled where the packager supports them; the QA-identity variant may keep inspect on for the Playwright driver, stated in the build config",
-    "LEAD_ACTION: before RunAsNode changes, the owner decides between moving the CLI runtime off ELECTRON_RUN_AS_NODE (utilityProcess or a separately shipped Node) and turning RunAsNode off, or keeping it with the residual risk written into THREAT-MODEL.md; the decision is recorded in DECISIONS.md",
+    "OD-59 (owner, 2026-10-03): 1.9.9 keeps RunAsNode on and turns off only EnableNodeOptionsEnvironmentVariable and EnableNodeCliInspectArguments; the RunAsNode residual (any local process can run code as Metis and inherit its Screen Recording and Microphone grants) is written into THREAT-MODEL.md and the 1.9.9 release notes; whether 2.0 moves the CLI runtime off ELECTRON_RUN_AS_NODE and turns RunAsNode off is D-36",
     "A CI step reads the fuses from the packaged app on both OSes and fails when they differ from the declared state",
     "The freeze-repro fuse probe (M2-0557) reports the new state on the next candidate"
    ],
@@ -38829,8 +38775,7 @@
     "PR CI: the packaged fuse check on macOS and Windows",
     "Freeze-repro hosted-live bundle node-options-fuse.json on the next candidate"
    ],
-   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
-   "engineering_first": true
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded. 2026-10-03 (lead): OD-59 settles the 1.9.9 fuse set (RunAsNode stays on, residual stated); D-36 holds the 2.0 RunAsNode question."
   },
   {
    "id": "M2-0559",
@@ -39214,7 +39159,11 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "raised_on": "2026-10-03",
+    "unblock_step": "Create the staging-only Cloudflare token (metis-operator-staging Worker and D1) and the read-only AI Gateway and logs token, then store both with gh secret set in the app repository's protected 'staging' environment (OD-61); the lead then dispatches the staging workflow and files the records."
+   },
    "flag": null,
    "status": "TODO",
    "estimate_hours": 8,
@@ -39242,14 +39191,16 @@
     "Every upload is content-free: the deploy receipt, the bundle sha256, the check report and lane.json. None holds request bodies, audio, transcripts, tokens, account ids or account subdomains.",
     "Tests in Build & Test: scripts/qa/staging-checks/*.test.ts show that an unknown check is refused, that a check receives only its declared secrets, and that lane.json has the fields above, including deployment unknown. scripts/ci/operator-staging-workflow.contract.test.ts asserts the guard, the main-only dispatch, the registration-only pull_request run, and that the token appears only in the deploy step. A dispatch without the token fails at the deploy step with the CLI error and never skips it.",
     "docs/runbooks/staging.md step 2 names the operator-staging.yml dispatch as the way a real staging deploy runs (no wrangler login on a Mac), and docs-verify stays green.",
-    "LEAD_ACTION (after M2-0103's account-owner step and the owner's answer on token storage): the owner, not an agent, stores the tokens with gh secret set in the protected environment. The lead then dispatches deploy=true check=health from main and files M2-0103's HOST_CONFIGURED from lane.json, then dispatches check=gateway-privacy and files M2-0104's HOST_CONFIGURED."
+    "LEAD_ACTION (after M2-0103's account-owner step and OD-61): the owner, not an agent, stores the tokens with gh secret set in the protected environment. The lead then dispatches deploy=true check=health from main and files M2-0103's HOST_CONFIGURED from lane.json, then dispatches check=gateway-privacy and files M2-0104's HOST_CONFIGURED.",
+    "OD-61 (owner, 2026-10-03): both tokens live in a protected GitHub environment named 'staging' of the app repository, set by the owner with gh secret set; only a main-branch workflow_dispatch job may use it, and no agent ever reads or prints their values"
    ],
    "verification": [
     "CI Build & Test on the PR (vitest runs scripts/qa/staging-checks/*.test.ts and scripts/ci/operator-staging-workflow.contract.test.ts)",
     "gh workflow run operator-staging.yml --ref main -f deploy=true -f check=health (LEAD_ACTION, once the owner has stored the staging token)",
     "gh workflow run operator-staging.yml --ref main -f deploy=false -f check=gateway-privacy (LEAD_ACTION, once the read-only token is stored)"
    ],
-   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (staging-evidence)."
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (staging-evidence). 2026-10-03 (lead): OD-61 answers the token-storage question.",
+   "engineering_first": true
   },
   {
    "id": "M2-0567",
@@ -39424,7 +39375,7 @@
    "priority": "P2",
    "kit_refs": [],
    "depends_on": [
-    "M2-0124",
+    "M2-0571",
     "M2-0119",
     "M2-0434"
    ],
@@ -39436,7 +39387,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DEFERRED",
    "estimate_hours": 6,
    "risk": "medium",
    "finding_refs": [
@@ -39460,7 +39411,55 @@
     "CI IaC validation job on the PR (no deploy)",
     "gh workflow run laya-deploy.yml --ref main (lead only, after D-23 and B-26)"
    ],
-   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (ordering-and-soak)."
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (ordering-and-soak). 2026-10-03 (lead): DEFERRED past 2.0 by OD-60 (owner answer to D-23)."
+  },
+  {
+   "id": "M2-0571",
+   "wave": "W6",
+   "milestone": "m8",
+   "type": "external",
+   "owner_model": "sonnet",
+   "priority": "P2",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0124"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": {
+    "owner": "Laya vendor/hosting relationship owner (role; person to be named by program owner)",
+    "unblock_step": "Laya vendor/hosting relationship owner (role; person to be named by program owner): confirm the Laya source and checkpoint licence and approve Laya's hosting platform (OD-17 answered D-5 for Hindsight only; Laya hosting remains open). Gates only slice M2-0124.2 (container adapter with pinned checkpoint); until then Laya shows 'unavailable' and never routes to Jev.",
+    "needed_by": "2026-10-26",
+    "raised_on": "2026-09-26"
+   },
+   "flag": null,
+   "status": "DEFERRED",
+   "estimate_hours": 9,
+   "risk": "medium",
+   "finding_refs": [
+    "K02-DEC-laya"
+   ],
+   "scope_paths": [
+    "services/laya/",
+    "operator/src/routes/decide.ts"
+   ],
+   "title": "Laya container adapter with the pinned checkpoint and its compose-profile CI run behind /v1/decide (deferred past 2.0, OD-60)",
+   "summary": "The container half of M2-0124 (its former slices .2 and .3). OD-60 (owner, 2026-10-03, answering D-23) defers Laya serving past 2.0; M2-0124 keeps the unavailable readiness state, the Laya-only isolation test and the no-Python/Torch desktop check.",
+   "acceptance": [
+    "Laya container image: Python/Torch adapter with the pinned checkpoint and pinned dependencies under services/laya (conditional on the licence)",
+    "SLICE: image builds and passes its own contract tests in CI; not yet in the compose profile and not yet reachable from /v1/decide",
+    "Compose-profile CI run of the Laya adapter and /v1/decide wiring, so readiness leaves 'unavailable' only when Laya is hosted (conditional on the licence)",
+    "Container adapter with pinned checkpoint and dependencies runs in the compose profile (CI only), built only after the Laya source and checkpoint licence are confirmed; until then only the 'unavailable' readiness state and the Laya-only isolation test exist"
+   ],
+   "verification": [
+    "docker compose -f services/compose.yml run laya-tests",
+    "npx vitest run operator/src/routes/decide.test.ts"
+   ],
+   "notes": "2026-10-03 (lead): split from M2-0124 under OD-60; DEFERRED."
   }
  ],
  "decisions": {
@@ -39486,13 +39485,14 @@
   "D-20": "OPEN",
   "D-21": "OPEN",
   "D-22": "OPEN",
-  "D-23": "OPEN",
+  "D-23": "ANSWERED_CHANGED",
   "D-24": "ANSWERED_AS_DEFAULT",
   "D-25": "OPEN",
   "D-26": "OPEN",
   "D-27": "OPEN",
   "D-28": "ANSWERED_CHANGED",
   "D-29": "OPEN",
-  "D-31": "ANSWERED_AS_DEFAULT"
+  "D-31": "ANSWERED_AS_DEFAULT",
+  "D-36": "OPEN"
  }
 }
