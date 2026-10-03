@@ -657,6 +657,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0573 (L11 honours the OD-65 legacy-fix list)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "D-37 OPEN (M2-0558 needs_decision); M2-0210 depends on M2-0573."
   }
  ],
  "tickets": [
@@ -20259,7 +20265,8 @@
     "M2-0546",
     "M2-0547",
     "M2-0548",
-    "M2-0560"
+    "M2-0560",
+    "M2-0573"
    ],
    "needs_decision": [
     "D-13",
@@ -38790,7 +38797,9 @@
    "depends_on": [
     "M2-0557"
    ],
-   "needs_decision": [],
+   "needs_decision": [
+    "D-37"
+   ],
    "slices": [],
    "required_evidence": [
     "LOCALLY_TESTED"
@@ -38825,7 +38834,7 @@
     "PR CI: the packaged fuse check on macOS and Windows",
     "Freeze-repro hosted-live bundle node-options-fuse.json on the next candidate"
    ],
-   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded. 2026-10-03 (lead): OD-59 settles the 1.9.9 fuse set (RunAsNode stays on, residual stated); D-36 holds the 2.0 RunAsNode question."
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded. 2026-10-03 (lead): OD-59 settles the 1.9.9 fuse set (RunAsNode stays on, residual stated); D-36 holds the 2.0 RunAsNode question. 2026-10-03 (lead): lead hold on #484 until D-37 (which bytes carry the promotable-bytes rows once the inspect fuse is off) is answered."
   },
   {
    "id": "M2-0559",
@@ -39637,6 +39646,7 @@
   "D-28": "ANSWERED_CHANGED",
   "D-29": "OPEN",
   "D-31": "ANSWERED_AS_DEFAULT",
-  "D-36": "OPEN"
+  "D-36": "OPEN",
+  "D-37": "OPEN"
  }
 }
