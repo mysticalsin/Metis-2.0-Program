@@ -561,6 +561,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-56: filed M2-0544..M2-0548 and amended M2-0082, M2-0084, M2-0085, M2-0086, M2-0276, M2-0285, M2-0280, M2-0289, M2-0260, M2-0087, M2-0305, M2-0114, M2-0088 (verified subset, about 62 h)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0210 (freeze) depends on the OD-56 tickets M2-0544, M2-0545, M2-0546, M2-0547, M2-0548."
   }
  ],
  "tickets": [
@@ -19713,7 +19719,12 @@
     "M2-0477",
     "M2-0481",
     "M2-0521",
-    "M2-0522"
+    "M2-0522",
+    "M2-0544",
+    "M2-0545",
+    "M2-0546",
+    "M2-0547",
+    "M2-0548"
    ],
    "needs_decision": [
     "D-13",
