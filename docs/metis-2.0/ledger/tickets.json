@@ -591,6 +591,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0551 filed (sidecar boot reaper real-llama-server race)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Evidence normalisation: top-level decisions register (30 D-* ids) and external_blocker.unblock_step on 93 EC/BLOCKED tickets (8 left unknown)."
   }
  ],
  "tickets": [
@@ -900,7 +906,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After M2-0425 (still TODO) merges its dispatchable baseline workflow to app main, the lead dispatches it on 2bf21f1c with only the M2-0001/M2-0190 hermetic harness overlaid. The lead then fills docs/metis-2.0/evidence/baseline-2bf21f1c.md (exit codes, counts, skip reconciliation, failing tests with owning tickets) and files the LOCALLY_TESTED record from the run's artifact.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 4,
@@ -916,7 +926,7 @@
     "implementer": "codex",
     "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    },
-   "notes": "2026-09-29 (lead, owner-approved ledger batch): the CI baseline run is carried by M2-0425 (a new public workflow); this ticket's status is unchanged"
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): the CI baseline run is carried by M2-0425 (a new public workflow); this ticket's status is unchanged 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, lead): 'the CI baseline run is carried by M2-0425 (a new public workflow)'. M2-0425 LEAD_ACTION: 'the lead dispatches it and fills M2-0005's"
   },
   {
    "id": "M2-0006",
@@ -1038,7 +1048,11 @@
    "required_evidence": [
     "HOST_CONFIGURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead first confirms that windows-qa.yml is registered on app main (M2-0501 LEAD_ACTION). The lead then dispatches windows-qa.yml --ref main -f suite=hk-w with the candidate_run and sha256 of a main qa-candidate.yml Windows Setup (M2-0416), and runs resource-census.yml --ref main so it completes on both lanes (M2-0473 LEAD_ACTION). Finally the lead records HOST_CONFIGURED as kind hosted-runner, one record for windows-latest and one for macos-latest, each with ci_run_id.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
@@ -1046,7 +1060,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead): external_blocker updated after D-9 was changed to CI runners (BLOCKERS §3a LEAD_ACTION); HOST_CONFIGURED still pending on the laptop lane. 2026-09-29 OD-38: the managed Windows laptop requirement is dropped; Windows evidence from hosted windows-latest (OD-26); enterprise-image specifics become a stated residual. 2026-09-29 (lead): HOST_CONFIGURED path under OD-26/OD-38 = windows-qa.yml on windows-latest installing a candidate by sha256 (M2-0416) plus one census run per lane (M2-0473); the lead records it when both have run (no dependency edge: those tickets already depend on this one).",
+   "notes": "D-9 answered 2026-09-27 (ANSWERED_CHANGED): the QA host is GitHub Actions macos-latest and windows-latest runners (D-28); do not provision a QA user on the owner's Mac. OD-12 (2026-09-27): the packaged lanes also host UI evidence capture from the real Electron renderer (screenshots per state/theme/scale/motion) so design tickets never need a browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead): external_blocker updated after D-9 was changed to CI runners (BLOCKERS §3a LEAD_ACTION); HOST_CONFIGURED still pending on the laptop lane. 2026-09-29 OD-38: the managed Windows laptop requirement is dropped; Windows evidence from hosted windows-latest (OD-26); enterprise-image specifics become a stated residual. 2026-09-29 (lead): HOST_CONFIGURED path under OD-26/OD-38 = windows-qa.yml on windows-latest installing a candidate by sha256 (M2-0416) plus one census run per lane (M2-0473); the lead records it when both have run (no dependency edge: those tickets already depend on this one). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, lead): 'HOST_CONFIGURED path under OD-26/OD-38 = windows-qa.yml on windows-latest installing a candidate by sha256 (M2-0416) plus one census",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
@@ -1113,7 +1127,11 @@
    "required_evidence": [
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead dispatches freeze-repro.yml --ref main -f mode=hosted-live with the DMG and Windows installer sha256s from the v1.9.6-unsigned SHA256SUMS (M2-0463 LEAD_ACTION) and imports both bundles. The lead then files the two owner-bug LIVE_VERIFIED records as kind hosted-runner (macos-latest, windows-latest) with ci_run_id and updates the hypothesis ranking with OBSERVED/DERIVED labels. The real-dataless, row 9 and File Provider interrupt rows stay BLOCKED_EXTERNAL under the documented-unsuccessful-matrix clause.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 10,
@@ -1134,7 +1152,7 @@
    ],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 EC triage: the LIVE_VERIFIED path is M2-0462 (non-interactive hosted-live mode of run-matrix.sh), M2-0463 (freeze-repro.yml mode input, macOS and Windows) and M2-0464 (docs/metis-2.0/runbooks/diagnostics-sampling.md, acceptance 8). Lead to confirm this reading of acceptance 1: 'QA account' and 'representative synthetic profile from M2-0007' are met on hosted runners per D-9/OD-26, with a synthetic profile the harness builds (seed-profile.mjs is not in the public repo). Real dataless files (acceptance 2), row 9 and the File Provider interrupt stay BLOCKED_EXTERNAL because there is no test cloud account; the 'documented unsuccessful matrix' clause allows that. Records must use the OD-26 hosted-runner kind, not qa-mac-1. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): M2-0466 fixes the environment-kind half of the gap. Record LIVE_VERIFIED as kind hosted-runner, host macos-latest or windows-latest, with ci_run_id; run-matrix.sh's --qa-host-label default of qa-mac-1 must be overridden. The non-interactive live-mode ticket is separate and not part of Theme A.",
+   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 EC triage: the LIVE_VERIFIED path is M2-0462 (non-interactive hosted-live mode of run-matrix.sh), M2-0463 (freeze-repro.yml mode input, macOS and Windows) and M2-0464 (docs/metis-2.0/runbooks/diagnostics-sampling.md, acceptance 8). Lead to confirm this reading of acceptance 1: 'QA account' and 'representative synthetic profile from M2-0007' are met on hosted runners per D-9/OD-26, with a synthetic profile the harness builds (seed-profile.mjs is not in the public repo). Real dataless files (acceptance 2), row 9 and the File Provider interrupt stay BLOCKED_EXTERNAL because there is no test cloud account; the 'documented unsuccessful matrix' clause allows that. Records must use the OD-26 hosted-runner kind, not qa-mac-1. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): M2-0466 fixes the environment-kind half of the gap. Record LIVE_VERIFIED as kind hosted-runner, host macos-latest or windows-latest, with ci_run_id; run-matrix.sh's --qa-host-label default of qa-mac-1 must be overridden. The non-interactive live-mode ticket is separate and not part of Theme A. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, EC triage): 'the LIVE_VERIFIED path is M2-0462 ..., M2-0463 ... and M2-0464' and 'Record LIVE_VERIFIED as kind hosted-runner, host macos-late",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/250",
     "merged_into": "m2/integration (squash)",
@@ -1199,7 +1217,11 @@
    "required_evidence": [
     "MEASURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead re-dispatches resource-census.yml --ref main against the v1.9.6-unsigned release and commits docs/metis-2.0/evidence/resource-baseline.md, with the raw JSON under docs/metis-2.0/evidence/raw/M2-0009/. The lead then records MEASURED as kind hosted-runner (macos-latest and windows-latest) with ci_run_id.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 12,
@@ -1207,7 +1229,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: MEASURED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): record MEASURED from the hosted resource-census run under kind hosted-runner (host macos-latest and windows-latest) with ci_run_id once M2-0466 is on main, not kind ci with an unregistered host. 2026-09-29 (lead): first resource-census dispatch (run 36620887469) failed on both legs; fix ticket M2-0473, then re-dispatch and record MEASURED.",
+   "notes": "2026-09-27 (lead, autopilot split): the public PR delivers the tool plus a GitHub Actions job (workflow_dispatch, macos-latest and windows-latest) that runs it against the unmodified packaged 1.9.6 release artifact and uploads the results as a workflow artifact; the docs/metis-2.0/ deliverables are filed by the lead in the private repo from that artifact. Rows that need a real cloud-file provider account or a physical QA machine are supported by the tool and reported BLOCKED_EXTERNAL with the exact step (D-28: nothing runs on the owner's Mac). 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: MEASURED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): record MEASURED from the hosted resource-census run under kind hosted-runner (host macos-latest and windows-latest) with ci_run_id once M2-0466 is on main, not kind ci with an unregistered host. 2026-09-29 (lead): first resource-census dispatch (run 36620887469) failed on both legs; fix ticket M2-0473, then re-dispatch and record MEASURED. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, lead): 'first resource-census dispatch (run 36620887469) failed on both legs; fix ticket M2-0473, then re-dispatch and record MEASURED', and",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/249",
     "merged_into": "m2/integration (squash)",
@@ -1611,7 +1633,11 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner",
+    "unblock_step": "The program owner, or a scoped read-only token the owner grants, runs the two read-only production readbacks named in M2-0014's external_blocker and pastes both outputs into M2-0014. The two readbacks are the Operator Worker's deployed version (wrangler deployments list, or its /health stamp) and one sqlite_master query on the production D1. The lead then re-labels SOURCE-REGISTER.md §4.1 from BLOCKED_EXTERNAL to OBSERVED.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 5,
@@ -1624,7 +1650,8 @@
     "merged_into": "main (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
-   }
+   },
+   "notes": "2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from M2-0015 has no notes, LEAD_ACTION or external_blocker of its own. Its capping ancestors are M2-0005, M2-0013, M2-0014, M2-0190 and M2-0481. Only M2-0014 carries"
   },
   {
    "id": "M2-0016",
@@ -1669,7 +1696,11 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner",
+    "unblock_step": "The program owner completes M2-0012's external_blocker: book the weekly 30-minute decision slot, name a person for each external owner role in BLOCKERS.md, and send the drafted requests in docs/metis-2.0/owner-requests/.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 8,
@@ -1677,7 +1708,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"full autopilot until everything is done for version 2.0 except signature\"): the lead approves prd-lock v1.0 from the answered policy (POLICY-2.0.md).",
+   "notes": "D-4, D-11 and D-12 answered as default on 2026-09-27; copy them verbatim from docs/metis-2.0/POLICY-2.0.md. prd-lock v1.0 closes C-16 (D-4) and C-18 (D-12); C-03 stays with D-25 and C-08 stays open, because D-4 answers neither. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"full autopilot until everything is done for version 2.0 except signature\"): the lead approves prd-lock v1.0 from the answered policy (POLICY-2.0.md). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from evidence.pending: 'DONE capped by ancestors: M2-0189 (owner POLICY confirmation), M2-0012, M2-0011, M2-0013'. M2-0011 is now DONE. M2-0189 has its ACCEPTED owne",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/263",
     "merged_into": "m2/integration (squash)",
@@ -1828,7 +1859,11 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead files M2-0018's DESIGNED record with pr=261 and Build & Test run 36381711794 (head e9f8e520). The record notes that F09, F15, F16 and F17 were folded into existing tickets instead of following the public new_ticket mapping.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 10,
@@ -1842,7 +1877,7 @@
     "implementer": "codex",
     "validation": "independent Codex review PASS + CI green"
    },
-   "notes": "2026-09-29 (lead, EC triage): Add finding refs M2-0018-F01, M2-0018-F02 and M2-0018-F03, and these acceptance lines (exact text from ticketActions in scripts/trace/build-traceability.mjs on origin/main): (F01) 'Record that corrections.ts was read in full and no additional public-ticketed defect was found beyond existing correction-journal safeguards.' (F02) 'Record that publish.ts was read in full and its current confidentiality gates, batch scans, and owned-wiki deletion constraints are covered by existing code.' (F03) 'Record that boot-time local prewarm is confirmed as unattended model work and is already routed through runAsMaintenance.' 2026-09-29 (lead, EC triage): Filing record for acceptance A4 ('Every finding lands as a new ledger ticket or an acceptance line on an existing one'). New tickets: F04 -> M2-0452, F05 -> M2-0453, F06 -> M2-0454, F07 -> M2-0455, F08 -> M2-0456, F10 -> M2-0457, F11 -> M2-0458, F12 -> M2-0459, and F18 -> M2-0246 (folded) plus M2-0246 (folded) (split for size). Four findings were folded into existing tickets that already own the work, to avoid duplicates. The public mapping marks them new_ticket, so note this deviation in the DESIGNED record: F09 -> M2-0164 (budget line on M2-0351; the offline bundle is already M2-0372), F15 -> M2-0243, F16 -> M2-0083, F17 -> M2-0241. Acceptance lines: F13 -> M2-0013, F14 -> M2-0079. Then record DESIGNED with pr=261 and Build & Test run 36381711794 (head e9f8e520), per the 2026-09-29 triage. DONE stays capped by M2-0011."
+   "notes": "2026-09-29 (lead, EC triage): Add finding refs M2-0018-F01, M2-0018-F02 and M2-0018-F03, and these acceptance lines (exact text from ticketActions in scripts/trace/build-traceability.mjs on origin/main): (F01) 'Record that corrections.ts was read in full and no additional public-ticketed defect was found beyond existing correction-journal safeguards.' (F02) 'Record that publish.ts was read in full and its current confidentiality gates, batch scans, and owned-wiki deletion constraints are covered by existing code.' (F03) 'Record that boot-time local prewarm is confirmed as unattended model work and is already routed through runAsMaintenance.' 2026-09-29 (lead, EC triage): Filing record for acceptance A4 ('Every finding lands as a new ledger ticket or an acceptance line on an existing one'). New tickets: F04 -> M2-0452, F05 -> M2-0453, F06 -> M2-0454, F07 -> M2-0455, F08 -> M2-0456, F10 -> M2-0457, F11 -> M2-0458, F12 -> M2-0459, and F18 -> M2-0246 (folded) plus M2-0246 (folded) (split for size). Four findings were folded into existing tickets that already own the work, to avoid duplicates. The public mapping marks them new_ticket, so note this deviation in the DESIGNED record: F09 -> M2-0164 (budget line on M2-0351; the offline bundle is already M2-0372), F15 -> M2-0243, F16 -> M2-0083, F17 -> M2-0241. Acceptance lines: F13 -> M2-0013, F14 -> M2-0079. Then record DESIGNED with pr=261 and Build & Test run 36381711794 (head e9f8e520), per the 2026-09-29 triage. DONE stays capped by M2-0011. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, EC triage): 'Then record DESIGNED with pr=261 and Build & Test run 36381711794 (head e9f8e520)' and 'note this deviation in the DESIGNED reco"
   },
   {
    "id": "M2-0019",
@@ -1888,7 +1923,11 @@
     "DESIGNED",
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead dispatches kit-suites.yml on the program repository's main (M2-0449). From that run the lead files M2-0019's LOCALLY_TESTED record: ci_run_id, pr = program PR 41, environment kind ci on ubuntu-latest, command and exit_code. The lead also repoints PORT-DECISIONS.md's scratch-results table to the run's reports and keeps check_acceptance.py NOT_RUN until a trusted native artifact exists.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 8,
@@ -1902,7 +1941,7 @@
     "implementer": "codex",
     "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    },
-   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 (lead, EC triage): Gap ticket M2-0449 (private kit-checks.yml kit-suites job; depends on M2-0385; needs the OD-27 budget). Schema gap for the LOCALLY_TESTED record: SCHEMA.md section 3 requires 'pr' as a public PR number for LOCALLY_TESTED, and a private-repo CI run has none. Fold an allowance for private-repo runs into the OD-26 evidence-schema change rather than citing an unrelated public PR. check_acceptance.py stays NOT_RUN until a trusted native artifact exists. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed)."
+   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 (lead, EC triage): Gap ticket M2-0449 (private kit-checks.yml kit-suites job; depends on M2-0385; needs the OD-27 budget). Schema gap for the LOCALLY_TESTED record: SCHEMA.md section 3 requires 'pr' as a public PR number for LOCALLY_TESTED, and a private-repo CI run has none. Fold an allowance for private-repo runs into the OD-26 evidence-schema change rather than citing an unrelated public PR. check_acceptance.py stays NOT_RUN until a trusted native artifact exists. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes: 'OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now' and 'Gap ticket M2-0449 (private"
   },
   {
    "id": "M2-0020",
@@ -2127,7 +2166,11 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead files M2-0023's DESIGNED record with pr = program PR 18 and output docs/metis-2.0/review/audits/M2-0023-dispositions.md, whose three acceptance rows read ACCEPTED, and closes the ticket. BLOCKERS.md B-04 needs no further Codex run.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
@@ -2135,7 +2178,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "UNBLOCKED 2026-09-27: Codex is available (quota restored); run the independent Codex audit of PLAN.md and the ledger now.",
+   "notes": "UNBLOCKED 2026-09-27: Codex is available (quota restored); run the independent Codex audit of PLAN.md and the ledger now. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from The drafted step is already done. BLOCKERS.md B-04 and the 2026-09-27 note ('run the independent Codex audit') are stale: M2-0023-dispositions.md:22 marks the C",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/18",
     "merged_into": "main (squash)",
@@ -2314,7 +2357,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead confirms that candidate-scenarios.yml is registered on app main and dispatches qa-candidate.yml on main. The lead then dispatches candidate-scenarios.yml with scenario=fault-fatal-relaunch, candidate_run set to that run and mac_sha256 set to the Metis-QA zip's sha256. On PASS, the lead files LIVE_VERIFIED as kind hosted-runner, host macos-latest, with artifact_sha256, build_run_id and ci_run_id. The LOCALLY_TESTED record with repro (red run 36294629575, green run 36300981775) is filed alongside.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
@@ -2332,7 +2379,7 @@
      "LIVE_VERIFIED"
     ]
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): hosted LIVE_VERIFIED path = M2-0467 (candidate-scenarios.yml, scenario fault-fatal-relaunch on the qa-candidate mac-qa-identity zip by sha256) + M2-0466 (hosted-runner kind). Read verification[1] 'QA account' as macos-latest under D-9/OD-26. If the first dispatch exits 2 (no llama-server in 120 s), that is the M2-0028 model-start gap, not a lane defect. The LOCALLY_TESTED-with-repro record the triage names (red 36294629575 at 946b9b1c, green 36300981775 at 0eb14b02) can be recorded now."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): hosted LIVE_VERIFIED path = M2-0467 (candidate-scenarios.yml, scenario fault-fatal-relaunch on the qa-candidate mac-qa-identity zip by sha256) + M2-0466 (hosted-runner kind). Read verification[1] 'QA account' as macos-latest under D-9/OD-26. If the first dispatch exits 2 (no llama-server in 120 s), that is the M2-0028 model-start gap, not a lane defect. The LOCALLY_TESTED-with-repro record the triage names (red 36294629575 at 946b9b1c, green 36300981775 at 0eb14b02) can be recorded now. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, EC triage, Theme A): 'hosted LIVE_VERIFIED path = M2-0467 (candidate-scenarios.yml, scenario fault-fatal-relaunch on the qa-candidate mac-qa-"
   },
   {
    "id": "M2-0027",
@@ -2378,7 +2425,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead dispatches candidate-scenarios.yml with scenario=sidecar-boot-reaper, using the DMG and Windows Setup sha256s of a main qa-candidate run (M2-0468). When the macOS leg passes, with realLlama and legacyOrphan both PASS, the lead files LIVE_VERIFIED per platform as kind hosted-runner (macos-latest, windows-latest) with ci_run_id, stating the Windows real-llama residual.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "supervision",
    "risk": "high",
    "estimate_hours": 12,
@@ -2395,7 +2446,7 @@
      "LIVE_VERIFIED"
     ]
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): hosted LIVE_VERIFIED path = M2-0468 (candidate lane scenario sidecar-boot-reaper, on the mac DMG and win Setup) + M2-0466. The legacy rule can never match a packaged app's own llama-server, because the bundled model runs from resourcesPath (local-models.ts:331-340) and the rule needs -m under <userData>/local-llm. M2-0468 therefore proves it with a harness-seeded orphan plus a negative control. Windows real-llama is not covered because the script is macOS-only; that residual is stated. Caps from M2-0007 and M2-0026 remain."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): hosted LIVE_VERIFIED path = M2-0468 (candidate lane scenario sidecar-boot-reaper, on the mac DMG and win Setup) + M2-0466. The legacy rule can never match a packaged app's own llama-server, because the bundled model runs from resourcesPath (local-models.ts:331-340) and the rule needs -m under <userData>/local-llm. M2-0468 therefore proves it with a harness-seeded orphan plus a negative control. Windows real-llama is not covered because the script is macOS-only; that residual is stated. Caps from M2-0007 and M2-0026 remain. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, EC triage, Theme A): 'hosted LIVE_VERIFIED path = M2-0468 (candidate lane scenario sidecar-boot-reaper, on the mac DMG and win Setup) + M2-04"
   },
   {
    "id": "M2-0028",
@@ -2441,7 +2492,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead waits for the 1.9.7 cut (M2-0498, still TODO) to produce the main qa-candidate run, then confirms that hk-m-candidate.yml is registered (M2-0501). The lead makes one hk-m-candidate.yml --ref main dispatch with that candidate_run and the DMG sha256. If it gives result=pass, 100/100 PASS rows, supervisionMode=shipped and a passing codesign --verify --deep --strict, the lead files M2-0028 LIVE_VERIFIED for both the fresh-profile and the shared-profile reports. Each record uses kind hosted-runner, host macos-latest, with ci_run_id, build_run_id and artifact_sha256.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "supervision",
    "risk": "high",
    "estimate_hours": 14,
@@ -2477,7 +2532,7 @@
      "LIVE_VERIFIED"
     ]
    },
-   "notes": "2026-09-29 (lead, EC triage): 2026-09-29 hosted evidence: in 7 of the last 9 m2/integration macOS smokes the HK-M model rows end BLOCKED_EXTERNAL scenario_not_triggered, with no registry intent and no local.runtime.start. They pass only in 36551144543 and 36572749687, on the same runner image and with the same verified bundled model, and the smoke stays green. The root cause and a deterministic trigger are M2-0460; the smoke flagging a PASS->BLOCKED fall is M2-0461. LIVE_VERIFIED order after M2-0460 reaches main: hk-m-candidate.yml must be registered first (404 on 2026-09-29 although it is on main at df205007), then qa-candidate.yml, then hk-m-candidate.yml, and the record goes under the OD-26 hosted-runner environment kind. Per D-9/OD-26 the verification line 'QA account, packaged build' now means hosted macos-latest. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): M2-0466 supplies the host label, so record under kind hosted-runner, host macos-latest (not a 'qa-mac' label). M2-0467 leaves hk-m-candidate.yml unchanged, so the dispatch command in this ticket's LEAD_ACTION stays valid; note that the file has no main-ref guard. The M2-0028 model-start gap ticket should land early: the M2-0467 fault-fatal-relaunch scenario, M2-0468's real-llama row and M2-0470's census control all need llama-server to start on macos-latest.",
+   "notes": "2026-09-29 (lead, EC triage): 2026-09-29 hosted evidence: in 7 of the last 9 m2/integration macOS smokes the HK-M model rows end BLOCKED_EXTERNAL scenario_not_triggered, with no registry intent and no local.runtime.start. They pass only in 36551144543 and 36572749687, on the same runner image and with the same verified bundled model, and the smoke stays green. The root cause and a deterministic trigger are M2-0460; the smoke flagging a PASS->BLOCKED fall is M2-0461. LIVE_VERIFIED order after M2-0460 reaches main: hk-m-candidate.yml must be registered first (404 on 2026-09-29 although it is on main at df205007), then qa-candidate.yml, then hk-m-candidate.yml, and the record goes under the OD-26 hosted-runner environment kind. Per D-9/OD-26 the verification line 'QA account, packaged build' now means hosted macos-latest. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): M2-0466 supplies the host label, so record under kind hosted-runner, host macos-latest (not a 'qa-mac' label). M2-0467 leaves hk-m-candidate.yml unchanged, so the dispatch command in this ticket's LEAD_ACTION stays valid; note that the file has no main-ref guard. The M2-0028 model-start gap ticket should land early: the M2-0467 fault-fatal-relaunch scenario, M2-0468's real-llama row and M2-0470's census control all need llama-server to start on macos-latest. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-29, EC triage): 'LIVE_VERIFIED order after M2-0460 reaches main: hk-m-candidate.yml must be registered first ..., then qa-candidate.yml, then hk-",
    "priority": "P0"
   },
   {
@@ -2516,7 +2571,11 @@
    "required_evidence": [
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead confirms that windows-qa.yml is registered on app main (M2-0501). The lead then dispatches windows-qa.yml --ref main -f suite=hk-w with the candidate_run and sha256 of a main qa-candidate.yml Windows Setup (M2-0416). That run's hk-w-summary.json is filed as the LIVE_VERIFIED record (kind hosted-runner, host windows-latest, ci_run_id).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 10,
@@ -2530,7 +2589,7 @@
     "implementer": "claude",
     "validation": "independent Claude review PASS + CI green"
    },
-   "notes": "2026-09-28 (lead, unblock analysis): merged #287 but LIVE_VERIFIED HK-W evidence is still missing — windows-qa.yml downloads tag v1.9.6 from AskToto-Mantu (no such release; 1.9.6 is v1.9.6-unsigned on mysticalsin/Metis-Releases) and no release contains the M2-0027 registry. Verification: dispatch windows-qa.yml --ref main with candidate_run + sha256 of a qa-candidate.yml candidate (M2-0416). DONE only after that run's hk-w-summary.json is filed."
+   "notes": "2026-09-28 (lead, unblock analysis): merged #287 but LIVE_VERIFIED HK-W evidence is still missing — windows-qa.yml downloads tag v1.9.6 from AskToto-Mantu (no such release; 1.9.6 is v1.9.6-unsigned on mysticalsin/Metis-Releases) and no release contains the M2-0027 registry. Verification: dispatch windows-qa.yml --ref main with candidate_run + sha256 of a qa-candidate.yml candidate (M2-0416). DONE only after that run's hk-w-summary.json is filed. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-09-28, lead): 'Verification: dispatch windows-qa.yml --ref main with candidate_run + sha256 of a qa-candidate.yml candidate (M2-0416). DONE only aft"
   },
   {
    "id": "M2-0030",
@@ -2660,7 +2719,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: after the 1.9.7 cut (qa-candidate.yml dispatched once on main), take that run's st1-mac-dataless-synthetic job (QA-identity zip, macos-latest). On PASS, file it as M2-0031's LIVE_VERIFIED record: kind hosted-runner, host macos-latest, build_run_id set to the candidate run, artifact_sha256 set to the QA-identity zip's sha256, plus ci_run_id.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "storage.gateway",
    "risk": "high",
    "estimate_hours": 12,
@@ -2672,7 +2735,8 @@
     "Codex audit-r1 (rocket-fuel, 2026-09-26): createDatalessDetector (src/main/infra/storage/dataless.ts) and macStatFlagsSpawnSpec (src/main/mac-helper.ts) have no production caller yet; this ticket must wire the detector into the real listing/search/read and backfill paths so cloud-only files are never read, with a production-path regression test (seeded cloud-only transcript stat-classified but never passed to readSavedFile or model ingestion).",
     "Codex audit-r4 (2026-09-27, verified by Opus at 4ec75897) — MUST be covered by this ticket: (1) no production file imports createStorageGateway yet; (2) History/Recall: src/main/recall.ts:239 does an unbounded Promise.all over readMeeting and :170 reads with raw readFile, bypassing admission, dataless checks, cancellation and deadlines; (3) src/main/transcripts.ts:755 reads meeting-root files synchronously through readSavedFile (:324 decodeSaved(readFileSync)); (4) gateway root() must not be able to reject public methods: a throwing root()/settings resolution must resolve to an unavailable status within the deadline (gateway.ts:91, :318, :354); (5) add a product-level regression through the real History/Recall entry points (not only gateway unit calls) proving the main process stays responsive while meeting files hang or are cloud-only; (6) make the gateway module comment true (the only meetings-root reader).",
     "2026-09-29 (lead): owner_model -> opus (P0 History freeze; Opus root-cause analysis found ST-1 fails on boot-phase main-loop blocks and never exercises History; real freeze paths confirmed: sync recallOpen/recallExportPlain reads and per-root gateway admission). Round focus v6 in the queue lead file.",
-    "2026-09-29 (lead, OD-24): owner chose to split: this ticket's tested fixes merge now (unblocks the dependents); the strict ST-1 gate moves unchanged to M2-0433 (gates 1.9.7)."
+    "2026-09-29 (lead, OD-24): owner chose to split: this ticket's tested fixes merge now (unblocks the dependents); the strict ST-1 gate moves unchanged to M2-0433 (gates 1.9.7).",
+    "2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from M2-0505 acceptance LEAD_ACTION: 'LEAD_ACTION (after the cut): file the synthetic-dataless row as M2-0031's packaged ST-1 record (QA-identity bytes of the candid"
    ],
    "claimed_by": "ticket runner batch 9 (Codex implements)",
    "claimed_at": "2026-09-27",
@@ -2795,7 +2859,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: dispatch candidate-scenarios.yml on main with scenario=ex-suite and the 1.9.7 candidate's promotable DMG sha256. On PASS (exit 0), file M2-0033's LIVE_VERIFIED record: kind hosted-runner, host macos-latest, with build_run_id, artifact_sha256 and ci_run_id.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "scheduler.policy",
    "risk": "medium",
    "estimate_hours": 12,
@@ -2814,7 +2882,7 @@
      "LIVE_VERIFIED"
     ]
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): hosted LIVE_VERIFIED path = M2-0470 (scripts/qa/ex-suite.mjs; without --packaged it runs the existing hermetic EX vitest files, and --packaged is the candidate lane scenario) + M2-0466. The packaged seed uses encryptTranscripts false (plaintext index). A positive local-prewarm control keeps the 120-s census from passing trivially, so the result also depends on the M2-0028 model-start gap."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): hosted LIVE_VERIFIED path = M2-0470 (scripts/qa/ex-suite.mjs; without --packaged it runs the existing hermetic EX vitest files, and --packaged is the candidate lane scenario) + M2-0466. The packaged seed uses encryptTranscripts false (plaintext index). A positive local-prewarm control keeps the 120-s census from passing trivially, so the result also depends on the M2-0028 model-start gap. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from M2-0470 acceptance LEAD_ACTION: 'dispatch candidate-scenarios.yml with scenario=ex-suite and the DMG sha256 of a main candidate. On PASS, file M2-0033 LIVE_VERI"
   },
   {
    "id": "M2-0034",
@@ -2963,7 +3031,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: dispatch candidate-scenarios.yml with scenario=packaged-lifecycle and the 1.9.7 candidate's DMG and Setup sha256s. On PASS, file M2-0036's LIVE_VERIFIED once per platform: kind hosted-runner, host macos-latest or windows-latest, with build_run_id, artifact_sha256 and ci_run_id. List D-1 in assumed_decisions while D-1 is OPEN.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "reveal.legacy",
    "risk": "medium",
    "estimate_hours": 12,
@@ -2987,7 +3059,7 @@
      "note": "supporting only; LIVE_VERIFIED is recorded from the 1.9.7 candidate lanes (hosted-runner kind, OD-26) on the candidate sha256"
     }
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): record the two LIVE_VERIFIED lines from packaged-smoke run 36613722413 under kind hosted-runner (host macos-latest and windows-latest) with ci_run_id 36613722413, once M2-0466 is on main. Do not use the qa-mac or windows-runner workaround the triage proposed. 2026-09-30 (lead): supporting packaged-smoke reports from run 36613722413 saved (artifacts expire 10-13); LIVE_VERIFIED waits for the candidate-bytes lane."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): record the two LIVE_VERIFIED lines from packaged-smoke run 36613722413 under kind hosted-runner (host macos-latest and windows-latest) with ci_run_id 36613722413, once M2-0466 is on main. Do not use the qa-mac or windows-runner workaround the triage proposed. 2026-09-30 (lead): supporting packaged-smoke reports from run 36613722413 saved (artifacts expire 10-13); LIVE_VERIFIED waits for the candidate-bytes lane. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from M2-0506 acceptance LEAD_ACTION: 'File M2-0036 LIVE_VERIFIED per platform ... Cite these runs, not the self-built packaged-smoke runs, as the 1.9.7 RV evidence'."
   },
   {
    "id": "M2-0037",
@@ -3028,7 +3100,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: dispatch candidate-scenarios.yml with scenario=renderer-kill and mac_sha256 set to the 1.9.7 candidate's promotable DMG sha256. On PASS (exit 0), file M2-0037's LIVE_VERIFIED record: kind hosted-runner, host macos-latest, with build_run_id, artifact_sha256 and ci_run_id.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 5,
@@ -3046,7 +3122,7 @@
      "LIVE_VERIFIED"
     ]
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): hosted LIVE_VERIFIED path = M2-0469 (writes scripts/qa/renderer-kill.mjs; candidate lane scenario renderer-kill on the mac DMG) + M2-0466. It runs in the new candidate-scenarios.yml, not hk-m-candidate.yml (M2-0467 gives the reasons)."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): hosted LIVE_VERIFIED path = M2-0469 (writes scripts/qa/renderer-kill.mjs; candidate lane scenario renderer-kill on the mac DMG) + M2-0466. It runs in the new candidate-scenarios.yml, not hk-m-candidate.yml (M2-0467 gives the reasons). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from M2-0469 acceptance LEAD_ACTION: 'dispatch candidate-scenarios.yml with scenario=renderer-kill and mac_sha256 set to the DMG sha256 of a main candidate. On PASS,"
   },
   {
    "id": "M2-0038",
@@ -3246,7 +3322,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: on the T1 owner-channel candidate (1.9.9, M2-0206), dispatch candidate-scenarios.yml with scenario=packaged-lifecycle and that candidate's DMG and Setup sha256s. On PASS of the HIST (navigation-guard) rows, file M2-0040's LIVE_VERIFIED once per platform: kind hosted-runner, host macos-latest or windows-latest, with build_run_id, artifact_sha256 and ci_run_id.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 8,
@@ -3270,7 +3350,7 @@
      "note": "supporting only; LIVE_VERIFIED is recorded from the 1.9.7 candidate lanes (hosted-runner kind, OD-26) on the candidate sha256"
     }
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): the same as M2-0036. Record under kind hosted-runner with ci_run_id 36613722413 once M2-0466 is on main. 2026-09-30 (lead): supporting packaged-smoke reports from run 36613722413 saved (artifacts expire 10-13); LIVE_VERIFIED waits for the candidate-bytes lane."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (OD-26 / Theme A): the same as M2-0036. Record under kind hosted-runner with ci_run_id 36613722413 once M2-0466 is on main. 2026-09-30 (lead): supporting packaged-smoke reports from run 36613722413 saved (artifacts expire 10-13); LIVE_VERIFIED waits for the candidate-bytes lane. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from Ticket notes (2026-09-30): 'LIVE_VERIFIED waits for the candidate-bytes lane'. M2-0046 acceptance 8: 'Deferred to T1 (M2-0206): ... 0040'. releases/1.9.7.md (20"
   },
   {
    "id": "M2-0041",
@@ -3744,7 +3824,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: file M2-0047's LOCALLY_TESTED record (kind ci) from a green Build & Test run in which the now-blocking 'Architecture ratchet' step ran: PR #284's run or a later app-main run. That run delivers the 'report-only for 3 days, then ratchet' clause, and M2-0047 can then close DONE.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 12,
@@ -3760,7 +3844,7 @@
     "validation": "Opus PASS",
     "implementer": "codex"
    },
-   "notes": "2026-09-28 (lead, capability audit): status corrected DONE -> ENGINEERING_COMPLETE — the 'report-only for 3 days, then ratchet' clause was never delivered (build.yml 'Architecture ratchet' still continue-on-error: true at m2/integration). Carried by M2-0237."
+   "notes": "2026-09-28 (lead, capability audit): status corrected DONE -> ENGINEERING_COMPLETE — the 'report-only for 3 days, then ratchet' clause was never delivered (build.yml 'Architecture ratchet' still continue-on-error: true at m2/integration). Carried by M2-0237. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from Notes (2026-09-28, lead): \"the 'report-only for 3 days, then ratchet' clause was never delivered (build.yml 'Architecture ratchet' still continue-on-error: true"
   },
   {
    "id": "M2-0048",
@@ -3866,7 +3950,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: file M2-0049's LOCALLY_TESTED record (kind ci) from a green Build & Test run on app main whose repo-wide 'Gitleaks secret scan' step passed. That step covers docs/**.md. M2-0230's identifier cleanup is already on main, so nothing else is pending.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 5,
@@ -3874,7 +3962,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values. 2026-09-27 (lead): the personal-email/account-id cleanup item is delivered by M2-0230 (split so it is not blocked by M2-0048/M2-0053); M2-0049 only verifies the docs scan passes on main afterwards. 2026-09-29 OD-29: branch protection applied on public main — ruleset protect-main-pr-and-checks (id 24204320): PR required, 5 core checks, 0 approvals, no bypass.",
+   "notes": "Also covers (found 2026-09-27 in PRs #223/#226, pre-existing): the owner personal email in operator/src/access.ts, operator/scripts/dev-session*.{mjs,ts}, operator/README.md, docs/design/*.md, docs/operator/RUNBOOKS.md, the generated operator/src/spa/client.generated.ts allowlist text, and operator/src/cloudflare-connect.test.ts audit actor fixture — replace with configuration/synthetic values. 2026-09-27 (lead): the personal-email/account-id cleanup item is delivered by M2-0230 (split so it is not blocked by M2-0048/M2-0053); M2-0049 only verifies the docs scan passes on main afterwards. 2026-09-29 OD-29: branch protection applied on public main — ruleset protect-main-pr-and-checks (id 24204320): PR required, 5 core checks, 0 approvals, no bypass. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from Acceptance 6: '...allowlisted in writing by the owner; the new docs scan then passes on main'. Notes: 'M2-0049 only verifies the docs scan passes on main afterw",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/292",
     "merged_into": "m2/integration (squash)",
@@ -4393,7 +4481,11 @@
     "DESIGNED",
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: update the stale D-15 entries to match DECISIONS.md D-15 (ANSWERED 2026-09-29: software-architecture-engineer v1.4.0 + Stark v9.3.0). In CURRENT.md, change the D-15 line from OPEN to that answer; in BLOCKERS.md, close B-09. Then file M2-0059's required DESIGNED and LOCALLY_TESTED records, citing lessons/ (README.md, TEMPLATE.md, LESSON-001.md) and D-15.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 6,
@@ -4414,7 +4506,7 @@
    ],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "UNBLOCKED 2026-09-27: Owner named the methods on 2026-09-26: software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER section 2.5 skill. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: two acceptance items unmet 2026-09-29: D-15 ANSWERED — software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER 2.5 refactoring skill.",
+   "notes": "UNBLOCKED 2026-09-27: Owner named the methods on 2026-09-26: software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER section 2.5 skill. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: two acceptance items unmet 2026-09-29: D-15 ANSWERED — software-architecture-engineer v1.4.0 + Stark v9.3.0 substitute for the MASTER 2.5 refactoring skill. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from evidence.pending = ['numbered lessons log (docs/metis-2.0/lessons/)', 'refactoring-skill identity from D-15']. Both now exist: lessons/ was delivered by M2-0443",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/265",
     "merged_into": "m2/integration (squash)",
@@ -8841,7 +8933,11 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: after M2-0447, M2-0450 and M2-0451 merge, run design-capture.yml on app main. Commit the S01-S17 PNGs and manifest (with its audit summary) under docs/metis-2.0/evidence/M2-0101/design/, keeping the HTML-mock set marked superseded (OD-12). Have an Opus validator session other than the author accept them, then file M2-0101's DESIGNED record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 12,
@@ -8851,7 +8947,7 @@
    "status": "ENGINEERING_COMPLETE",
    "claimed_by": "claude-code ticket runner (batch 3)",
    "claimed_at": "2026-09-26",
-   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: its captures are HTML mocks, not the Electron renderer 2026-09-29 (lead, EC triage): The DESIGNED gap is split into M2-0447 (audit), M2-0450 (shell plus 8 states) and M2-0451 (9 variant states plus the capture LEAD_ACTION). The public titles are neutralised (the S02 manifest title names a provider), and the prototype's organisation and workspace sample data is replaced by placeholders. The evidence.pending item 'DESIGNED: Electron-renderer re-capture via M2-0418 + Opus acceptance' is closed by the M2-0451 LEAD_ACTION.",
+   "notes": "OD-12 (2026-09-27): the HTML prototype and its Playwright captures are superseded as evidence; the Settings design must be realised and captured in the real Electron renderer (CI capture lane from M2-0007), with no browser driven on the owner's Mac. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: its captures are HTML mocks, not the Electron renderer 2026-09-29 (lead, EC triage): The DESIGNED gap is split into M2-0447 (audit), M2-0450 (shell plus 8 states) and M2-0451 (9 variant states plus the capture LEAD_ACTION). The public titles are neutralised (the S02 manifest title names a provider), and the prototype's organisation and workspace sample data is replaced by placeholders. The evidence.pending item 'DESIGNED: Electron-renderer re-capture via M2-0418 + Opus acceptance' is closed by the M2-0451 LEAD_ACTION. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from Notes (2026-09-29 EC triage): \"The evidence.pending item 'DESIGNED: Electron-renderer re-capture via M2-0418 + Opus acceptance' is closed by the M2-0451 LEAD_AC",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/7",
     "merged_into": "main (squash)",
@@ -10565,7 +10661,11 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: write the private ADR-014 under the program repo's docs/metis-2.0/adr/; it exists in neither repo. Record D-5's answer: Cloudflare Containers plus Neon serverless Postgres with pgvector, EU Frankfurt, through Hyperdrive. Record the operational owner as PENDING, since the D-5 answer names none. Then file M2-0119's DESIGNED record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 8,
@@ -10573,7 +10673,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "2026-09-28 (lead): OD-17 answered D-5 — self-hosted private Hindsight on one approved container platform with managed Postgres. Platform/region/operational owner are PENDING and gate only the live deployment (M2-0138, M2-0381). Build and prove services/compose.yml (digest-pinned pgvector Postgres + pinned hindsight-api) with an ubuntu-latest CI compose job (D-28). LEAD_ACTION: private ADR-014 (PENDING + PROPOSED default). 2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose. 2026-09-29: D-5 ANSWERED — Cloudflare Containers + Neon serverless Postgres (pgvector), EU Frankfurt, via Hyperdrive.",
+   "notes": "2026-09-28 (lead): OD-17 answered D-5 — self-hosted private Hindsight on one approved container platform with managed Postgres. Platform/region/operational owner are PENDING and gate only the live deployment (M2-0138, M2-0381). Build and prove services/compose.yml (digest-pinned pgvector Postgres + pinned hindsight-api) with an ubuntu-latest CI compose job (D-28). LEAD_ACTION: private ADR-014 (PENDING + PROPOSED default). 2026-09-29: D-5 partially ANSWERED — platform: Cloudflare Containers + managed Postgres with vector (pgvector); provider and region still to choose. 2026-09-29: D-5 ANSWERED — Cloudflare Containers + Neon serverless Postgres (pgvector), EU Frankfurt, via Hyperdrive. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from Notes: 'LEAD_ACTION: private ADR-014 (PENDING + PROPOSED default)' and '2026-09-29: D-5 ANSWERED - Cloudflare Containers + Neon serverless Postgres (pgvector),",
    "priority": "P0",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/297",
@@ -13362,7 +13462,11 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: land M2-0301 through the queue. It carries the typed write schemas with readback and the rest of AGX-11, and is TODO behind M2-0082, M2-0141, M2-0142 and M2-0148. Then file M2-0144's LOCALLY_TESTED record with AGX-11 marked MET and D-18 in assumed_decisions while D-18 is OPEN, and close M2-0144.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 6,
@@ -13377,7 +13481,7 @@
     "merged_into": "m2/integration (squash)",
     "validation": "Opus PASS (batch 6)"
    },
-   "notes": "2026-09-28 (lead, capability audit): status corrected DONE -> ENGINEERING_COMPLETE — AGX-11 'connector writes use exact typed schemas with readback' is not in the code (write tools picked by name regex in src/main/mcp/write-tools.ts; any non-isError MCP result counts as success). Carried by M2-0301."
+   "notes": "2026-09-28 (lead, capability audit): status corrected DONE -> ENGINEERING_COMPLETE — AGX-11 'connector writes use exact typed schemas with readback' is not in the code (write tools picked by name regex in src/main/mcp/write-tools.ts; any non-isError MCP result counts as success). Carried by M2-0301. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from Notes (2026-09-28, lead): \"AGX-11 'connector writes use exact typed schemas with readback' is not in the code ... Carried by M2-0301.\" M2-0301 acceptance: 'The"
   },
   {
    "id": "M2-0145",
@@ -16959,7 +17063,11 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: file M2-0178's DESIGNED record citing M2-0349's merged re-key of the claim register to the kit's LF-01..LF-08 beats (PR #294, on app main). Keep release_claims_approved false and list D-27 in assumed_decisions while D-27 is OPEN, then close M2-0178.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
@@ -16967,7 +17075,7 @@
    "slices": [],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): any privacy line in the film is the M2-0149-verified sentence verbatim, or it is cut. Acceptance unchanged. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: CLAIMS.json reuses LF-01..08 for different beats than kit STORYBOARD.json",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): any privacy line in the film is the M2-0149-verified sentence verbatim, or it is cut. Acceptance unchanged. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: CLAIMS.json reuses LF-01..08 for different beats than kit STORYBOARD.json 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from evidence.pending = ['LF ids re-keyed to the kit beats (M2-0349)']. Notes (2026-09-29): 'DONE -> ENGINEERING_COMPLETE: CLAIMS.json reuses LF-01..08 for different",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/267",
     "merged_into": "m2/integration (squash)",
@@ -17709,7 +17817,11 @@
     "DESIGNED",
     "LOCALLY_TESTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: record M2-0188's LOCALLY_TESTED from the Build & Test run of M2-0465's PR #369. Then, once the program owner records ACCEPTED on 1.9.7 (M2-0046, B-08), cut release/1.9.x at the promoted candidate's provenance commit (D-34) and confirm the release/* ruleset covers it.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 5,
@@ -17741,7 +17853,7 @@
      "LOCALLY_TESTED"
     ]
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED. 2026-09-29 (lead, EC triage): 2026-09-29 EC triage: repoint acceptance 1 from docs/metis-2.0/INTEGRATION.md, which was never created, to docs/metis-2.0/runbooks/integration.md (PR #5, a1c9f9b). In scope_paths, replace docs/metis-2.0/INTEGRATION.md with docs/metis-2.0/runbooks/integration.md. scripts/program/claims-check.mjs and claims-check.test.mjs are public-repo paths delivered by M2-0465 (slice M2-0188.2), whose Build & Test run supplies the pending LOCALLY_TESTED record. The verification commands run in CI only (D-28, runbook §12), which also supersedes acceptance 4's 'local runs are targeted files under the hermetic harness'. The release/1.9.x cut still waits for the 1.9.7 tag (M2-0046). 2026-10-03 (lead, D-34): acc 6 amended; the cut waits for ACCEPTED on M2-0046 and is made at the provenance commit, since no 1.9.7 tag exists in the app repository."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED. 2026-09-29 (lead, EC triage): 2026-09-29 EC triage: repoint acceptance 1 from docs/metis-2.0/INTEGRATION.md, which was never created, to docs/metis-2.0/runbooks/integration.md (PR #5, a1c9f9b). In scope_paths, replace docs/metis-2.0/INTEGRATION.md with docs/metis-2.0/runbooks/integration.md. scripts/program/claims-check.mjs and claims-check.test.mjs are public-repo paths delivered by M2-0465 (slice M2-0188.2), whose Build & Test run supplies the pending LOCALLY_TESTED record. The verification commands run in CI only (D-28, runbook §12), which also supersedes acceptance 4's 'local runs are targeted files under the hermetic harness'. The release/1.9.x cut still waits for the 1.9.7 tag (M2-0046). 2026-10-03 (lead, D-34): acc 6 amended; the cut waits for ACCEPTED on M2-0046 and is made at the provenance commit, since no 1.9.7 tag exists in the app repository. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from evidence.pending = ['LOCALLY_TESTED']. M2-0465 acceptance LEAD_ACTION: 'record M2-0188 LOCALLY_TESTED from the PR's Build & Test run'. M2-0465 is on app main. A"
   },
   {
    "id": "M2-0189",
@@ -17781,7 +17893,11 @@
     "DESIGNED",
     "ACCEPTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: file M2-0189's ACCEPTED record in evidence/records/ from the owner's 2026-09-29 confirmation (OD-39). Close the ticket once its capping ancestor M2-0012 clears; M2-0012's own remaining step is its external_blocker, owned by the program owner.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 3,
@@ -17789,7 +17905,7 @@
    "slices": [],
    "due": "2026-10-02",
    "status": "ENGINEERING_COMPLETE",
-   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: ACCEPTED. 2026-09-29 (lead): external_blocker text updated to what remains after D-4/D-11/D-12 were answered (BLOCKERS §3a LEAD_ACTION). 2026-09-29 OD-39: owner confirmed the policy record; ACCEPTED.",
+   "notes": "Owner answered D-4 (Operator seat authoritative), D-11 (Cloudflare speech via the Operator broker) and D-12 (metadata-only gateway logs; claim limited to what M2-0149 verifies) on 2026-09-27 via AskUserQuestion; remaining scope: write the one-page policy record from these answers. Owner answered D-4 (\"Operator seat\"), D-11 (\"Cloudflare via Operator\") and D-12 (\"Metadata-only\") on 2026-09-27 via AskUserQuestion, each the recorded default. The one-page record is docs/metis-2.0/POLICY-2.0.md; downstream tickets carry its consequences in notes. For the orchestrator: M2-0104 acceptance 1 and the M2-0146 external_blocker need re-validation, and the C-03/C-08 labels on D-4 (this title, DECISIONS.md, BLOCKERS.md B-07/B-28, PLAN.md:353, ARCHITECTURE.md:557/:599) are wrong, because D-4 answers C-16 only. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: ACCEPTED. 2026-09-29 (lead): external_blocker text updated to what remains after D-4/D-11/D-12 were answered (BLOCKERS §3a LEAD_ACTION). 2026-09-29 OD-39: owner confirmed the policy record; ACCEPTED. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from evidence.pending = []. evidence.accepted.owner_statement: '2026-09-29: owner confirmed POLICY-2.0.md as written ... OD-39'. Notes: '2026-09-29 OD-39: owner conf",
    "claimed_by": "claude-code ticket runner (batch 6)",
    "claimed_at": "2026-09-27",
    "evidence": {
@@ -17846,7 +17962,11 @@
     "LOCALLY_TESTED",
     "HOST_CONFIGURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: the runbook's first LEAD_ACTION check already fails. A read-only git diff of scripts/hermetic and isolation-canary.yml against origin/m2/integration is not empty: isolation-canary.yml gained the M2-0525 'changes' path gate and a concurrency block, and scripts/hermetic/prove-owner-sandbox.sh was added for OD-46. So, as that LEAD_ACTION says, re-dispatch M2-0481. It refreshes runbooks/test-isolation.md's line numbers and replaces 'no owner-Mac runs' with the OD-46 exception (only the strict ST-1 fifo and control jobs, on the owner's self-hosted runner under owner-account.sb), and M2-0481 acceptance 2 is amended to match. Then amend M2-0190 acceptance 4 to that run order (runbook line 28 LEAD_ACTION) and close M2-0481 DONE. M2-0190's HOST_CONFIGURED record (run 36634756903) still holds because owner-account.sb is unchanged, so M2-0190 then closes DONE.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 6,
@@ -17872,7 +17992,7 @@
      "recorded": "2026-09-29 by the lead"
     }
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 OD-26: owner ruled that GitHub-hosted runners count as the live host for LIVE_VERIFIED and HOST_CONFIGURED evidence."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 OD-26: owner ruled that GitHub-hosted runners count as the live host for LIVE_VERIFIED and HOST_CONFIGURED evidence. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from runbooks/test-isolation.md:12 LEAD_ACTION: 'confirm it is empty. If not, re-dispatch M2-0481 to refresh the line numbers'. :28 LEAD_ACTION: 'amend the acceptanc"
   },
   {
    "id": "M2-0191",
@@ -17917,7 +18037,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead, after the 1.9.7 cut: file M2-0191 LIVE_VERIFIED with kit_refs PARTIAL from stat-flags-macos.json in the candidate run's st1-mac-dataless-synthetic job. That file covers the promotable DMG's own mac-helper stat-flags on local, APFS-compressed, non-ASCII and unstat-able paths. Use kind hosted-runner, host macos-latest (OD-26), with build_run_id, artifact_sha256 and ci_run_id. The real-cloud dataless half goes to M2-0198 (OD-36, OD-55), and 1.9.7.md already states it, so nothing else remains.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "storage.gateway",
    "risk": "high",
    "estimate_hours": 5,
@@ -17936,7 +18060,7 @@
      "LIVE_VERIFIED"
     ]
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from M2-0505 acceptance LEAD_ACTION (after the cut): 'File M2-0191 LIVE_VERIFIED with kit_refs PARTIAL (stat-flags on the DMG; the real-dataless row goes to M2-0198"
   },
   {
    "id": "M2-0192",
@@ -17976,7 +18100,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: dispatch candidate-scenarios.yml on main with candidate_run set to a main qa-candidate run, scenario=stall-sampler, and mac_sha256 set to that run's DMG sha256. Use the final 1.9.7 candidate so the same record also meets gate row stall-sampler. On PASS, file M2-0192 LIVE_VERIFIED: kind hosted-runner, host macos-latest, ci_run_id set to the scenario run. M2-0466's hosted-runner kind is already on main. It closes DONE only after its cap M2-0191 does.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "diagnostics.stall_sampler",
    "risk": "medium",
    "estimate_hours": 4,
@@ -17994,7 +18122,7 @@
      "LIVE_VERIFIED"
     ]
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): hosted LIVE_VERIFIED path = M2-0471 (stall-sampler-hosted.mjs wraps stall-sampler-check.sh with a 15 s stop; the idle and sleep/wake row is BLOCKED_EXTERNAL) + M2-0466. Risk: the hosted runner may refuse /usr/bin/sample on the hardened candidate, which would be a product finding. The cap from M2-0191 (LIVE_VERIFIED pending) remains."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LIVE_VERIFIED. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): hosted LIVE_VERIFIED path = M2-0471 (stall-sampler-hosted.mjs wraps stall-sampler-check.sh with a 15 s stop; the idle and sleep/wake row is BLOCKED_EXTERNAL) + M2-0466. Risk: the hosted runner may refuse /usr/bin/sample on the hardened candidate, which would be a product finding. The cap from M2-0191 (LIVE_VERIFIED pending) remains. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from M2-0471 acceptance LEAD_ACTION: 'dispatch candidate-scenarios.yml with scenario=stall-sampler and the DMG sha256 of a main candidate. On PASS, file M2-0192 LIVE"
   },
   {
    "id": "M2-0193",
@@ -18040,7 +18168,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: amend M2-0193 acceptance 5 (and slice M2-0193.4) and its verification line per OD-36. On the candidate, History runs with the FIFO fixtures (job st1-mac-history) and the synthetic-dataless fixtures (job st1-mac-dataless-synthetic, --history after-idle). Real dataless files are measured in the M2-0198 owner soak. Then, after the cut, file M2-0193 LIVE_VERIFIED from the candidate run's st1-mac-history job on the QA-identity zip: kind hosted-runner, host macos-latest, bound to the candidate run. It closes DONE only after its caps M2-0030, M2-0031 and M2-0191 do.",
+    "raised_on": "2026-10-03"
+   },
    "flag": "storage.gateway",
    "risk": "high",
    "estimate_hours": 8,
@@ -18125,7 +18257,7 @@
    ],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): per OD-21 this ticket's History open/search row is the gate for the History-click freeze (M2-0031 records its History exercise report-only). 2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path. 2026-09-29 (lead): STUCK after 8 rounds (a guard flip-flop between two failure sets). Narrowed to slice 1 (state/M2-0193.lead); slices 2-4 filed as M2-0512=S4, M2-0513=S2, M2-0514=S3; S3/S4 gate 1.9.7, S2 (module move) waits for the soak (PD-12). | 2026-09-30 (lead): sliced into the 4 slices of the S1 lead ruling so the merge of S1 (#335) advances the ticket instead of closing it.",
+   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): per OD-21 this ticket's History open/search row is the gate for the History-click freeze (M2-0031 records its History exercise report-only). 2026-09-29 (lead): P0 and owner_model opus. This is the History-click freeze gate (OD-21) and on the 1.9.7 critical path. 2026-09-29 (lead): STUCK after 8 rounds (a guard flip-flop between two failure sets). Narrowed to slice 1 (state/M2-0193.lead); slices 2-4 filed as M2-0512=S4, M2-0513=S2, M2-0514=S3; S3/S4 gate 1.9.7, S2 (module move) waits for the soak (PD-12). | 2026-09-30 (lead): sliced into the 4 slices of the S1 lead ruling so the merge of S1 (#335) advances the ticket instead of closing it. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from M2-0505 acceptance LEAD_ACTION: 'Amend M2-0193 acceptance 5 and its verification line per OD-36: on the lane candidate, History with the FIFO fixtures (st1-mac-",
    "priority": "P0",
    "slice_current": 4,
    "slices_merged": [
@@ -18195,7 +18327,11 @@
    "required_evidence": [
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead, before the cut: dispatch freeze-repro.yml on main with mode=hosted-live. Set candidate_run to the first main qa-candidate run, and set macos_artifact_sha256 and windows_artifact_sha256 to its DMG and Setup. Have Opus attribute every stall in the M2-0194 evidence note, and file any mechanism outside M2-0030/0031/0033/0036/0193 as a 1.9.7 blocker. Then re-dispatch on the final 1.9.7 candidate and file M2-0194 LIVE_VERIFIED per OS: kind hosted-runner, hosts macos-latest and windows-latest, build_run_id set to the candidate run, artifact_sha256, and ci_run_id set to the freeze-repro run. It closes DONE only after its caps M2-0007, M2-0008, M2-0187, M2-0191 and M2-0192 do. Until M2-0187's external blocker clears, its records must list inherited_block M2-0187.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 6,
@@ -18209,7 +18345,8 @@
     "implementer": "codex",
     "validation": "independent Codex review PASS; no CI ran (private docs PR: private-repo Actions unavailable)"
    },
-   "priority": "P0"
+   "priority": "P0",
+   "notes": "2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from M2-0504 acceptance, two LEAD_ACTIONs: '(before the cut): dispatch gh workflow run freeze-repro.yml --ref main -f mode=hosted-live -f candidate_run=<first main q"
   },
   {
    "id": "M2-0195",
@@ -18302,7 +18439,11 @@
    "required_evidence": [
     "HOST_CONFIGURED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: in the public app repo, run windows-qa.yml on main with suite=capabilities. Download the windows-qa-capabilities artifact and commit capabilities.txt and SHA256SUMS.txt under docs/metis-2.0/evidence/raw/M2-0196/. File the M2-0196 HOST_CONFIGURED record with environment {kind: hosted-runner, host: windows-latest}, plus command, exit_code, ci_run_id and output {path, sha256}. Then rewrite the RUNS/PARTIAL/CANNOT rows in runbooks/windows-lanes.md from the probe output. It closes DONE only after its cap M2-0007 (pending HOST_CONFIGURED) does.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
@@ -18319,7 +18460,7 @@
      "HOST_CONFIGURED"
     ]
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead, EC triage): Gap ticket M2-0448 (public windows-qa.yml suite=capabilities; depends on M2-0416). The verification line '-f probe=capabilities' names the private workflow's input. The public dispatch is: gh workflow run windows-qa.yml -R mysticalsin/AskToto-Mantu --ref main -f suite=capabilities. Under OD-26 the HOST_CONFIGURED record uses environment {kind: windows-runner, host: windows-latest}, which already exists in record.mjs, or the hosted-runner kind once that change lands."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead, EC triage): Gap ticket M2-0448 (public windows-qa.yml suite=capabilities; depends on M2-0416). The verification line '-f probe=capabilities' names the private workflow's input. The public dispatch is: gh workflow run windows-qa.yml -R mysticalsin/AskToto-Mantu --ref main -f suite=capabilities. Under OD-26 the HOST_CONFIGURED record uses environment {kind: windows-runner, host: windows-latest}, which already exists in record.mjs, or the hosted-runner kind once that change lands. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from M2-0196 notes: 'The public dispatch is: gh workflow run windows-qa.yml ... -f suite=capabilities'. M2-0448 acceptance LEAD_ACTION: 'File the M2-0196 HOST_CONFIG"
   },
   {
    "id": "M2-0197",
@@ -18356,7 +18497,11 @@
     "LOCALLY_TESTED",
     "ACCEPTED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: first commit the M2-0238 backfill records into docs/metis-2.0/evidence/records/, as M2-0510's LEAD_ACTION orders. Then dispatch the program repo's program-audit-dispatch.yml on main with mode=velocity and gate=m3, and commit docs/metis-2.0/FORECAST.md citing that run id. Do both before D-14's needed-by date of 2026-10-09. At the same time, remove the stale ACCEPTED entry from evidence.pending.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
@@ -18377,7 +18522,7 @@
    ],
    "due": "2026-10-09",
    "status": "ENGINEERING_COMPLETE",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed). 2026-09-29: D-14 ANSWERED (owner approved the degrade order) — ACCEPTED owner statement recorded; FORECAST.md still pending (velocity run on the public program repo, OD-37).",
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: proceed on the recorded D-14 degrade order default. 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed). 2026-09-29: D-14 ANSWERED (owner approved the degrade order) — ACCEPTED owner statement recorded; FORECAST.md still pending (velocity run on the public program repo, OD-37). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes: 'FORECAST.md still pending (velocity run on the public program repo, OD-37)'. M2-0510 LEAD_ACTION: 'commit the records/<id>.jsonl files and gaps from the",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/298",
     "merged_into": "m2/integration (squash)",
@@ -18562,7 +18707,11 @@
    "required_evidence": [
     "DESIGNED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: first supply the M2-0201 prototype states from docs/metis-2.0/design/M2-0201/ (manifest.json and the nine STATE-LIST.md files). A public PR then ports them, with their rendering, into the design-capture surface, replacing the six placeholder DESIGN_STATES in src/renderer/src/design-capture/states.ts one to one. Dispatching the capture job today would only capture the six placeholders. Then dispatch design-capture.yml on main and commit the Electron captures over the placeholders under docs/metis-2.0/design/M2-0201/. Have an Opus validator session other than the author record acceptance in VALIDATION.md, and file the DESIGNED record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 27,
@@ -18625,7 +18774,7 @@
    ],
    "due": null,
    "status": "ENGINEERING_COMPLETE",
-   "notes": "OD-12 (2026-09-27): DESIGNED prototypes are built as real renderer components (src/renderer, the app's own React/CSS) behind a dev-only surface and captured in CI through Electron, not as a standalone HTML site; no visible browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: DESIGNED captures (placeholders committed) + Opus acceptance — M2-0418. Lead ruling: dependents may build from the committed design spec (manifests, state lists); the captures are evidence, not inputs.",
+   "notes": "OD-12 (2026-09-27): DESIGNED prototypes are built as real renderer components (src/renderer, the app's own React/CSS) behind a dev-only surface and captured in CI through Electron, not as a standalone HTML site; no visible browser on the owner's Mac. 2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: DESIGNED captures (placeholders committed) + Opus acceptance — M2-0418. Lead ruling: dependents may build from the committed design spec (manifests, state lists); the captures are evidence, not inputs. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from design-capture.yml:8-9 on app main: 'The current states are pipeline placeholders. BLOCKED_EXTERNAL: the M2-0201 prototype state ids come from the program track",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/25",
     "merged_into": "main (squash)",
@@ -21154,7 +21303,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: add ledger-check.yml to program main, calling the public ledger.yml on push (M2-0510 acceptance 1). Dispatch program-audit-dispatch.yml with mode=backfill, commit the resulting records/<id>.jsonl files and gaps into docs/metis-2.0/evidence/records/, and revert any ticket that has no record. Draw the 10% sample for the back-filled set. After the 1.9.7 cut, dispatch mode=sample with population_of=M2-0046 and the seed set to the candidate commit, and commit it at docs/metis-2.0/evidence/raw/M2-0046/1.9.7/sample.json. Then have a fresh session of a different model re-execute each sampled ticket (CI only) and append its record with reexecuted_by.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
@@ -21174,7 +21327,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: closure not evidence-backed 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed). 2026-09-29 (lead): the M2-0046 acc-7 10% re-execution (draft NEW-E11) is folded into this ticket."
+   "notes": "2026-09-29 (lead, owner-asks completeness audit, owner-approved): DONE -> ENGINEERING_COMPLETE: closure not evidence-backed 2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed). 2026-09-29 (lead): the M2-0046 acc-7 10% re-execution (draft NEW-E11) is folded into this ticket. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from evidence.pending: 'records/<id>.jsonl for the quality tickets', 'a running ledger check'. M2-0510 acceptance 1, and its LEAD_ACTION: 'commit the records/<id>.js"
   },
   {
    "id": "M2-0239",
@@ -22604,13 +22757,17 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: in the public app repo, dispatch resource-census.yml on main with the release repo input from M2-0473's LEAD_ACTION and release_tag=v1.9.6-unsigned. Commit docs/metis-2.0/evidence/resource-baseline.md and the raw JSON under evidence/raw/M2-0009/, citing that run id and the artifact sha256. Name the unmeasured rows exactly as the census emits them: managed-laptop footprint, audio-capture devices and live capture-to-caption as BLOCKED_EXTERNAL, and NPU as UNKNOWN. File M2-0009 MEASURED and M2-0264 MEASURED from that run under kind hosted-runner (OD-26). M2-0264 closes DONE only after its caps M2-0009 and M2-0007 do.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "priority": "P1",
-   "notes": "2026-09-28 (lead): dependency on M2-0195 dropped (SOFT: baseline comes from M2-0009 census on hosted runners; the managed-laptop row stays BLOCKED_EXTERNAL); re-verify against M2-0195 once it lands.",
+   "notes": "2026-09-28 (lead): dependency on M2-0195 dropped (SOFT: baseline comes from M2-0009 census on hosted runners; the managed-laptop row stays BLOCKED_EXTERNAL); re-verify against M2-0195 once it lands. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from evidence.pending: 'MEASURED'. M2-0473 acceptance LEAD_ACTION: 'dispatch gh workflow run resource-census.yml --ref main ... -f release_tag=v1.9.6-unsigned; commi",
    "required_evidence": [
     "MEASURED"
    ],
@@ -22654,13 +22811,17 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: update DATA-AUTHORITY-MATRIX.md to D-5's 2026-09-29 answer (Cloudflare Containers with Neon Postgres via Hyperdrive). Row 7 still says Hindsight is 'Not hosted in Cloudflare', and §1 and §4 still call the knowledge-API host UNKNOWN. In the same edit, replace the ASSUMED M1 mirror audience with D-6's 2026-09-29 answer. Then have an independent Opus session (not the author) review the corrected matrix and fill the §5 sign-off. Finally, file the LOCALLY_TESTED record from a CI run over the merged docs, because PR #28 had none.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "priority": "P1",
-   "notes": "2026-09-28 (lead): dependency on M2-0119 dropped (SOFT: docs-only; needs only the hosting decision, answered by OD-17); re-verify against M2-0119 once it lands.",
+   "notes": "2026-09-28 (lead): dependency on M2-0119 dropped (SOFT: docs-only; needs only the hosting decision, answered by OD-17); re-verify against M2-0119 once it lands. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from DATA-AUTHORITY-MATRIX.md LEAD_ACTIONs: line 71 'paste the result into §5', line 74 'Re-verify this matrix against M2-0119 once it lands', line 75 'File the CI B",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/28",
     "merged_into": "main (squash)",
@@ -25908,7 +26069,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: amend ADR-024 §5 to record that the M2-0129 -> M2-0136 edge was not added, because the 2026-09-29 ledger batch found it would create a cycle via M2-0132. Then dispatch an Opus validator session other than the author to review ADR-024 and PORT-DECISIONS.md:77 and record PASS (acceptance 4). Once M2-0510's ledger-check caller is on program main, record a passing ledger-check run over the amended depends_on, and file the LOCALLY_TESTED record from that run. It closes DONE only after its cap M2-0019 does, which is itself capped by M2-0190 and M2-0481.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
@@ -25922,7 +26087,8 @@
    },
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "notes": "2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from ADR-024 §7 LEAD_ACTIONs: 'Dispatch an Opus validator session other than the author ... Acceptance 4 is not met until then' and '... then run the ledger check an"
   },
   {
    "id": "M2-0332",
@@ -26879,7 +27045,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: the README's KIT_BEATS diff already fails. KIT_BEATS and CLAIMS.json storyboard_scenes run 0-70 s, with titles that are not in the kit (for example LF-07 'Runs on Mac and Windows'). The kit's STORYBOARD.json is 60 s (LF-01 0-6, LF-02 6-13, LF-03 13-21, LF-04 21-30, LF-05 30-38, LF-06 38-49, LF-07 49-55, LF-08 55-60) and names each beat only by proposed_copy. Land a public fix PR that re-keys KIT_BEATS and CLAIMS.json together to the kit beats, with the check-claims tests green, so acceptance 1 is met, and file its LOCALLY_TESTED record. M2-0349 then closes DONE once its cap M2-0178 closes DONE; this re-key is M2-0178's only pending item.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
@@ -26893,7 +27063,8 @@
     "merged_into": "m2/integration (squash)",
     "implementer": "claude",
     "validation": "independent Claude review PASS + every PR check green (CI, packaged smoke)"
-   }
+   },
+   "notes": "2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from media/launch-film/README.md:24 LEAD_ACTION, identical on main and m2/integration: 'diff KIT_BEATS (ids, titles, start_s/end_s) against the kit STORYBOARD.json a"
   },
   {
    "id": "M2-0350",
@@ -28188,13 +28359,17 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: run M2-0444's fixed task set (the LEAD_ACTIONs in evidence/eng-efficiency.md) three times per cell, on a pinned commit before the m5 seam set and again after it. File the token, search and read counts (acceptance 3). Then assign an independent validator to ADR-025 (LEAD_ACTION 5), update ADR-025 §6 to cite M2-0426 (DONE) for acceptance 4, and file a CI LOCALLY_TESTED record. LEAD_ACTION 2's source review is needed only to reopen adoption (§5 gate a), not to close this ticket: acceptance 1 also accepts 'a decision not to adopt either', which ADR-025 records.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "priority": "P2",
-   "notes": "2026-09-28 (lead): dependency on M2-0059 dropped (SOFT: private ADR evaluation needing only D-15 (answered 2026-09-26)); re-verify against M2-0059 once it lands.",
+   "notes": "2026-09-28 (lead): dependency on M2-0059 dropped (SOFT: private ADR evaluation needing only D-15 (answered 2026-09-26)); re-verify against M2-0059 once it lands. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from ADR-025 status: 'PROPOSED. Decision: do not adopt either tool now (DEFER)'. §7: 'LEAD_ACTION 2 (remaining): ... Until then §5 gate (a) is unmet' and 'LEAD_ACTIO",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/32",
     "merged_into": "main (squash)",
@@ -28651,7 +28826,11 @@
     "per-PR packaged smoke (macOS + Windows) where app behaviour is involved"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "None of its own. LOCALLY_TESTED is recorded from run 36639031304, and both HOST-BINDINGS.md LEAD_ACTIONs are done. It closes DONE once its caps close DONE. For M2-0190: re-dispatch M2-0481 to refresh the stale test-isolation runbook, then amend M2-0190 acceptance 4. For M2-0019: run kit-suites.yml on program main per M2-0449's LEAD_ACTION, file M2-0019's LOCALLY_TESTED record from that run, and repoint PORT-DECISIONS.md's scratch-results table from the local scratch paths to that run.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
@@ -28675,7 +28854,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed)."
+   "notes": "2026-09-29 OD-27: owner approved raising the private-repo Actions budget; the lead dispatches this ticket's private run once GitHub accepts jobs again. 2026-09-29 OD-37: the program repo is public, so its Actions run on free minutes; the lead dispatches the waiting private run now (OD-27 budget no longer needed). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from evidence.pending: 'DONE capped by M2-0019 and M2-0190 (both ENGINEERING_COMPLETE)'. Changelog 2026-09-29: 'M2-0386 LOCALLY_TESTED recorded (capped)'. HOST-BINDI"
   },
   {
    "id": "M2-0387",
@@ -30115,7 +30294,11 @@
     "lead post-merge run-list check"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The next time a push to a ticket branch or PR supersedes a run that is still in progress, the lead records the link to that cancelled run. The run must belong to one of the four workflows PR #307 changed: build.yml, isolation-canary.yml, film-toolchain.yml or m2-0092-ui-deps.yml. The other half of acceptance[3], no cancelled m2/integration run, was verified on 2026-09-29.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 1,
@@ -30129,7 +30312,7 @@
      "LEAD_ACTION acceptance item (lead, after merge)"
     ]
    },
-   "notes": "2026-09-29 (lead): DONE -> ENGINEERING_COMPLETE until the lead records its LEAD_ACTION acceptance item. 2026-09-29 (lead, post-merge check): VERIFIED: 0 cancelled m2/integration runs among 65 build.yml / 65 isolation-canary.yml runs after the merge (03:08Z-09:40Z). NOT YET OBSERVED: a superseded ticket-branch run cancelled by the next push. 0 overlapping runs on 21 branches, because the single-slot merge queue and the serialized ticket flow no longer push while a branch's run is in progress. The concurrency config is correct by lead review of #307. The LEAD_ACTION stays open until an overlap occurs.",
+   "notes": "2026-09-29 (lead): DONE -> ENGINEERING_COMPLETE until the lead records its LEAD_ACTION acceptance item. 2026-09-29 (lead, post-merge check): VERIFIED: 0 cancelled m2/integration runs among 65 build.yml / 65 isolation-canary.yml runs after the merge (03:08Z-09:40Z). NOT YET OBSERVED: a superseded ticket-branch run cancelled by the next push. 0 overlapping runs on 21 branches, because the single-slot merge queue and the serialized ticket flow no longer push while a branch's run is in progress. The concurrency config is correct by lead review of #307. The LEAD_ACTION stays open until an overlap occurs. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[3] LEAD_ACTION: 'records run links showing a superseded ticket-branch run cancelled by the next push and no cancelled m2/integration run'. notes 2026",
    "required_evidence": [
     "LOCALLY_TESTED"
    ]
@@ -30165,7 +30348,11 @@
     "capture job run artifact (lead)"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "First, the six placeholder states in the app's src/renderer/src/design-capture/states.ts are replaced one for one by the M2-0201 prototype state ids. The file's own BLOCKED_EXTERNAL note says the lead supplies those ids, but no ledger ticket covers this port yet. Then the lead dispatches design-capture.yml and commits the Electron captures and provenance under docs/metis-2.0/design/M2-0201/. Finally, an Opus validator session other than the author adds a dated verdict to design/M2-0201/VALIDATION.md.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
@@ -30173,7 +30360,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 (lead, EC triage): Keep PR #309's scope as is; the triage's 'amend before merge' option was not taken. M2-0447 adds the WCAG AA contrast and clipping audit, a negative control, upload if: always() (design-capture.yml:52 has none today) and a pull_request trigger on design paths. That supersedes the 'On demand only' header (line 11). M2-0450 and M2-0451 add the 17 Settings states alongside the M2-0201 placeholders. The lane has never run, so the first M2-0447 PR run may surface lane defects.",
+   "notes": "2026-09-29 (lead, EC triage): Keep PR #309's scope as is; the triage's 'amend before merge' option was not taken. M2-0447 adds the WCAG AA contrast and clipping audit, a negative control, upload if: always() (design-capture.yml:52 has none today) and a pull_request trigger on design paths. That supersedes the 'On demand only' header (line 11). M2-0450 and M2-0451 add the 17 Settings states alongside the M2-0201 placeholders. The lane has never run, so the first M2-0447 PR run may surface lane defects. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[3] LEAD_ACTION: 'the lead dispatches the capture job, commits the images under ... docs/metis-2.0/design/M2-0201/, and an Opus validator session othe",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/309",
     "merged_into": "m2/integration (squash)",
@@ -30414,7 +30601,11 @@
    ],
    "kit_refs": [],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead dispatches freeze-repro.yml on app main with mode=hosted-live. candidate_run is set to a successful workflow_dispatch qa-candidate.yml run on main. macos_artifact_sha256 and windows_artifact_sha256 are set to that run's DMG and Windows installer hashes. The lead then files the M2-0194 LIVE_VERIFIED record (kind hosted-runner, with ci_run_id) from the attribution bundle the run emits.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "title": "Let freeze-repro take a QA candidate by run id and sha256, and emit an M2-0194 attribution bundle",
@@ -30446,7 +30637,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 (lead, EC triage): Shares .github/workflows/freeze-repro.yml, scripts/qa/freeze-repro/run-matrix.sh and scripts/evidence/check.mjs with M2-0462 and M2-0463 (M2-0008 hosted-live mode). Land them one after the other, with one open PR on these files at a time. Keep the M2-0194 candidate_run/sha256 inputs separate from the M2-0008 mode input, and have whichever lands second rebase and keep both contract tests.",
+   "notes": "2026-09-29 (lead, EC triage): Shares .github/workflows/freeze-repro.yml, scripts/qa/freeze-repro/run-matrix.sh and scripts/evidence/check.mjs with M2-0462 and M2-0463 (M2-0008 hosted-live mode). Land them one after the other, with one open PR on these files at a time. Keep the M2-0194 candidate_run/sha256 inputs separate from the M2-0008 mode input, and have whichever lands second rebase and keep both contract tests. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[4] LEAD_ACTION: 'the lead dispatches it with a qa-candidate build and files the M2-0194 LIVE_VERIFIED record'. acceptance[3]: 'Runs only from main (r",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/328",
     "merged_into": "m2/integration (squash)",
@@ -30548,7 +30739,11 @@
    "depends_on": [],
    "kit_refs": [],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead finds the first packaged run that executed the new check: PR #325's own Packaged smoke run, or the first m2/integration push run of packaged-smoke.yml after squash 8dbb4e92 on 2026-10-01. Against acceptance[3], the lead records that run's id and the result of check-no-dev-tooling.mjs in the macOS (npm run dist) and Windows (npm run dist:win) jobs.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "title": "Fail the packaged build if the installer ships graphify, code-review-graph or a bundled Python",
@@ -30590,7 +30785,8 @@
     "pending": [
      "LEAD_ACTION acceptance item (lead, after merge)"
     ]
-   }
+   },
+   "notes": "2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[3] LEAD_ACTION: 'the lead records the first packaged run's result'. evidence.pending: 'LEAD_ACTION acceptance item (lead, after merge)'. The ticket h"
   },
   {
    "id": "M2-0428",
@@ -30665,7 +30861,11 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Against acceptance[7], the lead records the hosted macOS tccutil-probe.json rows from M2-0472's packaged-smoke probe. Row A comes from the first m2/integration push run after #345 (7faf9459), or any later push run. Row B comes from one 'gh workflow run packaged-smoke.yml --ref m2/integration'. The record includes the run ids, the packaged-smoke-macos artifact sha256, and whether the one-click Repair works without admin when an entry exists.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "risk": "medium",
@@ -30702,7 +30902,7 @@
     "The Listen mic-only note and the Bar chip use the diagnosis (they say which copy/build holds the grant and offer Repair)",
     "LEAD_ACTION (after merge, not the implementer's): verify tccutil-reset-without-sudo behaviour on a hosted macOS runner and record it; Developer ID signing (owner action, OD-8) is noted as the permanent cure for identity churn"
    ],
-   "notes": "2026-09-29 (lead ruling, owner to confirm): OBU-03 forbids editing the macOS permissions database. M2-0429's one-click Repair keeps that intent: it never edits the database; on a user click it runs Apple's /usr/bin/tccutil reset ScreenCapture for this app's own bundle id only (allowlist com.mantu.asktoto/.qa, execFile without a shell, audited), the same effect as removing Metis with '-' in System Settings. Owner confirmation requested; until then the ruling stands as a documented exception to OBU-03. 2026-09-29 OD-28: owner approved the OBU-03 exception (one-click tccutil reset of Métis's own Screen Recording entry). Remaining LEAD_ACTION: a hosted-macOS run proving tccutil works without sudo (OD-26: hosted runners count). 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): the acceptance[7] LEAD_ACTION is served by M2-0472, a report-only packaged-smoke macOS probe with no dependency on the candidate lane. Row A runs on every push; row B, with a seeded ScreenCapture entry, runs on workflow_dispatch. The triage's waits_on 'OBU-03 exception (owner confirmation)' is resolved by OD-28, so drop it.",
+   "notes": "2026-09-29 (lead ruling, owner to confirm): OBU-03 forbids editing the macOS permissions database. M2-0429's one-click Repair keeps that intent: it never edits the database; on a user click it runs Apple's /usr/bin/tccutil reset ScreenCapture for this app's own bundle id only (allowlist com.mantu.asktoto/.qa, execFile without a shell, audited), the same effect as removing Metis with '-' in System Settings. Owner confirmation requested; until then the ruling stands as a documented exception to OBU-03. 2026-09-29 OD-28: owner approved the OBU-03 exception (one-click tccutil reset of Métis's own Screen Recording entry). Remaining LEAD_ACTION: a hosted-macOS run proving tccutil works without sudo (OD-26: hosted runners count). 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): the acceptance[7] LEAD_ACTION is served by M2-0472, a report-only packaged-smoke macOS probe with no dependency on the candidate lane. Row A runs on every push; row B, with a seeded ScreenCapture entry, runs on workflow_dispatch. The triage's waits_on 'OBU-03 exception (owner confirmation)' is resolved by OD-28, so drop it. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[7] LEAD_ACTION: 'verify tccutil-reset-without-sudo behaviour on a hosted macOS runner and record it'. notes (EC triage, Theme A): 'the acceptance[7]",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/332",
     "merged_into": "m2/integration (squash)",
@@ -31416,7 +31616,11 @@
    "owner_model": "sonnet",
    "kit_refs": [],
    "evidence_target": "MEASURED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead runs the five-task set in docs/metis-2.0/evidence/eng-efficiency.md three times per cell. The before cells can run now, on a pinned commit before the m5 seam set. The after cells wait until that seam set has landed: M2-0060, 0061, 0063, 0064, 0065, 0066, 0067 and 0205, all TODO behind the M2-0198 soak. The lead files the medians of tokens, searches, reads and correctness, with the FF-04 and duplicated-responsibility counts beside them, as the MEASURED record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "risk": "medium",
@@ -31454,7 +31658,8 @@
      "MEASURED",
      "LEAD_ACTION acceptance item (lead, after merge)"
     ]
-   }
+   },
+   "notes": "2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[0] LEAD_ACTION: 'the five-task set in eng-efficiency.md runs three times per cell on a pinned commit before the m5 seam set and again after it; media"
   },
   {
    "id": "M2-0445",
@@ -31654,14 +31859,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The change has been on app main since milestone #429. The lead confirms windows-qa.yml is registered there (it now registers itself from a pull_request run, per M2-0501) and dispatches it with --ref main -f suite=capabilities. The lead then commits capabilities.txt and SHA256SUMS.txt under docs/metis-2.0/evidence/raw/M2-0196/. Next, the lead files the M2-0196 HOST_CONFIGURED record with kind hosted-runner, host windows-latest, command, exit_code, ci_run_id and output {path, sha256}. Last, the lead updates runbooks/windows-lanes.md:52 and the RUNS/PARTIAL/CANNOT rows from the probe output.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0448, audited); unblocks M2-0196.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0448, audited); unblocks M2-0196. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[6] LEAD_ACTION: 'run gh workflow run windows-qa.yml ... --ref main -f suite=capabilities', 'File the M2-0196 HOST_CONFIGURED record with environment",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/367",
     "merged_into": "m2/integration (squash)",
@@ -31713,14 +31922,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead dispatches kit-suites.yml on the program repository's main. From that run the lead files two records: the M2-0019 LOCALLY_TESTED record (ci_run_id, pr = program PR #41, environment {kind: ci, host: ubuntu-latest}, command, exit_code) and this ticket's own pending LOCALLY_TESTED record. The lead then repoints kit/PORT-DECISIONS.md's scratch-results table to that run's reports and keeps check_acceptance.py NOT_RUN.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 5,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0449, audited); unblocks M2-0019.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0449, audited); unblocks M2-0019. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[7] LEAD_ACTION: 'run gh workflow run kit-suites.yml ... --ref main. File the M2-0019 LOCALLY_TESTED record from that run'. The budget condition is mo",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/41",
     "merged_into": "main (squash)",
@@ -32150,14 +32363,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead lists the public release feed's assets and records whether any quarantine-clearing install script is attached (for example install-metis.sh). The lead also records the program owner's answer on how unsigned owner-channel prereleases are installed now that no helper remains. Removing an attached script is the owner's action, and during the 1.9.7 soak it happens only with the owner's go-ahead.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0457, audited); unblocks M2-0018.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0457, audited); unblocks M2-0018. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[8] LEAD_ACTION: 'list the public release feed's assets and record whether any install script is attached. Removing one is an owner action and does no",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/342",
     "merged_into": "m2/integration (squash)",
@@ -32334,14 +32551,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The change has been on app main since milestone #396. The lead confirms hk-m-candidate.yml is registered on main (it now registers itself from a pull_request run, per M2-0501; check per runbooks/integration.md §10 step 5). The lead dispatches qa-candidate.yml on main with commit=<main head sha>, then hk-m-candidate.yml with that candidate_run and the DMG sha256 from the run's SHA256SUMS.txt. The lead records M2-0028 LIVE_VERIFIED from the 20-cycle report under kind hosted-runner, host macos-latest. Separately, the lead copies the finished acceptance[8] observation into this ticket: five m2/integration packaged-smoke runs after #350, each with hw.memsize 7516192768 and HK-M 5/5.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0460, audited); unblocks M2-0028.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0460, audited); unblocks M2-0028. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[9] LEAD_ACTION: 'run gh workflow run qa-candidate.yml --ref main ... then gh workflow run hk-m-candidate.yml' and 'Record M2-0028 LIVE_VERIFIED from",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/350",
     "merged_into": "m2/integration (squash)",
@@ -32499,14 +32720,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The change has been on app main since milestone #429 (2026-10-02). The lead dispatches freeze-repro.yml on main with mode=hosted-live and the sha256s of the v1.9.6-unsigned DMG and Windows installer from that release's SHA256SUMS. The lead imports both bundles and files the two owner-bug LIVE_VERIFIED records for M2-0008 under kind hosted-runner (hosts macos-latest and windows-latest, each with ci_run_id). Finally, the lead updates the hypothesis ranking with OBSERVED/DERIVED labels.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 4,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0463, audited); unblocks M2-0008.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0463, audited); unblocks M2-0008. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[5] LEAD_ACTION: 'run gh workflow run freeze-repro.yml --ref main -f mode=hosted-live' and 'file the two owner-bug LIVE_VERIFIED records for M2-0008 u",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/397",
     "merged_into": "m2/integration (squash)",
@@ -32553,14 +32778,18 @@
     "DESIGNED"
    ],
    "evidence_target": "DESIGNED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead records a review of docs/metis-2.0/runbooks/diagnostics-sampling.md against M2-0008 acceptance 8, the runbook item. Then the lead files this ticket's DESIGNED record with output {path: docs/metis-2.0/runbooks/diagnostics-sampling.md, sha256}. The runbook is already on program main through PR #42.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0464, audited); unblocks M2-0008.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0464, audited); unblocks M2-0008. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[4] LEAD_ACTION: 'review it against M2-0008 acceptance 8 and merge it, then file this ticket's DESIGNED record with output {path: docs/metis-2.0/runbo",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/42",
     "merged_into": "main (squash)",
@@ -32614,14 +32843,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead files M2-0188's LOCALLY_TESTED record from the Build & Test run of public PR #369 and marks slice M2-0188.2 as delivered by this ticket. The lead also amends the 'Wiring' bullet in runbooks/integration.md §13 to say the claims step runs in the public reusable ledger.yml from the checker checkout. Once M2-0238's program-repository caller of ledger.yml is on program main, the lead confirms that a run executes the claims step.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0465, audited); unblocks M2-0188.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0465, audited); unblocks M2-0188. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[9] LEAD_ACTION: 'record M2-0188 LOCALLY_TESTED from the PR's Build & Test run' and 'confirm that a run executes the claims step'. acceptance[10] LEAD",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/369",
     "merged_into": "m2/integration (squash)",
@@ -32684,14 +32917,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead applies the two schema amendments still missing. Item 3: evidence/SCHEMA.md states that new hosted macos-latest and windows-latest evidence uses hosted-runner and that windows-runner is not used for new hosted records, and the ARCHITECTURE §7.1 'windows-latest (dispatch)' row, which still reads 'Runner', is updated to match. Item 5: SCHEMA §3's pr row covers private-repo CI runs. Next, the lead files the waiting hosted records under kind hosted-runner as their lanes produce them: M2-0196 through M2-0448, M2-0009 through the census re-dispatch, and M2-0036 and M2-0040 through the candidate-bytes lane. The code has been on app main since milestone #396. Last, the lead runs check.mjs --ledger in CI once M2-0238's ledger.yml caller is on program main.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0466, audited); unblocks M2-0026, M2-0027, M2-0033, M2-0037, M2-0192, M2-0008, M2-0028, M2-0036, M2-0040, M2-0187, M2-0009.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0466, audited); unblocks M2-0026, M2-0027, M2-0033, M2-0037, M2-0192, M2-0008, M2-0028, M2-0036, M2-0040, M2-0187, M2-0009. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[7] LEAD_ACTION lists the five schema amendments. acceptance[8] LEAD_ACTION: 'once this is on main, record the waiting hosted records under kind hoste",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/341",
     "merged_into": "m2/integration (squash)",
@@ -32751,14 +32988,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead, on app main (M2-0467 and M2-0466 have both been on main since milestone #396): (1) confirm GET actions/workflows/candidate-scenarios.yml returns 200, and if it returns 404 apply the hk-m-candidate.yml remedy; (2) dispatch qa-candidate.yml on main with commit=<main head>; (3) dispatch candidate-scenarios.yml with candidate_run=<that run>, scenario=fault-fatal-relaunch and mac_sha256=<Metis-QA zip sha256 from its SHA256SUMS.txt>; (4) on PASS, file M2-0026 LIVE_VERIFIED (hosted-runner, macos-latest, artifact_sha256, build_run_id, ci_run_id) and copy the lane artifact into the program repo as the output. On PRECONDITION, record a hosted-host residual linked to the prewarm-floor follow-up named in M2-0460's PR.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 7,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0467, audited); unblocks M2-0026.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0467, audited); unblocks M2-0026. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[10] LEAD_ACTION steps (1)-(4), including 'Dispatch candidate-scenarios.yml with candidate_run=<that run>, scenario=fault-fatal-relaunch'. evidence.pe",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/356",
     "merged_into": "m2/integration (squash)",
@@ -32815,14 +33056,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: dispatch candidate-scenarios.yml on main with scenario=sidecar-boot-reaper and the DMG and Setup sha256 values of a main qa-candidate run. When the macOS run passes (realLlama and legacyOrphan both PASS), file M2-0027 LIVE_VERIFIED with one line per platform and artifact (hosted-runner, macos-latest and windows-latest; M2-0466 is already on main). If macOS exits 2, record a hosted-host residual linked to the prewarm-floor follow-up named in M2-0460's PR.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 7,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0468, audited); unblocks M2-0027.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0468, audited); unblocks M2-0027. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[6] LEAD_ACTION: 'dispatch candidate-scenarios.yml with scenario=sidecar-boot-reaper and the DMG and Setup sha256 values of a main candidate'. evidenc",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/382",
     "merged_into": "m2/integration (squash)",
@@ -32879,14 +33124,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: dispatch candidate-scenarios.yml on main with scenario=renderer-kill and mac_sha256=<DMG sha256 of a main qa-candidate run>. On PASS, file M2-0037 LIVE_VERIFIED (hosted-runner, macos-latest; M2-0466 is already on main).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0469, audited); unblocks M2-0037.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0469, audited); unblocks M2-0037. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[7] LEAD_ACTION: 'dispatch candidate-scenarios.yml with scenario=renderer-kill ... On PASS, file M2-0037 LIVE_VERIFIED'. evidence.pending names that i",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/385",
     "merged_into": "m2/integration (squash)",
@@ -32944,14 +33193,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: dispatch candidate-scenarios.yml on main with scenario=ex-suite and the DMG sha256 of a main qa-candidate run. On PASS, file M2-0033 LIVE_VERIFIED (hosted-runner, macos-latest; M2-0466 is already on main). On exit 2, record a hosted-host residual linked to the model-start follow-up named in M2-0460's PR.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 7,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0470, audited); unblocks M2-0033.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0470, audited); unblocks M2-0033. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[8] LEAD_ACTION: 'dispatch candidate-scenarios.yml with scenario=ex-suite ... On PASS, file M2-0033 LIVE_VERIFIED'. evidence.pending names that item,",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/383",
     "merged_into": "m2/integration (squash)",
@@ -33009,14 +33262,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: dispatch candidate-scenarios.yml on main with scenario=stall-sampler and the DMG sha256 of a main qa-candidate run. On PASS, file M2-0192 LIVE_VERIFIED (hosted-runner, macos-latest; M2-0466 is already on main).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 4,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0471, audited); unblocks M2-0192.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0471, audited); unblocks M2-0192. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[7] LEAD_ACTION: 'dispatch candidate-scenarios.yml with scenario=stall-sampler ... On PASS, file M2-0192 LIVE_VERIFIED'. evidence.pending names that i",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/384",
     "merged_into": "m2/integration (squash)",
@@ -33066,14 +33323,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: take row A from the first m2/integration push run's packaged-smoke-macos artifact (smoke-report/tccutil-probe.json). Take row B from one `gh workflow run packaged-smoke.yml --ref m2/integration`. Then record the outcome against M2-0429 acceptance[7] with the run ids and artifact sha256, and state whether the one-click Repair works without admin when an entry exists.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0472, audited); unblocks M2-0429.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0472, audited); unblocks M2-0429. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[6] LEAD_ACTION: 'take row A from the first m2/integration push run and row B from one gh workflow run packaged-smoke.yml'. evidence.pending names tha",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/345",
     "merged_into": "m2/integration (squash)",
@@ -33091,7 +33352,11 @@
    "owner_model": "sonnet",
    "kit_refs": [],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: read the result of resource-census.yml run 37090250380. The queue log says it is the v1.9.6 baseline dispatched on app main on 2026-10-03, after M2-0489, M2-0490 and M2-0473 were all on main, and the ledger does not record it. If it is green, commit docs/metis-2.0/evidence/resource-baseline.md plus the raw JSON under evidence/raw/M2-0009/. Then record M2-0009 MEASURED (hosted-runner, macos-latest and windows-latest, ci_run_id) and note the run id as M2-0491's baseline_run. If it failed, re-dispatch with acceptance[4]'s command (release_tag=v1.9.6-unsigned) and do the same.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "risk": "low",
@@ -33127,7 +33392,7 @@
     "Build & Test green; no other workflow changed",
     "LEAD_ACTION: after merge and a main push, dispatch gh workflow run resource-census.yml --ref main -f release_repo=mysticalsin/Metis-Releases -f release_tag=v1.9.6-unsigned; commit docs/metis-2.0/evidence/resource-baseline.md plus raw JSON under evidence/raw/M2-0009/ and record M2-0009 MEASURED (hosted-runner kind, OD-26)"
    ],
-   "notes": "2026-09-29 (lead): filed from the failed first dispatch of resource-census.yml (run 36620887469); logs in codex-queue/logs/M2-0009-census/.",
+   "notes": "2026-09-29 (lead): filed from the failed first dispatch of resource-census.yml (run 36620887469); logs in codex-queue/logs/M2-0009-census/. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[4] LEAD_ACTION: 'dispatch gh workflow run resource-census.yml --ref main ... record M2-0009 MEASURED (hosted-runner kind, OD-26)'. evidence.pending n",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/346",
     "merged_into": "m2/integration (squash)",
@@ -33146,7 +33411,11 @@
    "owner_model": "opus",
    "kit_refs": [],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: once m2/integration packaged smoke shows the Windows RV-3 shortcut-relaunch row green on 3 consecutive runs, confirm the row is not in codex-queue state/.smoke-failset, and cite those run ids when clearing evidence.pending.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "status": "ENGINEERING_COMPLETE",
    "risk": "medium",
@@ -33179,7 +33448,7 @@
     "If the harness races the audit flush: wait on the event with a bounded deadline instead of a fixed read; no weakening — the row still requires the reveal",
     "LEAD_ACTION: after merge, remove the row from codex-queue state/.smoke-failset once integration shows it green on 3 consecutive runs"
    ],
-   "notes": "2026-09-29 (lead): filed when integration halted on this row (STOP cleared by listing it in .smoke-failset).",
+   "notes": "2026-09-29 (lead): filed when integration halted on this row (STOP cleared by listing it in .smoke-failset). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[3] LEAD_ACTION: 'remove the row from codex-queue state/.smoke-failset once integration shows it green on 3 consecutive runs'. evidence.pending names",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/347",
     "merged_into": "m2/integration (squash)",
@@ -33582,14 +33851,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: run `gh workflow run packaged-smoke.yml --ref <M2-0482 branch>` three times and record the run ids in M2-0482. Then amend the ledger text of M2-0467, M2-0468, M2-0470 and M2-0493 so their launch env sets METIS_QA_HOST_FLOOR_OVERRIDE=1 and their reports record hostFloorOverride. M2-0492 and M2-0496 already say so.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 7,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[4]: 'LEAD_ACTION: run gh workflow run packaged-smoke.yml --ref <branch> three times and record the run ids'. The branch m2/M2-0482-start-bundled-mode",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/362",
     "merged_into": "m2/integration (squash)",
@@ -33653,14 +33926,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead, after the 1.9.7 candidate cut (M2-0501, M2-0485 and M2-0466 are already on app main; the ledger does not record that M2-0501 registered hk-m-candidate.yml): dispatch `gh workflow run hk-m-candidate.yml --ref main -f candidate_run=<1.9.7 qa-candidate run id> -f dmg_sha256=<DMG sha256 from its SHA256SUMS.txt>`. Require result=pass, 100/100 PASS rows, supervisionMode=shipped and a passing codesign --verify --deep --strict. Record M2-0028 LIVE_VERIFIED (hosted-runner, macos-latest, ci_run_id, build_run_id, artifact_sha256) before the owner is asked for ACCEPTED.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[9] LEAD_ACTION (post-cut): 'make one dispatch of gh workflow run hk-m-candidate.yml --ref main ... Record M2-0028 LIVE_VERIFIED'. M2-0028 evidence.pe",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/361",
     "merged_into": "m2/integration (squash)",
@@ -33706,14 +33983,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: run `gh workflow run packaged-smoke.yml --ref m2/integration -f hk_m_cycles=20` on a head that contains M2-0460 and M2-0483, and record the run id and the 100/100 result in M2-0483.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 1.5,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[5] LEAD_ACTION: 'once M2-0460 and M2-0483 are on m2/integration, run gh workflow run packaged-smoke.yml --ref m2/integration -f hk_m_cycles=20'. Both",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/364",
     "merged_into": "m2/integration (squash)",
@@ -33771,14 +34052,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead, after M2-0483's single post-cut hk-m-candidate.yml dispatch on main: file acc 4d from the hk-m-candidate-shared artifact as M2-0028 and M2-0046 evidence (LIVE_VERIFIED, hosted-runner, macos-latest, ci_run_id, build_run_id = candidate run, artifact_sha256 = DMG). Give it an output path distinct from the fresh-profile record.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 5,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[7] LEAD_ACTION (post-cut): 'File acc 4d as M2-0028 and M2-0046 evidence from hk-m-candidate-shared ... with an output path that distinguishes it from",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/411",
     "merged_into": "m2/integration (squash)",
@@ -33827,14 +34112,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: record in M2-0486's evidence that its acceptance[5] LEAD_ACTION is met, then clear evidence.pending. It is met because M2-0488, M2-0491 and M2-0492 count sidecar-supervisor as its own kind, and releases/1.9.7.md carries the not-a-leak line.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H6 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-H6 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[5] LEAD_ACTION: 'key their by-role rule on the classified kinds, with sidecar-supervisor counted separately. 1.9.7.md explains'. Seen in the ledger:",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/355",
     "merged_into": "m2/integration (squash)",
@@ -33954,14 +34243,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Lead: record in M2-0488's evidence that its acceptance[9] LEAD_ACTION was done on 2026-10-03, then clear evidence.pending. The proof is evidence/release-1.9.7/growth-rule-registration.md, added in program commit 0cdac01, plus the M2-0046 notes entry. The ticket can then close DONE once M2-0486 is DONE.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[9] LEAD_ACTION: 'record both rule ids, the pinned sha256 and the merged commit in the private release-1.9.7 evidence folder ... and in M2-0046's note",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/395",
     "merged_into": "m2/integration (squash)",
@@ -34012,14 +34305,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Acc 6 (acceptance[5]) asks for no action of its own, and its precondition has held since milestone #396, when M2-0489 reached main. The lead clears the pending LEAD_ACTION marker in M2-0489's evidence, citing the 1.9.6 baseline dispatched under M2-0490: resource-census run 37090250380, dispatched on main fd38fd09 on 2026-10-03. That build of main carries this profile. The lead cites the run once its result has been read. No new dispatch is needed for this ticket.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[5]: \"LEAD_ACTION: none on its own. The 1.9.6 baseline is dispatched under M2-0490's LEAD_ACTION, after this ticket is on main.\" evidence.pending: [\"L",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/386",
     "merged_into": "m2/integration (squash)",
@@ -34078,14 +34375,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The acc 8 dispatch has been made but its result is not recorded. Run 37090250380 is the 1.9.6 baseline on main fd38fd09 (#429, which carries M2-0473, M2-0489 and M2-0490). The lead reads it. If both legs finished, including parked-idle, the lead files M2-0009 MEASURED (kind hosted-runner, hosts macos-latest and windows-latest, ci_run_id 37090250380) and keeps that id as M2-0491's baseline_run. If parked-idle then used more than 1% of one core over 300 s on either leg, Opus records in DECISIONS and in M2-0046's notes, before the cut, whether M2-0039 is pulled into 1.9.7; if it is not, 1.9.7.md states the values as a residual. If the run failed the way run 36773284514 did, the lead files a fix ticket, lands it on main and re-dispatches.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 5,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[7]: \"LEAD_ACTION: once M2-0489, M2-0490 and M2-0473 are on main, dispatch resource-census.yml for v1.9.6-unsigned ... Keep this run id as the baselin",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/399",
     "merged_into": "m2/integration (squash)",
@@ -34145,14 +34446,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the cut and before the owner's ACCEPTED, the lead dispatches resource-census.yml --ref main with candidate_run=<1.9.7 qa-candidate run>, mac_sha256=<DMG>, win_sha256=<Setup> and baseline_run=<M2-0490's 1.9.6 baseline run>. The lead files one MEASURED record per leg for M2-0046 acc 4a (hosted-runner, with ci_run_id, build_run_id and artifact_sha256). The lead then pastes the delta table, with every NOT_COMPARABLE state and its reason, into 1.9.7.md's placeholder.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 5,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[9]: \"LEAD_ACTION, after the cut and before the owner's ACCEPTED: dispatch resource-census.yml --ref main with candidate_run=... baseline_run=<the M2-",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/412",
     "merged_into": "m2/integration (squash)",
@@ -34216,14 +34521,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the 1.9.7 cut, the lead dispatches candidate-scenarios.yml --ref main with scenario=idle-soak, candidate_run=<1.9.7 run>, mac_sha256=<DMG> and win_sha256=<Setup>, so one dispatch also runs M2-0493's leg. On PASS, the lead files M2-0046 acc 4b MEASURED (hosted-runner, macos-latest, with ci_run_id, build_run_id and artifact_sha256), citing the registered rulesSha256 53d05c48... On INCOMPLETE or PRECONDITION, the lead re-dispatches once and records both runs. On FAIL, the candidate does not qualify until a fix and a new cut.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 5,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S6 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S6 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[8]: \"LEAD_ACTION, after the cut and once M2-0488's rule is registered: dispatch candidate-scenarios.yml --ref main with scenario=idle-soak\". acceptan",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/410",
     "merged_into": "m2/integration (squash)",
@@ -34281,14 +34590,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "In the same post-cut idle-soak dispatch as M2-0492 (with win_sha256=<Setup sha256>), the lead files the Windows MEASURED record (hosted-runner, windows-latest, with ci_run_id, build_run_id and artifact_sha256). The lead then fills the `<run, verdict>` placeholders for both legs in 1.9.7.md's idle-soak residual line; its wording on the 8 h extrapolation and on a leak after 5.5 h is already there.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S7 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S7 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[6]: \"LEAD_ACTION: dispatch as in M2-0492, adding win_sha256=<Setup sha256>. File the Windows MEASURED record\". acceptance[7]: \"LEAD_ACTION: 1.9.7.md",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/415",
     "merged_into": "m2/integration (squash)",
@@ -34345,14 +34658,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "M2-0495 must merge with its blocking capture-file-smoke-mac job PASS on its own QA-candidate self-test run. It is ready as app PR #377, but the queue's repeat-bounce rule holds it for the lead. The lead releases that hold, and then records in M2-0494's evidence the self-test run that shows the file-fed capture hook working on QA-identity bytes, before any 1.9.7 cut. The landing-order half is already met: M2-0494 (baad71be) is on main, and M2-0498, the version bump, is still TODO.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 6,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S8 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-S8 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[7]: \"LEAD_ACTION: land it in the M2-0188 hot-file order, before the 1.9.6->1.9.7 version bump ... Do not cut until M2-0495's QA-candidate self-test s",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/352",
     "merged_into": "m2/integration (squash)",
@@ -34638,14 +34955,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead finishes acc 9. First, the lead files a new ticket so that the owner-soak verdict.mjs shipped by M2-0479 (DONE) accepts 1.9.7-hotfix.N, amends M2-0199 (TODO) so its app.version parser does the same, and amends M2-0206's (TODO) version-order preflight to reuse versionForRefProblems. Then, after the owner records ACCEPTED on 1.9.7, the lead cuts release/1.9.x at the provenance commit (D-34). The lead dispatches qa-candidate.yml --ref release/1.9.x with commit=<its head>, and records the run id of the guard's 'already promoted' refusal in M2-0499 and in 1.9.7.md's `<run>` slot.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 5,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead): acc 9 in part: D-34 recorded in DECISIONS.md §D; M2-0046 acc 9 and M2-0188 acc 6 now say the provenance commit, and M2-0187 acc 5's stale tag clause is corrected (it never named the 1.9.7 tag). Still open from acc 9: the M2-0479 and M2-0199 app.version parser for 1.9.7-hotfix.N (owner-soak verdict.mjs requires exactly 1.9.7; M2-0479 is DONE, so this needs a new ticket) and M2-0206's version-order preflight reusing versionForRefProblems.",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead): acc 9 in part: D-34 recorded in DECISIONS.md §D; M2-0046 acc 9 and M2-0188 acc 6 now say the provenance commit, and M2-0187 acc 5's stale tag clause is corrected (it never named the 1.9.7 tag). Still open from acc 9: the M2-0479 and M2-0199 app.version parser for 1.9.7-hotfix.N (owner-soak verdict.mjs requires exactly 1.9.7; M2-0479 is DONE, so this needs a new ticket) and M2-0206's version-order preflight reusing versionForRefProblems. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from notes (2026-10-03): \"Still open from acc 9: the M2-0479 and M2-0199 app.version parser for 1.9.7-hotfix.N (owner-soak verdict.mjs requires exactly 1.9.7; M2-047",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/349",
     "merged_into": "m2/integration (squash)",
@@ -34750,14 +35071,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead GETs actions/workflows/{hk-m-candidate.yml, windows-qa.yml, m2-0238-backfill.yml} and confirms that each returns 200 with state active. The lead records in M2-0501's ledger note the three workflow ids and the full set difference between main's .github/workflows tree and the Actions workflow list. If any still returns 404, the acc 8 fallback applies. Then the lead records each workflow's first real dispatch on main: hk-m-candidate.yml on the 1.9.7 candidate (OD-34), windows-qa.yml per M2-0416, and m2-0238-backfill.yml per M2-0238, unless M2-0510's caller has superseded it.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 4,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[6]: \"LEAD_ACTION: after the PR's first CI round, GET .../actions/workflows/{...} each returns 200 with state active. Record the three workflow ids an",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/358",
     "merged_into": "m2/integration (squash)",
@@ -34808,14 +35133,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "(1) The lead records a main build.yml proof run id for acc 1 in M2-0502's notes. Main has moved past df205007; the queue logged PROOF OK for run 37122587224 on main d68d8e5f. (2) The lead runs the BLOCKED_EXTERNAL reads in section 2 of evidence/M2-0502-main-ci-proof.md for df205007 and 858a6a22, and copies the filled table and the root-cause verdict into the notes. (3) The lead changes the queue's milestone step so that it logs green / red / no-push-run / registration-diff instead of a single 'NOT green', then shows those lines from the next milestone merge. (4) The lead amends the last acceptance items of M2-0467 and M2-0460 to cite M2-0502 and M2-0501. (5) On the 1.9.7 merge after M2-0498, the lead runs the integration.md section 10 check and records green main CI on the merge commit and a clean registration diff in 1.9.7.md before dispatching qa-candidate.yml. The sources do not say which run backs the LOCALLY_TESTED record that evidence.pending still lists.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 2.5,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R5 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[0]: \"LEAD_ACTION now: gh workflow run build.yml ... Record the run id in this ticket's evidence note\". acceptance[4]: \"LEAD_ACTION: show the new log",
    "evidence": {
     "pr": "https://github.com/mysticalsin/Metis-2.0-Program/pull/39",
     "merged_into": "main (squash)",
@@ -34922,14 +35251,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Before the cut, the lead dispatches freeze-repro.yml --ref main, which carries M2-0504 since #460, with mode=hosted-live, candidate_run=<a completed, green main qa-candidate run> and that run's DMG and Setup sha256s. Opus attributes every stall in the M2-0194 evidence note, and files any mechanism outside M2-0030/0031/0033/0036/0193 as a 1.9.7 blocker. After the cut, the lead re-dispatches on the final 1.9.7 candidate and files M2-0194 LIVE_VERIFIED per OS (hosted-runner, macos-latest or windows-latest, build_run_id = the candidate run, artifact_sha256, ci_run_id = this run, output = the imported bundle). The sources do not say whether the pre-cut run should use run 36636273967 or a fresh main candidate.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E1 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E1 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[7]: \"LEAD_ACTION (before the cut): dispatch gh workflow run freeze-repro.yml --ref main -f mode=hosted-live -f candidate_run=<first main qa-candidate",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/431",
     "merged_into": "m2/integration (squash)",
@@ -34988,14 +35321,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "Before the cut, the lead makes the acc 9 amendments. M2-0433 acc 2 must name st1-mac-dataless-synthetic among the jobs it makes blocking. M2-0193 acc 5, its verification line and M2-0031's dataless row must be reworded per OD-36: FIFO plus synthetic dataless on the lane candidate, and real dataless in the owner soak (M2-0198). After the cut, the lead files the synthetic-dataless row as M2-0031's packaged ST-1 record on the candidate's QA-identity bytes (it must PASS, OD-54). The lead also files M2-0191 LIVE_VERIFIED with kit_refs PARTIAL from stat-flags-macos.json, and keeps 1.9.7.md's existing statement that the real-cloud dataless case is measured in the owner soak (OD-36, OD-55).",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[8]: \"LEAD_ACTION: amend M2-0433 acceptance 2 so the ST-1 jobs it makes blocking include st1-mac-dataless-synthetic. Amend M2-0193 acceptance 5\". acce",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/351",
     "merged_into": "m2/integration (squash)",
@@ -35050,14 +35387,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the cut, the lead dispatches candidate-scenarios.yml --ref main with scenario=packaged-lifecycle and the 1.9.7 DMG and Setup sha256s. The lead then files M2-0036 LIVE_VERIFIED per platform (hosted-runner, macos-latest or windows-latest, build_run_id, artifact_sha256, ci_run_id), citing these runs, not the self-built packaged-smoke runs, as the 1.9.7 RV evidence.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 4,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E3 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[6]: \"LEAD_ACTION: dispatch candidate-scenarios.yml scenario=packaged-lifecycle with the 1.9.7 DMG and Setup sha256s. File M2-0036 LIVE_VERIFIED per p",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/400",
     "merged_into": "m2/integration (squash)",
@@ -35105,14 +35446,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead records in M2-0507's evidence the macOS packaged-smoke run ids that show RV-boot-launch-activate-stays-parked as PASS: the PR #360 run plus 3 dispatched runs on the ticket branch. No source shows that those 3 branch runs were ever dispatched. If they were not, the lead dispatches packaged smoke (macOS) on the branch 3 times, checks that the row is PASS in each, and then records all ids. The acc 6 residual (second-instance-during-boot, pendingReveal, covered by unit tests only) is already in 1.9.7.md.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 3,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E4 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[4]: \"Packaged smoke (macOS) is green on the PR with the row PASS, and on 3 dispatched branch runs. LEAD_ACTION: record the run ids.\" acceptance[5]: \"",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/360",
     "merged_into": "m2/integration (squash)",
@@ -35161,14 +35506,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the cut, the lead files one LIVE_VERIFIED record per promotable 1.9.7 asset: the DMG, the ZIP and the Setup. The Portable is no longer promotable under OD-53. Each record has output = its candidate-launch report, its artifact_sha256, build_run_id = ci_run_id = the candidate run, and kind hosted-runner.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 3.5,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E7 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E7 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[4]: \"LEAD_ACTION (after the cut): file one LIVE_VERIFIED per promotable asset (DMG, zip, Setup, and Portable while it stays promotable under M2-0458)",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/353",
     "merged_into": "m2/integration (squash)",
@@ -35274,14 +35623,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead installs the ledger-check.yml caller on program main; it is still missing, and installing it supersedes the m2-0057-sanitize-prior-exec branch caller. The lead confirms the repository variables PROGRAM_LEDGER_PATH and PROGRAM_RECORDS_PATH, which both callers read. The lead dispatches program-audit-dispatch.yml (installed 2026-10-03) with mode=backfill and commits the artifact's records/<id>.jsonl files and gaps into docs/metis-2.0/evidence/records/. The lead then dispatches mode=velocity with gate=m3 and commits docs/metis-2.0/FORECAST.md citing the run id. Both run ids are recorded, all before D-14's needed_by date of 2026-10-09.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "low",
    "estimate_hours": 2,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E9 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E9 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from acceptance[0]: \"ledger-check.yml runs on push to main and on workflow_dispatch ... The branch caller on m2-0057-sanitize-prior-exec is adopted or superseded\". a",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/401",
     "merged_into": "m2/integration (squash)",
@@ -35342,14 +35695,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "After the 1.9.7 cut, the lead commits the candidate's provenance.json beside docs/metis-2.0/releases/1.9.7.gates.json in the program repo. The lead then runs M2-0046's verification line as program-audit release-check through M2-0510's dispatcher (program-audit-dispatch.yml, mode release-check; CI only, never on a Mac) and records that first run id. Last, the lead amends M2-0046's verification line to the full invocation and amends M2-0206 so --train reuses this core.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 8,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E10 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-E10 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from VERIFIED. tickets.json M2-0511 acceptance, last item: 'LEAD_ACTION: before the cut, commit docs/metis-2.0/releases/1.9.7.gates.json ... After the cut, commit th",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/398",
     "merged_into": "m2/integration (squash)",
@@ -35565,14 +35922,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead reads the QA candidate self-test ST-1 reports for PR #354's head (artifacts st-1-macos-fifo and st-1-macos-control). The lead confirms that bootStages, per-entry witness data and the profiler clock fields (profiler.startedAtMs) are present, then copies the numbers into the S2 (M2-0516) lead ruling.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 5,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): M2-0433 restart slice.",
+   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from Corrected: 'merged head' is now 'PR head'. The verification line reads 'QA candidate self-test ST-1 reports on the PR head', and PR #354 was squash-merged. tick",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/354",
     "merged_into": "m2/integration (squash)",
@@ -35631,14 +35992,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "From the fifo and control ST-1 reports of a QA candidate self-test (the verification line names the PR #381 head), the lead records two things on M2-0516: the constructor task holds only the constructor, and createWindow.navigate is under 250 ms in both rows.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 6,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): M2-0433 restart slice.",
+   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from Corrected: the draft also asked for the per-variant construct table for S5, but that part is already done. codex-queue/state/M2-0519.lead opens 'LEAD RULING (20",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/381",
     "merged_into": "m2/integration (squash)",
@@ -35690,14 +36055,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "From the fifo and control ST-1 QA reports (the verification line names the PR #380 head), the lead records that loadIcon, decorate and attachMenu are each under 250 ms in both rows, and records the newTray time for each run.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 4,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): M2-0433 restart slice.",
+   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from VERIFIED. tickets.json M2-0517 acceptance, last item: 'LEAD_ACTION (measured): loadIcon, decorate and attachMenu < 250 ms in both rows; newTray per run recorded",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/380",
     "merged_into": "m2/integration (squash)",
@@ -35751,14 +36120,18 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead records a QA candidate ST-1 run in which async-write is under 250 ms and there are no late samples in both the fifo and control rows, except events the witness proves are machine-wide.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 6,
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): M2-0433 restart slice.",
+   "notes": "2026-09-29 (lead): M2-0433 restart slice. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from VERIFIED. tickets.json M2-0518 acceptance, last item: 'LEAD_ACTION (measured): async-write < 250 ms and no late samples in both rows, except events proven machi",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/413",
     "merged_into": "m2/integration (squash)",
@@ -36211,9 +36584,13 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead removes the RE-HIDE-3-meeting-hide row entry (and its comment block) from codex-queue/known-smoke-flakes.txt, then records 10 consecutive macOS packaged-smoke runs that pass that row.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
-   "notes": "2026-09-30 (lead): filed from two intermittent smoke failures on unchanged app bytes. Coordinate with M2-0431 (fades, grace, anchored drag) which touches the same geometry.",
+   "notes": "2026-09-30 (lead): filed from two intermittent smoke failures on unchanged app bytes. Coordinate with M2-0431 (fades, grace, anchored drag) which touches the same geometry. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from VERIFIED against the ledger. tickets.json M2-0526 acceptance, last item: 'LEAD_ACTION after merge: remove the RE-HIDE-3-meeting-hide row entry from codex-queue/",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/378",
     "merged_into": "m2/integration (squash)",
@@ -36260,9 +36637,13 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead marks the LEAD_ACTION as done on M2-0527's ledger evidence (the removal itself is done and logged) and closes the ticket.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
-   "notes": "2026-09-30 (lead): filed when the flake reddened integration after train #338 landed M2-0193/M2-0526/M2-0487.",
+   "notes": "2026-09-30 (lead): filed when the flake reddened integration after train #338 landed M2-0193/M2-0526/M2-0487. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from VERIFIED and strengthened: the removal is confirmed done, not just likely. codex-queue/logs/queue.log: '2026-10-01T22:03:54Z lead: M2-0527 merged — removed the",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/404",
     "merged_into": "m2/integration (squash)",
@@ -36309,9 +36690,13 @@
     "LOCALLY_TESTED"
    ],
    "evidence_target": "LOCALLY_TESTED",
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program lead",
+    "unblock_step": "The lead removes the two lines 'row: Packaged smoke (Windows) | HIST-dirty-discard-recent' and 'row: Packaged smoke (Windows) | HIST-dirty-save-recent' (and their comment block) from codex-queue/known-smoke-flakes.txt.",
+    "raised_on": "2026-10-03"
+   },
    "flag": null,
-   "notes": "2026-09-30 (lead): filed with the known-smoke-flakes entry; 14 READY PRs sat with red checks, 5 of them on these rows.",
+   "notes": "2026-09-30 (lead): filed with the known-smoke-flakes entry; 14 READY PRs sat with red checks, 5 of them on these rows. 2026-10-03 (lead, evidence normalisation): external_blocker.unblock_step recorded from VERIFIED. tickets.json M2-0528 acceptance, last item: 'LEAD_ACTION after merge: remove the two HIST row lines from codex-queue/known-smoke-flakes.txt'. evidence",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/405",
     "merged_into": "m2/integration (squash)",
@@ -37597,5 +37982,37 @@
    ],
    "notes": "2026-10-03 (lead): filed from the M2-0543 bounce; P1 (lane flake on the 1.9.7 path)."
   }
- ]
+ ],
+ "decisions": {
+  "D-1": "OPEN",
+  "D-2": "OPEN",
+  "D-3": "OPEN",
+  "D-4": "ANSWERED_AS_DEFAULT",
+  "D-5": "ANSWERED_AS_DEFAULT",
+  "D-6": "ANSWERED_AS_DEFAULT",
+  "D-7": "ANSWERED_AS_DEFAULT",
+  "D-8": "ANSWERED_AS_DEFAULT",
+  "D-9": "ANSWERED_CHANGED",
+  "D-10": "ANSWERED_AS_DEFAULT",
+  "D-11": "ANSWERED_AS_DEFAULT",
+  "D-12": "ANSWERED_AS_DEFAULT",
+  "D-13": "ANSWERED_AS_DEFAULT",
+  "D-14": "ANSWERED_AS_DEFAULT",
+  "D-15": "ANSWERED_AS_DEFAULT",
+  "D-16": "OPEN",
+  "D-17": "OPEN",
+  "D-18": "OPEN",
+  "D-19": "OPEN",
+  "D-20": "OPEN",
+  "D-21": "OPEN",
+  "D-22": "OPEN",
+  "D-23": "OPEN",
+  "D-24": "ANSWERED_AS_DEFAULT",
+  "D-25": "OPEN",
+  "D-26": "OPEN",
+  "D-27": "OPEN",
+  "D-28": "ANSWERED_CHANGED",
+  "D-29": "OPEN",
+  "D-31": "ANSWERED_AS_DEFAULT"
+ }
 }
