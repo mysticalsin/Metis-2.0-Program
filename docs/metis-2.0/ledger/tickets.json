@@ -555,6 +555,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0543 filed (ST-1 never scores a dead/unready candidate); M2-0538 adds the owner-runner --no-sandbox switch; M2-0520 depends on M2-0543."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-56: filed M2-0544..M2-0548 and amended M2-0082, M2-0084, M2-0085, M2-0086, M2-0276, M2-0285, M2-0280, M2-0289, M2-0260, M2-0087, M2-0305, M2-0114, M2-0088 (verified subset, about 62 h)."
   }
  ],
  "tickets": [
@@ -6616,7 +6622,7 @@
    "external_blocker": null,
    "flag": "actions.verified",
    "risk": "high",
-   "estimate_hours": 16,
+   "estimate_hours": 18.0,
    "validation_hours": 1.5,
    "slices": [
     {
@@ -6630,7 +6636,9 @@
      "acceptance": [
       "Registry filtered by platform and permission before any model call; unsupported capabilities (driver replay, universal app support) shown as explicitly unsupported",
       "Typed result attempted/verified/failed/cancelled/unsupported/unknown; 'unknown' never displayed as success",
-      "SLICE: registry and typed results wrap the existing executeDesktopAction adapters; no verifier, receipts or refusal rules yet (.2)"
+      "SLICE: registry and typed results wrap the existing executeDesktopAction adapters; no verifier, receipts or refusal rules yet (.2)",
+      "Generic pointer drag is listed with driver replay and universal app support as explicitly unsupported in 2.0 (registry test), so the registry-generated M2-0347 matrix shows it",
+      "The registry's key-combination parameter type is one canonical form (modifier set plus key) produced by a single parser that resolves case and aliases (cmd/command/meta/win/super, opt/option/alt, ctrl/control), so every capability that takes key input, including the later M2-0085 SendInput and M2-0086 browser-key capabilities, receives only parsed values; unparseable input yields a typed parse error that the .2 policy refuses (parser unit tests and a registry type test)"
      ],
      "estimate_hours": 6,
      "owner_model": "sonnet",
@@ -6646,7 +6654,9 @@
      ],
      "acceptance": [
       "Verifier reads the postcondition independently; receipts are content-free (audit log plus Operator metadata)",
-      "Untrusted on-screen instructions refused; arbitrary shell text and security-setting changes refused; graceful close before force"
+      "Untrusted on-screen instructions refused; arbitrary shell text and security-setting changes refused; graceful close before force",
+      "Key-combination policy is deny by default: each capability declares an allowlist of canonical combinations and anything off it is refused with a typed result (tests per capability)",
+      "A per-OS denylist checked on the canonical form stays as defence in depth (so a Windows-only combination such as Win+L never blocks a macOS combination that shares the canonical form): log out, lock screen (including Win+L), force-quit dialog, move to trash, empty trash, and quit or close that bypasses the graceful-close path (including Alt+F4); a fuzz test over modifier order, aliases, case and repeated modifiers shows no variant of a denied combination is dispatched"
      ],
      "estimate_hours": 6,
      "owner_model": "opus",
@@ -6674,7 +6684,8 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Refines the existing three slices, keeping their ids and intent. .2 and .3 move to opus because the verifier, the refusal rules and the adopt/adapt/reject protocol decision are security-subtle. HOST-BINDINGS.md: HB-06 (verify.ts) is UNBOUND and owned by this ticket, and check-bindings.mjs fails as soon as src/main/features/actions/verify.ts appears. So .2 must flip HB-06 to BOUND, with its real symbol and test, in the same change. HB-03 binds executeDesktopAction; if .1 changes that symbol, update the row too. The .3 adopt/adapt/reject record needs a docs home (for example docs/metis-2.0/adr/) that is not in the ticket's scope_paths."
+   "slicing_note": "Refines the existing three slices, keeping their ids and intent. .2 and .3 move to opus because the verifier, the refusal rules and the adopt/adapt/reject protocol decision are security-subtle. HOST-BINDINGS.md: HB-06 (verify.ts) is UNBOUND and owned by this ticket, and check-bindings.mjs fails as soon as src/main/features/actions/verify.ts appears. So .2 must flip HB-06 to BOUND, with its real symbol and test, in the same change. HB-03 binds executeDesktopAction; if .1 changes that symbol, update the row too. The .3 adopt/adapt/reject record needs a docs home (for example docs/metis-2.0/adr/) that is not in the ticket's scope_paths.",
+   "notes": " 2026-10-03 (lead, OD-56): amended — Critique CHANGE: an exact-string shortcut blocklist is bypassed by reordering modifiers or using aliases; canonicalising and then allowlisting per capability (deny by default) closes that, with the denylist and fuzz test kept as defence in depth, plus Windows Win+L and Alt+F4. Drag goes on the expli"
   },
   {
    "id": "M2-0083",
@@ -6858,7 +6869,7 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 16,
+   "estimate_hours": 17.0,
    "validation_hours": 1.5,
    "slices": [
     {
@@ -6886,7 +6897,8 @@
       "src/main/desktop-adapters.test.ts"
      ],
      "acceptance": [
-      "Open/focus/switch/graceful close; unsaved work requires approval; force quit only with approval; not-installed returns 'unsupported'"
+      "Open/focus/switch/graceful close; unsaved work requires approval; force quit only with approval; not-installed returns 'unsupported'",
+      "App names resolve to installed apps by exact match only (case-insensitive, localized display names included); a prefix or substring candidate is never launched silently but becomes a proposal naming the app it resolved to (resolver unit tests over a fake app inventory, and a macos-latest test with two CI-built fixture app bundles whose names share a prefix: the exact name launches only that app, the partial name yields a proposal and no launch)"
      ],
      "estimate_hours": 5,
      "owner_model": "opus",
@@ -6931,7 +6943,8 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Every macOS path in desktop-adapters.ts (268 lines) returns outcome 'unknown' today, and mac-helper main.swift has no AX commands. .1 therefore builds the readback primitive, and the 'verified-only-after-readback' rule that every later slice relies on. New action ids for focus, switch, close and force-quit need src/shared/desktop-actions.ts (DESKTOP_ADAPTER_IDS / DesktopActionArgs). That file is outside the ticket's scope_paths, so add it to scope before .2 starts. Every main.swift change keeps the M2-0188 helper landing order after M2-0028. Helper tests run in CI only (D-28). Approval gates depend on the M2-0082 capability registry and typed results."
+   "slicing_note": "Every macOS path in desktop-adapters.ts (268 lines) returns outcome 'unknown' today, and mac-helper main.swift has no AX commands. .1 therefore builds the readback primitive, and the 'verified-only-after-readback' rule that every later slice relies on. New action ids for focus, switch, close and force-quit need src/shared/desktop-actions.ts (DESKTOP_ADAPTER_IDS / DesktopActionArgs). That file is outside the ticket's scope_paths, so add it to scope before .2 starts. Every main.swift change keeps the M2-0188 helper landing order after M2-0028. Helper tests run in CI only (D-28). Approval gates depend on the M2-0082 capability registry and typed results.",
+   "notes": " 2026-10-03 (lead, OD-56): amended — Critique KEEP: a prefix or substring fallback can launch the wrong app; exact match with a disclosed proposal for anything looser. Lands in .2 (5 h -> 6 h)."
   },
   {
    "id": "M2-0085",
@@ -6985,7 +6998,7 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 16,
+   "estimate_hours": 17.0,
    "validation_hours": 1.5,
    "slices": [
     {
@@ -6997,7 +7010,8 @@
      ],
      "acceptance": [
       "Pinned PowerShell path, never a bare executable name",
-      "SLICE: UC-009, UC-010, UC-011 and UC-016 return 'attempted' or 'unsupported', never 'verified'; UIA readback lands in .2"
+      "SLICE: UC-009, UC-010, UC-011 and UC-016 return 'attempted' or 'unsupported', never 'verified'; UIA readback lands in .2",
+      "Windows app names follow the M2-0084 rule: exact match only (case-insensitive, localized display names included), and a prefix or substring candidate becomes a proposal naming the resolved app, never a silent launch (resolver unit tests, and a windows-latest test with two fixture apps registered for the test user whose names share a prefix)"
      ],
      "estimate_hours": 5,
      "owner_model": "opus",
@@ -7040,7 +7054,8 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Built on M2-0082's typed results. Four edits sit outside the two scope_paths and are needed for CI to stay green: (1) moving executeWin out of src/main/desktop-adapters.ts, M2-0084's file, is a call-site edit in .1; (2) the helper must be spawned through src/main/infra/process/ so it adds no FF-10 violation, and the new module must be reachable from an entry point so it adds no FF-03 violation; (3) uia-helper.ps1 must ship through electron-builder.win.yml extraResources; (4) windows-qa.yml offers only suite=hk-w today, so .3 adds the 'actions' suite named in the ticket's verification. The pinned path is %SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe, resolved the same way desktop-adapters.ts resolves explorer.exe."
+   "slicing_note": "Built on M2-0082's typed results. Four edits sit outside the two scope_paths and are needed for CI to stay green: (1) moving executeWin out of src/main/desktop-adapters.ts, M2-0084's file, is a call-site edit in .1; (2) the helper must be spawned through src/main/infra/process/ so it adds no FF-10 violation, and the new module must be reachable from an entry point so it adds no FF-03 violation; (3) uia-helper.ps1 must ship through electron-builder.win.yml extraResources; (4) windows-qa.yml offers only suite=hk-w today, so .3 adds the 'actions' suite named in the ticket's verification. The pinned path is %SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe, resolved the same way desktop-adapters.ts resolves explorer.exe.",
+   "notes": " 2026-10-03 (lead, OD-56): amended — Critique KEEP: same rule as M2-0084 on Windows. Lands in .1 with launch and not-installed (5 h -> 6 h)."
   },
   {
    "id": "M2-0086",
@@ -7085,7 +7100,7 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 14,
+   "estimate_hours": 16.0,
    "validation_hours": 1.5,
    "slices": [
     {
@@ -7109,7 +7124,9 @@
       "src/main/features/actions/browser/"
      ],
      "acceptance": [
-      "Search, open X.com, click the Nth relevant result, tab open/switch/close, back/forward/reload/scroll, fill a field"
+      "Search, open X.com, click the Nth relevant result, tab open/switch/close, back/forward/reload/scroll, fill a field",
+      "Opening a URL from an action accepts only http and https with a host; a missing scheme defaults to https; file:, javascript:, data:, blob: and custom app schemes return a typed unsupported result (one test per scheme)",
+      "Every main-process route that opens a URL (Electron shell.openExternal, and any OS URL-open through a helper or child process) goes through one wrapper: every caller gets the http/https rule, and app-owned callers may additionally use only reviewed fixed templates (the macOS privacy-settings panes, the Windows ms-settings privacy pages and the mail-draft link) that planner or action output can never supply; a check-architecture rule fails on a direct call outside the wrapper (fixture violation test); the src/main/index.ts call-site swaps land through the M2-0188 hot-file queue; the permission-recovery, mail-draft and OAuth sign-in paths still pass their tests"
      ],
      "estimate_hours": 5,
      "owner_model": "sonnet",
@@ -7151,7 +7168,8 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "src/main/features/ does not exist yet on origin/m2/integration. The ticket depends on M2-0082 (registry, typed results, verifier, all TODO) and must reuse its ActionResult and verifier rather than add new ones. The real browser driver is still undecided: M2-0082 evaluates the Cua driver, and M2-0284 forbids remote-debugging ports, personal-profile attachment and cookie export. So every slice builds against a driver port plus a fake, and verification is vitest on src/main/features/actions/browser. M2-0284 (m5, 3 h) defines the same tab/window scope binding; .1 should implement or reuse that contract instead of a second one. The only existing browser code is desktop-adapters.ts's fixed demo allowlist (google search URL, x.com). .3 and .4 both need only .2 and can run in parallel."
+   "slicing_note": "src/main/features/ does not exist yet on origin/m2/integration. The ticket depends on M2-0082 (registry, typed results, verifier, all TODO) and must reuse its ActionResult and verifier rather than add new ones. The real browser driver is still undecided: M2-0082 evaluates the Cua driver, and M2-0284 forbids remote-debugging ports, personal-profile attachment and cookie export. So every slice builds against a driver port plus a fake, and verification is vitest on src/main/features/actions/browser. M2-0284 (m5, 3 h) defines the same tab/window scope binding; .1 should implement or reuse that contract instead of a second one. The only existing browser code is desktop-adapters.ts's fixed demo allowlist (google search URL, x.com). .3 and .4 both need only .2 and can run in parallel.",
+   "notes": " 2026-10-03 (lead, OD-56): amended — Critique CHANGE: the http/https rule must hold on every route that opens a URL, through one wrapper plus a lint check. Verified at 3bc7a218: 65 openExternal lines under src/main including tests, 12 real call sites outside tests, 4 of them in the hot file index.ts; app-owned callers open x-apple.syst"
   },
   {
    "id": "M2-0087",
@@ -7206,7 +7224,7 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 14,
+   "estimate_hours": 18.0,
    "validation_hours": 1.5,
    "slices": [
     {
@@ -7253,19 +7271,40 @@
      ],
      "acceptance": [
       "Typed replies by default during calls",
-      "SLICE: click-to-talk opens capture only through the M2-0079 trusted-gesture session path; no new capture authority"
+      "SLICE: click-to-talk opens capture only through the M2-0079 trusted-gesture session path; no new capture authority",
+      "A user-selectable text-only reply mode outside calls shows the caption with no TTS (reply-mode unit tests)",
+      "Short non-speech cues at listen start and answer start are original sounds made for Métis; each cue file carries a provenance entry (author, licence, source) and a unit test fails on a cue file without one; M2-0260's media-provenance check (its acceptance 3) covers these entries once it lands",
+      "Cues go through one delivery-decision port in src/main/features/attention/ (shared with M2-0547; whichever lands first creates it) and stay silent while a call, a screen share or Focus/DND is active or its state is unknown; spoken replies keep acceptance 4 (typed by default during calls) and M2-0305 acceptance 3 (an explicit spoken reply during a call plays only on a verified private output route) (fake-port unit tests)"
      ],
      "estimate_hours": 3,
      "owner_model": "opus",
      "depends_on_slices": [
       "M2-0087.2"
      ]
+    },
+    {
+     "id": "M2-0087.4",
+     "title": "Hold-to-talk on the in-app mic button and orb (the global chord keeps its press toggle)",
+     "scope_paths": [
+      "src/main/features/voice/",
+      "src/renderer/src/features/voice/"
+     ],
+     "acceptance": [
+      "Hold-to-talk on the in-app mic button and orb: capture runs only while held (pointer up, pointer-capture loss and window blur count as release); a press shorter than a threshold is a tap and keeps the click-to-talk behaviour; release commits the question, and a release before the speech session is ready queues that question once instead of dropping it; no audio leaves the device before the press (fake-clock tests through the M2-0079 trusted-gesture session path)",
+      "The global command-voice chord keeps M2-0096's press toggle (acceptance 3) in 2.0; a packaged ENTRY row drives in-app hold-to-talk on the macOS and Windows runners and reports BLOCKED_EXTERNAL with the unblock step where the runner cannot grant microphone access (a runner image with microphone permission for the QA candidate)"
+     ],
+     "estimate_hours": 2,
+     "owner_model": "sonnet",
+     "depends_on_slices": [
+      "M2-0087.3"
+     ]
     }
    ],
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Refines the existing 3-slice split (ids and intent kept). The acceptance line on interruption and late-audio fences can't be split, so .1 builds the fence mechanism (generation-tagged reply audio) and .2 owns the interruption rule that uses it. 'Typed replies by default during calls' goes to .3 with the reply-mode UI. There is no spoken-reply code on m2/integration today, so features/voice is new on both sides. Hot files are touched only in .1, for the voice reply channel."
+   "slicing_note": "Refines the existing 3-slice split (ids and intent kept). The acceptance line on interruption and late-audio fences can't be split, so .1 builds the fence mechanism (generation-tagged reply audio) and .2 owns the interruption rule that uses it. 'Typed replies by default during calls' goes to .3 with the reply-mode UI. There is no spoken-reply code on m2/integration today, so features/voice is new on both sides. Hot files are touched only in .1, for the voice reply channel.",
+   "notes": " 2026-10-03 (lead, OD-56): amended — Critique KEEP for text-only mode and cues, and CHANGE for hold-to-talk (in-app mic and orb only in 2.0). Earcons need provenance rows: M2-0260 acceptance 3 already fails any shipped media asset without one, so no M2-0087 -> M2-0260 edge is added; that edge would have put M2-0082 and M2-0260 (and, th"
   },
   {
    "id": "M2-0088",
@@ -7319,7 +7358,7 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 16,
+   "estimate_hours": 16.5,
    "validation_hours": 1.5,
    "slices": [
     {
@@ -7330,7 +7369,8 @@
      ],
      "acceptance": [
       "Fresh screenshot/element grounding; stale coordinates rejected",
-      "SLICE: main-side binding and grounding only; no overlay window and no renderer guidance yet"
+      "SLICE: main-side binding and grounding only; no overlay window and no renderer guidance yet",
+      "Element grounding goes through one grounding port that M2-0546 implements: this slice ships the port with a fake and adds no AX/UIA enumeration of its own, and a check-architecture rule (with a fixture violation) lets only modules under src/main/features/context/grounding/ invoke a control-enumeration command of mac-helper or the Windows UIA helper (enumeration commands use one reserved name prefix the rule matches); single-element reads such as the focused element, the selection and M2-0084/M2-0085 readback are not enumeration"
      ],
      "estimate_hours": 4,
      "owner_model": "opus",
@@ -7392,7 +7432,8 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Design gap: the evidence line checks against 'the M2-0201 prototype', but M2-0201 produced none for M2-0088 (its folders cover only 0093, 0094, 0100, 0114, 0117, 0130, 0137, 0158 and 0160). Resolve this before .4 starts. Hot-file edits: index.ts only in .2 (creating the overlay window); ipc.ts and preload only in .3."
+   "slicing_note": "Design gap: the evidence line checks against 'the M2-0201 prototype', but M2-0201 produced none for M2-0088 (its folders cover only 0093, 0094, 0100, 0114, 0117, 0130, 0137, 0158 and 0160). Resolve this before .4 starts. Hot-file edits: index.ts only in .2 (creating the overlay window); ipc.ts and preload only in .3.",
+   "notes": " 2026-10-03 (lead, OD-56): amended — Required by M2-0546's definition ('consumed by M2-0088.1'; critique: otherwise two grounding paths). A port keeps the existing order (M2-0276 depends on M2-0088), so no M2-0088 -> M2-0546 edge and no cycle. .1 4 h -> 4.5 h. The rule is defined by helper-command invocation so it does not flag M2-0084"
   },
   {
    "id": "M2-0089",
@@ -9934,7 +9975,7 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 20,
+   "estimate_hours": 21.0,
    "validation_hours": 2.0,
    "slices": [
     {
@@ -9975,7 +10016,8 @@
       "src/renderer/src/features/meeting/"
      ],
      "acceptance": [
-      "Recap during a meeting and summary-only end work (UC-037, UC-039)"
+      "Recap during a meeting and summary-only end work (UC-037, UC-039)",
+      "During an explicitly recorded meeting, a quiet ask (typed, or spoken through the meeting's single audio owner with no second microphone hook) may use the last N minutes of that meeting's transcript as read-only context, N being a setting with a default; the transcript grants no command (CXSTEP-17), the answer is private assistant output kept out of the canonical transcript, and outside an explicit meeting capture no audio is used as context (unit tests with a fixture transcript at the default N and at N=1, plus a one-microphone-hook assertion)"
      ],
      "estimate_hours": 5,
      "owner_model": "opus",
@@ -10003,7 +10045,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0114/ (placeholders until M2-0418 Electron capture + Opus acceptance)",
+   "notes": "2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0114/ (placeholders until M2-0418 Electron capture + Opus acceptance) 2026-10-03 (lead, OD-56): amended — Critique CHANGE (M2-0114-lite): the proposed text mostly duplicates 'useful and quiet live assistance', M2-0305 and M2-0289 acceptance 3, so it shrinks to one line with a configurable N so it is testable, and keeps one audio owner (M2-0243 releases command capture when the meeting reserves the mic).",
    "slice_current": 1,
    "slicing_note": "Kept the existing 4 slices, ids and intent; the design-evidence line went to .4 as the last slice, because every state must exist before capture. .1 went from 6 to 5 h and .4 from 3 to 4 h to fund it (total 20 h). Neither features/meeting folder exists on origin/m2/integration; meeting logic lives today in src/main/transcripts.ts, meeting-path.ts, cloud-stt/, renderer lib/listen.ts and App.tsx. .1 therefore also establishes the feature folders, with the canonical-transcript write guard as its first seam. Evidence capture needs the M2-0418 lane (TODO). Upstream M2-0066, M2-0109 and M2-0094 are TODO."
   },
@@ -22279,7 +22321,8 @@
     "M2-0082",
     "M2-0230",
     "M2-0092",
-    "M2-0187"
+    "M2-0187",
+    "M2-0544"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -22305,7 +22348,9 @@
     "Every shipped media asset has a provenance row (author, licence, source) and the check fails on one without",
     "A private-repo check hashes every file in the lane candidate against the BUNDLE-INVENTORY.json sha256 set and records zero matches on the candidate evidence record",
     "The Cua adopt/adapt/reject record lists pinned revision, licence, SBOM, signing and update path, private-API use, per-architecture size, crash behaviour and per-OS action tests (PASS or NOT_RUN); if adopted, a test proves its endpoint rejects a caller without the host capability",
-    "dependency-audit.mjs fails CI on paid-provider SDKs outside approved server routes in the packaged dependency tree"
+    "dependency-audit.mjs fails CI on paid-provider SDKs outside approved server routes in the packaged dependency tree",
+    "The private identifier list gains the Bluey reference's distinctive identifiers listed in the private reference register; the private-repo check fails when any appears in the public tree, a committed prompt or brief file, or the built lane candidate (planted-identifier fixture per identifier class, the fixtures kept in the private repo); platform API names that 2.0 tickets cite (for example accessibility attribute names) are not distinctive identifiers; no reference-bytes hash check is relied on for this reference",
+    "PORT-DECISIONS.md's clean-room section records the process rule for this reference: the study clone is never placed in a worktree or quoted in an implementer prompt, and is never built or run on any of the owner's Macs (it requests Accessibility and Screen Recording); a program-repo check under docs/metis-2.0/tools/trace/ fails if the rule is missing (fixture test)"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -22315,12 +22360,13 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 3,
+   "estimate_hours": 3.5,
    "status": "TODO",
    "priority": "P1",
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "notes": " 2026-10-03 (lead, OD-56): amended — Critique CHANGE: hashing the reference's Swift files cannot catch a translation into TypeScript; a private distinctive-identifier scan can. M2-0544 registers the reference first (it no longer adds identifiers itself). The process rule applies D-28 and OD-12 in spirit. 3 h -> 3.5 h."
   },
   {
    "id": "M2-0261",
@@ -23120,7 +23166,9 @@
     "Password fields, hidden unrelated windows and inaccessible documents are excluded; text from protected fields or Private View is never produced or cached; instructions found in extracted text never become commands",
     "A PID, window, tab, field or scale change, or a replaced control, invalidates the token; a retry re-observes first and never reuses cached coordinates (CXAC-11 tests)",
     "A forced extraction timeout yields PARTIAL with a gap statement; a late callback from a superseded run generation is discarded and cannot satisfy an approval",
-    "With no active interaction session the broker makes zero captures; the opt-in background describe loop stays a separate consent and never feeds action targeting"
+    "With no active interaction session the broker makes zero captures; the opt-in background describe loop stays a separate consent and never feeds action targeting",
+    "'Explicitly selected' is defined in the contract: the text field that held keyboard focus in the target window when the user asked, provided it is not secure text, a payment field (autocomplete cc-*) or a one-time-code field; only that field's value may be read, capped at a stated length, and every other field contributes no value (fake AX and UIA tree fixtures with a focused plain field, an unfocused draft and a focused secure field assert exactly one value)",
+    "The AX/UIA rung is a port whose real implementation is M2-0546: the ladder-order test uses a fake rung, and the M2-0088 check-architecture rule finds no invocation of a control-enumeration command of mac-helper or the Windows UIA helper outside src/main/features/context/grounding/ (single-element reads such as the focused element and the selection are not enumeration)"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -23130,12 +23178,13 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 3,
+   "estimate_hours": 4.5,
    "status": "TODO",
    "priority": "P1",
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "notes": " 2026-10-03 (lead, OD-56): amended — Critique KEEP: 'explicitly selected' must be precise for the fixture tests, so that no other field's value reaches the planner. The second line makes M2-0546 the single AX/UIA implementation. Lead action this add-only schema cannot express: M2-0546 depends on M2-0276 for its contract, but M2-0276 de"
   },
   {
    "id": "M2-0277",
@@ -23320,7 +23369,9 @@
     "Every injected event carries session generation and target; a stale generation or changed target drops the event; releasing ownership waits for queued events to drain (tests on macOS and Windows adapters)",
     "During foreground input the card shows app, task and real target; a packaged test asserts OS pointer target, step card and receipt agree and no invented cursor path is drawn",
     "A semantic or connector action run while another app is frontmost leaves pointer and focused window unchanged, shows 'working in background' and an openable result (Packaged-smoke row on the macOS and Windows runners)",
-    "After takeover, resuming requires a fresh observation with valid remaining scope; stale coordinates are never replayed; the registry marks foreground-only capabilities"
+    "After takeover, resuming requires a fresh observation with valid remaining scope; stale coordinates are never replayed; the registry marks foreground-only capabilities",
+    "Foreground pointer and keyboard injection is its own capability, off on a fresh profile; turning it on is an explicit user action (M2-0292 may offer it as an explicit onboarding step), and every dispatch re-reads the setting, so switching it off mid-session drops the next injected event (fresh-profile test and race test on the macOS and Windows adapters)",
+    "Accessibility is requested just in time, when the user first invokes a capability that needs it (foreground injection, M2-0084 AX readback or M2-0276 AX context), never at launch: a fresh-profile launch test shows zero prompting Accessibility trust checks, and a denied request returns the typed Accessibility-denied status (mocked-probe tests)"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -23330,12 +23381,13 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 3,
+   "estimate_hours": 5.0,
    "status": "TODO",
    "priority": "P1",
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "notes": " 2026-10-03 (lead, OD-56): amended — Critique CHANGE: keep injection off on a fresh profile and re-checked at every dispatch, but Accessibility cannot be requested only when that switch turns on, because M2-0084 readback and M2-0276 context also need it; request it just in time, never at launch. The pointer warp-back is deferred after "
   },
   {
    "id": "M2-0281",
@@ -23558,7 +23610,10 @@
     "At capture start the destination (app, window, field token, document revision, focus generation) is pinned; insertion revalidates all of them",
     "On mismatch insertion is blocked, the text is kept and the user is offered 'choose destination' or 'copy' (AGUC-008 test)",
     "Password and payment fields (secure text entry, autocomplete=cc-*), terminals and newly focused chat or search fields are refused (AX and UIA fixture tests)",
-    "Clipboard delivery runs only by explicit choice, aborts on an owner change and never reads beyond the owned item or blindly restores; dictated text never enters the command interpreter ('send it' dictated produces no command)"
+    "Clipboard delivery runs only by explicit choice, aborts on an owner change and never reads beyond the owned item or blindly restores; dictated text never enters the command interpreter ('send it' dictated produces no command)",
+    "The field refusal covers every text and key injection route, not only dictation: typed text, key combinations and clipboard paste all dispatch through the input lease (src/main/features/actions/input-lease.ts), which refuses password and payment fields (secure text entry, autocomplete cc-*), one-time-code fields (autocomplete one-time-code) and terminals before dispatch; a check-architecture rule (fixture violation) fails a text, key or paste dispatch that bypasses the lease; one AX and one UIA fake-element fixture test per route kind",
+    "When the focused element or its kind cannot be read, every injection route fails closed with a typed target-unreadable result, and the capability registry marks such apps unsupported for typing so the registry-generated M2-0347 matrix labels them (fixture test with an element that exposes no role)",
+    "A newline in injected text is never sent as a Return or Enter key event: it is inserted through the platform text API (AX selected text, UIA value or text pattern) or the action is refused with a typed result (a key-event spy on the input lease's macOS and Windows dispatch ports shows no Return/Enter generated from typed text or dictation)"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -23568,12 +23623,13 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 3,
+   "estimate_hours": 5.5,
    "status": "TODO",
    "priority": "P1",
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "notes": " 2026-10-03 (lead, OD-56): amended — Critique CHANGE: the refusal must cover every injection route and fail closed when the field cannot be read, and newline-as-submit was missing because M2-0090's never-submit covers dictation only. M2-0285 does not depend on M2-0084, M2-0085 or M2-0086, so the rule is enforced at the input lease (M2-"
   },
   {
    "id": "M2-0286",
@@ -23765,7 +23821,8 @@
     "'Show me where' routes to Guide for the selected task with zero input; 'no, the other one' re-binds and revokes the first proposal; new intent revokes the old proposal before a late confirm lands (race test)",
     "A spoken 'yes' from the command channel confirms only one presented, unexpired proposal whose tier permits voice confirmation; a 'yes' from meeting audio or Métis playback confirms nothing; consequential actions still need explicit UI confirmation bound to the payload",
     "'That note' or 'there' resolves to the object id in the session's most recent verified receipt, otherwise Métis asks; a focus or window change between steps forces re-resolution; duplicate callbacks for one operation id apply once (create-then-append fixture leaves text once)",
-    "Camera intent is bound before the preview opens and a shutter without that binding is refused"
+    "Camera intent is bound before the preview opens and a shutter without that binding is refused",
+    "In a screen question, 'this', 'that' and 'here' are resolved by the context broker (the M2-0546 order), never by the session's latest receipt; the receipt binding for 'that note' and 'there' applies only to a follow-up that names a previous step's output (fixture with a fresh receipt and a different element under the pointer, using a fake broker resolver)"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -23775,10 +23832,10 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 3,
+   "estimate_hours": 3.5,
    "status": "TODO",
    "priority": "P1",
-   "notes": "OD-17 (owner, 2026-09-28): keep MASTER §4.3 — a spoken 'yes' confirms only low-impact tiers; high-impact actions need click/keyboard on the Confirm card.",
+   "notes": "OD-17 (owner, 2026-09-28): keep MASTER §4.3 — a spoken 'yes' confirms only low-impact tiers; high-impact actions need click/keyboard on the Confirm card. 2026-10-03 (lead, OD-56): amended — Critique CHANGE: the pointer and selection resolution moves into M2-0546; M2-0289 keeps only the rule that screen deixis is resolved by the broker, never by the latest receipt. Tested with a fake broker resolver, so no M2-0546 dependency is added and M2-0289 is not delayed. 3 h -> 3.5 h.",
    "required_evidence": [
     "LOCALLY_TESTED"
    ]
@@ -24585,7 +24642,8 @@
     "While a share is active, private overlays and task cards are hidden or kept off the shared surface (mocked share-state test)",
     "An explicit spoken reply during a call plays only on a verified private output route; unknown call or share state blocks unprompted audio; agent identity never plays audio unless a spoken reply was requested",
     "A background run finishing during suppression appears only as unread in Home; a participant saying 'send it' on desktop capture produces no grant",
-    "CXAC-30 is run in a real enrolled meeting with a screen share and recorded, or reported BLOCKED with its unblock step"
+    "CXAC-30 is run in a real enrolled meeting with a screen share and recorded, or reported BLOCKED with its unblock step",
+    "The attention manager implements the delivery-decision port in src/main/features/attention/ that M2-0087.3 (cues) and M2-0547 (answer bubble) call: the port's contract tests pass against the real manager for call, screen share, Focus/DND and unknown state, and the existing lint rule on direct Notification or sound calls covers the cue calls"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -24595,12 +24653,13 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 3,
+   "estimate_hours": 3.5,
    "status": "TODO",
    "priority": "P1",
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "notes": " 2026-10-03 (lead, OD-56): amended — Both M2-0087.3 and M2-0547 rely on M2-0305 binding its manager to their port, which no ticket stated; this makes it an acceptance line. No dependency edge: M2-0305 already lands after M2-0087 (M2-0305 -> M2-0244 -> M2-0087), and M2-0547 uses the port whichever way round they land. 3 h -> 3.5 h."
   },
   {
    "id": "M2-0306",
@@ -36919,6 +36978,446 @@
     "CI: Quality checks green; a QA self-test report shows the new fields"
    ],
    "notes": "2026-10-03 (lead): filed from the owner-runner diagnosis; M2-0520 depends on it (the strict gate must never score a dead candidate)."
+  },
+  {
+   "id": "M2-0544",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "docs",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0261",
+    "M2-0442"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 3,
+   "risk": "low",
+   "finding_refs": [
+    "OD-56 (owner request 2026-10-03): integrate the useful behaviour of an owner-supplied desktop-assistant reference (no licence file: behaviour only) into the 2.0 roadmap; lead study, adversarial critique and an independent verification of this text"
+   ],
+   "scope_paths": [
+    "docs/metis-2.0/baseline/REFERENCE-REGISTER.md",
+    "docs/metis-2.0/kit/OWNER-REFERENCE-DISPOSITIONS.json",
+    "docs/metis-2.0/tools/trace/build-traceability.mjs",
+    "docs/metis-2.0/tools/trace/build-traceability.test.mjs",
+    "docs/metis-2.0/tools/trace/check-reference-claims.mjs",
+    "docs/metis-2.0/tools/trace/check-reference-claims.test.mjs"
+   ],
+   "title": "Register the owner-supplied Bluey reference as behaviour-only and trace each studied capability to its owning ticket (COV-43)",
+   "summary": "COV-43 requires every supplied repository or reference to be reviewed. The owner supplied the Bluey repository as a desktop-assistant reference; the study found no licence file, so it is treated as all rights reserved and may inform behaviour only (not legal advice). REFERENCE-REGISTER.md already has one row per R/REF id (M2-0261); this adds one owner-supplied row there rather than a new register, plus a small disposition file validated by the M2-0442 validator, so each studied capability traces to an owning ticket or to a recorded deferred, conflicting or not-adopted decision. Today check-reference-claims.mjs ignores keys outside the inventory R/REF pattern and the M2-0442 validator only understands the HeyClicky capability file, so both get a small extension. The reference's distinctive identifiers stay in the private reference register; the M2-0260 amendment scans for them (former acceptance 3 moved there). Docs only, so the OD-45 installer hold does not apply and it can land now. M2-0545, M2-0546, M2-0547 and M2-0548 must receive M2 ids in the same ledger change, or the unknown-ticket check fails on arrival. Estimate is the critique's 2.5 h plus 0.5 h for the two checker extensions.",
+   "acceptance": [
+    "REFERENCE-REGISTER.md gains exactly one row for the reference, keyed outside the inventory R/REF pattern (for example owner:OREF-01), with all eight existing columns filled: reference name and repository, kind REFERENCE, pin (commit and study date), licence 'no licence file found: treated as all rights reserved (not legal advice)', security notes stating it was never built or run and informs behaviour only (no vulnerability detail about the third-party project), a decision starting 'adapt: behaviour only; no code, prompt text, assets or character art copied', and a source label",
+    "check-reference-claims.mjs validates owner-supplied rows with the same column-count, non-empty-cell, kind and decision rules as inventory rows, and the new row does not trip the HeyClicky-record check (node --test fixtures: one valid owner row, one with an empty cell, one whose decision does not start with adopt, adapt or reject)",
+    "A disposition file, docs/metis-2.0/kit/OWNER-REFERENCE-DISPOSITIONS.json, cites COV-43 and lists each studied capability as adopt-behaviour, already-covered, deferred-after-2.0, conflicts or not-adopted; adopt-behaviour and already-covered rows name an owning M2 ticket, and deferred-after-2.0, conflicts and not-adopted rows use the existing owner marker EXCLUDED with a one-line reason; every conflicts row cites its OD or COV row; no row carries a source file path, line number, type, function or tool name, prompt text or vulnerability detail from the reference (those stay in the private reference register)",
+    "The M2-0442 validator in build-traceability.mjs also validates that file and fails on a row with no disposition, an unknown or missing M2 ticket id, an owner that is neither an M2 id nor EXCLUDED, a conflicts row without an OD/COV citation, a row containing a source-file path or file:line reference, or a missing COV-43 link (fixture tests in build-traceability.test.mjs)",
+    "Rows cite only M2 ids present in tickets.json: M2-0545, M2-0546, M2-0547 and M2-0548 receive their M2 ids in the ledger change that adds this ticket, and build-traceability.mjs --check is green on the PR in program-repo CI",
+    "gitleaks and the email/ID regex scan of the changed files are clean in program-repo CI"
+   ],
+   "verification": [
+    "node docs/metis-2.0/tools/trace/build-traceability.mjs --check (program-repo CI only, D-28)",
+    "node --test docs/metis-2.0/tools/trace/build-traceability.test.mjs docs/metis-2.0/tools/trace/check-reference-claims.test.mjs (program-repo CI)",
+    "node docs/metis-2.0/tools/trace/check-reference-claims.mjs (program-repo CI)",
+    "gitleaks detect --no-git --source docs/metis-2.0 (program-repo CI)"
+   ],
+   "notes": "2026-10-03 (lead): filed under OD-56; cut before the D-14 list if the OD-50 checkpoint triggers."
+  },
+  {
+   "id": "M2-0545",
+   "wave": "W3",
+   "milestone": "m6",
+   "type": "feature",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0050"
+   ],
+   "needs_decision": [],
+   "slices": [
+    {
+     "id": "M2-0545.1",
+     "title": "OCR contract, macOS word boxes in a new helper source file, single-window capture on macOS, session gate and deadline",
+     "scope_paths": [
+      "src/shared/contracts/ocr/",
+      "src/main/features/ocr/",
+      "src/main/screen-capture.ts",
+      "src/main/mac-helper.ts",
+      "native/mac-helper/ocr-words.swift",
+      "native/mac-helper/main.swift",
+      "native/mac-helper/Tests/",
+      "scripts/build-mac-helper.mjs",
+      "src/main/win/ocr-helper.ps1",
+      "electron-builder.win.yml",
+      ".github/workflows/build.yml"
+     ],
+     "acceptance": [
+      "One OCR result contract in src/shared/contracts/ocr/ (zod only, FF-01) with golden and negative fixtures: image size; lines and words, each with text, a confidence or null where the platform reports none, and a top-left-origin box normalized to the image; every word linked to its line; lines and words sorted into reading order (rows by vertical position within a stated tolerance, then by horizontal position); caps on lines and words with a truncated flag; coverage VISIBLE_ONLY and an untrusted-content marker on every result",
+      "macOS: a new mac-helper subcommand, implemented in a new Swift source file, returns word boxes from Apple Vision's per-range bounding boxes and requests French and English recognition; on macos-latest the helper tests over committed synthetic English and French PNG fixtures (generated deterministically on the CI runner by a committed script, never on a Mac per D-28; no real screen content) assert the expected words, order and boxes within tolerance and pass with the helper running under a deny-network sandbox profile",
+      "main.swift gains only the one dispatch line for the new subcommand and merges after M2-0084 in the M2-0188 main.swift landing order, and the build.yml change lands through the M2-0188 hot-file queue; build-mac-helper.mjs and run-helper-tests.sh compile every helper source file; the existing ocr subcommand's output and its helper tests are unchanged; scripts/program/claims-check.mjs passes on the PR",
+      "macOS capture: the OCR capture request, a single-window mode of the shared capture module src/main/screen-capture.ts (no second capture path), accepts only a single target window and rejects display and region sources (unit test); on macos-latest a row with another process's window overlapping the target and a topmost banner-style window returns only the target's fixture text, or reports BLOCKED_EXTERNAL with the unblock step (Screen Recording granted to the test host on the runner image; M2-0472 records whether the hosted runner allows TCC seeding)",
+      "OCR runs only with an active interaction-session token from a session port: with no active session a spy test shows zero captures and zero OCR calls (fake port; M2-0546 binds the M2-0276 broker); images and results stay in memory, and a profile- and temp-directory inspection after an OCR run finds no image or text written",
+      "A per-call deadline kills the helper and yields PARTIAL with a gap statement (fake-timer test)"
+     ],
+     "estimate_hours": 5.5,
+     "owner_model": "sonnet",
+     "depends_on_slices": []
+    },
+    {
+     "id": "M2-0545.2",
+     "title": "Windows.Media.Ocr helper on the pinned Windows PowerShell 5.1 path, per-window capture, fr-FR handling and the report-only latency row",
+     "scope_paths": [
+      "src/shared/contracts/ocr/",
+      "src/main/features/ocr/",
+      "src/main/screen-capture.ts",
+      "src/main/mac-helper.ts",
+      "native/mac-helper/ocr-words.swift",
+      "native/mac-helper/main.swift",
+      "native/mac-helper/Tests/",
+      "scripts/build-mac-helper.mjs",
+      "src/main/win/ocr-helper.ps1",
+      "electron-builder.win.yml",
+      ".github/workflows/build.yml"
+     ],
+     "acceptance": [
+      "Windows: a standalone helper script spawned through src/main/infra/process/ on the pinned Windows PowerShell 5.1 path (the WINDOWS_POWERSHELL constant) uses Windows.Media.Ocr, receives image bytes on stdin (never a temp file) and ships through electron-builder.win.yml extraResources; a windows-latest job over the same fixtures asserts the same contract; a static test fails if the script uses any network cmdlet or .NET network type",
+      "Windows capture: OCR input is a per-window capture of the target window handle; on windows-latest a row with another process's window overlapping the target and a topmost banner-style window returns only the target's fixture text",
+      "French on Windows: the windows-latest job installs the fr-FR OCR language capability before the French fixture row; if the install fails, that row reports BLOCKED_EXTERNAL with the unblock step (a runner image or self-hosted Windows runner with the fr-FR OCR capability installed) while the English row still passes; on both OSes a requested language that is not installed or not supported returns a typed language-unavailable result naming it, never an empty success",
+      "p95 OCR latency for a window-sized fixture on the hosted macOS and Windows runners is published report-only in the job summary and never fails the job"
+     ],
+     "estimate_hours": 5,
+     "owner_model": "sonnet",
+     "depends_on_slices": [
+      "M2-0545.1"
+     ]
+    }
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 10.5,
+   "risk": "medium",
+   "finding_refs": [
+    "OD-56 (owner request 2026-10-03): integrate the useful behaviour of an owner-supplied desktop-assistant reference (no licence file: behaviour only) into the 2.0 roadmap; lead study, adversarial critique and an independent verification of this text"
+   ],
+   "scope_paths": [
+    "src/shared/contracts/ocr/",
+    "src/main/features/ocr/",
+    "src/main/screen-capture.ts",
+    "src/main/mac-helper.ts",
+    "native/mac-helper/ocr-words.swift",
+    "native/mac-helper/main.swift",
+    "native/mac-helper/Tests/",
+    "scripts/build-mac-helper.mjs",
+    "src/main/win/ocr-helper.ps1",
+    "electron-builder.win.yml",
+    ".github/workflows/build.yml"
+   ],
+   "title": "Add on-device OCR with line and word boxes on macOS and Windows behind one contract, run over a capture of the single target window",
+   "summary": "Pointing at, or answering about, one word or figure on screen needs word-level OCR boxes on both desktop platforms. Today mac-helper's one-shot ocr subcommand (Apple Vision, accurate mode) returns line boxes only, and the app has no Windows OCR path at all (OCR appears only in M2-0050 and M2-0276): a parity gap under OD-12 with or without any reference. Platform documentation shows both can meet one contract: Apple Vision gives bounding boxes for character ranges of recognized text, and Windows.Media.Ocr returns lines and words with bounding rectangles. OCR runs on-device only, over a capture of the single target window (ScreenCaptureKit single-window filter on macOS, per-window capture on Windows), so overlapping windows and notification banners from other apps never reach the planner; that capture is a single-window mode of the existing shared capture module (src/main/screen-capture.ts), so there is one capture path for M2-0278's exclusion rows and M2-0316's sentinel checks. It is standalone so it can start in W3: no dependency on M2-0085, M2-0276, M2-0316 or M2-0320; the session gate is a port that M2-0546 binds to the M2-0276 broker, and latency is report-only. The Windows helper is its own script on the pinned Windows PowerShell 5.1 path, because PowerShell 7 dropped the WinRT projection Windows.Media.Ocr needs. The Swift code goes in a new file with a one-line case in main.swift (a PD-13 hot file), landing after M2-0084 in the M2-0188 order. French and English are the 2.0 languages (OD-16); hosted Windows runners may lack the fr-FR OCR capability, so that row can report BLOCKED_EXTERNAL. It changes installer content, so it is built now (OD-47) and merges only after the owner records ACCEPTED on 1.9.7 (OD-45/OD-47). Re-estimated at 10.5 h (critique: 10-11 h), in two slices.",
+   "acceptance": [
+    "One OCR result contract in src/shared/contracts/ocr/ (zod only, FF-01) with golden and negative fixtures: image size; lines and words, each with text, a confidence or null where the platform reports none, and a top-left-origin box normalized to the image; every word linked to its line; lines and words sorted into reading order (rows by vertical position within a stated tolerance, then by horizontal position); caps on lines and words with a truncated flag; coverage VISIBLE_ONLY and an untrusted-content marker on every result",
+    "macOS: a new mac-helper subcommand, implemented in a new Swift source file, returns word boxes from Apple Vision's per-range bounding boxes and requests French and English recognition; on macos-latest the helper tests over committed synthetic English and French PNG fixtures (generated deterministically on the CI runner by a committed script, never on a Mac per D-28; no real screen content) assert the expected words, order and boxes within tolerance and pass with the helper running under a deny-network sandbox profile",
+    "main.swift gains only the one dispatch line for the new subcommand and merges after M2-0084 in the M2-0188 main.swift landing order, and the build.yml change lands through the M2-0188 hot-file queue; build-mac-helper.mjs and run-helper-tests.sh compile every helper source file; the existing ocr subcommand's output and its helper tests are unchanged; scripts/program/claims-check.mjs passes on the PR",
+    "macOS capture: the OCR capture request, a single-window mode of the shared capture module src/main/screen-capture.ts (no second capture path), accepts only a single target window and rejects display and region sources (unit test); on macos-latest a row with another process's window overlapping the target and a topmost banner-style window returns only the target's fixture text, or reports BLOCKED_EXTERNAL with the unblock step (Screen Recording granted to the test host on the runner image; M2-0472 records whether the hosted runner allows TCC seeding)",
+    "OCR runs only with an active interaction-session token from a session port: with no active session a spy test shows zero captures and zero OCR calls (fake port; M2-0546 binds the M2-0276 broker); images and results stay in memory, and a profile- and temp-directory inspection after an OCR run finds no image or text written",
+    "A per-call deadline kills the helper and yields PARTIAL with a gap statement (fake-timer test)",
+    "Windows: a standalone helper script spawned through src/main/infra/process/ on the pinned Windows PowerShell 5.1 path (the WINDOWS_POWERSHELL constant) uses Windows.Media.Ocr, receives image bytes on stdin (never a temp file) and ships through electron-builder.win.yml extraResources; a windows-latest job over the same fixtures asserts the same contract; a static test fails if the script uses any network cmdlet or .NET network type",
+    "Windows capture: OCR input is a per-window capture of the target window handle; on windows-latest a row with another process's window overlapping the target and a topmost banner-style window returns only the target's fixture text",
+    "French on Windows: the windows-latest job installs the fr-FR OCR language capability before the French fixture row; if the install fails, that row reports BLOCKED_EXTERNAL with the unblock step (a runner image or self-hosted Windows runner with the fr-FR OCR capability installed) while the English row still passes; on both OSes a requested language that is not installed or not supported returns a typed language-unavailable result naming it, never an empty success",
+    "p95 OCR latency for a window-sized fixture on the hosted macOS and Windows runners is published report-only in the job summary and never fails the job"
+   ],
+   "verification": [
+    "CI Build & Test: bash native/mac-helper/Tests/run-helper-tests.sh on macos-latest",
+    "CI Build & Test: npx vitest run src/shared/contracts/ocr src/main/features/ocr on macos-latest and windows-latest",
+    "CI windows-latest OCR helper job over the shared fixtures, including the fr-FR row (BLOCKED_EXTERNAL allowed with its unblock step)"
+   ],
+   "notes": "2026-10-03 (lead): filed under OD-56; cut before the D-14 list if the OD-50 checkpoint triggers.",
+   "slice_current": 1
+  },
+  {
+   "id": "M2-0546",
+   "wave": "W4",
+   "milestone": "m6",
+   "type": "feature",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0545",
+    "M2-0276",
+    "M2-0084",
+    "M2-0085",
+    "M2-0313"
+   ],
+   "needs_decision": [],
+   "slices": [
+    {
+     "id": "M2-0546.1",
+     "title": "Read-only AX/UIA enumeration on macOS and Windows as the M2-0276 rung, with bounds, label and value rules and the OCR fallback",
+     "scope_paths": [
+      "src/main/features/context/grounding/",
+      "src/shared/contracts/observation/",
+      "native/mac-helper/ax-enumerate.swift",
+      "native/mac-helper/main.swift",
+      "native/mac-helper/Tests/",
+      "src/main/win/uia-helper.ps1",
+      "scripts/check-architecture.mjs",
+      "docs/NETWORK-EGRESS.md",
+      ".github/workflows/build.yml"
+     ],
+     "acceptance": [
+      "Implements the M2-0276 AX/UIA rung behind its port: for the snapshot's target window it returns controls with role, label, normalized box, enabled and focused state and a host-bound element token, plus the target app's menu bar items as each platform exposes them (the application element's AXMenuBar attribute on macOS; MenuBar and MenuItem control types in the UIA tree on Windows), and never reads other apps' windows (fake-tree tests on both OSes)",
+      "Enumeration is read-only: no AX action or attribute write on macOS and no UIA pattern invocation or focus change on Windows, so closed menus and collapsed items stay as they were; in 2.0 Métis never sets AXManualAccessibility or any other accessibility-enabling attribute on another app (spy tests on both ports)",
+      "Enumeration is bounded by a time budget, a node cap and a depth cap, and an overrun yields PARTIAL with a gap statement; controls are sorted into reading order (rows by vertical position within a stated tolerance, then by horizontal position); one on-screen control reported twice appears once; the list is capped with a truncated flag (fake-tree tests on both OSes)",
+      "Labels come from the platform's documented accessible-name properties (Apple AX title, description and title element; Microsoft UIA Name and LabeledBy) with the precedence written in the contract and pinned by fixtures; a field value is never used as a label; values follow the M2-0276 rule (only the explicitly selected non-sensitive field), and secure text, payment and one-time-code fields contribute role and label only (AX and UIA fixture tests)",
+      "When the target exposes no usable tree (empty or below a minimum node count), the rung reports UNAVAILABLE and the manifest uses M2-0545 OCR lines and words from the single-window capture with coverage VISIBLE_ONLY and the method recorded (empty-tree fixture test)",
+      "macOS: AX enumeration of a CI-built AppKit fixture window on macos-latest returns the expected controls and labels, or reports BLOCKED_EXTERNAL with the unblock step (a runner image that grants Accessibility to the test host; M2-0472 row B records whether TCC can be seeded); the code is a new Swift source file and main.swift gains only one dispatch line, merged after M2-0545 in the M2-0188 landing order",
+      "Windows: UIA enumeration through the M2-0085.1 pinned helper protocol returns the expected controls and labels for a CI-launched Electron fixture window and a native Win32 fixture window on windows-latest"
+     ],
+     "estimate_hours": 7,
+     "owner_model": "sonnet",
+     "depends_on_slices": []
+    },
+    {
+     "id": "M2-0546.2",
+     "title": "Planner projection, per-snapshot ids, pointer element and deixis order, egress controls, and the M2-0088.1 grounding port",
+     "scope_paths": [
+      "src/main/features/context/grounding/",
+      "src/shared/contracts/observation/",
+      "native/mac-helper/ax-enumerate.swift",
+      "native/mac-helper/main.swift",
+      "native/mac-helper/Tests/",
+      "src/main/win/uia-helper.ps1",
+      "scripts/check-architecture.mjs",
+      "docs/NETWORK-EGRESS.md",
+      ".github/workflows/build.yml"
+     ],
+     "acceptance": [
+      "A planner projection with TS golden and negative fixtures: app identity, coverage, method, controls and M2-0545 text lines and words, each with an opaque id and a box normalized per display with the display transform recorded; boxes round-trip to device pixels through the M2-0276 transform at 1x and 2x and on a display left of the primary (unit tests); caps with a truncated flag",
+      "Ids are unique per snapshot and expire when it is replaced: an id from a superseded snapshot returns a typed stale-target error and never resolves to old coordinates; M2-0088.1's grounding port is implemented by this resolver, and the M2-0088 check-architecture rule shows that only modules under src/main/features/context/grounding/ invoke a control-enumeration command of mac-helper or the Windows UIA helper (unit tests)",
+      "The projection never contains a Métis window or its text (test with a Métis window over the target)",
+      "The snapshot records the real pointer position at ask time and the element under it (the smallest control, line or word containing it within a small tolerance, else none; none over a Métis window); 'this', 'that' and 'here' in a screen question resolve in the order explicit selection, focused element, element under the pointer, and otherwise Métis asks and dispatches nothing; a stale snapshot also asks (fixture tests per rung)",
+      "Egress: the projection is built only for an active interaction session and never on a timer, and M2-0545's OCR session port is bound here to the M2-0276 broker's interaction session (spy test through the real binding: zero enumerations and OCR calls otherwise); it carries the source-chip metadata M2-0277 renders (method, age, coverage, exclusions); an on-screen sentinel in a fixture window never reaches logs, crash bundles, exports or disk after a build and a planner request (sentinel test, reusable by M2-0316); the AX/UIA and OCR helper transports are rows in the M2-0313 matrix with a negative egress test",
+      "COV-18: on the desktop side the projection lives only for the planner request: after the request settles no request cache, retry queue, log or crash breadcrumb holds a sentinel placed in it (fake-transport sentinel test); server-side sinks stay with the M2-0149 sentinel harness, and the lead adds this planner screen-context route to that harness's route list"
+     ],
+     "estimate_hours": 7,
+     "owner_model": "sonnet",
+     "depends_on_slices": [
+      "M2-0546.1"
+     ]
+    }
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 14,
+   "risk": "high",
+   "finding_refs": [
+    "OD-56 (owner request 2026-10-03): integrate the useful behaviour of an owner-supplied desktop-assistant reference (no licence file: behaviour only) into the 2.0 roadmap; lead study, adversarial critique and an independent verification of this text"
+   ],
+   "scope_paths": [
+    "src/main/features/context/grounding/",
+    "src/shared/contracts/observation/",
+    "native/mac-helper/ax-enumerate.swift",
+    "native/mac-helper/main.swift",
+    "native/mac-helper/Tests/",
+    "src/main/win/uia-helper.ps1",
+    "scripts/check-architecture.mjs",
+    "docs/NETWORK-EGRESS.md",
+    ".github/workflows/build.yml"
+   ],
+   "title": "Build the grounding manifest: read-only AX/UIA enumeration as the M2-0276 AX/UIA rung, OCR fallback, and the planner projection M2-0088.1 grounds on",
+   "summary": "M2-0276 owns the AX/UIA rung of the context ladder and host-bound element tokens, and M2-0088.1 owns fresh element grounding with stale-coordinate rejection, but no ticket defines how controls are enumerated or what the planner sees. This ticket is the implementation of that rung plus the planner projection, and M2-0088.1 consumes it through its grounding port (M2-0088 amendment), so there is one grounding path. Behaviour is derived from platform documentation, not from any reference: Apple Accessibility (AXUIElement attribute reads) and Microsoft UI Automation (element tree, Name/LabeledBy, BoundingRectangle) are read-only when only attributes and properties are read. In 2.0 Métis never sets an accessibility-enabling attribute such as AXManualAccessibility on another app: it changes that app's state and may add CPU load (COV-21), and hosted runners cannot qualify it; an app with no usable tree falls back to M2-0545 OCR with coverage VISIBLE_ONLY, and Windows UIA already exposes Chromium content. The projection is screen content sent to a cloud planner, so the M2-0313 egress test, a sentinel test, M2-0277 source chips and COV-18 apply. It also owns the pointer element and the 'this/that/here' order moved out of M2-0289 (explicit selection, then focused element, then element under the pointer, else ask). Re-estimated at 14 h without the AX attribute, in two slices. Precondition for the T3 date: M2-0276 currently depends on M2-0127 (W6/m8, chain to M2-0121 in m9), so the lead must slice M2-0276 so its contract lands first (see the M2-0276 amendment); otherwise this ticket and M2-0547 cannot land by 2026-11-08.",
+   "acceptance": [
+    "Implements the M2-0276 AX/UIA rung behind its port: for the snapshot's target window it returns controls with role, label, normalized box, enabled and focused state and a host-bound element token, plus the target app's menu bar items as each platform exposes them (the application element's AXMenuBar attribute on macOS; MenuBar and MenuItem control types in the UIA tree on Windows), and never reads other apps' windows (fake-tree tests on both OSes)",
+    "Enumeration is read-only: no AX action or attribute write on macOS and no UIA pattern invocation or focus change on Windows, so closed menus and collapsed items stay as they were; in 2.0 Métis never sets AXManualAccessibility or any other accessibility-enabling attribute on another app (spy tests on both ports)",
+    "Enumeration is bounded by a time budget, a node cap and a depth cap, and an overrun yields PARTIAL with a gap statement; controls are sorted into reading order (rows by vertical position within a stated tolerance, then by horizontal position); one on-screen control reported twice appears once; the list is capped with a truncated flag (fake-tree tests on both OSes)",
+    "Labels come from the platform's documented accessible-name properties (Apple AX title, description and title element; Microsoft UIA Name and LabeledBy) with the precedence written in the contract and pinned by fixtures; a field value is never used as a label; values follow the M2-0276 rule (only the explicitly selected non-sensitive field), and secure text, payment and one-time-code fields contribute role and label only (AX and UIA fixture tests)",
+    "When the target exposes no usable tree (empty or below a minimum node count), the rung reports UNAVAILABLE and the manifest uses M2-0545 OCR lines and words from the single-window capture with coverage VISIBLE_ONLY and the method recorded (empty-tree fixture test)",
+    "macOS: AX enumeration of a CI-built AppKit fixture window on macos-latest returns the expected controls and labels, or reports BLOCKED_EXTERNAL with the unblock step (a runner image that grants Accessibility to the test host; M2-0472 row B records whether TCC can be seeded); the code is a new Swift source file and main.swift gains only one dispatch line, merged after M2-0545 in the M2-0188 landing order",
+    "Windows: UIA enumeration through the M2-0085.1 pinned helper protocol returns the expected controls and labels for a CI-launched Electron fixture window and a native Win32 fixture window on windows-latest",
+    "A planner projection with TS golden and negative fixtures: app identity, coverage, method, controls and M2-0545 text lines and words, each with an opaque id and a box normalized per display with the display transform recorded; boxes round-trip to device pixels through the M2-0276 transform at 1x and 2x and on a display left of the primary (unit tests); caps with a truncated flag",
+    "Ids are unique per snapshot and expire when it is replaced: an id from a superseded snapshot returns a typed stale-target error and never resolves to old coordinates; M2-0088.1's grounding port is implemented by this resolver, and the M2-0088 check-architecture rule shows that only modules under src/main/features/context/grounding/ invoke a control-enumeration command of mac-helper or the Windows UIA helper (unit tests)",
+    "The projection never contains a Métis window or its text (test with a Métis window over the target)",
+    "The snapshot records the real pointer position at ask time and the element under it (the smallest control, line or word containing it within a small tolerance, else none; none over a Métis window); 'this', 'that' and 'here' in a screen question resolve in the order explicit selection, focused element, element under the pointer, and otherwise Métis asks and dispatches nothing; a stale snapshot also asks (fixture tests per rung)",
+    "Egress: the projection is built only for an active interaction session and never on a timer, and M2-0545's OCR session port is bound here to the M2-0276 broker's interaction session (spy test through the real binding: zero enumerations and OCR calls otherwise); it carries the source-chip metadata M2-0277 renders (method, age, coverage, exclusions); an on-screen sentinel in a fixture window never reaches logs, crash bundles, exports or disk after a build and a planner request (sentinel test, reusable by M2-0316); the AX/UIA and OCR helper transports are rows in the M2-0313 matrix with a negative egress test",
+    "COV-18: on the desktop side the projection lives only for the planner request: after the request settles no request cache, retry queue, log or crash breadcrumb holds a sentinel placed in it (fake-transport sentinel test); server-side sinks stay with the M2-0149 sentinel harness, and the lead adds this planner screen-context route to that harness's route list"
+   ],
+   "verification": [
+    "CI Build & Test: npx vitest run src/main/features/context/grounding src/shared/contracts/observation on macos-latest and windows-latest",
+    "CI Build & Test: bash native/mac-helper/Tests/run-helper-tests.sh on macos-latest",
+    "CI windows-latest UIA enumeration rows (Electron and Win32 fixture windows)",
+    "node scripts/check-architecture.mjs (CI)"
+   ],
+   "notes": "2026-10-03 (lead): filed under OD-56; cut before the D-14 list if the OD-50 checkpoint triggers.",
+   "slice_current": 1
+  },
+  {
+   "id": "M2-0547",
+   "wave": "W5",
+   "milestone": "m7",
+   "type": "feature",
+   "owner_model": "opus",
+   "priority": "P2",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0546",
+    "M2-0088",
+    "M2-0278"
+   ],
+   "needs_decision": [],
+   "slices": [
+    {
+     "id": "M2-0547.1",
+     "title": "Guide-only point-at capability, render payload contract and dwell queue",
+     "scope_paths": [
+      "src/main/features/guidance/point-at/",
+      "src/shared/contracts/guidance/",
+      "src/renderer/src/features/guidance/",
+      "src/main/features/actions/registry.ts",
+      "docs/metis-2.0/evidence/",
+      "src/main/features/attention/delivery-port.ts",
+      ".github/workflows/packaged-smoke.yml"
+     ],
+     "acceptance": [
+      "A point-at capability takes a M2-0546 manifest id or a normalized point, is registered only in the Guide capability set with no input path (M2-0088 registry test shows zero dispatched input events), and returns to the planner at once with queued or rejected; a stale, superseded or unknown id is rejected with the typed stale-target error (unit tests)",
+      "The render payload (resolved target rectangle, display transform, answer text, queue position) is a shared contract with TS golden and negative fixtures, the renderer never resolves ids itself, and the bubble geometry cases are JSON fixtures that M2-0548 reuses",
+      "Points are shown in order and each is held for at least a minimum dwell (configurable, with a default); Stop, Escape, human takeover and a new request clear the queue and the highlight within one frame (fake-clock tests)"
+     ],
+     "estimate_hours": 3,
+     "owner_model": "sonnet",
+     "depends_on_slices": []
+    },
+    {
+     "id": "M2-0547.2",
+     "title": "Highlight wiring, target-anchored answer bubble, share handling, report-only frame time and design evidence (Opus visual slice)",
+     "scope_paths": [
+      "src/main/features/guidance/point-at/",
+      "src/shared/contracts/guidance/",
+      "src/renderer/src/features/guidance/",
+      "src/main/features/actions/registry.ts",
+      "docs/metis-2.0/evidence/",
+      "src/main/features/attention/delivery-port.ts",
+      ".github/workflows/packaged-smoke.yml"
+     ],
+     "acceptance": [
+      "Each point uses the M2-0088 highlight with no pointer flight in 2.0; with reduced motion it appears without animation, and an idle or hidden guidance surface renders zero frames (M2-0278 frame-counter test)",
+      "The answer bubble anchors above the target with its tail at the target, flips below when there is no room, stays on the target's display inside fixed margins, never overlaps the target rectangle, and dismisses after a reading time derived from word count, clamped to a floor and a ceiling (geometry unit tests over the M2-0278 display-matrix fixtures, fake clock)",
+      "While a screen share or call is active, or its state is unknown, the bubble is not drawn on a shared surface and the answer goes to the private card, decided through the one delivery-decision port in src/main/features/attention/ that M2-0087.3 also uses (whichever of the two lands first creates it; fake share-state tests; M2-0305 implements it per its amendment); bubble and highlight are excluded from Métis's own captures (M2-0278 capture-exclusion rows)",
+      "Frame time p95 during a point sequence is measured on the packaged app on the hosted macOS and Windows runners and published report-only; it never fails the job (OD-42/OD-44)",
+      "Design evidence artifact: every bubble and highlight state in this ticket's state list (queued, showing, flipped, dismissing, share-suppressed) x light/dark x 1x/2x x reduced motion, captured from the real app renderer in CI via the M2-0418 Electron capture lane under docs/metis-2.0/evidence/<ticket>/design/, with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (HTML mocks do not count)"
+     ],
+     "estimate_hours": 4,
+     "owner_model": "opus",
+     "depends_on_slices": [
+      "M2-0547.1"
+     ]
+    }
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 7,
+   "risk": "medium",
+   "finding_refs": [
+    "OD-56 (owner request 2026-10-03): integrate the useful behaviour of an owner-supplied desktop-assistant reference (no licence file: behaviour only) into the 2.0 roadmap; lead study, adversarial critique and an independent verification of this text"
+   ],
+   "scope_paths": [
+    "src/main/features/guidance/point-at/",
+    "src/shared/contracts/guidance/",
+    "src/renderer/src/features/guidance/",
+    "src/main/features/actions/registry.ts",
+    "docs/metis-2.0/evidence/",
+    "src/main/features/attention/delivery-port.ts",
+    ".github/workflows/packaged-smoke.yml"
+   ],
+   "title": "Point at a grounded target and answer beside it in Guide mode (lite: point-at capability, dwell queue, highlight and target-anchored answer bubble)",
+   "summary": "Guide mode can highlight (M2-0088.3), but nothing lets the planner point at a grounded element, sequence several points, or put the answer next to the thing it is about. Lite 2.0 scope: a Guide-only point-at capability over M2-0546 ids, a queue with a minimum dwell, the M2-0088 highlight, and a target-anchored answer bubble with flip, margins and a reading-time dismissal, all testable through geometry and fake-clock tests. The pointer flight engine is deferred after 2.0: the ghost pointer stays M2-0088.3's opt-in feature (CXCAP-06), and the kit's technical assessment records the vendor's 1.0.52 changelog statement (VENDOR_CLAIM, not tested) that HeyClicky removed its floating cursor. Frame time on hosted runners is report-only (OD-42/OD-44 runner variance). Share handling goes through the same delivery-decision port as M2-0087.3 (src/main/features/attention/, implemented by M2-0305 per its amendment) rather than a dependency on M2-0305, whose dependency chain reaches m9. Lands last, by T3 (2026-11-08), provided M2-0082 merges by about 10-24 and the M2-0276 contract is sliced first (see M2-0546); if M2-0082 slips past about 10-27 this is the first item to cut. Native Mac parity is M2-0548 (OD-16). The design state list is written first because M2-0201 has no guidance prototype.",
+   "acceptance": [
+    "A point-at capability takes a M2-0546 manifest id or a normalized point, is registered only in the Guide capability set with no input path (M2-0088 registry test shows zero dispatched input events), and returns to the planner at once with queued or rejected; a stale, superseded or unknown id is rejected with the typed stale-target error (unit tests)",
+    "The render payload (resolved target rectangle, display transform, answer text, queue position) is a shared contract with TS golden and negative fixtures, the renderer never resolves ids itself, and the bubble geometry cases are JSON fixtures that M2-0548 reuses",
+    "Points are shown in order and each is held for at least a minimum dwell (configurable, with a default); Stop, Escape, human takeover and a new request clear the queue and the highlight within one frame (fake-clock tests)",
+    "Each point uses the M2-0088 highlight with no pointer flight in 2.0; with reduced motion it appears without animation, and an idle or hidden guidance surface renders zero frames (M2-0278 frame-counter test)",
+    "The answer bubble anchors above the target with its tail at the target, flips below when there is no room, stays on the target's display inside fixed margins, never overlaps the target rectangle, and dismisses after a reading time derived from word count, clamped to a floor and a ceiling (geometry unit tests over the M2-0278 display-matrix fixtures, fake clock)",
+    "While a screen share or call is active, or its state is unknown, the bubble is not drawn on a shared surface and the answer goes to the private card, decided through the one delivery-decision port in src/main/features/attention/ that M2-0087.3 also uses (whichever of the two lands first creates it; fake share-state tests; M2-0305 implements it per its amendment); bubble and highlight are excluded from Métis's own captures (M2-0278 capture-exclusion rows)",
+    "Frame time p95 during a point sequence is measured on the packaged app on the hosted macOS and Windows runners and published report-only; it never fails the job (OD-42/OD-44)",
+    "Design evidence artifact: every bubble and highlight state in this ticket's state list (queued, showing, flipped, dismissing, share-suppressed) x light/dark x 1x/2x x reduced motion, captured from the real app renderer in CI via the M2-0418 Electron capture lane under docs/metis-2.0/evidence/<ticket>/design/, with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (HTML mocks do not count)"
+   ],
+   "verification": [
+    "CI Build & Test: npx vitest run src/main/features/guidance src/renderer/src/features/guidance src/shared/contracts/guidance",
+    "CI packaged smoke (macOS + Windows): report-only frame-time row",
+    "M2-0418 Electron capture lane for the design evidence"
+   ],
+   "notes": "2026-10-03 (lead): filed under OD-56; cut before the D-14 list if the OD-50 checkpoint triggers.",
+   "slice_current": 1
+  },
+  {
+   "id": "M2-0548",
+   "wave": "W5",
+   "milestone": "m7",
+   "type": "feature",
+   "owner_model": "opus",
+   "priority": "P2",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0547",
+    "M2-0345"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 4,
+   "risk": "medium",
+   "finding_refs": [
+    "OD-56 (owner request 2026-10-03): integrate the useful behaviour of an owner-supplied desktop-assistant reference (no licence file: behaviour only) into the 2.0 roadmap; lead study, adversarial critique and an independent verification of this text"
+   ],
+   "scope_paths": [
+    "native-app/App/Guidance/",
+    "native-app/MetisKit/Sources/MetisKit/Contracts/",
+    "native-app/MetisKit/Tests/"
+   ],
+   "title": "Bring point-at guidance and the target-anchored answer bubble to the native Mac app (OD-16 parity for M2-0547)",
+   "summary": "OD-16 puts native Mac parity in 2.0, and M2-0345 acceptance 1 says any deferral needs a new owner OD row, so M2-0547-lite needs a native counterpart rather than a silent gap. Scope: decode the M2-0547 render payload through MetisKit and reproduce the queue, minimum dwell, highlight and bubble geometry in a native non-activating overlay panel, reusing M2-0547's JSON geometry fixtures so both renderers are held to the same cases. No motion engine (deferred with M2-0547). Schedule risk, inherited: M2-0345 itself depends on M2-0161 (W8/m10), so landing this by T3 needs the lead to re-sequence M2-0345 or the owner to record a deferral OD under OD-16; it is never deferred silently.",
+   "acceptance": [
+    "native-app decodes the M2-0547 render payload golden and negative fixtures through MetisKit and rejects a malformed payload (swift test on the CI macOS runner)",
+    "The native overlay shows points in order with the same minimum dwell, clears the queue and the highlight on Stop, Escape, takeover or a new request within one frame, and draws nothing when idle (fake-clock XCTest)",
+    "The native bubble passes the same JSON geometry fixtures as M2-0547: anchored above with the tail at the target, flipped below without room, inside the display margins, never over the target, reading-time dismissal with a floor and a ceiling (swift test)",
+    "The overlay panel is click-through, never becomes key or main, and is excluded from Métis's own captures (XCTest on the panel's window properties); a packaged native row on macos-latest passes or reports BLOCKED_EXTERNAL with the unblock step (Screen Recording granted to the native QA candidate on the runner image)",
+    "Offscreen snapshots of the native bubble and highlight states in light/dark, 1x/2x and reduced motion are rendered on the CI macOS runner and validated against the M2-0547 design evidence by an Opus session other than the implementer; evidence records carry the native-mac implementation label and pass the M2-0345 label checker"
+   ],
+   "verification": [
+    "CI Build & Test: swift test in native-app/MetisKit on macos-latest",
+    "CI Build & Test: xcodebuild test for native-app/App on macos-latest"
+   ],
+   "notes": "2026-10-03 (lead): filed under OD-56; cut before the D-14 list if the OD-50 checkpoint triggers."
   }
  ]
 }
