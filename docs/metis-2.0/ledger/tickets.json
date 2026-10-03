@@ -531,6 +531,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0542 also fixes the owner-runner sandbox probe for absent paths."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "1.9.7 readiness audit: M2-0046 depends on M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0498 on M2-0202, M2-0542; M2-0202 milestone m3 (OD-51)."
   }
  ],
  "tickets": [
@@ -3572,7 +3578,18 @@
     "M2-0514",
     "M2-0500",
     "M2-0503",
-    "M2-0202"
+    "M2-0202",
+    "M2-0534",
+    "M2-0469",
+    "M2-0217",
+    "M2-0484",
+    "M2-0464",
+    "M2-0195",
+    "M2-0542",
+    "M2-0508",
+    "M2-0537",
+    "M2-0418",
+    "M2-0447"
    ],
    "needs_decision": [
     "D-13"
@@ -3622,7 +3639,7 @@
    "slices": [],
    "due": "2026-10-04",
    "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency."
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency. 2026-10-03 (lead, OD-31 readiness audit): producers linked M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0418/M2-0447 are 1.9.7 work because M2-0202 slice 7 (OD-51) needs M2-0418's states.ts and its WCAG audit."
   },
   {
    "id": "M2-0047",
@@ -18520,7 +18537,7 @@
    "id": "M2-0202",
    "title": "Ship the right-edge P1 repairs (TASK-028.A, defects D1-D11) on main's RightEdgeSidecar before 1.9.7 where ready (OD-22)",
    "wave": "W3",
-   "milestone": "m5",
+   "milestone": "m3",
    "type": "design",
    "owner_model": "opus",
    "depends_on": [
@@ -18752,7 +18769,7 @@
    "due": null,
    "status": "TODO",
    "priority": "P0",
-   "notes": "2026-09-29 (lead): OWNER-REPORTED on 1.9.6 ('The right edge hide doesnt work'; 'improve the Right edge Island UX UI ... no scroll needed') -> P0, OD-22. Dropped the M2-0198 dependency (a post-1.9.7 soak hold), which contradicted this ticket's own 'ship in T1' summary; lands before 1.9.7 so the owner gets the fix. 2026-09-29 (lead): the owner-reported right-edge Hide defect is split out as M2-0428 (P0, ships in 1.9.7; M2-0046 depends on it). This ticket carries the no-scroll island redesign plus D1-D11 on top of it. 2026-09-29 (lead): owner L6 answer (OD-25): long content opens in a Reader view beside the island; the island never scrolls. Delivered in slices S1-S7 (spec v3, codex-queue/logs/right-edge-2026-09-29/spec-v3.md + its re-review as binding amendments); sequenced after M2-0428 and M2-0431 (same hover/right-edge code).",
+   "notes": "2026-09-29 (lead): OWNER-REPORTED on 1.9.6 ('The right edge hide doesnt work'; 'improve the Right edge Island UX UI ... no scroll needed') -> P0, OD-22. Dropped the M2-0198 dependency (a post-1.9.7 soak hold), which contradicted this ticket's own 'ship in T1' summary; lands before 1.9.7 so the owner gets the fix. 2026-09-29 (lead): the owner-reported right-edge Hide defect is split out as M2-0428 (P0, ships in 1.9.7; M2-0046 depends on it). This ticket carries the no-scroll island redesign plus D1-D11 on top of it. 2026-09-29 (lead): owner L6 answer (OD-25): long content opens in a Reader view beside the island; the island never scrolls. Delivered in slices S1-S7 (spec v3, codex-queue/logs/right-edge-2026-09-29/spec-v3.md + its re-review as binding amendments); sequenced after M2-0428 and M2-0431 (same hover/right-edge code). 2026-10-03 (lead): OD-51 — all 7 slices are 1.9.7 work (milestone m3); remaining slice estimates sum to the real cost.",
    "slice_current": 2,
    "slicing_note": "spec v3 §12 S1-S7 (lead file); S7 waits for M2-0418 (CI lane) — hold by hand if it is not merged",
    "slices_merged": [
@@ -34306,7 +34323,9 @@
     "M2-0512",
     "M2-0514",
     "M2-0530",
-    "M2-0535"
+    "M2-0535",
+    "M2-0202",
+    "M2-0542"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -34343,7 +34362,7 @@
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R1 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited)."
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R1 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead): the version bump waits for the last M2-0202 slice and M2-0542, so no re-cut follows it."
   },
   {
    "id": "M2-0499",
