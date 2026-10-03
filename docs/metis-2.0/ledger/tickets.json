@@ -585,6 +585,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0550 filed (History design first-capture timeout after M2-0540)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0551 filed (sidecar boot reaper real-llama-server race)."
   }
  ],
  "tickets": [
@@ -37551,6 +37557,45 @@
     "CI: three QA candidate runs with History design evidence 72/72"
    ],
    "notes": "2026-10-03 (lead): P0 because the flake bounces 1.9.7 critical PRs; M2-0540 (DONE) did not fix this capture."
+  },
+  {
+   "id": "M2-0551",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 3,
+   "risk": "low",
+   "finding_refs": [
+    "Lead, 2026-10-03: packaged smoke (macOS) run 37136644061 (M2-0543 #467, a harness-only change) failed the sidecar boot reaper's real-llama-server scenario: 'llama-server spawned identity registry did not land before hard kill'; the same step failed on unrelated PRs on 2026-10-02 (M2-0530, M2-0495) and bounces 1.9.7 critical PRs"
+   ],
+   "scope_paths": [
+    "scripts/qa/sidecar-boot-reaper.mjs",
+    "scripts/qa/sidecar-boot-reaper.test.ts"
+   ],
+   "title": "Sidecar boot reaper: the real-llama-server scenario waits for the spawned-identity registry before its hard kill (no assertion weakened)",
+   "summary": "The packaged-smoke reaper scenario hard-kills the app before llama-server's spawned-identity registry entry has landed on slower runners, so the reap it then checks has nothing to reap. Make the scenario wait for the registry entry (bounded, with the wait reported) before the hard kill, or prove the app writes it too late (then fix the app); the reap assertions stay.",
+   "acceptance": [
+    "Root cause stated from the failing report (timings: firstReady, sidecarStarted, llamaStarted, registry write)",
+    "The scenario hard-kills only after the registry entry exists (bounded wait, reported in timingsMs) or the app is fixed to write it earlier; every reap assertion unchanged",
+    "Three consecutive macOS packaged-smoke runs pass the reaper step; a test fails without the change"
+   ],
+   "verification": [
+    "CI: packaged smoke (macOS) x3 green on the PR"
+   ],
+   "notes": "2026-10-03 (lead): filed from the M2-0543 bounce; P1 (lane flake on the 1.9.7 path)."
   }
  ]
 }
