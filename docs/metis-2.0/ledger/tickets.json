@@ -29947,11 +29947,21 @@
    "flag": null,
    "risk": "medium",
    "estimate_hours": 6,
-   "status": "TODO",
+   "status": "ENGINEERING_COMPLETE",
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": "2026-09-29 (lead, EC triage): Keep PR #309's scope as is; the triage's 'amend before merge' option was not taken. M2-0447 adds the WCAG AA contrast and clipping audit, a negative control, upload if: always() (design-capture.yml:52 has none today) and a pull_request trigger on design paths. That supersedes the 'On demand only' header (line 11). M2-0450 and M2-0451 add the 17 Settings states alongside the M2-0201 placeholders. The lane has never run, so the first M2-0447 PR run may surface lane defects."
+   "notes": "2026-09-29 (lead, EC triage): Keep PR #309's scope as is; the triage's 'amend before merge' option was not taken. M2-0447 adds the WCAG AA contrast and clipping audit, a negative control, upload if: always() (design-capture.yml:52 has none today) and a pull_request trigger on design paths. That supersedes the 'On demand only' header (line 11). M2-0450 and M2-0451 add the 17 Settings states alongside the M2-0201 placeholders. The lane has never run, so the first M2-0447 PR run may surface lane defects.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/309",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "claude-opus",
+    "reviewer": "codex",
+    "validation": "independent Codex review PASS + every PR check green (CI, packaged smoke)",
+    "pending": [
+     "LEAD_ACTION acceptance item (lead, after merge)"
+    ]
+   }
   },
   {
    "id": "M2-0419",
