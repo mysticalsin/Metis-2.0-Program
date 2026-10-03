@@ -525,6 +525,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0538 depends on M2-0542."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0542 also fixes the owner-runner sandbox probe for absent paths."
   }
  ],
  "tickets": [
@@ -36676,14 +36682,16 @@
    "scope_paths": [
     ".github/workflows/qa-candidate.yml",
     "scripts/ci/qa-candidate-workflow.contract.test.ts",
-    "scripts/ci/workflow-contexts.contract.test.ts"
+    "scripts/ci/workflow-contexts.contract.test.ts",
+    "scripts/hermetic/prove-owner-sandbox.sh"
    ],
    "title": "Make qa-candidate.yml valid again (no runner context in job-level env) and fail Quality checks on that class of workflow error",
    "summary": "M2-0537's job-level `TMPDIR: ${{ runner.temp }}` makes GitHub reject the whole QA candidate workflow, so none of its jobs run. Set TMPDIR where the runner context is allowed (a step writing it to $GITHUB_ENV, or step-level env) and add a contract test so a workflow that uses a context where GitHub does not allow it fails Quality checks instead of silently disabling a release check.",
    "acceptance": [
     "qa-candidate.yml parses and runs: a run on the PR has jobs (not a 0-job 'workflow file issue' failure); st1-mac-fifo and st1-mac-control keep TMPDIR=$RUNNER_TEMP for every step, run on the owner runner and keep every other M2-0537 property",
     "scripts/ci/workflow-contexts.contract.test.ts reads every .github/workflows/*.yml and fails when jobs.<id>.env, jobs.<id>.runs-on or jobs.<id>.if reference a context GitHub does not allow there (at least runner, steps and job in job-level env); a fixture with exactly this mistake fails it and every current workflow passes",
-    "No other job, criterion or trigger changes"
+    "No other job, criterion or trigger changes",
+    "The owner-runner sandbox probe proves every protected path: an existing one by a denied read, an absent one by a denied mkdir (run 37084209109 stopped because ~/Library/Application Support/Metis does not exist on the owner's Mac)"
    ],
    "verification": [
     "CI: Quality checks green with the new contract test; the PR's QA candidate run has jobs and the two owner-runner jobs start"
