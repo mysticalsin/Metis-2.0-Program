@@ -513,6 +513,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0539..M2-0541 filed from the merge-lane diagnosis (ST-1 window first launch, History slow capture, verify-move ENOBUFS)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0542 filed: qa-candidate.yml rejected by GitHub since M2-0537 (runner context in job-level env)."
   }
  ],
  "tickets": [
@@ -36630,6 +36636,46 @@
     "CI: Quality checks green; verify-move.test.mjs covers the large-output case"
    ],
    "notes": "2026-10-02 (lead): filed from the merge-lane diagnosis."
+  },
+  {
+   "id": "M2-0542",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 2,
+   "risk": "high",
+   "finding_refs": [
+    "Lead, 2026-10-03: after M2-0537 merged (fd312505) GitHub rejects .github/workflows/qa-candidate.yml — run 37080507880 failed with 0 jobs; the st1-mac-fifo and st1-mac-control jobs set job-level env TMPDIR: ${{ runner.temp }}, and the runner context is not available in jobs.<id>.env. No QA candidate check runs on any push or PR until it is fixed."
+   ],
+   "scope_paths": [
+    ".github/workflows/qa-candidate.yml",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts",
+    "scripts/ci/workflow-contexts.contract.test.ts"
+   ],
+   "title": "Make qa-candidate.yml valid again (no runner context in job-level env) and fail Quality checks on that class of workflow error",
+   "summary": "M2-0537's job-level `TMPDIR: ${{ runner.temp }}` makes GitHub reject the whole QA candidate workflow, so none of its jobs run. Set TMPDIR where the runner context is allowed (a step writing it to $GITHUB_ENV, or step-level env) and add a contract test so a workflow that uses a context where GitHub does not allow it fails Quality checks instead of silently disabling a release check.",
+   "acceptance": [
+    "qa-candidate.yml parses and runs: a run on the PR has jobs (not a 0-job 'workflow file issue' failure); st1-mac-fifo and st1-mac-control keep TMPDIR=$RUNNER_TEMP for every step, run on the owner runner and keep every other M2-0537 property",
+    "scripts/ci/workflow-contexts.contract.test.ts reads every .github/workflows/*.yml and fails when jobs.<id>.env, jobs.<id>.runs-on or jobs.<id>.if reference a context GitHub does not allow there (at least runner, steps and job in job-level env); a fixture with exactly this mistake fails it and every current workflow passes",
+    "No other job, criterion or trigger changes"
+   ],
+   "verification": [
+    "CI: Quality checks green with the new contract test; the PR's QA candidate run has jobs and the two owner-runner jobs start"
+   ],
+   "notes": "2026-10-03 (lead): P0, first in the queue; M2-0495 is held until this merges (its own proof runs in qa-candidate)."
   }
  ]
 }
