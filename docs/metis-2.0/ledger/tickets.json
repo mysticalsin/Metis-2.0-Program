@@ -675,6 +675,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Evidence Phase 2: 28 inheritance-capped ENGINEERING_COMPLETE tickets get an unblock step naming their capping root(s): M2-0024, M2-0032, M2-0041, M2-0048, M2-0050, M2-0051, M2-0052, M2-0145, M2-0213, M2-0217, M2-0218, M2-0219, M2-0228, M2-0229, M2-0237, M2-0239, M2-0248, M2-0259, M2-0261, M2-0263, M2-0410, M2-0415, M2-0416, M2-0462, M2-0512, M2-0514, M2-0519, M2-0523."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0574 (packaged-smoke inspector awaitPromise flake, \"Promise was collected\")."
   }
  ],
  "tickets": [
@@ -39771,6 +39777,49 @@
     "PR CI: node --test scripts/evidence/check.test.mjs scripts/evidence/backfill.test.mjs (Build & Test)"
    ],
    "notes": "2026-10-03 (lead): filed under OD-65; the lead writes docs/metis-2.0/evidence/legacy-fix.json in the program repository during the Phase 2 backfill."
+  },
+  {
+   "id": "M2-0574",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 2,
+   "risk": "low",
+   "finding_refs": [
+    "Lead flake root-cause review 2026-10-03 (diagnosis + adversarial verification over 844 packaged-smoke runs): \"Promise was collected\" in 13 runs (3.0%), RE-HIDE-3/5/6-hide, RE-P01 and OV-STABLE rows; bounced M2-0495 and M2-0551 PRs"
+   ],
+   "scope_paths": [
+    "scripts/qa/golden-flows/right-edge-hide-rows.mjs",
+    "scripts/qa/golden-flows/main-inspector.test.ts"
+   ],
+   "title": "Packaged smoke: the main-process inspector client stops awaiting synchronous results (\"Promise was collected\")",
+   "summary": "scripts/qa/golden-flows/right-edge-hide-rows.mjs mainInspector sends every main() expression as Runtime.evaluate with awaitPromise: true. Every expression is synchronous; V8 15.0 (Electron 43) wraps such a value in Promise.resolve and holds the wrapper only weakly until its reaction microtask runs, so a main-process GC in between answers \"Promise was collected\" and the RE-HIDE/OV row fails. Harness bug, not the app.",
+   "acceptance": [
+    "1. scripts/qa/golden-flows/right-edge-hide-rows.mjs exports `inspectorClient(wsUrl)`, the WebSocket CDP transport moved verbatim out of `mainInspector`. Its `evaluate` sends `Runtime.evaluate` with `{ expression, returnByValue: true }` and no `awaitPromise`. Its `close()` returns a promise that resolves once the socket's 'close' event fires, or at once if the socket is already CLOSED. `mainInspector(inspectPort)` keeps its /json/list discovery, its electron bootstrap and `clickTray` unchanged, and takes `send`/`evaluate`/`close` from `inspectorClient`.",
+    "2. The `inspectorClient` doc comment states that `evaluate` accepts synchronous expressions only. It gives the reason (V8 15.0 in Electron 43 holds an awaited non-promise result only weakly, so a main-process GC answers \"Promise was collected\"), says that a Promise result comes back as {}, and points async callers to st-1-core.mjs `pinnedExpression`. Every expression passed to `main()`/`inspector.evaluate` in right-edge-hide-rows.mjs, overlay-stability-rows.mjs and history-design-capture.mjs returns a non-Promise value.",
+    "3. New file scripts/qa/golden-flows/main-inspector.test.ts opens the test worker's own inspector with `inspector.open(0, '127.0.0.1')`. It exposes gc via `v8.setFlagsFromString('--expose-gc')` + `vm.runInNewContext('gc')`. It asserts that 10 consecutive `inspectorClient(inspector.url()).evaluate('queueMicrotask(() => globalThis.__metisInspectorTestGc()); ({ ok: true })')` calls each resolve to `{ ok: true }`. Its afterAll runs `await client.close()` before `inspector.close()`, never the two back to back unawaited, because that segfaults Node 22.22.3.",
+    "4. The PR body links one GitHub Actions run where the item 3 test fails with \"Promise was collected\" (item 1 extraction applied, `awaitPromise: true` still sent) and one run where it passes with the item 1 change. In both runs the vitest worker exits normally, with no worker crash or hang. Tests run in CI only (D-28).",
+    "5. No timeout, wait budget or threshold changes in the RE-HIDE or OV rows. Auto-park measures p50 3.8 s and max 6.8 s across both OSes and layouts against an 8 s budget, and the failure is a thrown transport error, not a missed deadline.",
+    "6. Packaged smoke (macOS), Packaged smoke (Windows) and the unit-test job that runs `npm test` are green on the PR and on the merge to m2/integration.",
+    "7. After merge, grep the --log-failed output of the next 100 completed Packaged smoke runs. Zero \"Promise was collected\" may appear in any RE-HIDE or OV row. The pre-fix rate was 13/437 runs (3.0%), so if the bug were still present the chance of zero in 100 runs is about 5% (0.97^100)."
+   ],
+   "verification": [
+    "PR CI: Build & Test (npm test runs scripts/qa/golden-flows/main-inspector.test.ts), Packaged smoke (macOS) and (Windows)"
+   ],
+   "notes": "2026-10-03 (lead): filed from the verified flake root cause; merge-lane flake fix, first in the merge order."
   }
  ],
  "decisions": {
