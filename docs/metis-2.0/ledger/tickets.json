@@ -627,6 +627,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Evidence Rock 3 prep: external_blocker with the outside-evidence step on 39 open tickets needing HOST_CONFIGURED/LIVE_VERIFIED/MEASURED/ACCEPTED (35 engineering_first; held from the queue: M2-0046, M2-0111, M2-0166, M2-0177); left for the lead (no source names the step): M2-0067, M2-0084, M2-0312, M2-0380."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "D-35: M2-0456 (packaged visual and right-edge smoke on the candidate) is a 1.9.7 gate: moved to W1/m3/P1, depends on M2-0202, M2-0046 depends on it; M2-0042, M2-0095 and M2-0160 depend on it (missing links)."
   }
  ],
  "tickets": [
@@ -3480,7 +3486,8 @@
    "depends_on": [
     "M2-0001",
     "M2-0007",
-    "M2-0198"
+    "M2-0198",
+    "M2-0456"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -3531,7 +3538,7 @@
    "due": null,
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0456, whose candidate visual-smoke job its acceptance relies on (link was missing)."
   },
   {
    "id": "M2-0043",
@@ -3786,7 +3793,8 @@
     "M2-0553",
     "M2-0555",
     "M2-0556",
-    "M2-0557"
+    "M2-0557",
+    "M2-0456"
    ],
    "needs_decision": [
     "D-13"
@@ -3841,7 +3849,7 @@
    "slices": [],
    "due": "2026-10-04",
    "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency. 2026-10-03 (lead, OD-31 readiness audit): producers linked M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0418/M2-0447 are 1.9.7 work because M2-0202 slice 7 (OD-51) needs M2-0418's states.ts and its WCAG audit. 2026-10-03 (lead, D-34): acc 9 now says 'cut at the provenance commit'; the app repository has no 1.9.7 tag and gets none (promote tags only the feed). 2026-10-03 (lead, M2-0488 LEAD_ACTION, readiness N14): growth rules registered before any idle-soak or meeting-history dispatch: IDLE-GROWTH-1 and MEETING-GROWTH-1, rulesSha256 53d05c480c66dbc8fe7005a235d67853fc7051acd13556d85c53bfb2e0a9b636 (canonical RULES, one hash for both rules; pin scripts/qa/soak/growth-rule.contract.test.ts:11), merged commit 03a0ca3e39c8859a7b997a6f815090466acd10e8 (PR #395; on main since fd38fd09); note docs/metis-2.0/evidence/release-1.9.7/growth-rule-registration.md. A verdict or lane.json whose rule.rulesSha256 differs from the sha256 that note registered before its run, or from a run created before the note reached program main (shakedowns included), is not evidence for acc 4b/4c; rule.fileSha256 is not a criterion. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED/ACCEPTED/MEASURED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it."
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency. 2026-10-03 (lead, OD-31 readiness audit): producers linked M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0418/M2-0447 are 1.9.7 work because M2-0202 slice 7 (OD-51) needs M2-0418's states.ts and its WCAG audit. 2026-10-03 (lead, D-34): acc 9 now says 'cut at the provenance commit'; the app repository has no 1.9.7 tag and gets none (promote tags only the feed). 2026-10-03 (lead, M2-0488 LEAD_ACTION, readiness N14): growth rules registered before any idle-soak or meeting-history dispatch: IDLE-GROWTH-1 and MEETING-GROWTH-1, rulesSha256 53d05c480c66dbc8fe7005a235d67853fc7051acd13556d85c53bfb2e0a9b636 (canonical RULES, one hash for both rules; pin scripts/qa/soak/growth-rule.contract.test.ts:11), merged commit 03a0ca3e39c8859a7b997a6f815090466acd10e8 (PR #395; on main since fd38fd09); note docs/metis-2.0/evidence/release-1.9.7/growth-rule-registration.md. A verdict or lane.json whose rule.rulesSha256 differs from the sha256 that note registered before its run, or from a run created before the note reached program main (shakedowns included), is not evidence for acc 4b/4c; rule.fileSha256 is not a criterion. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED/ACCEPTED/MEASURED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it. 2026-10-03 (lead, D-35): depends on M2-0456, the producer of the right-edge-walkthrough gate row."
   },
   {
    "id": "M2-0047",
@@ -8293,7 +8301,8 @@
     "M2-0202",
     "M2-0072",
     "M2-0007",
-    "M2-0079"
+    "M2-0079",
+    "M2-0456"
    ],
    "needs_decision": [
     "D-7"
@@ -8392,7 +8401,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "2026-09-29 (lead): 'definite-height scrolling' replaced by 'no scrolling in any island state' per owner decision OD-22. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "notes": "2026-09-29 (lead): 'definite-height scrolling' replaced by 'no scrolling in any island state' per owner decision OD-22. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0456, whose candidate visual-smoke job its acceptance relies on (link was missing).",
    "slice_current": 1,
    "slicing_note": "Needs decision D-7 before .1. The right-edge sizes currently live in two places: src/main/island/geometry.ts:227-230 and src/renderer/src/components/RightEdgeSidecar.tsx:7-8. The renderer cannot import src/main (FF-01), so one authority needs a module both processes can import (under src/shared/) or main pushing the computed layout. Neither is in scope_paths; add the shared module. The drawer still has a scroll container (right-edge-sidecar__drawer-scroll), which .2 must remove per OD-22. .3 cannot start until M2-0079 (TODO, and that depends on M2-0065) delivers the command session. The ledger .md for this ticket still says 'Definite-height scrolling'; the JSON acceptance (no scrolling, OD-22) was used.",
    "engineering_first": true
@@ -15231,7 +15240,8 @@
     "M2-0163",
     "M2-0201",
     "M2-0476",
-    "M2-0477"
+    "M2-0477",
+    "M2-0456"
    ],
    "needs_decision": [
     "D-11",
@@ -15408,7 +15418,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: the text-led welcome ships as final (no recorded video); ASSUMED per D-20 default. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0160/ (placeholders until M2-0418 Electron capture + Opus acceptance) 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Slice M2-0160.2 is renamed 'On-device transcription pack in the setup scene: consented, non-blocking, resumable download, selected engine first' and grows from 5 h to 8 h (Sonnet). Slice .5 grows from 4 h to 5 h. needs_decision adds OD-30. Waits for the soak under PD-12: OnboardingExperience.tsx was edited by 1.9.7 tickets M2-0429 and M2-0036. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the setup scene configures Cloudflare speech through the Operator broker with no token field; optional local downloads never act as a fallback. Acceptance unchanged. UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27: the text-led welcome ships as final (no recorded video); ASSUMED per D-20 default. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0160/ (placeholders until M2-0418 Electron capture + Opus acceptance) 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Slice M2-0160.2 is renamed 'On-device transcription pack in the setup scene: consented, non-blocking, resumable download, selected engine first' and grows from 5 h to 8 h (Sonnet). Slice .5 grows from 4 h to 5 h. needs_decision adds OD-30. Waits for the soak under PD-12: OnboardingExperience.tsx was edited by 1.9.7 tickets M2-0429 and M2-0036. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0456, whose candidate visual-smoke job its acceptance relies on (link was missing).",
    "slice_current": 1,
    "slicing_note": "Refines the existing five slices, keeping their ids, titles and owners; hours change to 6/5/4/5/4. The speechPack IPC (state, start, cancel, retry and the pushed progress event) comes from M2-0476, and localSpeechPack from M2-0477. With those in place, no slice edits src/main/index.ts, src/shared/ipc.ts or src/preload/index.ts. ASR_SETUP_FAIL_OPEN_MS is at OnboardingExperience.tsx:517 and is also asserted in src/renderer/src/components/Onboarding.helpers.test.ts:456, so .2 must update that test. src/main/features/onboarding/ does not exist yet; .3 creates it. The .5 evidence and the design captures land under docs/metis-2.0/evidence/M2-0160/, outside the scope_paths. The whole ticket must land by the 2026-11-15 freeze.",
    "engineering_first": true
@@ -32579,13 +32589,13 @@
   {
    "id": "M2-0456",
    "title": "Run the packaged visual onboarding and right-edge smoke (scripts/e2e-smoke.mjs) on the installed candidate after install, with uploaded screenshots",
-   "wave": "W2",
-   "milestone": "m4",
+   "wave": "W1",
+   "milestone": "m3",
    "type": "ci",
    "owner_model": "sonnet",
-   "priority": "P2",
+   "priority": "P1",
    "depends_on": [
-    "M2-0046"
+    "M2-0202"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -32631,7 +32641,7 @@
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0456, audited); unblocks M2-0018. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0456, audited); unblocks M2-0018. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded. 2026-10-03 (lead, D-35): this job is a 1.9.7 gate (it produces the pre-registered right-edge-walkthrough row of releases/1.9.7.gates.json for M2-0202), so the ticket moves to W1/m3 per its merge-timing LEAD_ACTION; it now follows M2-0202 (the walkthrough must drive the shipped island) and M2-0046 depends on it.",
    "engineering_first": true
   },
   {
