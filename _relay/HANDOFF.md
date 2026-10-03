@@ -1,10 +1,10 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 26
+shift: 27
 agent: claude-code
-updated: 2026-10-03 18:10 EDT
-status: in-progress (1.9.7 first; 2.0 builds now, lands after 1.9.7 ACCEPT; OD-48 stacked swarm live; signing excluded)
-branch: m2/integration moving; main = milestone #460 green; program main 41c97ee
+updated: 2026-10-03 19:40 EDT
+status: in-progress (1.9.7 first; merge lane throttled by CI flakes, each now root-caused; evidence chain live)
+branch: m2/integration moving; main = milestone #460 green; program main ebb13b1
 ---
 
 # Handoff — Métis 2.0 program
@@ -14,38 +14,34 @@ Stable 1.9.7 first (OD-45; owner ACCEPT), then Métis 2.0 = the v6 kit plus OD-5
 2026-11-30, freeze M2-0210 on 11-15 (checkpoint 11-08, OD-50). Every release check preserved.
 
 ## Current state
-- Owner decisions today: OD-47..OD-64. New this shift: OD-58 Mac runner online per cut window (lead asks the day before each);
-  OD-59 1.9.9 turns off only the NODE_OPTIONS and inspect fuses, RunAsNode stays on (D-36 OPEN for 2.0, needed by 11-01);
-  OD-60 Laya deferred past 2.0 (M2-0312, M2-0570, M2-0571 DEFERRED; M2-0124 = former slice .1); OD-61 staging Cloudflare tokens in a
-  protected 'staging' environment the owner fills; OD-62 OS-synthesized input counts for takeover; OD-63 one owner-runner camera
-  job (M2-0572, scoped D-28 exception); OD-64 real-dataless History timings from daily 1.9.9 use (M2-0564). Lead: D-35 (M2-0456 is
-  a 1.9.7 gate: it produces the right-edge-walkthrough row).
-- Evidence chain (ADR-017) is live in the queue: fix38 (PR evidence block, OD-57 red-before for fix tickets), fix41 (red run
-  survives the fix push), fix39 (merge side: block freshness, land guard, pre-fix38 runs grandfathered by run start <
-  2026-10-03T17:48:54Z) and fix40 (ledger done files records/<ID>.jsonl and closes by L8/L9; holds rc 4). Codex SHIP on each;
-  34/34 suites. First live Evidence check on a queue block passed (#482, run 37146142126).
-- Ledger: decisions register; every EC/BLOCKED ticket has an unblock step; LEAD_ACTION and outside-evidence tickets carry
-  external_blocker + engineering_first; gap review filed M2-0559..M2-0570 and amended 36 tickets so every outside-evidence row
-  has a CI producer or an owner decision.
-- 1.9.7 lane: M2-0552..0557 (census/freeze-repro harness fixes) building/READY; M2-0202 slice 3 READY #480 (gate-guard ruling:
-  release.yml test-after-build allowed); M2-0520 lead hold until a valid strict PASS. PARALLEL 6.
+- Owner decisions this shift: OD-62..OD-66 (OS-synthesized takeover input; one owner-runner camera job M2-0572; real-dataless timings
+  from daily 1.9.9 use; pre-evidence fix closures stay closed as legacy, L11 from the install on, M2-0573; ST-1 window gate in-job
+  re-measure amends OD-44, M2-0575). Lead: D-37 OPEN (bytes for promotable rows once the inspect fuse is off; M2-0558 on lead hold).
+- Evidence chain live: fix38/39/40/41/42 installed (Codex SHIP each); first record filed at merge (M2-0553 DONE). 36/36 suites.
+- Merge lane: PARALLEL 3 (merges starved of macOS runners). Four CI flakes root-caused (agent diagnosis + adversarial verify, Codex
+  cross-check): History design 46% (never-settling fixture promise collected by main GC -> 'reply was never sent'; M2-0550 READY #474
+  with the fix), packaged-smoke "Promise was collected" 3% (inspector awaitPromise on sync expressions; M2-0574 P0), ST-1 window gate
+  7.7% (single-launch variance; M2-0575 P0), sidecar reaper race (M2-0551). M2-0556 relaunched with its test-hang cause
+  (descendant_pids unbounded recursion). Order: state/.merge-first = M2-0574, 0575, 0551, 0550, 0556, ...
+- Evidence Phase 2: ledger normalised (28 L10 caps -> EC, 31 required_evidence aligned, 28 inheritance-capped EC got unblock steps);
+  tools/evidence-backfill.sh plan: ready 125, needs-validator 23, no-logs 49, ambiguous 14, other 7, legacy 55 (dry run only); Codex
+  attack round 2 running.
 
 ## Next steps (in order)
-1. Watch the first records filed by fix40 at merge (RECORD/HOLD lines in queue.log); any HOLD = record the blocker or repair.
-2. Pre-fix41 fix tickets whose red run was cancelled: repair with scratchpad red-rerun.sh <ID> (only when no live run on the branch).
-3. Merge M2-0543/M2-0538, then the valid strict measurement (PARALLEL 0, drain, dispatch the two owner-runner rows one at a time);
-   lead strict PASS -> release M2-0520 -> M2-0433 -> M2-0496/0497 -> M2-0458 -> M2-0202 slices 4-7 -> M2-0456 -> M2-0498 bump.
-4. Re-dispatch resource-census / freeze-repro on main after M2-0552..0557 reach main (N8/N10 records).
-5. Phase 2 backfill: report count and CI cost to the owner before re-verifying closed fix tickets; state/.evidence-backfill lists
-   grandfathered merges. Phase 3 ledger-check workflow dispatch-only.
-6. Velocity forecast (gate m3) and FORECAST.md before 10-09. Ask the owner the day before T1 (about 10-17) for the OD-58 window.
+1. Codex verdict on the back-fill tool; on SHIP: pilot `apply` on ONE ready PR, confirm evidence.yml passes, then the m2-0238
+   back-fill workflow and the records commit; write docs/metis-2.0/evidence/legacy-fix.json (OD-65) once M2-0573 merges.
+2. Watch M2-0574/0575/0551/0550/0556 to merge; then re-run #467 (M2-0543) checks; merge M2-0543/M2-0538 -> strict measurement.
+3. Pre-fix41 fix tickets with a cancelled red run: scratchpad red-rerun.sh <ID> (no live run on the branch).
+4. M2-0558 hold: answer D-37 before DEFER-OFFPATH lifts; update ELECTRON-FUSES.md for OD-59.
+5. Ask the owner the day before T1 (about 10-17) for the OD-58 runner window. Velocity forecast once records exist.
 
 ## Decisions made (don't relitigate)
-D-28 CI only (exceptions: OD-46 ST-1 rows, OD-63 one camera job); OD-12..OD-64; D-34, D-35; never re-run qa-candidate.yml by hand;
-CI re-runs only the newest run (or a cancelled red run with no live sibling), marker set.
+D-28 CI only (exceptions OD-46, OD-63); OD-12..OD-66; D-34, D-35; CI re-runs only the newest run (or a cancelled red run with no
+live sibling), marker set; flake fixes need a verified root cause, not a longer timeout.
 
 ## Watch out
-- Program repo is PUBLIC: grep every push for absolute local paths and email addresses before committing.
-- hold_reason(): a ticket with external_blocker is held unless engineering_first is set.
-- zsh does not word-split unquoted variables: never `set -- $var` in install loops; verify installed bytes against attacked bytes.
-- Attack briefs: every use site, every enum value, and the target workflow's concurrency and needs: graph.
+- Program repo is PUBLIC: grep every push for absolute local paths and email addresses.
+- Ledger push scripts: commit messages must not contain double quotes (the generated push script quotes them).
+- A ticket process shares the queue service's process group: kill only its own pid tree, never the group.
+- zsh: `$var:s...` is a history modifier; brace variables before a colon. `set -- $var` does not split.
+- Run the FULL suite against staged files before a Codex attack (fix42's test-27 conflict surfaced only after install).
