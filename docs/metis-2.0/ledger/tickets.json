@@ -519,6 +519,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0542 filed: qa-candidate.yml rejected by GitHub since M2-0537 (runner context in job-level env)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0538 depends on M2-0542."
   }
  ],
  "tickets": [
@@ -36482,7 +36488,8 @@
    "owner_model": "sonnet",
    "priority": "P0",
    "depends_on": [
-    "M2-0537"
+    "M2-0537",
+    "M2-0542"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -36517,7 +36524,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "notes": "2026-10-02 (lead): filed from the M2-0537 review; must land before M2-0520 makes the rows blocking."
+   "notes": "2026-10-02 (lead): filed from the M2-0537 review; must land before M2-0520 makes the rows blocking. 2026-10-03 (lead): depends on M2-0542 (both edit the owner-runner jobs; its QA self-test needs a valid qa-candidate.yml)."
   },
   {
    "wave": "W1",
