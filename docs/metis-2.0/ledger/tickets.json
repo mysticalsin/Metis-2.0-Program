@@ -633,6 +633,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "D-35: M2-0456 (packaged visual and right-edge smoke on the candidate) is a 1.9.7 gate: moved to W1/m3/P1, depends on M2-0202, M2-0046 depends on it; M2-0042, M2-0095 and M2-0160 depend on it (missing links)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Evidence-producer gap review: filed M2-0559, M2-0560, M2-0561, M2-0562, M2-0563, M2-0564, M2-0565, M2-0566, M2-0567, M2-0568, M2-0569, M2-0570 and amended 36 tickets (M2-0039, M2-0044, M2-0046, M2-0066, M2-0067, M2-0081, M2-0084, M2-0085, M2-0093, M2-0097, M2-0107, M2-0108, M2-0111, M2-0113, M2-0131, M2-0149, M2-0159, M2-0166, M2-0173, M2-0175, M2-0200, M2-0205, M2-0206, M2-0207, M2-0209, M2-0210, M2-0312, M2-0321, M2-0345, M2-0351, M2-0378, M2-0380, M2-0381, M2-0434, M2-0436, M2-0548) so every outside-evidence row has a CI producer or a stated owner question."
   }
  ],
  "tickets": [
@@ -3240,15 +3246,20 @@
     "src/renderer/src/lib/jarvis-orb.ts",
     "src/main/island/cursor-watch.ts",
     "src/main/index.ts",
-    "src/preload/index.ts"
+    "src/preload/index.ts",
+    "scripts/qa/census/",
+    ".github/workflows/resource-census.yml",
+    ".github/workflows/packaged-smoke.yml",
+    "scripts/ci/packaged-smoke-workflow.contract.test.ts"
    ],
    "summary": "With backgroundThrottling:false the renderer's visibilityState never turns hidden, so the Bar orb's RAF loop (and the three.js obsidian orb) paints at full rate all day, and the main process polls the cursor at about 42 Hz during Hide/Island rest. Gate animation on a main-to-renderer presenter signal and window blur, and make cursor polling adaptive, keeping reveal responsive.",
    "acceptance": [
     "Orb RAF loops pause or drop to at most 8 fps when the window has been blurred for N seconds or the presenter is parked; the signal comes from main, not visibilityState; reduced motion honoured",
     "Cursor-watch runs at 24 ms only near the top edge or during transitions and at least 250 ms otherwise; reveal latency p95 stays at or under 150 ms",
     "Before/after census: parked idle at or under 1% of one core over 5 min (MASTER section 7), or the residual documented in ADR-018",
-    "Frame-time p95 at or under 16.7 ms during reveal and active states, measured on the packaged app",
-    "Logic lives in a new module; src/main/index.ts changes are call-site swaps only and land through the merge queue in the declared order (M2-0188)"
+    "Frame-time p95 at or under 16.7 ms during reveal and active states, measured on the packaged app on macOS and Windows by a reusable frame-time summary this ticket adds under scripts/qa/census/. It reads a renderer trace over the reveal trials and over a fixed window of the revealed bar with its orb animating, and reports the p95 of presented-frame intervals with the frame count and the share of frames that missed a vsync. resource-census.yml writes it as <os>-frame-time.json, and a result over budget goes into ADR-018 as a residual",
+    "Logic lives in a new module; src/main/index.ts changes are call-site swaps only and land through the merge queue in the declared order (M2-0188)",
+    "resource-census.yml writes <os>-reveal-latency.json and <os>-frame-time.json on macOS and Windows beside the parked-idle census, in steps that run even after an earlier census step fails, so one dispatch carries reveal p95, frame-time p95 and parked-idle CPU. When the runner cannot move the real pointer, the report says BLOCKED_EXTERNAL for that series, never PASS, and the reveal series is repeated with the cursor point stubbed through the main-process inspector (the method the packaged RE-HIDE rows use), labelled with that method"
    ],
    "verification": [
     "node scripts/qa/census/run.mjs --state parked-idle --seconds 300 (before and after)",
@@ -3328,7 +3339,7 @@
    "slice_current": 1,
    "slicing_note": "Sliced 3 ways (4+3+3=10 h); src/main/index.ts is touched only in .1 (timer start/stop, blur/focus and park/reveal hooks swapped to the new module). Gaps found in the code on origin/m2/integration: (1) no main-to-renderer presenter channel exists today (presenterState() in index.ts is only consumed by lifecycle/reveal.ts), so .1 needs a one-line channel constant in src/shared/ipc.ts, which the ticket's scope_paths omit; (2) bar-pill-orb.ts deliberately ignores reducedMotion ('Bar Circle/Jarvis are brand chrome', Windows animations-off regression) and its tests assert that, so .2 must pick how reduced motion is honoured (static or <=8 fps frame, never a blank orb) and update those tests; (3) CURSOR_REVEAL_DWELL_MS is already 150 ms, so 'reveal latency p95 <= 150 ms' must be defined net of the intentional dwell, and the 24 ms band has to start before the reveal strip so a 250 ms idle tick cannot add up to 250 ms of latency. ADR-018 is only a row in DECISIONS.md so far; census runs use scripts/qa/census/run.mjs on CI/QA lanes only (D-28).",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead, evidence-producer gap review): amended — Nothing produces frame-time p95 for reveal and active states. The in-flight reveal-latency producer changes workflow and scripts/ci files outside scope_paths, which the merge queue's gate guard holds. A runner that cannot warp the pointer needs the hosted fallback that the RE-HIDE rows already use."
   },
   {
    "id": "M2-0040",
@@ -3601,7 +3612,8 @@
    "depends_on": [
     "M2-0001",
     "M2-0007",
-    "M2-0198"
+    "M2-0198",
+    "M2-0559"
    ],
    "needs_decision": [],
    "kit_refs": [],
@@ -3619,12 +3631,13 @@
    "acceptance": [
     "Windows screenCaptureGranted dependency provides a live signal, or background capture disables itself after N consecutive failures with backoff",
     "Unit tests simulate the denied state and assert shots()===0",
-    "windows-qa lane run shows no repeating capture.failed events",
-    "Logic lives in a new module; src/main/index.ts changes are call-site swaps only and land through the merge queue in the declared order (M2-0188)"
+    "The candidate lane's Windows capture-gate scenario (candidate-scenarios.yml, scenario=capture-gate) PASSes on a candidate that carries this change: once capture starts failing, background (phase bg-screen) capture.failed events stop, with none in the final 15 minutes of a park of at least 30 minutes",
+    "Logic lives in a new module; src/main/index.ts changes are call-site swaps only and land through the merge queue in the declared order (M2-0188)",
+    "windows-qa.yml is unchanged by this ticket and gains no capture-gate suite. The behaviour tests run in Build & Test's windows-latest Quality job, and the live run is the candidate lane's capture-gate scenario"
    ],
    "verification": [
     "npx vitest run src/main/screen-preprocess.test.ts",
-    "gh workflow run windows-qa.yml -f suite=capture-gate"
+    "gh workflow run candidate-scenarios.yml --ref main -f candidate_run=<run> -f scenario=capture-gate -f win_sha256=<Setup sha256> (M2-0559)"
    ],
    "required_evidence": [
     "LOCALLY_TESTED",
@@ -3632,7 +3645,7 @@
    ],
    "external_blocker": {
     "owner": "Program lead",
-    "unblock_step": "After the T1 cut (1.9.9, M2-0206), the lead dispatches windows-qa.yml --ref main -f suite=capture-gate with that candidate's Setup (candidate_run and sha256). When the run shows no repeating capture.failed events with capture denied or failing, the lead files LIVE_VERIFIED (hosted-runner, windows-latest, with ci_run_id, build_run_id and artifact_sha256).",
+    "unblock_step": "After the T1 cut (1.9.9, M2-0206), the lead dispatches candidate-scenarios.yml --ref main with scenario=capture-gate, candidate_run=<T1 run> and win_sha256=<Setup sha256> (the scenario M2-0559 adds). When background capture.failed events stop once capture keeps failing, the lead files LIVE_VERIFIED (hosted-runner, windows-latest) with the lane.json ci_run_id, build_run_id and artifact_sha256.",
     "raised_on": "2026-10-03"
    },
    "flag": null,
@@ -3643,7 +3656,7 @@
    "due": null,
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0559, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Acceptance[2] asks for a 'windows-qa lane run', but windows-qa.yml has no candidate-bytes capture suite and is outside this ticket's scope. 'No repeating' is also not checkable as written. The producer is M2-0559's candidate-lane scenario (see M2-0559 dependents). The in-flight branch's windows-qa capture-gate job only re-runs unit tests that Build & Test already runs on windows-latest, and it tak"
   },
   {
    "id": "M2-0045",
@@ -3826,7 +3839,8 @@
     "OD-35 (owner): the 8 h idle soak is two hosted legs (macOS, Windows) of at most 5.5 h each on the candidate bytes, judged by a growth rule pre-registered before the run and extrapolated to 8 h",
     "OD-36 (owner): ST-1 real-dataless rows are proven in the owner's 5-day soak (M2-0198) from the schema-2 diagnostics; the candidate carries ST-1 with the synthetic dataless fixtures and states the real-cloud case as measured in the soak",
     "OD-34 (owner): supervision ships default-on only after HK-M passes 20/20 on this candidate; 1.9.7 waits for it (the ship-OFF branch is not used)",
-    "OD-32 (owner): the Mac candidate is ad-hoc signed; 1.9.7.md tells the owner to re-grant Screen Recording and Microphone once after installing"
+    "OD-32 (owner): the Mac candidate is ad-hoc signed; 1.9.7.md tells the owner to re-grant Screen Recording and Microphone once after installing",
+    "LEAD_ACTION: if the 1.9.7 cut or any re-cut is dispatched after the OD-52 window (about 2026-10-09), a DECISIONS.md owner row first covers the metis-owner-mac runner being online for that run. Without such a row the dispatch is not made, because st1-mac-fifo and st1-mac-control would stay queued until GitHub cancels them after 24 h and fail the candidate (OD-52)."
    ],
    "verification": [
     "node scripts/evidence/check.mjs --release 1.9.7",
@@ -3849,7 +3863,7 @@
    "slices": [],
    "due": "2026-10-04",
    "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency. 2026-10-03 (lead, OD-31 readiness audit): producers linked M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0418/M2-0447 are 1.9.7 work because M2-0202 slice 7 (OD-51) needs M2-0418's states.ts and its WCAG audit. 2026-10-03 (lead, D-34): acc 9 now says 'cut at the provenance commit'; the app repository has no 1.9.7 tag and gets none (promote tags only the feed). 2026-10-03 (lead, M2-0488 LEAD_ACTION, readiness N14): growth rules registered before any idle-soak or meeting-history dispatch: IDLE-GROWTH-1 and MEETING-GROWTH-1, rulesSha256 53d05c480c66dbc8fe7005a235d67853fc7051acd13556d85c53bfb2e0a9b636 (canonical RULES, one hash for both rules; pin scripts/qa/soak/growth-rule.contract.test.ts:11), merged commit 03a0ca3e39c8859a7b997a6f815090466acd10e8 (PR #395; on main since fd38fd09); note docs/metis-2.0/evidence/release-1.9.7/growth-rule-registration.md. A verdict or lane.json whose rule.rulesSha256 differs from the sha256 that note registered before its run, or from a run created before the note reached program main (shakedowns included), is not evidence for acc 4b/4c; rule.fileSha256 is not a criterion. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED/ACCEPTED/MEASURED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it. 2026-10-03 (lead, D-35): depends on M2-0456, the producer of the right-edge-walkthrough gate row."
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency. 2026-10-03 (lead, OD-31 readiness audit): producers linked M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0418/M2-0447 are 1.9.7 work because M2-0202 slice 7 (OD-51) needs M2-0418's states.ts and its WCAG audit. 2026-10-03 (lead, D-34): acc 9 now says 'cut at the provenance commit'; the app repository has no 1.9.7 tag and gets none (promote tags only the feed). 2026-10-03 (lead, M2-0488 LEAD_ACTION, readiness N14): growth rules registered before any idle-soak or meeting-history dispatch: IDLE-GROWTH-1 and MEETING-GROWTH-1, rulesSha256 53d05c480c66dbc8fe7005a235d67853fc7051acd13556d85c53bfb2e0a9b636 (canonical RULES, one hash for both rules; pin scripts/qa/soak/growth-rule.contract.test.ts:11), merged commit 03a0ca3e39c8859a7b997a6f815090466acd10e8 (PR #395; on main since fd38fd09); note docs/metis-2.0/evidence/release-1.9.7/growth-rule-registration.md. A verdict or lane.json whose rule.rulesSha256 differs from the sha256 that note registered before its run, or from a run created before the note reached program main (shakedowns included), is not evidence for acc 4b/4c; rule.fileSha256 is not a criterion. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED/ACCEPTED/MEASURED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it. 2026-10-03 (lead, D-35): depends on M2-0456, the producer of the right-edge-walkthrough gate row. 2026-10-03 (lead, evidence-producer gap review): amended — OD-51 delays 1.9.7 by 3-5 days, so the 1.9.7 cut or a re-cut after failed evidence can fall after OD-52's window (INFERRED). The same failure mode applies."
   },
   {
    "id": "M2-0047",
@@ -5150,7 +5164,9 @@
     "Renderer shows 'edited' vs 'saved locally' from acks",
     "JR-1..4: zero loss of acknowledged revisions across SIGKILL during editing and transcription; retention-disallowed profile disables the journal and recovery asks instead; 64 MiB cap purges oldest completed sessions",
     "Write failure shows 'not saved locally', audits journal.degraded and disables auto-recovery",
-    "Dual-write with the folder draft for one release; flag journal"
+    "Dual-write with the folder draft for one release; flag journal",
+    "Packaged testability for the JR scenario (M2-0560). The PR states how packaged bytes run with the journal on. Either the T1 shipping bytes default the journal flag on (dual-write, with the folder draft as the rollback), or QA-identity bytes on an isolated ASKTOTO_USERDATA profile turn it on through a QA_IDENTITY_BUILD-gated switch that is compiled out of shipping bytes, like the M2-0494 capture source. Shipping bytes never honour an environment variable for the flag (src/main/dev-env.ts)",
+    "After a relaunch, packaged bytes expose a content-free list of the acknowledged revision ids and content hashes they recovered, through the shipped recovery path or a QA_IDENTITY_BUILD-gated read on an isolated profile, so M2-0560 never decrypts the journal outside the app. The PR names the input that sets the retention-disallowed profile on an isolated packaged profile, or states that the retention row is hermetic-only"
    ],
    "verification": [
     "npx vitest run src/main/features/journal",
@@ -5238,7 +5254,7 @@
    "slice_current": 1,
    "slicing_note": "Refines the existing 3-slice split (ids and intent kept). One change: the 64 MiB cap moves from .1 to .3 because it shares an acceptance line with JR-1..4 and retention gating, and acceptance lines can't be split. .1 moved to opus because append-only framing, ack-after-fsync ordering and torn-tail tolerance are subtle. Hot files are touched only in .2, as call-site wiring through the M2-0060 registerHandler. App.tsx is also touched only in .2, to pass the save state to the live view. D-3 stays ASSUMED (journal off where retention disallows it). JR-1..4 run on the QA account or a CI lane, never the owner's Mac (D-28).",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead, evidence-producer gap review): amended — On the branch, packaged bytes ignore the only journal switch (flag.ts:10-11 through devEnv), and no acceptance gives a packaged way to read back the recovered revisions. Without both, no packaged JR run can produce the LIVE_VERIFIED that this ticket's external_blocker names."
   },
   {
    "id": "M2-0067",
@@ -5249,7 +5265,8 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0193",
-    "M2-0198"
+    "M2-0198",
+    "M2-0564"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -5264,14 +5281,23 @@
    ],
    "scope_paths": [
     "src/main/infra/storage/meetings-index.ts",
-    "src/main/recall.ts"
+    "src/main/recall.ts",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/qa/history-index.mjs",
+    "scripts/qa/history-index.test.ts",
+    "scripts/qa/census/profile.mjs",
+    "scripts/qa/census/profile.test.ts"
    ],
    "summary": "History should render from a derived, rebuildable index in userData, never from a scan of the OneDrive folder. Split: dataless detection is M2-0191 (1.9.7) and the ingest-ledger move is M2-0205.",
    "acceptance": [
-    "History renders from the index alone; p95 at or under 300 ms at 500 synthetic meetings, and requestId stage timings on the packaged app with real dataless files on the QA account",
+    "History renders from the index alone. End-to-end p95 (the sum of a request's stages) is at or under 300 ms at 500 synthetic meetings, with requestId stage timings, measured on the packaged candidate on hosted macos-latest (OD-26) over a synthetic profile that includes the synthetic-dataless placeholders. Stage timings over real cloud dataless files come from the source the owner names, since no test host has had such files since D-9. Until then they stay BLOCKED_EXTERNAL, with that decision as the unblock step",
     "Reconcile is metadata-only every 60 s while active and 10 min while parked; bodies read only on (size, mtime) change and when local",
     "Corrupt index rebuilt from a listing (IX-1)",
-    "Multiple historical meetings roots detected and reconciled"
+    "Multiple historical meetings roots detected and reconciled",
+    "Slice .3 adds a candidate-scenarios scenario history-index. It installs the candidate DMG by sha256 on a fresh hosted profile seeded with 500 synthetic meetings plus the synthetic-dataless placeholders. A meeting-count option is added to scripts/qa/census/profile.mjs, and the census default of 59 is unchanged. The scenario opens and searches History through the real History view over CDP at least 30 times, so every request carries a requestId trace. It reads the history.request audit records and reports p50/p95/max per stage (queueMs, mainMs, ipcMs, renderMs) and end to end, plus row and not-downloaded row counts. The report is content-free and carries the M2-0467 lane fields. The ST-1 harness and its History row are not changed"
    ],
    "verification": [
     "npx vitest run src/main/infra/storage",
@@ -5346,7 +5372,8 @@
    "due": null,
    "status": "TODO",
    "slice_current": 1,
-   "slicing_note": "Builds on M2-0193 (History on the storage gateway). Beyond the ticket scope: co-located tests, scripts/qa/ix-suite.mjs (named in the ticket's verification but absent from the repo), a candidate-roots export in infra/storage/paths.ts, and in .3 one call site each in index.ts (start the reconciler with the parked signal) and transcripts.ts (write-through on save, per ARCHITECTURE C5). Without write-through, a newly saved meeting would take up to 10 minutes to appear in History while the app is parked."
+   "slicing_note": "Builds on M2-0193 (History on the storage gateway). Beyond the ticket scope: co-located tests, scripts/qa/ix-suite.mjs (named in the ticket's verification but absent from the repo), a candidate-roots export in infra/storage/paths.ts, and in .3 one call site each in index.ts (start the reconciler with the parked signal) and transcripts.ts (write-through on save, per ARCHITECTURE C5). Without write-through, a newly saved meeting would take up to 10 minutes to appear in History while the app is parked.",
+   "notes": "2026-10-03 (lead): depends on M2-0564, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Removes the QA-account host, which no longer exists, without inventing a new one. Names a hosted lane for the synthetic packaged half, which slice .3's title promises but its scope does not hold (about 3 h). Slice .3's acceptance repeats acc[0] word for word and must change the same way; the schema cannot edit slices. The scenario drives the real History view, because direct recallList calls (the"
   },
   {
    "id": "M2-0068",
@@ -6688,14 +6715,27 @@
    "scope_paths": [
     "src/main/features/wake/",
     "src/shared/metis-wake.ts",
-    "src/main/features/command/stop.ts"
+    "src/main/features/command/stop.ts",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/qa/wake-stop.mjs",
+    "scripts/qa/wake-stop.test.ts",
+    "scripts/qa/wake-fixtures/",
+    "src/main/logger.ts",
+    "src/main/audit-event-coverage.contract.test.ts"
    ],
    "summary": "Text matching is not wake-word capture (SRC-06). A small on-device detector in a utilityProcess, opt-in and off by default, opens a command session; no cloud audio flows before wake or explicit meeting capture. Stop is local and immediate.",
    "acceptance": [
     "No cloud audio before wake or explicit meeting capture; only the authorized command interval is transferred",
     "Local Stop p95 at or under 100 ms; command-off, task Stop and stop-all capture are distinct",
     "Wake through media playback, echo or a remote speaker is rejected (UC-008 fixture)",
-    "Opt-in and default off; it stays off until the resource regression gate (M2-0200) measures wake detection within budget on a train build; the wake model's licence is reviewed and recorded as compatible, or the ticket is BLOCKED on the licence with the reviewer role named"
+    "Opt-in and default off; it stays off until the resource regression gate (M2-0200) measures wake detection within budget on a train build; the wake model's licence is reviewed and recorded as compatible, or the ticket is BLOCKED on the licence with the reviewer role named",
+    "Slice .5 (packaged evidence): a candidate-scenarios scenario wake-stop (qaOnlyHook) installs the Metis-QA zip (mac-qa-identity) by sha256 on a fresh hosted macos-latest profile (OD-26). It turns wake on through the seeded profile setting, never by changing the shipped default. It feeds fixture WAVs through the M2-0494 file-fed capture source and reuses M2-0495's launch, Listen and Stop helpers in scripts/qa/meeting/. Fixtures: wake then command, speech with no wake, and the UC-008 media-playback, echo and remote-speaker cases from .3",
+    "Each Stop path (command-off, task Stop, stop-all capture) writes a content-free audit event with its trigger-to-revoked duration, measured on a monotonic clock. The pre-wake audio gate writes a content-free audit event with its upstream frame count. M2-0320's later 'Stop to revoked' span reuses the Stop event and does not add a second one",
+    "The wake-stop report is content-free and carries the M2-0467 lane fields. It gives local Stop latency p50/p95/max over at least 30 trials for each Stop kind, wake accepted and rejected counts per fixture, and upstream frame counts before and after each wake. 'No cloud audio before wake' is judged from those counts, because the hosted profile has no cloud speech account. A Stop kind that the hosted profile cannot reach is reported with its reason, never as PASS. The report records the runner's audio output device. With no output device, the echo row is BLOCKED_EXTERNAL with that reason, and the .3 unit fixture still covers echo",
+    "If ADR-015 (M2-0079) moves capture out of the renderer, the scenario feeds the same fixtures through an equivalent file source on the new capture path. That source is QA-identity-only, inert, and compiled out of shipping bytes under the same guards as M2-0494"
    ],
    "verification": [
     "npx vitest run src/main/features/wake",
@@ -6784,7 +6824,7 @@
    "slice_current": 1,
    "slicing_note": "Stop authority lands first so every later wake slice has a local, network-free off switch. Starting the wake host and adding its setting need call-site edits in src/main/index.ts and src/shared/ipc.ts (outside the ticket's scope_paths); keep them to .2 (host start/stop) and .4 (setting). utilityProcess.fork outside src/main/infra/process/ adds an FF-10 count, so the host must be forked through the infra/process supervisor (outside scope) or the PR fails the ratchet. Depends on M2-0079's features/command/session.ts for the session that wake opens; .4 cannot flip the default until M2-0200 measures wake within budget.",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead, evidence-producer gap review): amended — The producer belongs to this ticket, the same way M2-0093.4 and M2-0085.3 keep packaged measurement inside the feature ticket. This adds a slice .5 of about 5 h (16 h -> about 21 h). The lead should also swap the stale verification line ('on the QA account') for the candidate-scenarios dispatch on the T2 candidate (OD-26), because the schema cannot edit verification. No depends_on is added, becaus"
   },
   {
    "id": "M2-0082",
@@ -7087,7 +7127,13 @@
    "scope_paths": [
     "src/main/desktop-adapters.ts",
     "native/mac-helper/main.swift",
-    "src/main/desktop-adapters.test.ts"
+    "src/main/desktop-adapters.test.ts",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/qa/mac-desktop-actions.mjs",
+    "scripts/qa/mac-desktop-actions.test.ts"
    ],
    "summary": "No macOS adapter returns 'verified' today. Implement open, focus, graceful close and approved force-quit, exact Notes operations and camera capture, each verified through Accessibility readback. REF-09/REF-10 here are the HeyClicky kit's Apple accessibility and ScreenCaptureKit references.",
    "acceptance": [
@@ -7095,7 +7141,9 @@
     "Notes: a note titled 'hello' is created and appended exactly; readback confirms",
     "Photo Booth/Camera photo taken with explicit approval",
     "Every success reports 'verified' only after AX readback; native drain before handoff",
-    "native/mac-helper/main.swift changes land after M2-0028 in the helper order (M2-0188)"
+    "native/mac-helper/main.swift changes land after M2-0028 in the helper order (M2-0188)",
+    "Slice .5 (packaged evidence): a candidate-scenarios scenario mac-desktop-actions installs the candidate DMG by sha256 on a fresh hosted macos-latest profile (OD-26). As runner-only test setup, which the product never does, it seeds Accessibility for the installed app and its helper and Automation of Notes. It does this by extending the lane's existing grant-gui step (guiScriptingGrants), using bundle-id rows like the M2-0472 row B probe. It then runs UC-009..016 against Notes and the CI-built fixture app bundles from .2: open, focus, switch, graceful close, unsaved work behind approval, approved force quit, not-installed as unsupported, and the exact Notes create and append. Each result is 'verified' only after AX readback, and approvals go through the real approval control over CDP. The content-free report carries the M2-0467 lane fields and one verdict per UC. If a seeded grant does not take effect (the helper's Accessibility trust check stays false), the AX rows report BLOCKED_EXTERNAL with that reason. A Notes first-run sheet that blocks the run is PRECONDITION, never PASS",
+    "Camera row on hosted bytes: the report records the runner's camera device count. With no camera, an approved shutter returns a typed unavailable result and never 'verified'. The positive 'photo taken' row stays BLOCKED_EXTERNAL, with the owner's decision on a camera host as its unblock step"
    ],
    "verification": [
     "npx vitest run src/main/desktop-adapters.test.ts",
@@ -7183,7 +7231,7 @@
    "status": "TODO",
    "slice_current": 1,
    "slicing_note": "Every macOS path in desktop-adapters.ts (268 lines) returns outcome 'unknown' today, and mac-helper main.swift has no AX commands. .1 therefore builds the readback primitive, and the 'verified-only-after-readback' rule that every later slice relies on. New action ids for focus, switch, close and force-quit need src/shared/desktop-actions.ts (DESKTOP_ADAPTER_IDS / DesktopActionArgs). That file is outside the ticket's scope_paths, so add it to scope before .2 starts. Every main.swift change keeps the M2-0188 helper landing order after M2-0028. Helper tests run in CI only (D-28). Approval gates depend on the M2-0082 capability registry and typed results.",
-   "notes": " 2026-10-03 (lead, OD-56): amended — Critique KEEP: a prefix or substring fallback can launch the wrong app; exact match with a disclosed proposal for anything looser. Lands in .2 (5 h -> 6 h)."
+   "notes": "2026-10-03 (lead, OD-56): amended — Critique KEEP: a prefix or substring fallback can launch the wrong app; exact match with a disclosed proposal for anything looser. Lands in .2 (5 h -> 6 h). 2026-10-03 (lead, evidence-producer gap review): amended — Mirrors M2-0085.3, which keeps the Windows actions suite inside the feature ticket. This adds a slice .5 of about 5 h. The lead should also add an external_blocker like M2-0085's (T2 candidate, hosted macos-latest, ci_run_id, build_run_id, artifact_sha256) and swap the verification line for the candidate-scenarios dispatch; the amendment schema cannot edit either. No depends_on is added. M2-0469 ("
   },
   {
    "id": "M2-0085",
@@ -7194,7 +7242,8 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0082",
-    "M2-0007"
+    "M2-0007",
+    "M2-0467"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -7220,13 +7269,23 @@
    "finding_refs": [],
    "scope_paths": [
     "src/main/desktop-adapters-win.ts",
-    "src/main/win/uia-helper.ps1"
+    "src/main/win/uia-helper.ps1",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+    "scripts/qa/desktop-actions.mjs",
+    "scripts/qa/desktop-actions.test.ts"
    ],
    "summary": "Windows is the enterprise target, so the same action set needs UI Automation and SendInput adapters with readback. REF-11/REF-12 here are the HeyClicky kit's Microsoft SendInput and UIA references.",
    "acceptance": [
-    "Same UC set as macOS (UC-009..016, UC-025, UC-026, UC-031, UC-040) on the windows-qa lane; a use case with no Windows equivalent returns an explicit unsupported result, never a false success",
+    "Same UC set as macOS (UC-009..016, UC-025, UC-026, UC-031, UC-040) on the Windows leg of the candidate lane's desktop-actions scenario (hosted windows-latest, candidate bytes); a use case with no Windows equivalent returns an explicit unsupported result, never a false success",
     "Readback through UIA patterns before 'verified'",
-    "Pinned PowerShell path, never a bare executable name"
+    "Pinned PowerShell path, never a bare executable name",
+    "`desktop-actions` is a key in the scripts/qa/candidate-scenarios.mjs SCENARIOS registry and a choice in candidate-scenarios.yml's scenario input. Its win entry installs the promotable Setup: variant win, artifact candidate-win, qaOnlyHook false, isolatedProfiles true, exits 0 PASS / 1 FAIL / 2 PRECONDITION. M2-0467's run guard, provenance check, sha256 selection and content-free gate apply unchanged. windows-qa.yml is unchanged",
+    "scripts/qa/desktop-actions.mjs seeds its own throwaway ASKTOTO_USERDATA profile and launches the installed Metis.exe with --remote-debugging-port, as packaged-smoke.mjs does. It requests each of UC-009..016, UC-025, UC-026, UC-031 and UC-040 through the app's own action entry point, against fixture targets it creates on the runner, with no cloud provider or credentials. It approves where the use case requires approval and records the app's typed result for each",
+    "The script checks every 'verified' result with its own UIA readback, independent of the app's verifier, and a 'verified' result that the readback contradicts is FAIL. A use case with no Windows equivalent must return 'unsupported'. A use case the hosted image cannot exercise (for example, no camera device or a target app missing from the image) must not return 'verified'. lane.json lists it under not_covered with its reason, and it never counts as PASS",
+    "The report and lane.json list each use case's typed result and readback outcome as fixed values only. They hold no window text, file content, user path or account name by construction, because the lane's content-free scan catches only paths, email addresses and the runner account. scripts/qa/desktop-actions.test.ts covers the result-versus-readback judgment, the not_covered rule, the exit mapping and the report shape. candidate-scenarios-workflow.contract.test.ts pins the new choice. Build & Test and check:workflow-pins are green"
    ],
    "verification": [
     "gh workflow run windows-qa.yml -f suite=actions"
@@ -7298,7 +7357,7 @@
    "status": "TODO",
    "slice_current": 1,
    "slicing_note": "Built on M2-0082's typed results. Four edits sit outside the two scope_paths and are needed for CI to stay green: (1) moving executeWin out of src/main/desktop-adapters.ts, M2-0084's file, is a call-site edit in .1; (2) the helper must be spawned through src/main/infra/process/ so it adds no FF-10 violation, and the new module must be reachable from an entry point so it adds no FF-03 violation; (3) uia-helper.ps1 must ship through electron-builder.win.yml extraResources; (4) windows-qa.yml offers only suite=hk-w today, so .3 adds the 'actions' suite named in the ticket's verification. The pinned path is %SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe, resolved the same way desktop-adapters.ts resolves explorer.exe.",
-   "notes": "2026-10-03 (lead, OD-56): amended — Critique KEEP: same rule as M2-0084 on Windows. Lands in .1 with launch and not-installed (5 h -> 6 h). 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "notes": "2026-10-03 (lead, OD-56): amended — Critique KEEP: same rule as M2-0084 on Windows. Lands in .1 with launch and not-installed (5 h -> 6 h). 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead, evidence-producer gap review): amended — slicing_note item (4) already assigns the Windows actions run to slice .3, but no scope_path or acceptance item carries it. windows-qa.yml also lacks the provenance check, the candidate-on-main check, the content-free gate and the lane.json fields (ci_run_id, build_run_id, artifact_sha256) that the external_blocker's LIVE_VERIFIED record needs. This amendment puts the producer in the shared candid",
    "engineering_first": true
   },
   {
@@ -8045,7 +8104,9 @@
     "M2-0079",
     "M2-0022",
     "M2-0092",
-    "M2-0201"
+    "M2-0201",
+    "M2-0563",
+    "M2-0200"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -8076,7 +8137,8 @@
     "64 vs 41 px decision recorded and applied; placement reconciled with JARVIS-COMMAND and CAP2 docs",
     "Reduced motion honoured; wake to first frame within the section 7 budget; no duplicate microphone hook",
     "Design evidence artifact: every state in this ticket's state list x light/dark x 1x/2x x reduced motion, as screenshots or recordings under docs/metis-2.0/evidence/<ticket>/design/, checked against the referenced spec (kit section and the M2-0201 prototype) with automated WCAG AA contrast and clipping checks, and validated by an Opus session other than the implementer (captured from the real app renderer in CI via the M2-0418 Electron capture lane; HTML mocks do not count)",
-    "Wake to first frame measured on the packaged app (real Chromium) against the section 7 budget; the ARMED and expanded states pass the resource regression gate (M2-0200)"
+    "Wake to first frame measured on the packaged app (real Chromium) against the section 7 budget; the ARMED and expanded states pass the resource regression gate (M2-0200)",
+    "The bar root renders data-bar-state=\"armed\" or \"expanded\", the attribute that the M2-0563 armed-idle and expanded census preconditions read, so a census row proves which state it measured"
    ],
    "verification": [
     "npx vitest run src/renderer/src/features/bar",
@@ -8168,7 +8230,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "C-08 (which chrome modes show the ARMED orb, and whether `hide` stays the fresh default) is still an open owner question with no D-row: D-4 was labelled C-03/C-08/C-16 but answers C-16 only (docs/metis-2.0/POLICY-2.0.md). Do not change the fresh default silently. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0093/ (placeholders until M2-0418 Electron capture + Opus acceptance) 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED/MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "notes": "C-08 (which chrome modes show the ARMED orb, and whether `hide` stays the fresh default) is still an open owner question with no D-row: D-4 was labelled C-03/C-08/C-16 but answers C-16 only (docs/metis-2.0/POLICY-2.0.md). Do not change the fresh default silently. 2026-09-29 (lead, owner-approved ledger batch): design: docs/metis-2.0/design/M2-0201/M2-0093/ (placeholders until M2-0418 Electron capture + Opus acceptance) 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED/MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0563, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Acceptance 6 needs the M2-0200 gate to measure ARMED and expanded, and M2-0563 adds those census states. The slicing note already says slice .4 needs M2-0200, but it is not a dependency. The census also needs a DOM hook to prove which state it measured.",
    "slice_current": 1,
    "slicing_note": "Kept ids .1-.4 and their intent, with one change. The 64 vs 41 px acceptance line bundles the size decision with doc placement reconciliation, and it goes to .2, whose title already applies the 64/41 decision. That settles the pill geometry before the beam and glow work. .4 keeps the in-app placement check, the packaged wake-to-first-frame measurement and the design evidence, and is re-estimated 4 -> 5 h (.2 6 -> 5 h). src/renderer/src/features/bar/ does not exist on origin/m2/integration yet; bar-pill-orb.ts and BrandThinkingOrb.tsx do. The M2-0201 prototype state list (docs/metis-2.0/design/M2-0201/M2-0093/STATE-LIST.md) has an Approval state that no acceptance line names, so .2 renders it for the evidence matrix. It also says 'one solving orb, 72 px target' for ARMED against the ticket's 'mesh button', which .2's decision must also resolve. .4 needs M2-0418 (Electron capture lane) and M2-0200 (resource gate), both TODO.",
    "engineering_first": true
@@ -8569,7 +8631,8 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0066",
-    "M2-0096"
+    "M2-0096",
+    "M2-0560"
    ],
    "needs_decision": [
     "D-3"
@@ -8595,7 +8658,8 @@
     "Generated content never overwrites human notes",
     "Private commands and synthesized output stay out of canonical notes",
     "Reopening a meeting restores context without duplication",
-    "Defines src/shared/contracts/notes/ with golden and negative fixtures and the Swift mirror (TASK-005 slice, FF-08), moved here from M2-0064 so each contract lands with its first consumer"
+    "Defines src/shared/contracts/notes/ with golden and negative fixtures and the Swift mirror (TASK-005 slice, FF-08), moved here from M2-0064 so each contract lands with its first consumer",
+    "M2-0097.3 adds a notes-typing row to the journal-kill scenario (M2-0560, scripts/qa/journal-kill.mjs) and builds no second harness. On PASS on the T2 candidate, the lead files this ticket's LIVE_VERIFIED from that run"
    ],
    "verification": [
     "npx vitest run src/main/features/notes"
@@ -8673,7 +8737,7 @@
    "slice_current": 1,
    "slicing_note": "Kept .1 and .2 with their ids and intent. Added .3 because the SIGKILL line requires typing into the packaged app, and the editor only exists after .2. That also lowers .1 from 7 h to 5.5 h. The Swift mirror path (M2-0064's convention) is outside the ticket scope but is required by the contract line. There is no notes code on m2/integration today; everything builds on M2-0066 (journal) and M2-0096 (shortcuts).",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0560, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Slice M2-0097.3 (scope scripts/qa/) needs a packaged SIGKILL-while-typing harness. Adding a notes row to M2-0560's driver avoids building a second launch, kill and relaunch harness."
   },
   {
    "id": "M2-0098",
@@ -9581,7 +9645,9 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0104",
-    "M2-0064"
+    "M2-0064",
+    "M2-0565",
+    "M2-0566"
    ],
    "needs_decision": [
     "D-11"
@@ -9606,14 +9672,16 @@
    "scope_paths": [
     "operator/src/routes/speech-session.ts",
     "src/main/cloud-stt/credentials.ts",
-    "src/main/cloud-stt/live-session.ts"
+    "src/main/cloud-stt/live-session.ts",
+    "scripts/qa/staging-checks/"
    ],
    "summary": "The desktop still expects an organization Cloudflare token in Settings (SRC-07), contradicting 'no organizational key on the device'. Extend the Operator protocol with a constrained session broker that authenticates the device and principal, enforces tracks, model, privacy readiness, entitlement, concurrency and budget, and issues short-lived grants bound to one session.",
    "acceptance": [
     "Broker authenticates device and principal; enforces requested tracks, model, privacy readiness, entitlement, concurrency and budget",
     "Short-lived grants bound to an exact session; upstream secrets only server-side",
     "credentials.ts no longer asks for or stores an organization token; Settings copy updated",
-    "Fresh-profile speech works with no org key on the device"
+    "Fresh-profile speech works with no org key on the device",
+    "The staging synthetic session is a registered check in scripts/qa/staging-checks/, run by .github/workflows/operator-staging.yml. It authenticates as a synthetic staging test device whose credential its registry entry declares, with no organization key, requests a grant, and reports the staging version, the grant's lifetime and its session binding, all content-free. The lead files HOST_CONFIGURED from its lane.json (kind deployed-service, host operator-staging)."
    ],
    "verification": [
     "npx vitest run operator/src/routes/speech-session.test.ts src/main/cloud-stt",
@@ -9697,7 +9765,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the broker grant is the only credential for the default speech route. An organization token stored by an earlier version is removed on upgrade, because D-11 allows no organization token on the device. Acceptance unchanged. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its HOST_CONFIGURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "notes": "D-11 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the broker grant is the only credential for the default speech route. An organization token stored by an earlier version is removed on upgrade, because D-11 allows no organization token on the device. Acceptance unchanged. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its HOST_CONFIGURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0565, the producer of its evidence (gap review). 2026-10-03 (lead): depends on M2-0566, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its HOST_CONFIGURED record is a staging check run from CI and needs the deployed-service kind and the operator-staging label. 2026-10-03 (lead, evidence-producer gap review): amended — Its 'Staging synthetic session' verification has no script owner and no CI job that can run against staging.",
    "slice_current": 1,
    "slicing_note": "Ordering problem to fix in the ledger. Today live-session.ts connects straight to gateway.ai.cloudflare.com with 'cf-aig-authorization: Bearer <org token>'. A session grant only replaces that token if something server-side accepts it, which is the relay in M2-0108 (TODO). M2-0108 in turn depends on M2-0107. Suggest making M2-0108 depend on M2-0107.2 only and M2-0107.3 depend on M2-0108. Otherwise .3 breaks speech and fails 'every slice leaves the app working'. .1 should reuse operator/src/device-auth.ts verifyDeviceRequest and the M2-0104 privacy-readiness state. Registering the new route needs a line in operator/src/routes/index.ts or registry.ts, and 'Settings copy updated' lives in src/renderer/src/components/Settings.tsx. Both are outside scope_paths.",
    "engineering_first": true
@@ -9711,7 +9779,9 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0107",
-    "M2-0105"
+    "M2-0105",
+    "M2-0565",
+    "M2-0566"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -9725,14 +9795,16 @@
    "scope_paths": [
     "operator/src/routes/speech-relay.ts",
     "src/main/cloud-stt/",
-    "src/shared/cloud-stt-language.ts"
+    "src/shared/cloud-stt-language.ts",
+    "scripts/qa/staging-checks/"
    ],
    "summary": "Implement the accepted Cloudflare-hosted realtime protocol with a pinned model and configuration, validated audio/language/endpointing options and safe terminal handling, keeping the #183 language fix (multi/detect or explicit mapping such as fr-CA).",
    "acceptance": [
     "Pinned model/config; accepted audio, language and endpointing options validated",
     "Language handling from cloud-stt-language.ts preserved with tests",
     "Upstream status and terminal metadata handled; errors safe and content-free",
-    "Transport-specific privacy enforcement documented"
+    "Transport-specific privacy enforcement documented",
+    "The staging relay run is a registered check in scripts/qa/staging-checks/, run by .github/workflows/operator-staging.yml. With a broker grant, it streams a committed synthetic audio fixture through the deployed relay to the pinned model and reports the deployed version, the model and config readback and the terminal metadata, all content-free. The lead files HOST_CONFIGURED from its lane.json (kind deployed-service, host operator-staging)."
    ],
    "verification": [
     "npx vitest run src/main/cloud-stt",
@@ -9812,7 +9884,7 @@
    "slice_current": 1,
    "slicing_note": "New split: the relay route, then the desktop client switch, then terminal handling and privacy. operator/src/routes/index.ts is outside the ticket scope, but .1 needs its one-line register call (the file's documented pattern for new routes). The language mapping in cloud-stt-language.ts (auto -> multi+detect, French -> fr-CA, #183) is preserved, not rewritten. The A4 privacy documentation lives in the relay module's privacy header, which is within ticket scope. If the lead wants it in docs/metis-2.0/speech/ROUTE-QUALIFICATION.md, scope has to widen.",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its HOST_CONFIGURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its HOST_CONFIGURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0565, the producer of its evidence (gap review). 2026-10-03 (lead): depends on M2-0566, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its HOST_CONFIGURED record is a staging relay run from CI and needs the deployed-service kind. 2026-10-03 (lead, evidence-producer gap review): amended — Its 'Staging relay run with synthetic audio' verification has no script owner and no CI job that can run against staging."
   },
   {
    "id": "M2-0109",
@@ -10039,7 +10111,8 @@
    "depends_on": [
     "M2-0108",
     "M2-0109",
-    "M2-0081"
+    "M2-0081",
+    "M2-0567"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -10056,7 +10129,8 @@
    "acceptance": [
     "Synthetic audio flows end to end on staging",
     "Every configured sink inspected on success, failure and disconnect: no content persisted",
-    "WebSocket-path privacy controls verified, not only HTTP"
+    "WebSocket-path privacy controls verified, not only HTTP",
+    "The LIVE_VERIFIED record is kind hosted-runner. It carries the QA candidate's build_run_id and artifact_sha256 and the speech-staging scenario run's ci_run_id. Its output is the sink checklist in this ticket's evidence folder. The checklist names the scenario run and the speech-sinks check run, and shows no sentinel in any sink on success, failure and disconnect."
    ],
    "verification": [
     "Staging run script with sentinel audio; sink inspection checklist"
@@ -10076,7 +10150,7 @@
    "slices": [],
    "due": null,
    "status": "TODO",
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it. 2026-10-03 (lead): depends on M2-0567, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its scope is the evidence folder and its type is investigation, so nothing builds the sentinel-audio run or the sink readback that its verification names. M2-0567 builds both, and this item fixes the record's shape."
   },
   {
    "id": "M2-0112",
@@ -10135,7 +10209,8 @@
    "type": "feature",
    "owner_model": "sonnet",
    "depends_on": [
-    "M2-0111"
+    "M2-0111",
+    "M2-0566"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -10156,14 +10231,16 @@
    ],
    "scope_paths": [
     "evals/transcript/",
-    "scripts/qa/latency-harness.mjs"
+    "scripts/qa/latency-harness.mjs",
+    "scripts/qa/staging-checks/"
    ],
    "summary": "Quality claims need a frozen, permissioned holdout set and scoring rules fixed before scoring, plus a real capture-to-caption latency harness replacing the 400 ms stub. extractNumerals misorders hits when a short numeral recurs inside a longer one; keep the computed offsets and sort by them.",
    "acceptance": [
     "Permissioned versioned holdout (synthetic or consented); normalization, slices, non-inferiority margins and critical-error definitions frozen before scoring",
     "FR/EN code-switching, names, numbers, negations, silence and overlap covered",
     "Timestamped capture-to-caption latency harness replaces the stub",
-    "PR #179 rebased and judged against the harness, or closed as superseded"
+    "PR #179 rebased and judged against the harness, or closed as superseded",
+    "The transcript run on the frozen holdout and the capture-to-caption latency harness against the staging speech route are registered checks in scripts/qa/staging-checks/, run by .github/workflows/operator-staging.yml. Their reports hold only scores, p50/p95 and sample counts, never transcript text. The lead files MEASURED from that run's lane.json with its ci_run_id."
    ],
    "verification": [
     "node evals/transcript/run.mjs",
@@ -10235,7 +10312,7 @@
    "slice_current": 1,
    "slicing_note": "Refines the existing three slices. .1 moves to opus because freezing margins and critical-error definitions before scoring is methodology design. Two fixes sit outside the ticket's scope_paths. First, the extractNumerals misordering the summary names is in src/shared/grounding.ts, which scripts/evals/local-recap-evaluator.ts and src/main/brain/ingest.ts also use; land it with .2 once the scope is widened, or as a tiny separate PR. Second, the 400 ms stub is scripts/bench-asr-ttfc.mjs, reported through scripts/qa/census/footprint*.mjs; swapping .3 in touches those files. Per D-28, the harness runs on CI or QA lanes only, never on the owner's Mac. .3 needs only .1's frozen rules, not .2's cases, so it can run in parallel with .2.",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0566, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its MEASURED transcript and latency runs against the staging speech route have no CI job that holds staging access. M2-0566's summary named M2-0113, but the draft did not amend it."
   },
   {
    "id": "M2-0114",
@@ -12132,7 +12209,9 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0123",
-    "M2-0130"
+    "M2-0130",
+    "M2-0565",
+    "M2-0566"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -12147,13 +12226,15 @@
    "finding_refs": [],
    "scope_paths": [
     "src/main/features/decision/profiles/",
-    "intelligence/src/lib/jev-classifications.ts"
+    "intelligence/src/lib/jev-classifications.ts",
+    "scripts/qa/staging-checks/"
    ],
    "summary": "Four-language profiles are calibrated, source-linked Jev classifications appear in Intelligence as evidence, and the exact product and rollout are proven on the live vendor once the key exists.",
    "acceptance": [
     "Four-language profiles calibrated with a recorded method",
     "Intelligence shows Jev classifications as evidence with sources",
-    "Rollout evidence recorded on staging with the real key (or BLOCKED on the key)"
+    "Rollout evidence recorded on staging with the real key (or BLOCKED on the key)",
+    "Slice .3's rollout proof is a registered check in scripts/qa/staging-checks/, run by .github/workflows/operator-staging.yml. It calls /v1/decide on the staging Operator as the synthetic staging test device. The Jev key stays in the staging vault (neither CI nor the desktop holds it), and the check writes a content-free report. The LIVE_VERIFIED record is kind deployed-service on operator-staging and carries the deploy run and bundle sha256 from the check's lane.json."
    ],
    "verification": [
     "npx vitest run src/main/features/decision/profiles"
@@ -12222,7 +12303,7 @@
    "slice_current": 1,
    "slicing_note": ".2 is in the intelligence/ package and does not need .1, so it can run in parallel. The Intelligence views that render it (intelligence/src/views/) belong to M2-0130 and are outside this scope. The .3 evidence record needs a docs/metis-2.0/evidence/ path, which is not in the ticket's scope_paths. .3 is expected to close BLOCKED until the vendor key and the M2-0123 staging route exist.",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0565, the producer of its evidence (gap review). 2026-10-03 (lead): depends on M2-0566, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Slice .3's LIVE_VERIFIED is a rollout proof on staging, which needs the deployed-service kind and a defined artifact_sha256 and build_run_id for a deployed service. 2026-10-03 (lead, evidence-producer gap review): amended — Slice .3's staging rollout proof has no CI job that can reach staging, where the key is held in the vault."
   },
   {
    "id": "M2-0132",
@@ -14038,7 +14119,9 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0111",
-    "M2-0106"
+    "M2-0106",
+    "M2-0565",
+    "M2-0566"
    ],
    "needs_decision": [
     "D-12"
@@ -14062,14 +14145,16 @@
    "scope_paths": [
     "operator/src/privacy/",
     "scripts/qa/sentinel-routes.mjs",
-    "docs/security/AI-GATEWAY-NO-RETENTION.md"
+    "docs/security/AI-GATEWAY-NO-RETENTION.md",
+    "scripts/qa/staging-checks/"
    ],
    "summary": "Run synthetic sentinel tests over every active speech and follow-on route and controlled sink on success, error, retry, cancel and revocation; read back configuration; verify WebSocket controls and supplier assurance; and fail closed on configuration drift before a new session starts.",
    "acceptance": [
     "Sentinel strings never appear in any controlled sink across all outcomes",
     "Configuration readback and drift detection against a baseline; new sessions fail closed on drift",
     "Supplier assurance and finite metadata retention recorded",
-    "Worker payloads hold no approved content beyond the request lifetime"
+    "Worker payloads hold no approved content beyond the request lifetime",
+    "node scripts/qa/sentinel-routes.mjs --env staging runs as a registered check in scripts/qa/staging-checks/, run by .github/workflows/operator-staging.yml. It reuses the speech-sinks sink readback in that folder rather than a second copy. The sink and gateway-configuration readback uses the read-only token, which only that workflow's protected environment holds. The LIVE_VERIFIED record is kind deployed-service on operator-staging and carries the deploy run and bundle sha256 from the check's lane.json."
    ],
    "verification": [
     "node scripts/qa/sentinel-routes.mjs --env staging"
@@ -14152,7 +14237,7 @@
    ],
    "due": null,
    "status": "TODO",
-   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the claim is the MASTER section 16.6.5 sentence tailored to the verified route, shown only while readiness is VERIFIED, and it keeps 'Authorized usage metadata is retained for administration'; never 'zero retention', 'no logs' or 'Cloudflare stores no data'. Sentinels prove the metadata-only control on HTTP and WebSocket. Record the log regime: Legacy Logs keep entries until deleted, so a finite metadata retention bound needs a deletion job. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "notes": "D-12 answered as default on 2026-09-27 (docs/metis-2.0/POLICY-2.0.md): the claim is the MASTER section 16.6.5 sentence tailored to the verified route, shown only while readiness is VERIFIED, and it keeps 'Authorized usage metadata is retained for administration'; never 'zero retention', 'no logs' or 'Cloudflare stores no data'. Sentinels prove the metadata-only control on HTTP and WebSocket. Record the log regime: Legacy Logs keep entries until deleted, so a finite metadata retention bound needs a deletion job. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0565, the producer of its evidence (gap review). 2026-10-03 (lead): depends on M2-0566, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its LIVE_VERIFIED sentinel run is server-only on staging. It has no packaged bytes, so it needs the deployed-service kind and its artifact definition. 2026-10-03 (lead, evidence-producer gap review): amended — Its verification `node scripts/qa/sentinel-routes.mjs --env staging` has no CI job with staging access, and D-28 bars running it on a Mac.",
    "slice_current": 1,
    "slicing_note": "operator/src/ai-gateway.ts already has verifyDefaultGatewayPrivacy, which reads back collect_logs and cache_ttl. .2 adds a baseline and a session-start fail-closed check on top of it (a call site outside the ticket scope). Note that operator/src/privacy/ will sit alongside the existing operator/src/privacy.ts. Supplier assurance in .4 may need documents from the owner; if they don't arrive, record them as an external blocker rather than stalling the slice.",
    "engineering_first": true
@@ -15127,7 +15212,9 @@
    "depends_on": [
     "M2-0103",
     "M2-0149",
-    "M2-0106"
+    "M2-0106",
+    "M2-0565",
+    "M2-0566"
    ],
    "needs_decision": [
     "D-8"
@@ -15147,14 +15234,16 @@
    "scope_paths": [
     "operator/scripts/backup.mjs",
     "docs/metis-2.0/runbooks/operations.md",
-    "operator/src/ops/"
+    "operator/src/ops/",
+    "scripts/qa/staging-checks/"
    ],
    "summary": "Operational readiness needs an actual isolated restore drill, monitoring without content, drift alarms, capability kill switches, canary policy and credential rotation runbooks, with explicit recovery objectives. The restore drill has never been executed.",
    "acceptance": [
     "Isolated D1 restore drill executed on staging with Time Travel and recorded RTO/RPO",
     "Drift alarms and capability kill switches wired and tested",
     "Credential rotation runbooks exercised on staging",
-    "Development-store seams not used as production durability (SRC-17)"
+    "Development-store seams not used as production durability (SRC-17)",
+    "The staging restore drill (backup.mjs --restore --env staging --yes, owner-approved) and the staging credential-rotation exercise run as registered checks in scripts/qa/staging-checks/ through .github/workflows/operator-staging.yml, not through a second workflow holding the staging token. Each writes a content-free report with RTO/RPO. The lead files HOST_CONFIGURED from its lane.json (kind deployed-service, host operator-staging)."
    ],
    "verification": [
     "node operator/scripts/backup.mjs --restore --env staging --yes (owner-approved)"
@@ -15221,7 +15310,7 @@
    "due": null,
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: (1) Extend operator/scripts/backup.mjs with an isolated restore-drill mode. It captures a Time Travel bookmark or timestamp, restores into a separate scratch D1 and never the live binding, verifies the migration head and row counts, and writes an RTO/RPO record. Its pure plan builders are unit-tested in backup.contract.test.ts. The export, import-into-a-fresh-DB and verify cycle is rehearsed in CI on ubuntu against wrangler's local D1. ASSUMED: Time Travel has no local emulation, so that step stays for staging. (2) operator/src/ops/: named, fail-closed, server-side capability kill switches, plus drift alarms that read back configuration and migration head and compare them with expected values. Monitoring is metadata-only. Both are covered by vitest/miniflare tests. (3) docs/metis-2.0/runbooks/operations.md: RTO/RPO objectives, canary policy, proposed kill-switch names, and credential-rotation runbooks with dry-run command plans. (4) SRC-17 (development-store seams never used as production durability) lands through M2-0239. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Cloudflare account owner first provisions the staging Worker and D1 (M2-0103/B-19, inherited). Then the owner authorizes and runs the isolated D1 Time Travel restore drill and the credential-rotation exercise on staging, or grants a scoped staging-only token for them, and records the measured RTO/RPO. The owner also confirms the proposed kill-switch names.",
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: (1) Extend operator/scripts/backup.mjs with an isolated restore-drill mode. It captures a Time Travel bookmark or timestamp, restores into a separate scratch D1 and never the live binding, verifies the migration head and row counts, and writes an RTO/RPO record. Its pure plan builders are unit-tested in backup.contract.test.ts. The export, import-into-a-fresh-DB and verify cycle is rehearsed in CI on ubuntu against wrangler's local D1. ASSUMED: Time Travel has no local emulation, so that step stays for staging. (2) operator/src/ops/: named, fail-closed, server-side capability kill switches, plus drift alarms that read back configuration and migration head and compare them with expected values. Monitoring is metadata-only. Both are covered by vitest/miniflare tests. (3) docs/metis-2.0/runbooks/operations.md: RTO/RPO objectives, canary policy, proposed kill-switch names, and credential-rotation runbooks with dry-run command plans. (4) SRC-17 (development-store seams never used as production durability) lands through M2-0239. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Cloudflare account owner first provisions the staging Worker and D1 (M2-0103/B-19, inherited). Then the owner authorizes and runs the isolated D1 Time Travel restore drill and the credential-rotation exercise on staging, or grants a scoped staging-only token for them, and records the measured RTO/RPO. The owner also confirms the proposed kill-switch names. 2026-10-03 (lead): depends on M2-0565, the producer of its evidence (gap review). 2026-10-03 (lead): depends on M2-0566, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its HOST_CONFIGURED record is the staging restore drill and rotation exercise run from CI, and no evidence kind can express it today. 2026-10-03 (lead, evidence-producer gap review): amended — Its slicing note plans a separate workflow_dispatch job for the staging drill, but its scope_paths hold no workflow, D-28 bars running backup.mjs on a Mac, and a second workflow would hold the same staging token.",
    "slice_current": 1,
    "slicing_note": "operator/scripts/backup.mjs already builds export/restore commands (restore prints unless --yes); operator/src/ops/ does not exist yet. The staging runs need Cloudflare credentials: code slices deliver the tool plus a workflow_dispatch job and the run is a LEAD_ACTION whose output the lead files. .3 is docs-only (private repo) and records the RTO/RPO and kill-switch results produced by .1 and .2. The restore drill (K03 blocker) goes first."
   },
@@ -16045,7 +16134,9 @@
     "M2-0164",
     "M2-0093",
     "M2-0113",
-    "M2-0039"
+    "M2-0039",
+    "M2-0563",
+    "M2-0200"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -16067,7 +16158,7 @@
    "acceptance": [
     "Whole-process-tree profile before/after with the census tool",
     "Section 7 idle CPU and memory budgets met, or each residual recorded with an owner decision",
-    "Cold/warm and healthy/degraded measurements recorded",
+    "Cold/warm and healthy/degraded measurements recorded with the M2-0563 census states (warm-start, degraded-idle) in the T3 before-profile and again in the rc1 after-profile",
     "No regression in wake-to-frame or local Stop latency",
     "The resource regression gate (M2-0200) passed on T1, T2 and T3 before this tuning closes (rc1 is gated by M2-0210, which depends on this ticket); any animation or visual-effect change is implemented by Opus"
    ],
@@ -16159,7 +16250,7 @@
    "status": "TODO",
    "slice_current": 1,
    "slicing_note": "Refined the existing split. The old .1 was first in build order yet promised an after-profile and residuals, which can only exist after tuning, so those move to a new closing .4. .2 is left as broad as src/main/ and src/renderer/src/lib/ on purpose: the .1 hotspot list narrows it before work starts. .3 carries the M2-0200 gate line because it contains the Opus-only rule and is the last tuning change; T1/T2/T3 gate records come from those trains (10-18, 11-01, 11-08).",
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; no engineering_first: the outside step is the deliverable or must precede the engineering, so the queue does not start it. 2026-10-03 (lead): depends on M2-0563, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its warm and degraded rows and its --all-states command come from M2-0563, which lands before the T3 before-profile; M2-0166 cannot build them itself before the dispatch that needs them. Acceptance 5 needs M2-0200, which is missing from its dependency closure."
   },
   {
    "id": "M2-0167",
@@ -16747,7 +16838,8 @@
     "Build from a reviewed checkout with locked dependencies and manifests",
     "The Mac candidate (development-signed with the stable QA identity, per D-13) is the film's source; the Windows candidate may be frozen unsigned and M2-0211 signs it without rebuilding the app",
     "Artifact hashes frozen before acceptance; any rebuild invalidates acceptance",
-    "Relevant 112-use-case regression run on the frozen candidate; release decision PASS"
+    "Relevant 112-use-case regression run on the frozen candidate; release decision PASS",
+    "LEAD_ACTION before the qa-candidate.yml dispatch on the frozen commit: a DECISIONS.md owner row covers the metis-owner-mac runner being online (awake, logged in, on AC power) for that run, because st1-mac-fifo and st1-mac-control run only there (OD-46) and OD-52 ends about 2026-10-09. Without such a row the dispatch is not made and is recorded BLOCKED_EXTERNAL on that owner step: a dispatch with the runner offline leaves both jobs queued until GitHub cancels them after 24 h, which fails the candidate (OD-52). The evidence cites the row and both jobs' logs naming the runner."
    ],
    "verification": [
     "node scripts/release/decide.mjs --candidate 2.0.0",
@@ -16835,7 +16927,7 @@
    "slice_current": 1,
    "slicing_note": "release.yml (438 lines) already has the release-decision (M2-0171) and per-OS release jobs. qa-candidate.yml and promote-candidate.yml (M2-0187) build once and promote the same bytes. .1-.3 extend these; they do not add a new pipeline. .4 is an operational qualification run: it commits evidence plus the PASS decision and cannot start before rc1 exists (M2-0210, TODO). Windows signing stays in M2-0211 (BLOCKED_EXTERNAL). .3 therefore freezes the unsigned Windows payload hash and records the post-signing hash as a separate, linked entry.",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead, evidence-producer gap review): amended — The frozen-candidate dispatch (about 11-22) runs the same two owner-runner jobs."
   },
   {
    "id": "M2-0174",
@@ -16899,7 +16991,8 @@
     "M2-0118",
     "M2-0173",
     "M2-0345",
-    "M2-0378"
+    "M2-0378",
+    "M2-0569"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -17002,7 +17095,7 @@
    "due": null,
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Everything below runs in CI on macos-latest; no owner Mac (D-28). (1) Wire 'xcodebuild -scheme MetisApp test' into CI, which M2-0050 also covers. (2) Build a packaged native QA checklist and a parity-and-migration harness over the shared contract fixtures. It runs on the development-signed native build, using the stable QA identity through the QA_MAC_SIGNING import pattern in qa-candidate.yml, or ad-hoc signing when that secret is unset. The parity scope follows M2-0345 and M2-0378. (3) Make Apple on-device speech a separate, explicitly selected engine with its own qualification record. Cloudflare stays the default, with no silent fallback (D-11). (4) Add a PCC availability layer with honest states (available, unavailable, quota exhausted, entitlement missing) for UC-053, proved with a stubbed availability source. (5) Write the evidence record in docs/metis-2.0/evidence/mac-qa/: public DMG HELD (M2-0186); PCC UNKNOWN/BLOCKED with the unblock step. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Apple Developer account holder confirms under R10 whether a development-signed QA candidate can hold the PCC managed entitlement and, if so, requests it. If PCC requires public or App Store distribution signing, PCC is recorded as inheriting the M2-0186 exclusion.",
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: Everything below runs in CI on macos-latest; no owner Mac (D-28). (1) Wire 'xcodebuild -scheme MetisApp test' into CI, which M2-0050 also covers. (2) Build a packaged native QA checklist and a parity-and-migration harness over the shared contract fixtures. It runs on the development-signed native build, using the stable QA identity through the QA_MAC_SIGNING import pattern in qa-candidate.yml, or ad-hoc signing when that secret is unset. The parity scope follows M2-0345 and M2-0378. (3) Make Apple on-device speech a separate, explicitly selected engine with its own qualification record. Cloudflare stays the default, with no silent fallback (D-11). (4) Add a PCC availability layer with honest states (available, unavailable, quota exhausted, entitlement missing) for UC-053, proved with a stubbed availability source. (5) Write the evidence record in docs/metis-2.0/evidence/mac-qa/: public DMG HELD (M2-0186); PCC UNKNOWN/BLOCKED with the unblock step. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The Apple Developer account holder confirms under R10 whether a development-signed QA candidate can hold the PCC managed entitlement and, if so, requests it. If PCC requires public or App Store distribution signing, PCC is recorded as inheriting the M2-0186 exclusion. 2026-10-03 (lead): depends on M2-0569, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Acc 0 needs the native QA candidate. Its own notes describe a development-signed native build through the QA_MAC_SIGNING pattern, but its scope has no workflow. The draft listed it as a dependent of M2-0569 but gave it no amendment. M2-0175 is m10, after M2-0569 (m5).",
    "slice_current": 1,
    "slicing_note": "Needs M2-0118, M2-0173, M2-0345 and M2-0378 first. Intelligence.swift already gates PrivateCloudComputeLanguageModel behind the 27 SDK, and SpeechTranscription.swift wraps SpeechAnalyzer; .1 and .2 build on those. D-28: xcodebuild test and the packaged native QA checklist run only on the isolated QA host (M2-0007) or a CI macOS runner, never on the owner's Mac. The LIVE_VERIFIED evidence for .3 comes from that host. There is an external blocker: the PCC entitlement confirmation is needed by 2026-11-15."
   },
@@ -18874,7 +18967,9 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0009",
-    "M2-0046"
+    "M2-0046",
+    "M2-0562",
+    "M2-0497"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -18886,13 +18981,19 @@
    "scope_paths": [
     "scripts/qa/census/compare.mjs",
     "scripts/qa/census/compare.test.mjs",
-    "docs/metis-2.0/evidence/budgets.md"
+    "docs/metis-2.0/evidence/budgets.md",
+    ".github/workflows/resource-census.yml",
+    "scripts/ci/resource-census-workflow.contract.test.ts",
+    "scripts/qa/census/baselines/1.9.7/"
    ],
    "summary": "2.0 adds wake detection, the ARMED orb, beam and glow animations, the audio broker, the command session and memory. Checking budgets only at m10 would let the owner's P0 come back in the release meant to fix it, so every train build from m5 is gated on a census.",
    "acceptance": [
     "compare.mjs compares a candidate's census with the 1.9.7 baseline per state (settled idle, parked idle, first inference, active transcription, post-meeting) and fails on a >10% regression in CPU-seconds per 300 s or the phys_footprint sum, or any section 7 budget breach",
     "Runs in the lane (M2-0187) for T1, T2, T3, rc1 and the frozen candidate; results attach to the train evidence",
-    "Wake detection (M2-0081) cannot default on until this gate measures it within budget"
+    "Wake detection (M2-0081) cannot default on until this gate measures it within budget",
+    "resource-census.yml runs compare.mjs on each leg after delta.mjs whenever a baseline is given. A gate FAIL fails that leg, but only after the upload step, and delta.mjs stays report-only. The verdict JSON and a job-summary table go into the census artifact, and the workflow contract test pins the step. The gate verdict comes only from CI, never from a run on a Mac (D-28)",
+    "Census-state baseline: at each gate, baseline_run is a resource-census.yml run of the published 1.9.7 release (release_tag source), dispatched in the same window as the candidate run. The published bytes are the tested bytes, and a release asset does not expire. If the baseline's profile-manifest sha256 differs from the candidate's, the state is NOT_COMPARABLE, never PASS",
+    "Active-transcription and post-meeting come from the meeting-history scenario (M2-0497; macOS, QA-identity bytes), named by new optional meeting_run and baseline_meeting_run inputs. compare.mjs refuses a meeting_run whose build_run_id differs from the census candidate_run. QA-identity bytes are never published and their artifacts expire after 30 days. So the content-free 1.9.7 meeting-history census files, with their source run ids and artifact sha256, are committed under scripts/qa/census/baselines/1.9.7/, and compare.mjs reads them when no baseline_meeting_run is given. A state missing on either side is NOT_MEASURED with its reason, never PASS, and the MEASURED record lists it. LEAD_ACTION within 30 days of the 1.9.7 meeting-history run, even before this ticket merges: download that artifact with gh run download (no app code runs) and commit the files there"
    ],
    "verification": [
     "node --test scripts/qa/census/compare.test.mjs",
@@ -18915,7 +19016,7 @@
    "due": null,
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0562, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Acc 1 and the external_blocker need the gate verdict from a CI run, but the only census lane runs a report-only delta, and the scope does not cover the workflow. Two acc 0 states come only from the meeting-history scenario. The 1.9.7 QA-identity meeting artifacts (30-day retention, never published) expire before T3, rc1 and the frozen candidate. The 1.9.7 census states can be re-measured from the 2026-10-03 (lead, evidence-producer gap review): amended — M2-0562 provides the first-inference state that compare.mjs gates, and both tickets edit resource-census.yml and its contract test in W3. Ordering them avoids parallel edits to the same workflow."
   },
   {
    "id": "M2-0201",
@@ -19396,7 +19497,8 @@
     "Expand: the new userData ledger is written alongside the legacy file; switch: reads come from the new ledger; both steps reversible (IX-3) and the legacy .brain/index.json is never deleted by the app",
     "Foreign-key or keystore-unavailable ledger opens read-only (IX-2) and suspends model-bound work (ledger_unavailable)",
     "BR-MD: two-device ingest of the same meeting is idempotent by (meetingId, sourceVersion)",
-    "Rolling back to 1.9.6 reads the untouched legacy file (rollback truth table verified)"
+    "Rolling back to 1.9.6 reads the untouched legacy file (rollback truth table verified)",
+    "Packaged testability for the ledger-rollout scenario (M2-0561). On promotable bytes, the ledger mode comes from the shipped default or a profile-scoped setting, never from a process.env read that a shipped build honours (src/main/dev-env.ts). The PR states the mode T1 ships by default. Each launch emits one content-free audit event naming the active mode (legacy, expand or switch)"
    ],
    "verification": [
     "npx vitest run src/main/infra/storage/ingest-ledger.test.ts src/main/brain",
@@ -19419,7 +19521,7 @@
    "due": null,
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead, evidence-producer gap review): amended — M2-0561 must put promotable bytes into each mode without an environment switch that a shipped build honours (the branch reads process.env at ingest-ledger.ts:40-46), and must be able to confirm which mode each launch ran in."
   },
   {
    "id": "M2-0206",
@@ -19453,7 +19555,10 @@
     "M2-0202",
     "M2-0203",
     "M2-0204",
-    "M2-0558"
+    "M2-0558",
+    "M2-0560",
+    "M2-0561",
+    "M2-0562"
    ],
    "needs_decision": [
     "D-13"
@@ -19469,7 +19574,8 @@
     "Windows parity run on windows-latest and the physical laptop (install/launch, HK-W, ST-1-W, census); failures recorded as residuals or blockers",
     "Evidence complete; a random 10% of tickets closed since the previous gate re-executed by a different model; decisions with needed_by on or before this date answered, defaulted (reversible) or escalated; lessons and CURRENT.md current",
     "Version 1.9.9, checked before the build to sort above every version on the update feed including the abandoned 1.9.8 draft",
-    "m5 re-forecast written (M2-0197 tool); the journal and ledger 14-day owner clock for M2-0167 starts at install"
+    "m5 re-forecast written (M2-0197 tool); the journal and ledger 14-day owner clock for M2-0167 starts at install",
+    "LEAD_ACTION before this cut's qa-candidate.yml dispatch: a DECISIONS.md owner row covers the metis-owner-mac runner being online (awake, logged in, on AC power) for that run, because st1-mac-fifo and st1-mac-control run only there (OD-46) and OD-52 ends about 2026-10-09. Without such a row the cut is not dispatched and is recorded BLOCKED_EXTERNAL on that owner step: a dispatch with the runner offline leaves both jobs queued until GitHub cancels them after 24 h, which fails the candidate (OD-52). The cut's evidence cites the row and both jobs' logs naming the runner."
    ],
    "verification": [
     "node scripts/evidence/check.mjs --train M2-0206",
@@ -19494,7 +19600,7 @@
    "due": "2026-10-18",
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW, CI-provable: (1) Add a `--train <ticket>` mode to scripts/evidence/check.mjs, with node --test fixtures. It asserts: lane provenance.json sha256s for the train; PASS records for the HK, RV, ST and EX suites (plus JR once the journal exists) bound to those exact sha256s; a census-gate PASS (M2-0200 output); a windows-latest parity record with the physical-laptop rows present as residuals or blockers; a re-execution sample record that matches the reproducible draw from scripts/evidence/sample.mjs; no decision with needed_by on or before the train date still OPEN (unless escalated); and the m5 re-forecast present. Per-train extra criteria are pluggable, so T2 and T3 reuse the mode. (2) Add a feed version-order preflight: a pure semver-precedence function with unit tests, wired into the qa-candidate.yml guard job (before the build) and promote-candidate.yml. It refuses a package version that is not strictly above every tag on mysticalsin/Metis-Releases, including drafts such as the v1.9.8 draft. LATER, once depends_on land: set the version to 1.9.9, dispatch qa-candidate.yml once on main, and run the packaged suites, the census compare and the windows-latest parity on those bytes. Then file docs/metis-2.0/evidence/train-M2-0206/, draw the 10% sample, write the m5 re-forecast, and have the lead dispatch promote-candidate.yml publish=true per D-13 (the same lead step M2-0046's notes define). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner downloads the promoted 1.9.9 owner-channel prerelease, installs it by hand on the owner Mac (the updater ignores prereleases) and keeps it as the daily build. The install date starts M2-0167's 14-day journal and ledger clock. The physical Windows laptop parity rows depend on Mantu IT (B-06, M2-0195) and are recorded as residuals or blockers per the acceptance, not as this ticket's blocker. 2026-10-03 (lead): depends on M2-0558 (Electron fuses) so the owner-channel build ships the fuse state, or the recorded RunAsNode residual."
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW, CI-provable: (1) Add a `--train <ticket>` mode to scripts/evidence/check.mjs, with node --test fixtures. It asserts: lane provenance.json sha256s for the train; PASS records for the HK, RV, ST and EX suites (plus JR once the journal exists) bound to those exact sha256s; a census-gate PASS (M2-0200 output); a windows-latest parity record with the physical-laptop rows present as residuals or blockers; a re-execution sample record that matches the reproducible draw from scripts/evidence/sample.mjs; no decision with needed_by on or before the train date still OPEN (unless escalated); and the m5 re-forecast present. Per-train extra criteria are pluggable, so T2 and T3 reuse the mode. (2) Add a feed version-order preflight: a pure semver-precedence function with unit tests, wired into the qa-candidate.yml guard job (before the build) and promote-candidate.yml. It refuses a package version that is not strictly above every tag on mysticalsin/Metis-Releases, including drafts such as the v1.9.8 draft. LATER, once depends_on land: set the version to 1.9.9, dispatch qa-candidate.yml once on main, and run the packaged suites, the census compare and the windows-latest parity on those bytes. Then file docs/metis-2.0/evidence/train-M2-0206/, draw the 10% sample, write the m5 re-forecast, and have the lead dispatch promote-candidate.yml publish=true per D-13 (the same lead step M2-0046's notes define). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner downloads the promoted 1.9.9 owner-channel prerelease, installs it by hand on the owner Mac (the updater ignores prereleases) and keeps it as the daily build. The install date starts M2-0167's 14-day journal and ledger clock. The physical Windows laptop parity rows depend on Mantu IT (B-06, M2-0195) and are recorded as residuals or blockers per the acceptance, not as this ticket's blocker. 2026-10-03 (lead): depends on M2-0558 (Electron fuses) so the owner-channel build ships the fuse state, or the recorded RunAsNode residual. 2026-10-03 (lead): depends on M2-0560, the producer of its evidence (gap review). 2026-10-03 (lead): depends on M2-0561, the producer of its evidence (gap review). 2026-10-03 (lead): depends on M2-0562, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — T1 acc 0 needs JR on the T1 bytes, and M2-0560 is the only producer. 2026-10-03 (lead, evidence-producer gap review): amended — T1 ships ledger expand and switch. M2-0205's LIVE_VERIFIED step runs on the T1 DMG, and M2-0561 is its only producer. 2026-10-03 (lead, evidence-producer gap review): amended — The T1 gate (M2-0200) needs every acc 0 state measured on both T1 and 1.9.7. M2-0562 is the only first-inference producer. 2026-10-03 (lead, evidence-producer gap review): amended — T1 (10-18) falls after OD-52 ends. Without a recorded runner decision, the cut dispatch would fail the candidate 24 h later."
   },
   {
    "id": "M2-0207",
@@ -19510,7 +19616,8 @@
     "M2-0083",
     "M2-0096",
     "M2-0097",
-    "M2-0098"
+    "M2-0098",
+    "M2-0560"
    ],
    "needs_decision": [
     "D-13"
@@ -19526,7 +19633,8 @@
     "Windows parity run on windows-latest and the physical laptop (install/launch, HK-W, ST-1-W, census); failures recorded as residuals or blockers",
     "Evidence complete; a random 10% of tickets closed since the previous gate re-executed by a different model; decisions with needed_by on or before this date answered, defaulted (reversible) or escalated; lessons and CURRENT.md current",
     "Version sorts above 1.9.9 (2.0.0-beta.1 proposed)",
-    "m6 re-forecast written; wake detection stays off unless M2-0200 measured it within budget"
+    "m6 re-forecast written; wake detection stays off unless M2-0200 measured it within budget",
+    "LEAD_ACTION before this cut's qa-candidate.yml dispatch: a DECISIONS.md owner row covers the metis-owner-mac runner being online (awake, logged in, on AC power) for that run, because st1-mac-fifo and st1-mac-control run only there (OD-46) and OD-52 ends about 2026-10-09. Without such a row the cut is not dispatched and is recorded BLOCKED_EXTERNAL on that owner step: a dispatch with the runner offline leaves both jobs queued until GitHub cancels them after 24 h, which fails the candidate (OD-52). The cut's evidence cites the row and both jobs' logs naming the runner."
    ],
    "verification": [
     "node scripts/evidence/check.mjs --train M2-0207",
@@ -19551,7 +19659,7 @@
    "due": "2026-11-01",
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW: reuse or finish the shared `check.mjs --train` mode and the feed version-order preflight from M2-0206, and add T2's own criteria with fixture tests. (a) The candidate version must be strictly above 1.9.9 (2.0.0-beta.1). (b) The wake-detection default (M2-0081) in the candidate must be off unless a census-gate (M2-0200) record for those sha256s measures it within budget. LATER, once depends_on land: one qa-candidate.yml build on main at 2.0.0-beta.1; packaged suites, census compare and windows-latest parity on those bytes; evidence in docs/metis-2.0/evidence/train-M2-0207/; the 10% sample via sample.mjs; the m6 re-forecast; then the lead promotes the bytes with promote-candidate.yml per D-13. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-beta.1 owner-channel prerelease by hand on the owner Mac and keeps it as the daily build. The physical-laptop parity rows stay with Mantu IT (B-06) and are recorded as residuals."
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW: reuse or finish the shared `check.mjs --train` mode and the feed version-order preflight from M2-0206, and add T2's own criteria with fixture tests. (a) The candidate version must be strictly above 1.9.9 (2.0.0-beta.1). (b) The wake-detection default (M2-0081) in the candidate must be off unless a census-gate (M2-0200) record for those sha256s measures it within budget. LATER, once depends_on land: one qa-candidate.yml build on main at 2.0.0-beta.1; packaged suites, census compare and windows-latest parity on those bytes; evidence in docs/metis-2.0/evidence/train-M2-0207/; the 10% sample via sample.mjs; the m6 re-forecast; then the lead promotes the bytes with promote-candidate.yml per D-13. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-beta.1 owner-channel prerelease by hand on the owner Mac and keeps it as the daily build. The physical-laptop parity rows stay with Mantu IT (B-06) and are recorded as residuals. 2026-10-03 (lead): depends on M2-0560, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — T2 acc 0 needs JR on the T2 bytes, and M2-0560 is the only producer. 2026-10-03 (lead, evidence-producer gap review): amended — The same environment dependency at the T2 cut (11-01)."
   },
   {
    "id": "M2-0208",
@@ -19663,7 +19771,8 @@
     "M2-0108",
     "M2-0109",
     "M2-0110",
-    "M2-0112"
+    "M2-0112",
+    "M2-0560"
    ],
    "needs_decision": [
     "D-13"
@@ -19679,7 +19788,8 @@
     "Windows parity run on windows-latest and the physical laptop (install/launch, HK-W, ST-1-W, census); failures recorded as residuals or blockers",
     "Evidence complete; a random 10% of tickets closed since the previous gate re-executed by a different model; decisions with needed_by on or before this date answered, defaulted (reversible) or escalated; lessons and CURRENT.md current",
     "Version sorts above T2 (2.0.0-beta.2 proposed)",
-    "Golden flows have run nightly for at least three nights on lane builds"
+    "Golden flows have run nightly for at least three nights on lane builds",
+    "LEAD_ACTION before this cut's qa-candidate.yml dispatch: a DECISIONS.md owner row covers the metis-owner-mac runner being online (awake, logged in, on AC power) for that run, because st1-mac-fifo and st1-mac-control run only there (OD-46) and OD-52 ends about 2026-10-09. Without such a row the cut is not dispatched and is recorded BLOCKED_EXTERNAL on that owner step: a dispatch with the runner offline leaves both jobs queued until GitHub cancels them after 24 h, which fails the candidate (OD-52). The cut's evidence cites the row and both jobs' logs naming the runner."
    ],
    "verification": [
     "node scripts/evidence/check.mjs --train M2-0209",
@@ -19704,7 +19814,7 @@
    "due": "2026-11-08",
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW: reuse the shared `check.mjs --train` mode and version-order preflight, and add T3's own criteria with fixture tests. (a) The version must be strictly above T2's (2.0.0-beta.2). (b) The golden-flows evidence must show at least three nightly runs on lane-build sha256s, with FLOW rows PASS, NOT_RUN or BLOCKED as M2-0208 defines them. LATER, once depends_on land: one qa-candidate.yml build on main at 2.0.0-beta.2; packaged suites, census compare and windows-latest parity on those bytes; evidence in docs/metis-2.0/evidence/train-M2-0209/; the 10% sample; the re-forecast; then the lead promotes with promote-candidate.yml per D-13. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-beta.2 owner-channel prerelease by hand on the owner Mac and keeps it as the daily build. The physical-laptop parity rows stay with Mantu IT (B-06) and are recorded as residuals."
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW: reuse the shared `check.mjs --train` mode and version-order preflight, and add T3's own criteria with fixture tests. (a) The version must be strictly above T2's (2.0.0-beta.2). (b) The golden-flows evidence must show at least three nightly runs on lane-build sha256s, with FLOW rows PASS, NOT_RUN or BLOCKED as M2-0208 defines them. LATER, once depends_on land: one qa-candidate.yml build on main at 2.0.0-beta.2; packaged suites, census compare and windows-latest parity on those bytes; evidence in docs/metis-2.0/evidence/train-M2-0209/; the 10% sample; the re-forecast; then the lead promotes with promote-candidate.yml per D-13. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-beta.2 owner-channel prerelease by hand on the owner Mac and keeps it as the daily build. The physical-laptop parity rows stay with Mantu IT (B-06) and are recorded as residuals. 2026-10-03 (lead): depends on M2-0560, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — T3 acc 0 needs JR on the T3 bytes, and M2-0560 is the only producer. 2026-10-03 (lead, evidence-producer gap review): amended — The same environment dependency at the T3 cut (11-08)."
   },
   {
    "id": "M2-0210",
@@ -20156,7 +20266,8 @@
     "M2-0545",
     "M2-0546",
     "M2-0547",
-    "M2-0548"
+    "M2-0548",
+    "M2-0560"
    ],
    "needs_decision": [
     "D-13",
@@ -20173,7 +20284,8 @@
     "M2-0160, M2-0161, M2-0163 and M2-0164 have landed; the UI is frozen",
     "2.0.0-rc.1 built once by the lane; all packaged suites, the resource regression gate and the nightly golden flows pass or are dispositioned; Windows parity run recorded",
     "72 h owner soak on rc1 with zero P0/P1 defects; after 11-15 only defect fixes land, each with a failing test first, and any fix produces rc.N and re-runs the affected gates",
-    "Random 10% re-execution sample done; decisions due by 11-15 resolved"
+    "Random 10% re-execution sample done; decisions due by 11-15 resolved",
+    "LEAD_ACTION before the qa-candidate.yml dispatch for rc1 and for every rc.N: a DECISIONS.md owner row covers the metis-owner-mac runner being online (awake, logged in, on AC power) for that run, because st1-mac-fifo and st1-mac-control run only there (OD-46) and OD-52 ends about 2026-10-09. Without such a row the cut is not dispatched and is recorded BLOCKED_EXTERNAL on that owner step: a dispatch with the runner offline leaves both jobs queued until GitHub cancels them after 24 h, which fails the candidate (OD-52). The cut's evidence cites the row and both jobs' logs naming the runner."
    ],
    "verification": [
     "node scripts/evidence/check.mjs --freeze",
@@ -20198,7 +20310,7 @@
    "due": "2026-11-15",
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW, CI-provable with fixtures: (1) Add a `--freeze` mode to scripts/evidence/check.mjs with node --test cases. It fails if any M2-0210 depends_on is TODO or IN_PROGRESS. It requires every BLOCKED_EXTERNAL dependency to carry an external_blocker.unblock_step that is shown in the capability matrix. It reuses deferredProblems, so every DEFERRED dependency has a non-null flag and an ACCEPTED record. It requires M2-0160, 0161, 0163 and 0164 to be DONE or ENGINEERING_COMPLETE, and no decision due by 2026-11-15 to be still OPEN. (2) Add a date-gated post-freeze guard in the --pr-event path (evidence.yml), with fixture events: after 2026-11-15, a PR into main or m2/integration must carry a fix record with a verified red-before run, which the existing P-rules already check. That makes \"only defect fixes land, each with a failing test first\" mechanical. The lead widens M2-0210's scope_paths to scripts/evidence/check.mjs and its test. LATER, once depends_on land: build 2.0.0-rc.1 once via qa-candidate.yml; run all packaged suites, the census gate and the nightly golden flows on those bytes, plus the windows-latest parity; do the 10% re-execution via sample.mjs and `velocity.mjs --gate rc1` (M2-0197); file evidence in docs/metis-2.0/evidence/rc1/; the lead promotes rc1 per D-13, and any post-freeze fix produces rc.N with the affected gates re-run. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-rc.1 on the owner Mac, uses it for 72 h and reports any P0/P1 defect. The owner also gives a written approval (filed as an ACCEPTED record) for each ticket the lead proposes as DEFERRED under the D-14 order. That part vanishes if nothing is DEFERRED at the freeze. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): freeze closure bound to every non-cancelled ticket at milestone <= m10 (204 added; cycle-safe) so 2.0 cannot freeze with HeyClicky, native-parity or OD tickets open."
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW, CI-provable with fixtures: (1) Add a `--freeze` mode to scripts/evidence/check.mjs with node --test cases. It fails if any M2-0210 depends_on is TODO or IN_PROGRESS. It requires every BLOCKED_EXTERNAL dependency to carry an external_blocker.unblock_step that is shown in the capability matrix. It reuses deferredProblems, so every DEFERRED dependency has a non-null flag and an ACCEPTED record. It requires M2-0160, 0161, 0163 and 0164 to be DONE or ENGINEERING_COMPLETE, and no decision due by 2026-11-15 to be still OPEN. (2) Add a date-gated post-freeze guard in the --pr-event path (evidence.yml), with fixture events: after 2026-11-15, a PR into main or m2/integration must carry a fix record with a verified red-before run, which the existing P-rules already check. That makes \"only defect fixes land, each with a failing test first\" mechanical. The lead widens M2-0210's scope_paths to scripts/evidence/check.mjs and its test. LATER, once depends_on land: build 2.0.0-rc.1 once via qa-candidate.yml; run all packaged suites, the census gate and the nightly golden flows on those bytes, plus the windows-latest parity; do the 10% re-execution via sample.mjs and `velocity.mjs --gate rc1` (M2-0197); file evidence in docs/metis-2.0/evidence/rc1/; the lead promotes rc1 per D-13, and any post-freeze fix produces rc.N with the affected gates re-run. | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner installs the promoted 2.0.0-rc.1 on the owner Mac, uses it for 72 h and reports any P0/P1 defect. The owner also gives a written approval (filed as an ACCEPTED record) for each ticket the lead proposes as DEFERRED under the D-14 order. That part vanishes if nothing is DEFERRED at the freeze. 2026-09-29 (lead, owner-asks completeness audit, owner-approved): freeze closure bound to every non-cancelled ticket at milestone <= m10 (204 added; cycle-safe) so 2.0 cannot freeze with HeyClicky, native-parity or OD tickets open. 2026-10-03 (lead): depends on M2-0560, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — PLAN.md:205 requires JR-1..4 at rc1, and M2-0560 is the only producer. 2026-10-03 (lead, evidence-producer gap review): amended — rc1 (11-15) and every rc.N re-cut run the same two owner-runner jobs."
   },
   {
    "id": "M2-0211",
@@ -25406,7 +25518,8 @@
    "owner_model": "sonnet",
    "depends_on": [
     "M2-0124",
-    "M2-0131"
+    "M2-0131",
+    "M2-0570"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -25427,7 +25540,8 @@
     "Laya runs the same versioned decision eval set as Jev, with results per task and language",
     "A serving trace records latency percentiles, context limits and failure modes",
     "Hosting and compute cost per 1,000 decisions is recorded from the actual serving environment, or BLOCKED with the unblock step",
-    "The capability matrix shows Laya's measured limits"
+    "The capability matrix shows Laya's measured limits",
+    "Acc 0's decision eval set runs in CI against the compose-profile Laya adapter (M2-0124 slice .3). The serving trace (acc 1) and the cost row (acc 2) come from the endpoint M2-0570 deploys. Until that endpoint exists they stay BLOCKED with the D-23/B-26 step."
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -25443,7 +25557,8 @@
    "required_evidence": [
     "MEASURED",
     "LIVE_VERIFIED"
-   ]
+   ],
+   "notes": "2026-10-03 (lead): depends on M2-0570, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Names the producer for acc 1 and acc 2, and separates what CI can measure now from what needs the hosted endpoint. LEAD EDIT outside the amendment fields: change milestone m5 to m8 and wave W3 to W6, because the ticket already depends on the m8/W6 tickets M2-0124 and M2-0131, and M2-0570 is m8. If the owner answers D-23 'not in 2.0', this ticket moves to DEFERRED with M2-0570."
   },
   {
    "id": "M2-0313",
@@ -25836,7 +25951,10 @@
    "depends_on": [
     "M2-0109",
     "M2-0166",
-    "M2-0200"
+    "M2-0200",
+    "M2-0568",
+    "M2-0496",
+    "M2-0497"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -25848,13 +25966,21 @@
    ],
    "scope_paths": [
     "scripts/qa/soak/",
-    "docs/metis-2.0/evidence/soak/"
+    "docs/metis-2.0/evidence/soak/",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+    "scripts/qa/meeting/meeting-soak.mjs",
+    "scripts/qa/meeting/meeting-soak.test.ts"
    ],
    "summary": "MASTER section 9.11 and TASK-060 require a 2-hour meeting soak on each primary platform with bounded memory, ordered segment offsets and no abandoned sockets or helpers. M2-0046 has an 8 h idle soak and 1 h of meeting activity for 1.9.7 only; M2-0114 AC4 uses a fixture; M2-0166 has no soak.",
    "acceptance": [
-    "A 2-hour synthetic-meeting soak runs on packaged macOS and Windows builds of T3 and rc1 with the realtime speech path",
+    "A 2-hour synthetic-meeting soak runs on the QA-identity packaged bytes of T3 and rc1 on hosted macOS and Windows. The QA file capture source feeds it (M2-0494 on macOS, M2-0568 on Windows), and it uses the realtime speech path on staging. While the staging route is not HOST_CONFIGURED (the M2-0107/M2-0108 steps), the realtime leg is recorded BLOCKED with that step and the soak runs on the bundled engine. That result is never reported as the realtime one.",
     "Memory, CPU, segment offsets, sockets and helpers are sampled throughout; pass needs bounded memory, ordered offsets and zero abandoned sockets or helpers; per-track queue caps (2 s of audio plus a byte cap) produce timestamped gaps on overflow",
-    "Results attach to M2-0166 and M2-0210 evidence"
+    "The T3 run is the pre-tuning soak and feeds the hotspot list of M2-0166 slice .1. The rc1 run is the post-tuning soak and attaches to M2-0166 slice .4 and to M2-0210 evidence.",
+    "The soak is registered as the candidate-scenarios scenario 'meeting-soak' in scripts/qa/candidate-scenarios.mjs and in the candidate-scenarios.yml choice. The macOS variant is mac-qa-identity and the Windows variant is win-qa-identity (M2-0568), and PROFILE_DIRS maps win-qa-identity to asktoto-qa. The scenario installs the named qa-candidate run's bytes by sha256 on a fresh profile and stays inside the 6 h job limit. It uploads a content-free report and a lane.json that discloses the QA-identity bytes. It reuses the M2-0495/M2-0496 file-capture and main-inspector helpers and the M2-0487 long-run census instead of adding a second driver.",
+    "The 2-hour meeting rule is pre-registered before any soak data exists (the M2-0488 practice). It lives in its own deeply frozen registry in a new file under scripts/qa/soak/, and its own contract test pins its sha256. RULES in growth-rule.mjs and the pin in growth-rule.contract.test.ts stay unchanged, so 1.9.x verdicts keep the registered rulesSha256. growth.mjs judges the soak under the new rule and records that registry's sha256. LEAD_ACTION: register the new sha256 before the first meeting-soak dispatch."
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -25875,7 +26001,7 @@
     "MEASURED"
    ],
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0568, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Sets the order the soak is meant to have: the T3 run comes before tuning and the rc1 run after it. LEAD EDIT outside the amendment fields: (1) Remove M2-0166 from depends_on. M2-0210 depends on both tickets, so rc1 stays after tuning. (2) Change milestone m5 to m7 and wave W3 to W5, to match M2-0109 (m7/W5) and the T3 cut. (3) Rewrite external_blocker.unblock_step to name both legs: after the T3 c 2026-10-03 (lead, evidence-producer gap review): amended — The ticket owns the soak, but its scope stops at scripts/qa/soak/, so nobody owns the lane registration. The macOS file source, the 1-hour driver and the long-run census already exist in M2-0487 and M2-0494..M2-0497 and are reused, not duplicated. The Windows file source needs M2-0568. The 2-hour rule must be pre-registered in its own registry: adding it to RULES would change the single registered"
   },
   {
    "id": "M2-0322",
@@ -27068,7 +27194,8 @@
     "M2-0161",
     "M2-0064",
     "M2-0241",
-    "M2-0245"
+    "M2-0245",
+    "M2-0569"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -27130,7 +27257,7 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P1",
-   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron). 2026-09-29 (lead, owner-asks completeness audit, owner-approved): re-sequenced before the freeze (no longer depends on M2-0175); M2-0175/M2-0177/M2-0210 depend on it (OD-16).",
+   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron). 2026-09-29 (lead, owner-asks completeness audit, owner-approved): re-sequenced before the freeze (no longer depends on M2-0175); M2-0175/M2-0177/M2-0210 depend on it (OD-16). 2026-10-03 (lead): depends on M2-0569, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Acc 3 runs FLOW-02 on the development-signed native QA candidate, and acc 4 measures native idle memory on it. M2-0569 is m5, so this link adds no inversion. The existing inversion (M2-0345 m5 depends on M2-0161 m10) stays with the lead.",
    "required_evidence": [
     "LOCALLY_TESTED"
    ]
@@ -27385,7 +27512,8 @@
     "M2-0164",
     "M2-0166",
     "M2-0200",
-    "M2-0264"
+    "M2-0264",
+    "M2-0569"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -27399,14 +27527,17 @@
     "scripts/qa/census/",
     "electron-builder.yml",
     "electron-builder.win.yml",
-    "docs/metis-2.0/evidence/budgets.md"
+    "docs/metis-2.0/evidence/budgets.md",
+    ".github/workflows/resource-census.yml",
+    "scripts/ci/resource-census-workflow.contract.test.ts"
    ],
    "summary": "M2-0164 measures sizes only against the TASK-004 baseline. MASTER section 14.2 and the kit (section 8) set Windows compressed cloud-first core <= 250 MB, steady core footprint <= 650 MB and native Mac <= 100 MB, counting runtime downloads, caches, temporary install duplication and helpers, with every exception explained.",
    "acceptance": [
     "A size report per build lists compressed installer, unpacked resources, helpers, downloads, caches and peak extraction space (script plus unit test)",
     "The lane gate compares against 250 MB and 650 MB (Windows) and 100 MB (native Mac) and fails unless an exception row with owner approval exists",
-    "Results for T3, rc1 and the frozen candidate are attached to budgets.md",
-    "The size report lists optional packs as their own rows: Whisper base 81,263,214 B and Parakeet 670,478,772 B, plus the peak disk used during download and activation. They never count toward the 250 MB / 650 MB (Windows) or 100 MB (native Mac) core budgets, and the gate fails if either appears inside a lean artifact."
+    "Results for rc1 and the frozen candidate, the first lean-default builds (M2-0164), are attached to budgets.md with a verdict per budget. T3 comes before this ticket's M2-0164 and M2-0166 dependencies and is not lean, so budgets.md cites T3's installed footprint from M2-0200's T3 resource-census run only as a pre-lean reference, with no budget verdict.",
+    "The size report lists optional packs as their own rows: Whisper base 81,263,214 B and Parakeet 670,478,772 B, plus the peak disk used during download and activation. They never count toward the 250 MB / 650 MB (Windows) or 100 MB (native Mac) core budgets, and the gate fails if either appears inside a lean artifact.",
+    "The native Mac 100 MB row measures the compressed and unpacked size of the mac-native artifact built in the same qa-candidate run (M2-0569). It is bound by its sha256 the same way as the DMG and Setup rows."
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -27426,7 +27557,7 @@
    "required_evidence": [
     "MEASURED"
    ],
-   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F09. The budget gate must also cover the Electron macOS lightweight DMG and zip: this ticket names only the Windows 250/650 MB and native Mac 100 MB rows. It must also fail CI when any lightweight artifact exceeds its budget, separately from check-release.mjs's 1.9 GiB platform cap. 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Says explicitly that the optional speech pack is reported but never counted as core, so the budget cannot be misread as either banning the onboarding download or allowing the weights back into the core installer. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "notes": "2026-09-29 (lead, EC triage): Add finding ref M2-0018-F09. The budget gate must also cover the Electron macOS lightweight DMG and zip: this ticket names only the Windows 250/650 MB and native Mac 100 MB rows. It must also fail CI when any lightweight artifact exceeds its budget, separately from check-release.mjs's 1.9 GiB platform cap. 2026-09-29 (lead, OD-30 owner request): AMEND (additions only). Says explicitly that the optional speech pack is reported but never counted as core, so the budget cannot be misread as either banning the onboarding download or allowing the weights back into the core installer. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0569, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Makes acc 2 achievable in dependency order without dropping any measurement, because M2-0200's census already measures T3's sizes. LEAD EDIT outside the amendment fields: change milestone m8 to m10 and wave W4 to W8, because both dependencies are m10/W8. Delete the sentence 'The T3 leg cannot run in order...' from external_blocker. 2026-10-03 (lead, evidence-producer gap review): amended — Without M2-0569 the native row has no artifact. The lane gate has to run in a workflow, and the external_blocker already pairs the size report with resource-census.yml, which is outside scope_paths.",
    "engineering_first": true
   },
   {
@@ -28663,7 +28794,8 @@
     "M2-0137",
     "M2-0138",
     "M2-0345",
-    "M2-0335"
+    "M2-0335",
+    "M2-0569"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -28703,7 +28835,7 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron). 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "notes": "OD-16 (owner, 2026-09-28): native Mac app parity IS in 2.0, alongside the Electron app on Mac and Windows (OD-12 stands for Electron). 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0569, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its acceptance and external_blocker run the HMUC-032 journey on the native QA candidate on hosted macos-latest. M2-0378 is m6, after M2-0569 (m5).",
    "required_evidence": [
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
@@ -28782,7 +28914,9 @@
     "M2-0137",
     "M2-0113",
     "M2-0138",
-    "M2-0337"
+    "M2-0337",
+    "M2-0565",
+    "M2-0434"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -28806,14 +28940,16 @@
     "services/memory/bench/",
     "scripts/qa/latency-harness.mjs",
     "docs/metis-2.0/evidence/memory-eval/",
-    "docs/metis-2.0/evidence/budgets.md"
+    "docs/metis-2.0/evidence/budgets.md",
+    ".github/workflows/"
    ],
    "summary": "HSAC-19, HMUC-025, HM-12 and HMSTEP-12 are kit_refs only. No ticket runs multilingual recall on names, negation, dates and time zones, a paired held-out memory-on versus memory-off comparison, a per-language evaluation of the configured models, or measures the r11 memory budgets (auth/index overhead <= 50 ms p95, UI acknowledgement <= 100 ms, warm recall <= 700 ms p95, deep reflection <= 8 s with cancel).",
    "acceptance": [
     "A permissioned synthetic held-out set covers EN, FR and fr-CA names, aliases, negation, amounts and dates with explicit time zones; scoring rules are frozen before the first run; later-session recall is scored per language for citation faithfulness and negation preservation",
     "Paired memory-on versus memory-off runs on the same tasks report usefulness, false facts, latency and inference cost with p50/p95 and sample counts; exact open/close commands make no memory round trip",
     "Per-language results for the configured extraction, embedding and rerank models are recorded; a language below its margin is shown as limited",
-    "Gateway auth plus bank resolution <= 50 ms p95, memory UI acknowledgement <= 100 ms and warm bounded recall <= 700 ms p95 are measured with failure rates and denominators; when reflect is enabled, reflection completes or cancels within 8 s"
+    "Gateway auth plus bank resolution <= 50 ms p95, memory UI acknowledgement <= 100 ms and warm bounded recall <= 700 ms p95 are measured with failure rates and denominators; when reflect is enabled, reflection completes or cancels within 8 s",
+    "Measurement target: the harness and the frozen set run in CI against services/compose.yml with the mock provider only to prove the mechanics, and those runs are never filed as MEASURED. MEASURED for per-language recall, the paired memory-on/off runs, the per-language model results, gateway auth plus bank resolution, warm recall and reflection comes from the same harness, run against the M2-0434 deployment with its configured models by a dispatch-only, read-only job beside M2-0434's deploy job. That record is kind deployed-service with ci_run_id. The memory UI acknowledgement budget is measured on packaged candidate bytes (kind hosted-runner)."
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -28829,7 +28965,8 @@
    "required_evidence": [
     "LOCALLY_TESTED",
     "MEASURED"
-   ]
+   ],
+   "notes": "2026-10-03 (lead): depends on M2-0565, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — MEASURED needs the configured models and the real topology, which only the M2-0434 deployment provides. The ticket also needs a job that runs the harness there and an evidence kind that names that environment."
   },
   {
    "id": "M2-0381",
@@ -28841,7 +28978,9 @@
    "depends_on": [
     "M2-0133",
     "M2-0119",
-    "M2-0159"
+    "M2-0159",
+    "M2-0565",
+    "M2-0434"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -28857,7 +28996,8 @@
     "services/compose.yml",
     "services/memory/ops/",
     "docs/metis-2.0/runbooks/memory-operations.md",
-    "scripts/after-pack.mjs"
+    "scripts/after-pack.mjs",
+    ".github/workflows/"
    ],
    "summary": "HMSTEP-03 and HM-14 have no acceptance for auth rejection, private networking, DB health, backup/restore or vendor failover; M2-0159 drills only Operator D1. Nothing covers TLS, ingress and egress, DB encryption, protected control-plane ports, readiness versus liveness, bundle scans for memory keys, workload isolation or a load test. D-5 is open, so the compose profile is the target until hosting is approved.",
    "acceptance": [
@@ -28865,7 +29005,8 @@
     "Unauthenticated requests are rejected and the API, DB and admin ports accept traffic only from the gateway network (CI tests)",
     "A CI restore drill restores a memory DB backup into a fresh stack with tombstones and ACL epochs applied before serving; RTO/RPO recorded; provider outage leaves notes and deterministic actions working with memory reported unavailable",
     "Release bundles and the desktop package are scanned for memory service keys and fail the build on a hit",
-    "A load test at a documented envelope shows retain and reflect cannot starve interactive recall; the dominant bottleneck is tuned and re-measured with p95 before and after"
+    "A load test at a documented envelope shows retain and reflect cannot starve interactive recall; the dominant bottleneck is tuned and re-measured with p95 before and after",
+    "The checks for unauthenticated requests, ports, TLS, egress and backups take a target base URL. A post-deploy step in M2-0434's deploy workflow runs them against the deployment and uploads a content-free report. That report is the HOST_CONFIGURED output (kind deployed-service with ci_run_id)."
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -28882,7 +29023,7 @@
    "estimate_hours": 3,
    "status": "TODO",
    "priority": "P2",
-   "notes": "OD-17 (owner, 2026-09-28): D-5 self-hosted private Hindsight on one approved container platform with managed Postgres (not a hosted memory cloud); engineering targets the compose profile until the platform is provisioned. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its HOST_CONFIGURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE.",
+   "notes": "OD-17 (owner, 2026-09-28): D-5 self-hosted private Hindsight on one approved container platform with managed Postgres (not a hosted memory cloud); engineering targets the compose profile until the platform is provisioned. 2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its HOST_CONFIGURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead): depends on M2-0565, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its HOST_CONFIGURED record is a readback of the deployed memory service run from CI. 2026-10-03 (lead, evidence-producer gap review): amended — Its HOST_CONFIGURED readback runs against the deployment that M2-0434's deploy job creates, and its checks need a place in that workflow.",
    "required_evidence": [
     "LOCALLY_TESTED",
     "HOST_CONFIGURED"
@@ -31493,7 +31634,8 @@
    "depends_on": [
     "M2-0119",
     "M2-0133",
-    "M2-0332"
+    "M2-0332",
+    "M2-0565"
    ],
    "finding_refs": [
     "OWNER-ASKS-AUDIT-2026-09-29",
@@ -31518,7 +31660,8 @@
     "Tests show an unauthenticated request and a request from outside the gateway network are rejected; API/DB/control ports are unreachable from outside the private network",
     "Readiness and liveness probes and DB health pass; a restore rehearsal from a managed-Postgres backup into an isolated instance applies tombstones and ACL epochs before serving; RTO/RPO recorded",
     "LEAD_ACTION (after the owner answers D-5, not the implementer's): the lead dispatches the deploy and records platform, region, image digest and DB version"
-   ]
+   ],
+   "notes": "2026-10-03 (lead): depends on M2-0565, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its own HOST_CONFIGURED and LIVE_VERIFIED records are for the deployed memory service, which no evidence kind can express today."
   },
   {
    "id": "M2-0435",
@@ -31584,7 +31727,8 @@
    "depends_on": [
     "M2-0159",
     "M2-0103",
-    "M2-0014"
+    "M2-0014",
+    "M2-0565"
    ],
    "finding_refs": [
     "OWNER-ASKS-AUDIT-2026-09-29",
@@ -31605,7 +31749,8 @@
     "A readback compares version ID/commit, bindings, D1 migration head and privacy controls (gateway log/cache settings, no-store routes, broker grant rules) with staging; any difference fails closed (tested against fixtures)",
     "A rollback to the previous version ID is scripted and tested against fixtures",
     "LEAD_ACTION (after owner authorization, not the implementer's): deploy, record the readback, rehearse the canary rollback and record the RTO"
-   ]
+   ],
+   "notes": "2026-10-03 (lead): depends on M2-0565, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its LIVE_VERIFIED record is a readback of the production Operator, a deployed service with no packaged bytes. No kind can express it, and artifact_sha256 and build_run_id are defined only for desktop bytes."
   },
   {
    "id": "M2-0437",
@@ -38199,7 +38344,8 @@
    "kit_refs": [],
    "depends_on": [
     "M2-0547",
-    "M2-0345"
+    "M2-0345",
+    "M2-0569"
    ],
    "needs_decision": [],
    "slices": [],
@@ -38233,7 +38379,7 @@
     "CI Build & Test: swift test in native-app/MetisKit on macos-latest",
     "CI Build & Test: xcodebuild test for native-app/App on macos-latest"
    ],
-   "notes": "2026-10-03 (lead): filed under OD-56; cut before the D-14 list if the OD-50 checkpoint triggers."
+   "notes": "2026-10-03 (lead): filed under OD-56; cut before the D-14 list if the OD-50 checkpoint triggers. 2026-10-03 (lead): depends on M2-0569, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Its packaged native row on macos-latest needs the native QA candidate. M2-0548 is m7, after M2-0569 (m5)."
   },
   {
    "id": "M2-0549",
@@ -38685,6 +38831,636 @@
    ],
    "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis. 2026-10-03 (lead, evidence Rock 3): external_blocker = this ticket's LEAD_ACTION items, engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE and the lead sets DONE once the actions are recorded.",
    "engineering_first": true
+  },
+  {
+   "id": "M2-0559",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0467"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 8,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (windows-suites)"
+   ],
+   "scope_paths": [
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+    "scripts/qa/capture-gate.mjs",
+    "scripts/qa/capture-gate.test.ts"
+   ],
+   "title": "Add a Windows capture-gate scenario to the candidate lane that shows background screen capture stops retrying when capture keeps failing",
+   "summary": "M2-0044's LIVE_VERIFIED step dispatches `windows-qa.yml -f suite=capture-gate`, but no workflow on main or m2/integration runs a capture check on candidate bytes. The only capture-gate job is on the unmerged M2-0044 branch, and it re-runs unit tests. This ticket adds a `capture-gate` scenario with a Windows leg to the shared candidate lane (M2-0467). The scenario installs the promotable Setup by sha256 and runs the app on its own throwaway profile, with background screen context on and the bundled local model. It first proves the feature reports ready while capture works. It then makes screen capture fail by OS-level means only, because no Windows QA-identity build exists to carry a hook, and parks the app. Finally it counts background capture.failed events in the profile's audit log. The oracle is 'capture.failed stops', which fits both designs M2-0044 allows: a live eligibility gate, or a backoff that latches. On current bytes the no-source failure already latches after 5 failures, because the Windows message matches the permission check. A run before M2-0044 is therefore informational, not a gate. Hosted windows-latest is the live host (OD-26, OD-38). The candidate lane is used because it already provides the provenance check, the content-free gate and a lane.json with the ci_run_id, build_run_id and artifact_sha256 that the LIVE_VERIFIED record needs.",
+   "acceptance": [
+    "`capture-gate` is a key in the scripts/qa/candidate-scenarios.mjs SCENARIOS registry and a choice in candidate-scenarios.yml's scenario input. It has a win platform entry only: variant win, artifact candidate-win, qaOnlyHook false, isolatedProfiles true, exits 0 PASS / 1 FAIL / 2 PRECONDITION, and timeoutMinutes and stepTimeoutMinutes long enough for the park (at least 75 and 60). M2-0467's run guard, provenance check, sha256 selection and content-free gate apply unchanged. windows-qa.yml is unchanged",
+    "scripts/qa/capture-gate.mjs seeds its own throwaway ASKTOTO_USERDATA profile: onboarded the way renderer-kill.mjs seeds one, with backgroundScreenContext true and the settings in scripts/qa/lib/local-llm-settings.mjs. It launches the installed Metis.exe with --remote-debugging-port and reads that profile's logs/audit.log, as scripts/qa/packaged-smoke.mjs does. It writes no settings after the failure is induced, because a settings change resets the backoff",
+    "Before inducing the failure, and while capture still works, the run reads the app's own reported state and shows background screen context ready (backgroundScreenReady true and localReady true). If readiness is never reported, the outcome is PRECONDITION",
+    "The script makes screen capture fail on the runner by OS-level means only, with no app hook and no change under src/. It names the method in its header and its report. Its own capture probe, which records only success or failure and never an image, shows capture working before the induction and failing both before and after the park. If the failing state is unproven, the outcome is PRECONDITION, never PASS",
+    "The park lasts at least 30 minutes from the induction, and only capture.failed events with phase bg-screen count. PASS requires none in the final 15 minutes and a total at or under the registry maximum; anything else is FAIL. A unit test reads BACKOFF_MAX_MS and BACKOFF_LATCH_AFTER from src/main/capture-backoff.ts and pins the tail to at least 1.5 x BACKOFF_MAX_MS and the maximum to BACKOFF_LATCH_AFTER + 1",
+    "scripts/qa/capture-gate.test.ts feeds the oracle synthetic event series. The unbacked 6 s tick FAILs. A ceiling-only series with a 600-606 s period FAILs at every phase offset. A series that latches after 5 failures PASSes, and so does a single failure followed by a gate. A run with readiness or the failing state unproven is PRECONDITION. The tests also cover the exit mapping and the report shape. candidate-scenarios-workflow.contract.test.ts pins the new choice. Build & Test and check:workflow-pins are green",
+    "lane.json carries these report fields: the induction method, the readiness proof, the failing-state proof, the bg-screen capture.failed total, the count in the final 15 minutes, the screen.preprocess.suspended count with its latched and reason values, and backgroundScreenReady after the park (reported, not judged). Failure reasons appear only as fixed categories, never as raw messages. No uploaded file holds an image, screen text, window title, user path or account name, and the content-free scan passes",
+    "LEAD_ACTION after the merge to main: optionally dispatch once on a qa-candidate run built before M2-0044 merges and file the result as the before-measurement. A PASS there is expected when the induced failure is the no-source kind, which already latches after 5 failures, and does not block anything. After the T1 cut (M2-0206), dispatch on the T1 Setup. On PASS, file M2-0044 LIVE_VERIFIED (hosted-runner, windows-latest) with ci_run_id, build_run_id and artifact_sha256 copied from lane.json. On PRECONDITION, record a stated residual (OD-38)"
+   ],
+   "verification": [
+    "CI Build & Test on the PR: scripts/qa/capture-gate.test.ts, scripts/qa/candidate-scenarios.test.ts, scripts/ci/candidate-scenarios-workflow.contract.test.ts, and check:workflow-pins",
+    "gh workflow run candidate-scenarios.yml --ref main -f candidate_run=<qa-candidate run on main> -f scenario=capture-gate -f win_sha256=<Metis Setup sha256> (lead, after merge)"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (windows-suites)."
+  },
+  {
+   "id": "M2-0560",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "test",
+   "owner_model": "opus",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0066",
+    "M2-0467",
+    "M2-0495"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 7,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (missing-lanes)"
+   ],
+   "scope_paths": [
+    "scripts/qa/journal-kill.mjs",
+    "scripts/qa/journal-kill.test.ts",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts"
+   ],
+   "title": "Run the journal (JR) suite on candidate bytes in the candidate lane: SIGKILL during edits and during file-fed transcription, relaunch, and no acknowledged revision lost",
+   "summary": "From T1 on, every train must pass M2-0066's JR-1..4 rows on its packaged bytes (PLAN 9.3), and M2-0066's LIVE_VERIFIED step names a packaged JR run on hosted macos-latest. The candidate-scenarios lane has no such scenario. This adds a journal-kill scenario. It installs the candidate's QA-identity zip by sha256 on a fresh profile and makes edits and transcript finals until the app acknowledges them. It then kills main with SIGKILL, relaunches, and checks through the app's own packaged read path (from M2-0066) that every acknowledged revision came back. It also covers the retention-off row and reports the cap row honestly. The report is content-free.",
+   "acceptance": [
+    "journal-kill is a scenario in the scripts/qa/candidate-scenarios.mjs registry and in the scenario choice of candidate-scenarios.yml. Platform: mac. Variant: mac-qa-identity (the Metis-QA zip), because the transcription row needs the QA-only file-fed capture source. The resolver requires mac_sha256 and rejects win_sha256. M2-0467's run guard, provenance check, fresh-profile assertion and content-free scan apply unchanged. lane.json discloses 'qa-identity bytes of the same candidate run', as M2-0497 does",
+    "journal-kill.mjs <installed app> <report.json> launches the app on a fresh ASKTOTO_USERDATA profile with a loopback CDP port, the way renderer-kill.mjs does. It exits 2 PRECONDITION and names the cause if the journal is not active on these bytes, or if the journal reports journal.degraded (for example, the keystore is unavailable on the runner)",
+    "Kill during editing: for a registry-fixed number of cycles (at least 5), at seeded points, the harness makes recap and note edits and waits until the renderer reports 'saved locally' for a known revision. It then SIGKILLs main, relaunches on the same profile, and reads the recovered revision ids and hashes through the packaged read path that M2-0066 provides. It never decrypts the journal itself. PASS requires every acknowledged revision to be present with a matching hash",
+    "Kill during transcription: on a file-fed meeting (the M2-0494 source, launched the way scripts/qa/meeting/file-capture.mjs launches it), the harness SIGKILLs main after acknowledged transcript finals, relaunches, and requires every acknowledged final to be present with a matching hash. Unacknowledged revisions are counted, not failed",
+    "Retention-off row: the harness sets the retention-disallowed profile through the input named in M2-0066's PR (D-3 default, ASSUMED). No journal directory is created under userData, and after SIGKILL and relaunch recovery asks instead of restoring. If packaged bytes offer no such input on an isolated profile, the row is reported HERMETIC_ONLY, names M2-0066's test file, and never counts as PASS",
+    "Cap row: it runs packaged only if the QA-identity build exposes a smaller cap through a QA_IDENTITY_BUILD-gated setting. Otherwise the report marks it HERMETIC_ONLY and names M2-0066.3's test file, and the evidence record says the cap was not proven on packaged bytes",
+    "After the last cycle, the app quits through its own quit path (scripts/qa/quit-app.mjs), and owned-processes.mjs shows no survivor under the install root. Exit codes: 0 PASS, 1 FAIL, 2 PRECONDITION. The report holds only counts, hash-match booleans, timings and pids, never text, titles or paths",
+    "journal-kill.test.ts covers the verdict logic with fixture observations: a clean pass, a lost acknowledged revision (FAIL), a lost unacknowledged revision (counted, PASS), an inactive or degraded journal (PRECONDITION), a retention-off restore that does not ask (FAIL) and a missing retention input (HERMETIC_ONLY). The registry test and the workflow contract test pin the entry",
+    "LEAD_ACTION after the T1 cut: dispatch candidate-scenarios.yml --ref main with scenario=journal-kill, candidate_run=<T1 run> and mac_sha256=<Metis-QA zip sha256>. On PASS, file M2-0066 LIVE_VERIFIED (hosted-runner, macos-latest, with ci_run_id, build_run_id and artifact_sha256, disclosed as QA-identity bytes). Repeat on T2, T3, rc1 and the frozen candidate"
+   ],
+   "verification": [
+    "CI Build & Test on the PR (journal-kill.test.ts, candidate-scenarios.test.ts, candidate-scenarios-workflow.contract.test.ts)",
+    "LEAD dispatch on main after merge: gh workflow run candidate-scenarios.yml --ref main -f scenario=journal-kill -f candidate_run=<run> -f mac_sha256=<Metis-QA zip sha256>"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (missing-lanes)."
+  },
+  {
+   "id": "M2-0561",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "test",
+   "owner_model": "opus",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0205",
+    "M2-0467",
+    "M2-0470"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 8,
+   "risk": "high",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (missing-lanes)"
+   ],
+   "scope_paths": [
+    "scripts/qa/ledger-rollout.mjs",
+    "scripts/qa/ledger-rollout.test.ts",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts"
+   ],
+   "title": "Run the ledger expand, switch and rollback-to-1.9.6 scenario on candidate bytes in the candidate lane",
+   "summary": "M2-0205 needs LIVE_VERIFIED from a packaged expand, switch and rollback run on the T1 DMG. The candidate lane installs one candidate artifact and has no such scenario. A rollback check also needs the published 1.9.6 build on the same profile. This adds a ledger-rollout scenario. It installs the promotable DMG by sha256, plus the release feed's v1.9.6-unsigned DMG verified against that release's SHA256SUMS. It seeds a synthetic legacy ledger on one profile and runs the candidate in legacy, expand and switch modes, then 1.9.6. It then checks with content-free oracles that the legacy .brain/index.json survives and that 1.9.6 reads it without quarantine.",
+   "acceptance": [
+    "ledger-rollout is a registry entry and a workflow choice. Platform: mac. Variant: mac (the promotable DMG, the same app identity as 1.9.6). The registry also declares the rollback build tag: v1.9.6-unsigned on the release feed, per M2-0205 acc 3. The job downloads that DMG and its SHA256SUMS with the workflow token, verifies them with scripts/qa/verify-sha256sums.mjs, installs the DMG into its own fresh directory, and records its sha256 in lane.json beside the candidate's. A mismatch fails before any launch",
+    "ledger-rollout.mjs seeds one fresh ASKTOTO_USERDATA profile and meetings folder with synthetic meetings and a legacy .brain/index.json in the shape ex-suite.mjs seeds, including completed, exhausted and completed-unacked entries. It sets encryptTranscripts false and strips API keys, so no launch needs a model or a Keychain item shared across differently signed builds. It does not rely on 1.9.6 to write the ledger",
+    "On that one profile it launches, in order, the candidate in legacy mode, in expand and in switch, then 1.9.6. Before the expand launch and before the switch launch, it adds one new completed-unacked meeting, so each of those launches makes one ledger write without a model. Every launch quits through the app's own quit path (scripts/qa/quit-app.mjs)",
+    "Content-free oracles, read in-process. After legacy, no userData ledger exists. After expand, both ledgers hold the new entry, and the userData ledger's entries equal the legacy file's. After switch, only the userData ledger gains the new entry, and the legacy file's sha256 is unchanged. The legacy .brain/index.json exists after every launch, and no launch creates an index.corrupt-* file. On the 1.9.6 launch, the legacy file is read without quarantine (no new index.corrupt-* file and index.json not renamed), and every seeded and expand-merged entry is unchanged",
+    "Each candidate launch sets its mode only through the packaged selector that M2-0205 provides, confirmed by M2-0205's mode audit event. The run exits 2 PRECONDITION and names the cause, never PASS, if the selector is missing, if a launch makes no ledger write, or if a launch blocks on a Keychain or TCC prompt",
+    "Exit codes: 0 PASS, 1 FAIL, 2 PRECONDITION. The report holds only per-launch mode, file-presence, entry-match and sha256-unchanged booleans, counts and timings, never paths, names or meeting content",
+    "ledger-rollout.test.ts covers the verdict logic with fixtures: a clean pass, a deleted legacy file (FAIL), 1.9.6 quarantining the legacy file (FAIL), switch still writing the legacy file (FAIL), expand missing the userData entry (FAIL), a missing selector (PRECONDITION) and no observed ledger write (PRECONDITION). The registry test and the workflow contract test pin the entry and the rollback-release verification",
+    "LEAD_ACTION after the T1 cut: dispatch candidate-scenarios.yml --ref main with scenario=ledger-rollout, candidate_run=<T1 run> and mac_sha256=<T1 DMG sha256>. On PASS, file M2-0205 LIVE_VERIFIED (hosted-runner, macos-latest, with ci_run_id, build_run_id and artifact_sha256)"
+   ],
+   "verification": [
+    "CI Build & Test on the PR (ledger-rollout.test.ts, candidate-scenarios.test.ts, candidate-scenarios-workflow.contract.test.ts)",
+    "LEAD dispatch on main after merge: gh workflow run candidate-scenarios.yml --ref main -f scenario=ledger-rollout -f candidate_run=<run> -f mac_sha256=<DMG sha256>"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (missing-lanes)."
+  },
+  {
+   "id": "M2-0562",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0491",
+    "M2-0482",
+    "M2-0552"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 5,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (missing-lanes)"
+   ],
+   "scope_paths": [
+    ".github/workflows/resource-census.yml",
+    "scripts/ci/resource-census-workflow.contract.test.ts",
+    "scripts/qa/census/first-inference.mjs",
+    "scripts/qa/census/first-inference.test.ts"
+   ],
+   "title": "Measure the first-inference census state in resource-census.yml on both legs, so the train gate can compare it with 1.9.7",
+   "summary": "M2-0200 gates first inference against 1.9.7, but resource-census.yml measures only cold-start, settled-idle and parked-idle. No lane drives the packaged app into a first local inference while the census attaches, and prove-local-ttft.mjs spawns llama-server directly. This adds a first-inference step to each leg, for release and candidate sources alike. The step starts the bundled model through the app's own on-demand path, attaches census/run.mjs --state first-inference, and uploads the result with the other states. The published 1.9.7 release can then be measured by release_tag as the baseline.",
+   "acceptance": [
+    "Each resource-census.yml leg, for release and candidate sources alike, runs a first-inference step after parked-idle. The step launches the installed app on the representative profile with a loopback CDP port and starts the bundled model through an app start path that the report names (window.toto.localPrewarm, or an explicit local request, the paths ex-suite's positive control uses). It waits for the first completed local inference, then runs census/run.mjs --state first-inference --main-pid <pid> --precondition-evidence '<start path, first token seen>' for 300 s and uploads the result in the census artifact",
+    "If the model cannot start on the runner, the step records PRECONDITION and names the refusing gate (as M2-0482's evidence does), and the artifact marks first-inference NOT_MEASURED. It never fails or skips the other states",
+    "If the step needs the RAM-floor override, it sets METIS_QA_HOST_FLOOR_OVERRIDE=1 for this step only, on release and candidate legs alike, and run-identity.json records hostFloorOverride per state instead of a fixed false. The workflow contract test still forbids the override in every other step",
+    "first-inference.test.ts covers the start-path selection, the precondition mapping and the content-free output. The contract test pins the state list (cold-start, settled-idle, parked-idle, first-inference) on both sources",
+    "LEAD_ACTION once this is on main: dispatch resource-census.yml --ref main with release_tag=<the published 1.9.7 tag> and record whether first-inference is MEASURED or PRECONDITION (with the refusing gate) on each leg. This run is the first-inference baseline that M2-0200 reads"
+   ],
+   "verification": [
+    "CI Build & Test on the PR (first-inference.test.ts, resource-census-workflow.contract.test.ts)",
+    "LEAD dispatch on main after merge: gh workflow run resource-census.yml --ref main -f release_tag=<1.9.7 tag>"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (missing-lanes)."
+  },
+  {
+   "id": "M2-0563",
+   "wave": "W4",
+   "milestone": "m6",
+   "type": "infra",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0200"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 10,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (measurement-jobs)"
+   ],
+   "scope_paths": [
+    "scripts/qa/census/run.mjs",
+    "scripts/qa/census/lib.mjs",
+    "scripts/qa/census/lib.test.ts",
+    "scripts/qa/census/profile.mjs",
+    "scripts/qa/census/profile.test.ts",
+    "scripts/qa/census/states.mjs",
+    "scripts/qa/census/states.test.ts",
+    "scripts/qa/census/compare.mjs",
+    "scripts/qa/census/compare.test.mjs",
+    ".github/workflows/resource-census.yml",
+    "scripts/ci/resource-census-workflow.contract.test.ts"
+   ],
+   "title": "Add ARMED, expanded, warm-start and degraded states to the packaged resource census",
+   "summary": "On hosted runners the packaged census launches only cold-start, settled-idle and parked-idle (scripts/qa/census/lib.mjs STATES; resource-census.yml). M2-0093 needs its ARMED and expanded states to pass the M2-0200 gate, and M2-0166 needs cold/warm and healthy/degraded rows, but no census state produces either. M2-0166 cannot build its rows in time: it has no engineering_first, so the queue starts it only after its T3 before-profile dispatch. That dispatch can use only census code already on main, because the workflow runs only on refs/heads/main and checks out main's scripts. This ticket adds the four states, the --all-states flag that M2-0166's verification names, the workflow legs on both OSes and their compare.mjs verdicts. A state whose budget another ticket owns stays report-only until that ticket closes.",
+   "acceptance": [
+    "run.mjs accepts four new launchable states, listed in STATES: armed-idle, expanded, warm-start and degraded-idle. Each checks its precondition before sampling and again when sampling ends. When the state is not held, it writes a PRECONDITION report of what it observed, never a silent pass (unit tests with fake pages and process tables)",
+    "armed-idle runs on a top-center bar profile (profile.mjs --placement top-center) and passes its precondition only when the bar root reads data-bar-state=\"armed\" and the pill, caption and beam are absent. A build without the attribute (every 1.9.x build) records PRECONDITION",
+    "expanded opens the pill through the keyboard path (Tab to the orb button, Enter, a fixed typed string) and samples while data-bar-state reads \"expanded\". The trusted-wake variant (beam and voice glow) is recorded BLOCKED, with the reason, until a hosted wake trigger exists",
+    "warm-start quits the app after a cold start, relaunches the same install and profile, samples like cold-start and records the gap between quit and relaunch",
+    "degraded-idle samples settled idle under a fault set that is written into the report before sampling. The set includes at least unreachable cloud endpoints, plus a failing storage source where the OS allows one (the FIFO fixture is POSIX-only). A fault an OS cannot establish is recorded BLOCKED with the reason",
+    "run.mjs --all-states runs every hosted-launchable state in sequence and writes one JSON per state",
+    "resource-census.yml runs the four states on macOS and Windows in a step that runs even after an earlier census state fails. scripts/ci/resource-census-workflow.contract.test.ts asserts the new state list, and both jobs stay inside their timeout (raised and recorded if needed)",
+    "compare.mjs gives each new state a section 7 budget verdict. armed-idle and expanded count toward the gate from the first train that carries M2-0093: against the section 7 budgets on that train, and also against the previous train's census for the >10% rule once a previous train has the state (the 1.9.7 baseline has none). warm-start and degraded-idle stay report-only until M2-0166 closes, since M2-0166 owns meeting those budgets",
+    "A main dispatch on the latest qa-candidate run uploads all four state files for each OS; a state the build lacks is recorded, not hidden"
+   ],
+   "verification": [
+    "PR CI (Build & Test): the vitest suites for scripts/qa/census/*.test.ts and scripts/ci/resource-census-workflow.contract.test.ts, and node --test scripts/qa/census/compare.test.mjs",
+    "After merge to main (the workflow runs only on refs/heads/main): gh workflow run resource-census.yml --ref main -f candidate_run=<latest qa-candidate run id> -f mac_sha256=<DMG sha256> -f win_sha256=<Setup sha256>"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (measurement-jobs)."
+  },
+  {
+   "id": "M2-0564",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "feature",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0478",
+    "M2-0479"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 5,
+   "risk": "low",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (hardware-and-input)"
+   ],
+   "scope_paths": [
+    "src/main/infra/observability/history-trace.ts",
+    "src/main/infra/observability/history-trace.test.ts",
+    "src/main/infra/observability/projection.ts",
+    "src/main/infra/observability/projection.test.ts",
+    "src/main/infra/observability/diagnostics-summary.ts",
+    "src/main/infra/observability/diagnostics-summary.test.ts",
+    "scripts/qa/owner-soak/verdict.mjs",
+    "scripts/qa/owner-soak/verdict.test.mjs",
+    "scripts/qa/owner-soak/verdict.test.ts",
+    ".github/workflows/owner-soak.yml"
+   ],
+   "title": "Add content-free History timings and a not-downloaded row count to the diagnostics summary, so the T1 owner-channel build can measure History on real cloud files",
+   "summary": "File this only if the owner picks option (a) for M2-0067's real-dataless clause. Since D-9, no test host has real cloud dataless meeting files. The owner's Mac running the T1 owner-channel build (M2-0206) does. history-trace.ts already audits the history.request stages: received (queueMs), served (mainMs, resultCount) and settled (ipcMs, renderMs). But the served stage does not say how many returned rows were not downloaded, and the schema-2 diagnostics summary carries only per-event counts. So the tray paste cannot show History latency, let alone latency over dataless rows. This ticket adds a not-downloaded row count to the served stage, content-free History timing aggregates to the summary, and a History mode to the owner-soak evaluator. The owner's normal use of T1 then yields M2-0067's real-dataless requestId stage timings, with no test run on the owner's Mac (D-28). It changes installer content, so it merges only after the owner records ACCEPTED on 1.9.7 (OD-45, OD-47), and it lands before the T1 cut.",
+   "acceptance": [
+    "The served history.request stage adds notDownloadedCount: the number of returned rows whose notDownloaded flag is true, as a count only. projection.ts allows the field as an int, and the allowlist-projection test covers it. src/main/index.ts is not changed",
+    "summarizeAuditTrail adds a history block for each UTC day and for the scoped window. It holds the request count, the outcome counts, and p50/p95/max of queueMs, mainMs, ipcMs, renderMs and their per-request sum. It gives the same split for requests that served at least one not-downloaded row, and the share of served requests with no settled stage. No requestId, path, title or row content leaves the summary (allowlist-projection test)",
+    "The block is additive, and the evaluator accepts summaries with or without it. A trail with no History requests, or one from a build before the field existed, yields an explicit empty block, never zeros that read as a pass",
+    "owner-soak.yml gains a mode input whose default is the existing M2-0198 soak; its History mode runs the evaluator's History mode. That mode reads a pasted summary from version 1.9.9 or later and requires a pre-registered minimum number of History requests that served at least one not-downloaded row. It computes the window p95 per stage against a pre-registered rule, and it writes a content-free M2-0067 record with environment host owner-mac that cites the build's sha256. Fixture trails cover rotation mid-window, a version change, a day with no History use and a window with no not-downloaded rows",
+    "The existing schema-2 counts, SOAK_VERSION 1.9.7 and the M2-0198 PROCEED/HOLD verdict are unchanged, and their tests stay green"
+   ],
+   "verification": [
+    "CI Build & Test on the PR (npx vitest run src/main/infra/observability/history-trace.test.ts src/main/infra/observability/projection.test.ts src/main/infra/observability/diagnostics-summary.test.ts, plus the scripts/qa/owner-soak tests)",
+    "gh workflow run owner-soak.yml --ref main -f mode=history -f summary_json=<synthetic fixture summary> (CI only)"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (hardware-and-input)."
+  },
+  {
+   "id": "M2-0565",
+   "wave": "W3",
+   "milestone": "m6",
+   "type": "feature",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0466",
+    "M2-0549"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 3,
+   "risk": "low",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (staging-evidence)"
+   ],
+   "scope_paths": [
+    "scripts/evidence/record.mjs",
+    "scripts/evidence/record.test.mjs",
+    "scripts/evidence/check.mjs",
+    "scripts/evidence/check.test.mjs"
+   ],
+   "title": "Evidence schema: add a deployed-service environment kind for checks of staging and deployed services run from CI",
+   "summary": "The evidence schema has no environment for a deployed server. record.mjs allows the kinds ci, qa-mac, windows-laptop, windows-runner, owner-mac and hosted-runner. It rejects kind ci at HOST_CONFIGURED and LIVE_VERIFIED, and hosted-runner may name only macos-latest or windows-latest. Under D-28, every check of the Operator staging Worker, the production Operator readback or the deployed memory service runs in a GitHub Actions job, so none of those records has a valid kind. The affected tickets are M2-0103, M2-0104, M2-0107, M2-0108, M2-0131, M2-0149 and M2-0159 on staging, M2-0436 on the production Operator, and M2-0434, M2-0381 and M2-0380 on the memory deployment. LIVE_VERIFIED also requires artifact_sha256 and build_run_id, which are defined only for packaged desktop bytes. This ticket adds one kind, deployed-service, with a host rule and a ci_run_id rule that go through the existing shared predicate. It follows the pattern of M2-0466 and M2-0549.",
+   "acceptance": [
+    "record.mjs adds the environment kind 'deployed-service': a deployed server environment checked from a GitHub Actions job. Its host must match HOST_RE and must not be a runner label (ubuntu-latest, macos-latest, windows-latest, metis-owner-mac), and the problem message names that rule. No existing kind, host rule or message changes.",
+    "A deployed-service record is accepted at HOST_CONFIGURED, LIVE_VERIFIED and MEASURED and must carry ci_run_id there (the run that executed command). The rule goes through the shared runnerCiRunIdLabel/missingRunnerCiRunIdLabel predicate in record.mjs, so neither file repeats it. LOCALLY_TESTED still requires kind 'ci'.",
+    "record.test.mjs passes for a deployed-service HOST_CONFIGURED record on host operator-staging with ci_run_id, and for a deployed-service LIVE_VERIFIED record with artifact_sha256, build_run_id and ci_run_id. It fails at each of the three levels without ci_run_id, for host ubuntu-latest or macos-latest, and for a deployed-service LOCALLY_TESTED record. Every existing test stays unedited and green.",
+    "check.test.mjs: a ticket that requires HOST_CONFIGURED closes on a deployed-service PASS record and does not close on a kind 'ci' record. check.mjs --release treats a deployed-service record without ci_run_id as not meeting its row, and the problem line names the kind. check.mjs changes only in its header comment on which records need ci_run_id; the rule comes through the shared predicate.",
+    "Public hygiene: the code, tests and PR body hold no private program path, owner identifier or program-document citation.",
+    "LEAD_ACTION (program repo, not the implementer's): evidence/SCHEMA.md §3 adds the kind and defines, for a deployed-service LIVE_VERIFIED record, artifact_sha256 as the sha256 of the deployed bytes (the Worker bundle as uploaded, or the container image digest) and build_run_id as the Actions run that built and deployed those bytes. §4 registers operator-staging (the M2-0103 staging Worker and D1). The production Operator and memory-deployment labels are registered when their first readback runs. ARCHITECTURE §7.1 gains the deployed environments. Once the kind is on main, the lead files the HOST_CONFIGURED records for M2-0103 and M2-0104 under it; rule L3 bars both, being ENGINEERING_COMPLETE, from depending on this ticket."
+   ],
+   "verification": [
+    "CI Build & Test on the PR (scripts/evidence/evidence.test.ts runs record.test.mjs and check.test.mjs under node --test; CI only, D-28)"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (staging-evidence)."
+  },
+  {
+   "id": "M2-0566",
+   "wave": "W3",
+   "milestone": "m7",
+   "type": "ci",
+   "owner_model": "opus",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0103",
+    "M2-0104",
+    "M2-0565"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 8,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (staging-evidence)"
+   ],
+   "scope_paths": [
+    ".github/workflows/operator-staging.yml",
+    "scripts/qa/staging-checks/",
+    "scripts/ci/operator-staging-workflow.contract.test.ts",
+    "operator/scripts/deploy.mjs",
+    "operator/scripts/deploy.contract.test.ts",
+    "docs/runbooks/staging.md"
+   ],
+   "title": "Add a main-only Operator staging workflow that deploys to staging and runs registered staging checks in CI",
+   "summary": "Every staging proof needs a deploy to the staging Worker and a check against it. That covers M2-0103's first deploy, M2-0104's gateway readback, M2-0107's synthetic session, M2-0108's relay run, M2-0111's sink readback, M2-0113's fidelity and latency runs, M2-0131's rollout, M2-0149's sentinels and M2-0159's drills. No workflow on m2/integration or main deploys anywhere; build.yml only prints the staging plan with --dry-run. deploy.mjs allows a staging deploy from CI (only production refuses CI and agent contexts), and D-28 bars running it on a Mac. This ticket builds one dispatchable workflow. It deploys the main commit to staging and runs one named check from a registry, so each consumer adds a check module instead of its own deploy job. The registry ships with health (for M2-0103) and gateway-privacy (for M2-0104, which as an ENGINEERING_COMPLETE ticket cannot take a new dependency). The workflow writes lane.json in the deployed-service evidence kind (M2-0565). The real deploy waits on M2-0103's account-owner step and on the owner's answer about where the scoped tokens may be stored.",
+   "acceptance": [
+    ".github/workflows/operator-staging.yml runs real jobs only on workflow_dispatch from main in the app repository, behind a guard job like the one in candidate-scenarios.yml. Its pull_request trigger on its own path only registers the workflow: the run skips every job and reaches no secret. It uses one concurrency group with cancel-in-progress false, and every action is pinned by full SHA (check-workflow-pins).",
+    "The inputs are deploy (boolean) and check (string). The guard refuses any check name that is not in scripts/qa/staging-checks/index.mjs, so adding a check that needs no new secret never edits the workflow.",
+    "With deploy=true the deploy job runs npm ci, then node operator/scripts/deploy.mjs --dry-run --env staging. It fails unless the plan names metis-operator-staging and never the production Worker or D1 (the build.yml assertions). Only then does it run the real staging deploy, which migrates and runs smoke.mjs with the deployed version. The job runs in a protected GitHub environment, and only the deploy step references the staging-only Cloudflare token. The job records the sha256 of the Worker bundle wrangler uploaded. deploy.mjs changes, with its contract test, only if that hash cannot be taken without it.",
+    "The check job runs the named check against the staging URL, read from a repository variable and never written as a literal. The workflow maps a fixed list of staging secrets: the staging token, the read-only gateway and logs token, and the synthetic test-device credential. The launcher passes each check only the secrets its registry entry declares, and a check that needs a new secret adds it to that list in the same PR. Any failing check exits non-zero.",
+    "The registry ships two checks. health runs smoke.mjs read-only with --expected-version set to the deployed commit. gateway-privacy calls verifyDefaultGatewayPrivacy from operator/src/ai-gateway.ts, without copying its rules, with the read-only token, and reports the readiness state and the three privacy settings.",
+    "Every check's lane.json carries commit, ci_run_id, environment {kind: deployed-service, host: operator-staging}, command, exit_code and the report's sha256. It also names the deployed version from /health and the deploy run id and bundle sha256 that produced that version: the same run when deploy=true, otherwise the latest successful deploy run for that commit. If no deploy run produced the version, lane.json says deployment unknown and the lead cannot file it as LIVE_VERIFIED.",
+    "Every upload is content-free: the deploy receipt, the bundle sha256, the check report and lane.json. None holds request bodies, audio, transcripts, tokens, account ids or account subdomains.",
+    "Tests in Build & Test: scripts/qa/staging-checks/*.test.ts show that an unknown check is refused, that a check receives only its declared secrets, and that lane.json has the fields above, including deployment unknown. scripts/ci/operator-staging-workflow.contract.test.ts asserts the guard, the main-only dispatch, the registration-only pull_request run, and that the token appears only in the deploy step. A dispatch without the token fails at the deploy step with the CLI error and never skips it.",
+    "docs/runbooks/staging.md step 2 names the operator-staging.yml dispatch as the way a real staging deploy runs (no wrangler login on a Mac), and docs-verify stays green.",
+    "LEAD_ACTION (after M2-0103's account-owner step and the owner's answer on token storage): the owner, not an agent, stores the tokens with gh secret set in the protected environment. The lead then dispatches deploy=true check=health from main and files M2-0103's HOST_CONFIGURED from lane.json, then dispatches check=gateway-privacy and files M2-0104's HOST_CONFIGURED."
+   ],
+   "verification": [
+    "CI Build & Test on the PR (vitest runs scripts/qa/staging-checks/*.test.ts and scripts/ci/operator-staging-workflow.contract.test.ts)",
+    "gh workflow run operator-staging.yml --ref main -f deploy=true -f check=health (LEAD_ACTION, once the owner has stored the staging token)",
+    "gh workflow run operator-staging.yml --ref main -f deploy=false -f check=gateway-privacy (LEAD_ACTION, once the read-only token is stored)"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (staging-evidence)."
+  },
+  {
+   "id": "M2-0567",
+   "wave": "W5",
+   "milestone": "m7",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0566",
+    "M2-0108"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 10,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (staging-evidence)"
+   ],
+   "scope_paths": [
+    "scripts/qa/speech-staging.mjs",
+    "scripts/qa/speech-staging.test.ts",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+    "scripts/qa/staging-checks/speech-sinks.mjs",
+    "scripts/qa/staging-checks/speech-sinks.test.ts",
+    "scripts/qa/fixtures/"
+   ],
+   "title": "Speech-proof producers: a candidate-lane scenario that sends sentinel audio from the QA candidate to staging, and a staging sink-readback check",
+   "summary": "M2-0111 must show that synthetic audio flows from the client through the relay, the hosted model, the segment UI and metadata persistence on staging, and that no sink keeps content on success, failure or disconnect over WebSocket. It is an 8 h investigation ticket with only its evidence folder in scope, and nothing builds the run. The candidate lane has no speech or staging scenario. The QA build already has a file-fed microphone (src/main/qa-capture-source.ts), and the main process accepts an https METIS_OPERATOR_URL. This ticket adds a candidate-lane scenario that runs the QA candidate's exact bytes against the staging Operator with a committed sentinel WAV. It also adds a staging check that reads every sink back for the sentinel, which M2-0149's sentinel-routes later reuses.",
+   "acceptance": [
+    "speech-staging is a scenario in the scripts/qa/candidate-scenarios.mjs registry and in candidate-scenarios.yml's scenario choice. It installs the QA-identity candidate by sha256 on a fresh hosted profile, sets METIS_OPERATOR_URL to the staging Operator URL from a repository variable, and feeds a committed synthetic sentinel WAV through the QA file-fed microphone. The lane's run guard, provenance check, fresh-profile assertion and content-free scan apply unchanged.",
+    "scripts/qa/speech-staging.mjs drives three sessions over the WebSocket relay path: one that completes, one the relay ends with an error, and one cut by a disconnect mid-stream. Its report lists for each session the segment count shown, the terminal metadata and the persisted metadata fields, never transcript text. It exits 0 PASS, 1 FAIL or 2 PRECONDITION.",
+    "speech-sinks is a registered check in scripts/qa/staging-checks/. With the read-only token, it searches AI Gateway logs and cache, Workers logs, D1 and exports on staging for the committed sentinel phrase. Its report gives the number of matches per sink, never the matched text. Any match, or any sink it cannot read, exits non-zero.",
+    "Unit tests in Build & Test cover the scenario registration, the content-free report shape and the sink verdict against fake readback fixtures: match, no match, and an unreadable sink that fails.",
+    "LEAD_ACTION (once the staging speech path is deployed and the read-only token is stored): dispatch speech-staging on a QA candidate from main, then speech-sinks, and give both lane.json files to M2-0111."
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "gh workflow run candidate-scenarios.yml --ref main -f candidate_run=<run id> -f scenario=speech-staging -f mac_sha256=<Metis-QA zip sha256> (LEAD_ACTION)",
+    "gh workflow run operator-staging.yml --ref main -f deploy=false -f check=speech-sinks (LEAD_ACTION)"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (staging-evidence)."
+  },
+  {
+   "id": "M2-0568",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0187",
+    "M2-0494",
+    "M2-0495"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 10,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (ordering-and-soak)"
+   ],
+   "scope_paths": [
+    "build/qa-identity.win.electron-builder.yml",
+    "package.json",
+    ".github/workflows/qa-candidate.yml",
+    "scripts/qa/provenance.mjs",
+    "scripts/qa/provenance.test.ts",
+    "scripts/qa/provenance.test.mjs",
+    "scripts/qa/candidate-installer.mjs",
+    "scripts/qa/candidate-installer.test.ts",
+    "scripts/qa/meeting/capture-wav.mjs",
+    "scripts/qa/meeting/file-capture.mjs",
+    "scripts/qa/meeting/file-capture-smoke.mjs",
+    "scripts/qa/meeting/file-capture.test.ts",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+   ],
+   "title": "Build a Windows QA-identity variant in the candidate lane and prove the file-fed capture source on it on hosted Windows",
+   "summary": "M2-0321 needs a 2-hour meeting soak on packaged Windows bytes, and hosted Windows runners have no microphone. The M2-0494 file-fed capture source exists only in QA-identity bytes, and qa-candidate.yml builds that identity for macOS only. The build-mac matrix has mac and mac-qa-identity, build-win has one variant, dist:qa-identity builds '--mac zip', and build/qa-identity.electron-builder.yml extends the macOS config. This ticket adds a win-qa-identity variant, built once per run from the same commit and isolated the same way as the macOS variant, makes it installable by sha256 in the lane, and proves the capture source on it with a Windows capture smoke. The QA hook identity check already covers Windows packages (check-packaged-runtime.mjs:660). The variant never ships, and the promotable Windows set stays the Setup (OD-53). It lands only after the owner records ACCEPTED on 1.9.7 (OD-45/OD-47), so no 1.9.7 cut or re-cut from main builds it. It lands one at a time with M2-0569, which also edits qa-candidate.yml and provenance.mjs.",
+   "acceptance": [
+    "A Windows QA-identity builder config, a new file next to build/qa-identity.electron-builder.yml that extends electron-builder.win.yml, has the same isolation as the macOS variant: appId com.mantu.asktoto.qa, productName Metis QA, package name asktoto-qa (its own userData), publish null (no update feed), and an artifact name starting Metis-QA- that cannot be mistaken for the promotable Setup.",
+    "A package.json script builds it with METIS_QA_IDENTITY=1 and runs check:packaged-runtime win with --executable naming the QA executable. The existing QA hook identity check reports that the QA-identity package carries both hooks. The shipping dist:win script is unchanged.",
+    "qa-candidate.yml builds variant win-qa-identity once per run from the same commit as the other variants. provenance.mjs adds it as a non-promotable variant, stages it with its sha256 and size, and verify passes. The variant is uploaded as artifact candidate-win-qa-identity. candidate-installer.mjs can select it by sha256, and a unit test covers that.",
+    "A blocking capture-file-smoke-win job runs the M2-0495 capture smoke on windows-latest against the win-qa-identity bytes. It uses the same PASS rule: the qa.capture.file_source event, live transcript lines, a saved meeting and the fixture tokens. The WAV is synthesized from the English sentences in scripts/qa/asr-fixtures/manifest.json, either by a Windows path in capture-wav.mjs that uses the built-in speech synthesizer or from the macOS job's WAV passed as an artifact checked by sha256. The content-free report records which source was used.",
+    "These stay unchanged: the promotable Windows Setup and its smoke, promote-candidate.yml (QA bytes are never published) and every macOS job.",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts pins the variant and the smoke job's needs, blocking status and upload. Build & Test is green, and the PR links its own QA-candidate self-test run with the win-qa-identity build and capture-file-smoke-win PASS.",
+    "Merged only after the owner records ACCEPTED on 1.9.7 (OD-45/OD-47)."
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "QA candidate self-test run on the PR (qa-candidate.yml pull_request): build of win-qa-identity and capture-file-smoke-win PASS"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (ordering-and-soak)."
+  },
+  {
+   "id": "M2-0569",
+   "wave": "W3",
+   "milestone": "m5",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0187",
+    "M2-0050"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 8,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (ordering-and-soak)"
+   ],
+   "scope_paths": [
+    ".github/workflows/qa-candidate.yml",
+    "scripts/build-native-mac.mjs",
+    "scripts/build-native-mac.test.ts",
+    "scripts/qa/provenance.mjs",
+    "scripts/qa/provenance.test.ts",
+    "scripts/qa/provenance.test.mjs",
+    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+   ],
+   "title": "Build the native Mac app once per candidate in qa-candidate.yml, with provenance, sha256 and a launch smoke",
+   "summary": "MASTER section 14.2 sets a 100 MB budget for the native Mac app (M2-0351), and M2-0175, M2-0345, M2-0378 and M2-0548 need a development-signed native QA candidate (OD-16 keeps native parity in 2.0). Today only build.yml compiles the native App, in Debug, unsigned and with no artifact. scripts/build-native-mac.mjs builds an ad-hoc-signed Metis-Native zip, but no workflow runs it. This ticket adds a non-promotable mac-native variant to the candidate lane. It is built once per run from the same commit, with provenance and a launch smoke. It is never published: the public native DMG stays HELD (OD-8, M2-0175). It lands only after the owner records ACCEPTED on 1.9.7 (OD-45/OD-47), so no 1.9.7 cut or re-cut builds it. It lands one at a time with M2-0568, which also edits qa-candidate.yml and provenance.mjs.",
+   "acceptance": [
+    "qa-candidate.yml builds the native Mac app as variant mac-native with scripts/build-native-mac.mjs on macos-latest. It is built once per run, from the same commit as the Electron variants, on main dispatches and same-repository pull-request self-tests. The change is never cherry-picked to release/1.9.x, whose dispatches keep the workflow and provenance files of the 1.9.7 provenance commit, so 1.9.x candidates are unchanged (the native app is not in 1.9.x installers, M2-0498).",
+    "build-native-mac.mjs gains a signing option. It uses the stable QA identity through the existing QA_MAC_SIGNING import when that secret is set, and otherwise today's ad-hoc signing (CODE_SIGN_IDENTITY=-). It is never Developer ID signed or notarized.",
+    "provenance.mjs adds mac-native as a non-promotable variant whose asset is the Metis-Native-<version>.zip that build-native-mac.mjs writes. Staging records its sha256 and byte size, verify passes, and the zip is uploaded as artifact candidate-mac-native. A test shows that PROMOTABLE_VARIANTS excludes the variant, so promote-candidate.yml never publishes it.",
+    "A launch smoke job unpacks the zip by sha256 into a fresh directory and launches it with an isolated HOME through the hermetic wrapper (M2-0190). It requires the app process to be alive after 30 s and then to quit cleanly with no survivor process, and it uploads a content-free report.",
+    "The workflow contract test pins the variant, the smoke job's needs and the no-publish rule, and build-native-mac.test.ts covers the signing option. Build & Test is green, and the PR links its own QA-candidate self-test run with the mac-native build and the launch smoke PASS.",
+    "Merged only after the owner records ACCEPTED on 1.9.7 (OD-45/OD-47)."
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "QA candidate self-test run on the PR (qa-candidate.yml pull_request): mac-native build and launch smoke PASS",
+    "gh workflow run qa-candidate.yml --ref main -f commit=<main head> (lead): provenance.json lists the mac-native asset with its sha256 and size"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (ordering-and-soak)."
+  },
+  {
+   "id": "M2-0570",
+   "wave": "W6",
+   "milestone": "m8",
+   "type": "infra",
+   "owner_model": "sonnet",
+   "priority": "P2",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0124",
+    "M2-0119",
+    "M2-0434"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 6,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead evidence-producer gap review 2026-10-03 (drafted per gap cluster, then adversarially re-verified against both repos) (ordering-and-soak)"
+   ],
+   "scope_paths": [
+    "infra/laya/",
+    ".github/workflows/laya-deploy.yml"
+   ],
+   "title": "Deploy the Laya adapter to the server-plane platform: IaC, a main-guarded deploy job and a post-deploy readback (engineering first)",
+   "summary": "M2-0312 needs a live serving trace and hosting cost from Laya's actual serving environment. M2-0124 builds the adapter image and a compose-profile CI run but deploys nothing. Unlike Hindsight (M2-0434) and the knowledge service (M2-0437), Laya has no deploy ticket. D-5's 2026-09-29 answer (Cloudflare Containers, EU Frankfurt) is the default target for the server plane. It is ASSUMED for Laya until B-26 confirms it, and re-validated if the answer differs. The engineering half extends M2-0434's server-plane IaC and deploy-job pattern instead of building a second one: the IaC, its CI validation, the deploy job and the readback. It can be proven in CI once M2-0124's image exists. The deploy itself waits for D-23 and for B-26's licence confirmation. If the owner answers D-23 'not in 2.0', this ticket is DEFERRED.",
+   "acceptance": [
+    "Infrastructure-as-code for the Laya serving container targets the server-plane platform D-5 recorded (Cloudflare Containers, EU Frankfurt; ASSUMED for Laya until B-26). It reuses M2-0434's server-plane IaC and deploy-job pattern, pins the same image digest and checkpoint as M2-0124's compose profile, and is validated in CI without deploying.",
+    "A main-guarded workflow_dispatch deploy job, which never runs on pull requests, deploys the container. It then reads the image digest, the checkpoint pin and readiness back from the deployed endpoint into a content-free report.",
+    "Tests show that the endpoint rejects unauthenticated requests and requests that do not come through Operator's /v1/decide path.",
+    "The deploy report records region, instance class and replica count, so M2-0312 can compute cost per 1,000 decisions from the platform's published prices.",
+    "LEAD_ACTION, after the owner answers D-23 and the licence and hosting platform are confirmed (B-26): the lead dispatches the deploy and files HOST_CONFIGURED with the platform, region, image digest and checkpoint pin. Until then the deploy step is BLOCKED_EXTERNAL with that unblock step, and Laya readiness stays 'unavailable'."
+   ],
+   "verification": [
+    "CI Build & Test on the PR",
+    "CI IaC validation job on the PR (no deploy)",
+    "gh workflow run laya-deploy.yml --ref main (lead only, after D-23 and B-26)"
+   ],
+   "notes": "2026-10-03 (lead): filed from the evidence-producer gap review (ordering-and-soak)."
   }
  ],
  "decisions": {
