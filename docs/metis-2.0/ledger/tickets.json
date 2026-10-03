@@ -687,6 +687,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-66 (owner): ST-1 window gate in-job re-measure replaces the OD-44 whole-check re-run; filed M2-0575."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "Filed M2-0576 (back-fill workflow reads the public program ledger with the job token)."
   }
  ],
  "tickets": [
@@ -39875,6 +39881,48 @@
     "PR CI: node --test / vitest scripts/qa/st-1.test.ts and the qa-candidate workflow contract test; the QA candidate self-test on the PR shows window-gate.json pass: true with budgetMs 250"
    ],
    "notes": "2026-10-03 (lead): filed from the verified flake root cause under OD-66."
+  },
+  {
+   "id": "M2-0576",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "fix",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 1,
+   "risk": "low",
+   "finding_refs": [
+    "Lead 2026-10-03: m2-0238 back-fill run 37163161355 failed at the ledger checkout with \"Input required and not supplied: token\" (no LEDGER_REPO_TOKEN secret); the program repository is public since OD-37"
+   ],
+   "scope_paths": [
+    ".github/workflows/m2-0238-backfill.yml",
+    "scripts/ci/m2-0238-backfill-workflow.contract.test.ts"
+   ],
+   "title": "Evidence back-fill workflow: check out the public program ledger without a dedicated token secret",
+   "summary": "m2-0238-backfill.yml checks out ledger_repository with token: secrets.LEDGER_REPO_TOKEN, which is not set, so every dispatch against the program ledger fails before the back-fill runs. The program repository is public since OD-37, so the job token can read it.",
+   "acceptance": [
+    "The ledger checkout uses `token: ${{ secrets.LEDGER_REPO_TOKEN || github.token }}`: a public program repository (OD-37) checks out with the job token, and a configured secret still takes precedence",
+    "The workflow's header comment says the program repository is public since OD-37 and the secret is optional",
+    "The summarize step does not add a second error when the bundle was never built (guarded on the README existing), so the first failure stays the only red step",
+    "A workflow contract test asserts the token fallback expression and the guarded summary",
+    "After merge to m2/integration, a dispatch with ledger_repository=mysticalsin/Metis-2.0-Program and ledger_ref=main builds and uploads the bundle"
+   ],
+   "verification": [
+    "PR CI: the workflow contract test in Build & Test",
+    "After merge: gh workflow run m2-0238-backfill.yml --ref m2/integration -f ledger_path=docs/metis-2.0/ledger/tickets.json -f ledger_repository=mysticalsin/Metis-2.0-Program -f ledger_ref=main"
+   ],
+   "notes": "2026-10-03 (lead): blocks the evidence Phase 2 back-fill (125 PR blocks already written)."
   }
  ],
  "decisions": {
