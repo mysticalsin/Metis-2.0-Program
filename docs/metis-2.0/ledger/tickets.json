@@ -549,6 +549,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0249 rescoped (builds on M2-0060.3; FF-07-safe enumeration acceptance) and parked until M2-0060's last slice."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0543 filed (ST-1 never scores a dead/unready candidate); M2-0538 adds the owner-runner --no-sandbox switch; M2-0520 depends on M2-0543."
   }
  ],
  "tickets": [
@@ -35738,7 +35744,8 @@
     "M2-0532",
     "M2-0533",
     "M2-0537",
-    "M2-0538"
+    "M2-0538",
+    "M2-0543"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -36668,7 +36675,9 @@
     "scripts/hermetic/run-under-owner-sandbox.sh",
     "scripts/hermetic/prove-owner-sandbox.sh",
     ".github/workflows/qa-candidate.yml",
-    "scripts/ci/qa-candidate-workflow.contract.test.ts"
+    "scripts/ci/qa-candidate-workflow.contract.test.ts",
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/st-1.test.ts"
    ],
    "estimate_hours": 3,
    "risk": "medium",
@@ -36681,7 +36690,9 @@
     "A profile scripts/hermetic/owner-runner.sb (owner-account.sb plus more denies) used only by the owner-runner jobs denies read and write of $HOME/.ssh, .aws, .gnupg, .config, .netrc, .claude, .codex, Documents, Desktop, Downloads, Pictures, Movies, Music, Library/Mail, Library/Messages, Library/Safari, Library/Cookies and $HOME/AI-Brain-build; the runner's work directory and $RUNNER_TEMP stay writable",
     "prove-owner-sandbox.sh asserts every new denial (fail closed) before any candidate command runs",
     "owner-account.sb and every other job are unchanged; ST-1 criteria unchanged",
-    "The contract test pins the profile and the probe list"
+    "The contract test pins the profile and the probe list",
+    "The owner-runner jobs set ST1_CHROMIUM_SANDBOX=off for their st-1 steps only; st-1.mjs then spawns the candidate with --no-sandbox and records chromiumSandbox: 'off-under-owner-account.sb' in the report (the default stays on): Chromium helpers cannot apply their own sandbox inside owner-account.sb (run 37122941816). owner-account.sb stays in force for every child process",
+    "A QA self-test on the owner runner shows app.renderer.ready in both rows' audit logs and no render-process-gone"
    ],
    "verification": [
     "QA self-test on the PR: the probe step lists every denial as Operation not permitted and both strict rows still produce reports"
@@ -36867,6 +36878,47 @@
     "reviewer": "claude-opus",
     "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
    }
+  },
+  {
+   "id": "M2-0543",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "test",
+   "owner_model": "sonnet",
+   "priority": "P0",
+   "kit_refs": [],
+   "depends_on": [],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 4,
+   "risk": "medium",
+   "finding_refs": [
+    "Lead diagnosis 2026-10-03 of QA run 37122941816 (owner runner): the candidate ran inside owner-account.sb (sandbox-exec); every Chromium helper's own sandbox_apply failed with EPERM and aborted (render-process-gone exitCode 6 x4, render_loop_halted), the browser main trapped at +16.6/+17.1 s, and st-1.mjs scored the dead process as 38 'no answer' samples (FAIL / NOT_EXERCISED)"
+   ],
+   "scope_paths": [
+    "scripts/qa/st-1.mjs",
+    "scripts/qa/lib/st-1-core.mjs",
+    "scripts/qa/st-1.test.ts"
+   ],
+   "title": "ST-1 never scores a dead or unready candidate: exit/close tracking, a renderer-ready preflight and a quiet-host precondition (INVALID, not FAIL)",
+   "summary": "The strict ST-1 rows must only judge a live, fully started candidate on a quiet host. Today st-1.mjs drops the child's exit listener once it has the inspector URL and has no socket close handler, so a candidate that dies is scored as a long stall. Make every such run INVALID with its reason; criteria and thresholds stay as they are (OD-21).",
+   "acceptance": [
+    "After inspectorUrl, st-1.mjs keeps the child's exit (code, signal, tMs) and the inspector socket's close; a candidate that exits or whose inspector closes before the window ends gets verdict INVALID with reason candidate-exited or inspector-closed (never FAIL or NOT_EXERCISED), and the report keeps a bounded, content-free stderr tail",
+    "Before the sampled window starts, a preflight requires the candidate's app.renderer.ready audit event and no app.crash render-process-gone; otherwise the run is INVALID with reason renderer-not-ready (the window does not start)",
+    "The witness (reference process on the same host) gates validity: if its loop max exceeds 50 ms in any sample the run is INVALID with reason noisy-host; the witness numbers stay in the report",
+    "PASS, FAIL and NOT_EXERCISED rules and every OD-21 criterion are unchanged; tests in st-1.test.ts cover each INVALID reason with a fake child/socket and fail without the change"
+   ],
+   "verification": [
+    "CI: Quality checks green; a QA self-test report shows the new fields"
+   ],
+   "notes": "2026-10-03 (lead): filed from the owner-runner diagnosis; M2-0520 depends on it (the strict gate must never score a dead candidate)."
   }
  ]
 }
