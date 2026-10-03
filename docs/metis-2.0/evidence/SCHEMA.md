@@ -85,8 +85,8 @@ Four different things in this program are each called "ready" in a different sen
 4. **Component labels** in `ARCHITECTURE.md` (`DESIGN_READY`, …) describe the target architecture's own
    maturity and stay informal — they are not evidence levels and no record or check references them.
    **Per-platform release readiness** (kit reference M2-REL-01) is a *decision* computed over these
-   records by M2-0171, not a label this schema defines; `environment.kind` keeps macOS and Windows evidence
-   distinguishable for that later computation.
+   records by M2-0171, not a label this schema defines; `environment` (its `kind` and `host`) keeps macOS
+   and Windows evidence distinguishable for that later computation.
 
 ## 3. Record fields and formats
 
@@ -111,7 +111,7 @@ require it.
 | `result` | `PASS`\|`FAIL` | always |
 | `implementer_session`, `validator_session` | `{ model, id }` | always; `validator_session.id` ≠ `implementer_session.id` |
 | `pr` | positive integer (public PR number) | `LOCALLY_TESTED`; `DESIGNED` if no `output` |
-| `ci_run_id` | positive integer | `LOCALLY_TESTED` |
+| `ci_run_id` | positive integer: the GitHub Actions run that executed `command` (for `LOCALLY_TESTED`, the Build & Test run) | `LOCALLY_TESTED`; `HOST_CONFIGURED`, `LIVE_VERIFIED` and `MEASURED` when `kind: 'hosted-runner'` |
 | `environment` | `{ kind, host }` | `LOCALLY_TESTED` (`kind: 'ci'`), `HOST_CONFIGURED`/`LIVE_VERIFIED` (`kind` ≠ `'ci'`), `MEASURED` (any) |
 | `command` | non-empty single-line string | `LOCALLY_TESTED`, `HOST_CONFIGURED`, `LIVE_VERIFIED`, `MEASURED` |
 | `exit_code` | integer | whenever `command` is present; `PASS` ⇔ `0` |
@@ -128,7 +128,9 @@ require it.
 **Sub-formats.** `session` `{ model, id }`: `model` is a lowercase dotted id (`claude-sonnet-5`,
 `claude-opus-5-5`, or `human` for a person); `id` is an opaque session id — never a name or an email.
 `environment` `{ kind, host }`: `kind` ∈ `ci`, `qa-mac`, `windows-laptop`, `windows-runner`, `owner-mac`
-(ARCHITECTURE §7.1); `host` is a label registered in §4 below. A program path (`output.path`) and a repo
+(ARCHITECTURE §7.1), `hosted-runner` (OD-26); `host` is a label registered in §4 below. A
+`hosted-runner` record is a GitHub-hosted image used as the live host: its `host` is `macos-latest` or
+`windows-latest`, nothing else, and it is never valid for `LOCALLY_TESTED`. A program path (`output.path`) and a repo
 path (`repro.test`, `wired.client`, `wired.contract_fake`) are both a relative POSIX path with no leading
 `/`, no `\`, and no empty, `.` or `..` segment — just resolved against different roots. A *test path*
 matches `\.(test|spec)\.[cm]?[jt]sx?$`; a *test-only* path is a test path or a path with a `__mocks__/`,
@@ -139,7 +141,9 @@ be**; `wired.probe` is one command with none of `&&`, `||`, `;` or `|`.
 session ids must differ (a reviewer never approves its own work); a re-execution's model must differ from
 the implementer's, and its id must be fresh; `result` must agree with `exit_code` exactly; a fix's `repro`
 commit must be *earlier* than the record's own `commit`; a `BLOCKED` kit status needs a complete `wired`
-or it counts as `NOT_MET`; `DESIGNED` needs an `output` or a `pr`; and **no string, anywhere in the
+or it counts as `NOT_MET`; `DESIGNED` needs an `output` or a `pr`; a `hosted-runner` record at
+`HOST_CONFIGURED`, `LIVE_VERIFIED` or `MEASURED` needs `ci_run_id` (it may equal `build_run_id` when one
+run built and tested the bytes); and **no string, anywhere in the
 record, may contain a user home path or an email address** (INV-7) — records are pasted verbatim into
 public pull request bodies.
 
@@ -219,10 +223,20 @@ a record. Several blocks are allowed in one PR body.
 | Label | Meaning |
 |---|---|
 | `ubuntu-latest` | Public repository CI runner (`environment.kind: 'ci'`) |
-| `windows-latest` | Public repository CI runner, Windows (`environment.kind: 'ci'`) |
+| `windows-latest` | Public repository CI runner, Windows (`environment.kind: 'ci'`); also the GitHub-hosted Windows image as the live host (`kind: 'hosted-runner'`, OD-26) |
+| `macos-latest` | Public repository CI runner, macOS (`environment.kind: 'ci'`); also the GitHub-hosted macOS image as the live host (`kind: 'hosted-runner'`, OD-26) |
 | `qa-mac-1` | The dedicated QA macOS user account (M2-0007) |
 | `windows-laptop-1` | The dedicated Windows test laptop (M2-0195) |
-| `owner-mac` | The owner's own Mac account — promoted/release builds only, never routine test evidence |
+| `owner-mac` | The owner's own Mac account, used by hand — promoted/release builds only, never routine test evidence |
+| `metis-owner-mac` | The self-hosted GitHub Actions runner in the owner's own Mac account (runner label `metis-owner-mac`; OD-46, M2-0537): a scoped D-28 exception for the strict ST-1 jobs `st1-mac-fifo` and `st1-mac-control` only, under the sandbox OD-46 requires and never for a fork's pull request. Records use `kind: 'owner-mac'` and carry `ci_run_id` (§6 step 7). |
+
+A release gate file's `hosts` (`check.mjs --release`) uses these same labels. A row is met on a host only
+by the latest record for its `ticket` and `level` whose `environment.host` is that label (and whose
+`output.path` or `command` contains the row's `match`, when it has one), so a record filed under any other
+label never meets it. A row for the strict fifo or control job therefore names `metis-owner-mac`; the other
+macOS ST-1 jobs run on `macos-latest`, and their rows name that host. A candidate-bound row
+(`promotable`, `qa-identity`) also needs the record's `build_run_id` to be the candidate run and its
+`artifact_sha256` to be one of that bytes class's assets, at every level, `MEASURED` included.
 
 ## 5. Closure rules
 
@@ -314,6 +328,11 @@ Sampling rules (`sample.mjs`):
    `evidence/raw/<ticket>/` in this repository.
 6. A re-execution record (the 10% sample, `scripts/evidence/sample.mjs`) sets `reexecuted_by` to a session
    whose model differs from the original implementer's.
+7. **Owner-runner records** (OD-46). A record from a job on the `metis-owner-mac` runner uses
+   `environment: { kind: 'owner-mac', host: 'metis-owner-mac' }` — never `hosted-runner`, which
+   `record.mjs` rejects with that host — and carries `ci_run_id`, the run whose job executed `command`, at
+   `HOST_CONFIGURED`, `LIVE_VERIFIED` and `MEASURED`. `record.mjs` does not enforce either rule for this
+   label yet (M2-0549); until it does, the lead checks both before appending the record.
 
 ## 7. Authority
 

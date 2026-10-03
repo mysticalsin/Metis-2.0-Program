@@ -567,6 +567,18 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "M2-0210 (freeze) depends on the OD-56 tickets M2-0544, M2-0545, M2-0546, M2-0547, M2-0548."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "D-34 recorded (release/1.9.x cut at the 1.9.7 provenance commit; 1.9.x hotfixes are 1.9.7-hotfix.N through M2-0499); M2-0046 acc 9 and M2-0188 acc 6 amended from the 1.9.7 tag to the provenance commit; M2-0187 acc 5 corrected (promote tags only the feed)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "1.9.7 pre-cut paperwork: 1.9.7.gates.json pre-registered (no Portable, OD-53), growth rules registered (M2-0488), SCHEMA N13 + M2-0549, 1.9.7.md skeleton; M2-0458 moves into 1.9.7 (M2-0046, M2-0498 depend on it)."
   }
  ],
  "tickets": [
@@ -3619,7 +3631,8 @@
     "M2-0508",
     "M2-0537",
     "M2-0418",
-    "M2-0447"
+    "M2-0447",
+    "M2-0458"
    ],
    "needs_decision": [
     "D-13"
@@ -3634,7 +3647,8 @@
     "CHATGPT-A8"
    ],
    "scope_paths": [
-    "docs/metis-2.0/releases/1.9.7.md"
+    "docs/metis-2.0/releases/1.9.7.md",
+    "releases/1.9.7.md"
    ],
    "summary": "The stabilization release closes the loop behind the owner's two bugs only if the bytes that were tested are the bytes promoted. Its scope is the P0 closure: hermetic tests, evidence chain, foreign-key guard, observability and stall sampler, one stopAll, registry and reaper, dataless detection, storage gateway with the .brain readers and History, degraded rows, one retry/exhaustion policy, the model-hash cache, one reveal(), a bounded reload loop and the build lane. Everything else moves to the T1 train. The release states residual risks; the bugs close only through the owner-machine gate M2-0199.",
    "acceptance": [
@@ -3646,7 +3660,7 @@
     "Release notes state residual risks and that B1/B2 close only through M2-0199, not through this release",
     "A random 10% of the tickets closed for 1.9.7 are re-executed by a different model; the m3 velocity re-forecast (M2-0197) is written",
     "Deferred to T1 (M2-0206): M2-0029, 0034, 0038, 0039, 0040, 0041, 0042, 0043, 0044 and 0045; if M2-0009 measures parked idle over the section 7 budget, Opus may pull M2-0039 in by a recorded decision",
-    "The owner approves promotion of those exact bytes (ACCEPTED); release/1.9.x is cut at the 1.9.7 tag (M2-0188)",
+    "The owner approves promotion of those exact bytes (ACCEPTED); release/1.9.x is cut at the provenance commit, the commit in the promoted candidate's provenance.json (D-34, M2-0188)",
     "OD-35 (owner): the 8 h idle soak is two hosted legs (macOS, Windows) of at most 5.5 h each on the candidate bytes, judged by a growth rule pre-registered before the run and extrapolated to 8 h",
     "OD-36 (owner): ST-1 real-dataless rows are proven in the owner's 5-day soak (M2-0198) from the schema-2 diagnostics; the candidate carries ST-1 with the synthetic dataless fixtures and states the real-cloud case as measured in the soak",
     "OD-34 (owner): supervision ships default-on only after HK-M passes 20/20 on this candidate; 1.9.7 waits for it (the ship-OFF branch is not used)",
@@ -3669,7 +3683,7 @@
    "slices": [],
    "due": "2026-10-04",
    "status": "TODO",
-   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency. 2026-10-03 (lead, OD-31 readiness audit): producers linked M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0418/M2-0447 are 1.9.7 work because M2-0202 slice 7 (OD-51) needs M2-0418's states.ts and its WCAG audit."
+   "notes": "UNBLOCKED 2026-09-27: Owner autopilot directive 2026-09-27 (\"merge and everything else after you tested it\", except signature): the owner-Mac install is replaced by the CI packaged-app lanes (D-9 CI runners, D-28); publish per D-13 (prerelease, not Latest, no latest*.yml, SHA256SUMS, promoted from the tested bytes via promote-candidate.yml, which must be on main first). SPLIT 2026-09-27: Codex's deliverable is the qualification record, not the publish action: write docs/metis-2.0/releases/1.9.7.md (private repo) with the exact candidate run id, asset sha256s, the CI evidence per asset (build.yml + packaged-smoke on macOS and Windows), residual risks, and the promote-candidate.yml inputs. The lead's release step dispatches promote-candidate.yml from main with those inputs (D-13: prerelease, not Latest, no latest*.yml, SHA256SUMS). Codex never dispatches workflows, pushes tags or creates releases. 2026-09-29 OD-31..OD-36: full qualification chosen (target 10-07..09); readiness analysis in codex-queue/logs/release-197-readiness-2026-09-29.json; missing producer tickets filed as dependencies. 2026-09-29: acc 2 'real dataless fixtures', acc 3 'otherwise it ships off', acc 4 'an 8 h idle soak' and acc 9 'cut at the 1.9.7 tag' are superseded by OD-36, OD-34, OD-35 and the provenance-commit rule; producers M2-0482..M2-0511 filed. 2026-10-02 (lead, OD-31): M2-0500 and M2-0503 were filed as 1.9.7 full-qualification producers (drafts NEW-R3, NEW-R6) but never linked; now dependencies (residual risks in the release body; hotfix promotion from release/1.9.x). 2026-10-02 (lead, OD-49): M2-0202 (right-edge repairs, OD-22) is a 1.9.7 dependency. 2026-10-03 (lead, OD-31 readiness audit): producers linked M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0418/M2-0447 are 1.9.7 work because M2-0202 slice 7 (OD-51) needs M2-0418's states.ts and its WCAG audit. 2026-10-03 (lead, D-34): acc 9 now says 'cut at the provenance commit'; the app repository has no 1.9.7 tag and gets none (promote tags only the feed). 2026-10-03 (lead, M2-0488 LEAD_ACTION, readiness N14): growth rules registered before any idle-soak or meeting-history dispatch: IDLE-GROWTH-1 and MEETING-GROWTH-1, rulesSha256 53d05c480c66dbc8fe7005a235d67853fc7051acd13556d85c53bfb2e0a9b636 (canonical RULES, one hash for both rules; pin scripts/qa/soak/growth-rule.contract.test.ts:11), merged commit 03a0ca3e39c8859a7b997a6f815090466acd10e8 (PR #395; on main since fd38fd09); note docs/metis-2.0/evidence/release-1.9.7/growth-rule-registration.md. A verdict or lane.json whose rule.rulesSha256 differs from the sha256 that note registered before its run, or from a run created before the note reached program main (shakedowns included), is not evidence for acc 4b/4c; rule.fileSha256 is not a criterion."
   },
   {
    "id": "M2-0047",
@@ -17600,7 +17614,7 @@
     "macOS candidates are signed with one stable QA identity (self-signed code-signing certificate or Apple Development, never Developer ID) so TCC grants persist across builds (ASSUMED; verified on the QA account by granting once and confirming the grants survive a second candidate); Windows candidates are unsigned",
     "The QA-identity variant (appId com.mantu.asktoto.qa, distinct productName, userData directory and Keychain safeStorage service, legacy llama reaper rule disabled, QA fault hooks compiled in) is built from the same commit in the same run; the shipping-identity candidate runs only on the QA account, the Windows lanes and CI",
     "Packaged gates (install/launch smoke, HK, ST-1, RV, EX, census) consume assets by sha256; any rebuild is a new candidate and invalidates earlier results",
-    "promote-candidate.yml publishes exactly those bytes plus SHA256SUMS as an owner-channel prerelease under D-13 (not Latest, no latest*.yml unless D-13 says otherwise), refuses bytes without a passing evidence record, never rebuilds, and creates the git tag with the workflow token so release.yml is not re-triggered (ASSUMED from GitHub's documented token behaviour; verified in the dry run)",
+    "promote-candidate.yml publishes exactly those bytes plus SHA256SUMS as an owner-channel prerelease under D-13 (not Latest, no latest*.yml unless D-13 says otherwise), refuses bytes without a passing evidence record, never rebuilds, and creates the v<version> release and its tag only in the feed repository, never a tag in the app repository (ADR-022 INV-6, D-34), so promotion never starts release.yml (which runs on v* tag pushes there)",
     "Dry run on a no-op commit proves build, hash, download-by-hash and promote-to-draft without publishing"
    ],
    "verification": [
@@ -17645,7 +17659,7 @@
      "recorded": "2026-09-29 by the lead"
     }
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead, EC triage): Evidence caveat for A3 ('Packaged gates (install/launch smoke, HK, ST-1, RV, EX, census) consume assets by sha256'). On origin/main and m2/integration, only check-packaged-launch.mjs (smoke-mac, smoke-win), the report-only ST-1 rows and hk-m-candidate.yml consume candidate bytes. The packaged ASR decode runs on release/win-unpacked during the build (scripts/build-installers.mjs:170), and packaged-smoke.mjs (RV and lifecycle), e2e-smoke.mjs and the x64 macOS slice never touch candidate bytes. M2-0452, M2-0453, M2-0454, M2-0455 and M2-0456 (M2-0018-F04..F08) close this gap; cite them before claiming A3 in full. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): the 'F14 environment-kind ticket' in the triage's waits_on is M2-0466. Record HOST_CONFIGURED under kind hosted-runner once it is on main. The qa-candidate.yml dispatch on main is also the first step of every Theme A LEAD_ACTION (M2-0467..A6). 2026-09-29 OD-33: promote dry run PASSED (runs 36636273967 + 36643160857) — feed token, digest API and cross-run artifact download proven before the real 1.9.7 publish.",
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: HOST_CONFIGURED. 2026-09-29 (lead, EC triage): Evidence caveat for A3 ('Packaged gates (install/launch smoke, HK, ST-1, RV, EX, census) consume assets by sha256'). On origin/main and m2/integration, only check-packaged-launch.mjs (smoke-mac, smoke-win), the report-only ST-1 rows and hk-m-candidate.yml consume candidate bytes. The packaged ASR decode runs on release/win-unpacked during the build (scripts/build-installers.mjs:170), and packaged-smoke.mjs (RV and lifecycle), e2e-smoke.mjs and the x64 macOS slice never touch candidate bytes. M2-0452, M2-0453, M2-0454, M2-0455 and M2-0456 (M2-0018-F04..F08) close this gap; cite them before claiming A3 in full. 2026-09-29 (lead, EC triage): 2026-09-29 (EC triage, Theme A): the 'F14 environment-kind ticket' in the triage's waits_on is M2-0466. Record HOST_CONFIGURED under kind hosted-runner once it is on main. The qa-candidate.yml dispatch on main is also the first step of every Theme A LEAD_ACTION (M2-0467..A6). 2026-09-29 OD-33: promote dry run PASSED (runs 36636273967 + 36643160857) — feed token, digest API and cross-run artifact download proven before the real 1.9.7 publish. 2026-10-03 (lead, D-34): acc 5 corrected to what the lane does: promote-candidate.yml creates the release and its tag only on the feed (INV-6), with the feed token, not the workflow token (promote-candidate.yml:121-125), so no tag in the app repository and no release.yml trigger. Acc 5 never named the 1.9.7 tag; the release/1.9.x cut stays with M2-0188 acc 6.",
    "priority": "P0"
   },
   {
@@ -17673,7 +17687,7 @@
     "scripts/program/claims-check.mjs fails when two IN_PROGRESS tickets claim the same hot file or more than three IN_PROGRESS tickets claim src/main/**, with tests",
     "Full suites run only in CI; local runs are targeted files under the hermetic harness; packaged runs are serialized behind one lock on the QA host; docker-compose service suites and packaging builds run in CI, never on the owner's Mac",
     "Only the orchestrator edits ledger status; each ticket's evidence lives in its own file under docs/metis-2.0/evidence/records/",
-    "release/1.9.x is cut at the 1.9.7 tag with a backport rule: fix on main first and cherry-pick with the same test; where the code has moved, write the 1.9.x fix against release/1.9.x and link both"
+    "release/1.9.x is cut at the provenance commit, the commit in the promoted 1.9.7 candidate's provenance.json (D-34), with a backport rule: fix on main first and cherry-pick with the same test; where the code has moved, write the 1.9.x fix against release/1.9.x and link both"
    ],
    "verification": [
     "node --test scripts/program/claims-check.test.mjs",
@@ -17715,7 +17729,7 @@
      "LOCALLY_TESTED"
     ]
    },
-   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED. 2026-09-29 (lead, EC triage): 2026-09-29 EC triage: repoint acceptance 1 from docs/metis-2.0/INTEGRATION.md, which was never created, to docs/metis-2.0/runbooks/integration.md (PR #5, a1c9f9b). In scope_paths, replace docs/metis-2.0/INTEGRATION.md with docs/metis-2.0/runbooks/integration.md. scripts/program/claims-check.mjs and claims-check.test.mjs are public-repo paths delivered by M2-0465 (slice M2-0188.2), whose Build & Test run supplies the pending LOCALLY_TESTED record. The verification commands run in CI only (D-28, runbook §12), which also supersedes acceptance 4's 'local runs are targeted files under the hermetic harness'. The release/1.9.x cut still waits for the 1.9.7 tag (M2-0046)."
+   "notes": "2026-09-29 (lead, evidence audit): DONE -> ENGINEERING_COMPLETE; a merge proves DESIGNED and, on the public repo, LOCALLY_TESTED only — pending evidence: LOCALLY_TESTED. 2026-09-29 (lead, EC triage): 2026-09-29 EC triage: repoint acceptance 1 from docs/metis-2.0/INTEGRATION.md, which was never created, to docs/metis-2.0/runbooks/integration.md (PR #5, a1c9f9b). In scope_paths, replace docs/metis-2.0/INTEGRATION.md with docs/metis-2.0/runbooks/integration.md. scripts/program/claims-check.mjs and claims-check.test.mjs are public-repo paths delivered by M2-0465 (slice M2-0188.2), whose Build & Test run supplies the pending LOCALLY_TESTED record. The verification commands run in CI only (D-28, runbook §12), which also supersedes acceptance 4's 'local runs are targeted files under the hermetic harness'. The release/1.9.x cut still waits for the 1.9.7 tag (M2-0046). 2026-10-03 (lead, D-34): acc 6 amended; the cut waits for ACCEPTED on M2-0046 and is made at the provenance commit, since no 1.9.7 tag exists in the app repository."
   },
   {
    "id": "M2-0189",
@@ -32147,13 +32161,11 @@
    "id": "M2-0458",
    "title": "Make Windows Portable QA-only: stop promoting and publishing Metis-Portable, keep it as a non-promotable QA build, and fix the docs",
    "wave": "W2",
-   "milestone": "m4",
+   "milestone": "m3",
    "type": "fix",
    "owner_model": "sonnet",
    "priority": "P2",
-   "depends_on": [
-    "M2-0046"
-   ],
+   "depends_on": [],
    "kit_refs": [],
    "finding_refs": [
     "M2-0018-F11",
@@ -32181,7 +32193,7 @@
     "qa-candidate.yml still builds and launch-checks the Portable exe as QA coverage and stages it under its own non-promotable artifact",
     "release.yml's Windows artifact and publish sets no longer include Metis-Portable-*.exe, and a check fails the job if a Portable exe reaches the upload set",
     "docs/INSTALL.md, docs/ENTERPRISE-DEPLOY-WINDOWS.md, docs/ENTERPRISE_RELEASE.md and the build-installers.mjs help text describe Portable as a QA-only, non-updating build. Managed and kiosk guidance points only to the Setup installer (silent per-user install)",
-    "LEAD_ACTION: before dispatch, confirm with the owner that Portable becomes QA-only, and whether 1.9.7 (M2-0046) still ships Portable. If it does, merge this into m2/integration only after the 1.9.7 candidate commit is fixed on main, because this changes the promotable and publish sets. If he wants a public manual channel instead, switch to that branch of acceptance line 1 and add a Portable lifecycle row to M2-0453"
+    "LEAD_ACTION: OD-53 (2026-10-03): the owner chose 'Portable is not a promotable 1.9.7 asset'. This ticket lands before the 1.9.7 cut (M2-0498 and M2-0046 depend on it): provenance.mjs drops Metis-Portable from the promotable set, so check.mjs --release, the ACCEPTED owner_statement, 1.9.7.md and promote-candidate.yml name only the DMG, ZIP and Setup sha256s. Portable stays a QA artifact (acceptance line 6)."
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -32199,7 +32211,7 @@
    "status": "TODO",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0458, audited); unblocks M2-0018."
+   "notes": "2026-09-29 (lead): filed from the EC evidence triage (codex-queue/logs/gap-tickets-draft-2026-09-29.json, draft M2-0458, audited); unblocks M2-0018. 2026-10-03 (lead): OD-53 makes Metis-Portable a non-promotable QA artifact for 1.9.7, which answers acc 9: merge before the 1.9.7 cut. The dependency on M2-0046 is dropped (it would be a cycle); M2-0458 is now a dependency of M2-0046 and M2-0498, milestone m3. The placement note in the summary is superseded."
   },
   {
    "id": "M2-0459",
@@ -34531,7 +34543,8 @@
     "M2-0530",
     "M2-0535",
     "M2-0202",
-    "M2-0542"
+    "M2-0542",
+    "M2-0458"
    ],
    "kit_refs": [],
    "finding_refs": [
@@ -34620,7 +34633,7 @@
    "status": "ENGINEERING_COMPLETE",
    "needs_decision": [],
    "slices": [],
-   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited).",
+   "notes": "2026-09-29 (lead): 1.9.7 full-qualification producer (OD-31), draft NEW-R2 in codex-queue/logs/qual-197-tickets-draft-2026-09-29.json (audited). 2026-10-03 (lead): acc 9 in part: D-34 recorded in DECISIONS.md §D; M2-0046 acc 9 and M2-0188 acc 6 now say the provenance commit, and M2-0187 acc 5's stale tag clause is corrected (it never named the 1.9.7 tag). Still open from acc 9: the M2-0479 and M2-0199 app.version parser for 1.9.7-hotfix.N (owner-soak verdict.mjs requires exactly 1.9.7; M2-0479 is DONE, so this needs a new ticket) and M2-0206's version-order preflight reusing versionForRefProblems.",
    "evidence": {
     "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/349",
     "merged_into": "m2/integration (squash)",
@@ -37439,6 +37452,53 @@
     "CI Build & Test: xcodebuild test for native-app/App on macos-latest"
    ],
    "notes": "2026-10-03 (lead): filed under OD-56; cut before the D-14 list if the OD-50 checkpoint triggers."
+  },
+  {
+   "id": "M2-0549",
+   "title": "Evidence schema: the owner-runner label metis-owner-mac binds to kind owner-mac and needs ci_run_id, like a hosted-runner record (OD-46, OD-26)",
+   "wave": "W1",
+   "milestone": "m3",
+   "type": "ci",
+   "owner_model": "sonnet",
+   "priority": "P1",
+   "depends_on": [],
+   "kit_refs": [],
+   "finding_refs": [
+    "OD-46",
+    "OD-26",
+    "READINESS-197-2026-10-03-N13"
+   ],
+   "scope_paths": [
+    "scripts/evidence/record.mjs",
+    "scripts/evidence/record.test.mjs",
+    "scripts/evidence/check.mjs",
+    "scripts/evidence/check.test.mjs"
+   ],
+   "summary": "The strict ST-1 fifo and control jobs run on the owner's self-hosted runner (OD-46, label metis-owner-mac, M2-0537), so their records come from an Actions run in the owner's own Mac account. record.mjs already accepts them as kind owner-mac with host metis-owner-mac: owner-mac is a known kind and the label matches HOST_RE. It does not enforce the two rules SCHEMA.md section 6 step 7 asks the lead to check by hand: any kind can claim the label, and ci_run_id is optional on those records, while a hosted-runner record must carry it (record.mjs recordProblems; check.mjs --release bindingProblem). This ticket enforces both: the label is valid only with kind owner-mac, and it needs ci_run_id at HOST_CONFIGURED, LIVE_VERIFIED and MEASURED. hosted-runner stays limited to the GitHub-hosted images macos-latest and windows-latest.",
+   "acceptance": [
+    "recordProblems rejects a record whose environment.host is metis-owner-mac and whose kind is neither owner-mac nor hosted-runner, with an environment.kind problem that names the label. kind hosted-runner with that host keeps exactly today's hosted-runner host message and no other environment problem.",
+    "recordProblems rejects a metis-owner-mac record at HOST_CONFIGURED, LIVE_VERIFIED or MEASURED that has no ci_run_id ('ci_run_id: required for a metis-owner-mac <LEVEL> record', the same shape as the hosted-runner message) and accepts it with ci_run_id. DESIGNED and ACCEPTED are unaffected, as for hosted-runner; LOCALLY_TESTED stays rejected by the existing kind 'ci' rule.",
+    "The label and the 'a runner record needs ci_run_id' predicate are defined once in record.mjs and exported. check.mjs imports them and repeats neither the string nor the rule.",
+    "check.mjs --release: bindingProblem treats a metis-owner-mac record with no ci_run_id the way it treats a hosted-runner one. The record does not meet the row, and the problem line names the label. A new test beside R3 proves it.",
+    "Unchanged: the hosted-runner host list and its messages; R6d (every other kind keeps the generic host-label rule, including owner-mac on any other valid label); every existing record.test.mjs and check.test.mjs test, unedited; every other mode, rule and message. No new dependency.",
+    "The record.mjs comment above HOSTED_RUNNER_HOSTS and the check.mjs header line on ci_run_id describe both runner records: hosted-runner, and owner-mac on metis-owner-mac."
+   ],
+   "verification": [
+    "CI Build & Test (record.test.mjs and check.test.mjs run in CI only, D-28)"
+   ],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "risk": "low",
+   "estimate_hours": 2,
+   "validation_hours": 0.5,
+   "status": "TODO",
+   "needs_decision": [],
+   "slices": [],
+   "notes": "2026-10-03 (lead): filed from readiness N13. Not a dependency of M2-0046: records already validate under today's code, SCHEMA.md section 6 step 7 makes the lead check both rules by hand, and a candidate-bound gate row already pins each record to the candidate run and bytes (build_run_id, artifact_sha256). If it is to govern the 1.9.7 release-check, it must reach main first, because program-audit.yml's checker-ref defaults to main. scripts/evidence/ is not in qa-candidate.yml's pull_request paths, so its PR never queues on the owner runner (N19), and it is not installer content, so the OD-45/OD-47 merge deferral does not apply. When it merges, the lead moves the two rules from SCHEMA.md section 6 step 7 into section 3 and drops 'not enforced yet'. No existing record uses the label (evidence/records/ has no .jsonl files), so nothing needs re-filing."
   }
  ]
 }
