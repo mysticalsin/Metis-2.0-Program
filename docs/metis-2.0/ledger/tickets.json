@@ -645,6 +645,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "OD-58 (owner Mac runner online per cut window), OD-59 (1.9.9 fuses: RunAsNode stays on; M2-0558 acceptance), OD-60 (Laya deferred past 2.0: M2-0312, M2-0570 DEFERRED; M2-0124 split, container half M2-0571 DEFERRED; D-23 ANSWERED_CHANGED), OD-61 (Cloudflare tokens in a protected staging environment; M2-0566); D-36 OPEN."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-62 (OS-synthesized input counts for takeover: M2-0089, M2-0280), OD-63 (one owner-runner camera job: filed M2-0572, M2-0084 depends on it), OD-64 (M2-0067 real-dataless timings from the owner's daily 1.9.9 use via M2-0564); gap-review text corrections on M2-0075 and M2-0089."
   }
  ],
  "tickets": [
@@ -5303,7 +5309,8 @@
     "Reconcile is metadata-only every 60 s while active and 10 min while parked; bodies read only on (size, mtime) change and when local",
     "Corrupt index rebuilt from a listing (IX-1)",
     "Multiple historical meetings roots detected and reconciled",
-    "Slice .3 adds a candidate-scenarios scenario history-index. It installs the candidate DMG by sha256 on a fresh hosted profile seeded with 500 synthetic meetings plus the synthetic-dataless placeholders. A meeting-count option is added to scripts/qa/census/profile.mjs, and the census default of 59 is unchanged. The scenario opens and searches History through the real History view over CDP at least 30 times, so every request carries a requestId trace. It reads the history.request audit records and reports p50/p95/max per stage (queueMs, mainMs, ipcMs, renderMs) and end to end, plus row and not-downloaded row counts. The report is content-free and carries the M2-0467 lane fields. The ST-1 harness and its History row are not changed"
+    "Slice .3 adds a candidate-scenarios scenario history-index. It installs the candidate DMG by sha256 on a fresh hosted profile seeded with 500 synthetic meetings plus the synthetic-dataless placeholders. A meeting-count option is added to scripts/qa/census/profile.mjs, and the census default of 59 is unchanged. The scenario opens and searches History through the real History view over CDP at least 30 times, so every request carries a requestId trace. It reads the history.request audit records and reports p50/p95/max per stage (queueMs, mainMs, ipcMs, renderMs) and end to end, plus row and not-downloaded row counts. The report is content-free and carries the M2-0467 lane fields. The ST-1 harness and its History row are not changed",
+    "OD-64 (owner, 2026-10-03): requestId stage timings with real cloud placeholder files come from the owner's normal daily use of the T1 owner-channel build (1.9.9), read from M2-0564's content-free diagnostics summary; no test runs on the owner Mac (D-28)"
    ],
    "verification": [
     "npx vitest run src/main/infra/storage",
@@ -5313,7 +5320,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "raised_on": "2026-10-03",
+    "unblock_step": "After at least five working days of normal use of 1.9.9 (T1, M2-0206) with History, the owner exports the content-free diagnostics summary from the tray and hands it to the lead, who files the MEASURED record (kind owner-mac) for the real-dataless timings (OD-64)."
+   },
    "flag": null,
    "risk": "high",
    "estimate_hours": 10,
@@ -5379,7 +5390,8 @@
    "status": "TODO",
    "slice_current": 1,
    "slicing_note": "Builds on M2-0193 (History on the storage gateway). Beyond the ticket scope: co-located tests, scripts/qa/ix-suite.mjs (named in the ticket's verification but absent from the repo), a candidate-roots export in infra/storage/paths.ts, and in .3 one call site each in index.ts (start the reconciler with the parked signal) and transcripts.ts (write-through on save, per ARCHITECTURE C5). Without write-through, a newly saved meeting would take up to 10 minutes to appear in History while the app is parked.",
-   "notes": "2026-10-03 (lead): depends on M2-0564, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Removes the QA-account host, which no longer exists, without inventing a new one. Names a hosted lane for the synthetic packaged half, which slice .3's title promises but its scope does not hold (about 3 h). Slice .3's acceptance repeats acc[0] word for word and must change the same way; the schema cannot edit slices. The scenario drives the real History view, because direct recallList calls (the"
+   "notes": "2026-10-03 (lead): depends on M2-0564, the producer of its evidence (gap review). 2026-10-03 (lead, evidence-producer gap review): amended — Removes the QA-account host, which no longer exists, without inventing a new one. Names a hosted lane for the synthetic packaged half, which slice .3's title promises but its scope does not hold (about 3 h). Slice .3's acceptance repeats acc[0] word for word and must change the same way; the schema cannot edit slices. The scenario drives the real History view, because direct recallList calls (the 2026-10-03 (lead): OD-64 settles where the real-dataless History timings come from.",
+   "engineering_first": true
   },
   {
    "id": "M2-0068",
@@ -6261,12 +6273,20 @@
     "src/renderer/src/components/RecallView.tsx",
     "src/renderer/src/components/Review.tsx",
     "src/renderer/src/components/BrainView.tsx",
-    "intelligence/src/views/GraphView.tsx"
+    "intelligence/src/views/GraphView.tsx",
+    ".github/workflows/m2-0075-virtual-list.yml",
+    "scripts/qa/virtual-list-measure.mjs",
+    "scripts/qa/virtual-list-measure.tsx",
+    "scripts/qa/virtual-list-measure.html",
+    "scripts/qa/virtual-list-measure.vite.config.ts",
+    "src/renderer/src/ui/VirtualList.tsx",
+    "src/renderer/src/ui/virtual-list.test.tsx",
+    "intelligence/src/views/GraphRows.tsx"
    ],
    "summary": "No list in the app is virtualized, so long libraries and transcripts render every row. Adopt one virtualization primitive across the four surfaces.",
    "acceptance": [
     "One virtualization primitive used by all four lists",
-    "A 5,000-row fixture keeps frames at or under 16 ms, measured on real Chromium (Playwright against the built renderer or the packaged app), not jsdom",
+    "A 5,000-row fixture for each of the four lists, rendered with the real row components and scrolled end to end on real Chromium (Playwright against the built renderer or the packaged app, not jsdom) by the workflow_dispatch job this ticket adds (.github/workflows/m2-0075-virtual-list.yml), stays within budget: p95 of frame intervals at or under 16.7 ms (PLAN section 9.2) and p95 of per-frame main-thread work at or under 16 ms, where a frame's work includes the scroll handler and list re-render that run in it. The uploaded report gives, per list, both p95 values, the max frame interval, dropped frames, sample count, the runner image and the commit",
     "Rows memoized with stable keys"
    ],
    "verification": [
@@ -6289,7 +6309,7 @@
    "due": null,
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its MEASURED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead, evidence-producer gap review): text corrected — The implementer is building the measurement job in paths outside scope_paths, and the merge queue's gate guard will hold the PR over the workflow file. Its report also has no frame-time p95, the statistic the external_blocker files, and a frame-interval p95 under 16 ms cannot pass at 60 Hz, so the a"
   },
   {
    "id": "M2-0076",
@@ -7101,7 +7121,8 @@
    "depends_on": [
     "M2-0082",
     "M2-0007",
-    "M2-0028"
+    "M2-0028",
+    "M2-0572"
    ],
    "needs_decision": [],
    "kit_refs": [
@@ -7149,7 +7170,7 @@
     "Every success reports 'verified' only after AX readback; native drain before handoff",
     "native/mac-helper/main.swift changes land after M2-0028 in the helper order (M2-0188)",
     "Slice .5 (packaged evidence): a candidate-scenarios scenario mac-desktop-actions installs the candidate DMG by sha256 on a fresh hosted macos-latest profile (OD-26). As runner-only test setup, which the product never does, it seeds Accessibility for the installed app and its helper and Automation of Notes. It does this by extending the lane's existing grant-gui step (guiScriptingGrants), using bundle-id rows like the M2-0472 row B probe. It then runs UC-009..016 against Notes and the CI-built fixture app bundles from .2: open, focus, switch, graceful close, unsaved work behind approval, approved force quit, not-installed as unsupported, and the exact Notes create and append. Each result is 'verified' only after AX readback, and approvals go through the real approval control over CDP. The content-free report carries the M2-0467 lane fields and one verdict per UC. If a seeded grant does not take effect (the helper's Accessibility trust check stays false), the AX rows report BLOCKED_EXTERNAL with that reason. A Notes first-run sheet that blocks the run is PRECONDITION, never PASS",
-    "Camera row on hosted bytes: the report records the runner's camera device count. With no camera, an approved shutter returns a typed unavailable result and never 'verified'. The positive 'photo taken' row stays BLOCKED_EXTERNAL, with the owner's decision on a camera host as its unblock step"
+    "Camera row on hosted bytes: the report records the runner's camera device count. With no camera, an approved shutter returns a typed unavailable result and never 'verified'. The positive 'photo taken with explicit approval' row comes from M2-0572's owner-runner camera job (OD-63) on the same candidate"
    ],
    "verification": [
     "npx vitest run src/main/desktop-adapters.test.ts",
@@ -7159,7 +7180,11 @@
     "LOCALLY_TESTED",
     "LIVE_VERIFIED"
    ],
-   "external_blocker": null,
+   "external_blocker": {
+    "owner": "Program owner (Tony)",
+    "raised_on": "2026-10-03",
+    "unblock_step": "For the candidate this ticket ships in, the owner grants Camera to that installed candidate once on the owner Mac (ad-hoc signed bytes have a new privacy identity per build, OD-32); the lead then dispatches M2-0572's owner camera job on main and files the photo row's LIVE_VERIFIED record (kind owner-mac) from its content-free report."
+   },
    "flag": null,
    "risk": "medium",
    "estimate_hours": 17.0,
@@ -7237,7 +7262,8 @@
    "status": "TODO",
    "slice_current": 1,
    "slicing_note": "Every macOS path in desktop-adapters.ts (268 lines) returns outcome 'unknown' today, and mac-helper main.swift has no AX commands. .1 therefore builds the readback primitive, and the 'verified-only-after-readback' rule that every later slice relies on. New action ids for focus, switch, close and force-quit need src/shared/desktop-actions.ts (DESKTOP_ADAPTER_IDS / DesktopActionArgs). That file is outside the ticket's scope_paths, so add it to scope before .2 starts. Every main.swift change keeps the M2-0188 helper landing order after M2-0028. Helper tests run in CI only (D-28). Approval gates depend on the M2-0082 capability registry and typed results.",
-   "notes": "2026-10-03 (lead, OD-56): amended — Critique KEEP: a prefix or substring fallback can launch the wrong app; exact match with a disclosed proposal for anything looser. Lands in .2 (5 h -> 6 h). 2026-10-03 (lead, evidence-producer gap review): amended — Mirrors M2-0085.3, which keeps the Windows actions suite inside the feature ticket. This adds a slice .5 of about 5 h. The lead should also add an external_blocker like M2-0085's (T2 candidate, hosted macos-latest, ci_run_id, build_run_id, artifact_sha256) and swap the verification line for the candidate-scenarios dispatch; the amendment schema cannot edit either. No depends_on is added. M2-0469 ("
+   "notes": "2026-10-03 (lead, OD-56): amended — Critique KEEP: a prefix or substring fallback can launch the wrong app; exact match with a disclosed proposal for anything looser. Lands in .2 (5 h -> 6 h). 2026-10-03 (lead, evidence-producer gap review): amended — Mirrors M2-0085.3, which keeps the Windows actions suite inside the feature ticket. This adds a slice .5 of about 5 h. The lead should also add an external_blocker like M2-0085's (T2 candidate, hosted macos-latest, ci_run_id, build_run_id, artifact_sha256) and swap the verification line for the candidate-scenarios dispatch; the amendment schema cannot edit either. No depends_on is added. M2-0469 ( 2026-10-03 (lead): OD-63 — the positive camera row comes from M2-0572 (one owner-runner camera job).",
+   "engineering_first": true
   },
   {
    "id": "M2-0085",
@@ -7767,13 +7793,23 @@
    ],
    "finding_refs": [],
    "scope_paths": [
-    "src/main/features/actions/input-lease.ts"
+    "src/main/features/actions/input-lease.ts",
+    "scripts/qa/candidate-scenarios.mjs",
+    "scripts/qa/candidate-scenarios.test.ts",
+    "scripts/ci/candidate-scenarios-workflow.contract.test.ts",
+    ".github/workflows/candidate-scenarios.yml",
+    "scripts/qa/input-takeover.mjs",
+    "scripts/qa/input-takeover.test.ts",
+    "native/mac-helper/main.swift"
    ],
    "summary": "Only one party may drive keyboard and pointer at a time, and a human always wins.",
    "acceptance": [
     "One physical input owner lease",
-    "Human mouse/keyboard takeover stops agent input within 100 ms, measured with real input on the packaged app on the QA account and the Windows laptop",
-    "Concurrent actions serialized; recovery after driver crash"
+    "Human mouse/keyboard takeover stops agent input within 100 ms on the packaged candidate. It is measured through the candidate-scenarios lane on hosted macos-latest and windows-latest (OD-26), with pointer and key events posted by a separate driver process, and the report names the stimulus kind. The owner rules whether driver-posted input meets CXAC-10's 'physically'. If the ruling requires physical input, a physical-input row is reported BLOCKED_EXTERNAL with that ruling as its unblock step. The Windows-laptop row is a stated residual (OD-38)",
+    "Concurrent actions serialized; recovery after driver crash",
+    "Slice .3 adds a candidate-scenarios scenario input-takeover on macOS and Windows. Métis holds the input lease and injects paced events into a CI-built fixture window. Meanwhile a separate driver process posts pointer and key events (CGEventPost on macOS, SendInput on Windows). The content-free report carries the M2-0467 lane fields, the revocation latency (p50/p95/max over at least 30 trials), the count of agent events dispatched after revocation (it must be 0), the stimulus kind and the agent-input source",
+    "The agent input runs through the lease. It comes either from a shipped injection path the scenario triggers over CDP, or from a pacing hook that exists only in QA-identity bytes and is compiled out of shipping bytes under the M2-0494 guards. An OS with neither reports PRECONDITION with that reason, never PASS. Until M2-0280 generalises the own-input tag, the detector ignores only events from Métis's own injection path: the source process on macOS, and Métis's own extra-info marker on Windows. Runner-only TCC grants for the helper and the driver (Accessibility, Input Monitoring) are seeded by extending the lane's existing grant-gui step (guiScriptingGrants). A grant that does not take effect makes that OS row BLOCKED_EXTERNAL with the reason. So does a Windows runner with no interactive input desktop, as shown by the M2-0196 probe",
+    "OD-62 (owner, 2026-10-03): on hosted runners, pointer and key events posted through the OS (CGEventPost on macOS, SendInput on Windows) by a separate driver process count as real human input for takeover; takeover from a physical device is a stated residual"
    ],
    "verification": [
     "npx vitest run src/main/features/actions/input-lease.test.ts"
@@ -7843,7 +7879,7 @@
    "slice_current": 1,
    "slicing_note": "The ticket's only scope path is input-lease.ts; tests sit beside it. Nothing in the repo senses human input today (no CGEventTap, GetLastInputInfo or uiohook; powerMonitor idle time is too coarse for 100 ms), so .3 needs an OS input-sensing seam in the native helpers (native/mac-helper, a Windows hook) that is outside the ticket scope: the lead should widen .3's scope or split that seam out. Depends on M2-0082 creating src/main/features/actions/. The packaged 100 ms measurement on the QA account and the Windows laptop is physical-machine work: deliver the tool and CI job, report those rows BLOCKED_EXTERNAL until run.",
    "engineering_first": true,
-   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE."
+   "notes": "2026-10-03 (lead, evidence Rock 3 prep): external_blocker records the step that produces its LIVE_VERIFIED evidence; engineering_first so the queue still builds it; the merge closes it ENGINEERING_COMPLETE. 2026-10-03 (lead, evidence-producer gap review): text corrected — Brings acc[1] in line with OD-26 and OD-38, and makes it checkable without deciding for the owner. Slice .3's acceptance repeats acc[1] word for word, and its SLICE line ('BLOCKED_EXTERNAL until run on those machines') must change the same way; the schema cannot edit slices. native/mac-helper/main.s 2026-10-03 (lead): OD-62 settles what counts as real input for takeover."
   },
   {
    "id": "M2-0090",
@@ -23888,7 +23924,8 @@
     "A semantic or connector action run while another app is frontmost leaves pointer and focused window unchanged, shows 'working in background' and an openable result (Packaged-smoke row on the macOS and Windows runners)",
     "After takeover, resuming requires a fresh observation with valid remaining scope; stale coordinates are never replayed; the registry marks foreground-only capabilities",
     "Foreground pointer and keyboard injection is its own capability, off on a fresh profile; turning it on is an explicit user action (M2-0292 may offer it as an explicit onboarding step), and every dispatch re-reads the setting, so switching it off mid-session drops the next injected event (fresh-profile test and race test on the macOS and Windows adapters)",
-    "Accessibility is requested just in time, when the user first invokes a capability that needs it (foreground injection, M2-0084 AX readback or M2-0276 AX context), never at launch: a fresh-profile launch test shows zero prompting Accessibility trust checks, and a denied request returns the typed Accessibility-denied status (mocked-probe tests)"
+    "Accessibility is requested just in time, when the user first invokes a capability that needs it (foreground injection, M2-0084 AX readback or M2-0276 AX context), never at launch: a fresh-profile launch test shows zero prompting Accessibility trust checks, and a denied request returns the typed Accessibility-denied status (mocked-probe tests)",
+    "OD-62 (owner, 2026-10-03): on hosted runners, pointer and key events posted through the OS (CGEventPost on macOS, SendInput on Windows) by a separate driver process count as real human input for takeover; takeover from a physical device is a stated residual"
    ],
    "verification": [
     "CI Build & Test on the PR",
@@ -23904,7 +23941,7 @@
    "required_evidence": [
     "LOCALLY_TESTED"
    ],
-   "notes": " 2026-10-03 (lead, OD-56): amended — Critique CHANGE: keep injection off on a fresh profile and re-checked at every dispatch, but Accessibility cannot be requested only when that switch turns on, because M2-0084 readback and M2-0276 context also need it; request it just in time, never at launch. The pointer warp-back is deferred after "
+   "notes": "2026-10-03 (lead, OD-56): amended — Critique CHANGE: keep injection off on a fresh profile and re-checked at every dispatch, but Accessibility cannot be requested only when that switch turns on, because M2-0084 readback and M2-0276 context also need it; request it just in time, never at launch. The pointer warp-back is deferred after  2026-10-03 (lead): OD-62 settles what counts as real input for takeover."
   },
   {
    "id": "M2-0281",
@@ -39467,6 +39504,57 @@
     "npx vitest run operator/src/routes/decide.test.ts"
    ],
    "notes": "2026-10-03 (lead): split from M2-0124 under OD-60; DEFERRED."
+  },
+  {
+   "id": "M2-0572",
+   "wave": "W4",
+   "milestone": "m6",
+   "type": "ci",
+   "owner_model": "opus",
+   "priority": "P2",
+   "kit_refs": [],
+   "depends_on": [
+    "M2-0537",
+    "M2-0538",
+    "M2-0549"
+   ],
+   "needs_decision": [],
+   "slices": [],
+   "required_evidence": [
+    "LOCALLY_TESTED"
+   ],
+   "evidence_target": "LOCALLY_TESTED",
+   "external_blocker": null,
+   "flag": null,
+   "status": "TODO",
+   "estimate_hours": 6,
+   "risk": "medium",
+   "finding_refs": [
+    "OD-63 (owner, 2026-10-03): the camera row of M2-0084 runs as one job on the owner Mac runner, a scoped D-28 exception beyond OD-46"
+   ],
+   "scope_paths": [
+    ".github/workflows/owner-camera.yml",
+    "scripts/qa/owner-camera.mjs",
+    "scripts/qa/owner-camera.test.ts",
+    "scripts/ci/owner-runner/",
+    "docs/metis-2.0/runbooks/test-isolation.md"
+   ],
+   "title": "One owner-runner camera job that proves M2-0084's 'photo taken with explicit approval' row on the candidate (OD-63)",
+   "summary": "Hosted macOS runners have no camera, so M2-0084's positive camera row cannot be proven in CI. OD-63 allows exactly one camera job on the owner Mac runner (label metis-owner-mac), a scoped D-28 exception beyond OD-46. The job installs the candidate by sha256 into a job-scoped location with a throwaway profile, drives the approved camera action through the shipped path and reports only content-free facts.",
+   "acceptance": [
+    "A workflow_dispatch-only job, refused on any ref other than main and never triggered by pull_request or a fork, runs on [self-hosted, metis-owner-mac] under the owner-runner sandbox with the M2-0538 fail-closed probe first; the only access it adds is the camera device, and the sandbox diff states it",
+    "It installs the candidate DMG by provenance-verified sha256 into a job-scoped folder, runs it on a throwaway profile, and drives the approved photo action through the shipped desktop-action path with the explicit approval accepted",
+    "The photo is written only to a job-scoped folder; if the approved action can only save into the owner's own Photo Booth or Pictures library, the job stops with PRECONDITION and the lead brings that trade-off back to the owner instead of touching the owner's files",
+    "The report is content-free: camera device present, approval prompt shown and accepted, one new image file created in the job folder (count and byte size only), the file then deleted; no image bytes, no paths outside the job folder, no account names",
+    "Without the owner's Camera grant for that candidate build the job reports PRECONDITION; it never opens a privacy prompt by itself and never edits the privacy database",
+    "The LIVE_VERIFIED record for M2-0084's photo row is kind owner-mac (M2-0549) with ci_run_id, build_run_id and artifact_sha256",
+    "runbooks/test-isolation.md and the evidence SCHEMA owner-runner section list this job as the only OD-63 exception, next to the OD-46 ST-1 rows"
+   ],
+   "verification": [
+    "PR CI: unit tests for scripts/qa/owner-camera.test.ts and the workflow contract test",
+    "After merge to main and the owner grant: gh workflow run owner-camera.yml --ref main -f candidate_run=<run> -f mac_sha256=<DMG sha256>"
+   ],
+   "notes": "2026-10-03 (lead): filed under OD-63."
   }
  ],
  "decisions": {
