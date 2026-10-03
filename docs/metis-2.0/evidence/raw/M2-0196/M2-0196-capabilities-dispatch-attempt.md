@@ -168,9 +168,9 @@ Local artifact search output:
 
 ```text
 ./.github/workflows/windows-qa.yml
-./docs/metis-2.0/evidence/records/M2-0196-capabilities-dispatch-attempt.md
-./docs/metis-2.0/evidence/records/M2-0196-host-configured-blocker.md
-./docs/metis-2.0/evidence/records/M2-0196-windows-qa-probe-design.md
+./docs/metis-2.0/evidence/raw/M2-0196/M2-0196-capabilities-dispatch-attempt.md
+./docs/metis-2.0/evidence/raw/M2-0196/M2-0196-host-configured-blocker.md
+./docs/metis-2.0/evidence/raw/M2-0196/M2-0196-windows-qa-probe-design.md
 ```
 
 Sixth re-attempt timestamp: 2026-09-28T02:55:56Z.
@@ -232,9 +232,9 @@ Fresh local artifact search relevant output:
 
 ```text
 ./.github/workflows/windows-qa.yml
-./docs/metis-2.0/evidence/records/M2-0196-capabilities-dispatch-attempt.md
-./docs/metis-2.0/evidence/records/M2-0196-host-configured-blocker.md
-./docs/metis-2.0/evidence/records/M2-0196-windows-qa-probe-design.md
+./docs/metis-2.0/evidence/raw/M2-0196/M2-0196-capabilities-dispatch-attempt.md
+./docs/metis-2.0/evidence/raw/M2-0196/M2-0196-host-configured-blocker.md
+./docs/metis-2.0/evidence/raw/M2-0196/M2-0196-windows-qa-probe-design.md
 ```
 
 ## Read-only workflow presence checks
