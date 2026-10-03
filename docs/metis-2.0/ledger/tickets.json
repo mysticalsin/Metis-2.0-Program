@@ -38534,7 +38534,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "estimate_hours": 3,
    "risk": "low",
    "finding_refs": [
@@ -38559,7 +38559,14 @@
     "PR CI: unit tests for scripts/qa/census/park.test.ts and lib.test.ts",
     "After merge to main (both workflows run only on refs/heads/main): gh workflow run resource-census.yml --ref main -f release_repo=mysticalsin/Metis-Releases -f release_tag=v1.9.6-unsigned"
    ],
-   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis."
+   "notes": "2026-10-03 (lead): filed from the N8/N10 readiness diagnosis.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/482",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0554",
