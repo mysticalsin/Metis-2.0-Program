@@ -426,6 +426,93 @@ test("fails a parity table without the T1..T3 and rc1 refresh points", () => {
   assert.match(capabilityErrors(noRefresh), /label refresh at rc1/);
 });
 
+const ownerReferenceFixture = (overrides = {}) => ({
+  schema: "metis.owner-reference-dispositions.v1",
+  reference: "owner:OREF-01",
+  cov_links: ["COV-43"],
+  capabilities: [
+    {
+      id: "OREF-CAP-01",
+      capability: "On-device OCR with word boxes",
+      disposition: "adopt-behaviour",
+      owner: "M2-0545",
+    },
+    {
+      id: "OREF-CAP-02",
+      capability: "Grounding manifest for the planner",
+      disposition: "already-covered",
+      owner: "M2-0546",
+    },
+    {
+      id: "OREF-CAP-03",
+      capability: "Phone voice front end and local network control",
+      disposition: "conflicts",
+      owner: "EXCLUDED",
+      reason: "Conflicts with OD-12.",
+      citations: ["OD-12"],
+    },
+  ],
+  ...overrides,
+});
+
+const ownerTickets = ["M2-0545", "M2-0546", "M2-0547", "M2-0548"].map((id) => baseTicket({ id, kit_refs: [] }));
+const ownerReferenceErrors = (ownerReferenceDispositions) =>
+  computeTraceability({
+    inventory,
+    ledger: { tickets: [baseTicket(), ...ownerTickets] },
+    decisionsText: "",
+    blockersText: "",
+    ownerReferenceDispositions,
+  }).errors.join("\n");
+
+test("accepts owner reference dispositions that cite COV-43 and known M2 owners", () => {
+  assert.equal(ownerReferenceErrors(ownerReferenceFixture()), "");
+});
+
+test("fails owner reference dispositions with no disposition or bad ownership", () => {
+  const noDisposition = ownerReferenceFixture();
+  delete noDisposition.capabilities[0].disposition;
+  assert.match(ownerReferenceErrors(noDisposition), /OREF-CAP-01: missing disposition/);
+
+  const missingTicket = ownerReferenceFixture();
+  missingTicket.capabilities[0].owner = "M2-9999";
+  assert.match(ownerReferenceErrors(missingTicket), /OREF-CAP-01: owner M2-9999 is a missing ticket/);
+
+  const badOwner = ownerReferenceFixture();
+  badOwner.capabilities[0].owner = "EXCLUDED";
+  assert.match(ownerReferenceErrors(badOwner), /OREF-CAP-01: owner must be an M2 ticket/);
+
+  const unknownOwner = ownerReferenceFixture();
+  unknownOwner.capabilities[1].owner = "OWNER";
+  assert.match(ownerReferenceErrors(unknownOwner), /OREF-CAP-02: owner must be an M2 ticket/);
+
+  const badExcludedOwner = ownerReferenceFixture();
+  badExcludedOwner.capabilities[2].owner = "M2-0547";
+  assert.match(ownerReferenceErrors(badExcludedOwner), /OREF-CAP-03: owner must be EXCLUDED/);
+});
+
+test("fails owner reference dispositions with missing COV-43, uncited conflicts or source details", () => {
+  const missingCov = ownerReferenceFixture({ cov_links: ["COV-18"] });
+  assert.match(ownerReferenceErrors(missingCov), /missing COV-43 link/);
+
+  const conflictWithoutCitation = ownerReferenceFixture();
+  conflictWithoutCitation.capabilities[2].reason = "Conflicts with the roadmap.";
+  conflictWithoutCitation.capabilities[2].citations = [];
+  assert.match(ownerReferenceErrors(conflictWithoutCitation), /OREF-CAP-03: conflicts rows need an OD or COV citation/);
+
+  const sourcePath = ownerReferenceFixture();
+  sourcePath.capabilities[0].detail = "Keep implementation notes out of src/main/example.ts";
+  assert.match(ownerReferenceErrors(sourcePath), /OREF-CAP-01: row must not contain source-file paths/);
+
+  const fileLine = ownerReferenceFixture();
+  fileLine.capabilities[1].detail = "Keep file:line notes out of example.ts:12";
+  assert.match(ownerReferenceErrors(fileLine), /OREF-CAP-02: row must not contain source-file paths/);
+
+  const forbiddenField = ownerReferenceFixture();
+  forbiddenField.capabilities[0].function = "private detail";
+  assert.match(ownerReferenceErrors(forbiddenField), /OREF-CAP-01 contains forbidden field function/);
+});
+
 test("required acceptance ids must exist and be named in a mapped ticket acceptance", () => {
   const flowInventory = { rows: [{ ...inventory.rows[0], id: "HM-FLOW-01", family: "HMFLOW" }] };
   const run = (inv, ticket) =>

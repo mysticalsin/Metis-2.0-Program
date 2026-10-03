@@ -6,7 +6,7 @@ Ticket M2-0261. One row for every `R` id (R01 to R93) and every `REF` id (17 in 
 
 Labels: **OBSERVED** = read in this worktree, with the file cited. **DERIVED** = conclusion drawn by M2-0261 from OBSERVED rows. **ASSUMED** = inferred, not proven. **UNKNOWN** = not knowable from here. `LEAD_ACTION:` lines are steps only the lead may do.
 
-Sources: M = `docs/metis-2.0/kit/r11/spec/MASTER.md` (section 24 for R rows, section 19 for the adoption starting decisions); HS = `docs/metis-2.0/kit/v5/baseline/Metis-HeyClicky-Interaction-Upgrade.x/Metis-HeyClicky-Interaction-Upgrade/evidence/sources.json` (retrieved_on 2026-09-25); V6 = `docs/metis-2.0/kit/v6/evidence/SOURCE-REGISTER.json` (checked_on 2026-09-26); INV = `docs/metis-2.0/kit/ID-INVENTORY.json`.
+Sources: M = `docs/metis-2.0/kit/r11/spec/MASTER.md` (section 24 for R rows, section 19 for the adoption starting decisions); HS = `docs/metis-2.0/kit/v5/baseline/Metis-HeyClicky-Interaction-Upgrade.x/Metis-HeyClicky-Interaction-Upgrade/evidence/sources.json` (retrieved_on 2026-09-25); V6 = `docs/metis-2.0/kit/v6/evidence/SOURCE-REGISTER.json` (checked_on 2026-09-26); INV = `docs/metis-2.0/kit/ID-INVENTORY.json`; OD = `docs/metis-2.0/DECISIONS.md` OD-56; L = `docs/metis-2.0/ledger/tickets.json` M2-0544.
 
 Key column: `kit:id`, the same key the traceability matrix uses. `r11:R25` is R25 of the r11 registry, `hc-kit:REF-01` is REF-01 of the HeyClicky interaction kit (`Metis-HeyClicky-Interaction-Upgrade`) and `v6:REF-01` is REF-01 of the v6 kit. The two REF namespaces overlap on purpose and stay distinct.
 
@@ -173,16 +173,25 @@ Source for every row: V6 (checked_on 2026-09-26, `upstream_commits_pinned_here` 
 | v6:REF-15 | Hindsight reflect API page | REFERENCE | Page read 2026-09-26; version not pinned | LIC-DOC | SEC-DOC; source-dependency sections read | adopt as an API reference | OBSERVED V6 REF-15 |
 | v6:REF-16 | Hindsight documents API page | REFERENCE | Page fetched 2026-09-26; version not pinned | LIC-DOC | SEC-DOC; fetched for storage and lifecycle reference | adopt as an API reference | OBSERVED V6 REF-16 |
 
-## 4. Coverage and what this register does not prove
+## 4. Owner-supplied references outside the inventory namespace
+
+| Key | Reference | Kind | Pin | Licence | Security notes | Decision | Label and source |
+|---|---|---|---|---|---|---|---|
+| owner:OREF-01 | Owner-supplied Bluey desktop-assistant reference repository; exact repository locator stays in the private reference register | REFERENCE | Commit UNKNOWN in the public program files; study date 2026-10-03 | no licence file found: treated as all rights reserved (not legal advice) | Never built or run in this program worktree; informs behaviour only; no third-party vulnerability detail is recorded here | adapt: behaviour only; no code, prompt text, assets or character art copied | OBSERVED L M2-0544; OBSERVED OD-56 |
+
+## 5. Coverage and what this register does not prove
 
 - DERIVED: 126 rows = 93 R + 17 hc-kit REF + 16 v6 REF, equal to the INV rows of family R (93) and REF (33). `check-reference-claims.mjs` fails when an inventory R or REF row has no row here, when a cell is empty, or when a decision does not start with adopt, adapt or reject.
+- DERIVED: 1 owner-supplied row is keyed outside the inventory R/REF pattern (`owner:OREF-01`) and is validated for the same eight-column shape, non-empty required cells, kind and decision prefix as inventory rows.
 - UNKNOWN: the licence of every external code repository (R21 to R38, R53, R75, hc-kit:REF-05, hc-kit:REF-14, v6:REF-01 to v6:REF-08, v6:REF-11, v6:REF-12). None was read in this session (no network, D-28). The only licence that is OBSERVED is MIT for the thinking-orbs package (R86).
+- UNKNOWN: the public program files read here do not contain the exact Bluey repository commit. The owner-reference pin must be filled from the private reference register or lead study record before any code, prompt, asset or art reuse decision is made.
 - UNKNOWN: whether any documentation page changed since it was consulted. No page was re-fetched here.
 - ASSUMED: none of the R and REF rows shows current status of an external project; each is a dated observation from the cited kit file.
 - Nothing in this register is runtime proof. A REFERENCE or INPUT row can justify a design decision; it cannot show that Métis or HeyClicky behaves a certain way.
 
-## 5. Lead steps
+## 6. Lead steps
 
+LEAD_ACTION: copy the exact Bluey reference commit SHA and repository locator from the private reference register or lead study record into `owner:OREF-01`'s Pin cell; keep distinctive identifiers out of the public register.
 LEAD_ACTION: on a machine with network access, open each code repository row above at its default branch, record the exact commit SHA and the licence file (SPDX id and blob SHA) into the Pin and Licence cells, and replace LIC-UNKNOWN. This is a read-only step; it is the same evidence M2-0260 needs for its licence manifest.
 LEAD_ACTION: add `node docs/metis-2.0/tools/trace/check-reference-claims.mjs` and `node --test docs/metis-2.0/tools/trace/check-reference-claims.test.mjs` as steps in `.github/workflows/traceability.yml` (this ticket's scope does not include the workflow file), then confirm the run is green.
 LEAD_ACTION: refresh the parity labels in `kit/CAPABILITY-DISPOSITIONS.json` at T1, T2, T3 and rc1 and record any label change as an evidence record; only a local, run-and-observed result may move a row to `verified locally`.

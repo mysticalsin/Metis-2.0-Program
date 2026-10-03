@@ -9,7 +9,8 @@
 // VENDOR_CLAIM, so a vendor feature is never presented as installed behaviour.
 // JSON: the file needs a top-level artifact block with the same four fields, every capability and
 // parity row needs an evidence level, and a row that cites a changelog needs the VENDOR_CLAIM label.
-// REFERENCE-REGISTER.md must have a complete row for every R and REF row of ID-INVENTORY.json.
+// REFERENCE-REGISTER.md must have a complete row for every R and REF row of ID-INVENTORY.json,
+// and complete owner-supplied rows outside that inventory namespace.
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -27,6 +28,8 @@ const SHA256_RE = /\b[0-9a-f]{64}\b/;
 const LEVEL_RE = new RegExp(`\\b(?:${EVIDENCE_LEVELS.join("|")})\\b`);
 const MARKED_LINE_RE = /^\s*(?:[-*]\s*)?(?:ADOPTION|COMPARISON):/;
 const DECISION_RE = /^(?:adopt|adapt|reject)\b/i;
+const INVENTORY_REGISTER_KEY_RE = /^[^:\s]+:(?:R\d{2}|REF-\d{2})$/;
+const OWNER_REGISTER_KEY_RE = /^owner:OREF-\d{2}$/;
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const docsRoot = path.resolve(here, "../..");
@@ -124,11 +127,13 @@ export const registerKey = (row) => `${KIT_ALIASES[row.kit] ?? row.kit}:${row.id
 export function checkReferenceRegister(text, inventoryRows, file = "REFERENCE-REGISTER.md") {
   const errors = [];
   const rows = new Map();
+  const ownerRows = new Map();
   for (const [index, line] of text.split(/\r?\n/).entries()) {
     if (!line.trimStart().startsWith("|") || isSeparator(line)) continue;
     const cells = tableCells(line);
-    if (!/^[^:\s]+:(?:R\d{2}|REF-\d{2})$/.test(cells[0] ?? "")) continue;
-    rows.set(cells[0], { cells, line: index + 1 });
+    const key = cells[0] ?? "";
+    if (INVENTORY_REGISTER_KEY_RE.test(key)) rows.set(key, { cells, line: index + 1 });
+    else if (OWNER_REGISTER_KEY_RE.test(key)) ownerRows.set(key, { cells, line: index + 1 });
   }
   const wanted = inventoryRows
     .filter((row) => row.family === "R" || row.family === "REF")
@@ -152,7 +157,21 @@ export function checkReferenceRegister(text, inventoryRows, file = "REFERENCE-RE
   for (const key of rows.keys()) {
     if (!wantedSet.has(key)) errors.push(`${file}: register row ${key} is not in ID-INVENTORY.json`);
   }
+  for (const [key, row] of ownerRows) {
+    validateRegisterRow(key, row, errors, file);
+  }
   return errors;
+}
+
+function validateRegisterRow(key, row, errors, file) {
+  const [, reference, kind, pin, licence, security, decision, label] = row.cells;
+  const where = `${file}:${row.line} ${key}`;
+  if (row.cells.length !== 8) errors.push(`${where}: expected 8 columns, found ${row.cells.length}`);
+  for (const [name, value] of Object.entries({ reference, pin, licence, security, label })) {
+    if (!value) errors.push(`${where}: empty ${name}`);
+  }
+  if (!REGISTER_KINDS.includes(kind)) errors.push(`${where}: kind must be one of ${REGISTER_KINDS.join(", ")}`);
+  if (!DECISION_RE.test(decision ?? "")) errors.push(`${where}: decision must start with adopt, adapt or reject`);
 }
 
 // The parity table in PORT-DECISIONS.md is a rendering of CAPABILITY-DISPOSITIONS.json: same ids, same labels.

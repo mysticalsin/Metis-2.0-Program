@@ -145,6 +145,27 @@ test("fails a register with a missing row, an empty cell, a bad decision or an u
   assert.match(checkReferenceRegister(badKind, inventoryRows, "r.md").join("\n"), /kind must be one of/);
 });
 
+test("validates owner-supplied reference rows outside the inventory namespace", () => {
+  const ownerRow = registerRow("owner:OREF-01", {
+    reference: "Owner-supplied Bluey reference repository",
+    pin: "Commit UNKNOWN; study date 2026-10-03",
+    licence: "no licence file found: treated as all rights reserved (not legal advice)",
+    security: "Never built or run; informs behaviour only",
+    decision: "adapt: behaviour only; no code, prompt text, assets or character art copied",
+    label: "OBSERVED ledger M2-0544 and DECISIONS OD-56",
+  });
+  assert.deepEqual(checkReferenceRegister([fullRegister, ownerRow].join("\n"), inventoryRows, "r.md"), []);
+
+  const emptyCell = ownerRow.replace("Commit UNKNOWN; study date 2026-10-03", "");
+  assert.match(checkReferenceRegister([fullRegister, emptyCell].join("\n"), inventoryRows, "r.md").join("\n"), /owner:OREF-01: empty pin/);
+
+  const badDecision = ownerRow.replace("adapt: behaviour only", "maybe: behaviour only");
+  assert.match(
+    checkReferenceRegister([fullRegister, badDecision].join("\n"), inventoryRows, "r.md").join("\n"),
+    /owner:OREF-01: decision must start with adopt, adapt or reject/,
+  );
+});
+
 test("fails a parity table row that disagrees with the JSON", () => {
   const dispositions = { parity: [{ id: "CXCAP-01", label: "static" }, { id: "CXCAP-02", label: "missing" }] };
   const rows = ["| Id | Capability | Label |", "|---|---|---|", "| CXCAP-01 | Toggle | static |", "| CXCAP-02 | Voice | static |"].join("\n");

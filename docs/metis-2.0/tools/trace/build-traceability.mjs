@@ -45,6 +45,7 @@ export const defaultPaths = (root = defaultRoot) => ({
   decisions: path.join(root, "DECISIONS.md"),
   blockers: path.join(root, "BLOCKERS.md"),
   capabilityDispositions: path.join(root, "kit/CAPABILITY-DISPOSITIONS.json"),
+  ownerReferenceDispositions: path.join(root, "kit/OWNER-REFERENCE-DISPOSITIONS.json"),
   outputMarkdown: path.join(root, "TRACEABILITY.md"),
   outputJson: path.join(root, "ledger/traceability.json"),
 });
@@ -126,6 +127,20 @@ export const PARITY_LABELS = ["static", "documented", "verified locally", "missi
 export const PARITY_REFRESH_POINTS = ["T1", "T2", "T3", "rc1"];
 const CAPABILITY_ID_RE = /^CAP-\d{2}$/;
 const SHA256_RE = /^[0-9a-f]{64}$/;
+const OWNER_REFERENCE_DISPOSITIONS = [
+  "adopt-behaviour",
+  "already-covered",
+  "deferred-after-2.0",
+  "conflicts",
+  "not-adopted",
+];
+const OWNER_REFERENCE_OWNER_MARKERS = ["EXCLUDED"];
+const OWNER_REFERENCE_M2_DISPOSITIONS = ["adopt-behaviour", "already-covered"];
+const OWNER_REFERENCE_EXCLUDED_DISPOSITIONS = ["deferred-after-2.0", "conflicts", "not-adopted"];
+const OWNER_REFERENCE_CITATION_RE = /\b(?:OD|COV)-\d+\b/;
+const SOURCE_PATH_RE = /(?:^|[\s"'(])(?:\.{0,2}\/)?[A-Za-z0-9_.-]+(?:\/[A-Za-z0-9_.-]+)+\.[A-Za-z0-9]+(?:[:#]\d+)?\b/;
+const FILE_LINE_RE = /\b[A-Za-z0-9_.-]+\.[A-Za-z0-9]+:\d+\b/;
+const FORBIDDEN_OWNER_REFERENCE_KEYS = new Set(["source_file", "source_path", "line", "line_number", "type", "function", "tool", "prompt", "vulnerability"]);
 
 const CLOSED_TICKET_STATUSES = ["DONE", "CANCELLED"];
 const CAPABILITY_ROW_STATUSES = ["NOT_MET", "PARTIAL", "MET"];
@@ -237,6 +252,83 @@ export function validateCapabilityDispositions(dispositions, { ticketIds, rows, 
   }
 }
 
+export function validateOwnerReferenceDispositions(dispositions, { ticketIds, errors }) {
+  if (!dispositions || typeof dispositions !== "object" || Array.isArray(dispositions)) {
+    errors.push("owner reference dispositions: file must be a JSON object");
+    return;
+  }
+  const covLinks = Array.isArray(dispositions.cov_links) ? dispositions.cov_links : [];
+  if (!covLinks.includes("COV-43")) {
+    errors.push("owner reference dispositions: missing COV-43 link");
+  }
+
+  const capabilities = dispositions.capabilities;
+  if (!Array.isArray(capabilities) || capabilities.length === 0) {
+    errors.push("owner reference dispositions: capabilities must be a non-empty array");
+    return;
+  }
+
+  const seen = new Set();
+  for (const [index, row] of capabilities.entries()) {
+    const id = typeof row.id === "string" && row.id.trim() ? row.id : `capabilities[${index}]`;
+    const where = `owner reference row ${id}`;
+    if (seen.has(id)) errors.push(`${where} is duplicated`);
+    seen.add(id);
+
+    for (const key of Object.keys(row)) {
+      if (FORBIDDEN_OWNER_REFERENCE_KEYS.has(key)) {
+        errors.push(`${where} contains forbidden field ${key}`);
+      }
+    }
+
+    for (const field of ["id", "capability", "disposition", "owner"]) {
+      if (typeof row[field] !== "string" || row[field].trim() === "") {
+        errors.push(`${where}: missing ${field}`);
+      }
+    }
+
+    if (!OWNER_REFERENCE_DISPOSITIONS.includes(row.disposition)) {
+      errors.push(`${where}: disposition must be one of ${OWNER_REFERENCE_DISPOSITIONS.join(", ")}`);
+    }
+
+    if (OWNER_REFERENCE_M2_DISPOSITIONS.includes(row.disposition)) {
+      if (!PROGRAM_TICKET_RE.test(row.owner ?? "")) {
+        errors.push(`${where}: owner must be an M2 ticket for ${row.disposition}`);
+      } else if (!ticketIds.has(row.owner)) {
+        errors.push(`${where}: owner ${row.owner} is a missing ticket`);
+      }
+    }
+
+    if (OWNER_REFERENCE_EXCLUDED_DISPOSITIONS.includes(row.disposition)) {
+      if (!OWNER_REFERENCE_OWNER_MARKERS.includes(row.owner)) {
+        errors.push(`${where}: owner must be EXCLUDED for ${row.disposition}`);
+      }
+      if (typeof row.reason !== "string" || row.reason.trim() === "") {
+        errors.push(`${where}: EXCLUDED rows need a one-line reason`);
+      } else if (row.reason.includes("\n")) {
+        errors.push(`${where}: reason must be one line`);
+      }
+    }
+
+    if (row.disposition === "conflicts" && !OWNER_REFERENCE_CITATION_RE.test([...(row.citations ?? []), row.reason ?? ""].join(" "))) {
+      errors.push(`${where}: conflicts rows need an OD or COV citation`);
+    }
+
+    for (const value of ownerReferenceStrings(row)) {
+      if (SOURCE_PATH_RE.test(value) || FILE_LINE_RE.test(value)) {
+        errors.push(`${where}: row must not contain source-file paths or file:line references`);
+      }
+    }
+  }
+}
+
+function ownerReferenceStrings(value) {
+  if (typeof value === "string") return [value];
+  if (Array.isArray(value)) return value.flatMap(ownerReferenceStrings);
+  if (!value || typeof value !== "object") return [];
+  return Object.values(value).flatMap(ownerReferenceStrings);
+}
+
 export function computeTraceability({
   inventory,
   ledger,
@@ -245,6 +337,7 @@ export function computeTraceability({
   blockersText = "",
   requiredAcceptanceIds = [],
   capabilityDispositions = null,
+  ownerReferenceDispositions = null,
 }) {
   const errors = [];
   const warnings = [];
@@ -304,6 +397,9 @@ export function computeTraceability({
 
   if (capabilityDispositions) {
     validateCapabilityDispositions(capabilityDispositions, { ticketIds, rows, errors, tickets: ledger.tickets, warnings });
+  }
+  if (ownerReferenceDispositions) {
+    validateOwnerReferenceDispositions(ownerReferenceDispositions, { ticketIds, errors });
   }
 
   const duplicateRefs = findDuplicateRefRows(outputRows);
@@ -643,13 +739,14 @@ function escapeCell(value) {
 }
 
 export async function build(paths = defaultPaths()) {
-  const [inventory, ledger, records, decisionsText, blockersText, capabilityDispositions] = await Promise.all([
+  const [inventory, ledger, records, decisionsText, blockersText, capabilityDispositions, ownerReferenceDispositions] = await Promise.all([
     loadInventory(paths),
     readJson(paths.tickets),
     loadEvidenceRecords(paths.evidenceRecords),
     readFile(paths.decisions, "utf8"),
     readFile(paths.blockers, "utf8"),
     readJson(paths.capabilityDispositions),
+    readJson(paths.ownerReferenceDispositions),
   ]);
   return computeTraceability({
     inventory,
@@ -659,6 +756,7 @@ export async function build(paths = defaultPaths()) {
     blockersText,
     requiredAcceptanceIds: REQUIRED_ACCEPTANCE_IDS,
     capabilityDispositions,
+    ownerReferenceDispositions,
   });
 }
 
