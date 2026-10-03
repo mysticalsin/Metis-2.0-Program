@@ -537,6 +537,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "1.9.7 readiness audit: M2-0046 depends on M2-0534, M2-0469, M2-0217, M2-0484, M2-0464, M2-0195, M2-0542, M2-0508, M2-0537, M2-0418, M2-0447; M2-0498 on M2-0202, M2-0542; M2-0202 milestone m3 (OD-51)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0256 re-sliced into 3 slices (20 h) after 8 rounds; M2-0393 FF-05b expectation follows (stays 0)."
   }
  ],
  "tickets": [
@@ -22002,12 +22008,103 @@
    "external_blocker": null,
    "flag": null,
    "risk": "medium",
-   "estimate_hours": 3,
+   "estimate_hours": 20,
    "status": "TODO",
    "priority": "P1",
    "required_evidence": [
     "LOCALLY_TESTED"
-   ]
+   ],
+   "slices": [
+    {
+     "id": "M2-0256.1",
+     "title": "Async gateway writes, publish.ts and graphify graph/purge I/O on the gateway, an honest FF-05 ratchet with no node:fs re-export shims, and the ST-1 publish/graphify FIFO row",
+     "scope_paths": [
+      "src/main/infra/storage/",
+      "src/main/brain/publish.ts",
+      "src/main/graphify.ts",
+      "src/main/transcripts.ts",
+      "src/main/brain/store.ts",
+      "src/main/index.ts",
+      ".dependency-cruiser.cjs",
+      "scripts/architecture-baseline.json",
+      "scripts/check-architecture.mjs",
+      "scripts/check-architecture.test.ts",
+      "src/main/sync-fs-meetings-root.contract.test.ts",
+      "scripts/qa/st-1.mjs",
+      "scripts/qa/lib/st-1-core.mjs",
+      "scripts/qa/candidate-scenarios.mjs",
+      ".github/workflows/candidate-scenarios.yml",
+      "scripts/trace/build-traceability.mjs"
+     ],
+     "acceptance": [
+      "The gateway exposes async write (with mode), rename, unlink and mkdir under the same admission cap and classification (unit tests with FIFO and dataless fakes); writeSaved creates files 0o600, has no content deadline, and removes its .tmp only after the write settles",
+      "brain/publish.ts has no node:fs import; graphify.ts reads graph.json/graph.html and purges graph artifacts only through the gateway; index.ts changes are await call-site swaps only",
+      "No module under src/main/infra/storage/ re-exports a node:fs or node:fs/promises binding (fs-sync.ts, fs-async.ts, legacy-sync-io.ts and legacy-async-io.ts are deleted; store.ts, transcripts.ts and graphify.ts import node:fs directly); a check-architecture test fails on a fixture storage module that re-exports an fs binding, detected by its exports and not by its file name",
+      "FF-05a, FF-05b and the sync-fs contract-test BASELINE entries for brain/store.ts, transcripts.ts and graphify.ts equal the measured counts and none exceeds the stack-base value (FF-05b 63/33/17, FF-05a 63/27/17, contract 63/27); publish.ts has no FF-05a/FF-05b entry; the ff05b-meetings-root-readers-no-node-fs rule hard-fails node:fs imports in brain/publish.ts, brain/ingest.ts and recall.ts",
+      "Packaged ST-1 row st1-publish-graphify on macOS with blocked FIFO meeting fixtures and the publish/graphify probe inside the sampled window (Windows recorded as not covered); main p99 under 50 ms and no app.stall over 250 ms reported as LEAD_ACTION until a dispatched run exists",
+      "SLICE: graphify.ts and transcripts.ts reach FF-05b 0 in M2-0256.2 and M2-0256.3, brain/store.ts in M2-0256.3; no explanatory comment is deleted or shortened to offset an FF-04 line count"
+     ],
+     "estimate_hours": 4,
+     "owner_model": "sonnet",
+     "depends_on_slices": []
+    },
+    {
+     "id": "M2-0256.2",
+     "title": "graphify.ts to FF-05b 0 and transcripts.ts down to readSavedFile only: meetings-root writes on the gateway; temp-dir, escrow-key and Python/binary discovery I/O moved out of the meetings-root readers",
+     "scope_paths": [
+      "src/main/transcripts.ts",
+      "src/main/graphify.ts",
+      "src/main/graphify-runtime.ts",
+      "src/main/transcript-local-files.ts",
+      "src/main/history-actions.ts",
+      "src/main/selftest.ts",
+      "src/main/infra/storage/paths.ts",
+      "src/main/index.ts",
+      ".dependency-cruiser.cjs",
+      "scripts/architecture-baseline.json",
+      "src/main/sync-fs-meetings-root.contract.test.ts"
+     ],
+     "acceptance": [
+      "ensureMeetingsFolder, appendIndexRow, the unique-filename probes in saveNote and saveMeeting, clearDraftTranscript's existence check, isEncryptedFile and the keychain-rewrap tmp write/rename reach the meetings root only through the gateway, with behaviour tests on FIFO and dataless fakes",
+      "decryptToTemp and sweepStaleTempFiles (app temp dir), resolveEscrowPem (managed-config key path) and graphify's Python, runner and claude binary discovery are moved unchanged into modules outside MEETINGS_ROOT_READERS; their sync calls stay counted in FF-05a under the new files",
+      "graphify.ts has no node:fs import and is in the hard-fail ff05b rule; transcripts.ts FF-05b is at most 1 (readSavedFile's read, kept for store.ts until M2-0256.3)",
+      "Existing transcript, recap, draft-recovery and graphify tests pass without assertion changes"
+     ],
+     "estimate_hours": 6,
+     "owner_model": "sonnet",
+     "depends_on_slices": [
+      "M2-0256.1"
+     ]
+    },
+    {
+     "id": "M2-0256.3",
+     "title": "brain/store.ts and the last transcripts.ts read to FF-05b 0 through the gateway; the hard-fail rule covers all six meetings-root readers",
+     "scope_paths": [
+      "src/main/brain/store.ts",
+      "src/main/brain/",
+      "src/main/transcripts.ts",
+      "src/main/history-actions.ts",
+      "src/main/import-job-store.ts",
+      "src/main/index.ts",
+      ".dependency-cruiser.cjs",
+      "scripts/architecture-baseline.json",
+      "src/main/sync-fs-meetings-root.contract.test.ts"
+     ],
+     "acceptance": [
+      "Every fs call in brain/store.ts (63 at stack base) goes through the gateway; readJson, ensureV1Backup, indexUnavailable, listEntities, listMeetingExtractions, removeMeetingExtraction, purgeBrain, listPreservedBrainIndexes, currentBrainIndexIsReadable, restorePreservedBrainIndex and deletePreservedBrainIndex are replaced by async gateway forms (reusing loadJson, loadEntitySlugs, loadMeetingExtractionSlugs and indexUnavailableAsync where they exist) and every caller awaits",
+      "readSavedFile is removed from transcripts.ts; its callers read through the gateway and decodeSaved",
+      "FF-05b is {} in scripts/architecture-baseline.json and the ff05b rule hard-fails any node:fs import in all six MEETINGS_ROOT_READERS files",
+      "Existing store, M2-0003, M2-0216 and M2-0423 tests pass without assertion changes; the st1-publish-graphify row is re-run as LEAD_ACTION"
+     ],
+     "estimate_hours": 10,
+     "owner_model": "opus",
+     "depends_on_slices": [
+      "M2-0256.2"
+     ]
+    }
+   ],
+   "slice_current": 1,
+   "notes": " 2026-10-03 (lead, STUCK triage): acceptance #3 (FF-05b 0 for six files) needs ~100 meetings-root fs calls moved, 63 in brain/store.ts with callers outside scope; the 3 h estimate hid it and two rounds re-exported node:fs through shims. Re-sliced into M2-0256.1-.3 (20 h); .3 (10 h) must be split again before it launches."
   },
   {
    "id": "M2-0257",
@@ -28766,7 +28863,7 @@
    "acceptance": [
     "brain/store.ts is replaced by modules of at most 800 lines (paths, index codec including classifyIndexBytes, migrations, entity repository, preserved-index lifecycle), landing as a pure move first",
     "Preserved-index list, restore and delete are async through the gateway; a node:fs spy proves listPreservedBrainIndexes makes no synchronous call",
-    "The brain/store.ts FF-04 entry is removed and the combined FF-05b count for the new modules is below 34",
+    "The brain/store.ts FF-04 entry is removed and the combined FF-05b count for the new modules stays 0",
     "Existing store tests and M2-0216 restore/delete tests pass without assertion changes"
    ],
    "verification": [
