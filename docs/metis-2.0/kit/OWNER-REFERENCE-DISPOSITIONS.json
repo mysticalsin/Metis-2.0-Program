@@ -1,0 +1,163 @@
+{
+  "schema": "metis.owner-reference-dispositions.v1",
+  "reference": "owner:OREF-01",
+  "ticket": "M2-0544",
+  "cov_links": ["COV-43"],
+  "claim_labels": "OBSERVED: OD-56 and M2-0544 record the owner request and behaviour-only limit. DERIVED: dispositions map those public decisions to owning M2 tickets or EXCLUDED rows. UNKNOWN: the exact reference commit is not present in the public program files read for this change.",
+  "allowed_dispositions": ["adopt-behaviour", "already-covered", "deferred-after-2.0", "conflicts", "not-adopted"],
+  "allowed_owner_markers": ["EXCLUDED"],
+  "lead_actions": [
+    "LEAD_ACTION: run node docs/metis-2.0/tools/trace/build-traceability.mjs --check in program-repo CI and file the artifact evidence.",
+    "LEAD_ACTION: run node --test docs/metis-2.0/tools/trace/build-traceability.test.mjs docs/metis-2.0/tools/trace/check-reference-claims.test.mjs in program-repo CI and file the artifact evidence.",
+    "LEAD_ACTION: run node docs/metis-2.0/tools/trace/check-reference-claims.mjs in program-repo CI and file the artifact evidence.",
+    "LEAD_ACTION: run gitleaks detect --no-git --source docs/metis-2.0 in program-repo CI and file the artifact evidence.",
+    "LEAD_ACTION: run the email and private-ID regex scan of the changed files in program-repo CI and file the artifact evidence.",
+    "LEAD_ACTION: update docs/metis-2.0/ledger/tickets.json and generated ledger ticket pages only through the lead ledger process if M2-0545, M2-0546, M2-0547 or M2-0548 changes."
+  ],
+  "capabilities": [
+    {
+      "id": "OREF-CAP-01",
+      "capability": "On-device OCR with line and word boxes on macOS and Windows",
+      "disposition": "adopt-behaviour",
+      "owner": "M2-0545"
+    },
+    {
+      "id": "OREF-CAP-02",
+      "capability": "Grounding manifest for the planner with controls, text boxes and opaque target ids",
+      "disposition": "adopt-behaviour",
+      "owner": "M2-0546"
+    },
+    {
+      "id": "OREF-CAP-03",
+      "capability": "Point at a grounded target and anchor the answer beside it",
+      "disposition": "adopt-behaviour",
+      "owner": "M2-0547"
+    },
+    {
+      "id": "OREF-CAP-04",
+      "capability": "Native Mac parity for the point-at guidance overlay and answer bubble",
+      "disposition": "already-covered",
+      "owner": "M2-0548"
+    },
+    {
+      "id": "OREF-CAP-05",
+      "capability": "Per-capability key allowlists and deny-by-default input safety",
+      "disposition": "already-covered",
+      "owner": "M2-0082"
+    },
+    {
+      "id": "OREF-CAP-06",
+      "capability": "Exact application-name matching before launching or controlling an app",
+      "disposition": "already-covered",
+      "owner": "M2-0084"
+    },
+    {
+      "id": "OREF-CAP-07",
+      "capability": "Windows launch parity for exact application-name matching",
+      "disposition": "already-covered",
+      "owner": "M2-0085"
+    },
+    {
+      "id": "OREF-CAP-08",
+      "capability": "HTTP and HTTPS only URL opening across every route",
+      "disposition": "already-covered",
+      "owner": "M2-0086"
+    },
+    {
+      "id": "OREF-CAP-09",
+      "capability": "Fail-closed field refusal on every injection route",
+      "disposition": "already-covered",
+      "owner": "M2-0285"
+    },
+    {
+      "id": "OREF-CAP-10",
+      "capability": "Foreground injection off by default and rechecked before dispatch",
+      "disposition": "already-covered",
+      "owner": "M2-0280"
+    },
+    {
+      "id": "OREF-CAP-11",
+      "capability": "In-app hold-to-talk for the orb and microphone path",
+      "disposition": "already-covered",
+      "owner": "M2-0087"
+    },
+    {
+      "id": "OREF-CAP-12",
+      "capability": "Quiet asks from a recorded meeting with shared attention delivery rules",
+      "disposition": "already-covered",
+      "owner": "M2-0114"
+    },
+    {
+      "id": "OREF-CAP-13",
+      "capability": "Private delivery decision for cues and answer bubbles during calls or screen sharing",
+      "disposition": "already-covered",
+      "owner": "M2-0305"
+    },
+    {
+      "id": "OREF-CAP-14",
+      "capability": "Phone voice front end and local network control link",
+      "disposition": "conflicts",
+      "owner": "EXCLUDED",
+      "reason": "Conflicts with OD-12.",
+      "citations": ["OD-12"]
+    },
+    {
+      "id": "OREF-CAP-15",
+      "capability": "Ambient listening and stored overheard transcripts",
+      "disposition": "conflicts",
+      "owner": "EXCLUDED",
+      "reason": "Conflicts with COV-08 and COV-18.",
+      "citations": ["COV-08", "COV-18"]
+    },
+    {
+      "id": "OREF-CAP-16",
+      "capability": "Idle follow-the-mouse animation",
+      "disposition": "not-adopted",
+      "owner": "EXCLUDED",
+      "reason": "OD-56 says it is not adopted."
+    },
+    {
+      "id": "OREF-CAP-17",
+      "capability": "Character art",
+      "disposition": "not-adopted",
+      "owner": "EXCLUDED",
+      "reason": "OD-56 says no character art is copied or adopted."
+    },
+    {
+      "id": "OREF-CAP-18",
+      "capability": "Reference provider choice",
+      "disposition": "not-adopted",
+      "owner": "EXCLUDED",
+      "reason": "OD-56 says provider choice is not adopted."
+    },
+    {
+      "id": "OREF-CAP-19",
+      "capability": "Stable signing behaviour from the reference",
+      "disposition": "conflicts",
+      "owner": "EXCLUDED",
+      "reason": "Conflicts with OD-8.",
+      "citations": ["OD-8"]
+    },
+    {
+      "id": "OREF-CAP-20",
+      "capability": "Drag and click or typing animation",
+      "disposition": "not-adopted",
+      "owner": "EXCLUDED",
+      "reason": "OD-56 says these behaviours are not adopted."
+    },
+    {
+      "id": "OREF-CAP-21",
+      "capability": "Pointer flight engine",
+      "disposition": "deferred-after-2.0",
+      "owner": "EXCLUDED",
+      "reason": "OD-56 defers it until after 2.0."
+    },
+    {
+      "id": "OREF-CAP-22",
+      "capability": "Accessibility-enabling writes to other applications",
+      "disposition": "deferred-after-2.0",
+      "owner": "EXCLUDED",
+      "reason": "OD-56 defers it until after 2.0."
+    }
+  ]
+}
