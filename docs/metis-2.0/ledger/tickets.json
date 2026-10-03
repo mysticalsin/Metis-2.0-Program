@@ -609,6 +609,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0552..M2-0557 (census and freeze-repro harness fixes from the N8/N10 readiness diagnosis; M2-0046 depends on all but the non-gating TTFT proof) and M2-0558 (Electron fuses, security, m5)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "M2-0206 (1.9.9 owner-channel build) depends on M2-0558 (Electron fuses)."
   }
  ],
  "tickets": [
@@ -19236,7 +19242,8 @@
     "M2-0045",
     "M2-0202",
     "M2-0203",
-    "M2-0204"
+    "M2-0204",
+    "M2-0558"
    ],
    "needs_decision": [
     "D-13"
@@ -19277,7 +19284,7 @@
    "due": "2026-10-18",
    "status": "TODO",
    "engineering_first": true,
-   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW, CI-provable: (1) Add a `--train <ticket>` mode to scripts/evidence/check.mjs, with node --test fixtures. It asserts: lane provenance.json sha256s for the train; PASS records for the HK, RV, ST and EX suites (plus JR once the journal exists) bound to those exact sha256s; a census-gate PASS (M2-0200 output); a windows-latest parity record with the physical-laptop rows present as residuals or blockers; a re-execution sample record that matches the reproducible draw from scripts/evidence/sample.mjs; no decision with needed_by on or before the train date still OPEN (unless escalated); and the m5 re-forecast present. Per-train extra criteria are pluggable, so T2 and T3 reuse the mode. (2) Add a feed version-order preflight: a pure semver-precedence function with unit tests, wired into the qa-candidate.yml guard job (before the build) and promote-candidate.yml. It refuses a package version that is not strictly above every tag on mysticalsin/Metis-Releases, including drafts such as the v1.9.8 draft. LATER, once depends_on land: set the version to 1.9.9, dispatch qa-candidate.yml once on main, and run the packaged suites, the census compare and the windows-latest parity on those bytes. Then file docs/metis-2.0/evidence/train-M2-0206/, draw the 10% sample, write the m5 re-forecast, and have the lead dispatch promote-candidate.yml publish=true per D-13 (the same lead step M2-0046's notes define). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner downloads the promoted 1.9.9 owner-channel prerelease, installs it by hand on the owner Mac (the updater ignores prereleases) and keeps it as the daily build. The install date starts M2-0167's 14-day journal and ledger clock. The physical Windows laptop parity rows depend on Mantu IT (B-06, M2-0195) and are recorded as residuals or blockers per the acceptance, not as this ticket's blocker."
+   "notes": "2026-09-28 (lead, external-blocker sweep, owner-approved): ENGINEERING FIRST — build now: NOW, CI-provable: (1) Add a `--train <ticket>` mode to scripts/evidence/check.mjs, with node --test fixtures. It asserts: lane provenance.json sha256s for the train; PASS records for the HK, RV, ST and EX suites (plus JR once the journal exists) bound to those exact sha256s; a census-gate PASS (M2-0200 output); a windows-latest parity record with the physical-laptop rows present as residuals or blockers; a re-execution sample record that matches the reproducible draw from scripts/evidence/sample.mjs; no decision with needed_by on or before the train date still OPEN (unless escalated); and the m5 re-forecast present. Per-train extra criteria are pluggable, so T2 and T3 reuse the mode. (2) Add a feed version-order preflight: a pure semver-precedence function with unit tests, wired into the qa-candidate.yml guard job (before the build) and promote-candidate.yml. It refuses a package version that is not strictly above every tag on mysticalsin/Metis-Releases, including drafts such as the v1.9.8 draft. LATER, once depends_on land: set the version to 1.9.9, dispatch qa-candidate.yml once on main, and run the packaged suites, the census compare and the windows-latest parity on those bytes. Then file docs/metis-2.0/evidence/train-M2-0206/, draw the 10% sample, write the m5 re-forecast, and have the lead dispatch promote-candidate.yml publish=true per D-13 (the same lead step M2-0046's notes define). | Stays outside (record as BLOCKED_EXTERNAL / LEAD_ACTION, never fake): The owner downloads the promoted 1.9.9 owner-channel prerelease, installs it by hand on the owner Mac (the updater ignores prereleases) and keeps it as the daily build. The install date starts M2-0167's 14-day journal and ledger clock. The physical Windows laptop parity rows depend on Mantu IT (B-06, M2-0195) and are recorded as residuals or blockers per the acceptance, not as this ticket's blocker. 2026-10-03 (lead): depends on M2-0558 (Electron fuses) so the owner-channel build ships the fuse state, or the recorded RunAsNode residual."
   },
   {
    "id": "M2-0207",
