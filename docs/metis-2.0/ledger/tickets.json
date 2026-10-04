@@ -693,6 +693,12 @@
    "version": 2,
    "by": "lead (Claude)",
    "summary": "Filed M2-0576 (back-fill workflow reads the public program ledger with the job token)."
+  },
+  {
+   "date": "2026-10-03",
+   "version": 2,
+   "by": "lead (Claude)",
+   "summary": "OD-67 (owner): 49 pre-log closures stay closed as legacy (evidence/legacy-evidence.json); evidence/legacy-fix.json (OD-65, 55 ids) committed; M2-0573 reads both."
   }
  ],
  "tickets": [
@@ -39776,19 +39782,20 @@
     "scripts/evidence/backfill.mjs",
     "scripts/evidence/backfill.test.mjs"
    ],
-   "title": "Ledger check: the fix-ticket red-before rule (L11) skips the OD-65 legacy list",
+   "title": "Ledger check: honour the OD-65 legacy-fix list (L11) and the OD-67 legacy-evidence list (L8/L9)",
    "summary": "check.mjs redBeforeProblems flags every closed type: fix ticket whose latest LOCALLY_TESTED record has no repro. OD-65 keeps fix tickets that closed before the queue's evidence install (or merged afterwards under its pre-install grandfather rule) closed as legacy; their ids are listed in the program repository's docs/metis-2.0/evidence/legacy-fix.json. The ledger check must read that list and skip L11 for exactly those ids.",
    "acceptance": [
     "check.mjs reads the legacy list from evidence/legacy-fix.json next to the records store it already reads (the path is derived the same way as the records directory, overridable by a flag), as a JSON object {\"decision\": \"OD-65\", \"tickets\": [ids]}",
     "redBeforeProblems skips L11 for an id in the list and still flags every other closed fix ticket without repro; a malformed list (not that shape, a non-M2 id, a duplicate) is itself a problem, never a silent skip",
     "A missing list file means no legacy tickets (L11 applies to all), so the rule fails closed",
     "backfill.mjs reports a legacy fix ticket without repro as filed, not as a gap, and names the OD-65 exemption in its summary",
-    "Unit tests cover: listed id skipped, unlisted id flagged, malformed list, missing list, and the backfill summary"
+    "Unit tests cover: listed id skipped, unlisted id flagged, malformed list, missing list, and the backfill summary",
+    "OD-67 (owner, 2026-10-03): check.mjs also reads evidence/legacy-evidence.json {\"decision\": \"OD-67\", \"tickets\": [ids]} and skips the record requirement (L8/L9) for exactly those ids — closed before the queue kept per-ticket logs — while applying it to every other closed ticket; the same shape, missing-file and malformed-list rules as the OD-65 list"
    ],
    "verification": [
     "PR CI: node --test scripts/evidence/check.test.mjs scripts/evidence/backfill.test.mjs (Build & Test)"
    ],
-   "notes": "2026-10-03 (lead): filed under OD-65; the lead writes docs/metis-2.0/evidence/legacy-fix.json in the program repository during the Phase 2 backfill."
+   "notes": "2026-10-03 (lead): filed under OD-65; the lead writes docs/metis-2.0/evidence/legacy-fix.json in the program repository during the Phase 2 backfill. 2026-10-03 (lead): OD-67 widens this ticket to the legacy-evidence list; both lists are committed in the program repository."
   },
   {
    "id": "M2-0574",
