@@ -1,0 +1,59 @@
+{
+ "validator_session": {
+  "model": "gpt-5.5",
+  "id": "01a1043a-c883-7bb3-bb44-6b644f0e91d7"
+ },
+ "rows": [
+  {
+   "ticket": "M2-0016",
+   "pr": 263,
+   "merged_head": "855eb13494b602a83dc382ea7e2c9034ca1e41e6",
+   "kit": {
+    "TASK-002": "PARTIAL",
+    "M2-BASE-01": "NOT_MET",
+    "M2-SEC-02": "PARTIAL",
+    "M2-REL-01": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0036",
+   "pr": 252,
+   "merged_head": "e3b2488d7b5f314aa373db45ce3506f809c1593a",
+   "kit": {
+    "M2-UX-02": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0059",
+   "pr": 265,
+   "merged_head": "bc37d48c9600ae239b5c5a3f6d0b6c4e2a0b635f",
+   "kit": {
+    "TASK-061": "PARTIAL",
+    "COV-41": "PARTIAL",
+    "M2-ENG-01": "PARTIAL",
+    "R37": "NOT_MET"
+   }
+  },
+  {
+   "ticket": "M2-0104",
+   "pr": 320,
+   "merged_head": "bb8c3220e2cd1370ef7e1a25bfb932f4b2f55d2f",
+   "kit": {
+    "TASK-013": "PARTIAL",
+    "M2-PRIV-01": "PARTIAL",
+    "HC-30": "PARTIAL",
+    "SRC-08": "MET",
+    "UC-068": "PARTIAL",
+    "M2-PRIV-02": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0172",
+   "pr": 331,
+   "merged_head": "66cd374b236c34b2bba8708bfe583d4552c53f64",
+   "kit": {
+    "M2-ENG-01": "MET"
+   }
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "validator_session": {
+  "model": "gpt-5.5",
+  "id": "01a1043a-c883-7b01-a1f5-36b8de991be0"
+ },
+ "rows": [
+  {
+   "ticket": "M2-0005",
+   "pr": 20,
+   "merged_head": "aa1f31619031a6042d7ce2025342a9ac5ec2264c",
+   "kit": {
+    "SRC-24": "PARTIAL",
+    "SRC-01": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0018",
+   "pr": 261,
+   "merged_head": "e9f8e520b8289c8d75ba24d00f06fe194d0b66f8",
+   "kit": {
+    "COV-02": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0049",
+   "pr": 292,
+   "merged_head": "da702e0e682e28583d472e0eeb647e030c2ae77e",
+   "kit": {
+    "SRC-19": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0092",
+   "pr": 266,
+   "merged_head": "9e90cd6641d68f20ba8f70c5536d5219ca12e1e3",
+   "kit": {
+    "R05": "MET",
+    "R06": "MET",
+    "R07": "MET",
+    "R08": "MET",
+    "R09": "MET",
+    "R78": "MET",
+    "R86": "MET"
+   }
+  },
+  {
+   "ticket": "M2-0119",
+   "pr": 297,
+   "merged_head": "ea96d9ae739d4ef51642998f7e1ace0bbdf342b1",
+   "kit": {
+    "M2-KNOW-04": "PARTIAL",
+    "COV-27": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0178",
+   "pr": 267,
+   "merged_head": "99e709011674fa79780120c6bb62f009d7074a9e",
+   "kit": {
+    "LFAC-01": "MET",
+    "LFAC-02": "MET",
+    "LFAC-04": "MET",
+    "LFAC-05": "MET",
+    "LFAC-12": "MET",
+    "REF-09": "MET",
+    "REF-10": "MET",
+    "EXP-12": "MET"
+   }
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "validator_session": {
+  "model": "gpt-5.5",
+  "id": "01a1043a-c891-71d3-8e25-f2640aa4466a"
+ },
+ "rows": [
+  {
+   "ticket": "M2-0014",
+   "pr": 31,
+   "merged_head": "777843a68080771985849ab96419dd9f0c6dd776",
+   "kit": {
+    "R40": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0032",
+   "pr": 419,
+   "merged_head": "bd0abfe6068822cdf53376ca37b412c21aa3a67e",
+   "kit": {
+    "EXP-09": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0053",
+   "pr": 247,
+   "merged_head": "f6016ab327ea5467500b2a01010905489c7a6a27",
+   "kit": {
+    "M2-REL-01": "MET",
+    "F-19": "PARTIAL",
+    "SRC-18": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0103",
+   "pr": 308,
+   "merged_head": "95c07bb7bd91d9e77e815bd173b3288e4afcd72d",
+   "kit": {
+    "TASK-012": "PARTIAL",
+    "M2-OPS-03": "PARTIAL",
+    "SRC-20": "PARTIAL",
+    "M2-STT-02": "NOT_MET",
+    "M2-SEC-01": "PARTIAL",
+    "F-20": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0171",
+   "pr": 295,
+   "merged_head": "cd7ce318794fa17c0e18facab2d569a8244040cf",
+   "kit": {
+    "M2-REL-01": "PARTIAL",
+    "FLOW-12": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0215",
+   "pr": 241,
+   "merged_head": "d5be4ac48cbbe5cac558352bf0ae598a1dc58be0",
+   "kit": {
+    "M2-OPS-03": "PARTIAL",
+    "M2-PRIV-03": "PARTIAL"
+   }
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+ "validator_session": {
+  "model": "gpt-5.5",
+  "id": "01a1043a-c884-7943-8a95-2ca6ae88c681"
+ },
+ "rows": [
+  {
+   "ticket": "M2-0009",
+   "pr": 249,
+   "merged_head": "77e2e8e9e619332190b3e0d5a043de0421fd78fb",
+   "kit": {
+    "TASK-004": "PARTIAL",
+    "M2-PKG-01": "PARTIAL",
+    "M2-ASR-01": "PARTIAL",
+    "M2-LOCAL-02": "PARTIAL",
+    "EXP-12": "PARTIAL",
+    "HC-03": "PARTIAL",
+    "R03": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0031",
+   "pr": 259,
+   "merged_head": "f52df7544e0ca3a17e139abd077bca2c09407f8b",
+   "kit": {
+    "M2-DATA-01": "PARTIAL"
+   }
+  },
+  {
+   "ticket": "M2-0050",
+   "pr": 314,
+   "merged_head": "56a354a607bb8c60f8f15f338a6430a6e46f9cdb",
+   "kit": {
+    "SRC-24": "MET"
+   }
+  },
+  {
+   "ticket": "M2-0102",
+   "pr": 30,
+   "merged_head": "6b282251d1b43cda23296e45adf62e80ec1788a9",
+   "kit": {
+    "TASK-011": "MET",
+    "M2-PRIV-02": "MET",
+    "S4": "PARTIAL",
+    "R16": "MET",
+    "R42": "MET",
+    "R43": "MET",
+    "R44": "MET",
+    "R45": "MET",
+    "R46": "MET",
+    "R47": "MET",
+    "R48": "MET",
+    "R87": "MET"
+   }
+  },
+  {
+   "ticket": "M2-0145",
+   "pr": 321,
+   "merged_head": "10c2220aa8edeefc7137c313ff54e53034e46be0",
+   "kit": {
+    "F-04": "MET",
+    "F-05": "MET"
+   }
+  },
+  {
+   "ticket": "M2-0193",
+   "pr": 409,
+   "merged_head": "cd08bd395dae3929e4f2d64091821870c3c0caa7",
+   "kit": {
+    "M2-DATA-01": "PARTIAL"
+   }
+  }
+ ]
+}
