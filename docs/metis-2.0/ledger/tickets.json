@@ -39777,7 +39777,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "estimate_hours": 2,
    "risk": "low",
    "finding_refs": [
@@ -39802,7 +39802,14 @@
    "verification": [
     "PR CI: node --test scripts/evidence/check.test.mjs scripts/evidence/backfill.test.mjs (Build & Test)"
    ],
-   "notes": "2026-10-03 (lead): filed under OD-65; the lead writes docs/metis-2.0/evidence/legacy-fix.json in the program repository during the Phase 2 backfill. 2026-10-03 (lead): OD-67 widens this ticket to the legacy-evidence list; both lists are committed in the program repository."
+   "notes": "2026-10-03 (lead): filed under OD-65; the lead writes docs/metis-2.0/evidence/legacy-fix.json in the program repository during the Phase 2 backfill. 2026-10-03 (lead): OD-67 widens this ticket to the legacy-evidence list; both lists are committed in the program repository.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/494",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0574",
