@@ -39821,7 +39821,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "estimate_hours": 2,
    "risk": "low",
    "finding_refs": [
@@ -39845,7 +39845,14 @@
    "verification": [
     "PR CI: Build & Test (npm test runs scripts/qa/golden-flows/main-inspector.test.ts), Packaged smoke (macOS) and (Windows)"
    ],
-   "notes": "2026-10-03 (lead): filed from the verified flake root cause; merge-lane flake fix, first in the merge order."
+   "notes": "2026-10-03 (lead): filed from the verified flake root cause; merge-lane flake fix, first in the merge order.",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/491",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0575",
