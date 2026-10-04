@@ -38673,7 +38673,7 @@
    "evidence_target": "LOCALLY_TESTED",
    "external_blocker": null,
    "flag": null,
-   "status": "TODO",
+   "status": "DONE",
    "estimate_hours": 3,
    "risk": "low",
    "finding_refs": [
@@ -38693,7 +38693,14 @@
    "verification": [
     "CI: packaged smoke (macOS) x3 green on the PR"
    ],
-   "notes": "2026-10-03 (lead): filed from the M2-0543 bounce; P1 (lane flake on the 1.9.7 path)."
+   "notes": "2026-10-03 (lead): filed from the M2-0543 bounce; P1 (lane flake on the 1.9.7 path).",
+   "evidence": {
+    "pr": "https://github.com/mysticalsin/AskToto-Mantu/pull/476",
+    "merged_into": "m2/integration (squash)",
+    "implementer": "codex",
+    "reviewer": "claude-opus",
+    "validation": "independent Claude Opus review PASS + every PR check green (CI, packaged smoke)"
+   }
   },
   {
    "id": "M2-0552",
