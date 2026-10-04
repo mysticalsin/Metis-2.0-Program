@@ -1,47 +1,52 @@
 ---
 project: Métis (AskToto-Mantu) — 2.0 program
-shift: 27
-agent: claude-code
-updated: 2026-10-03 19:40 EDT
-status: in-progress (1.9.7 first; merge lane throttled by CI flakes, each now root-caused; evidence chain live)
-branch: m2/integration moving; main = milestone #460 green; program main ebb13b1
+shift: 28
+agent: codex
+updated: 2026-10-04 19:55 UTC
+status: in-progress (authorized Codex takeover; local adoption; publication blocked by GitHub integration 403)
+branch: m2/integration = 90c671ec6513ba8ce6cfaae17d276dc4061d047a
 ---
 
 # Handoff — Métis 2.0 program
 
-## Objective & acceptance criteria
-Stable 1.9.7 first (OD-45; owner ACCEPT), then Métis 2.0 = the v6 kit plus OD-56 additions, merged to main and owner-accepted by
-2026-11-30, freeze M2-0210 on 11-15 (checkpoint 11-08, OD-50). Every release check preserved.
-
 ## Current state
-- Owner decisions this shift: OD-62..OD-66 (OS-synthesized takeover input; one owner-runner camera job M2-0572; real-dataless timings
-  from daily 1.9.9 use; pre-evidence fix closures stay closed as legacy, L11 from the install on, M2-0573; ST-1 window gate in-job
-  re-measure amends OD-44, M2-0575). Lead: D-37 OPEN (bytes for promotable rows once the inspect fuse is off; M2-0558 on lead hold).
-- Evidence chain live: fix38/39/40/41/42 installed (Codex SHIP each); first record filed at merge (M2-0553 DONE). 36/36 suites.
-- Merge lane: PARALLEL 3 (merges starved of macOS runners). Four CI flakes root-caused (agent diagnosis + adversarial verify, Codex
-  cross-check): History design 46% (never-settling fixture promise collected by main GC -> 'reply was never sent'; M2-0550 READY #474
-  with the fix), packaged-smoke "Promise was collected" 3% (inspector awaitPromise on sync expressions; M2-0574 P0), ST-1 window gate
-  7.7% (single-launch variance; M2-0575 P0), sidecar reaper race (M2-0551). M2-0556 relaunched with its test-hang cause
-  (descendant_pids unbounded recursion). Order: state/.merge-first = M2-0574, 0575, 0551, 0550, 0556, ...
-- Evidence Phase 2: ledger normalised (28 L10 caps -> EC, 31 required_evidence aligned, 28 inheritance-capped EC got unblock steps);
-  tools/evidence-backfill.sh plan: ready 125, needs-validator 23, no-logs 49, ambiguous 14, other 7, legacy 55 (dry run only); Codex
-  attack round 2 running.
+- Stable 1.9.7 remains the first gate, then the full 2.0 scope. Published baseline is 1.9.6; no accepted 1.9.7 exists.
+- Tony explicitly authorized full Codex takeover, lead allocation and separate independent Codex review while Claude is unavailable (OD-68). The supported queue IMPLEMENTER is now codex; no route source was changed. PARALLEL remains 3.
+- STOP is unchanged: packaged smoke failed on integration90c671ec. No merge, deployment, release, credential or security change was performed.
+- Exact integration Build & Test run37174602443 passed. Packaged smoke37174602417 attempt2 failed in macOS unsigned-build setup with ENOTFOUND nodejs.org before app smoke; Windows passed. This is not accepted packaged proof.
+- The connected GitHub integration still returns 403 Resource not accessible by integration when creating the allocated M2-0538 repair branch. Remote publication and new exact-commit CI are blocked; no alternate credentials or write route were used.
 
-## Next steps (in order)
-1. Codex verdict on the back-fill tool; on SHIP: pilot `apply` on ONE ready PR, confirm evidence.yml passes, then the m2-0238
-   back-fill workflow and the records commit; write docs/metis-2.0/evidence/legacy-fix.json (OD-65) once M2-0573 merges.
-2. Watch M2-0574/0575/0551/0550/0556 to merge; then re-run #467 (M2-0543) checks; merge M2-0543/M2-0538 -> strict measurement.
-3. Pre-fix41 fix tickets with a cancelled red run: scratchpad red-rerun.sh <ID> (no live run on the branch).
-4. M2-0558 hold: answer D-37 before DEFER-OFFPATH lifts; update ELECTRON-FUSES.md for OD-59.
-5. Ask the owner the day before T1 (about 10-17) for the OD-58 runner window. Velocity forecast once records exist.
+## Done this shift
+- Recorded bounded lead allocations in existing queue state for M2-0538, M2-0543, M2-0495, M2-0205 and M2-0561, preserving all earlier rulings. No active ticket running markers were present at allocation.
+- Fast-forwarded the clean, inactive M2-0543 local owner worktree to separately reviewed8ca364dac4dbdb1ebed27a2be050d892790bf339. Its three-file correction makes INVALID exit1 and leaves all criteria intact. Remote PR467 stays7c85ed5f; new status is blocked pending publication and actual CI, not READY.
+- Committed the M2-0538 artifact-delivery repair on an isolated branch at f78bedc87109dc980f5437aa945e6264d5933a16, test-first48f7d443. Exactly19 download-action pins now reference official fixedv6 SHA018cc2cf5baa6db3ef3c5f8a56943fffe632ef53. A contract test prevents reintroduction. Node/web no-emit pass; tests no-emit has the same five known TS2345 diagnostics. Separate review is in progress; no runtime CI ran on this head.
+- Adopted the separately reviewed capture classification/cleanup correction onto current ownerd0bf4133 in its isolated M2-0495 branch, resulting5f67c8b94f44353e5be1eb04dcc88658c7d2c24c. A separate writer is diagnosing the real capture failure in run37174623870/job111358686028 before further bounded changes. No accepted capture exists.
+- Allocated separate concurrent writers: M2-0205 profile-scoped shipping selector plus once-per-launch mode audit; M2-0561 registry/workflow/rollback verification plus consumption of that exact contract. Each works in its own branch and checkout, with separate independent review required.
+
+- Lead allocated M2-0202.4 to an isolated Codex branch m2/M2-0202-s4-codex-island, based on reviewed Reader01cf7034 (PR480 has green required source/smoke checks). The current slice3 owner/READY pin remains unchanged. Bound the next writer to the slice4 flag, right-edge components/lib, and island variants of Answer/Copilot/Markdown; production flag stays false and separate review/CI are mandatory.
+
+## Blockers
+- GitHub integration create-reference403 blocks publication and required runtime CI. Restore that integration's repository write access before publication; do not switch credentials/routes to evade the denial.
+- The specifically denied queue state/M2-0541.feedback write remains paused pending its own explicit authorization. Its prepared correction is not adopted or routed through another queue destination.
+- Fresh exact-commit runtime checks, valid strict/control/FIFO measurements, actual capture, all remaining right-edge slices, candidate qualification and owner acceptance are still required. Static/source review does not satisfy these gates.
+- M2-0205's reviewed old selector reads environment variables and has no mode audit. The allocated amendment must land as a freshly reviewed contract before packaged ledger rollout can run. The harness currently fails closed when the contract is absent.
+
+## Next steps
+1. Finish independent review of exact M2-0538f78bedc8; adopt it locally through the inactive owner branch, preserving old pins/history and a blocked status until exact-head CI.
+2. Finish the bounded capture diagnosis/correction and the profile-selector/audit implementation; independently review exact commits.
+3. Complete M2-0561 against the actual profile/audit contract; verify both candidate and release-feed rollback bytes before any launch and preserve all other scenarios, including M2-0559.
+4. When the same GitHub integration has write access, publish through the documented owner process and obtain genuine exact-head CI, red-before evidence where applicable, and all actual packaged gates. No report-only green may stand in for a measured PASS.
+5. Obtain checks on the exact authorized combined commits, then candidate stress qualification under OD-69. Merge/promotion/deployment require their applicable explicit authorization and owner acceptance.
 
 ## Decisions made (don't relitigate)
-D-28 CI only (exceptions OD-46, OD-63); OD-12..OD-66; D-34, D-35; CI re-runs only the newest run (or a cancelled red run with no
-live sibling), marker set; flake fixes need a verified root cause, not a longer timeout.
+- All prior owner rulings OD-1..OD-67 remain in force except the allocation/review model restriction superseded by OD-68 and the five-day elapsed stability wait superseded by OD-69.
+- D-28 CI only remains binding, with only its existing scoped exceptions. Local TypeScript no-emit is allowed; repository scripts/tests/apps do not run on the Mac.
+- A reviewer never approves its own work. Exact heads and candidate bytes, actual runtime outputs and required evidence determine acceptance.
+- Preserve STOP, all release checks, sandbox and privacy controls, current owners' work, and dependency/merge order.
 
 ## Watch out
-- Program repo is PUBLIC: grep every push for absolute local paths and email addresses.
-- Ledger push scripts: commit messages must not contain double quotes (the generated push script quotes them).
-- A ticket process shares the queue service's process group: kill only its own pid tree, never the group.
-- zsh: `$var:s...` is a history modifier; brace variables before a colon. `set -- $var` does not split.
-- Run the FULL suite against staged files before a Codex attack (fix42's test-27 conflict surfaced only after install).
+- Program repo is PUBLIC: no absolute owner paths, personal emails, account IDs, private content or credentials in pushes.
+- M2-0541's specific denied feedback action is separate from the approved general takeover; do not bypass it.
+- Existing READY reviews belong to their pinned heads. New local commits remain blocked until actual CI/review/evidence repin them through the lead process.
+- Queue services share process groups; never terminate the group or inject into active Claude sessions.
+- Existing M2-0559 owns Windows capture work in the candidate scenario files. The M2-0561 writer owns only the named ledger scenario contract.
